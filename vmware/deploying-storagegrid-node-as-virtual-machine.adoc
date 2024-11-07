@@ -1,0 +1,312 @@
+---
+permalink: vmware/deploying-storagegrid-node-as-virtual-machine.html 
+sidebar: sidebar 
+keywords: how to deploy grid nodes in vsphere or vsphere web client, port, remap, port remap 
+summary: Vous utilisez le client Web VMware vSphere pour déployer chaque nœud de grid en tant que machine virtuelle. Pendant le déploiement, chaque nœud de grid est créé et connecté à un ou plusieurs réseaux StorageGRID. 
+---
+= Déployez un nœud StorageGRID en tant que serveur virtuel
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous utilisez le client Web VMware vSphere pour déployer chaque nœud de grid en tant que machine virtuelle. Pendant le déploiement, chaque nœud de grid est créé et connecté à un ou plusieurs réseaux StorageGRID.
+
+Si vous avez besoin de déployer des nœuds de stockage de l'appliance StorageGRID, consultezla section https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/deploying-appliance-storage-node.html["Déployez le nœud de stockage de l'appliance"^].
+
+Vous pouvez également remapper les ports du nœud ou augmenter les paramètres de processeur ou de mémoire du nœud avant de le mettre sous tension.
+
+.Avant de commencer
+* Vous avez examiné link:index.html["planification et préparation de l'installation"]la procédure à suivre et vous avez compris les exigences en matière de logiciels, de CPU et de RAM, de stockage et de performances.
+* Vous connaissez déjà l'hyperviseur VMware vSphere et êtes déjà familiarisé avec le déploiement de serveurs virtuels dans cet environnement.
++
+
+NOTE: Ce `open-vm-tools` package, une implémentation open source similaire aux outils VMware, est inclus dans la machine virtuelle StorageGRID. Vous n'avez pas besoin d'installer VMware Tools manuellement.
+
+* Vous avez téléchargé et extrait la version correcte de l'archive d'installation StorageGRID pour VMware.
++
+
+CAUTION: Si vous déployez le nouveau nœud dans le cadre d'une opération d'extension ou de restauration, vous devez utiliser la version d'StorageGRID en cours d'exécution sur la grille.
+
+* Vous disposez du (`.vmdk`fichier StorageGRID Virtual machine Disk ) :
+
+
+[listing, subs="specialcharacters,quotes"]
+----
+NetApp-_SG-version_-SHA.vmdk
+----
+* Vous disposez des `.ovf` fichiers et `.mf` pour chaque type de nœud de grille que vous déployez :
++
+[cols="1a,1a"]
+|===
+| Nom du fichier | Description 
+
+
+| vsphere-primary-admin.ovf vsphere-primary-admin.mf  a| 
+Fichier modèle et fichier manifeste pour le nœud d'administration principal.
+
+
+
+| vsphere-non-primary-admin.ovf vsphere-non-primary-admin.mf  a| 
+Fichier modèle et fichier manifeste pour un nœud d'administration non primaire.
+
+
+
+| vsphere-storage.ovf vsphere-storage.mf  a| 
+Fichier modèle et fichier manifeste pour un noeud de stockage.
+
+
+
+| vsphere-gateway.ovf vsphere-gateway.mf  a| 
+Fichier modèle et fichier manifeste pour un nœud passerelle.
+
+|===
+* Les `.vdmk` fichiers , `.ovf` et `.mf` se trouvent tous dans le même répertoire.
+* Vous disposez d'un plan pour réduire les domaines d'échec. Par exemple, vous ne devez pas déployer tous les nœuds de passerelle sur un seul hôte vSphere ESXi.
++
+
+CAUTION: Dans un déploiement de production, n'exécutez pas plus d'un nœud de stockage sur une seule machine virtuelle. N'exécutez pas plusieurs machines virtuelles sur le même hôte ESXi si cela entraînerait un problème de domaine de défaillance inacceptable.
+
+* Si vous déployez un nœud dans le cadre d'une opération d'extension ou de restauration, vous disposez du link:../expand/index.html["Instructions d'extension d'un système StorageGRID"]ou du link:../maintain/index.html["instructions de récupération et de maintenance"].
+* Si vous déployez un nœud StorageGRID en tant que machine virtuelle avec un stockage affecté à un système NetApp ONTAP, vous avez confirmé que cette FabricPool règle n'est pas activée pour le volume. Par exemple, si un nœud StorageGRID s'exécute en tant que machine virtuelle sur un hôte VMware, assurez-vous que la règle de hiérarchisation FabricPool n'est pas activée pour le volume qui sauvegarde le datastore du nœud. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
++
+
+NOTE: N'utilisez jamais FabricPool pour transférer automatiquement toutes les données liées à StorageGRID vers StorageGRID. Le Tiering des données StorageGRID vers StorageGRID augmente la complexité opérationnelle et la résolution des problèmes.
+
+
+
+.Description de la tâche
+Suivez ces instructions pour déployer au départ des nœuds VMware, ajouter un nouveau nœud VMware dans une extension ou remplacer un nœud VMware dans le cadre d'une opération de restauration. Sauf comme indiqué dans les étapes, la procédure de déploiement des nœuds est la même pour tous les types de nœuds, y compris les nœuds d'administration, les nœuds de stockage et les nœuds de passerelle.
+
+Si vous installez un nouveau système StorageGRID :
+
+* Vous pouvez déployer les nœuds dans l'ordre de votre choix.
+* Vous devez vous assurer que chaque machine virtuelle peut se connecter au noeud d'administration principal via le réseau Grid.
+* Vous devez déployer tous les nœuds de la grille avant de configurer la grille.
+
+
+Si vous effectuez une opération d'extension ou de reprise :
+
+* Vous devez vous assurer que la nouvelle machine virtuelle peut se connecter à tous les autres nœuds via le réseau Grid.
+
+
+Si vous devez remmapper l'un des ports du nœud, ne mettez pas le nouveau nœud sous tension tant que la configuration du remap des ports n'est pas terminée.
+
+.Étapes
+. À l'aide de vCenter, déployez un modèle OVF.
++
+Si vous spécifiez une URL, pointez vers un dossier contenant les fichiers suivants. Sinon, sélectionnez chacun de ces fichiers dans un répertoire local.
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NetApp-_SG-version_-SHA.vmdk
+vsphere-_node_.ovf
+vsphere-_node_.mf
+----
++
+Par exemple, s'il s'agit du premier nœud que vous déployez, utilisez ces fichiers pour déployer le nœud d'administration principal de votre système StorageGRID :
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NetApp-_SG-version_-SHA.vmdk
+vsphere-primary-admin.ovf
+vsphere-primary-admin.mf
+----
+. Fournissez un nom pour la machine virtuelle.
++
+La pratique standard consiste à utiliser le même nom pour la machine virtuelle et le nœud de grille.
+
+. Placez la machine virtuelle dans le pool de ressources ou vApp approprié.
+. Si vous déployez le nœud d'administration principal, lisez et acceptez le contrat de licence de l'utilisateur final.
++
+Selon votre version de vCenter, l'ordre des étapes varie en fonction de l'acceptation du contrat de licence de l'utilisateur final, en précisant le nom de la machine virtuelle et en sélectionnant un datastore.
+
+. Sélectionnez le stockage de la machine virtuelle.
++
+Si vous déployez un nœud dans le cadre d'une opération de restauration, suivez les instructions de la section <<step_recovery_storage,étape de restauration du stockage>>pour ajouter de nouveaux disques virtuels, rattacher des disques durs virtuels à partir du nœud de grille défaillant, ou les deux.
+
++
+Lors du déploiement d'un nœud de stockage, utilisez au moins 3 volumes de stockage, chaque volume de stockage étant de 4 To ou plus. Vous devez affecter au moins 4 To au volume 0.
+
++
+
+NOTE: Le fichier .ovf de nœud de stockage définit plusieurs VMDK pour le stockage. À moins que ces VMDK ne répondent à vos besoins de stockage, vous devez les supprimer et attribuer des VMDK ou des RDM appropriés pour le stockage avant de mettre le nœud sous tension. Les VMDK sont plus fréquemment utilisés dans les environnements VMware et sont plus faciles à gérer, tandis que les RDM peuvent fournir de meilleures performances pour les charges de travail utilisant des objets de plus grande taille (par exemple, plus de 100 Mo).
+
++
+
+NOTE: Certaines installations StorageGRID peuvent utiliser des volumes de stockage plus grands et plus actifs que les charges de travail virtualisées standard. Vous devrez peut-être régler certains paramètres de l'hyperviseur, tels que `MaxAddressableSpaceTB`, pour obtenir des performances optimales. Si vous rencontrez des problèmes de performances médiocres, contactez votre support de virtualisation pour déterminer si votre environnement peut bénéficier du réglage de la configuration propre aux charges de travail.
+
+. Sélectionnez réseaux.
++
+Déterminez les réseaux StorageGRID que le nœud utilisera en sélectionnant un réseau de destination pour chaque réseau source.
+
++
+** Le réseau Grid est requis. Vous devez sélectionner un réseau de destination dans l'environnement vSphere. + le réseau de grille est utilisé pour tout le trafic StorageGRID interne. Elle assure la connectivité entre tous les nœuds de la grille, sur tous les sites et sous-réseaux. Tous les nœuds du réseau Grid doivent pouvoir communiquer avec tous les autres nœuds.
+** Si vous utilisez le réseau Admin, sélectionnez un autre réseau de destination dans l'environnement vSphere. Si vous n'utilisez pas le réseau d'administration, sélectionnez la même destination que celle que vous avez sélectionnée pour le réseau en grille.
+** Si vous utilisez le réseau client, sélectionnez un autre réseau de destination dans l'environnement vSphere. Si vous n'utilisez pas le réseau client, sélectionnez la destination que vous avez sélectionnée pour le réseau Grid.
+** Si vous utilisez un réseau Admin ou client, les nœuds ne doivent pas nécessairement se trouver sur les mêmes réseaux Admin ou client.
+
+
+. Pour *Personnaliser le modèle*, configurez les propriétés de nœud StorageGRID requises.
++
+.. Entrez le *Nom du noeud*.
++
+
+NOTE: Si vous récupérez un nœud de la grille, vous devez entrer le nom du nœud que vous récupérez.
+
+.. Utilisez la liste déroulante *Mot de passe d'installation temporaire* pour spécifier un mot de passe d'installation temporaire, afin que vous puissiez accéder à la console VM ou à l'API d'installation StorageGRID, ou utiliser SSH, avant que le nouveau nœud ne rejoigne la grille.
++
+
+NOTE: Le mot de passe d'installation temporaire n'est utilisé que lors de l'installation du nœud. Une fois qu'un nœud a été ajouté à la grille, vous pouvez y accéder à l'aide du link:../admin/change-node-console-password.html["mot de passe de la console du nœud"], qui est répertorié dans `Passwords.txt` le fichier du progiciel de récupération.
+
++
+*** *Utiliser le nom de noeud* : la valeur que vous avez fournie pour le champ *Nom de noeud* est utilisée comme mot de passe d'installation temporaire.
+*** *Utiliser mot de passe personnalisé* : un mot de passe personnalisé est utilisé comme mot de passe d'installation temporaire.
+*** *Désactiver le mot de passe* : aucun mot de passe d'installation temporaire ne sera utilisé. Si vous devez accéder à la machine virtuelle pour déboguer les problèmes d'installation, reportez-vous à la section link:troubleshooting-installation-issues.html["Résoudre les problèmes d'installation"].
+
+
+.. Si vous avez sélectionné *utiliser mot de passe personnalisé*, indiquez le mot de passe d'installation temporaire que vous souhaitez utiliser dans le champ *Mot de passe personnalisé*.
+.. Dans la section *Grid Network (eth0)*, sélectionnez STATIQUE ou DHCP pour la configuration *Grid network IP*.
++
+*** Si vous sélectionnez STATIQUE, saisissez l'adresse IP * réseau Grid*, *masque réseau Grid*, *passerelle réseau Grid* et *MTU réseau Grid*.
+*** Si vous sélectionnez DHCP, l'adresse IP * réseau Grid*, *masque de réseau Grid* et *passerelle réseau Grid* sont automatiquement affectées.
+
+
+.. Dans le champ *IP d'administration principale*, entrez l'adresse IP du noeud d'administration principal pour le réseau de grille.
++
+
+NOTE: Cette étape ne s'applique pas si le nœud que vous déployez est le nœud d'administration principal.
+
++
+Si vous omettez l'adresse IP du nœud d'administration principal, l'adresse IP est automatiquement découverte si le nœud d'administration principal, ou au moins un autre nœud de la grille avec ADMIN_IP configuré, est présent sur le même sous-réseau. Cependant, il est recommandé de définir ici l'adresse IP du nœud d'administration principal.
+
+.. Dans la section *Admin Network (eth1)*, sélectionnez STATIQUE, DHCP ou DÉSACTIVÉ pour la configuration *Admin network IP*.
++
+*** Si vous ne souhaitez pas utiliser le réseau d'administration, sélectionnez DÉSACTIVÉ et entrez *0.0.0.0* pour l'adresse IP du réseau d'administration. Vous pouvez laisser les autres champs vides.
+*** Si vous sélectionnez STATIQUE, saisissez l'adresse IP* du réseau *Admin, *masque réseau Admin*, *passerelle réseau Admin* et *MTU du réseau Admin*.
+*** Si vous sélectionnez STATIQUE, entrez la liste *réseau d'administration externe de sous-réseau*. Vous devez également configurer une passerelle.
+*** Si vous sélectionnez DHCP, l'adresse IP *réseau Admin*, *masque réseau Admin* et *passerelle réseau Admin* sont automatiquement affectées.
+
+
+.. Dans la section *réseau client (eth2)*, sélectionnez STATIQUE, DHCP ou DÉSACTIVÉ pour la configuration *IP réseau client*.
++
+*** Si vous ne souhaitez pas utiliser le réseau client, sélectionnez DÉSACTIVÉ et entrez *0.0.0.0* pour l'adresse IP du réseau client. Vous pouvez laisser les autres champs vides.
+*** Si vous sélectionnez STATIQUE, entrez l'adresse IP * du réseau client*, *masque de réseau client*, *passerelle de réseau client* et *MTU du réseau client*.
+*** Si vous sélectionnez DHCP, l'adresse IP * du réseau client*, *masque de réseau client* et *passerelle réseau client* sont automatiquement affectées.
+
+
+
+
+. Vérifiez la configuration de l'ordinateur virtuel et apportez les modifications nécessaires.
+. Lorsque vous êtes prêt à terminer, sélectionnez *Finish* pour lancer le téléchargement de la machine virtuelle.
+. [[STEP_Recovery_Storage]]si vous avez déployé ce nœud dans le cadre d'une opération de restauration et qu'il ne s'agit pas d'une restauration de nœud complet, effectuez les opérations suivantes une fois le déploiement terminé :
++
+.. Cliquez avec le bouton droit de la souris sur la machine virtuelle et sélectionnez *Modifier les paramètres*.
+.. Sélectionnez chaque disque dur virtuel par défaut qui a été désigné pour le stockage, puis sélectionnez *Supprimer*.
+.. En fonction de vos conditions de restauration des données, ajoutez de nouveaux disques virtuels en fonction de vos besoins de stockage, reconnectez tous les disques durs virtuels conservés sur le nœud de grille défaillant précédemment retiré, ou les deux.
++
+Notez les consignes importantes suivantes :
+
++
+*** Si vous ajoutez de nouveaux disques, vous devez utiliser le même type de périphérique de stockage que celui utilisé avant la restauration du noeud.
+*** Le fichier .ovf de nœud de stockage définit plusieurs VMDK pour le stockage. À moins que ces VMDK ne répondent à vos besoins de stockage, vous devez les supprimer et attribuer des VMDK ou des RDM appropriés pour le stockage avant de mettre le nœud sous tension. Les VMDK sont plus fréquemment utilisés dans les environnements VMware et sont plus faciles à gérer, tandis que les RDM peuvent fournir de meilleures performances pour les charges de travail utilisant des objets de plus grande taille (par exemple, plus de 100 Mo).
+
+
+
+
+. [[vmware-remap-ports]]si vous devez remmapper les ports utilisés par ce nœud, procédez comme suit.
++
+Vous devrez peut-être remapper un port si les règles de réseau de votre entreprise limitent l'accès à un ou plusieurs ports utilisés par StorageGRID. Reportez-vous link:../network/index.html["instructions de mise en réseau"]à la pour connaître les ports utilisés par StorageGRID.
+
++
+
+NOTE: Ne mappez pas les ports utilisés dans les terminaux d'équilibrage de charge.
+
++
+.. Sélectionnez la nouvelle VM.
+.. Dans l'onglet configurer, sélectionnez *Paramètres* > *Options vApp*. L'emplacement de *vApp Options* dépend de la version de vCenter.
+.. Dans le tableau *Propriétés*, localisez PORT_REMAPPAGE_INBOUND et PORT_REMAPPAGE.
+.. Pour mapper symétriquement les communications entrantes et sortantes d'un port, sélectionnez *PORT_REMAPPAGE*.
++
+
+NOTE: Si seul PORT_REMAPPAGE est défini, le mappage que vous spécifiez s'applique aux communications entrantes et sortantes. Si PORT_REMAPPAGE_INBOUND est également spécifié, PORT_REMAPPAGE s'applique uniquement aux communications sortantes.
+
++
+... Sélectionnez *définir la valeur*.
+... Saisissez le mappage de port :
++
+`<network type>/<protocol>/<default port used by grid node>/<new port>`
+
++
+`<network type>` est un grid, un admin ou un client, et `<protocol>` est tcp ou udp.
+
++
+Par exemple, pour remappage le trafic ssh du port 22 vers le port 3022, entrez :
+
++
+`client/tcp/22/3022`
+
++
+Vous pouvez remmapper plusieurs ports à l'aide d'une liste séparée par des virgules.
+
++
+Par exemple :
+
++
+`client/tcp/18082/443, client/tcp/18083/80`
+
+... Sélectionnez *OK*.
+
+
+.. Pour spécifier le port utilisé pour les communications entrantes vers le nœud, sélectionnez *PORT_REMAPPAGE_INBOUND*.
++
+
+NOTE: Si vous spécifiez PORT_REMAP_INBOUND et que vous n'indiquez pas de valeur pour PORT_REMAP, les communications sortantes pour le port sont inchangées.
+
++
+... Sélectionnez *définir la valeur*.
+... Saisissez le mappage de port :
++
+`<network type>/<protocol>/<remapped inbound port>/<default inbound port used by grid node>`
+
++
+`<network type>` est un grid, un admin ou un client, et `<protocol>` est tcp ou udp.
+
++
+Par exemple, pour remappage le trafic SSH entrant envoyé au port 3022 afin qu'il soit reçu au port 22 par le nœud de grille, entrez ce qui suit :
+
++
+`client/tcp/3022/22`
+
++
+Vous pouvez remmapper plusieurs ports entrants à l'aide d'une liste séparée par des virgules.
+
++
+Par exemple :
+
++
+`grid/tcp/3022/22, admin/tcp/3022/22`
+
+... Sélectionnez *OK*
+
+
+
+
+. Pour augmenter les valeurs par défaut du CPU ou de la mémoire du nœud :
++
+.. Cliquez avec le bouton droit de la souris sur la machine virtuelle et sélectionnez *Modifier les paramètres*.
+.. Modifiez le nombre de CPU ou la quantité de mémoire nécessaire.
++
+Définissez la *réserve de mémoire* sur la même taille que la *mémoire* allouée à la machine virtuelle.
+
+.. Sélectionnez *OK*.
+
+
+. Mise sous tension de la machine virtuelle
+
+
+.Une fois que vous avez terminé
+Si vous avez déployé ce nœud dans le cadre d'une procédure d'extension ou de restauration, revenez à ces instructions pour terminer la procédure.

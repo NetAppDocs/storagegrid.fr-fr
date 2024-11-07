@@ -1,0 +1,211 @@
+---
+permalink: upgrade/removed-or-deprecated-features.html 
+sidebar: sidebar 
+keywords:  
+summary: Certaines fonctionnalités ont été supprimées ou obsolètes dans cette version. Consultez ces éléments pour savoir si vous devez mettre à jour les applications client ou modifier votre configuration avant de procéder à la mise à niveau. 
+---
+= Fonctionnalités supprimées ou obsolètes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Certaines fonctionnalités ont été supprimées ou obsolètes dans cette version. Consultez ces éléments pour savoir si vous devez mettre à jour les applications client ou modifier votre configuration avant de procéder à la mise à niveau.
+
+
+
+== Définitions
+
+Obsolète:: La fonction *ne devrait pas* être utilisée dans les nouveaux environnements de production. Les environnements de production existants peuvent continuer à utiliser cette fonctionnalité.
+Fin de vie:: Dernière version livrée qui prend en charge cette fonctionnalité. Dans certains cas, la documentation de la fonction peut être supprimée à ce stade.
+Supprimé:: Première version que *ne prend pas* en charge la fonction.
+
+
+
+
+== Fin de prise en charge des fonctionnalités StorageGRID
+
+Les fonctions obsolètes seront supprimées dans les versions majeures N+2. Par exemple, si une fonction est obsolète dans la version N (par exemple, 6.3), la dernière version où la fonction existera est N+1 (par exemple, 6.4). La version N+2 (par exemple, 6.5) est la première version lorsque la fonction n'existe pas dans le produit.
+
+Pour plus d'informations, reportez-vous au https://mysupport.netapp.com/site/info/version-support["Page de support des versions logicielles"^].
+
+
+NOTE: Dans certains cas, NetApp peut mettre fin à la prise en charge de certaines fonctionnalités plus tôt que prévu.
+
+[cols="2a,1a,1a,1a,3a"]
+|===
+| Fonction | Obsolète | Fin de vie | Supprimé | Liens vers la documentation précédente 
+
+
+ a| 
+Alarmes héritées (_pas alertes_)
+ a| 
+11,7
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/monitor/alarms-reference.html["Référence des alarmes (StorageGRID 11.8)"^]
+
+
+
+ a| 
+Prise en charge du nœud d'archivage
+ a| 
+11,7
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html["Considérations relatives à la désaffectation des nœuds d'archivage (StorageGRID 11.8)"^]
+
+*Remarque* : avant de commencer votre mise à niveau, vous devez :
+
+. Désaffectation de tous les nœuds d'archivage. Voir https://docs.netapp.com/us-en/storagegrid-118/maintain/grid-node-decommissioning.html["Désaffectation du nœud grid (site du doc StorageGRID 11.8)"^].
+. Supprimer toutes les références de nœud d'archivage des pools de stockage et des règles ILM. Voir https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Base de connaissances NetApp : guide de résolution des mises à niveau logicielles StorageGRID 11.9"^].
+
+
+
+
+ a| 
+Exportation d'audit via CIFS/Samba
+ a| 
+11,1
+ a| 
+11,6
+ a| 
+11,7
+ a| 
+
+
+
+ a| 
+Service CLB
+ a| 
+11,4
+ a| 
+11,6
+ a| 
+11,7
+ a| 
+
+
+
+ a| 
+Moteur de mise en conteneurs Docker
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+À DÉFINIR
+ a| 
+La prise en charge de Docker, car le moteur de mise en conteneurs pour les déploiements exclusivement logiciels est obsolète. Docker sera remplacé par un autre moteur de mise en conteneurs dans une prochaine version. Reportez-vous à la link:../ubuntu/software-requirements.html#docker-versions-tested["Liste des versions de Docker actuellement prises en charge"].
+
+
+
+ a| 
+Exportation d'audit NFS
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/admin/configuring-audit-client-access.html["Configuration de l'accès client d'audit pour NFS (StorageGRID 11.8)"^]
+
+
+
+ a| 
+Prise en charge de l'API Swift
+ a| 
+11,7
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/swift/index.html["Utiliser l'API REST de Swift (StorageGRID 11.8)"^]
+
+
+
+ a| 
+RHEL 8,8
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+
+
+ a| 
+RHEL 9,0
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+
+
+ a| 
+RHEL 9,2
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+
+
+ a| 
+Ubuntu 18.04
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+
+
+ a| 
+Ubuntu 20.04
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+
+
+ a| 
+Debian 11
+ a| 
+11,9
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+
+|===
+Se reporter également à :
+
+* link:../upgrade/changes-to-grid-management-api.html["Modifications apportées à l'API de gestion du grid"]
+* link:../upgrade/changes-to-tenant-management-api.html["Modifications apportées à l'API de gestion des locataires"]
+

@@ -1,0 +1,28 @@
+---
+permalink: expand/adding-storage-capacity-for-erasure-coded-objects.html 
+sidebar: sidebar 
+keywords: erasure coding, capacity, storage nodes, ec, expand, expansion 
+summary: 'Si votre règle ILM comprend une règle qui effectue des copies avec code d"effacement, vous devez prévoir où ajouter du stockage, et quand ajouter de la capacité de stockage. La quantité de stockage que vous ajoutez et la durée de l"ajout peuvent affecter la capacité de stockage utilisable de la grille.' 
+---
+= Ajoutez de la capacité de stockage pour les objets avec code d'effacement
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre règle ILM comprend une règle qui effectue des copies avec code d'effacement, vous devez prévoir où ajouter du stockage, et quand ajouter de la capacité de stockage. La quantité de stockage que vous ajoutez, et la durée de l'ajout peut affecter la capacité de stockage utilisable de la grille.
+
+La première étape de la planification d'une extension de stockage consiste à examiner les règles de la règle ILM qui créent des objets avec code d'effacement. Étant donné que StorageGRID crée des fragments _k+m_ pour chaque objet avec code d'effacement et stocke chaque fragment sur un nœud de stockage différent, vous devez vous assurer qu'au moins _k+m_ les nœuds de stockage disposent d'espace pour les nouvelles données avec code d'effacement après l'extension. Si le profil de code d'effacement assure la protection contre la perte du site, vous devez ajouter de l'espace de stockage à chaque site. Pour plus d'informations sur les profils de code d'effacement, reportez-vous à la sectionlink:../ilm/what-erasure-coding-schemes-are.html["Que sont les schémas de code d'effacement"].
+
+Le nombre de nœuds à ajouter dépend également de la totalité des nœuds existants lors de l'extension.
+
+
+
+== Recommandations générales pour l'ajout de capacité de stockage pour les objets avec code d'effacement
+
+Pour éviter les calculs détaillés, vous pouvez ajouter deux nœuds de stockage par site lorsque les nœuds de stockage existants atteignent 70 % de capacité.
+
+Cette recommandation générale donne des résultats raisonnables dans le cadre d'un large éventail de schémas de codage d'effacement pour les grilles à site unique et pour les grilles où le codage d'effacement assure la protection de la perte au niveau du site.
+
+Pour mieux comprendre les facteurs qui ont conduit à cette recommandation ou pour élaborer un plan plus précis pour votre site, voir link:considerations-for-rebalancing-erasure-coded-data.html["Considérations relatives au rééquilibrage des données avec code d'effacement"]. Pour obtenir des recommandations personnalisées et optimisées selon votre situation, contactez votre consultant en services professionnels NetApp.

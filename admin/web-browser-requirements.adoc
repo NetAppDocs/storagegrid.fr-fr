@@ -1,0 +1,60 @@
+---
+permalink: admin/web-browser-requirements.html 
+sidebar: sidebar 
+keywords: web browser requirements, supported browser, chrome, edge, firefox 
+summary: Vous devez utiliser un navigateur Web pris en charge. 
+---
+= Navigateurs Web pris en charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez utiliser un navigateur Web pris en charge.
+
+[cols="2a,2a"]
+|===
+| Navigateur Web | Version minimale prise en charge 
+
+
+ a| 
+Google Chrome
+ a| 
+119
+
+
+
+ a| 
+Microsoft Edge
+ a| 
+119
+
+
+
+ a| 
+Mozilla Firefox
+ a| 
+119
+
+|===
+Vous devez régler la fenêtre du navigateur sur une largeur recommandée.
+
+[cols="3a,1a"]
+|===
+| Largeur du navigateur | Pixels 
+
+
+ a| 
+Minimum
+ a| 
+1024
+
+
+
+ a| 
+Optimale
+ a| 
+1280
+
+|===

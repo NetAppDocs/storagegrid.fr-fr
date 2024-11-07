@@ -1,0 +1,53 @@
+---
+permalink: maintain/storagegrid-hotfix-procedure.html 
+sidebar: sidebar 
+keywords: apply hotfix, install hotfix, replace primary admin node 
+summary: Vous devrez peut-être appliquer un correctif à votre système StorageGRID si des problèmes liés au logiciel sont détectés et résolus entre les versions de fonctionnalités. 
+---
+= Procédure de correctif StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être appliquer un correctif à votre système StorageGRID si des problèmes liés au logiciel sont détectés et résolus entre les versions de fonctionnalités.
+
+Les correctifs StorageGRID contiennent des modifications logicielles qui sont disponibles en dehors d'une version de fonctionnalité ou de correctif. Les mêmes modifications seront incluses dans une prochaine version. En outre, chaque version de correctif contient une synthèse de tous les correctifs précédents au sein de la fonction ou de la version de correctif.
+
+
+
+== Considérations relatives à l'application d'un correctif
+
+Vous ne pouvez pas appliquer un correctif StorageGRID lorsqu'une autre procédure de maintenance est en cours d'exécution. Par exemple, vous ne pouvez pas appliquer un correctif lorsqu'une procédure de mise hors service, d'extension ou de récupération est en cours d'exécution.
+
+
+NOTE: Si une procédure de mise hors service d'un nœud ou d'un site est interrompue, vous pouvez appliquer un correctif en toute sécurité. De plus, vous pouvez appliquer un correctif lors des dernières étapes d'une procédure de mise à niveau StorageGRID. Pour plus de détails, reportez-vous aux instructions de mise à niveau du logiciel StorageGRID.
+
+Une fois le correctif téléchargé dans Grid Manager, le correctif est automatiquement appliqué au nœud d'administration principal. Vous pouvez ensuite approuver l'application du correctif sur les autres nœuds de votre système StorageGRID.
+
+Si un correctif ne s'applique pas à un ou plusieurs nœuds, la raison de l'échec s'affiche dans la colonne Détails de la table de progression du correctif. Vous devez résoudre les problèmes qui ont causé les échecs, puis recommencer le processus tout entier. Les nœuds avec une application précédemment réussie du correctif seront ignorés dans les applications suivantes. Vous pouvez réessayer en toute sécurité le processus de correctif autant de fois que nécessaire jusqu'à ce que tous les nœuds aient été mis à jour. Le correctif doit être installé avec succès sur tous les nœuds de la grille pour que l'application soit terminée.
+
+Lorsque les nœuds de grille sont mis à jour avec la nouvelle version de correctif, les modifications réelles d'un correctif peuvent uniquement affecter des services spécifiques sur des types spécifiques de nœuds. Par exemple, un correctif peut uniquement affecter le service LDR sur les nœuds de stockage.
+
+
+
+== Application des correctifs pour la restauration et l'extension
+
+Une fois qu'un correctif a été appliqué à votre grille, le nœud d'administration principal installe automatiquement la même version de correctif sur tous les nœuds restaurés par les opérations de reprise ou ajoutés dans une extension.
+
+Cependant, si vous devez restaurer le noeud d'administration principal, vous devez installer manuellement la version correcte de StorageGRID, puis appliquer le correctif. La version StorageGRID finale du nœud d'administration principal doit correspondre à la version des autres nœuds de la grille.
+
+L'exemple suivant illustre comment appliquer un correctif lors de la restauration du noeud d'administration principal :
+
+. Supposons que la grille exécute une version StorageGRID 11._A.B_ avec le dernier correctif. La « version GRID » est 11._A.B.y_.
+. Le nœud d'administration principal tombe en panne.
+. Vous redéployez le nœud d'administration principal à l'aide de StorageGRID 11._A.B_ et exécutez la procédure de restauration.
++
+
+NOTE: Si nécessaire pour correspondre à la version de grille, vous pouvez utiliser une version mineure lors du déploiement du nœud ; vous n'avez pas besoin de déployer la version majeure en premier.
+
+. Vous appliquez ensuite le correctif 11._A.B.y_ au nœud d'administration principal.
+
+
+Pour plus d'informations, voir link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"].

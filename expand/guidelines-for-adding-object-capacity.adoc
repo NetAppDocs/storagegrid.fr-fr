@@ -1,0 +1,65 @@
+---
+permalink: expand/guidelines-for-adding-object-capacity.html 
+sidebar: sidebar 
+keywords: adding storage capacity, guidelines, storage volumes, expansion 
+summary: 'Pour étendre la capacité de stockage objet de votre système StorageGRID, ajoutez des volumes de stockage aux nœuds de stockage existants ou ajoutez de nouveaux nœuds de stockage aux sites existants. Vous devez ajouter de la capacité de stockage afin de répondre aux exigences de votre stratégie \(ILM\) de gestion du cycle de vie des informations.' 
+---
+= Instructions d'ajout de capacité d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour étendre la capacité de stockage objet de votre système StorageGRID, ajoutez des volumes de stockage aux nœuds de stockage existants ou ajoutez de nouveaux nœuds de stockage aux sites existants. Vous devez ajouter de la capacité de stockage qui répond aux besoins de votre stratégie de gestion du cycle de vie des informations (ILM).
+
+
+
+== Instructions d'ajout de volumes de stockage
+
+Avant d'ajouter des volumes de stockage à des nœuds de stockage existants, consultez les consignes et limites suivantes :
+
+* Vous devez examiner vos règles ILM actuelles pour déterminer où et quand link:../expand/adding-storage-volumes-to-storage-nodes.html["ajout de volumes de stockage"]augmenter le stockage disponible pour link:../ilm/what-replication-is.html["objets répliqués"] ou link:../ilm/what-erasure-coding-schemes-are.html["objets avec code d'effacement"].
+* L'ajout de volumes de stockage ne permet pas d'augmenter la capacité de métadonnées du système, car les métadonnées d'objet sont stockées uniquement sur le volume 0.
+* Chaque nœud de stockage logiciel peut prendre en charge un maximum de 16 volumes de stockage. Si vous avez besoin d'ajouter de la capacité, vous devez ajouter des nœuds de stockage.
+* Vous pouvez ajouter un ou deux tiroirs d'extension à chaque appliance SG6060. Chaque tiroir d'extension ajoute 16 volumes de stockage. Une fois les deux tiroirs d'extension installés, le SG6060 peut prendre en charge un total de 48 volumes de stockage.
+* Vous pouvez ajouter un ou deux tiroirs d'extension à chaque appliance SG6160. Chaque tiroir d'extension ajoute 60 volumes de stockage. Une fois les deux tiroirs d'extension installés, le SG6160 peut prendre en charge un total de 180 volumes de stockage.
+* Vous ne pouvez pas ajouter de volumes de stockage à une autre appliance de stockage.
+* Vous ne pouvez pas augmenter la taille d'un volume de stockage existant.
+* Vous ne pouvez pas ajouter de volumes de stockage à un nœud de stockage en même temps que vous effectuez une mise à niveau du système, une opération de restauration ou une autre extension.
+
+
+Une fois que vous avez décidé d'ajouter des volumes de stockage et que vous avez déterminé les nœuds de stockage à étendre pour répondre à la règle ILM, suivez les instructions relatives à votre type de nœud de stockage :
+
+* Pour ajouter une ou deux tiroirs d'extension à une appliance de stockage SG6060, accédez à https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajout du tiroir d'extension au SG6060 déployé"^].
+* Pour ajouter un ou deux tiroirs d'extension à une appliance de stockage SG6160, rendez-vous sur le site https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Ajout du tiroir d'extension au SG6160 déployé"^]
+* Pour un nœud logiciel, suivez les instructions de link:adding-storage-volumes-to-storage-nodes.html["Ajout de volumes de stockage aux nœuds de stockage"].
+
+
+
+
+== Instructions sur l'ajout de nœuds de stockage
+
+Avant d'ajouter des nœuds de stockage à des sites existants, consultez les consignes et limites suivantes :
+
+* Vous devez examiner vos règles ILM actuelles pour déterminer où et quand ajouter des nœuds de stockage afin d'augmenter le stockage disponible pour link:../ilm/what-replication-is.html["objets répliqués"] ou link:../ilm/what-erasure-coding-schemes-are.html["objets avec code d'effacement"].
+* Vous ne devez pas ajouter plus de 10 nœuds de stockage en une seule procédure d'extension.
+* Vous pouvez ajouter des nœuds de stockage à plusieurs sites en une seule procédure d'extension.
+* Vous pouvez ajouter des nœuds de stockage et d'autres types de nœuds en une seule procédure d'extension.
+* Avant de démarrer la procédure d'extension, vous devez vérifier que toutes les opérations de réparation des données effectuées dans le cadre d'une restauration sont terminées. Voir link:../maintain/checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"].
+* Si vous devez supprimer des nœuds de stockage avant ou après une extension, vous ne devez pas désaffecter plus de 10 nœuds de stockage dans une procédure de nœud de mise hors service unique.
+
+
+
+
+== Instructions relatives au service ADC sur les nœuds de stockage
+
+Lors de la configuration de l'extension, vous devez choisir d'inclure le service contrôleur de domaine d'administration (ADC) sur chaque nouveau nœud de stockage. Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau.
+
+* Le système StorageGRID nécessite qu'un link:../maintain/understanding-adc-service-quorum.html["Quorum des services ADC"]soit disponible sur chaque site et à tout moment.
+* Au moins trois nœuds de stockage de chaque site doivent inclure le service ADC.
+* Il est déconseillé d'ajouter le service ADC à chaque nœud de stockage. L'inclusion d'un trop grand nombre de services ADC peut provoquer des ralentissements en raison de l'augmentation de la quantité de communication entre les nœuds.
+* Une seule grille ne doit pas comporter plus de 48 nœuds de stockage avec le service ADC. Cela équivaut à 16 sites avec trois services ADC sur chaque site.
+* En général, lorsque vous sélectionnez le paramètre *Service ADC* pour un nouveau nœud, vous devez sélectionner *automatique*. Sélectionnez *Oui* uniquement si le nouveau nœud remplace un autre nœud de stockage qui inclut le service ADC. Comme vous ne pouvez pas désaffecter un nœud de stockage si trop peu de services ADC sont conservés, cela garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
+* Vous ne pouvez pas ajouter le service ADC à un nœud après son déploiement.
+

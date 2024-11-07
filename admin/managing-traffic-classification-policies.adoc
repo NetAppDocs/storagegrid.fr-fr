@@ -1,0 +1,109 @@
+---
+permalink: admin/managing-traffic-classification-policies.html 
+sidebar: sidebar 
+keywords: QoS, quality of service, traffic classification, best practices, limit traffic, monitor traffic 
+summary: 'Les stratégies de classification du trafic vous permettent d"identifier et de surveiller différents types de trafic réseau. Ces règles contribuent au contrôle et à la limitation du trafic pour améliorer vos offres de qualité de services (QoS).' 
+---
+= Que sont les politiques de classification du trafic ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les stratégies de classification du trafic vous permettent d'identifier et de surveiller différents types de trafic réseau. Ces règles contribuent au contrôle et à la limitation du trafic pour améliorer vos offres de qualité de services (QoS).
+
+Les règles de classification du trafic sont appliquées aux terminaux du service StorageGRID Load Balancer pour les nœuds de passerelle et les nœuds d'administration. Pour créer des stratégies de classification de trafic, vous devez avoir déjà créé des points d'extrémité d'équilibreur de charge.
+
+
+
+== Règles de correspondance
+
+Chaque règle de classification de trafic contient une ou plusieurs règles de correspondance permettant d'identifier le trafic réseau lié à une ou plusieurs des entités suivantes :
+
+* Seaux
+* Sous-réseau
+* Locataire
+* Terminaux d'équilibrage de charge
+
+
+StorageGRID surveille le trafic qui correspond à n'importe quelle règle de la stratégie conformément aux objectifs de la règle. Tout trafic qui correspond à une règle d'une stratégie est géré par cette règle. Inversement, vous pouvez définir des règles qui correspondent à tout le trafic, à l'exception d'une entité spécifiée.
+
+
+
+== Limitation du trafic
+
+Vous pouvez également ajouter les types de limite suivants à une règle :
+
+* Bande passante de l'agrégat
+* Bande passante par demande
+* Requêtes simultanées
+* Taux de demande
+
+
+Les valeurs limites sont appliquées par équilibreur de charge. Si le trafic est réparti simultanément sur plusieurs équilibreurs de charge, les débits maximaux totaux sont un multiple des limites de débit que vous spécifiez.
+
+
+NOTE: Vous pouvez créer des règles pour limiter la bande passante agrégée ou limiter la bande passante par requête. Cependant, StorageGRID ne peut pas limiter les deux types de bande passante en même temps. Les limites de bande passante globales peuvent imposer un impact mineur supplémentaire sur les performances du trafic non limité.
+
+Pour les limites de bande passante globale ou par requête, les demandes sont envoyées vers l'intérieur ou vers l'extérieur au débit défini. StorageGRID ne peut appliquer qu'une seule vitesse. La correspondance des règles la plus spécifique, par type de contrôleur, est donc la plus appliquée. La bande passante consommée par la requête n'est pas prise en compte par rapport à d'autres stratégies de correspondance moins spécifiques contenant des règles de limite de bande passante de l'agrégat. Pour tous les autres types de limite, les demandes des clients sont retardées de 250 millisecondes et reçoivent une réponse lente de 503 pour les demandes dépassant toute limite de stratégie correspondante.
+
+Dans Grid Manager, vous pouvez afficher les diagrammes de trafic et vérifier que les stratégies appliquent les limites de trafic que vous attendez.
+
+
+
+== Utilisez les stratégies de classification du trafic avec les contrats de niveau de service
+
+Vous pouvez utiliser des règles de classification du trafic en association avec les limites de capacité et la protection des données pour appliquer des accords de niveau de service (SLA) qui fournissent des spécificités en matière de capacité, de protection des données et de performances.
+
+L'exemple suivant montre trois niveaux d'un SLA. Vous pouvez créer des règles de classification du trafic pour atteindre les objectifs de performances de chaque niveau de contrat de niveau de service.
+
+[cols="1a,1a,1a,1a,1a"]
+|===
+| Niveau de service | Capacité | Protection des données | Performances maximales autorisées | Le coût 
+
+
+ a| 
+Or
+ a| 
+1 po de stockage autorisé
+ a| 
+Règle ILM 3 copies
+ a| 
+25 000 demandes/s
+
+Bande passante de 5 Go/s (40 Gbit/s)
+ a| 
+$$$$ par mois
+
+
+
+ a| 
+Argent
+ a| 
+Stockage de 250 To autorisé
+ a| 
+Règle ILM 2 copies
+ a| 
+10 000 demandes/s
+
+Bande passante de 1.25 Go/s (10 Gbit/s)
+ a| 
+$$ par mois
+
+
+
+ a| 
+Bronze
+ a| 
+Stockage de 100 To autorisé
+ a| 
+Règle ILM 2 copies
+ a| 
+5 000 demandes/s
+
+Bande passante de 1 Go/s (8 Gbit/s)
+ a| 
+$ par mois
+
+|===

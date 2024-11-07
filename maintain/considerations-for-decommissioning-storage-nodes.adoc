@@ -1,0 +1,78 @@
+---
+permalink: maintain/considerations-for-decommissioning-storage-nodes.html 
+sidebar: sidebar 
+keywords: storage node decommission, considerations, appliance node clone 
+summary: Avant de désaffecter un nœud de stockage, déterminez si vous pouvez le cloner à la place. Ensuite, si vous décidez de désaffecter le nœud, examinez la façon dont StorageGRID gère les objets et les métadonnées pendant la procédure de désaffectation. 
+---
+= Considérations relatives à la désaffectation des nœuds de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de désaffecter un nœud de stockage, déterminez si vous pouvez le cloner à la place. Ensuite, si vous décidez de désaffecter le nœud, examinez la façon dont StorageGRID gère les objets et les métadonnées pendant la procédure de désaffectation.
+
+
+
+== Quand cloner un nœud au lieu de le désaffecter
+
+Si vous souhaitez remplacer un nœud de stockage d'appliance plus ancien par une appliance plus récente ou plus grande, envisagez de cloner le nœud d'appliance au lieu d'ajouter une nouvelle appliance à une extension, puis de désaffecter l'ancienne appliance.
+
+Le clonage des nœuds d'appliance vous permet de remplacer facilement un nœud d'appliance existant par une appliance compatible sur le même site StorageGRID. Le processus de clonage transfère toutes les données vers la nouvelle appliance, met la nouvelle appliance en service et laisse l'ancienne appliance en état de pré-installation.
+
+Il est possible de cloner un nœud d'appliance si vous avez besoin de :
+
+* Remplacez un appareil qui arrive en fin de vie.
+* Mettez à niveau un nœud existant pour bénéficier d'une meilleure technologie d'appliance.
+* Augmentez la capacité de stockage de grille sans modifier le nombre de nœuds de stockage dans votre système StorageGRID.
+* Améliorer l'efficacité du stockage, par exemple en changeant de mode RAID.
+
+
+Voir https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["Clonage de nœuds d'appliance"^] pour plus de détails.
+
+
+
+== Considérations relatives aux nœuds de stockage connectés
+
+Consultez les considérations relatives à la désaffectation d'un nœud de stockage connecté.
+
+* Vous ne devez pas désaffecter plus de 10 nœuds de stockage dans une procédure de nœud de mise hors service unique.
+* Le système doit à tout moment inclure suffisamment de nœuds de stockage pour répondre aux exigences opérationnelles, y compris le link:understanding-adc-service-quorum.html["Quorum ADC"] et le link:reviewing-ilm-policy-and-storage-configuration.html["Politique ILM"]. Pour satisfaire à cette restriction, vous devrez peut-être ajouter un nouveau nœud de stockage dans une opération d'extension avant de pouvoir désactiver un nœud de stockage existant.
++
+Soyez prudent lorsque vous désaffectez des nœuds de stockage dans un grid contenant des nœuds de métadonnées uniquement basés sur des logiciels. Si vous désaffectez tous les nœuds configurés pour stocker _les deux_ objets et les métadonnées, la capacité de stockage des objets est supprimée de la grille. Pour plus d'informations sur les nœuds de stockage des métadonnées uniquement, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
+* Lorsque vous supprimez un nœud de stockage, de grands volumes de données d'objet sont transférés sur le réseau. Ces transferts ne doivent pas affecter le fonctionnement normal du système, mais ils peuvent affecter la quantité totale de bande passante réseau consommée par le système StorageGRID.
+* Les tâches associées à la mise hors service des nœuds de stockage ont une priorité inférieure aux tâches associées aux opérations normales du système. Cette mise hors service n'interfère pas avec le fonctionnement normal du système StorageGRID et n'a pas besoin d'être planifiée pour une période d'inactivité du système. Comme le déclassement est effectué en arrière-plan, il est difficile d'estimer la durée du processus. En général, la mise hors service s'effectue plus rapidement lorsque le système est silencieux, ou lorsqu'un seul nœud de stockage est retiré à la fois.
+* La mise hors service d'un nœud de stockage peut prendre plusieurs jours, voire des semaines. Planifier cette procédure en conséquence. Bien que le processus de mise hors service soit conçu pour ne pas affecter le fonctionnement du système, il peut limiter d'autres procédures. En général, les mises à niveau ou les extensions du système doivent être effectuées avant de supprimer les nœuds grid.
+* Si vous devez effectuer une autre procédure de maintenance pendant la suppression des nœuds de stockage, vous pouvez link:pausing-and-resuming-decommission-process-for-storage-nodes.html["interrompre la procédure de mise hors service"]la reprendre une fois l'autre procédure terminée.
++
+
+NOTE: Le bouton *Pause* n'est activé que lorsque les étapes d'évaluation ILM ou de déclassement des données avec code d'effacement sont atteintes. Cependant, l'évaluation ILM (migration des données) continue à s'exécuter en arrière-plan.
+
+* Vous ne pouvez pas exécuter les opérations de réparation des données sur des nœuds de grille lorsqu'une tâche de désaffectation est en cours d'exécution.
+* Vous ne devez apporter aucune modification à une règle ILM pendant la désaffectation d'un nœud de stockage.
+* Pour supprimer définitivement et de manière sécurisée des données, vous devez effacer les disques du nœud de stockage une fois la procédure de mise hors service terminée.
+
+
+
+
+== Considérations relatives aux nœuds de stockage déconnectés
+
+Consultez les considérations relatives à la désaffectation d'un nœud de stockage déconnecté.
+
+* Ne désaffectez jamais un nœud déconnecté, sauf si vous êtes sûr qu'il ne peut pas être mis en ligne ou restauré.
++
+
+CAUTION: N'effectuez pas cette procédure si vous pensez qu'il est possible de récupérer des données d'objet à partir du nœud. Contactez plutôt le support technique pour déterminer si la restauration du nœud est possible.
+
+* Lorsque vous désaffectez un nœud de stockage déconnecté, StorageGRID utilise les données d'autres nœuds de stockage pour reconstruire les données d'objet et les métadonnées qui se trouvent sur le nœud déconnecté.
+* Une perte de données peut se produire si vous mettez hors service plusieurs nœuds de stockage déconnectés. Il se peut que le système ne puisse pas reconstruire les données si les copies d'objet, les fragments avec code d'effacement ou les métadonnées d'objet restent disponibles. Lors de la désaffectation des nœuds de stockage dans une grille avec des nœuds de métadonnées uniquement basés sur le logiciel, la désaffectation de tous les nœuds configurés pour stocker à la fois des objets et des métadonnées supprime tout le stockage objet de la grille. Pour plus d'informations sur les nœuds de stockage des métadonnées uniquement, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
++
+
+CAUTION: Si vous ne pouvez pas restaurer plusieurs nœuds de stockage déconnectés, contactez le support technique pour déterminer la meilleure solution.
+
+* Lorsque vous désaffectez un nœud de stockage déconnecté, StorageGRID démarre les tâches de réparation des données à la fin du processus de désaffectation. Ces travaux tentent de reconstruire les données d'objet et les métadonnées stockées sur le nœud déconnecté.
+* Lorsque vous désaffectez un nœud de stockage déconnecté, la procédure de mise hors service se termine relativement rapidement. Cependant, les tâches de réparation des données peuvent prendre des jours ou des semaines et ne sont pas surveillées par la procédure de mise hors service. Vous devez contrôler ces travaux manuellement et les redémarrer au besoin. Voir link:checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"].
+* Si vous désaffectez un nœud de stockage déconnecté qui contient la seule copie d'un objet, celui-ci sera perdu. Les tâches de réparation des données ne peuvent reconstruire et récupérer que des objets si au moins une copie répliquée ou suffisamment de fragments avec code d'effacement existent sur les nœuds de stockage actuellement connectés.
+

@@ -1,0 +1,29 @@
+---
+permalink: maintain/installing-services-appliance-platform-change-only.html 
+sidebar: sidebar 
+keywords: storagegrid, recover services appliance, recover appliance, recovering appliance, recovering services appliance, install services appliance, installing services appliance, services appliance 
+summary: 'Lorsque vous récupérez un nœud de grid en panne hébergé sur VMware ou un hôte Linux et que vous utilisez une appliance de services pour le nœud de remplacement, vous devez d"abord installer le nouveau matériel de l"appliance en utilisant le même nom de nœud (nom du système) que le nœud en panne.' 
+---
+= Installer l'appliance de services (changement de plateforme uniquement)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous récupérez un nœud de grid en panne hébergé sur VMware ou un hôte Linux et que vous utilisez une appliance de services pour le nœud de remplacement, vous devez d'abord installer le nouveau matériel de l'appliance en utilisant le même nom de nœud (nom du système) que le nœud en panne.
+
+.Avant de commencer
+Vous disposez des informations suivantes sur le nœud défaillant :
+
+* *Nom du noeud* : vous devez installer l'appliance de services en utilisant le même nom de noeud que le noeud défaillant. Le nom du nœud est le nom d'hôte (nom du système).
+* *Adresses IP* : vous pouvez attribuer à l'appliance de services les mêmes adresses IP que le nœud défaillant, qui est l'option préférée, ou sélectionner une nouvelle adresse IP inutilisée sur chaque réseau.
+
+
+.Description de la tâche
+Effectuez cette procédure uniquement si vous récupérez un noeud défaillant hébergé sur VMware ou Linux et que vous le remplacez par un noeud hébergé sur une appliance de services.
+
+.Étapes
+. Suivez les instructions d'installation d'une nouvelle appliance de services. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Démarrage rapide pour l'installation du matériel"^].
+. Lorsqu'un nom de nœud est demandé, utilisez le nom du nœud correspondant à l'échec.
+

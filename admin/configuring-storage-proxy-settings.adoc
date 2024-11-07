@@ -1,0 +1,46 @@
+---
+permalink: admin/configuring-storage-proxy-settings.html 
+sidebar: sidebar 
+keywords: storage proxy, non-transparent proxy, platform service endpoint 
+summary: 'Si vous utilisez des services de plateforme ou des pools de stockage cloud, vous pouvez configurer un proxy non transparent entre les nœuds de stockage et les terminaux S3 externes. Par exemple, vous aurez peut-être besoin d"un proxy non transparent pour permettre l"envoi de messages de services de plate-forme vers des noeuds finaux externes, tels qu"un noeud final sur Internet.' 
+---
+= Configurer le proxy de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez des services de plateforme ou des pools de stockage cloud, vous pouvez configurer un proxy non transparent entre les nœuds de stockage et les terminaux S3 externes. Par exemple, vous aurez peut-être besoin d'un proxy non transparent pour permettre l'envoi de messages de services de plate-forme vers des noeuds finaux externes, tels qu'un noeud final sur Internet.
+
+
+NOTE: Les paramètres configurés du proxy de stockage ne s'appliquent pas aux terminaux des services de la plateforme Kafka.
+
+.Avant de commencer
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+
+.Description de la tâche
+Vous pouvez configurer les paramètres d'un seul proxy de stockage.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres proxy*.
+. Dans l'onglet *stockage*, cochez la case *Activer le proxy de stockage*.
+. Sélectionnez le protocole du proxy de stockage.
+. Entrez le nom d'hôte ou l'adresse IP du serveur proxy.
+. Vous pouvez également saisir le port utilisé pour vous connecter au serveur proxy.
++
+Laissez ce champ vide pour utiliser le port par défaut du protocole : 80 pour HTTP ou 1080 pour SOCKS5.
+
+. Sélectionnez *Enregistrer*.
++
+Une fois le proxy de stockage enregistré, il est possible de configurer et de tester de nouveaux terminaux pour les services de plateforme ou les pools de stockage cloud.
+
++
+
+NOTE: Les modifications de proxy peuvent prendre jusqu'à 10 minutes.
+
+. Vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages relatifs au service de la plate-forme de StorageGRID ne seront pas bloqués.
+. Si vous devez désactiver un proxy de stockage, décochez la case et sélectionnez *Enregistrer*.
+

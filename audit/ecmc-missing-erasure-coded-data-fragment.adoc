@@ -1,0 +1,46 @@
+---
+permalink: audit/ecmc-missing-erasure-coded-data-fragment.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ECMC, Missing Erasure-Coded Data Fragment 
+summary: 'Ce message d"audit indique que le système a détecté un fragment de données avec code d"effacement manquant.' 
+---
+= ECMC : fragment de données avec code d'effacement manquant
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message d'audit indique que le système a détecté un fragment de données avec code d'effacement manquant.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+VCMC
+ a| 
+ID VCS
+ a| 
+Nom du VCS contenant le bloc manquant.
+
+
+
+ a| 
+CODE DE DIAGNOSTIC
+ a| 
+ID de bloc
+ a| 
+Identifiant du fragment avec code d'effacement manquant.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Ce champ a la valeur 'NONE'. RSLT est un champ de message obligatoire, mais n'est pas pertinent pour ce message particulier. 'AUCUN' est utilisé plutôt que 'UCS' pour que ce message ne soit pas filtré.
+
+|===

@@ -1,0 +1,22 @@
+---
+permalink: tenant/managing-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to manage s3 access key 
+summary: 'Chaque utilisateur d"un compte de locataire S3 doit disposer d"une clé d"accès pour stocker et récupérer des objets dans le système StorageGRID. Une clé d"accès se compose d"un ID de clé d"accès et d"une clé d"accès secrète.' 
+---
+= Gestion des clés d'accès S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Chaque utilisateur d'un compte de locataire S3 doit disposer d'une clé d'accès pour stocker et récupérer des objets dans le système StorageGRID. Une clé d'accès se compose d'un ID de clé d'accès et d'une clé d'accès secrète.
+
+Les clés d'accès S3 peuvent être gérées de la manière suivante :
+
+* Les utilisateurs disposant de l'autorisation *gérer vos propres informations d'identification S3* peuvent créer ou supprimer leurs propres clés d'accès S3.
+* Les utilisateurs disposant de l'autorisation *Root Access* peuvent gérer les clés d'accès du compte root S3 et de tous les autres utilisateurs. Les clés d'accès racine offrent un accès complet à toutes les compartiments et objets du locataire, sauf si une règle de compartiment est explicitement désactivée.
+
+
+StorageGRID prend en charge l'authentification Signature version 2 et Signature version 4. L'accès entre comptes n'est pas autorisé sauf si cette règle est explicitement activée par une règle de compartiment.

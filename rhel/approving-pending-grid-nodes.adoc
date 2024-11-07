@@ -1,0 +1,134 @@
+---
+permalink: rhel/approving-pending-grid-nodes.html 
+sidebar: sidebar 
+keywords: how to approve pending grid nodes 
+summary: Vous devez approuver chaque nœud de la grille pour pouvoir rejoindre le système StorageGRID. 
+---
+= Approuver les nœuds de la grille en attente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez approuver chaque nœud de la grille pour pouvoir rejoindre le système StorageGRID.
+
+.Avant de commencer
+Vous avez déployé l'ensemble des nœuds grid virtuels et d'appliance StorageGRID.
+
+
+NOTE: Il est plus efficace d'effectuer une seule installation de tous les nœuds, au lieu d'installer certains nœuds maintenant et certains nœuds ultérieurement.
+
+.Étapes
+. Consultez la liste nœuds en attente et vérifiez qu'elle affiche tous les nœuds de la grille que vous avez déployés.
++
+
+NOTE: Si un nœud de grille est manquant, vérifiez qu'il a été déployé avec succès et que l'adresse IP réseau de grille du nœud d'administration principal est définie pour ADMIN_IP.
+
+. Sélectionnez le bouton radio à côté d'un noeud en attente que vous souhaitez approuver.
++
+image::../media/5_gmi_installer_grid_nodes_pending.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+. Cliquez sur *approuver*.
+. Dans Paramètres généraux, modifiez les paramètres des propriétés suivantes, si nécessaire :
++
+** *Site* : le nom système du site pour ce noeud de grille.
+** *Nom* : le nom du système pour le noeud. Le nom par défaut est le nom que vous avez spécifié lors de la configuration du nœud.
++
+Les noms de système sont requis pour les opérations StorageGRID internes et ne peuvent pas être modifiés une fois l'installation terminée. Cependant, au cours de cette étape du processus d'installation, vous pouvez modifier les noms de système selon vos besoins.
+
++
+*** *NTP role* : rôle NTP (Network Time Protocol) du noeud de la grille. Les options sont *automatique*, *primaire* et *client*. Si vous sélectionnez *automatique*, le rôle principal est attribué aux nœuds d'administration, aux nœuds de stockage avec services ADC, aux nœuds de passerelle et à tous les nœuds de grille ayant des adresses IP non statiques. Le rôle client est attribué à tous les autres nœuds de la grille.
++
+
+CAUTION: Assurez-vous qu'au moins deux nœuds de chaque site peuvent accéder à au moins quatre sources NTP externes. Si un seul nœud d'un site peut atteindre les sources NTP, des problèmes de synchronisation surviennent en cas de panne de ce nœud. En outre, la désignation de deux nœuds par site en tant que sources NTP principales assure une synchronisation précise si un site est isolé du reste de la grille.
+
+*** *Type de stockage* (noeuds de stockage uniquement) : spécifiez qu'un nouveau noeud de stockage doit être utilisé exclusivement pour les données uniquement, les métadonnées uniquement ou les deux. Les options sont *données et métadonnées* ("combinées"), *données seulement* et *métadonnées seulement*.
++
+
+CAUTION: Pour plus d'informations sur les exigences relatives à ces types de nœuds, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
+*** *Service ADC* (nœuds de stockage uniquement) : sélectionnez *automatique* pour permettre au système de déterminer si le nœud requiert le service contrôleur de domaine administratif (ADC). Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau. Au moins trois nœuds de stockage de chaque site doivent inclure le service ADC. Vous ne pouvez pas ajouter le service ADC à un nœud après son déploiement.
+
+
+
+
+. Dans le réseau de grille, modifiez les paramètres des propriétés suivantes si nécessaire :
++
+** *Adresse IPv4 (CIDR)* : adresse réseau CIDR pour l'interface Grid Network (eth0 dans le conteneur). Par exemple : 192.168.1.234/21
+** *Gateway* : la passerelle réseau Grid. Par exemple : 192.168.0.1
++
+La passerelle est requise en cas de sous-réseaux de grille multiples.
+
+
+
++
+
+NOTE: Si vous avez sélectionné DHCP pour la configuration du réseau Grid et que vous modifiez la valeur ici, la nouvelle valeur sera configurée en tant qu'adresse statique sur le nœud. Vous devez vous assurer que l'adresse IP configurée ne fait pas partie d'un pool d'adresses DHCP.
+
+. Si vous souhaitez configurer le réseau d'administration pour le nœud de la grille, ajoutez ou mettez à jour les paramètres de la section réseau d'administration si nécessaire.
++
+Entrez les sous-réseaux de destination des routes en dehors de cette interface dans la zone de texte *sous-réseaux (CIDR)*. En cas de sous-réseaux d'administration multiples, la passerelle d'administration est requise.
+
++
+
+NOTE: Si vous avez sélectionné DHCP pour la configuration du réseau d'administration et que vous modifiez la valeur ici, la nouvelle valeur sera configurée en tant qu'adresse statique sur le nœud. Vous devez vous assurer que l'adresse IP configurée ne fait pas partie d'un pool d'adresses DHCP.
+
++
+*Appareils :* pour une appliance StorageGRID, si le réseau d'administration n'a pas été configuré lors de l'installation initiale à l'aide du programme d'installation de l'appliance StorageGRID, il ne peut pas être configuré dans cette boîte de dialogue Gestionnaire de grille. Au lieu de cela, vous devez procéder comme suit :
+
++
+.. Redémarrez l'appliance : dans le programme d'installation de l'appliance, sélectionnez *Avancé* > *redémarrer*.
++
+Le redémarrage peut prendre plusieurs minutes.
+
+.. Sélectionnez *configurer réseau* > *Configuration lien* et activez les réseaux appropriés.
+.. Sélectionnez *configurer réseau* > *Configuration IP* et configurez les réseaux activés.
+.. Revenez à la page d'accueil et cliquez sur *Démarrer l'installation*.
+.. Dans le Gestionnaire de grille : si le nœud est répertorié dans le tableau nœuds approuvés, supprimez-le.
+.. Supprimez le nœud du tableau nœuds en attente.
+.. Attendez que le nœud réapparaisse dans la liste nœuds en attente.
+.. Confirmez que vous pouvez configurer les réseaux appropriés. Elles doivent déjà être renseignées avec les informations que vous avez fournies sur la page Configuration IP du programme d'installation de l'appliance.
++
+Pour plus d'informations, reportez-vous aux instructions d'installation de votre modèle d'appareil.
+
+
+
+. Si vous souhaitez configurer le réseau client pour le nœud de grille, ajoutez ou mettez à jour les paramètres dans la section réseau client si nécessaire. Si le réseau client est configuré, la passerelle est requise et devient la passerelle par défaut du noeud après l'installation.
++
+
+NOTE: Si vous avez sélectionné DHCP pour la configuration du réseau client et que vous modifiez la valeur ici, la nouvelle valeur sera configurée en tant qu'adresse statique sur le nœud. Vous devez vous assurer que l'adresse IP configurée ne fait pas partie d'un pool d'adresses DHCP.
+
++
+*Appareils :* pour une appliance StorageGRID, si le réseau client n'a pas été configuré lors de l'installation initiale à l'aide du programme d'installation de l'appliance StorageGRID, il ne peut pas être configuré dans cette boîte de dialogue Gestionnaire de grille. Au lieu de cela, vous devez procéder comme suit :
+
++
+.. Redémarrez l'appliance : dans le programme d'installation de l'appliance, sélectionnez *Avancé* > *redémarrer*.
++
+Le redémarrage peut prendre plusieurs minutes.
+
+.. Sélectionnez *configurer réseau* > *Configuration lien* et activez les réseaux appropriés.
+.. Sélectionnez *configurer réseau* > *Configuration IP* et configurez les réseaux activés.
+.. Revenez à la page d'accueil et cliquez sur *Démarrer l'installation*.
+.. Dans le Gestionnaire de grille : si le nœud est répertorié dans le tableau nœuds approuvés, supprimez-le.
+.. Supprimez le nœud du tableau nœuds en attente.
+.. Attendez que le nœud réapparaisse dans la liste nœuds en attente.
+.. Confirmez que vous pouvez configurer les réseaux appropriés. Elles doivent déjà être renseignées avec les informations que vous avez fournies sur la page Configuration IP du programme d'installation de l'appliance.
++
+Pour plus d'informations, reportez-vous aux instructions d'installation de votre appareil.
+
+
+
+. Cliquez sur *Enregistrer*.
++
+L'entrée de nœud de la grille passe à la liste nœuds approuvés.
+
++
+image::../media/7_gmi_installer_grid_nodes_approved.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+. Répétez ces étapes pour chaque nœud de grille en attente à approuver.
++
+Vous devez approuver tous les nœuds que vous souhaitez dans la grille. Cependant, vous pouvez revenir à cette page à tout moment avant de cliquer sur *installer* sur la page Résumé. Vous pouvez modifier les propriétés d'un nœud de grille approuvé en sélectionnant son bouton radio et en cliquant sur *Modifier*.
+
+. Lorsque vous avez terminé d'approuver les nœuds de la grille, cliquez sur *Suivant*.
+

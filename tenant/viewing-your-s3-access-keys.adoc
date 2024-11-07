@@ -1,0 +1,34 @@
+---
+permalink: tenant/viewing-your-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to view your s3 access key 
+summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez afficher la liste de vos clés d"accès S3. Vous pouvez trier la liste en fonction de l"heure d"expiration afin de déterminer quelles clés vont bientôt expirer. Si nécessaire, vous pouvez créer de nouvelles clés ou supprimer des clés que vous n"utilisez plus.' 
+---
+= Affichez vos clés d'accès S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3 et que vous disposez de la link:tenant-management-permissions.html["autorisation appropriée"], vous pouvez afficher la liste de vos clés d'accès S3. Vous pouvez trier la liste en fonction de l'heure d'expiration afin de déterminer quelles clés vont bientôt expirer. Si nécessaire, vous pouvez link:creating-your-own-s3-access-keys.html["créer de nouvelles clés"] ou link:deleting-your-own-s3-access-keys.html["supprimer les clés"] que vous n'utilisez plus.
+
+
+CAUTION: Vous pouvez accéder aux compartiments S3 et aux objets appartenant à votre compte à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour votre compte dans le Gestionnaire des locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées de votre compte et ne les partagez jamais avec d'autres utilisateurs.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs possédant les informations d'identification Manage Your Own S3 link:tenant-management-permissions.html["permission"].
+
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Mes clés d'accès*.
+. À partir de la page Mes clés d'accès, triez toutes les clés d'accès existantes par *heure d'expiration* ou *ID de clé d'accès*.
+. Au besoin, créez de nouvelles clés ou supprimez les clés que vous n'utilisez plus.
++
+Si vous créez de nouvelles clés avant l'expiration des clés existantes, vous pouvez commencer à utiliser les nouvelles clés sans perdre temporairement l'accès aux objets du compte.
+
++
+Les clés expirées sont supprimées automatiquement.
+
+

@@ -1,0 +1,155 @@
+---
+permalink: maintain/adding-to-or-changing-subnet-lists-on-grid-network.html 
+sidebar: sidebar 
+keywords: storagegrid, subnet list, grid network 
+summary: 'Vous pouvez utiliser l"outil Modifier IP pour ajouter ou modifier des sous-réseaux sur le réseau de grille.' 
+---
+= Ajouter ou modifier des listes de sous-réseaux sur le réseau Grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser l'outil Modifier IP pour ajouter ou modifier des sous-réseaux sur le réseau de grille.
+
+.Avant de commencer
+* Vous avez le `Passwords.txt` fichier.
+
+
+Vous pouvez ajouter, supprimer ou modifier des sous-réseaux dans la liste de sous-réseaux du réseau de la grille. Les modifications affectent le routage sur tous les nœuds de la grille.
+
+
+NOTE: Si vous apportez uniquement des modifications à la liste de sous-réseaux du réseau Grid, utilisez le gestionnaire de grille pour ajouter ou modifier la configuration du réseau. Dans le cas contraire, utilisez l'outil Modifier IP si le gestionnaire de grille est inaccessible en raison d'un problème de configuration du réseau ou si vous effectuez une modification du routage du réseau Grid et d'autres modifications du réseau simultanément.
+
+.Étapes
+. Connectez-vous au nœud d'administration principal :
++
+.. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Démarrez l'outil Modifier IP en entrant la commande suivante : `change-ip`
+. Saisissez la phrase de passe de provisionnement à l'invite.
++
+Le menu principal s'affiche.
+
++
+image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+
+. Dans le menu principal, sélectionnez l'option permettant de modifier les sous-réseaux du réseau Grid (option *4*).
++
+
+NOTE: Les modifications apportées à la liste des sous-réseaux du réseau de la grille sont effectuées dans toute la grille.
+
+. Options au choix :
++
+--
+** Ajoutez un sous-réseau en saisissant la commande suivante : `add CIDR`
+** Pour supprimer un sous-réseau, entrez la commande suivante : `del CIDR`
+** Définissez la liste des sous-réseaux en saisissant la commande suivante : `set CIDR`
+
+
+--
++
+--
+
+NOTE: Pour toutes les commandes, vous pouvez entrer plusieurs adresses au format suivant : `add CIDR, CIDR`
+
+Exemple : `add 172.14.0.0/16, 172.15.0.0/16, 172.16.0.0/16`
+
+
+TIP: Vous pouvez réduire la quantité de saisie requise en utilisant la « flèche vers le haut » pour rappeler les valeurs précédemment saisies à l'invite de saisie actuelle, puis les modifier si nécessaire.
+
+L'exemple ci-dessous montre le paramétrage des sous-réseaux pour la liste de sous-réseaux du réseau Grid :
+
+image::../media/change_ip_tool_gnsl_sample_input.gif[capture d'écran décrite par le texte environnant]
+
+--
+. Lorsque vous êtes prêt, saisissez *q* pour revenir à l'écran du menu principal. Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
+. Options au choix :
++
+** Sélectionnez l'option *5* pour afficher les modifications dans la sortie qui sont isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple ci-dessous :
++
+image::../media/change_ip_tool_gnsl_sample_output.gif[capture d'écran décrite par le texte environnant]
+
+** Sélectionnez l'option *6* pour afficher les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions).
++
+
+NOTE: Certaines interfaces de ligne de commande peuvent afficher des ajouts et des suppressions en utilisant le formatage barré.
+
+
+
+. Sélectionnez l'option *7* pour valider toutes les modifications échelonnée.
++
+Cette validation garantit que les règles des réseaux Grid, Admin et client sont respectées, telles que l'utilisation de sous-réseaux redondants.
+
+. Vous pouvez également sélectionner l'option *8* pour enregistrer toutes les modifications échelonnée et revenir ultérieurement pour continuer à effectuer les modifications.
++
+Cette option vous permet de quitter l'outil Modifier l'IP et de le redémarrer ultérieurement, sans perdre les modifications non appliquées.
+
+. Effectuez l'une des opérations suivantes :
++
+** Sélectionnez l'option *9* si vous souhaitez effacer toutes les modifications sans enregistrer ni appliquer la nouvelle configuration réseau.
+** Sélectionnez l'option *10* si vous êtes prêt à appliquer des modifications et à provisionner la nouvelle configuration réseau. Pendant le provisionnement, le résultat affiche l'état au fur et à mesure que les mises à jour sont appliquées, comme indiqué dans l'exemple de résultat suivant :
++
+[listing]
+----
+Generating new grid networking description file...
+
+Running provisioning...
+
+Updating grid network configuration on Name
+----
+
+
+. Si vous avez sélectionné l'option *10* lors de la modification du réseau grille, sélectionnez l'une des options suivantes :
++
+** *Appliquer* : appliquez les modifications immédiatement et redémarrez automatiquement chaque nœud si nécessaire.
++
+Si la nouvelle configuration réseau fonctionnera simultanément avec l'ancienne configuration réseau sans aucune modification externe, vous pouvez utiliser l'option *appliquer* pour une modification de configuration entièrement automatisée.
+
+** *Etape* : appliquez les modifications lors du prochain redémarrage des nœuds.
++
+Si vous devez apporter des modifications de configuration de réseau physique ou virtuel pour que la nouvelle configuration de réseau fonctionne, vous devez utiliser l'option *stage*, arrêter les nœuds affectés, effectuer les modifications de réseau physique nécessaires et redémarrer les nœuds affectés.
+
++
+
+NOTE: Si vous utilisez l'option *stage*, redémarrez le nœud dès que possible après l'activation afin de minimiser les interruptions.
+
+** *Annuler*: Ne faites pas de modifications de réseau pour le moment.
++
+Si vous n'étiez pas conscient que les modifications proposées nécessitent de redémarrer les nœuds, vous pouvez reporter les modifications pour minimiser l'impact sur les utilisateurs. Si vous sélectionnez *annuler*, vous revenez au menu principal et les modifications sont préservés pour pouvoir les appliquer ultérieurement.
+
+
+
++
+Une fois que vous avez appliqué ou échelé les modifications, un nouveau package de récupération est généré à la suite de la modification de la configuration de la grille.
+
+. Si la configuration est interrompue en raison d'erreurs, les options suivantes sont disponibles :
++
+** Pour mettre fin à la procédure de modification IP et revenir au menu principal, entrez *a*.
+** Pour réessayer l'opération qui a échoué, entrez *r*.
+** Pour passer à l'opération suivante, saisissez *c*.
++
+L'opération échouée peut être relancée ultérieurement en sélectionnant l'option *10* (appliquer les modifications) dans le menu principal. La procédure de modification IP ne sera pas terminée tant que toutes les opérations n'auront pas été effectuées avec succès.
+
+** Si vous avez dû intervenir manuellement (pour redémarrer un nœud, par exemple) et que l'action que l'outil pense avoir échoué a été réellement terminée, entrez *f* pour la marquer comme réussie et passer à l'opération suivante.
+
+
+. Téléchargez un nouveau package de récupération depuis Grid Manager.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase secrète pour le provisionnement.
+
+
++
+
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+
+

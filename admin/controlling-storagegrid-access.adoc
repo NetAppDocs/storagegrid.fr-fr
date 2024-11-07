@@ -1,0 +1,47 @@
+---
+permalink: admin/controlling-storagegrid-access.html 
+sidebar: sidebar 
+keywords: administrator access, single sign on, sso, users, groups, client certificates, passwords, passphrase 
+summary: 'Vous pouvez contrôler qui peut accéder à StorageGRID et quelles tâches les utilisateurs peuvent effectuer en créant ou en important des groupes et des utilisateurs et en attribuant des autorisations à chaque groupe. Vous pouvez également activer l"authentification unique \(SSO\), créer des certificats client et modifier les mots de passe de la grille.' 
+---
+= Contrôlez l'accès au StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez contrôler qui peut accéder à StorageGRID et quelles tâches les utilisateurs peuvent effectuer en créant ou en important des groupes et des utilisateurs et en attribuant des autorisations à chaque groupe. Vous pouvez également activer l'authentification unique (SSO), créer des certificats client et modifier les mots de passe de la grille.
+
+
+
+== Contrôle de l'accès au Grid Manager
+
+Vous déterminez qui peut accéder à Grid Manager et à l'API Grid Management en important des groupes et des utilisateurs à partir d'un service de fédération des identités ou en configurant des groupes locaux et des utilisateurs locaux.
+
+L'utilisation de link:using-identity-federation.html["fédération des identités"] rend la configuration link:managing-admin-groups.html["groupes"]et link:managing-users.html["utilisateurs"] plus rapide, et permet aux utilisateurs de se connecter à StorageGRID à l'aide des informations d'identification habituelles. Vous pouvez configurer la fédération des identités si vous utilisez Active Directory, OpenLDAP ou Oracle Directory Server.
+
+
+NOTE: Contactez le support technique si vous souhaitez utiliser un autre service LDAP v3.
+
+Vous déterminez les tâches que chaque utilisateur peut effectuer en affectant différentes tâches link:admin-group-permissions.html["autorisations"]à chaque groupe. Par exemple, il peut être nécessaire que les utilisateurs d'un groupe puissent gérer les règles ILM et les utilisateurs d'un autre groupe pour effectuer les tâches de maintenance. Un utilisateur doit appartenir à au moins un groupe pour accéder au système.
+
+Vous pouvez également configurer un groupe pour qu'il soit en lecture seule. Les utilisateurs d'un groupe en lecture seule peuvent uniquement afficher les paramètres et les fonctions. Ils ne peuvent pas apporter de modifications ni effectuer d'opérations dans l'API Grid Manager ou Grid Management.
+
+
+
+== Activez l'authentification unique
+
+Le système StorageGRID prend en charge la fonctionnalité SSO (Single Sign-on) en utilisant la 2.0 norme SAML 2.0 (Security assertion Markup Language). Après vous link:configuring-sso.html["Configurer et activer SSO"], tous les utilisateurs doivent être authentifiés par un fournisseur d'identité externe avant de pouvoir accéder au Gestionnaire de grille, au Gestionnaire de locataires, à l'API de gestion de grille ou à l'API de gestion des locataires. Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.
+
+
+
+== Modifiez la phrase secrète du provisionnement
+
+La phrase de passe de provisionnement est requise pour de nombreuses procédures d'installation et de maintenance, ainsi que pour le téléchargement du package de restauration StorageGRID. Une phrase secrète est également nécessaire pour télécharger les sauvegardes des informations de topologie de la grille et des clés de chiffrement pour le système StorageGRID. Vous pouvez le faire link:changing-provisioning-passphrase.html["modifiez la phrase de passe"] selon vos besoins.
+
+
+
+== Changer les mots de passe de la console du nœud
+
+Chaque nœud de votre grid dispose d'un mot de passe unique de console de nœud. Vous devez vous connecter au nœud en tant qu'administrateur via SSH ou à l'utilisateur root sur une connexion VM/console physique. En fonction des besoins, vous pouvez link:change-node-console-password.html["modifiez le mot de passe de la console du nœud"] pour chaque nœud.

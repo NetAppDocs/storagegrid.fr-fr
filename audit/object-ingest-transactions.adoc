@@ -1,0 +1,132 @@
+---
+permalink: audit/object-ingest-transactions.html 
+sidebar: sidebar 
+keywords: object ingest transaction, S3 ingest, SPUT, ORLM, WPUT 
+summary: 'Vous pouvez identifier les transactions d"ingestion de clients dans le journal d"audit en localisant les messages d"audit spécifiques à l"API S3.' 
+---
+= Transactions d'ingestion d'objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez identifier les transactions d'ingestion de clients dans le journal d'audit en localisant les messages d'audit spécifiques à l'API S3.
+
+Tous les messages d'audit générés lors d'une transaction d'entrée ne sont pas répertoriés dans les tableaux suivants. Seuls les messages nécessaires au suivi de la transaction d'acquisition sont inclus.
+
+
+
+== Ingestion des messages d'audit S3
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| Code | Nom | Description | Tracé | Voir 
+
+
+ a| 
+SPUT
+ a| 
+Transaction PUT S3
+ a| 
+Une transaction d'entrée DE PUT S3 a été effectuée avec succès.
+ a| 
+CBID, S3BK, S3KY
+ a| 
+link:sput-s3-put.html["SPUT : PUT S3"]
+
+
+
+ a| 
+ORLM
+ a| 
+Règles d'objet respectées
+ a| 
+La politique ILM a été satisfaite pour cet objet.
+ a| 
+CBID
+ a| 
+link:orlm-object-rules-met.html["ORLM : règles d'objet respectées"]
+
+|===
+
+
+== Ingestion des messages d'audit Swift
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| Code | Nom | Description | Tracé | Voir 
+
+
+ a| 
+WPUT
+ a| 
+EFFECTUER la transaction Swift
+ a| 
+Une transaction d'entrée DE PUT Swift a été effectuée avec succès.
+ a| 
+CBID, WCON, WOBJ
+ a| 
+link:wput-swift-put.html["WPUT : PUT SWIFT"]
+
+
+
+ a| 
+ORLM
+ a| 
+Règles d'objet respectées
+ a| 
+La politique ILM a été satisfaite pour cet objet.
+ a| 
+CBID
+ a| 
+link:orlm-object-rules-met.html["ORLM : règles d'objet respectées"]
+
+|===
+
+
+== Exemple : ingestion d'objet S3
+
+La série de messages d'audit ci-dessous est un exemple des messages d'audit générés et enregistrés dans le journal d'audit lorsqu'un client S3 ingère un objet à un nœud de stockage (LDR).
+
+Dans cet exemple, la règle ILM active inclut la règle ILM Make 2 copies.
+
+
+NOTE: Tous les messages d'audit générés pendant une transaction ne sont pas répertoriés dans l'exemple ci-dessous. Seules les personnes liées à la transaction de transfert S3 (SPUT) sont répertoriées.
+
+Dans cet exemple, un compartiment S3 a déjà été créé.
+
+
+
+=== SPUT : PUT S3
+
+Le message SPUT est généré pour indiquer qu'une transaction PUT S3 a été émise pour créer un objet dans un compartiment spécifique.
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-07-17T21:17:58.959669[AUDT:[RSLT(FC32):SUCS][TIME(UI64):25771][SAIP(IPAD):"10.96.112.29"][S3AI(CSTR):"70899244468554783528"][SACC(CSTR):"test"][S3AK(CSTR):"SGKHyalRU_5cLflqajtaFmxJn946lAWRJfBF33gAOg=="][SUSR(CSTR):"urn:sgws:identity::70899244468554783528:root"][SBAI(CSTR):"70899244468554783528"][SBAC(CSTR):"test"][S3BK(CSTR):"example"][S3KY(CSTR):"testobject-0-3"][CBID\(UI64\):0x8EF52DF8025E63A8][CSIZ(UI64):30720][AVER(UI32):10][ATIM(UI64):150032627859669][ATYP\(FC32\):SPUT][ANID(UI32):12086324][AMID(FC32):S3RQ][ATID(UI64):14399932238768197038]]
+----
+
+
+=== ORLM : règles d'objet respectées
+
+Le message ORLM indique que la politique ILM a été satisfaite pour cet objet. Le message inclut le CBID de l'objet et le nom de la règle ILM appliquée.
+
+Pour les objets répliqués, le champ EMPLACEMENTS inclut l'ID de nœud LDR et l'ID de volume des emplacements d'objets.
+
+[listing, subs="specialcharacters,quotes"]
+----
+2019-07-17T21:18:31.230669[AUDT:[CBID\(UI64\):0x50C4F7AC2BC8EDF7][RULE(CSTR):"Make 2 Copies"][STAT(FC32):DONE][CSIZ(UI64):0][UUID(CSTR):"0B344E18-98ED-4F22-A6C8-A93ED68F8D3F"][LOCS(CSTR):"CLDI 12828634 2148730112, CLDI 12745543 2147552014"][RSLT(FC32):SUCS][AVER(UI32):10][ATYP\(FC32\):ORLM][ATIM(UI64):1563398230669][ATID(UI64):15494889725796157557][ANID(UI32):13100453][AMID(FC32):BCMS]]
+----
+Pour les objets avec code d'effacement, le champ EMPLACEMENTS inclut l'ID du profil de code d'effacement et l'ID du groupe de codes d'effacement
+
+[listing, subs="specialcharacters,quotes"]
+----
+2019-02-23T01:52:54.647537 [AUDT:[CBID(UI64):0xFA8ABE5B5001F7E2][RULE(CSTR):"EC_2_plus_1"][STAT(FC32):DONE][CSIZ(UI64):10000][UUID(CSTR):"E291E456-D11A-4701-8F51-D2F7CC9AFECA"][LOCS(CSTR):"CLEC 1 A471E45D-A400-47C7-86AC-12E77F229831"][RSLT(FC32):SUCS][AVER(UI32):10][ATIM(UI64):1550929974537]\[ATYP\(FC32\):ORLM\][ANID(UI32):12355278][AMID(FC32):ILMX][ATID(UI64):4168559046473725560]]
+----
+Le champ CHEMIN d'ACCÈS inclut des informations clés et un compartiment S3 ou des informations sur le conteneur Swift et l'objet, selon l'API utilisée.
+
+[listing]
+----
+2019-09-15.txt:2018-01-24T13:52:54.131559 [AUDT:[CBID(UI64):0x82704DFA4C9674F4][RULE(CSTR):"Make 2 Copies"][STAT(FC32):DONE][CSIZ(UI64):3145729][UUID(CSTR):"8C1C9CAC-22BB-4880-9115-CE604F8CE687"][PATH(CSTR):"frisbee_Bucket1/GridDataTests151683676324774_1_1vf9d"][LOCS(CSTR):"CLDI 12525468, CLDI 12222978"][RSLT(FC32):SUCS][AVER(UI32):10][ATIM(UI64):1568555574559][ATYP(FC32):ORLM][ANID(UI32):12525468][AMID(FC32):OBDI][ATID(UI64):344833886538369336]]
+----

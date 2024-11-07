@@ -1,0 +1,59 @@
+---
+permalink: tenant/ilm-policy-tags.html 
+sidebar: sidebar 
+keywords: how to assign ilm policy tag to bucket 
+summary: Choisissez une balise de règle ILM à attribuer à un compartiment en fonction de vos besoins en stockage objet. 
+---
+= Applique une balise de règle ILM à un compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez choisir une balise de règle ILM à appliquer à un compartiment en fonction de vos besoins en stockage objet.
+
+La politique ILM contrôle l'emplacement du stockage des données objet et leur suppression au bout d'une période donnée. Votre administrateur du grid crée des règles ILM et les attribue aux balises de règles ILM lors de l'utilisation de plusieurs règles actives.
+
+
+NOTE: Évitez de fréquemment réaffecter le tag de stratégie d'un compartiment. Sinon, des problèmes de performances risquent de se produire.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Accès racine, gestion de tous les compartiments ou autorisation Afficher tous les compartiments"]. Ces autorisations remplacent les paramètres d'autorisation dans les stratégies de groupe ou de compartiment.
+
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
++
+La page compartiments s'affiche. Si nécessaire, vous pouvez trier les informations par colonne, ou vous pouvez avancer et revenir à la liste.
+
+. Sélectionnez le nom du compartiment auquel vous souhaitez attribuer une balise de règle ILM.
++
+Vous pouvez également modifier l'affectation de balises de stratégie ILM pour un compartiment auquel une balise est déjà attribuée.
+
++
+
+NOTE: Les valeurs nombre d'objets et espace utilisé affichées sont des estimations. Ces estimations sont affectées par le moment de l'ingestion, la connectivité réseau et l'état des nœuds. Si la gestion des versions des compartiments est activée, les versions des objets supprimés sont incluses dans le nombre d'objets.
+
+. Dans l'onglet Options de compartiment, développez la balise de stratégie ILM accordéon. Cet accordéon n'apparaît que si votre administrateur de grille a activé l'utilisation de balises de stratégie personnalisées.
+. Lisez la description de chaque balise de stratégie pour déterminer quelle balise doit être appliquée au compartiment.
++
+
+CAUTION: La modification de la balise de règle ILM d'un compartiment déclenche la réévaluation des règles ILM de tous les objets du compartiment. Si la nouvelle règle conserve des objets pendant une durée limitée, les objets plus anciens seront supprimés.
+
+. Sélectionnez le bouton radio correspondant à l'étiquette que vous souhaitez affecter au compartiment.
+. Sélectionnez *Enregistrer les modifications*. Une nouvelle balise de compartiment S3 sera définie dans le compartiment avec la clé `NTAP-SG-ILM-BUCKET-TAG` et la valeur du nom de la balise de règle ILM.
++
+
+CAUTION: Assurez-vous que vos applications S3 ne remplacent pas accidentellement ou ne suppriment pas la nouvelle balise de compartiment. Si cette balise est omise lors de l'application d'un nouveau TagSet au compartiment, les objets du compartiment seront de nouveau évalués par rapport à la règle ILM par défaut.
+
++
+
+CAUTION: Définissez et modifiez les balises de règles ILM à l'aide uniquement du gestionnaire de locataires ou de l'API du gestionnaire de locataires sur lequel la balise de règle ILM est validée. Ne modifiez pas la `NTAP-SG-ILM-BUCKET-TAG` balise de stratégie ILM à l'aide de l'API S3 PutBucketTagging ou de l'API S3 DeleteBuckeTagging.
+
++
+
+NOTE: La modification de la balise de règle attribuée à un compartiment a un impact temporaire sur les performances, tandis que la réévaluation des objets est effectuée à l'aide de la nouvelle règle ILM.
+
+

@@ -1,0 +1,31 @@
+---
+permalink: expand/adding-grid-nodes-to-add-capabilities.html 
+sidebar: sidebar 
+keywords: grid nodes, expand, expansion, site, add 
+summary: Vous pouvez ajouter de la redondance ou des fonctionnalités supplémentaires à un système StorageGRID en ajoutant de nouveaux nœuds grid à des sites existants. 
+---
+= Ajoutez des nœuds grid pour ajouter des fonctionnalités à votre système
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ajouter de la redondance ou des fonctionnalités supplémentaires à un système StorageGRID en ajoutant de nouveaux nœuds grid à des sites existants.
+
+Par exemple, vous pouvez choisir d'ajouter des nœuds de passerelle à utiliser dans un groupe haute disponibilité (HA) ou d'ajouter un nœud d'administration sur un site distant pour permettre la surveillance à l'aide d'un nœud local.
+
+Vous pouvez ajouter un ou plusieurs des types de nœuds suivants à un ou plusieurs sites existants au cours d'une seule opération d'extension :
+
+* Nœuds d'administration non primaires
+* Nœuds de stockage
+* Nœuds de passerelle
+
+
+Lorsque vous préparez l'ajout de nœuds grid, tenez compte des limites suivantes :
+
+* Le nœud d'administration principal est déployé lors de l'installation initiale. Vous ne pouvez pas ajouter de nœud d'administration principal pendant une extension.
+* Vous pouvez ajouter des nœuds de stockage et d'autres types de nœuds dans la même extension.
+* Lorsque vous ajoutez des nœuds de stockage, vous devez planifier soigneusement le nombre et l'emplacement des nouveaux nœuds. Voir link:../expand/guidelines-for-adding-object-capacity.html["Instructions d'ajout de capacité d'objet"].
+* Si l'option *définir nouveau noeud par défaut* est *non fiable* sur l'onglet réseaux clients non approuvés de la page de contrôle du pare-feu, les applications clientes qui se connectent aux nœuds d'extension à l'aide du réseau client doivent se connecter à l'aide d'un port de noeud final d'équilibrage de charge (*CONFIGURATION* > *sécurité* > *contrôle du pare-feu*). Voir les instructions à link:../admin/configure-firewall-controls.html["modifiez le paramètre de sécurité du nouveau nœud"] et à link:../admin/configuring-load-balancer-endpoints.html["configurez les terminaux d'équilibrage de charge"].
+

@@ -1,0 +1,84 @@
+---
+permalink: tenant/manage-bucket-consistency.html 
+sidebar: sidebar 
+keywords: how to manage bucket consistency, how to change bucket consistency, read after new write, read-after-new-write, strong site, strong-site, strong global, strong-global 
+summary: 'Les valeurs de cohérence peuvent être utilisées pour spécifier la disponibilité des modifications des paramètres de compartiment, ainsi que pour fournir un équilibre entre la disponibilité des objets au sein d"un compartiment et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier les valeurs de cohérence pour qu"elles soient différentes des valeurs par défaut afin que les applications client puissent répondre à leurs besoins opérationnels.' 
+---
+= Gestion de la cohérence des compartiments
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les valeurs de cohérence peuvent être utilisées pour spécifier la disponibilité des modifications des paramètres de compartiment, ainsi que pour fournir un équilibre entre la disponibilité des objets au sein d'un compartiment et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier les valeurs de cohérence pour qu'elles soient différentes des valeurs par défaut afin que les applications client puissent répondre à leurs besoins opérationnels.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+
+
+
+
+== Instructions de cohérence des compartiments
+
+La cohérence des compartiments détermine la cohérence des applications client qui affectent les objets au sein de ce compartiment S3. En général, vous devez utiliser la cohérence *Read-After-New-write* pour vos compartiments.
+
+
+
+== [[change-bucket-consistance]]modifiez la cohérence des compartiments
+
+Si la cohérence *Read-After-New-write* ne répond pas aux exigences de l'application client, vous pouvez modifier la cohérence en définissant la cohérence du compartiment ou en utilisant l' `Consistency-Control`en-tête. L' `Consistency-Control`en-tête remplace la cohérence du godet.
+
+
+NOTE: Lorsque vous modifiez la cohérence d'un compartiment, seuls les objets ingérés après la modification sont garantis pour respecter le paramètre révisé.
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans la table.
++
+La page des détails du compartiment s'affiche.
+
+. Dans l'onglet *Bucket options*, sélectionnez ** accordéon.
+. Sélectionnez une cohérence pour les opérations effectuées sur les objets de ce compartiment.
++
+** *Tous* : fournit le plus haut niveau de cohérence. Tous les nœuds reçoivent les données immédiatement, sinon la requête échoue.
+** *Strong-global* : garantit la cohérence lecture après écriture pour toutes les demandes client sur tous les sites.
+** *Strong-site* : garantit la cohérence lecture après écriture pour toutes les demandes client au sein d'un site.
+** *Read-After-New-write* (par défaut) : fournit une cohérence lecture-après-écriture pour les nouveaux objets et une cohérence éventuelle pour les mises à jour d'objets. Offre une haute disponibilité et une protection des données garanties. Recommandé dans la plupart des cas.
+** *Disponible* : assure la cohérence finale pour les nouveaux objets et les mises à jour d'objets. Pour les compartiments S3, utilisez uniquement si nécessaire (par exemple, pour un compartiment qui contient des valeurs de journal rarement lues ou pour les opérations HEAD ou GET sur des clés qui n'existent pas). Non pris en charge pour les compartiments FabricPool S3.
+
+
+. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+== Que se passe-t-il lorsque vous modifiez les paramètres de compartiment
+
+Les compartiments ont plusieurs paramètres qui affectent le comportement des compartiments et des objets dans ces compartiments.
+
+Les paramètres de compartiment suivants utilisent la cohérence *strong* par défaut. Si au moins deux nœuds de stockage ne sont disponibles dans aucun site, ou si un site n'est pas disponible, toute modification de ces paramètres peut ne pas être disponible.
+
+* link:deleting-s3-bucket-objects.html["Suppression du compartiment vide en arrière-plan"]
+* link:enabling-or-disabling-last-access-time-updates.html["Heure du dernier accès"]
+* link:../s3/create-s3-lifecycle-configuration.html["Cycle de vie des compartiments"]
+* link:../s3/bucket-and-group-access-policies.html["Politique des compartiments"]
+* link:../s3/operations-on-buckets.html["Balisage du compartiment"]
+* link:changing-bucket-versioning.html["Gestion des versions de compartiment"]
+* link:using-s3-object-lock.html["Verrouillage d'objet S3"]
+* link:../admin/reviewing-storagegrid-encryption-methods.html#bucket-encryption-table["Chiffrement des compartiments"]
+
+
+
+NOTE: La valeur de cohérence pour la gestion des versions des compartiments, le verrouillage objet S3 et le chiffrement des compartiments ne peut pas être définie sur une valeur qui n'est pas parfaitement cohérente.
+
+Les paramètres de compartiment suivants n'utilisent pas une cohérence élevée et offrent une plus grande disponibilité en cas de modification. Les modifications apportées à ces paramètres peuvent prendre un certain temps avant d'avoir un effet.
+
+* link:considerations-for-platform-services.html["Configuration des services de plate-forme : intégration de notification, réplication ou recherche"]
+* link:configuring-cross-origin-resource-sharing-cors.html["Configuration DE L'INFRASTRUCTURE CORS"]
+* <<change-bucket-consistency,Modifier la cohérence du compartiment>>
+
+
+
+TIP: Si la cohérence par défaut utilisée lors de la modification des paramètres de compartiment ne répond pas aux exigences de l'application client, vous pouvez modifier la cohérence à l' `Consistency-Control`aide de l'en-tête de link:../s3/put-bucket-consistency-request.html["L'API REST S3"]ou en utilisant les `reducedConsistency` options ou de `force`link:understanding-tenant-management-api.html["API de gestion des locataires"] .

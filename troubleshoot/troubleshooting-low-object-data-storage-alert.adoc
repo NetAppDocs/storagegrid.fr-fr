@@ -1,0 +1,84 @@
+---
+permalink: troubleshoot/troubleshooting-low-object-data-storage-alert.html 
+sidebar: sidebar 
+keywords: how to troubleshoot the Low object data storage alert 
+summary: 'L"alerte *mémoire de données d"objet faible* surveille la quantité d"espace disponible pour le stockage de données d"objet sur chaque nœud de stockage.' 
+---
+= Dépanner l'alerte de stockage de données d'objet faible
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'alerte *mémoire de données d'objet faible* surveille la quantité d'espace disponible pour le stockage de données d'objet sur chaque nœud de stockage.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+L'alerte *Low Object Data Storage* est déclenchée lorsque la quantité totale de données d'objet répliquées et codées par effacement sur un nœud de stockage remplit l'une des conditions configurées dans la règle d'alerte.
+
+Par défaut, une alerte majeure est déclenchée lorsque cette condition est évaluée comme vrai :
+
+[listing]
+----
+(storagegrid_storage_utilization_data_bytes/
+(storagegrid_storage_utilization_data_bytes + storagegrid_storage_utilization_usable_space_bytes)) >=0.90
+----
+Dans cette condition :
+
+* `storagegrid_storage_utilization_data_bytes` Est une estimation de la taille totale des données d'objet répliquées et codées d'effacement pour un nœud de stockage.
+* `storagegrid_storage_utilization_usable_space_bytes` Quantité totale d'espace de stockage objet restant pour un nœud de stockage.
+
+
+Si une alerte majeure ou mineure *stockage de données d'objet bas* est déclenchée, vous devez exécuter une procédure d'extension dès que possible.
+
+.Étapes
+. Sélectionnez *ALERTES* > *actuel*.
++
+La page alertes s'affiche.
+
+. Dans le tableau des alertes, développez le groupe d'alertes *stockage de données d'objet bas*, si nécessaire, et sélectionnez l'alerte que vous souhaitez afficher.
++
+
+NOTE: Sélectionnez l'alerte, et non l'en-tête d'un groupe d'alertes.
+
+. Vérifiez les détails dans la boîte de dialogue et notez ce qui suit :
++
+** Temps déclenché
+** Le nom du site et du noeud
+** Valeurs actuelles des mesures de cette alerte
+
+
+. Sélectionnez *NOEUDS* > *_Storage Node ou site_* > *Storage*.
+. Positionnez le curseur sur le graphique stockage utilisé - données d'objet.
++
+Les valeurs suivantes sont affichées :
+
++
+** *Utilisé (%)* : pourcentage de l'espace utilisable total qui a été utilisé pour les données d'objet.
+** *Used* : quantité de l'espace utilisable total qui a été utilisé pour les données d'objet.
+** *Données répliquées* : estimation de la quantité de données d'objet répliqué sur ce nœud, site ou grille.
+** *Données avec code d'effacement* : estimation de la quantité de données d'objet avec code d'effacement sur ce nœud, ce site ou ce grid.
+** *Total* : la quantité totale d'espace utilisable sur ce nœud, site ou grille. La valeur utilisée est la `storagegrid_storage_utilization_data_bytes` mesure.
+
+
++
+image::../media/nodes_page_storage_used_object_data.png[Nœuds stockage de page données d'objet utilisées]
+
+. Sélectionnez les commandes de temps au-dessus du graphique pour afficher l'utilisation du stockage sur différentes périodes.
++
+Pour mieux comprendre la quantité de stockage utilisée auparavant et après le déclenchement de l'alerte, vous pouvez estimer le temps nécessaire pour que l'espace restant du nœud devienne complet.
+
+. Dès que possible, link:../expand/guidelines-for-adding-object-capacity.html["ajouter de la capacité de stockage"] à votre grille.
++
+Vous pouvez ajouter des volumes de stockage (LUN) à des nœuds de stockage existants ou ajouter de nouveaux nœuds de stockage.
+
++
+
+NOTE: Pour plus d'informations, voir link:../admin/managing-full-storage-nodes.html["Gérer des nœuds de stockage complets"].
+
+

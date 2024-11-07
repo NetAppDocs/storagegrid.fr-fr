@@ -1,0 +1,50 @@
+---
+permalink: expand/adding-storage-volumes-to-storage-nodes.html 
+sidebar: sidebar 
+keywords: storage volumes, expand, expansion, add, storage nodes, adding storage capacity 
+summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d"au moins 16 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d"ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d"effacement.' 
+---
+= Ajout de volumes de stockage aux nœuds de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d'au moins 16 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d'ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d'effacement.
+
+.Avant de commencer
+Avant d'ajouter des volumes de stockage, link:guidelines-for-adding-object-capacity.html["instructions d'ajout de capacité d'objet"]vérifiez que vous savez où ajouter des volumes afin de répondre aux exigences de votre règle ILM.
+
+
+NOTE: Ces instructions s'appliquent uniquement aux nœuds de stockage basés sur logiciel. Voir https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajout du tiroir d'extension au SG6060 déployé"^] ou https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Ajout du tiroir d'extension au SG6160 déployé"^] pour apprendre à ajouter des volumes de stockage aux SG6060 ou SG6160 en installant des tiroirs d'extension. Les autres nœuds de stockage de l'appliance ne peuvent pas être étendus.
+
+.Description de la tâche
+Le stockage sous-jacent d'un nœud de stockage est divisé en volumes de stockage. Les volumes de stockage sont des périphériques de stockage basés sur des blocs formatés par le système StorageGRID et montés pour stocker des objets. Chaque nœud de stockage peut prendre en charge jusqu'à 16 volumes de stockage, appelés _object stores_ dans Grid Manager.
+
+
+NOTE: Les métadonnées d'objet sont toujours stockées dans le magasin d'objets 0.
+
+Chaque magasin d'objets est monté sur un volume qui correspond à son ID. Par exemple, le magasin d'objets avec un ID de 0000 correspond au `/var/local/rangedb/0` point de montage.
+
+Avant d'ajouter de nouveaux volumes de stockage, utilisez la grille Manager pour afficher les magasins d'objets actuels pour chaque nœud de stockage ainsi que les points de montage correspondants. Vous pouvez utiliser ces informations lors de l'ajout de volumes de stockage.
+
+.Étapes
+. Sélectionnez *NODES* > *_site_* > *_Storage Node_* > *Storage*.
+. Faites défiler vers le bas pour afficher les quantités de stockage disponibles pour chaque volume et magasin d'objets.
++
+Pour les nœuds de stockage de l'appliance, le nom mondial de chaque disque correspond à l'identifiant WWID (WWID) du volume qui s'affiche lorsque vous affichez les propriétés standard du volume dans SANtricity OS (le logiciel de gestion connecté au contrôleur de stockage de l'appliance).
+
++
+Pour vous aider à interpréter les statistiques de lecture et d'écriture du disque relatives aux points de montage du volume, la première partie du nom affichée dans la colonne *Name* de la table Disk Devices (c'est-à-dire _sdc_, _sdd_, _sde_, etc.) correspond à la valeur indiquée dans la colonne *Device* de la table volumes.
+
++
+image::../media/nodes_page_storage_tables_vol_expansion.png[Nœuds tables de stockage des pages]
+
+. Suivez les instructions fournies par votre plateforme pour ajouter de nouveaux volumes de stockage au nœud de stockage.
++
+** link:vmware-adding-storage-volumes-to-storage-node.html["VMware : ajoutez des volumes de stockage au nœud de stockage"]
+** link:linux-adding-direct-attached-or-san-volumes-to-storage-node.html["Linux : ajoutez des volumes SAN ou DAS au nœud de stockage"]
+
+
+

@@ -1,0 +1,135 @@
+---
+permalink: admin/creating-traffic-classification-policies.html 
+sidebar: sidebar 
+keywords: traffic classification, network traffic, traffic limits, policy 
+summary: 'Vous créez des règles de classification du trafic pour surveiller et limiter, éventuellement, le trafic réseau par compartiment, locataire, sous-réseau IP ou point de terminaison d"équilibrage de la charge. Vous pouvez également définir des limites pour une stratégie en fonction de la bande passante, du nombre de demandes simultanées ou du taux de demande.' 
+---
+= Créer des stratégies de classification du trafic
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez créer des règles de classification du trafic si vous souhaitez contrôler et éventuellement limiter le trafic réseau par compartiment, Regex de compartiment, CIDR, terminal d'équilibrage de charge ou locataire. Vous pouvez également définir des limites pour une stratégie en fonction de la bande passante, du nombre de demandes simultanées ou du taux de demande.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous avez créé tous les noeuds finaux de l'équilibreur de charge que vous souhaitez associer.
+* Vous avez créé les locataires que vous souhaitez associer.
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Créer*.
+. Entrez un nom et une description (facultatif) pour la stratégie et sélectionnez *Continuer*.
++
+Par exemple, décrivez à quoi s'applique cette politique de classification de trafic et à quoi elle limite.
+
+. Sélectionnez *Ajouter une règle* et spécifiez les détails suivants pour créer une ou plusieurs règles de correspondance pour la stratégie. Toute stratégie que vous créez doit comporter au moins une règle correspondante. Sélectionnez *Continuer*.
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Type
+ a| 
+Sélectionnez les types de trafic auxquels s'applique la règle correspondante. Les types de trafic sont le compartiment, le Regex de compartiment, le CIDR, le terminal d'équilibrage de la charge et le locataire.
+
+
+
+ a| 
+Valeur de correspondance
+ a| 
+Entrez la valeur correspondant au type sélectionné.
+
+** Compartiment : entrez un ou plusieurs noms de compartiment.
+** Regex de compartiment : saisissez une ou plusieurs expressions régulières utilisées pour correspondre à un ensemble de noms de compartiment.
++
+L'expression régulière n'est pas ancrée. Utilisez l'ancrage ^ pour faire correspondre au début du nom du compartiment et utilisez l'ancrage $ pour faire correspondre à la fin du nom. La correspondance d'expression régulière prend en charge un sous-ensemble de la syntaxe PCRE (expression régulière compatible Perl).
+
+** CIDR : saisissez un ou plusieurs sous-réseaux IPv4, en notation CIDR, qui correspondent au sous-réseau souhaité.
+** Noeud final de l'équilibreur de charge : sélectionnez un nom de noeud final. Il s'agit des noeuds finaux de l'équilibreur de charge que vous avez définis sur le link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"].
+** Tenant : le tenant Matching utilise l'ID de clé d'accès. Si la demande ne contient pas d'ID de clé d'accès (par exemple, un accès anonyme), la propriété du compartiment auquel vous accédez est utilisée pour déterminer le locataire.
+
+
+
+
+ a| 
+Comparaison inverse
+ a| 
+Si vous voulez faire correspondre tout le trafic réseau _except_ avec la valeur Type et correspondance que vous venez de définir, cochez la case *comparaison inverse*. Sinon, laissez la case à cocher désactivée.
+
+Par exemple, si vous souhaitez que cette stratégie s'applique à tous les noeuds finaux de l'équilibreur de charge sauf un, spécifiez le noeud final de l'équilibreur de charge à exclure et sélectionnez *comparaison inverse*.
+
+Dans le cas d'une règle contenant plusieurs matcheurs où au moins un est un matcher inverse, veillez à ne pas créer une règle qui correspond à toutes les demandes.
+
+|===
+. Si vous le souhaitez, sélectionnez *Ajouter une limite* et sélectionnez les détails suivants pour ajouter une ou plusieurs limites afin de contrôler le trafic réseau correspondant à une règle.
++
+
+NOTE: StorageGRID collecte des mesures, même si vous n'ajoutez aucune limite, pour vous permettre de comprendre les tendances du trafic.
+
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Type
+ a| 
+Type de limite que vous souhaitez appliquer au trafic réseau correspondant à la règle. Par exemple, vous pouvez limiter la bande passante ou le taux de demande.
+
+*Remarque* : vous pouvez créer des stratégies pour limiter la bande passante agrégée ou pour limiter la bande passante par demande. Cependant, StorageGRID ne peut pas limiter les deux types de bande passante en même temps. Lorsque la bande passante de l'agrégat est utilisée, la bande passante par demande n'est pas disponible. Inversement, lorsque la bande passante par demande est utilisée, la bande passante de l'agrégat n'est pas disponible. Les limites de bande passante globales peuvent imposer un impact mineur supplémentaire sur les performances du trafic non limité.
+
+Pour les limites de bande passante, StorageGRID applique la règle qui correspond le mieux au type de limite défini. Par exemple, si vous avez une stratégie qui limite le trafic dans une seule direction, alors le trafic dans la direction opposée sera illimité, même s'il y a un trafic qui correspond à des stratégies supplémentaires qui ont des limites de bande passante. StorageGRID met en œuvre les « meilleures » correspondances pour les limites de bande passante dans l'ordre suivant :
+
+** Adresse IP exacte (/32 masque)
+** Nom exact du compartiment
+** Seau regex
+** Locataire
+** Point final
+** Correspondances CIDR non exactes (pas /32)
+** Correspondances inverses
+
+
+
+
+ a| 
+S'applique à
+ a| 
+Indique si cette limite s'applique aux demandes de lecture client (GET ou HEAD) ou aux demandes d'écriture (PUT, POST ou DELETE).
+
+
+
+ a| 
+Valeur
+ a| 
+Valeur à laquelle le trafic réseau sera limité, en fonction de l'unité sélectionnée. Par exemple, entrez 10 et sélectionnez MIB/s pour empêcher le trafic réseau correspondant à cette règle de dépasser 10 Mio/s.
+
+*Remarque* : selon le réglage des unités, les unités disponibles seront soit binaires (par exemple, Gio), soit décimales (par exemple, GB). Pour modifier le paramètre unités, sélectionnez la liste déroulante utilisateur dans le coin supérieur droit du Gestionnaire de grille, puis sélectionnez *Préférences utilisateur*.
+
+
+
+ a| 
+Unité
+ a| 
+Unité qui décrit la valeur que vous avez saisie.
+
+|===
++
+Par exemple, si vous souhaitez créer une limite de bande passante de 40 Gbit/s pour un niveau SLA, créez deux limites de bande passante agrégée : GET/HEAD à 40 Gbit/s et PUT/POST/DELETE à 40 Gbit/s.
+
+. Sélectionnez *Continuer*.
+. Lisez et passez en revue la politique de classification du trafic. Utilisez le bouton *Précédent* pour revenir en arrière et apporter les modifications nécessaires. Lorsque vous êtes satisfait de la stratégie, sélectionnez *Enregistrer et continuer*.
++
+Le trafic client S3 est désormais géré conformément à la règle de classification du trafic.
+
+
+
+.Une fois que vous avez terminé
+link:viewing-network-traffic-metrics.html["Afficher les données de trafic réseau"] pour vérifier que les stratégies appliquent les limites de trafic que vous attendez.

@@ -1,0 +1,38 @@
+---
+permalink: maintain/viewing-current-status-of-service.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, service, status 
+summary: 'Vous pouvez afficher à tout moment l"état actuel d"un service exécuté sur un nœud de la grille.' 
+---
+= Afficher l'état actuel du service
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher à tout moment l'état actuel d'un service exécuté sur un nœud de la grille.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Afficher l'état actuel d'un service exécuté sur un nœud de grille : `*service _serviceename_ status* l'état actuel du service demandé s'exécutant sur le nœud de grille est signalé (en cours d'exécution ou non). Par exemple :
++
+[listing]
+----
+cmn running for 1d, 14h, 21m, 2s
+----
+. Déconnectez-vous du shell de commande : `*exit*`
+

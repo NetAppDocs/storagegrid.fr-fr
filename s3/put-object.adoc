@@ -1,0 +1,247 @@
+---
+permalink: s3/put-object.html 
+sidebar: sidebar 
+keywords: object, add object, put, PutObject request 
+summary: Vous pouvez utiliser la demande S3 PutObject pour ajouter un objet à un compartiment. 
+---
+= PutObject
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser la demande S3 PutObject pour ajouter un objet à un compartiment.
+
+
+
+== Résoudre les conflits
+
+Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
+
+
+
+== Taille de l'objet
+
+La taille _recommandée_ maximale pour une opération PutObject unique est de 5 Gio (5,368,709,120 octets). Si vous avez des objets dont la valeur est supérieure à 5 Gio, utilisez la link:operations-for-multipart-uploads.html["téléchargement partitionné"]valeur.
+
+La taille _supportée_ maximale pour une opération PutObject unique est de 5 Tio (5,497,558,138,880 octets).
+
+
+NOTE: Si vous avez mis à niveau à partir de StorageGRID 11.6 ou version antérieure, l'alerte PUT objet taille trop grande de S3 sera déclenchée si vous tentez de télécharger un objet dont la valeur dépasse 5 Gio. Si vous avez une nouvelle installation de StorageGRID 11.7 ou 11.8, l'alerte ne sera pas déclenchée dans ce cas. Toutefois, pour s'aligner sur la norme AWS S3, les futures versions d'StorageGRID ne prendront pas en charge le chargement d'objets de plus de 5 Gio.
+
+
+
+== Taille des métadonnées utilisateur
+
+Amazon S3 limite la taille des métadonnées définies par l'utilisateur au sein de chaque en-tête de requête À 2 Ko. StorageGRID limite les métadonnées utilisateur à 24 Kio. La taille des métadonnées définies par l'utilisateur est mesurée en prenant la somme du nombre d'octets dans le codage UTF-8 de chaque clé et valeur.
+
+
+
+== Caractères UTF-8 dans les métadonnées utilisateur
+
+Si une requête inclut (non échappé) les valeurs UTF-8 dans le nom de clé ou la valeur des métadonnées définies par l'utilisateur, le comportement StorageGRID n'est pas défini.
+
+StorageGRID n'analyse ni n'interprète pas les caractères UTF-8 qui se sont échappé dans le nom de clé ou la valeur des métadonnées définies par l'utilisateur. Les caractères UTF-8 échappés sont traités comme des caractères ASCII :
+
+* Les requêtes PutObject, CopyObject, GetObject et HeadObject réussissent si les métadonnées définies par l'utilisateur incluent des caractères UTF-8 échappés.
+* StorageGRID ne renvoie pas l' `x-amz-missing-meta`en-tête si la valeur interprétée du nom ou de la valeur de la clé contient des caractères non imprimables.
+
+
+
+
+== Limites des balises d'objet
+
+Vous pouvez ajouter des balises à de nouveaux objets lorsque vous les téléchargez ou les ajouter à des objets existants. StorageGRID et Amazon S3 prennent en charge jusqu'à 10 balises pour chaque objet. Les balises associées à un objet doivent avoir des clés de balise uniques. Une clé de balise peut comporter jusqu'à 128 caractères Unicode et les valeurs de balise peuvent comporter jusqu'à 256 caractères Unicode. Les clés et les valeurs sont sensibles à la casse
+
+
+
+== Propriété de l'objet
+
+Dans StorageGRID, tous les objets sont détenus par le compte du propriétaire de compartiment, y compris les objets créés par un compte autre que le propriétaire ou un utilisateur anonyme.
+
+
+
+== En-têtes de demande pris en charge
+
+Les en-têtes de requête suivants sont pris en charge :
+
+* `Cache-Control`
+* `Content-Disposition`
+* `Content-Encoding`
++
+Lorsque vous spécifiez `aws-chunked` pour ``Content-Encoding``StorageGRID, ne vérifie pas les éléments suivants :
+
++
+** StorageGRID ne vérifie pas le `chunk-signature` par rapport aux données de bloc.
+** StorageGRID ne vérifie pas la valeur que vous fournissez pour `x-amz-decoded-content-length` l'objet.
+
+
+* `Content-Language`
+* `Content-Length`
+* `Content-MD5`
+* `Content-Type`
+* `Expires`
+* `Transfer-Encoding`
++
+Le codage de transfert avec chunked est pris en charge si `aws-chunked` la signature de charge est également utilisée.
+
+* `x-amz-checksum-sha256`
+* `x-amz-meta-`, suivi d'une paire nom-valeur contenant des métadonnées définies par l'utilisateur.
++
+Lorsque vous spécifiez la paire nom-valeur pour les métadonnées définies par l'utilisateur, utilisez le format général suivant :
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+x-amz-meta-_name_: _value_
+----
++
+Si vous souhaitez utiliser l'option *heure de création définie par l'utilisateur* comme heure de référence pour une règle ILM, vous devez utiliser `creation-time` comme nom des métadonnées enregistrées lors de la création de l'objet. Par exemple :
+
++
+[listing]
+----
+x-amz-meta-creation-time: 1443399726
+----
++
+La valeur de `creation-time` est évaluée en secondes depuis le 1er janvier 1970.
+
++
+
+NOTE: Une règle ILM ne peut pas utiliser à la fois une *heure de création définie par l'utilisateur* pour l'heure de référence et l'option d'acquisition équilibrée ou stricte. Une erreur est renvoyée lors de la création de la règle ILM.
+
+* `x-amz-tagging`
+* En-têtes de requête de verrouillage d'objet S3
++
+** `x-amz-object-lock-mode`
+** `x-amz-object-lock-retain-until-date`
+** `x-amz-object-lock-legal-hold`
++
+Si une demande est effectuée sans ces en-têtes, les paramètres de rétention par défaut du compartiment sont utilisés pour calculer le mode de version de l'objet et conserver jusqu'à la date. Voir link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+
+
+
+* En-têtes de demande SSE :
++
+** `x-amz-server-side-encryption`
+** `x-amz-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption-customer-key`
+** `x-amz-server-side-encryption-customer-algorithm`
++
+Voir <<Demander des en-têtes pour le cryptage côté serveur>>
+
+
+
+
+
+
+
+== En-têtes de requête non pris en charge
+
+Les en-têtes de demande suivants ne sont pas pris en charge :
+
+* `x-amz-acl`
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+* `x-amz-website-redirect-location`
++
+L' `x-amz-website-redirect-location`en-tête renvoie `XNotImplemented`.
+
+
+
+
+
+== Options de classe de stockage
+
+L' `x-amz-storage-class`en-tête de la demande est pris en charge. La valeur fournie pour affecte la `x-amz-storage-class` façon dont StorageGRID protège les données d'objet lors de l'ingestion et non le nombre de copies persistantes de l'objet stockées dans le système StorageGRID (déterminé par la règle ILM).
+
+Si la règle ILM correspondant à un objet ingéré utilise l'option strict d'ingestion, l' `x-amz-storage-class`en-tête n'a aucun effet.
+
+Les valeurs suivantes peuvent être utilisées pour `x-amz-storage-class`:
+
+* `STANDARD` (Par défaut)
++
+** *Double commit* : si la règle ILM spécifie l'option de double validation pour le comportement d'ingestion, dès qu'un objet est ingéré, une seconde copie de cet objet est créée et distribuée à un autre nœud de stockage (double commit). Une fois la règle ILM évaluée, StorageGRID détermine si ces copies intermédiaires initiales répondent aux instructions de placement de la règle. Si ce n'est pas le cas, de nouvelles copies d'objet peuvent avoir besoin d'être effectuées à différents emplacements et les copies intermédiaires initiales peuvent avoir besoin d'être supprimées.
+** *Balanced* : si la règle ILM spécifie l'option équilibrée et que StorageGRID ne peut pas immédiatement effectuer toutes les copies spécifiées dans la règle, StorageGRID effectue deux copies intermédiaires sur différents nœuds de stockage.
++
+Si StorageGRID peut créer immédiatement toutes les copies d'objet spécifiées dans la règle ILM (placement synchrone), l' `x-amz-storage-class`en-tête n'a aucun effet.
+
+
+
+* `REDUCED_REDUNDANCY`
++
+** *Double commit* : si la règle ILM spécifie l'option de double validation pour le comportement d'ingestion, StorageGRID crée une copie intermédiaire unique lors de l'ingestion de l'objet (simple commit).
+** *Équilibré* : si la règle ILM spécifie l'option équilibrée, StorageGRID effectue une seule copie intermédiaire uniquement si le système ne peut pas immédiatement effectuer toutes les copies spécifiées dans la règle. Si StorageGRID peut effectuer un placement synchrone, cet en-tête n'a aucun effet. L' `REDUCED_REDUNDANCY`option est mieux utilisée lorsque la règle ILM qui correspond à l'objet crée une copie répliquée unique. Dans ce cas, l'utilisation de `REDUCED_REDUNDANCY` supprime la création et la suppression inutiles d'une copie d'objet supplémentaire pour chaque opération d'ingestion.
+
+
++
+L'utilisation de cette `REDUCED_REDUNDANCY` option n'est pas recommandée dans d'autres circonstances. `REDUCED_REDUNDANCY` augmente le risque de perte des données d'objet lors de leur ingestion. Vous risquez par exemple de perdre des données si une seule copie est initialement stockée sur un nœud de stockage qui échoue avant l'évaluation du ILM.
+
+
+
+
+CAUTION: Le fait d'avoir une seule copie répliquée pendant une période donnée présente un risque de perte permanente des données. Si une seule copie répliquée d'un objet existe, cet objet est perdu en cas de défaillance ou d'erreur importante d'un noeud de stockage. De plus, lors des procédures de maintenance telles que les mises à niveau, l'accès à l'objet est temporairement perdu.
+
+Le fait de spécifier `REDUCED_REDUNDANCY` affecte uniquement le nombre de copies créées lors de la première ingestion d'un objet. Cela n'affecte pas le nombre de copies de l'objet effectuées lorsque l'objet est évalué par les règles ILM actives, et n'entraîne pas le stockage des données à des niveaux de redondance inférieurs dans le système StorageGRID.
+
+
+NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'objet S3 activé, l' `REDUCED_REDUNDANCY`option est ignorée. Si vous ingérer un objet dans un compartiment compatible hérité, l' `REDUCED_REDUNDANCY`option renvoie une erreur. StorageGRID procède toujours à une récupération à double engagement afin de satisfaire les exigences de conformité.
+
+
+
+== Demander des en-têtes pour le cryptage côté serveur
+
+Vous pouvez utiliser les en-têtes de requête suivants pour crypter un objet avec un chiffrement côté serveur. Les options SSE et SSE-C sont mutuellement exclusives.
+
+* *SSE*: Utilisez l'en-tête suivant si vous voulez chiffrer l'objet avec une clé unique gérée par StorageGRID.
++
+** `x-amz-server-side-encryption`
++
+Lorsque l' `x-amz-server-side-encryption`en-tête n'est pas inclus dans la demande PutObject, la grille link:../admin/changing-network-options-object-encryption.html["paramètre de chiffrement d'objet stocké"]est omise de la réponse PutObject.
+
+
+
+* *SSE-C*: Utilisez les trois en-têtes si vous voulez chiffrer l'objet avec une clé unique que vous fournissez et gérez.
++
+** `x-amz-server-side-encryption-customer-algorithm`: Spécifiez `AES256`.
+** `x-amz-server-side-encryption-customer-key`: Spécifiez votre clé de chiffrement pour le nouvel objet.
+** `x-amz-server-side-encryption-customer-key-MD5`: Spécifiez le résumé MD5 de la clé de chiffrement du nouvel objet.
+
+
+
+
+
+CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. Si vous perdez une clé de chiffrement, vous perdez l'objet correspondant. Avant d'utiliser des clés fournies par le client pour sécuriser les données d'objet, consultez les considérations relatives à link:using-server-side-encryption.html["utilisation du chiffrement côté serveur"].
+
+
+NOTE: Si un objet est chiffré avec SSE ou SSE-C, tous les paramètres de chiffrement au niveau du godet ou de la grille sont ignorés.
+
+
+
+== Gestion des versions
+
+Si la gestion des versions est activée pour un compartiment, une unique `versionId` est automatiquement générée pour la version de l'objet stocké. Ceci `versionId` est également renvoyé dans la réponse à l'aide de l' `x-amz-version-id`en-tête de réponse.
+
+Si la gestion des versions est suspendue, la version de l'objet est stockée avec une valeur `versionId` NULL et si une version nulle existe déjà, elle sera écrasée.
+
+
+
+== Calculs de signature pour l'en-tête autorisation
+
+Lorsque vous utilisez l' `Authorization`en-tête pour authentifier les requêtes, StorageGRID diffère d'AWS de la manière suivante :
+
+* StorageGRID ne nécessite pas l' `host`inclusion d'en-têtes dans `CanonicalHeaders`.
+* StorageGRID ne nécessite pas d' `Content-Type`être inclus dans `CanonicalHeaders`.
+* StorageGRID ne nécessite pas l' `x-amz-*`inclusion d'en-têtes dans `CanonicalHeaders`.
+
+
+
+NOTE: En règle générale, incluez toujours ces en-têtes dans `CanonicalHeaders` pour vous assurer qu'ils sont vérifiés. Cependant, si vous excluez ces en-têtes, StorageGRID ne renvoie pas d'erreur.
+
+Pour plus de détails, reportez-vous à https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-header-based-auth.html["Calculs de signature pour l'en-tête d'autorisation : transfert de charge utile dans un seul bloc (signature AWS version 4)"^] .
+
+.Informations associées
+* link:../ilm/index.html["Gestion des objets avec ILM"]
+* link:https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html["Référence de l'API Amazon simple Storage Service : PutObject"^]
+

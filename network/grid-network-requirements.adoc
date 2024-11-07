@@ -1,0 +1,23 @@
+---
+permalink: network/grid-network-requirements.html 
+sidebar: sidebar 
+keywords: grid network requirements 
+summary: Suivez ces exigences et directives pour le réseau Grid. 
+---
+= Exigences du réseau de grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Suivez ces exigences et directives pour le réseau Grid.
+
+* Au moment du déploiement, chaque nœud de la grille doit être relié au réseau de la grille et doit pouvoir communiquer avec le nœud d'administration principal à l'aide de la configuration réseau que vous spécifiez lors du déploiement du nœud.
+* Au cours des opérations normales de la grille, chaque nœud de la grille doit pouvoir communiquer avec tous les autres nœuds de la grille sur le réseau.
++
+
+NOTE: Le réseau Grid doit être routable directement entre chaque nœud. La traduction d'adresses réseau (NAT) entre nœuds n'est pas prise en charge.
+
+* Si le réseau Grid est composé de plusieurs sous-réseaux, ajoutez-les à la liste de sous-réseaux du réseau Grid (GNSL). Des routes statiques sont créées sur tous les nœuds pour chaque sous-réseau du GNSL.
+

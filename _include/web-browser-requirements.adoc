@@ -1,0 +1,49 @@
+= 
+:allow-uri-read: 
+
+
+[cols="2a,2a"]
+|===
+| Navigateur Web | Version minimale prise en charge 
+
+
+ a| 
+Google Chrome
+ a| 
+119
+
+
+
+ a| 
+Microsoft Edge
+ a| 
+119
+
+
+
+ a| 
+Mozilla Firefox
+ a| 
+119
+
+|===
+Vous devez régler la fenêtre du navigateur sur une largeur recommandée.
+
+[cols="3a,1a"]
+|===
+| Largeur du navigateur | Pixels 
+
+
+ a| 
+Minimum
+ a| 
+1024
+
+
+
+ a| 
+Optimale
+ a| 
+1280
+
+|===

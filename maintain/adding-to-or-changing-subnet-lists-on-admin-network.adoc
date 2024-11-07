@@ -1,0 +1,140 @@
+---
+permalink: maintain/adding-to-or-changing-subnet-lists-on-admin-network.html 
+sidebar: sidebar 
+keywords: storagegrid, subnet list, admin network 
+summary: 'Vous pouvez ajouter, supprimer ou modifier les sous-réseaux dans la liste de sous-réseaux réseau réseau Admin d"un ou plusieurs nœuds.' 
+---
+= Ajouter ou modifier des listes de sous-réseaux sur le réseau d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ajouter, supprimer ou modifier les sous-réseaux dans la liste de sous-réseaux réseau réseau Admin d'un ou plusieurs nœuds.
+
+.Avant de commencer
+* Vous avez le `Passwords.txt` fichier.
+
+
+Vous pouvez ajouter, supprimer ou modifier des sous-réseaux à tous les nœuds de la liste des sous-réseaux du réseau d'administration.
+
+.Étapes
+. Connectez-vous au nœud d'administration principal :
++
+.. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Démarrez l'outil Modifier IP en entrant la commande suivante : `change-ip`
+. Saisissez la phrase de passe de provisionnement à l'invite.
++
+Le menu principal s'affiche.
+
++
+image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+
+. Limitez éventuellement les réseaux/nœuds sur lesquels les opérations sont effectuées. Options au choix :
++
+** Sélectionnez les nœuds à modifier en choisissant *1*, si vous souhaitez filtrer sur des nœuds spécifiques sur lesquels effectuer l'opération. Sélectionnez l'une des options suivantes :
++
+*** *1* : nœud unique (sélectionner par nom)
+*** *2* : nœud unique (sélectionnez par site, puis par nom)
+*** *3* : nœud unique (sélection par IP actuel)
+*** *4*: Tous les nœuds d'un site
+*** *5* : tous les nœuds de la grille
+*** *0*: Retour
+
+
+** Autoriser « tous » à rester sélectionné. Une fois la sélection effectuée, l'écran du menu principal s'affiche. Le champ noeuds sélectionnés reflète votre nouvelle sélection, et maintenant toutes les opérations sélectionnées ne seront effectuées que sur cet élément.
+
+
+. Dans le menu principal, sélectionnez l'option permettant de modifier les sous-réseaux du réseau Admin (option *3*).
+. Options au choix :
++
+--
+** Ajoutez un sous-réseau en saisissant la commande suivante : `add CIDR`
+** Pour supprimer un sous-réseau, entrez la commande suivante : `del CIDR`
+** Définissez la liste des sous-réseaux en saisissant la commande suivante : `set CIDR`
+
+
+--
++
+--
+
+NOTE: Pour toutes les commandes, vous pouvez entrer plusieurs adresses au format suivant : `add CIDR, CIDR`
+
+Exemple : `add 172.14.0.0/16, 172.15.0.0/16, 172.16.0.0/16`
+
+
+TIP: Vous pouvez réduire la quantité de saisie requise en utilisant la « flèche vers le haut » pour rappeler les valeurs précédemment saisies à l'invite de saisie actuelle, puis les modifier si nécessaire.
+
+L'exemple ci-dessous illustre l'ajout de sous-réseaux à la liste de sous-réseaux du réseau Admin :
+
+image::../media/change_ip_tool_aesl_sample_input.gif[modifier l'outil ip, exemple aesl]
+
+--
+. Lorsque vous êtes prêt, saisissez *q* pour revenir à l'écran du menu principal. Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
++
+
+NOTE: Si vous avez sélectionné l'un des modes de sélection de nœud "tous" à l'étape 2, appuyez sur *entrée* (sans *q*) pour passer au nœud suivant de la liste.
+
+. Options au choix :
++
+** Sélectionnez l'option *5* pour afficher les modifications dans la sortie qui sont isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple ci-dessous :
++
+image::../media/change_ip_tool_aesl_sample_output.png[capture d'écran décrite par le texte environnant]
+
+** Sélectionnez l'option *6* pour afficher les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions). *Note:* certains émulateurs de terminaux peuvent montrer des ajouts et des suppressions en utilisant le formatage barré.
++
+Lorsque vous tentez de modifier la liste des sous-réseaux, le message suivant s'affiche :
+
++
+[listing]
+----
+CAUTION: The Admin Network subnet list on the node might contain /32 subnets derived from automatically applied routes that aren't persistent. Host routes (/32 subnets) are applied automatically if the IP addresses provided for external services such as NTP or DNS aren't reachable using default StorageGRID routing, but are reachable using a different interface and gateway. Making and applying changes to the subnet list will make all automatically applied subnets persistent. If you don't want that to happen, delete the unwanted subnets before applying changes. If you know that all /32 subnets in the list were added intentionally, you can ignore this caution.
+----
++
+Si vous n'avez pas spécifiquement affecté les sous-réseaux de serveurs NTP et DNS à un réseau, StorageGRID crée automatiquement une route hôte (/32) pour la connexion. Si, par exemple, vous préférez avoir une route /16 ou /24 pour la connexion sortante à un serveur DNS ou NTP, vous devez supprimer la route /32 créée automatiquement et ajouter les routes souhaitées. Si vous ne supprimez pas la route hôte créée automatiquement, elle sera conservée après que vous avez appliqué les modifications à la liste de sous-réseaux.
+
+
+
++
+
+NOTE: Bien que vous puissiez utiliser ces routes hôtes automatiquement découvertes, vous devez en général configurer manuellement les routes DNS et NTP pour assurer la connectivité.
+
+. Sélectionnez l'option *7* pour valider toutes les modifications échelonnée.
++
+Cette validation garantit que les règles des réseaux Grid, Admin et client sont respectées, telles que l'utilisation de sous-réseaux redondants.
+
+. Vous pouvez également sélectionner l'option *8* pour enregistrer toutes les modifications échelonnée et revenir ultérieurement pour continuer à effectuer les modifications.
++
+Cette option vous permet de quitter l'outil Modifier l'IP et de le redémarrer ultérieurement, sans perdre les modifications non appliquées.
+
+. Effectuez l'une des opérations suivantes :
++
+** Sélectionnez l'option *9* si vous souhaitez effacer toutes les modifications sans enregistrer ni appliquer la nouvelle configuration réseau.
+** Sélectionnez l'option *10* si vous êtes prêt à appliquer des modifications et à provisionner la nouvelle configuration réseau. Pendant le provisionnement, le résultat affiche l'état au fur et à mesure que les mises à jour sont appliquées, comme indiqué dans l'exemple de résultat suivant :
++
+[listing]
+----
+Generating new grid networking description file...
+
+Running provisioning...
+
+Updating grid network configuration on Name
+----
+
+
+. Téléchargez un nouveau package de récupération depuis Grid Manager.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase secrète pour le provisionnement.
+
+
+

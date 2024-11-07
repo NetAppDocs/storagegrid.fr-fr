@@ -1,0 +1,78 @@
+---
+permalink: audit/object-delete-transactions.html 
+sidebar: sidebar 
+keywords: object delete transaction, S3 delete, SDEL, WDEL 
+summary: 'Vous pouvez identifier les transactions de suppression d"objets dans le journal d"audit en localisant les messages d"audit spécifiques à l"API S3.' 
+---
+= Transactions de suppression d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez identifier les transactions de suppression d'objets dans le journal d'audit en localisant les messages d'audit spécifiques à l'API S3.
+
+Tous les messages d'audit générés lors d'une opération de suppression ne sont pas répertoriés dans les tableaux suivants. Seuls les messages requis pour suivre la transaction de suppression sont inclus.
+
+
+
+== S3 supprime les messages d'audit
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| Code | Nom | Description | Tracé | Voir 
+
+
+ a| 
+SDEL
+ a| 
+Suppression S3
+ a| 
+Demande de suppression de l'objet d'un compartiment.
+ a| 
+CBID, S3KY
+ a| 
+link:sdel-s3-delete.html["SDEL : SUPPRESSION S3"]
+
+|===
+
+
+== Supprimez les messages d'audit Swift
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| Code | Nom | Description | Tracé | Voir 
+
+
+ a| 
+WDEL
+ a| 
+Suppression Swift
+ a| 
+Demande de suppression de l'objet d'un conteneur ou du conteneur.
+ a| 
+CBID, WOBJ
+ a| 
+link:wdel-swift-delete.html["WDEL : SUPPRESSION rapide"]
+
+|===
+
+
+== Exemple : suppression d'objet S3
+
+Lorsqu'un client S3 supprime un objet d'un nœud de stockage (service LDR), un message d'audit est généré et enregistré dans le journal des audits.
+
+
+NOTE: Tous les messages d'audit générés lors d'une opération de suppression ne sont pas répertoriés dans l'exemple ci-dessous. Seules les personnes liées à la transaction de suppression S3 (SDEL) sont répertoriées.
+
+
+
+=== SDEL : suppression S3
+
+La suppression d'objet commence lorsque le client envoie une requête DeleteObject à un service LDR. Le message contient le compartiment à partir duquel vous souhaitez supprimer l'objet ainsi que la clé S3 de l'objet, qui permet d'identifier l'objet.
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-07-17T21:17:58.959669[AUDT:[RSLT(FC32):SUCS][TIME(UI64):14316][SAIP(IPAD):"10.96.112.29"][S3AI(CSTR):"70899244468554783528"][SACC(CSTR):"test"][S3AK(CSTR):"SGKHyalRU_5cLflqajtaFmxJn946lAWRJfBF33gAOg=="][SUSR(CSTR):"urn:sgws:identity::70899244468554783528:root"][SBAI(CSTR):"70899244468554783528"][SBAC(CSTR):"test"]\[S3BK\(CSTR\):"example"\]\[S3KY\(CSTR\):"testobject-0-7"\][CBID\(UI64\):0x339F21C5A6964D89][CSIZ(UI64):30720][AVER(UI32):10][ATIM(UI64):150032627859669][ATYP\(FC32\):SDEL][ANID(UI32):12086324][AMID(FC32):S3RQ][ATID(UI64):4727861330952970593]]
+----

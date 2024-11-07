@@ -1,0 +1,58 @@
+---
+permalink: ilm/viewing-storage-pool-details.html 
+sidebar: sidebar 
+keywords: storage pool, view details 
+summary: 'Vous pouvez afficher les détails d"un pool de stockage pour déterminer où le pool de stockage est utilisé et pour voir quels nœuds et niveaux de stockage sont inclus.' 
+---
+= Afficher les détails du pool de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher les détails d'un pool de stockage pour déterminer où le pool de stockage est utilisé et pour voir quels nœuds et niveaux de stockage sont inclus.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *ILM* > *pools de stockage*.
++
+Le tableau Storage pools contient les informations suivantes pour chaque pool de stockage incluant des nœuds de stockage :
+
++
+** *Nom* : nom d'affichage unique du pool de stockage.
+** *Node count* : nombre de nœuds dans le pool de stockage.
+** *Utilisation du stockage* : pourcentage de l'espace utilisable total utilisé pour les données d'objet sur ce nœud. Cette valeur n'inclut pas les métadonnées d'objet.
+** *Capacité totale* : taille du pool de stockage, qui correspond à la quantité totale d'espace utilisable pour les données d'objet pour tous les nœuds du pool de stockage.
+** *Utilisation ILM*: Comment le pool de stockage est actuellement utilisé. Un pool de stockage peut être inutilisé ou être utilisé dans une ou plusieurs règles ILM, profils de code d'effacement, ou les deux.
+
+
+. Pour afficher les détails d'un pool de stockage spécifique, sélectionnez son nom.
++
+La page de détails du pool de stockage s'affiche.
+
+. Consultez l'onglet *nœuds* pour en savoir plus sur les nœuds de stockage inclus dans le pool de stockage.
++
+Le tableau inclut les informations suivantes pour chaque nœud :
+
++
+** Nom du nœud
+** Nom du site
+** Qualité de stockage
+** Utilisation du stockage : pourcentage de l'espace utilisable total pour les données d'objet utilisées pour le nœud de stockage.
++
+
+NOTE: La même valeur d'utilisation du stockage (%) est également affichée dans le graphique stockage utilisé - données d'objet pour chaque nœud de stockage (sélectionnez *NŒUDS* > *_nœud de stockage_* > *stockage*).
+
+
+
+. Consultez l'onglet *ILM usage* pour déterminer si le pool de stockage est actuellement utilisé dans des règles ILM ou des profils de code d'effacement.
+. Vous pouvez également accéder à la page *ILM rules* pour en savoir plus sur les règles qui utilisent le pool de stockage et les gérer.
++
+Voir la link:working-with-ilm-rules-and-ilm-policies.html["Instructions d'utilisation des règles ILM"].
+
+

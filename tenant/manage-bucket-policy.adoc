@@ -1,0 +1,37 @@
+---
+permalink: tenant/manage-bucket-policy.html 
+sidebar: sidebar 
+keywords: how to create S3 tenant groups, federated group, local group 
+summary: 'Vous pouvez contrôler l"accès utilisateur à un compartiment S3 et aux objets de ce compartiment.' 
+---
+= Gestion de la règle de compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez contrôler l'accès utilisateur à un compartiment S3 et aux objets de ce compartiment.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"]. Les autorisations Afficher tous les compartiments et gérer tous les compartiments permettent uniquement l'affichage.
+* Vous avez vérifié que le nombre de nœuds de stockage et de sites requis est disponible. Si deux nœuds de stockage ou plus ne sont pas disponibles dans un site, ou si un site n'est pas disponible, les modifications apportées à ces paramètres risquent de ne pas être disponibles.
+
+
+.Étapes
+. Sélectionnez *godets*, puis sélectionnez le compartiment que vous souhaitez gérer.
+. Sur la page de détails du compartiment, sélectionnez *accès au compartiment* > *Stratégie de compartiment*.
+. Effectuez l'une des opérations suivantes :
++
+** Entrez une stratégie de compartiment en cochant la case *Enable policy*. Entrez ensuite une chaîne au format JSON valide.
++
+Chaque politique de compartiment a une taille limite de 20,480 octets.
+
+** Modifiez une règle existante en modifiant la chaîne.
+** Désactivez une stratégie en désélectionnant *Activer la stratégie*.
+
+
+
+
+Pour plus d'informations sur les règles de compartiment, notamment la syntaxe du langage et des exemples, reportez-vous à la section link:../s3/example-bucket-policies.html["Exemples de politiques de compartiments"].

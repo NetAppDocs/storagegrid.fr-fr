@@ -1,0 +1,142 @@
+---
+permalink: s3/changes-to-s3-rest-api-support.html 
+sidebar: sidebar 
+keywords: s3 rest api support changes 
+summary: 'Vous devez connaître les modifications apportées à la prise en charge du système StorageGRID pour l"API REST S3.' 
+---
+= Modifications apportées à la prise en charge de l'API REST S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Notez que des modifications ont été apportées à la prise en charge du système StorageGRID pour l'API REST S3.
+
+[cols="1a,4a"]
+|===
+| Relâchez | Commentaires 
+
+
+ a| 
+11,8
+ a| 
+* Ajout de la prise en charge de `ExpiredObjectDeleteMarker` dans une opération PutBuckeLifecycleConfiguration, qui supprime les marqueurs de suppression d'objet expirés.
+* Prise en charge supplémentaire de la `s3:ExistingObjectTag/<tag-key>` clé de condition de règle, qui nécessite que les objets existants aient la clé de balise et la valeur spécifiques.
+* Prise en charge supplémentaire de la `s3:RequestObjectTag/<tag-key>` clé de condition de règle, qui nécessite une balise et une valeur de clé spécifiques lorsque la demande d'objet inclut le balisage.
+
+
+
+
+ a| 
+11,7
+ a| 
+* Ajout de la prise en charge du mode DE GOUVERNANCE avec S3 Object Lock.
+* Ajout de la prise en charge de l'en-tête de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status` pour les requêtes GetObject et HeadObject. Cet en-tête fournit l'état de réplication d'un objet pour la réplication inter-grid.
+* Les requêtes SelectObjectContent prennent désormais en charge les objets parquet.
+
+
+
+
+ a| 
+11,6
+ a| 
+* Ajout de la prise en charge de l'utilisation du `partNumber` paramètre de requête dans les requêtes GetObject et HeadObject.
+* Ajout de la prise en charge d'un mode de conservation par défaut et d'une période de conservation par défaut au niveau du compartiment pour le verrouillage d'objet S3.
+* Ajout de la prise en charge de la `s3:object-lock-remaining-retention-days` clé de condition de règle pour définir la plage de périodes de conservation autorisées pour vos objets.
+* Modification de la taille _recommandée_ maximale pour une opération PutObject unique à 5 Gio (5,368,709,120 octets). Si vos objets sont supérieurs à 5 Gio, utilisez le téléchargement partitionné.
+
+
+
+
+ a| 
+11,5
+ a| 
+* Ajout de la prise en charge de la gestion du chiffrement de compartiment.
+* Ajout de la prise en charge des demandes de verrouillage d'objet S3 et des demandes de conformité héritées obsolètes.
+* Ajout de la prise en charge de l'utilisation de DeleteObjects sur les compartiments multiversion.
+* L' `Content-MD5`en-tête de la demande est désormais correctement pris en charge.
+
+
+
+
+ a| 
+11,4
+ a| 
+* Ajout de la prise en charge de DeleteBuckeTagging, GetBuckeTagging et PutBuckeTagging. Les étiquettes de répartition des coûts ne sont pas prises en charge.
+* Pour les compartiments créés dans StorageGRID 11.4, il n'est plus nécessaire de limiter les noms de clés d'objet pour respecter les bonnes pratiques de performance.
+* Prise en charge supplémentaire des notifications de compartiment pour le `s3:ObjectRestore:Post` type d'événement.
+* Les limites de taille d'AWS pour les pièces partitionnés sont maintenant appliquées. Chaque partie d'un téléchargement partitionné doit être comprise entre 5 MIB et 5 Gio. La dernière partie peut être plus petite que 5 MIB.
+* Ajout de la prise en charge de TLS 1.3
+
+
+
+
+ a| 
+11,3
+ a| 
+* Ajout de la prise en charge du chiffrement côté serveur des données d'objet avec les clés fournies par le client (SSE-C).
+* Ajout de la prise en charge des opérations DeleteBuckeLifecycle, GetBuckeLifecycleConfiguration et PutBuckeLifecycleConfiguration (action d'expiration uniquement) et de l' `x-amz-expiration`en-tête de réponse.
+* Mise à jour de PutObject, CopyObject et MultipartUpload pour décrire l'impact des règles ILM qui utilisent le placement synchrone lors de l'ingestion.
+* Les chiffrements TLS 1.1 ne sont plus pris en charge.
+
+
+
+
+ a| 
+11,2
+ a| 
+Ajout de la prise en charge de RestoreObject à utiliser avec les pools de stockage cloud. Ajout de la prise en charge de l'utilisation de la syntaxe AWS pour ARN, des clés de condition de règle et des variables de règles de groupe et de compartiment Les règles de compartiment et de groupe qui utilisent la syntaxe StorageGRID restent prises en charge.
+
+*Remarque :* les utilisations de l'ARN/URN dans d'autres configurations JSON/XML, y compris celles utilisées dans les fonctions StorageGRID personnalisées, n'ont pas changé.
+
+
+
+ a| 
+11,1
+ a| 
+Ajout de la prise en charge du partage de ressources entre les sources (CORS), du protocole HTTP pour les connexions client S3 aux nœuds de grid et des paramètres de conformité dans les compartiments.
+
+
+
+ a| 
+11,0
+ a| 
+Ajout de la prise en charge de la configuration des services de plateforme (réplication CloudMirror, notifications et intégration de la recherche Elasticsearch) pour les compartiments Ajout de la prise en charge des contraintes d'emplacement du balisage d'objets pour les compartiments, ainsi que de la cohérence disponible.
+
+
+
+ a| 
+10,4
+ a| 
+Ajout de la prise en charge des modifications de l'analyse ILM sur la gestion des versions, mises à jour de la page noms de domaine de point final, conditions et variables dans les règles, exemples de règles et autorisation PutOverwriteObject.
+
+
+
+ a| 
+10,3
+ a| 
+Prise en charge ajoutée pour la gestion des versions.
+
+
+
+ a| 
+10,2
+ a| 
+Prise en charge des règles d'accès aux groupes et aux compartiments, et des copies en plusieurs parties (UploadPartCopy).
+
+
+
+ a| 
+10,1
+ a| 
+Ajout de la prise en charge du téléchargement partitionné, des demandes de type hébergement virtuel et de l'authentification v4.
+
+
+
+ a| 
+10,0
+ a| 
+Prise en charge initiale de l'API REST S3 par le système StorageGRID.la version actuellement prise en charge de _simple Storage Service API Reference_ est 2006-03-01.
+
+|===

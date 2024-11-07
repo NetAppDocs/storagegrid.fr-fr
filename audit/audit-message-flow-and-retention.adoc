@@ -1,0 +1,74 @@
+---
+permalink: audit/audit-message-flow-and-retention.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, flow, retention 
+summary: 'Tous les services StorageGRID génèrent des messages d"audit pendant le fonctionnement normal du système. Vous devez comprendre comment ces messages d"audit passent du système StorageGRID au fichier audit.log.' 
+---
+= Flux et conservation des messages d'audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tous les services StorageGRID génèrent des messages d'audit pendant le fonctionnement normal du système. Vous devez comprendre comment ces messages d'audit se déplacent dans le fichier via le système StorageGRID `audit.log`.
+
+
+
+== Flux de message d'audit
+
+Les messages d'audit sont traités par des nœuds d'administration et par les nœuds de stockage disposant d'un service ADC (administrative Domain Controller).
+
+Comme indiqué dans le schéma de flux des messages d'audit, chaque nœud StorageGRID envoie ses messages d'audit à l'un des services ADC du site du centre de données. Le service ADC est automatiquement activé pour les trois premiers nœuds de stockage installés sur chaque site.
+
+De son tour, chaque service ADC agit comme un relais et envoie sa collection de messages d'audit à chaque nœud d'administration du système StorageGRID, ce qui donne à chaque nœud d'administration un enregistrement complet de l'activité du système.
+
+Chaque nœud d'administration stocke les messages d'audit dans des fichiers journaux texte ; le fichier journal actif est nommé `audit.log`.
+
+image::../media/audit_message_flow.gif[Schéma qui résume le flux des messages d'audit à travers les relais]
+
+
+
+=== Conservation des messages d'audit
+
+StorageGRID utilise un processus de copie et de suppression pour garantir qu'aucun message d'audit ne soit perdu avant d'être écrit dans le journal d'audit.
+
+Lorsqu'un nœud génère ou transmet un message d'audit, celui-ci est stocké dans une file d'attente de messages d'audit sur le disque système du nœud de la grille. Une copie du message est toujours conservée dans une file d'attente de messages d'audit jusqu'à ce que le message soit écrit dans le fichier journal d'audit dans le répertoire du nœud d'administration `/var/local/log`. Cela permet d'éviter la perte d'un message d'audit pendant le transport.
+
+image::../media/audit_message_retention.gif[Schéma qui résume la réception du message d'audit à l'AMS]
+
+La file d'attente des messages d'audit peut augmenter temporairement en raison de problèmes de connectivité réseau ou d'une capacité d'audit insuffisante. Au fur et à mesure que les files d'attente augmentent, elles consomment davantage d'espace disponible dans le répertoire de chaque nœud `/var/local/`. Si le problème persiste et que le répertoire des messages d'audit d'un nœud devient trop plein, les nœuds individuels priorisent le traitement de leur carnet de commandes et deviennent temporairement indisponibles pour les nouveaux messages.
+
+Plus précisément, vous pouvez voir les comportements suivants :
+
+* Si le `/var/local/log` répertoire utilisé par un nœud d'administration est plein, le nœud d'administration est signalé comme indisponible pour les nouveaux messages d'audit jusqu'à ce que le répertoire ne soit plus plein. Les requêtes des clients S3 ne sont pas affectées. L'alarme XAMS (Unreable Audit Revers) est déclenchée lorsqu'un référentiel d'audit est inaccessible.
+* Si le `/var/local/` répertoire utilisé par un nœud de stockage avec le service ADC devient plein à 92 %, le nœud sera signalé comme indisponible pour vérifier les messages jusqu'à ce que le répertoire soit rempli à 87 % seulement. Les requêtes des clients S3 vers d'autres nœuds ne sont pas affectées. L'alarme NRLY (relais d'audit disponibles) est déclenchée lorsque les relais d'audit sont inaccessibles.
++
+
+NOTE: S'il n'y a pas de nœuds de stockage disponibles avec le service ADC, les nœuds de stockage stockent les messages d'audit localement dans `/var/local/log/localaudit.log` le fichier.
+
+* Si le `/var/local/` répertoire utilisé par un nœud de stockage est rempli à 85 %, le nœud commence à refuser les requêtes du client S3 avec `503 Service Unavailable`.
+
+
+Les types de problèmes suivants peuvent entraîner une augmentation très importante des files d'attente de messages d'audit :
+
+* Panne d'un nœud d'administration ou d'un nœud de stockage avec le service ADC. Si l'un des nœuds du système est en panne, les nœuds restants peuvent devenir connectés à un nœud défaillant.
+* Un taux d'activité soutenu qui dépasse la capacité d'audit du système.
+* L' `/var/local/`espace sur un nœud de stockage ADC devient saturé pour des raisons sans rapport avec les messages d'audit. Dans ce cas, le nœud n'accepte plus de nouveaux messages d'audit et hiérarchise son carnet de commandes actuel, ce qui peut entraîner des arriérés sur les autres nœuds.
+
+
+
+
+=== Alerte de file d'attente d'audit et alarme de messages d'audit en file d'attente (AMQS)
+
+Pour vous aider à surveiller la taille des files d'attente de messages d'audit dans le temps, l'alerte *grande file d'attente d'audit* et l'alarme AMQS héritée sont déclenchées lorsque le nombre de messages dans une file d'attente de nœud de stockage ou une file d'attente de nœud d'administration atteint certains seuils.
+
+Si l'alerte *grande file d'attente d'audit* ou l'alarme AMQS héritée est déclenchée, commencez par vérifier la charge sur le système--s'il y a eu un nombre important de transactions récentes, l'alerte et l'alarme doivent être résolus au fil du temps et peuvent être ignorées.
+
+Si l'alerte ou l'alarme persiste et augmente la gravité, affichez un graphique de la taille de la file d'attente. Si ce chiffre augmente régulièrement au fil des heures ou des jours, la charge d'audit a probablement dépassé la capacité d'audit du système. Réduisez le taux de fonctionnement du client ou diminuez le nombre de messages d'audit consignés en modifiant le niveau d'audit pour les écritures du client et les lectures du client sur erreur ou Désactivé. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+
+
+
+=== Dupliquer les messages
+
+Le système StorageGRID adopte une approche prudente en cas de panne sur un réseau ou un nœud. Pour cette raison, des messages en double peuvent exister dans le journal d'audit.

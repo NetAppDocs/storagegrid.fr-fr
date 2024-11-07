@@ -1,0 +1,62 @@
+---
+permalink: maintain/grid-node-decommissioning.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission, remove grid node 
+summary: 'Vous pouvez utiliser la procédure de désaffectation de nœud pour supprimer un ou plusieurs nœuds de grid sur un ou plusieurs sites. Vous ne pouvez pas désaffecter le nœud d"administration principal.' 
+---
+= Mise hors service du nœud de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser la procédure de désaffectation de nœud pour supprimer un ou plusieurs nœuds de grid sur un ou plusieurs sites. Vous ne pouvez pas désaffecter le nœud d'administration principal.
+
+
+
+== Quand désaffecter un nœud
+
+Utilisez la procédure de mise hors service du nœud lorsque l'un des cas suivants est vrai :
+
+* Vous avez ajouté un nœud de stockage plus grand dans une extension et vous souhaitez supprimer un ou plusieurs nœuds de stockage plus petits tout en préservant les objets.
++
+
+TIP: Si vous souhaitez remplacer une ancienne appliance par une nouvelle, pensez à remplacer une nouvelle appliance par une autre, https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["clonage du nœud d'appliance"^] puis à la mettre hors service.
+
+* Vous avez besoin de moins de stockage total.
+* Vous n'avez plus besoin d'un nœud de passerelle.
+* Vous n'avez plus besoin d'un nœud d'administration non primaire.
+* Votre grille inclut un nœud déconnecté que vous ne pouvez pas restaurer ni remettre en ligne.
+* Votre grille inclut un nœud d'archivage.
+
+
+
+
+== Comment désaffecter un nœud
+
+Vous pouvez désaffecter les nœuds de grid connectés ou les nœuds de grid déconnectés.
+
+Désaffectation des nœuds connectés:: En général, vous devez désaffecter les nœuds de grille uniquement lorsqu'ils sont connectés au système StorageGRID et uniquement lorsque tous les nœuds sont en état de santé normal (les icônes vertes sont affichées sur les pages *NODES* et sur la page *Démissions noeuds*).
++
+--
+Pour obtenir des instructions, reportez-vous à la section link:decommissioning-connected-grid-nodes.html["Désaffectation des nœuds connectés"].
+
+--
+Désaffectation des nœuds déconnectés:: Dans certains cas, vous devrez peut-être désaffecter un nœud grid qui n'est pas actuellement connecté à la grille (dont l'état de santé est inconnu ou dont l'état est désactivé sur le plan administratif).
++
+--
+Pour obtenir des instructions, reportez-vous à la section link:decommissioning-disconnected-grid-nodes.html["Désaffectation des nœuds de la grille déconnectés"].
+
+--
+
+
+
+
+== Éléments à prendre en compte avant de désaffecter un nœud
+
+Avant d'effectuer l'une ou l'autre procédure, vérifiez les points à prendre en compte pour chaque type de nœud :
+
+* link:considerations-for-decommissioning-admin-or-gateway-nodes.html["Considérations relatives à la désaffectation d'un nœud d'administration ou de passerelle"]
+* link:considerations-for-decommissioning-storage-nodes.html["Facteurs à prendre en compte concernant la désaffectation des nœuds de stockage"]
+

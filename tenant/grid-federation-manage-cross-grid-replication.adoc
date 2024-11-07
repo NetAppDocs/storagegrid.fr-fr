@@ -1,0 +1,174 @@
+---
+permalink: tenant/grid-federation-manage-cross-grid-replication.html 
+sidebar: sidebar 
+keywords: grid federation, cross-grid replication, use grid federation connection, replicate client delete markers, s3 bucket 
+summary: 'si votre compte de locataire a reçu l"autorisation utiliser la connexion de fédération grid lors de sa création, vous pouvez utiliser la réplication multigrille pour répliquer automatiquement les objets entre les compartiments de la grille source du locataire et les compartiments de la grille de destination du locataire. La réplication inter-grille peut se produire dans une ou les deux directions.' 
+---
+= Gérer la réplication entre les grilles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si l'autorisation *utiliser la connexion de fédération de grille* a été attribuée à votre compte de locataire lors de sa création, vous pouvez utiliser la réplication multigrille pour répliquer automatiquement les objets entre les compartiments de la grille source du locataire et les compartiments de la grille de destination du locataire. La réplication inter-grille peut se produire dans une ou les deux directions.
+
+
+
+== Flux de production pour la réplication entre les grilles
+
+Le diagramme de flux de travail récapitule les étapes que vous allez effectuer pour configurer la réplication inter-grille entre les compartiments sur deux grilles. Ces étapes sont décrites plus en détail ci-dessous.
+
+image::../media/grid-federation-cgr-workflow.png[Flux de production de réplication entre les grilles]
+
+
+
+== Configurer la réplication entre les grilles
+
+Avant de pouvoir utiliser la réplication multigrille, vous devez vous connecter aux comptes de locataires correspondants sur chaque grille et créer des compartiments identiques. Vous pouvez ensuite activer la réplication entre les grilles sur l'un ou l'autre des compartiments, ou sur les deux.
+
+.Avant de commencer
+* Vous avez examiné les exigences relatives à la réplication intergrid. Voir link:../admin/grid-federation-what-is-cross-grid-replication.html["Qu'est-ce que la réplication cross-grid"].
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Le compte de tenant possède l'autorisation *utiliser la connexion de fédération de grille* et des comptes de tenant identiques existent sur les deux grilles. Voir link:../admin/grid-federation-manage-tenants.html["Gérez les locataires autorisés pour la connexion de fédération de grille"].
+* L'utilisateur locataire auquel vous vous connectez, comme il existe déjà sur les deux grilles, et appartient à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+* Si vous vous connectez à la grille de destination du locataire en tant qu'utilisateur local, l'utilisateur root du compte locataire a défini un mot de passe pour votre compte utilisateur sur cette grille.
+
+
+
+
+=== Créer deux compartiments identiques
+
+Dans un premier temps, connectez-vous aux comptes de locataires correspondants sur chaque grille et créez des compartiments identiques.
+
+.Étapes
+. En commençant à partir de l'une des grilles de la connexion de fédération de grille, créez un nouveau compartiment :
++
+.. Connectez-vous au compte de tenant à l'aide des informations d'identification d'un utilisateur de tenant qui existe sur les deux grilles.
++
+
+NOTE: Si vous ne parvenez pas à vous connecter à la grille de destination du locataire en tant qu'utilisateur local, vérifiez que l'utilisateur root du compte locataire a défini un mot de passe pour votre compte utilisateur.
+
+.. Suivez les instructions à link:creating-s3-bucket.html["Créer un compartiment S3"].
+.. Dans l'onglet *gérer les paramètres d'objet*, sélectionnez *Activer la gestion des versions d'objet*.
+.. Si le verrouillage objet S3 est activé pour votre système StorageGRID, n'activez pas le verrouillage objet S3 pour le compartiment.
+.. Sélectionnez *Créer un compartiment*.
+.. Sélectionnez *Terminer*.
+
+
+. Répétez ces étapes pour créer un compartiment identique pour le même compte locataire sur l'autre grille de la connexion de fédération de grille.
++
+
+TIP: Selon les besoins, chaque godet peut utiliser une région différente.
+
+
+
+
+
+=== Activer la réplication entre les grilles
+
+Vous devez effectuer ces étapes avant d'ajouter des objets à l'un ou l'autre compartiment.
+
+.Étapes
+. À partir d'une grille dont vous voulez répliquer les objets, activez link:../admin/grid-federation-what-is-cross-grid-replication.html["réplication multigrille dans une direction"]:
++
+.. Connectez-vous au compte du locataire pour le compartiment.
+.. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+.. Sélectionnez le nom du compartiment dans le tableau pour accéder à la page de détails du compartiment.
+.. Sélectionnez l'onglet *réplication multigrille*.
+.. Sélectionnez *Activer* et consultez la liste des exigences.
+.. Si toutes les exigences ont été satisfaites, sélectionnez la connexion de fédération de grille que vous souhaitez utiliser.
+.. Vous pouvez également modifier le paramètre *replicate delete markers* pour déterminer ce qui se passe sur la grille de destination si un client S3 envoie une demande de suppression à la grille source qui n'inclut pas d'ID de version :
++
+*** *Yes* (par défaut) : un marqueur de suppression est ajouté au compartiment source et répliqué dans le compartiment de destination.
+*** *Non* : un marqueur de suppression est ajouté au compartiment source mais n'est pas répliqué dans le compartiment de destination.
++
+image::../media/grid-federation-cross-grid-replication-client-deletes.png[image montrant la suppression du client répliqué sur les deux grilles]
+
++
+
+NOTE: Si la demande de suppression inclut un ID de version, cette version de l'objet est définitivement supprimée du compartiment source. StorageGRID ne réplique pas les demandes de suppression qui incluent un ID de version, de sorte que la même version d'objet n'est pas supprimée de la destination.
+
++
+Voir link:../admin/grid-federation-what-is-cross-grid-replication.html["Qu'est-ce que la réplication cross-grid"] pour plus de détails.
+
+
+
+.. Vous pouvez également modifier le paramètre de la catégorie d'audit *réplication multigrille* pour gérer le volume des messages d'audit :
++
+*** *Erreur* (par défaut) : seules les demandes de réplication inter-grille en échec sont incluses dans la sortie d'audit.
+*** *Normal* : toutes les demandes de réplication inter-grille sont incluses, ce qui augmente considérablement le volume de la sortie d'audit.
+
+
+.. Vérifiez vos sélections. Vous ne pouvez pas modifier ces paramètres à moins que les deux compartiments ne soient vides.
+.. Sélectionnez *Activer et tester*.
++
+Après quelques instants, un message de réussite s'affiche. Les objets ajoutés à ce compartiment seront désormais automatiquement répliqués sur l'autre grille. *La réplication multigrille* est affichée sous la forme d'une fonction activée sur la page de détails du compartiment.
+
+
+
+. Si vous le souhaitez, accédez au compartiment correspondant sur l'autre grille et link:../admin/grid-federation-what-is-cross-grid-replication.html["activez la réplication entre les grilles dans les deux sens"].
+
+
+
+
+== Tester la réplication entre les grilles
+
+Si la réplication inter-grid est activée pour un compartiment, vous devrez peut-être vérifier que la connexion et la réplication inter-grid fonctionnent correctement et que les compartiments source et de destination répondent toujours à toutes les exigences (par exemple, la gestion des versions est toujours activée).
+
+.Avant de commencer
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+
+
+.Étapes
+. Connectez-vous au compte du locataire pour le compartiment.
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans le tableau pour accéder à la page de détails du compartiment.
+. Sélectionnez l'onglet *réplication multigrille*.
+. Sélectionnez *Tester la connexion*.
++
+Si la connexion est bonne, une bannière de réussite s'affiche. Sinon, un message d'erreur s'affiche, que vous et l'administrateur de la grille pouvez utiliser pour résoudre le problème. Pour plus de détails, voir link:../admin/grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
+
+. Si la réplication inter-grille est configurée pour se produire dans les deux sens, allez dans le compartiment correspondant sur l'autre grille et sélectionnez *Tester la connexion* pour vérifier que la réplication inter-grille fonctionne dans l'autre sens.
+
+
+
+
+== Désactiver la réplication entre les grilles
+
+Vous pouvez arrêter définitivement la réplication multigrille si vous ne souhaitez plus copier d'objets sur l'autre grille.
+
+Avant de désactiver la réplication multigrille, notez ce qui suit :
+
+* La désactivation de la réplication multigrille ne supprime pas les objets qui ont déjà été copiés entre les grilles. Par exemple, les objets de `my-bucket` la grille 1 qui ont été copiés sur `my-bucket` la grille 2 ne sont pas supprimés si vous désactivez la réplication inter-grille pour ce compartiment. Si vous souhaitez supprimer ces objets, vous devez les supprimer manuellement.
+* Si la réplication inter-grid a été activée pour chacun des compartiments (c'est-à-dire si la réplication se produit dans les deux directions), vous pouvez désactiver la réplication inter-grid pour l'un ou les deux compartiments. Par exemple, vous pouvez désactiver la réplication d'objets de `my-bucket` sur la grille 1 vers `my-bucket` sur la grille 2, tout en continuant à répliquer des objets de `my-bucket` sur la grille 2 vers sur `my-bucket` la grille 1.
+* Vous devez désactiver la réplication multigrille avant de pouvoir supprimer l'autorisation d'un locataire d'utiliser la connexion de fédération de grille. Voir link:../admin/grid-federation-manage-tenants.html["Gérer les locataires autorisés"].
+* Si vous désactivez la réplication inter-grid pour un compartiment contenant des objets, vous ne pourrez pas réactiver la réplication inter-grid à moins de supprimer tous les objets des compartiments source et de destination.
++
+
+CAUTION: Vous ne pouvez pas réactiver la réplication sauf si les deux compartiments sont vides.
+
+
+
+.Avant de commencer
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+
+
+.Étapes
+. Depuis la grille dont vous ne souhaitez plus répliquer les objets, arrêtez la réplication inter-grid pour le compartiment :
++
+.. Connectez-vous au compte du locataire pour le compartiment.
+.. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+.. Sélectionnez le nom du compartiment dans le tableau pour accéder à la page de détails du compartiment.
+.. Sélectionnez l'onglet *réplication multigrille*.
+.. Sélectionnez *Désactiver la réplication*.
+.. Si vous êtes sûr de vouloir désactiver la réplication inter-grille pour ce compartiment, tapez *Yes* dans la zone de texte et sélectionnez *Disable*.
++
+Après quelques instants, un message de réussite s'affiche. Les nouveaux objets ajoutés à ce compartiment ne peuvent plus être automatiquement répliqués sur l'autre grille. *La réplication multigrille* n'est plus affichée comme fonction activée sur la page compartiments.
+
+
+
+. Si la réplication inter-grille a été configurée pour se produire dans les deux directions, allez dans le compartiment correspondant sur l'autre grille et arrêtez la réplication inter-grille dans l'autre direction.
+

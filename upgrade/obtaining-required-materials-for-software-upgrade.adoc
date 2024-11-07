@@ -1,0 +1,67 @@
+---
+permalink: upgrade/obtaining-required-materials-for-software-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, requirements, rhel, red hat, linux, ubuntu, debian 
+summary: Avant de commencer la mise à niveau du logiciel, procurez-vous tous les documents nécessaires. 
+---
+= Procurez-vous les ressources nécessaires à une mise à niveau logicielle
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de commencer la mise à niveau du logiciel, procurez-vous tous les documents nécessaires.
+
+[cols="1a,3a"]
+|===
+| Élément | Remarques 
+
+
+ a| 
+L'ordinateur portable de service
+ a| 
+L'ordinateur portable de service doit posséder :
+
+* Port réseau
+* Client SSH (par exemple, PuTTY)
+
+
+
+
+ a| 
+link:../admin/web-browser-requirements.html["Navigateur Web pris en charge"]
+ a| 
+La prise en charge des navigateurs a généralement été modifiée pour chaque version de StorageGRID. Assurez-vous que votre navigateur est compatible avec la nouvelle version de StorageGRID.
+
+
+
+ a| 
+Phrase secrète pour le provisionnement
+ a| 
+La phrase de passe est créée et documentée lors de l'installation initiale du système StorageGRID. La phrase de passe de provisionnement n'est pas répertoriée dans le `Passwords.txt` fichier.
+
+
+
+ a| 
+Archive RPM ou DEB Linux
+ a| 
+Si des nœuds sont déployés sur des hôtes Linux, vous devez d'link:linux-installing-rpm-or-deb-package-on-all-hosts.html["Téléchargez et installez le progiciel RPM ou DEB sur tous les hôtes"]abord démarrer la mise à niveau.
+
+Assurez-vous que votre système d'exploitation répond aux exigences minimales de StorageGRID en matière de version du noyau :
+
+* link:../rhel/installing-linux.html["Installez StorageGRID sur les hôtes Red Hat Enterprise Linux"]
+* link:../ubuntu/installing-linux.html["Installez StorageGRID sur les hôtes Ubuntu ou Debian"]
+
+
+
+
+ a| 
+Documentation StorageGRID
+ a| 
+* link:../release-notes/index.html["Notes de mise à jour"] Pour StorageGRID 11.9 (connexion requise). Lisez-les attentivement avant de commencer la mise à niveau.
+* https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version majeure vers laquelle vous effectuez la mise à niveau (connexion requise)
+* Autre https://docs.netapp.com/us-en/storagegrid-family/index.html["Documentation StorageGRID"^], selon les besoins.
+
+
+|===

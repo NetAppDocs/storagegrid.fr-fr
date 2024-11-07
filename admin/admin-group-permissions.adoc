@@ -1,0 +1,210 @@
+---
+permalink: admin/admin-group-permissions.html 
+sidebar: sidebar 
+keywords: admin group permissions 
+summary: 'Lors de la création de groupes d"utilisateurs admin, vous sélectionnez une ou plusieurs autorisations pour contrôler l"accès à des fonctions spécifiques de Grid Manager. Vous pouvez ensuite affecter chaque utilisateur à un ou plusieurs de ces groupes d"administration pour déterminer les tâches que l"utilisateur peut effectuer.' 
+---
+= Autorisations de groupe d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lors de la création de groupes d'utilisateurs admin, vous sélectionnez une ou plusieurs autorisations pour contrôler l'accès à des fonctions spécifiques de Grid Manager. Vous pouvez ensuite affecter chaque utilisateur à un ou plusieurs de ces groupes d'administration pour déterminer les tâches que l'utilisateur peut effectuer.
+
+Vous devez affecter au moins une autorisation à chaque groupe ; sinon, les utilisateurs appartenant à ce groupe ne pourront pas se connecter au Grid Manager ou à l'API Grid Management.
+
+Par défaut, tout utilisateur appartenant à un groupe disposant d'au moins une autorisation peut effectuer les tâches suivantes :
+
+* Connectez-vous au Grid Manager
+* Afficher le tableau de bord
+* Affichez les pages nœuds
+* Afficher les alertes actuelles et résolues
+* Modifier son propre mot de passe (utilisateurs locaux uniquement)
+* Afficher certaines informations fournies sur les pages Configuration et Maintenance
+
+
+
+
+== Interaction entre les autorisations et le mode d'accès
+
+Pour toutes les autorisations, le paramètre *mode d'accès* du groupe détermine si les utilisateurs peuvent modifier les paramètres et effectuer des opérations ou s'ils ne peuvent afficher que les paramètres et les fonctionnalités associés. Si un utilisateur appartient à plusieurs groupes et qu'un groupe est défini sur *lecture seule*, l'utilisateur dispose d'un accès en lecture seule à tous les paramètres et fonctions sélectionnés.
+
+Les sections suivantes décrivent les autorisations que vous pouvez attribuer lors de la création ou de la modification d'un groupe d'administration. Toute fonctionnalité qui n'est pas explicitement mentionnée requiert l'autorisation *accès racine*.
+
+
+
+== Accès racine
+
+Cette autorisation donne accès à toutes les fonctions d'administration de la grille.
+
+
+
+== Modifier le mot de passe root du locataire
+
+Cette autorisation donne accès à l'option *changer mot de passe root* de la page locataires, ce qui vous permet de contrôler qui peut modifier le mot de passe de l'utilisateur racine local du locataire. Cette autorisation est également utilisée pour migrer les clés S3 lorsque la fonctionnalité d'importation de clés S3 est activée. Les utilisateurs qui ne disposent pas de cette autorisation ne peuvent pas voir l'option *Modifier le mot de passe root*.
+
+
+NOTE: Pour accorder l'accès à la page locataires, qui contient l'option *changer mot de passe racine*, attribuez également l'autorisation *comptes locataire*.
+
+
+
+== Configuration de la page de topologie grid
+
+Cette autorisation permet d'accéder aux onglets Configuration de la page *SUPPORT* > *Outils* > *topologie de grille*.
+
+
+NOTE: La page de topologie de la grille est obsolète et sera supprimée dans une version ultérieure.
+
+
+
+== ILM
+
+Cette autorisation permet d'accéder aux options de menu *ILM* suivantes :
+
+* Règles
+* Stratégies
+* Balises de stratégie
+* Pools de stockage
+* Niveaux de stockage
+* Régions
+* Recherche de métadonnées d'objet
+
+
+
+NOTE: Les utilisateurs doivent disposer des autorisations *autre configuration de grille* et *Configuration de page de topologie de grille* pour gérer les classes de stockage.
+
+
+
+== Maintenance
+
+Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser les options suivantes :
+
+* *CONFIGURATION* > *contrôle d'accès* :
++
+** Mots de passe de grille
+
+
+* *CONFIGURATION* > *réseau* :
++
+** Noms de domaine de terminaux S3
+
+
+* *MAINTENANCE* > *tâches* :
++
+** Désaffectation
+** De développement
+** Vérification de l'existence d'objet
+** Reprise après incident
+
+
+* *MAINTENANCE* > *système* :
++
+** Package de restauration
+** Mise à jour logicielle
+
+
+* *SUPPORT* > *Outils* :
++
+** Journaux
+
+
+
+
+Les utilisateurs qui ne disposent pas de l'autorisation Maintenance peuvent afficher, mais pas modifier, les pages suivantes :
+
+* *MAINTENANCE* > *réseau* :
++
+** Serveurs DNS
+** Réseau Grid
+** Serveurs NTP
+
+
+* *MAINTENANCE* > *système* :
++
+** Licence
+
+
+* *CONFIGURATION* > *réseau* :
++
+** Noms de domaine de terminaux S3
+
+
+* *CONFIGURATION* > *sécurité* :
++
+** Certificats
+
+
+* *CONFIGURATION* > *surveillance* :
++
+** Serveur d'audit et syslog
+
+
+
+
+
+
+== Gérer les alertes
+
+Cette autorisation donne accès aux options de gestion des alertes. Les utilisateurs doivent disposer de cette autorisation pour gérer les silences, les notifications d'alerte et les règles d'alerte.
+
+
+
+== Interrogation de metrics
+
+Cette autorisation permet d'accéder aux éléments suivants :
+
+* *SUPPORT* > *Outils* > *métriques* page
+* Requêtes de metrics Prometheus personnalisées à l'aide de la section *Metrics* de l'API de gestion de grille
+* Cartes de tableau de bord de Grid Manager qui contiennent des metrics
+
+
+
+
+== Recherche de métadonnées d'objet
+
+Cette autorisation permet d'accéder à la page *ILM* > *recherche de métadonnées objet*.
+
+
+
+== Autre configuration de grille
+
+Cette autorisation donne accès à d'autres options de configuration de grille.
+
+
+TIP: Pour voir ces options supplémentaires, les utilisateurs doivent également disposer de l'autorisation *Grid topology page configuration*.
+
+* *ILM* :
++
+** Niveaux de stockage
+
+
+* *CONFIGURATION* > *système* :
+* *SUPPORT* > *autre* :
++
+** Coût des liens
+
+
+
+
+
+
+== Administrateur de l'appliance de stockage
+
+Cette autorisation permet :
+
+* Accès à E-Series SANtricity System Manager sur les appliances de stockage via le gestionnaire de grid.
+* Possibilité d'effectuer des tâches de dépannage et de maintenance dans l'onglet gérer les lecteurs pour les appliances prenant en charge ces opérations.
+
+
+
+
+== Comptes de locataires
+
+Cette autorisation permet de :
+
+* Accédez à la page tenants, où vous pouvez créer, modifier et supprimer des comptes de tenant
+* Afficher les stratégies de classification du trafic existantes
+* Affichez les cartes du tableau de bord Grid Manager qui contiennent les détails du locataire
+

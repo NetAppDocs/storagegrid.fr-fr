@@ -1,0 +1,328 @@
+---
+permalink: admin/managing-object-metadata-storage.html 
+sidebar: sidebar 
+keywords: object metadata, metadata capacity, best practices 
+summary: 'La capacité des métadonnées d"objet d"un système StorageGRID contrôle le nombre maximal d"objets qui peuvent être stockés sur le système en question. Pour s"assurer que votre système StorageGRID dispose d"un espace suffisant pour stocker les nouveaux objets, vous devez comprendre où et comment StorageGRID stocke les métadonnées d"objet.' 
+---
+= Gérer le stockage des métadonnées d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La capacité des métadonnées d'objet d'un système StorageGRID contrôle le nombre maximal d'objets qui peuvent être stockés sur le système en question. Pour s'assurer que votre système StorageGRID dispose d'un espace suffisant pour stocker les nouveaux objets, vous devez comprendre où et comment StorageGRID stocke les métadonnées d'objet.
+
+
+
+== Qu'est-ce que les métadonnées d'objet ?
+
+Les métadonnées d'objet constituent toutes les informations qui décrivent un objet. StorageGRID utilise les métadonnées d'objet pour suivre l'emplacement de tous les objets de la grille, et pour gérer le cycle de vie de chaque objet au fil du temps.
+
+Pour un objet dans StorageGRID, les métadonnées d'objet incluent les types d'information suivants :
+
+* Métadonnées du système, y compris un ID unique pour chaque objet (UUID), le nom de l'objet, le nom du compartiment S3, le nom ou l'ID du compte locataire, la taille logique de l'objet, la date et l'heure de création de l'objet, ainsi que la date et l'heure de la dernière modification de l'objet.
+* Toutes les paires de clé-valeur de métadonnées utilisateur personnalisées associées à l'objet.
+* Pour les objets S3, toutes les paires de clé-valeur de balise d'objet associées à l'objet.
+* Pour les copies d'objet répliquées, emplacement de stockage actuel de chaque copie.
+* Pour les copies d'objets avec code d'effacement, l'emplacement de stockage actuel de chaque fragment.
+* Pour les copies d'objet dans Cloud Storage Pool, l'emplacement de l'objet, notamment le nom du compartiment externe et l'identifiant unique de l'objet.
+* Pour les objets segmentés et les objets à plusieurs parties, les identificateurs de segment et la taille des données.
+
+
+
+
+== Comment les métadonnées d'objet sont-elles stockées ?
+
+Les métadonnées d'objet sont conservées dans une base de données Cassandra, stockée indépendamment des données d'objet. StorageGRID Pour assurer la redondance et protéger les métadonnées d'objet contre la perte, StorageGRID stocke trois copies des métadonnées de tous les objets du système sur chaque site.
+
+Cette figure représente les nœuds de stockage sur deux sites. Chaque site dispose du même volume de métadonnées objet, et les métadonnées de chaque site sont subdivisées en plusieurs nœuds de stockage sur ce site.
+
+image::../media/metadata_space_across_sites.png[Espace de métadonnées entre les sites]
+
+
+
+== Où sont stockées les métadonnées d'objet ?
+
+Cette figure représente les volumes de stockage d'un seul nœud de stockage.
+
+image::../media/metadata_space_storage_node.png[Nœud de stockage de l'espace de métadonnées]
+
+Comme illustré dans la figure, StorageGRID réserve l'espace des métadonnées d'objet sur le volume de stockage 0 de chaque nœud de stockage. Il utilise l'espace réservé pour stocker les métadonnées d'objet et effectuer les opérations essentielles de la base de données. Tout espace restant sur le volume de stockage 0 et tous les autres volumes du nœud de stockage sont utilisés exclusivement pour les données d'objet (copies répliquées et fragments avec code d'effacement).
+
+La quantité d'espace réservée aux métadonnées d'objet sur un nœud de stockage particulier dépend de plusieurs facteurs, décrits ci-dessous.
+
+
+
+== Paramètre d'espace réservé de métadonnées
+
+L'espace réservé aux métadonnées est un paramètre à l'échelle du système qui représente la quantité d'espace qui sera réservée aux métadonnées sur le volume 0 de chaque nœud de stockage. Comme indiqué dans le tableau, la valeur par défaut de ce paramètre est basée sur :
+
+* La version du logiciel que vous utilisiez lors de l'installation initiale de StorageGRID.
+* Quantité de RAM sur chaque nœud de stockage.
+
+
+[cols="1a,1a,1a"]
+|===
+| Version utilisée pour l'installation initiale de StorageGRID | Quantité de RAM sur les nœuds de stockage | Paramètre d'espace réservé par défaut pour les métadonnées 
+
+
+ a| 
+11.5 à 11.9
+ a| 
+Au moins 128 Go sur chaque nœud de stockage de la grille
+ a| 
+8 TO (8,000 GO)
+
+
+
+ a| 
+ a| 
+Moins de 128 Go sur n'importe quel nœud de stockage de la grille
+ a| 
+3 TO (3,000 GO)
+
+
+
+ a| 
+11.1 à 11.4
+ a| 
+128 Go ou plus sur chaque nœud de stockage sur un site
+ a| 
+4 TO (4,000 GO)
+
+
+
+ a| 
+ a| 
+Moins de 128 Go sur n'importe quel nœud de stockage de chaque site
+ a| 
+3 TO (3,000 GO)
+
+
+
+ a| 
+11.0 ou antérieure
+ a| 
+Tout montant
+ a| 
+2 TO (2,000 GO)
+
+|===
+
+
+=== Afficher le paramètre d'espace réservé aux métadonnées
+
+Procédez comme suit pour afficher le paramètre espace réservé aux métadonnées de votre système StorageGRID.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *système* > *Paramètres de stockage*.
+. Sur la page Paramètres de stockage, développez la section *espace réservé aux métadonnées*.
+
+
+Pour StorageGRID 11.8 ou version ultérieure, la valeur de l'espace réservé aux métadonnées doit être d'au moins 100 Go et d'au plus 1 po.
+
+Le paramètre par défaut pour une nouvelle installation StorageGRID 11.6 ou supérieure dans laquelle chaque nœud de stockage dispose d'au moins 128 Go de RAM est de 8,000 Go (8 To).
+
+
+
+== Espace réservé réel pour les métadonnées
+
+Contrairement au paramètre espace réservé pour les métadonnées à l'échelle du système, l'espace réservé _réel_ pour les métadonnées de l'objet est déterminé pour chaque nœud de stockage. Pour un nœud de stockage donné, l'espace réservé réel pour les métadonnées dépend de la taille du volume 0 pour le nœud et du paramètre d'espace réservé pour les métadonnées à l'échelle du système.
+
+[cols="1a,1a"]
+|===
+| Taille du volume 0 pour le nœud | Espace réservé réel pour les métadonnées 
+
+
+ a| 
+Moins de 500 Go (utilisation hors production)
+ a| 
+10 % du volume 0
+
+
+
+ a| 
+500 Go ou plus + ou + nœuds de stockage des métadonnées uniquement
+ a| 
+Plus ces valeurs sont faibles :
+
+* Volume 0
+* Paramètre d'espace réservé de métadonnées
+
+
+*Remarque* : un seul rangedb est requis pour les nœuds de stockage de métadonnées uniquement.
+
+|===
+
+
+=== Afficher l'espace réservé réel pour les métadonnées
+
+La procédure suivante permet d'afficher l'espace réservé réel pour les métadonnées sur un nœud de stockage particulier.
+
+.Étapes
+. Dans Grid Manager, sélectionnez *NOEUDS* > *_Storage Node_*.
+. Sélectionnez l'onglet *stockage*.
+. Placez votre curseur sur le graphique stockage utilisé - métadonnées de l'objet et localisez la valeur *réel réservé*.
++
+image::../media/storage_used_object_metadata_actual_reserved.png[Stockage utilisé - métadonnées de l'objet - réservé réelle]
+
+
+
+Dans la capture d'écran, la valeur *réelle réservée* est de 8 To. Cette copie d'écran concerne un nœud de stockage grand format dans une nouvelle installation de StorageGRID 11.6. Comme l'espace réservé aux métadonnées à l'échelle du système est inférieur au volume 0 pour ce nœud de stockage, l'espace réservé réel pour ce nœud est égal au paramètre espace réservé aux métadonnées.
+
+
+
+== Exemple d'espace de métadonnées réservé réel
+
+Supposons que vous installiez un nouveau système StorageGRID à l'aide de la version 11.7 ou ultérieure. Dans cet exemple, supposons que chaque nœud de stockage dispose de plus de 128 Go de RAM et que le volume 0 du nœud de stockage 1 (SN1) est de 6 To. Sur la base de ces valeurs :
+
+* L'espace réservé *métadonnées* à l'échelle du système est défini sur 8 To. (Il s'agit de la valeur par défaut pour une nouvelle installation StorageGRID 11.6 ou supérieure si chaque nœud de stockage possède plus de 128 Go de RAM.)
+* L'espace réservé réel pour les métadonnées pour SN1 est de 6 To. (Le volume entier est réservé car le volume 0 est inférieur au paramètre *Metadata reserved space*.)
+
+
+
+
+== Espace de métadonnées autorisé
+
+L'espace réservé réel de chaque nœud de stockage pour les métadonnées est divisé en l'espace disponible pour les métadonnées d'objet (l'espace _autorisé metadata space_) et l'espace requis pour les opérations essentielles de bases de données (telles que la compaction et la réparation) et les mises à niveau matérielles et logicielles futures. L'espace de métadonnées autorisé régit la capacité globale des objets.
+
+image::../media/metadata_allowed_space_volume_0.png[Espace autorisé pour les métadonnées 0]
+
+Le tableau suivant montre comment StorageGRID calcule l' *espace de métadonnées autorisé* pour différents nœuds de stockage, en fonction de la quantité de mémoire du nœud et de l'espace réservé réel pour les métadonnées.
+
+[cols="1a,1a,2a,2a"]
+|===
+
+
+ a| 
+ a| 
+ a| 
+*Quantité de mémoire sur le noeud de stockage*
+
+
+
+ a| 
+ a| 
+ a| 
+&Lt ; 128 GB
+ a| 
+&gt ;= 128 Go
+
+
+
+ a| 
+*Espace réservé réel pour les métadonnées*
+ a| 
+&Lt ;= 4 To
+ a| 
+60 % de l'espace réservé réel pour les métadonnées, jusqu'à un maximum de 1.32 To
+ a| 
+60 % de l'espace réservé réel pour les métadonnées, jusqu'à un maximum de 1.98 To
+
+
+
+ a| 
+&gt ; 4 To
+ a| 
+(Espace réservé réel pour les métadonnées − 1 To) × 60 %, jusqu'à un maximum de 1.32 To
+ a| 
+(Espace réservé réel pour les métadonnées − 1 To) × 60 %, jusqu'à un maximum de 3.96 To
+
+|===
+
+
+=== Afficher l'espace de métadonnées autorisé
+
+La procédure suivante permet d'afficher l'espace de métadonnées autorisé pour un nœud de stockage.
+
+.Étapes
+. Dans Grid Manager, sélectionnez *NODES*.
+. Sélectionnez le nœud de stockage.
+. Sélectionnez l'onglet *stockage*.
+. Placez votre curseur sur le graphique de métadonnées de l'objet stockage utilisé - et localisez la valeur *autorisé*.
++
+image::../media/storage_used_object_metadata_allowed.png[Stockage utilisé - métadonnées d'objet - autorisé]
+
+
+
+Dans la capture d'écran, la valeur *autorisé* est de 3.96 To, ce qui est la valeur maximale pour un noeud de stockage dont l'espace réservé réel pour les métadonnées est supérieur à 4 To.
+
+La valeur *autorisé* correspond à cette métrique Prometheus :
+
+`storagegrid_storage_utilization_metadata_allowed_bytes`
+
+
+
+== Exemple d'espace de métadonnées autorisé
+
+Supposons que vous installez un système StorageGRID avec la version 11.6. Dans cet exemple, supposons que chaque nœud de stockage dispose de plus de 128 Go de RAM et que le volume 0 du nœud de stockage 1 (SN1) est de 6 To. Sur la base de ces valeurs :
+
+* L'espace réservé *métadonnées* à l'échelle du système est défini sur 8 To. (Il s'agit de la valeur par défaut pour StorageGRID 11.6 ou supérieur lorsque chaque nœud de stockage dispose de plus de 128 Go de RAM.)
+* L'espace réservé réel pour les métadonnées pour SN1 est de 6 To. (Le volume entier est réservé car le volume 0 est inférieur au paramètre *Metadata reserved space*.)
+* L'espace autorisé pour les métadonnées sur SN1 est de 3 To, basé sur le calcul indiqué dans <<table-allowed-space-for-metadata,tableau pour l'espace autorisé pour les métadonnées>>: (espace réservé réel pour les métadonnées − 1 To) × 60 %, jusqu'à un maximum de 3.96 To.
+
+
+
+
+== La façon dont les nœuds de stockage de différentes tailles affectent la capacité des objets
+
+Comme décrit ci-dessus, StorageGRID distribue uniformément les métadonnées d'objet sur les nœuds de stockage sur chaque site. Par conséquent, si un site contient des nœuds de stockage de différentes tailles, le plus petit nœud du site détermine la capacité des métadonnées du site.
+
+Prenons l'exemple suivant :
+
+* Une grille sur un seul site contient trois nœuds de stockage de tailles différentes.
+* Le paramètre *espace réservé aux métadonnées* est de 4 To.
+* Les nœuds de stockage ont les valeurs suivantes pour l'espace réservé réel des métadonnées et l'espace autorisé pour les métadonnées.
++
+[cols="1a,1a,1a,1a"]
+|===
+| Nœud de stockage | Taille du volume 0 | Espace réservé réel des métadonnées | Espace de métadonnées autorisé 
+
+
+ a| 
+SN1
+ a| 
+2.2 TO
+ a| 
+2.2 TO
+ a| 
+1.32 TO
+
+
+
+ a| 
+SN2
+ a| 
+5 TO
+ a| 
+4 TO
+ a| 
+1.98 TO
+
+
+
+ a| 
+SN3
+ a| 
+6 To
+ a| 
+4 TO
+ a| 
+1.98 TO
+
+|===
+
+
+Les métadonnées de l'objet sont réparties de manière uniforme sur les nœuds de stockage d'un site. En effet, chaque nœud de cet exemple ne peut contenir que 1.32 To de métadonnées. Les 0.66 To supplémentaires d'espace de métadonnées autorisé pour SN2 et SN3 ne peuvent pas être utilisés.
+
+image::../media/metadata_space_three_storage_nodes.png[Espace de métadonnées trois nœuds de stockage]
+
+De même, puisque StorageGRID conserve toutes les métadonnées d'objet d'un système StorageGRID sur chaque site, la capacité globale des métadonnées d'un système StorageGRID est déterminée par la capacité des métadonnées d'objet du plus petit site.
+
+Étant donné que la capacité des métadonnées contrôle le nombre maximal d'objets, lorsqu'un nœud vient à manquer de capacité de métadonnées, la grille est véritablement pleine.
+
+.Informations associées
+* Pour savoir comment surveiller la capacité des métadonnées d'objet pour chaque nœud de stockage, reportez-vous aux instructions de la link:../monitor/index.html["Surveillance StorageGRID"].
+* Pour augmenter la capacité de métadonnées d'objet de votre système, link:../expand/index.html["développez une grille"]ajoutez de nouveaux nœuds de stockage.
+

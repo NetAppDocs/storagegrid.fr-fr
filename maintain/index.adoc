@@ -1,0 +1,33 @@
+---
+permalink: maintain/index.html 
+sidebar: sidebar 
+keywords: maintain overview, maintenance overview, about maintain, about maintenance 
+summary: 'Les tâches de maintenance du grid comprennent la désaffectation d"un nœud ou d"un site, le changement de nom d"une grille, d"un nœud ou d"un site et la maintenance du réseau. Vous pouvez également effectuer des procédures d"hôte et de middleware, ainsi que des procédures de nœud de grille.' 
+---
+= Maintenance de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les tâches de maintenance du grid comprennent la désaffectation d'un nœud ou d'un site, le renommage d'une grille, d'un nœud ou d'un site et la maintenance des réseaux. Vous pouvez également effectuer des procédures d'hôte et de middleware, ainsi que des procédures de nœud de grille.
+
+
+NOTE: Dans ces instructions, "Linux" fait référence à un déploiement Red Hat® Enterprise Linux®, Ubuntu® ou Debian®. Pour obtenir la liste des versions prises en charge, reportez-vous au https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^] .
+
+
+
+== Avant de commencer
+
+* Vous avez une bonne compréhension du système StorageGRID.
+* Vous avez examiné la topologie de votre système StorageGRID et compris la configuration de la grille.
+* Vous comprenez que vous devez suivre toutes les instructions exactement et tenir compte de tous les avertissements.
+* Vous comprenez que les procédures de maintenance non décrites ne sont pas prises en charge ou requièrent une mission de service.
+
+
+
+
+== Procédures de maintenance des appareils
+
+Pour les procédures matérielles, voir https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["Instructions de maintenance pour votre appliance StorageGRID"^] .

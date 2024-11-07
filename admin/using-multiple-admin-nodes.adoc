@@ -1,0 +1,30 @@
+---
+permalink: admin/using-multiple-admin-nodes.html 
+sidebar: sidebar 
+keywords: admin nodes, more than one admin node, multiple admin nodes 
+summary: 'Un système StorageGRID peut inclure plusieurs nœuds d"administration pour vous permettre de contrôler et de configurer en continu votre système StorageGRID, même en cas de panne d"un nœud d"administration.' 
+---
+= Utiliser plusieurs nœuds d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un système StorageGRID peut inclure plusieurs nœuds d'administration pour vous permettre de contrôler et de configurer en continu votre système StorageGRID, même en cas de panne d'un nœud d'administration.
+
+Si un nœud d'administration n'est plus disponible, le traitement des attributs se poursuit, les alertes sont toujours déclenchées et les notifications par e-mail et les packs AutoSupport sont toujours envoyés. Toutefois, le fait d'avoir plusieurs nœuds d'administration n'offre pas de protection de basculement, à l'exception des notifications et des packages AutoSupport.
+
+image::../media/admin_node_redundancy.png[Diagramme de redondance des nœuds d'administration]
+
+Deux options s'offrent à vous pour continuer à afficher et à configurer le système StorageGRID en cas de défaillance d'un nœud d'administration :
+
+* Les clients Web peuvent se reconnecter à tout autre nœud d'administration disponible.
+* Si un administrateur système a configuré un groupe de nœuds d'administration haute disponibilité, les clients Web peuvent continuer à accéder à Grid Manager ou au Gestionnaire de locataires à l'aide de l'adresse IP virtuelle du groupe HA. Voir link:managing-high-availability-groups.html["Gérez les groupes haute disponibilité"].
++
+
+NOTE: En cas d'utilisation d'un groupe haute disponibilité, l'accès est interrompu en cas de panne du nœud d'administration actif. Les utilisateurs doivent se reconnecter une fois que l'adresse IP virtuelle du groupe HA bascule vers un autre noeud d'administration du groupe.
+
+
+
+Certaines tâches de maintenance peuvent uniquement être effectuées à l'aide du nœud d'administration principal. En cas de panne du nœud d'administration principal, celui-ci doit être restauré avant que le système StorageGRID ne fonctionne à nouveau entièrement.

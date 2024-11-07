@@ -1,0 +1,66 @@
+---
+permalink: network/networking-requirements-and-guidelines.html 
+sidebar: sidebar 
+keywords: storagegrid, networking requirements, network requirements, nat 
+summary: 'Vous devez vérifier que l"infrastructure réseau et la configuration actuelles peuvent prendre en charge la conception de réseau StorageGRID planifiée.' 
+---
+= Configuration réseau requise
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez vérifier que l'infrastructure réseau et la configuration actuelles peuvent prendre en charge la conception de réseau StorageGRID planifiée.
+
+
+
+== Exigences générales de mise en réseau
+
+Tous les déploiements StorageGRID doivent être capables de prendre en charge les connexions suivantes.
+
+Ces connexions peuvent se produire via la grille, les réseaux d'administration ou les réseaux clients, ou les combinaisons de ces réseaux comme illustré dans les exemples de topologie réseau.
+
+* *Connexions de gestion* : connexions entrantes d'un administrateur au nœud, généralement via SSH. Accès par navigateur Web au gestionnaire de grille, au gestionnaire de locataires et au programme d'installation de l'appliance StorageGRID.
+* *Connexions serveur NTP* : connexion UDP sortante qui reçoit une réponse UDP entrante.
++
+Au moins un serveur NTP doit être accessible par le nœud d'administration principal.
+
+* *Connexions serveur DNS* : connexion UDP sortante qui reçoit une réponse UDP entrante.
+* *Connexions serveur LDAP/Active Directory* : connexion TCP sortante à partir du service identité sur les nœuds de stockage.
+* *AutoSupport* : connexion TCP sortante des nœuds d'administration vers un `support.netapp.com` proxy configuré par le client.
+* *Serveur de gestion de clés externe* : connexion TCP sortante à partir de chaque nœud d'appliance avec cryptage de nœud activé.
+* Connexions TCP entrantes à partir des clients S3.
+* Des demandes sortantes provenant de services de plateforme StorageGRID, tels que la réplication CloudMirror ou depuis Cloud Storage pools.
+
+
+Si StorageGRID ne parvient pas à contacter l'un des serveurs NTP ou DNS provisionnés à l'aide des règles de routage par défaut, il tente automatiquement de contacter tous les réseaux (grille, administrateur et client) tant que les adresses IP des serveurs DNS et NTP sont spécifiées. Si les serveurs NTP ou DNS peuvent être atteints sur n'importe quel réseau, StorageGRID crée automatiquement des règles de routage supplémentaires afin de s'assurer que le réseau est utilisé pour toutes les tentatives de connexion futures.
+
+
+TIP: Bien que vous puissiez utiliser ces routes hôtes automatiquement découvertes, en général, vous devez configurer manuellement les routes DNS et NTP pour garantir la connectivité en cas d'échec de la détection automatique.
+
+Si vous n'êtes pas prêt à configurer les réseaux optionnels Admin et client pendant le déploiement, vous pouvez configurer ces réseaux lorsque vous approuvez les nœuds de grille pendant les étapes de configuration. En outre, vous pouvez configurer ces réseaux après l'installation, à l'aide de l'outil Modifier IP (voir link:../maintain/configuring-ip-addresses.html["Configurez les adresses IP"]).
+
+Seules les connexions client S3 et les connexions administratives SSH, Grid Manager et tenant Manager sont prises en charge sur les interfaces VLAN. Connexions sortantes, telles que les serveurs NTP, DNS, LDAP, AutoSupport et KMS Doit passer directement sur les interfaces client, Admin ou Grid Network. Si l'interface est configurée comme une jonction pour prendre en charge les interfaces VLAN, ce trafic transite par le VLAN natif de l'interface, comme configuré au niveau du commutateur.
+
+
+
+== Réseaux étendus (WAN) pour plusieurs sites
+
+Lors de la configuration d'un système StorageGRID avec plusieurs sites, la connexion WAN entre sites doit avoir une bande passante minimale de 25 Mbit/s dans chaque direction avant de prendre en compte le trafic client. La réplication des données ou le code d'effacement entre les sites, l'extension de nœud ou de site, la restauration de nœuds et les autres opérations ou configurations nécessitent une bande passante supplémentaire.
+
+Les besoins réels minimaux en bande passante WAN dépendent de l'activité du client et du schéma de protection ILM. Pour obtenir de l'aide sur l'estimation des besoins minimaux en bande passante WAN, contactez votre consultant en services professionnels NetApp.
+
+
+
+== Connexions pour les nœuds d'administration et les nœuds de passerelle
+
+Les nœuds d'administration doivent toujours être sécurisés par des clients non fiables, comme ceux sur Internet ouvert. Vous devez vous assurer qu'aucun client non approuvé ne peut accéder à un nœud d'administration sur le réseau Grid, le réseau Admin ou le réseau client.
+
+Les nœuds d'administration et les nœuds de passerelle que vous prévoyez d'ajouter aux groupes haute disponibilité doivent être configurés avec une adresse IP statique. Pour plus d'informations, voir link:../admin/managing-high-availability-groups.html["Gérez les groupes haute disponibilité"].
+
+
+
+== Utilisation de la traduction d'adresses réseau (NAT)
+
+N'utilisez pas la traduction d'adresses réseau (NAT) sur le réseau de grille entre les nœuds de grille ou entre les sites StorageGRID. Lorsque vous utilisez des adresses IPv4 privées pour le réseau Grid, ces adresses doivent être directement routables à partir de chaque nœud de la grille sur chaque site. Toutefois, vous pouvez utiliser NAT entre des clients externes et des nœuds de grille, par exemple pour fournir une adresse IP publique pour un nœud de passerelle. L'utilisation de la fonction NAT pour relier un segment de réseau public n'est prise en charge que lorsque vous utilisez une application de tunneling transparente pour tous les nœuds de la grille, ce qui signifie que les nœuds de la grille ne nécessitent aucune connaissance des adresses IP publiques.

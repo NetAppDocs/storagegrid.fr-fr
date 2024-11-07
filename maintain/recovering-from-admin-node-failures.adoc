@@ -1,0 +1,23 @@
+---
+permalink: maintain/recovering-from-admin-node-failures.html 
+sidebar: sidebar 
+keywords: recover, admin node failure, workflow 
+summary: 'Le processus de restauration d"un noeud d"administration dépend du noeud d"administration principal ou non primaire.' 
+---
+= Restauration du nœud d'administration principal ou non principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le processus de restauration d'un noeud d'administration dépend du noeud d'administration principal ou non primaire.
+
+Les étapes générales de restauration d'un nœud d'administration principal ou non primaire sont les mêmes, bien que les détails de la procédure diffèrent.
+
+Suivez toujours la procédure de récupération correcte pour le nœud d'administration que vous restaurez. Les procédures semblent identiques à un niveau élevé, mais diffèrent dans les détails.
+
+.Choix
+* link:recovering-from-primary-admin-node-failures.html["Restaurez vos données après une panne de nœud d'administration principal"]
+* link:recovering-from-non-primary-admin-node-failures.html["Restaurez vos données en cas de défaillance d'un nœud d'administration non principal"]
+

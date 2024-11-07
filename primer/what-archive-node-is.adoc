@@ -1,0 +1,16 @@
+---
+permalink: primer/what-archive-node-is.html 
+sidebar: sidebar 
+keywords: archive node 
+summary: 'La prise en charge des nœuds d"archivage a été supprimée.' 
+---
+= Qu'est-ce qu'un nœud d'archivage ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La prise en charge des nœuds d'archivage a été supprimée.
+
+Pour plus d'informations sur les nœuds d'archivage, reportez-vous à la section https://docs.netapp.com/us-en/storagegrid-118/primer/what-archive-node-is.html["Qu'est-ce qu'un nœud d'archivage (site doc StorageGRID 11.8)"^].

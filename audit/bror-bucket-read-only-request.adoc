@@ -1,0 +1,64 @@
+---
+permalink: audit/bror-bucket-read-only-request.html 
+sidebar: sidebar 
+keywords: bror, bucket read only request, empty bucket, audit message, 
+summary: 'Le service LDR génère ce message d"audit lorsqu"un compartiment passe en mode lecture seule ou quitte ce mode. Par exemple, un compartiment passe en mode lecture seule lorsqu"il est vidé.' 
+---
+= BROR : demande en lecture seule du compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le service LDR génère ce message d'audit lorsqu'un compartiment passe en mode lecture seule ou quitte ce mode. Par exemple, un compartiment passe en mode lecture seule tandis que tous les objets sont en cours de suppression.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+BKHD
+ a| 
+UUID de compartiment
+ a| 
+ID du compartiment.
+
+
+
+ a| 
+BROV
+ a| 
+Valeur de demande de lecture seule du compartiment
+ a| 
+Que le compartiment soit en lecture seule ou qu'il quitte l'état en lecture seule (1 = lecture seule, 0 = non-lecture seule).
+
+
+
+ a| 
+BROS
+ a| 
+Motif de compartiment en lecture seule
+ a| 
+Raison pour laquelle le compartiment est en lecture seule ou quitte l'état en lecture seule. Par exemple, emptyBucket.
+
+
+
+ a| 
+S3AI
+ a| 
+ID de compte locataire S3
+ a| 
+ID du compte de locataire qui a envoyé la demande. Une valeur vide indique un accès anonyme.
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+|===

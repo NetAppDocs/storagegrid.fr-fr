@@ -1,0 +1,185 @@
+---
+permalink: expand/considerations-for-rebalancing-erasure-coded-data.html 
+sidebar: sidebar 
+keywords: erasure coding, rebalance, ec rebalance, site rebalance 
+summary: 'Si vous effectuez une extension pour ajouter des nœuds de stockage et que vous utilisez des règles ILM pour effacer les données de code, vous devrez peut-être effectuer la procédure de rééquilibrage EC si vous ne pouvez pas ajouter suffisamment de nœuds de stockage pour le modèle de code d"effacement que vous utilisez.' 
+---
+= Considérations relatives au rééquilibrage des données avec code d'effacement
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous effectuez une extension pour ajouter des nœuds de stockage et que vous utilisez des règles ILM pour effacer les données de code, vous devrez peut-être effectuer la procédure de rééquilibrage du code d'effacement si vous ne pouvez pas ajouter suffisamment de nœuds de stockage pour le modèle de code d'effacement que vous utilisez.
+
+Après avoir passé en revue ces considérations, effectuez l'extension, puis passez à l' link:rebalancing-erasure-coded-data-after-adding-storage-nodes.html["Rééquilibrent les données codées après l'ajout de nœuds de stockage"] pour exécuter la procédure.
+
+
+
+== Qu'est-ce que le rééquilibrage EC ?
+
+Le rééquilibrage EC est une procédure StorageGRID qui peut être requise après l'extension d'un nœud de stockage. La procédure est exécutée en tant que script de ligne de commande à partir du nœud d'administration principal. Lorsque vous exécutez la procédure de rééquilibrage EC, StorageGRID redistribue des fragments avec code d'effacement entre les nœuds de stockage existants et nouvellement ajoutés sur un site.
+
+La procédure de rééquilibrage de la ce :
+
+* Seul le déplacement des données d'objet avec code d'effacement Il ne déplace pas les données d'objet répliqué.
+* Redistribue les données au sein d'un site. Il ne déplace pas les données entre les sites.
+* Redistribue les données entre tous les nœuds de stockage du site. Elle ne rerépartit pas les données au sein des volumes de stockage.
+* Ne prend pas en compte l'utilisation des données répliquées sur chaque nœud de stockage lors de la détermination de l'emplacement de déplacement des données avec code d'effacement.
+* Redistribue uniformément les données avec code d'effacement entre les nœuds de stockage sans tenir compte des capacités relatives de chaque nœud.
+* Ne distribuera pas les données avec code d'effacement aux nœuds de stockage pleins à plus de 80 %.
+* Risque de diminuer les performances des opérations ILM et des opérations client S3 lorsqu'elles s'exécutent&#8212;des ressources supplémentaires sont nécessaires pour redistribuer les fragments de code d'effacement.
+
+
+Lorsque la procédure de rééquilibrage EC est terminée :
+
+* Les données avec code d'effacement auront été transférées des nœuds de stockage disposant de moins d'espace disponible vers des nœuds de stockage disposant de plus d'espace disponible.
+* Les données protégées des objets avec code d'effacement restent les mêmes.
+* Les valeurs utilisées (%) peuvent différer d'un nœud de stockage à un autre, et ce pour deux raisons :
++
+** Les copies d'objet répliquées continueront à consommer de l'espace sur les nœuds existants&#8212;la procédure de rééquilibrage EC ne déplace pas les données répliquées.
+** Les nœuds de plus grande capacité seront relativement moins remplis que les nœuds de plus petite capacité, même si tous les nœuds finissent par représenter environ le même volume de données avec code d'effacement.
++
+Par exemple, supposons que trois nœuds de 200 To soient remplis à 80 % (200 et#215 ; 0.8 = 160 To sur chaque nœud, ou 480 To pour le site). Si vous ajoutez un nœud de 400 To et exécutez la procédure de rééquilibrage, tous les nœuds auront à peu près le même volume de données de code d'effacement (480/4 = 120 To). Cependant, le pourcentage utilisé pour le nœud le plus grand sera inférieur au pourcentage utilisé pour les nœuds plus petits.
+
++
+image::../media/used_space_with_larger_node.png[Espace utilisé avant extension]
+
+
+
+
+
+
+
+== Quand rééquilibrer les données avec code d'effacement
+
+Prenons le scénario suivant :
+
+* StorageGRID s'exécute sur un seul site, qui contient trois nœuds de stockage.
+* La règle ILM utilise une règle de code d'effacement 2+1 pour tous les objets de plus de 1.0 Mo et une règle de réplication à 2 copies pour les objets plus petits.
+* Tous les nœuds de stockage sont devenus complètement pleins. L'alerte *Low Object Storage* a été déclenchée au niveau de gravité principal.
++
+image::../media/used_space_before_expansion.png[Espace utilisé avant extension]
+
+
+
+
+
+=== Le rééquilibrage n'est pas requis si vous ajoutez suffisamment de nœuds
+
+Pour savoir quand le rééquilibrage EC n'est pas nécessaire, supposons que vous ayez ajouté trois (ou plus) nouveaux nœuds de stockage. Dans ce cas, vous n'avez pas besoin d'effectuer le rééquilibrage EC. Les nœuds de stockage d'origine resteront pleins, mais les nouveaux objets utiliseront désormais les trois nouveaux nœuds pour le code d'effacement 2+1&#8212;les deux fragments de données et le fragment de parité peuvent chacun être stockés sur un nœud différent.
+
+image::../media/used_space_after_3_node_expansion.png[Espace utilisé après l'extension à 3 nœuds]
+
+
+CAUTION: Dans ce cas, vous pouvez exécuter la procédure de rééquilibrage de l'effacement, mais le déplacement des données existantes avec code d'effacement réduit temporairement les performances de la grille, ce qui peut avoir un impact sur les opérations client.
+
+
+
+=== Vous devez rééquilibrer la capacité si vous ne pouvez pas ajouter suffisamment de nœuds
+
+Pour savoir quand un rééquilibrage EC est nécessaire, supposons que vous ne pouvez ajouter que deux nœuds de stockage au lieu de trois. Étant donné que le modèle 2+1 requiert au moins trois nœuds de stockage pour disposer d'espace disponible, les nœuds vides ne peuvent pas être utilisés pour les nouvelles données avec code d'effacement.
+
+image::../media/used_space_after_2_node_expansion.png[Espace utilisé après l'extension à 2 nœuds]
+
+Pour utiliser les nouveaux nœuds de stockage, vous devez exécuter la procédure de rééquilibrage EC. À l'exécution de cette procédure, StorageGRID redistribue les données avec code d'effacement et les fragments de parité existants entre tous les nœuds de stockage sur le site. Dans cet exemple, lorsque la procédure de rééquilibrage de l'EC est terminée, les cinq nœuds sont désormais remplis à seulement 60 % et les objets peuvent continuer à être ingérés dans le schéma de code d'effacement 2+1 sur tous les nœuds de stockage.
+
+image::../media/used_space_after_ec_rebalance.png[Rééquilibrage EC de l'espace utilisé]
+
+
+
+== Recommandations pour le rééquilibrage de la ce
+
+NetApp exige un rééquilibrage de l'EC si _l'ensemble_ des affirmations suivantes est vrai :
+
+* Vous utilisez le code d'effacement pour vos données d'objet.
+* L'alerte *Low Object Storage* a été déclenchée pour un ou plusieurs nœuds de stockage d'un site, ce qui indique que les nœuds sont pleins à 80 % ou plus.
+* Vous ne pouvez pas ajouter suffisamment de nœuds de stockage pour le schéma de code d'effacement utilisé. Voir link:adding-storage-capacity-for-erasure-coded-objects.html["Ajoutez de la capacité de stockage pour les objets avec code d'effacement"].
+* Vos clients S3 peuvent tolérer une performance moindre pour leurs opérations d'écriture et de lecture pendant que la procédure de rééquilibrage de l'EC est en cours d'exécution.
+
+
+Vous pouvez éventuellement exécuter la procédure de rééquilibrage EC si vous préférez que les nœuds de stockage soient remplis à des niveaux similaires et que vos clients S3 peuvent tolérer des performances moins élevées pour leurs opérations d'écriture et de lecture pendant que la procédure de rééquilibrage EC est en cours d'exécution.
+
+
+
+== Interaction entre la procédure de rééquilibrage EC et d'autres tâches de maintenance
+
+Vous ne pouvez pas effectuer certaines procédures de maintenance en même temps que vous exécutez la procédure de rééquilibrage EC.
+
+[cols="1a,2a"]
+|===
+| Procédure | Autorisé pendant la procédure de rééquilibrage EC ? 
+
+
+ a| 
+Procédures EC de rééquilibrage supplémentaires
+ a| 
+Non
+
+Vous ne pouvez exécuter qu'une seule procédure de rééquilibrage EC à la fois.
+
+
+
+ a| 
+Procédure de mise hors service
+
+Tâche de réparation des données EC
+ a| 
+Non
+
+* Vous ne pouvez pas démarrer une procédure de déclassement ou de réparation de données EC pendant que la procédure de rééquilibrage EC est en cours d'exécution.
+* Vous ne pouvez pas démarrer la procédure de rééquilibrage EC lorsque la procédure de déclassement du nœud de stockage ou de réparation de données EC est en cours d'exécution.
+
+
+
+
+ a| 
+Procédure d'expansion
+ a| 
+Non
+
+Si vous devez ajouter de nouveaux nœuds de stockage dans une extension, exécutez la procédure de rééquilibrage de l'EC après avoir ajouté tous les nouveaux nœuds.
+
+
+
+ a| 
+Procédure de mise à jour
+ a| 
+Non
+
+Si vous devez mettre à niveau le logiciel StorageGRID, effectuez la procédure de mise à niveau avant ou après l'exécution de la procédure de rééquilibrage EC. Si nécessaire, vous pouvez mettre fin à la procédure EC Rebalance pour effectuer une mise à niveau logicielle.
+
+
+
+ a| 
+Procédure de clonage des nœuds d'appliance
+ a| 
+Non
+
+Si vous devez cloner un nœud de stockage de l'appliance, exécutez la procédure de rééquilibrage EC après avoir ajouté le nouveau nœud.
+
+
+
+ a| 
+Procédure de correctif
+ a| 
+Oui.
+
+Vous pouvez appliquer un correctif StorageGRID pendant l'exécution de la procédure EC Rerééquilibrage.
+
+
+
+ a| 
+Autres procédures de maintenance
+ a| 
+Non
+
+Vous devez arrêter la procédure de rééquilibrage EC avant d'exécuter d'autres procédures de maintenance.
+
+|===
+
+
+== La façon dont ce rééquilibrage interagit avec ILM
+
+Pendant l'exécution de la procédure de rééquilibrage EC, évitez d'apporter des modifications au ILM susceptibles de modifier l'emplacement des objets avec code d'effacement existants. Par exemple, ne commencez pas à utiliser une règle ILM dont le profil de code d'effacement est différent. Si vous devez effectuer de telles modifications ILM, vous devez mettre fin à la procédure de rééquilibrage EC.

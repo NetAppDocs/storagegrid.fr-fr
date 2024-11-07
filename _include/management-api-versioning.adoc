@@ -1,0 +1,90 @@
+= Identification des versions d'API prises en charge dans la version actuelle
+:allow-uri-read: 
+
+
+Par exemple, cette URL de demande spécifie la version 4 de l'API.
+
+`https://_hostname_or_ip_address_/api/v4/authorize`
+
+La version majeure de l'API est incrémentée lorsque des modifications sont effectuées qui ne sont _pas compatibles_ avec des versions plus anciennes. La version mineure de l'API est incrémentée lorsque des modifications qui sont _compatibles_ avec des versions plus anciennes sont effectuées. Les modifications compatibles incluent l'ajout de nouveaux noeuds finaux ou de nouvelles propriétés.
+
+L'exemple suivant illustre comment la version de l'API est incrémentée en fonction du type de modifications apportées.
+
+[cols="1a,1a,1a"]
+|===
+| Type de modification de l'API | Ancienne version | Nouvelle version 
+
+
+ a| 
+Compatible avec les versions plus anciennes
+ a| 
+2,1
+ a| 
+2,2
+
+
+
+ a| 
+Non compatible avec les versions plus anciennes
+ a| 
+2,1
+ a| 
+3,0
+
+
+
+ a| 
+3,0
+ a| 
+4,0
+
+|===
+Lorsque vous installez le logiciel StorageGRID pour la première fois, seule la version la plus récente de l'API est activée. Cependant, lorsque vous effectuez une mise à niveau vers une nouvelle version de StorageGRID, vous continuez à accéder à l'ancienne version de l'API pour au moins une version de StorageGRID.
+
+
+NOTE: Vous pouvez configurer les versions prises en charge. Pour plus d'informations, reportez-vous à la section *config* de la documentation de l'API swaggerlink:../admin/using-grid-management-api.html["API de gestion du grid"]. Vous devez désactiver la prise en charge de l'ancienne version après avoir mis à jour tous les clients API pour utiliser la nouvelle version.
+
+Les requêtes obsolètes sont marquées comme obsolètes de l'une des manières suivantes :
+
+* L'en-tête de réponse est « obsolète : vrai »
+* Le corps de la réponse JSON inclut « obsolète » : vrai
+* Un avertissement obsolète est ajouté à nms.log. Par exemple :
++
+[listing]
+----
+Received call to deprecated v2 API at POST "/api/v2/authorize"
+----
+
+
+
+
+== Identification des versions d'API prises en charge dans la version actuelle
+
+Utilisez la `GET /versions` requête API pour renvoyer une liste des versions majeures de l'API prises en charge. Cette demande se trouve dans la section *config* de la documentation de l'API swagger.
+
+[listing]
+----
+GET https://{{IP-Address}}/api/versions
+{
+  "responseTime": "2023-06-27T22:13:50.750Z",
+  "status": "success",
+  "apiVersion": "4.0",
+  "data": [
+    2,
+    3,
+    4
+  ]
+}
+----
+
+
+== Spécifiez une version API pour une demande
+
+Vous pouvez spécifier la version de l'API à l'aide d'un paramètre de chemin d'accès (`/api/v4`) ou d'un en-tête (`Api-Version: 4`. Si vous indiquez les deux valeurs, la valeur de l'en-tête remplace la valeur du chemin d'accès.
+
+[listing]
+----
+curl https://[IP-Address]/api/v4/grid/accounts
+
+curl -H "Api-Version: 4" https://[IP-Address]/api/grid/accounts
+----

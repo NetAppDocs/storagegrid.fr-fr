@@ -1,0 +1,84 @@
+---
+permalink: s3/configuring-tenant-accounts-and-connections.html 
+sidebar: sidebar 
+keywords: aws cli, test s3 client connection 
+summary: 'Vous pouvez utiliser l"interface de ligne de commande d"Amazon Web Services pour tester votre connexion au système et vérifier que vous pouvez lire et écrire des objets.' 
+---
+= Test de la configuration de l'API REST S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser l'interface de ligne de commande d'Amazon Web Services pour tester votre connexion au système et vérifier que vous pouvez lire et écrire des objets.
+
+.Avant de commencer
+* Vous avez téléchargé et installé l'interface de ligne de commande AWS à partir de https://aws.amazon.com/cli["aws.amazon.com/cli"^].
+* Si vous le souhaitezlink:../admin/configuring-load-balancer-endpoints.html["créé un terminal d'équilibrage de charge"], vous avez . Sinon, vous connaissez l'adresse IP du nœud de stockage auquel vous souhaitez vous connecter et le numéro de port à utiliser. Voir link:../admin/summary-ip-addresses-and-ports-for-client-connections.html["Adresses IP et ports pour les connexions client"].
+* Vous avez link:../admin/creating-tenant-account.html["Compte de locataire S3 créé"].
+* Vous vous êtes connecté au locataire et link:../tenant/creating-your-own-s3-access-keys.html["créé une clé d'accès"]à .
+
+
+Pour plus de détails sur ces étapes, reportez-vous link:../admin/configuring-client-connections.html["Configurer les connexions client"]à la section .
+
+.Étapes
+. Configurez les paramètres de l'interface de ligne de commande AWS pour utiliser le compte que vous avez créé dans le système StorageGRID :
++
+.. Entrer en mode de configuration : `aws configure`
+.. Entrez l'ID de clé d'accès du compte que vous avez créé.
+.. Entrez la clé d'accès secrète pour le compte que vous avez créé.
+.. Entrez la région par défaut à utiliser. Par exemple `us-east-1`, .
+.. Entrez le format de sortie par défaut à utiliser ou appuyez sur *entrée* pour sélectionner JSON.
+
+
+. Créer un compartiment.
++
+Cet exemple suppose que vous avez configuré un noeud final d'équilibreur de charge pour utiliser l'adresse IP 10.96.101.17 et le port 10443.
+
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443
+--no-verify-ssl create-bucket --bucket testbucket
+----
++
+Si le compartiment est créé avec succès, l'emplacement du compartiment est renvoyé, comme illustré dans l'exemple suivant :
+
++
+[listing]
+----
+"Location": "/testbucket"
+----
+. Télécharger un objet.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+put-object --bucket testbucket --key s3.pdf --body C:\s3-test\upload\s3.pdf
+----
++
+Si l'objet est téléchargé avec succès, un ETAG est renvoyé, qui est un hachage des données de l'objet.
+
+. Répertorier le contenu du compartiment pour vérifier que l'objet a été téléchargé.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+list-objects --bucket testbucket
+----
+. Supprimez l'objet.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-object --bucket testbucket --key s3.pdf
+----
+. Supprimer le compartiment.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-bucket --bucket testbucket
+----
+

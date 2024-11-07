@@ -1,0 +1,73 @@
+---
+permalink: tenant/troubleshooting-platform-services-endpoint-errors.html 
+sidebar: sidebar 
+keywords: how to troubleshoot platform services endpoint 
+summary: 'Si une erreur se produit lorsque StorageGRID tente de communiquer avec un noeud final de services de plate-forme, un message s"affiche sur le tableau de bord. Sur la page noeuds finaux des services de plate-forme, la colonne dernière erreur indique il y a combien de temps l"erreur s"est produite. Aucune erreur ne s"affiche si les autorisations associées aux informations d"identification d"un noeud final sont incorrectes.' 
+---
+= Dépanner les erreurs de point final des services de plate-forme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si une erreur se produit lorsque StorageGRID tente de communiquer avec un noeud final de services de plate-forme, un message s'affiche sur le tableau de bord. Sur la page noeuds finaux des services de plate-forme, la colonne dernière erreur indique il y a combien de temps l'erreur s'est produite. Aucune erreur ne s'affiche si les autorisations associées aux informations d'identification d'un noeud final sont incorrectes.
+
+
+
+== Déterminez si l'erreur s'est produite
+
+Si des erreurs de noeud final de services de plateforme se sont produites au cours des 7 derniers jours, le tableau de bord du gestionnaire de locataires affiche un message d'alerte. Vous pouvez accéder à la page noeuds finaux des services de plate-forme pour obtenir plus de détails sur l'erreur.
+
+image::../media/tenant_dashboard_endpoint_error.png[message d'erreur de point final sur le tableau de bord]
+
+La même erreur qui s'affiche sur le tableau de bord s'affiche également en haut de la page noeuds finaux Platform Services. Pour afficher un message d'erreur plus détaillé :
+
+.Étapes
+. Dans la liste des noeuds finaux, sélectionnez le noeud final qui contient l'erreur.
+. Sur la page des détails du noeud final, sélectionnez *connexion*. Cet onglet affiche uniquement l'erreur la plus récente pour un noeud final et indique il y a combien de temps l'erreur s'est produite. Des erreurs incluant l'icône X rouge image:../media/icon_alert_red_critical.png["Icône X rouge"]se sont produites au cours des 7 derniers jours.
+
+
+
+
+== Vérifiez si l'erreur est toujours à jour
+
+Certaines erreurs peuvent continuer à s'afficher dans la colonne *dernière erreur*, même après leur résolution. Pour voir si une erreur est active ou pour forcer la suppression d'une erreur résolue du tableau :
+
+.Étapes
+. Sélectionnez l'extrémité.
++
+La page des détails du point final s'affiche.
+
+. Sélectionnez *connexion* > *Tester la connexion*.
+
+
+La sélection de *Test Connection* permet à StorageGRID de valider l'existence du noeud final des services de plate-forme et de l'atteindre avec les informations d'identification actuelles. La connexion au noeud final est validée à partir d'un nœud sur chaque site.
+
+
+
+== Résoudre les erreurs de point final
+
+Vous pouvez utiliser le message *dernière erreur* sur la page des détails du noeud final pour déterminer ce qui est à l'origine de l'erreur. Certaines erreurs peuvent vous obliger à modifier le noeud final pour résoudre le problème. Par exemple, une erreur CloudMirroring peut se produire si StorageGRID ne parvient pas à accéder au compartiment S3 de destination, car il ne dispose pas des autorisations d'accès correctes ou si la clé d'accès a expiré. Le message est "les informations d'identification du noeud final ou l'accès à la destination doivent être mis à jour" et les détails sont "AccessDenied" ou "InvalidAccessKeyId".
+
+Si vous devez modifier le noeud final pour résoudre une erreur, la sélection de *Test et enregistrer les modifications* fait que StorageGRID valide le noeud final mis à jour et confirme qu'il peut être atteint avec les informations d'identification actuelles. La connexion au noeud final est validée à partir d'un nœud sur chaque site.
+
+.Étapes
+. Sélectionnez l'extrémité.
+. Sur la page des détails du noeud final, sélectionnez *Configuration*.
+. Modifiez la configuration de point final selon vos besoins.
+. Sélectionnez *connexion* > *Tester la connexion*.
+
+
+
+
+== Identifiants de point de terminaison avec autorisations insuffisantes
+
+Lorsque StorageGRID valide un terminal de services de plateforme, il confirme que les identifiants du terminal peuvent être utilisés pour contacter la ressource de destination et il vérifie les autorisations de base. Cependant, StorageGRID ne valide pas toutes les autorisations requises pour certaines opérations de services de plateforme. Pour cette raison, si vous recevez une erreur lors de la tentative d'utilisation d'un service de plate-forme (tel que « 403 interdit »), vérifiez les autorisations associées aux informations d'identification du noeud final.
+
+.Informations associées
+* link:../admin/troubleshooting-platform-services.html["Administration de StorageGRID  ; dépannage des services de plate-forme"]
+* link:creating-platform-services-endpoint.html["Créer un terminal de services de plate-forme"]
+* link:testing-connection-for-platform-services-endpoint.html["Tester la connexion pour le point final des services de plate-forme"]
+* link:editing-platform-services-endpoint.html["Modifier le point final des services de plate-forme"]
+

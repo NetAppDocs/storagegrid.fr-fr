@@ -1,0 +1,104 @@
+---
+permalink: tenant/signing-in-to-tenant-manager.html 
+sidebar: sidebar 
+keywords: how to sign in to tenant manager 
+summary: 'Pour accéder au Gestionnaire de locataires, entrez l"URL du locataire dans la barre d"adresse d"un navigateur Web pris en charge.' 
+---
+= Connectez-vous au Gestionnaire de locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous accédez au gestionnaire de locataires en entrant l'URL du locataire dans la barre d'adresse d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+.Avant de commencer
+* Vous disposez de vos identifiants de connexion.
+* Vous disposez d'une URL permettant d'accéder au gestionnaire de locataires, fournie par votre administrateur de grille. L'URL se présente comme l'un de ces exemples :
++
+`\https://FQDN_or_Admin_Node_IP/`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/`
+
++
+`\https://FQDN_or_Admin_Node_IP/?accountId=20-digit-account-id`
+
++
+`\https://FQDN_or_Admin_Node_IP:port/?accountId=20-digit-account-id`
+
++
+L'URL inclut toujours un nom de domaine complet (FQDN), l'adresse IP d'un nœud d'administration ou l'adresse IP virtuelle d'un groupe haute disponibilité de nœuds d'administration. Il peut également inclure un numéro de port, l'ID de compte de locataire à 20 chiffres, ou les deux.
+
+* Si l'URL n'inclut pas l'ID de compte à 20 chiffres du locataire, vous disposez de cet ID de compte.
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Les cookies sont activés dans votre navigateur Web.
+* Vous appartenez à un groupe d'utilisateurs qui a link:tenant-management-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Lancez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+. Dans la barre d'adresse du navigateur, entrez l'URL d'accès au Gestionnaire de locataires.
+. Si vous êtes invité à recevoir une alerte de sécurité, installez le certificat à l'aide de l'assistant d'installation du navigateur.
+. Connectez-vous au Gestionnaire de locataires.
++
+L'écran d'ouverture de session qui s'affiche dépend de l'URL que vous avez saisie et de la configuration de l'authentification unique (SSO) pour StorageGRID.
+
++
+[role="tabbed-block"]
+====
+.Pas d'utilisation de SSO
+--
+Si StorageGRID n'utilise pas SSO, l'un des écrans suivants s'affiche :
+
+** Page de connexion de Grid Manager. Sélectionnez le lien *tenant sign-in*.
++
+image::../media/tenant_login_link.png[Lien de connexion du locataire sur la page de connexion de Grid Manager]
+
+** Page de connexion du Gestionnaire de locataires. Le champ *compte* est peut-être déjà renseigné, comme indiqué ci-dessous.
++
+image::../media/tenant_user_sign_in.png[Page de connexion du gestionnaire de locataires]
+
++
+... Si l'ID de compte à 20 chiffres du locataire ne s'affiche pas, sélectionnez le nom du compte du locataire s'il apparaît dans la liste des comptes récents ou saisissez l'ID du compte.
+... Saisissez votre nom d'utilisateur et votre mot de passe.
+... Sélectionnez *connexion*.
++
+Le tableau de bord du gestionnaire de locataires s'affiche.
+
+... Si vous avez reçu un mot de passe initial de la part d'une autre personne, sélectionnez *_username_* > *change password* pour sécuriser votre compte.
+
+
+
+
+--
+.Utilisation de SSO
+--
+Si StorageGRID utilise SSO, l'un des écrans suivants s'affiche :
+
+** La page SSO de votre organisation. Par exemple :
++
+image::../media/sso_organization_page.gif[Exemple d'organisation page de connexion pour SSO]
+
++
+Entrez vos informations d'identification SSO standard et sélectionnez *se connecter*.
+
+** Page de connexion SSO du Gestionnaire de locataires.
++
+image::../media/sign_in_sso.png[Connexion à un compte de locataire si SSO est activé]
+
++
+... Si l'ID de compte à 20 chiffres du locataire ne s'affiche pas, sélectionnez le nom du compte du locataire s'il apparaît dans la liste des comptes récents ou saisissez l'ID du compte.
+... Sélectionnez *connexion*.
+... Connectez-vous à l'aide de vos identifiants SSO standard sur la page de connexion SSO de votre entreprise.
++
+Le tableau de bord du gestionnaire de locataires s'affiche.
+
+
+
+
+
+--
+====
+

@@ -1,0 +1,106 @@
+---
+permalink: tenant/tenant-management-permissions.html 
+sidebar: sidebar 
+keywords: tenant management permissions 
+summary: 'Avant de créer un groupe de locataires, tenez compte des autorisations que vous souhaitez attribuer à ce groupe. Les autorisations de gestion des locataires déterminent les tâches que les utilisateurs peuvent effectuer à l"aide du Gestionnaire de locataires ou de l"API de gestion des locataires. Un utilisateur peut appartenir à un ou plusieurs groupes. Les autorisations sont cumulatives si un utilisateur appartient à plusieurs groupes.' 
+---
+= Autorisations de gestion des locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de créer un groupe de locataires, tenez compte des autorisations que vous souhaitez attribuer à ce groupe. Les autorisations de gestion des locataires déterminent les tâches que les utilisateurs peuvent effectuer à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires. Un utilisateur peut appartenir à un ou plusieurs groupes. Les autorisations sont cumulatives si un utilisateur appartient à plusieurs groupes.
+
+Pour vous connecter au Gestionnaire de locataires ou utiliser l'API de gestion des locataires, les utilisateurs doivent appartenir à un groupe disposant d'au moins une autorisation. Tous les utilisateurs autorisés à se connecter peuvent effectuer les tâches suivantes :
+
+* Afficher le tableau de bord
+* Modifier son propre mot de passe (pour les utilisateurs locaux)
+
+
+Pour toutes les autorisations, le paramètre mode d'accès du groupe détermine si les utilisateurs peuvent modifier les paramètres et effectuer des opérations ou s'ils ne peuvent afficher que les paramètres et les fonctions associés.
+
+
+NOTE: Si un utilisateur appartient à plusieurs groupes et qu'un groupe est défini sur lecture seule, l'utilisateur dispose d'un accès en lecture seule à tous les paramètres et fonctions sélectionnés.
+
+Vous pouvez attribuer les autorisations suivantes à un groupe. Notez que les locataires S3 et Swift disposent d'autorisations de groupe différentes.
+
+[cols="1a,3a,3a"]
+|===
+| Autorisations | Description | Détails 
+
+
+ a| 
+Accès racine
+ a| 
+Donne un accès complet au gestionnaire des locataires et à l'API de gestion des locataires.
+ a| 
+Les utilisateurs Swift doivent disposer d'une autorisation d'accès racine pour se connecter au compte du locataire.
+
+
+
+ a| 
+Administrateur
+ a| 
+Les locataires Swift uniquement. Fournit un accès complet aux conteneurs et objets Swift pour ce compte de locataire
+ a| 
+Les utilisateurs Swift doivent disposer de l'autorisation d'administrateur Swift pour effectuer toute opération avec l'API REST Swift.
+
+
+
+ a| 
+Gérez vos identifiants S3
+ a| 
+Permet aux utilisateurs de créer et de supprimer leurs propres clés d'accès S3.
+ a| 
+Les utilisateurs qui ne disposent pas de cette autorisation ne voient pas l'option de menu *STORAGE (S3)* > *My S3 Access keys*.
+
+
+
+ a| 
+Afficher tous les compartiments
+ a| 
+*S3 tenants* : permet aux utilisateurs d'afficher toutes les configurations de compartiments et de compartiments.
+
+*Locataires Swift* : permet aux utilisateurs Swift d'afficher tous les conteneurs et configurations de conteneurs à l'aide de l'API de gestion des locataires.
+ a| 
+Les utilisateurs qui ne disposent pas de l'autorisation Afficher tous les compartiments ou gérer tous les compartiments ne voient pas l'option de menu *compartiments*.
+
+Cette autorisation est remplacée par l'autorisation gérer tous les compartiments. Elle n'affecte pas les règles de compartiment S3 ou de groupe utilisées par les clients S3 ou la console S3.
+
+Vous pouvez uniquement attribuer cette autorisation à des groupes Swift à partir de l'API de gestion des locataires. Vous ne pouvez pas attribuer cette autorisation à des groupes Swift à l'aide du Gestionnaire de locataires.
+
+
+
+ a| 
+Gestion de tous les compartiments
+ a| 
+*Locataires S3* : permet aux utilisateurs d'utiliser le gestionnaire de locataires et l'API de gestion des locataires pour créer et supprimer des compartiments S3 et gérer les paramètres de tous les compartiments S3 du compte de locataire, indépendamment des règles de compartiment S3 ou de groupe.
+
+*Locataires Swift* : permet aux utilisateurs Swift de contrôler la cohérence des conteneurs Swift à l'aide de l'API de gestion des locataires.
+ a| 
+Les utilisateurs qui ne disposent pas de l'autorisation Afficher tous les compartiments ou gérer tous les compartiments ne voient pas l'option de menu *compartiments*.
+
+Cette autorisation remplace l'autorisation Afficher tous les compartiments. Elle n'affecte pas les règles de compartiment S3 ou de groupe utilisées par les clients S3 ou la console S3.
+
+Vous pouvez uniquement attribuer cette autorisation à des groupes Swift à partir de l'API de gestion des locataires. Vous ne pouvez pas attribuer cette autorisation à des groupes Swift à l'aide du Gestionnaire de locataires.
+
+
+
+ a| 
+Gestion des terminaux
+ a| 
+Permet aux utilisateurs d'utiliser le gestionnaire de locataires ou l'API de gestion des locataires pour créer ou modifier des terminaux de service de plateforme, qui sont utilisés comme destination pour les services de plateforme StorageGRID.
+ a| 
+Les utilisateurs qui ne disposent pas de cette autorisation ne voient pas l'option de menu *Platform Services Endpoints*.
+
+
+
+ a| 
+Utilisez l'onglet de la console S3
+ a| 
+Associé à l'autorisation Afficher tous les compartiments ou gérer tous les compartiments, permet aux utilisateurs d'afficher et de gérer des objets à partir de l'onglet de la console S3 de la page de détails d'un compartiment.
+ a| 
+
+|===

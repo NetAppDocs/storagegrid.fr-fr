@@ -1,0 +1,36 @@
+---
+permalink: vmware/cpu-and-ram-requirements.html 
+sidebar: sidebar 
+keywords: cpu, ram, cpu cores 
+summary: 'Avant d"installer le logiciel StorageGRID, vérifiez et configurez le matériel afin qu"il soit prêt à prendre en charge le système StorageGRID.' 
+---
+= Configuration requise pour le processeur et la RAM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'installer le logiciel StorageGRID, vérifiez et configurez le matériel afin qu'il soit prêt à prendre en charge le système StorageGRID.
+
+Chaque nœud StorageGRID nécessite au moins :
+
+* Cœurs de processeur : 8 par nœud
+* RAM : dépend de la mémoire RAM totale disponible et de la quantité de logiciels non StorageGRID exécutés sur le système
++
+** Généralement, au moins 24 Go par nœud et 2 à 16 Go de moins que la RAM totale du système
+** Un minimum de 64 Go pour chaque locataire qui aura environ 5,000 compartiments
+
+
+
+
+VMware prend en charge un nœud par machine virtuelle. Assurez-vous que le nœud StorageGRID ne dépasse pas la RAM physique disponible. Chaque machine virtuelle doit être dédiée à l'exécution de StorageGRID.
+
+
+CAUTION: Surveillez régulièrement l'utilisation de votre processeur et de votre mémoire pour vous assurer que ces ressources continuent de s'adapter à votre charge de travail. Par exemple, doubler l'allocation de la RAM et du processeur pour les nœuds de stockage virtuels fournira des ressources similaires à celles des nœuds d'appliance StorageGRID. En outre, si la quantité de métadonnées par nœud dépasse 500 Go, envisagez d'augmenter la mémoire RAM par nœud à au moins 48 Go. Pour plus d'informations sur la gestion du stockage des métadonnées d'objet, l'augmentation du paramètre espace réservé aux métadonnées et la surveillance de l'utilisation du processeur et de la mémoire, reportez-vous aux instructions pour link:../admin/index.html["administration"], link:../monitor/index.html["contrôle"]et link:../upgrade/index.html["mise à niveau"]StorageGRID.
+
+Si le hyperthreading est activé sur les hôtes physiques sous-jacents, vous pouvez fournir 8 cœurs virtuels (4 cœurs physiques) par nœud. Si le hyperthreading n'est pas activé sur les hôtes physiques sous-jacents, vous devez fournir 8 cœurs physiques par nœud.
+
+Si vous utilisez des machines virtuelles en tant qu'hôtes et que vous contrôlez la taille et le nombre de machines virtuelles, nous vous recommandons d'utiliser une seule machine virtuelle pour chaque nœud StorageGRID afin de dimensionner celle-ci en conséquence.
+
+Voir aussi link:storage-and-performance-requirements.html["Les besoins en matière de stockage et de performances"].

@@ -1,0 +1,66 @@
+---
+permalink: maintain/restoring-prometheus-metrics-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, restore metrics, restore prometheus, primary admin node 
+summary: 'Vous pouvez également conserver les metrics historiques gérés par Prometheus sur un nœud d"administration principal défaillant. Les metrics de Prometheus ne peuvent être restaurés que si votre système StorageGRID inclut un autre nœud d"administration.' 
+---
+= Restaurez les metrics Prometheus lors de la récupération du nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez également conserver les metrics historiques gérés par Prometheus sur un nœud d'administration principal défaillant. Les metrics de Prometheus ne peuvent être restaurés que si votre système StorageGRID inclut un autre nœud d'administration.
+
+.Avant de commencer
+* Le nœud d'administration récupéré est installé et en cours d'exécution.
+* Le système StorageGRID comprend au moins deux nœuds d'administration.
+* Vous avez le `Passwords.txt` fichier.
+* Vous avez la phrase secrète pour le provisionnement.
+
+
+.Description de la tâche
+En cas de panne d'un nœud d'administration, les metrics gérés dans la base de données Prometheus sur le nœud d'administration sont perdus. Lorsque vous restaurez le nœud d'administration, un processus d'installation logicielle crée une nouvelle base de données Prometheus. Une fois le nœud d'administration restauré démarré, il enregistre les metrics comme si vous aviez déjà effectué une nouvelle installation du système StorageGRID.
+
+Si vous avez restauré un nœud d'administration principal et que votre système StorageGRID dispose d'un autre nœud d'administration, vous pouvez restaurer les metrics historiques en copiant la base de données Prometheus à partir d'un nœud d'administration non primaire (le _source Admin Node_) vers le nœud d'administration principal récupéré. Si votre système ne dispose que d'un nœud d'administration principal, vous ne pouvez pas restaurer la base de données Prometheus.
+
+
+NOTE: La copie de la base de données Prometheus peut prendre une heure ou plus. Certaines fonctionnalités de Grid Manager ne seront pas disponibles lorsque les services sont arrêtés sur le nœud d'administration source.
+
+.Étapes
+. Connectez-vous au nœud d'administration source :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+. Depuis le nœud d'administration source, arrêtez le service Prometheus : `service prometheus stop`
+. Effectuez les étapes suivantes sur le nœud d'administration restauré :
++
+.. Connectez-vous au nœud d'administration restauré :
++
+... Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+... Entrez la commande suivante pour basculer en root : `su -`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+.. Arrêtez le service Prometheus : `service prometheus stop`
+.. Ajoutez la clé privée SSH à l'agent SSH. Entrer :``ssh-add``
+.. Entrez le mot de passe d'accès SSH indiqué dans le `Passwords.txt` fichier.
+.. Copiez la base de données Prometheus du nœud d'administration source vers le nœud d'administration récupéré : `/usr/local/prometheus/bin/prometheus-clone-db.sh Source_Admin_Node_IP`
+.. Lorsque vous y êtes invité, appuyez sur *Enter* pour confirmer que vous souhaitez détruire la nouvelle base de données Prometheus sur le noeud d'administration restauré.
++
+La base de données Prometheus d'origine et ses données historiques sont copiées sur le nœud d'administration restauré. Une fois l'opération de copie effectuée, le script démarre le nœud d'administration restauré. L'état suivant apparaît :
+
++
+Base de données clonée, démarrage des services
+
+.. Lorsque vous n'avez plus besoin d'un accès sans mot de passe à d'autres serveurs, supprimez la clé privée de l'agent SSH. Entrer :``ssh-add -D``
+
+
+. Redémarrez le service Prometheus sur le nœud d'administration source.`service prometheus start`
+

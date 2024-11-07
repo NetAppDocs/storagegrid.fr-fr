@@ -1,0 +1,31 @@
+---
+permalink: audit/sysd-node-stop.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SYSD, Node Stop 
+summary: 'Lorsqu"un service est arrêté avec élégance, ce message est généré pour indiquer que l"arrêt a été demandé. Généralement, ce message est envoyé uniquement après un redémarrage ultérieur, car la file d"attente des messages d"audit n"est pas effacée avant l"arrêt. Recherchez le message SYST, envoyé au début de la séquence d"arrêt, si le service n"a pas redémarré.' 
+---
+= SYSD : arrêt du nœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsqu'un service est arrêté avec élégance, ce message est généré pour indiquer que l'arrêt a été demandé. Généralement, ce message est envoyé uniquement après un redémarrage ultérieur, car la file d'attente des messages d'audit n'est pas effacée avant l'arrêt. Recherchez le message SYST, envoyé au début de la séquence d'arrêt, si le service n'a pas redémarré.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+RSLT
+ a| 
+Nettoyer l'arrêt
+ a| 
+La nature de l'arrêt :
+
+SUCS : le système s'est arrêté correctement.
+
+|===
+Le message n'indique pas si le serveur hôte est arrêté, seul le service de génération de rapports. Le RSLT d'un SYSD ne peut pas indiquer un arrêt « non planifié », car le message est généré uniquement par des arrêts « corrects ».

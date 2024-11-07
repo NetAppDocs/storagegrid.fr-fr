@@ -1,0 +1,28 @@
+---
+permalink: harden/index.html 
+sidebar: sidebar 
+keywords: Hardening guidelines, system, security 
+summary: 'Le renforcement des systèmes consiste à éliminer autant de risques que possible pour la sécurité d"un système StorageGRID.' 
+---
+= Considérations générales pour le renforcement du système
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le renforcement des systèmes consiste à éliminer autant de risques que possible pour la sécurité d'un système StorageGRID.
+
+Lors de l'installation et de la configuration de StorageGRID, suivez ces instructions pour vous aider à atteindre les objectifs de sécurité prescrits en matière de confidentialité, d'intégrité et de disponibilité.
+
+Vous devez déjà appliquer les meilleures pratiques standard du secteur pour renforcer le système. Par exemple, vous utilisez des mots de passe forts pour StorageGRID, HTTPS au lieu de HTTP et activez l'authentification basée sur certificat, le cas échéant.
+
+StorageGRID suit le https://security.netapp.com/policy/["Politique de gestion des vulnérabilités de NetApp"^] . Toutes les vulnérabilités signalées sont vérifiées et traitées selon le processus de réponse aux incidents de sécurité.
+
+Lors du renforcement d'un système StorageGRID, tenez compte des points suivants :
+
+* *Lequel des trois réseaux StorageGRID* que vous avez mis en œuvre. Tous les systèmes StorageGRID doivent utiliser le réseau Grid, mais vous pouvez également utiliser le réseau Admin, le réseau client ou les deux. Chaque réseau a des considérations de sécurité différentes.
+* *Le type de plates-formes* que vous utilisez pour les nœuds individuels de votre système StorageGRID. Les nœuds StorageGRID peuvent être déployés sur des machines virtuelles VMware, au sein d'un moteur de conteneurs sur des hôtes Linux, ou en tant qu'appliances matérielles dédiées. Chaque type de plateforme dispose de son propre ensemble de meilleures pratiques en matière de renforcement.
+* *Comment les comptes de locataires sont approuvés*. Si vous êtes un fournisseur de services avec des comptes de locataires non fiables, vous vous interrogez différemment que si vous utilisez uniquement des locataires internes fiables.
+* *Les exigences et conventions de sécurité* que votre organisation suit. Vous devrez peut-être vous conformer à des exigences réglementaires ou d'entreprise spécifiques.
+

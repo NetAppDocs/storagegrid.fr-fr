@@ -1,0 +1,100 @@
+---
+permalink: audit/client-write-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, client write, OVWR, SDEL, SPOS, SPUT, SUPD, WDEL, WPUT, S3 
+summary: 'Les messages d"audit d"écriture du client sont consignés lorsqu"une application client S3 demande de créer ou de modifier un objet.' 
+---
+= Écrire des messages d'audit client
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit d'écriture du client sont consignés lorsqu'une application client S3 demande de créer ou de modifier un objet.
+
+[cols="1a,3a,1a,1a"]
+|===
+| Code | Description | Utilisé par | Voir 
+
+
+ a| 
+OVWR
+ a| 
+Remplacement d'objet : consigne une transaction afin de remplacer un objet par un autre.
+ a| 
+Clients S3 et Swift
+ a| 
+link:ovwr-object-overwrite.html["OVWR : remplacement d'objet"]
+
+
+
+ a| 
+SDEL
+ a| 
+SUPPRESSION S3 : journal une transaction réussie pour supprimer un objet ou un compartiment.
+
+*Remarque :* si la transaction fonctionne sur une sous-ressource, le message d'audit inclura le champ S3SR.
+ a| 
+Client S3
+ a| 
+link:sdel-s3-delete.html["SDEL : SUPPRESSION S3"]
+
+
+
+ a| 
+SPR
+ a| 
+POST S3 : consigne une transaction réussie pour restaurer un objet à partir du stockage AWS Glacier vers un pool de stockage cloud.
+ a| 
+Client S3
+ a| 
+link:spos-s3-post.html["SPO : BORNE S3"]
+
+
+
+ a| 
+SPUT
+ a| 
+S3 PUT : enregistre la réussite d'une transaction pour créer un nouvel objet ou un compartiment.
+
+*Remarque :* si la transaction fonctionne sur une sous-ressource, le message d'audit inclura le champ S3SR.
+ a| 
+Client S3
+ a| 
+link:sput-s3-put.html["SPUT : PUT S3"]
+
+
+
+ a| 
+SUPD
+ a| 
+Métadonnées S3 mises à jour : enregistre une transaction réussie pour mettre à jour les métadonnées d'un objet ou d'un compartiment.
+ a| 
+Client S3
+ a| 
+link:supd-s3-metadata-updated.html["SUPD : métadonnées S3 mises à jour"]
+
+
+
+ a| 
+WDEL
+ a| 
+SUPPRESSION Swift : enregistre une transaction réussie pour supprimer un objet ou un conteneur.
+ a| 
+Client Swift
+ a| 
+link:wdel-swift-delete.html["WDEL : SUPPRESSION rapide"]
+
+
+
+ a| 
+WPUT
+ a| 
+SWIFT PUT : consigne une transaction réussie pour créer un nouvel objet ou conteneur.
+ a| 
+Client Swift
+ a| 
+link:wput-swift-put.html["WPUT : PUT SWIFT"]
+
+|===

@@ -1,0 +1,122 @@
+---
+permalink: monitor/using-snmp-monitoring.html 
+sidebar: sidebar 
+keywords: snmp, monitoring 
+summary: 'Si vous souhaitez surveiller StorageGRID à l"aide du protocole simple de gestion de réseau \(SNMP\), vous devez configurer l"agent SNMP inclus avec StorageGRID.' 
+---
+= Utiliser la surveillance SNMP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous souhaitez surveiller StorageGRID à l'aide du protocole SNMP (simple Network Management Protocol), vous devez configurer l'agent SNMP inclus avec StorageGRID.
+
+* link:configuring-snmp-agent.html["Configurez l'agent SNMP"]
+* link:updating-snmp-agent.html["Mettez à jour l'agent SNMP"]
+
+
+
+
+== Capacités
+
+Chaque nœud StorageGRID exécute un agent SNMP, ou démon, qui fournit une MIB. La MIB StorageGRID contient des définitions de tableau et de notification pour les alertes. La base MIB contient également des informations de description du système, telles que la plateforme et le numéro de modèle pour chaque nœud. Chaque nœud StorageGRID supporte également un sous-ensemble d'objets MIB-II.
+
+
+NOTE: Vérifiez link:access-snmp-mib.html["Accéder aux fichiers MIB"] si vous souhaitez télécharger les fichiers MIB sur vos nœuds grid.
+
+Au départ, le protocole SNMP est désactivé sur tous les nœuds. Lorsque vous configurez l'agent SNMP, tous les nœuds StorageGRID reçoivent la même configuration.
+
+L'agent SNMP StorageGRID prend en charge les trois versions du protocole SNMP. Il fournit un accès MIB en lecture seule pour les requêtes et il peut envoyer deux types de notifications événementielle à un système de gestion :
+
+Recouvrements:: Les interruptions sont des notifications envoyées par l'agent SNMP qui ne nécessitent pas d'accusé de réception par le système de gestion. Les interruptions servent à signaler au système de gestion qu'une alerte s'est produite au sein de StorageGRID, par exemple.
++
+--
+Les traps sont pris en charge dans les trois versions de SNMP.
+
+--
+Informe:: Les informations sont similaires aux pièges, mais elles nécessitent une reconnaissance par le système de gestion. Si l'agent SNMP ne reçoit pas d'accusé de réception dans un certain délai, il renvoie l'information jusqu'à ce qu'un accusé de réception soit reçu ou que la valeur de relance maximale ait été atteinte.
++
+--
+Les informations sont prises en charge dans SNMPv2c et SNMPv3.
+
+--
+
+
+Les notifications d'interruption et d'information sont envoyées dans les cas suivants :
+
+* Une alerte par défaut ou personnalisée est déclenchée à tout niveau de gravité. Pour supprimer les notifications SNMP pour une alerte, vous devez link:silencing-alert-notifications.html["configurer un silence"] pour l'alerte. Les notifications d'alerte sont envoyées par link:../primer/what-admin-node-is.html["Nœud d'administration de l'expéditeur préféré"].
++
+Chaque alerte est associée à l'un des trois types de déroutement en fonction du niveau de gravité de l'alerte : activeMinorAlert, activeMajorAlert et activeCriticalAlert. Pour obtenir la liste des alertes pouvant déclencher ces interruptions, reportez-vous à la link:alerts-reference.html["Référence des alertes"].
+
+
+
+
+
+== Prise en charge de la version SNMP
+
+Le tableau fournit un résumé détaillé des éléments pris en charge pour chaque version de SNMP.
+
+[cols="1a,2a,2a,2a"]
+|===
+|  | SNMPv1 | SNMPv2c | SNMPv3 
+
+
+ a| 
+Requêtes
+
+(OBTENIR et GETNEXT)
+ a| 
+Requêtes MIB en lecture seule
+ a| 
+Requêtes MIB en lecture seule
+ a| 
+Requêtes MIB en lecture seule
+
+
+
+ a| 
+Authentification par requête
+ a| 
+Chaîne de communauté
+ a| 
+Chaîne de communauté
+ a| 
+Utilisateur USM (User Security Model)
+
+
+
+ a| 
+Notifications
+
+(PIÈGE et INFORMATION)
+ a| 
+Traps uniquement
+ a| 
+Pièges et information
+ a| 
+Pièges et information
+
+
+
+ a| 
+Authentification des notifications
+ a| 
+Communauté d'interruptions par défaut ou chaîne de communauté personnalisée pour chaque destination d'interruption
+ a| 
+Communauté d'interruptions par défaut ou chaîne de communauté personnalisée pour chaque destination d'interruption
+ a| 
+Utilisateur USM pour chaque destination d'interruption
+
+|===
+
+
+== Limites
+
+* StorageGRID supporte l'accès MIB en lecture seule. L'accès en lecture/écriture n'est pas pris en charge.
+* Tous les nœuds de la grille reçoivent la même configuration.
+* SNMPv3 : StorageGRID ne prend pas en charge le mode support transport (TSM).
+* SNMPv3 : le seul protocole d'authentification pris en charge est SHA (HMAC-SHA-96).
+* SNMPv3 : le seul protocole de confidentialité pris en charge est AES.
+

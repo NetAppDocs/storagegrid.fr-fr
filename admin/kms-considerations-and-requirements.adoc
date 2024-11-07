@@ -1,0 +1,101 @@
+---
+permalink: admin/kms-considerations-and-requirements.html 
+sidebar: sidebar 
+keywords: Key Management Interoperability Protocol, kmip version, kms requirements, use key management server 
+summary: 'Avant de configurer un serveur de gestion des clés externe \(KMS\), vous devez comprendre les considérations et les exigences requises.' 
+---
+= Considérations et conditions requises pour l'utilisation d'un serveur de gestion des clés
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de configurer un serveur de gestion des clés externe (KMS), vous devez connaître les considérations et les exigences requises.
+
+
+
+== Quelle version de KMIP est prise en charge ?
+
+StorageGRID prend en charge KMIP version 1.4.
+
+http://docs.oasis-open.org/kmip/spec/v1.4/os/kmip-spec-v1.4-os.html["Spécification du protocole d'interopérabilité de gestion des clés version 1.4"^]
+
+
+
+== Quelles sont les considérations relatives au réseau ?
+
+Les paramètres de pare-feu réseau doivent permettre à chaque nœud de l'appliance de communiquer via le port utilisé pour les communications KMIP (Key Management Interoperability Protocol). Le port KMIP par défaut est 5696.
+
+Vous devez vous assurer que chaque nœud d'appliance qui utilise le chiffrement de nœud dispose d'un accès réseau au cluster KMS ou KMS que vous avez configuré pour le site.
+
+
+
+== Quelles sont les versions de TLS prises en charge ?
+
+Les communications entre les nœuds d'appliance et le KMS configuré utilisent des connexions TLS sécurisées. StorageGRID peut prendre en charge le protocole TLS 1.2 ou TLS 1.3 lorsqu'il établit des connexions KMIP à un cluster KMS ou KMS, en fonction des éléments pris en charge par KMS et que link:manage-tls-ssh-policy.html["Règles TLS et SSH"] vous utilisez.
+
+StorageGRID négocie le protocole et le chiffrement (TLS 1.2) ou la suite de chiffrement (TLS 1.3) avec le KMS lors de la connexion. Pour connaître les versions de protocole et les suites de chiffrement/chiffrement disponibles, consultez la `tlsOutbound` section de la stratégie TLS et SSH active de la grille (*CONFIGURATION* > *sécurité* *Paramètres de sécurité*).
+
+
+
+== Quels dispositifs sont pris en charge ?
+
+Vous pouvez utiliser un serveur de gestion des clés (KMS) pour gérer les clés de cryptage de n'importe quelle appliance StorageGRID de la grille dont le paramètre *Node Encryption* est activé. Ce paramètre ne peut être activé que lors de l'étape de configuration matérielle de l'installation de l'appliance à l'aide du programme d'installation de l'appliance StorageGRID.
+
+
+NOTE: Le chiffrement des nœuds ne peut pas être activé après l'ajout d'une appliance à la grille. De plus, vous ne pouvez pas utiliser la gestion externe des clés pour les appliances pour lesquelles le chiffrement des nœuds n'est pas activé.
+
+Vous pouvez utiliser le KMS configuré pour les appliances et les nœuds StorageGRID.
+
+Vous ne pouvez pas utiliser le KMS configuré pour les nœuds logiciels (non liés à l'appliance) :
+
+* Nœuds déployés en tant que machines virtuelles
+* Nœuds déployés dans les moteurs de mise en conteneurs sur les hôtes Linux
+
+
+Les nœuds déployés sur ces autres plateformes peuvent utiliser le cryptage en dehors de StorageGRID au niveau du datastore ou du disque.
+
+
+
+== Quand dois-je configurer les serveurs de gestion des clés ?
+
+Dans le cadre d'une nouvelle installation, vous devez généralement configurer un ou plusieurs serveurs de gestion des clés dans Grid Manager avant de créer des locataires. Cette commande garantit que les nœuds sont protégés avant que des données d'objet ne soient stockées sur ces nœuds.
+
+Vous pouvez configurer les serveurs de gestion des clés dans Grid Manager avant ou après l'installation des nœuds de l'appliance.
+
+
+
+== Combien de serveurs de gestion des clés ai-je besoin ?
+
+Vous pouvez configurer un ou plusieurs serveurs de gestion externe des clés de chiffrement pour les nœuds d'appliance de votre système StorageGRID. Chaque KMS fournit une clé de chiffrement unique aux nœuds d'appliance StorageGRID sur un seul site ou dans un groupe de sites.
+
+StorageGRID prend en charge l'utilisation des clusters KMS. Chaque cluster KMS contient plusieurs serveurs de gestion des clés répliqués qui partagent les paramètres de configuration et les clés de chiffrement. L'utilisation de clusters KMS pour la gestion des clés est recommandée, car il améliore les fonctionnalités de basculement d'une configuration haute disponibilité.
+
+Supposons par exemple que votre système StorageGRID possède trois sites de data Center. Vous pouvez configurer un cluster KMS pour que tous les nœuds d'appliance soient essentiels dans le Data Center 1 et un second cluster KMS pour que ces derniers soient essentiels pour que tous les nœuds d'appliance soient disponibles sur les autres sites. Lorsque vous ajoutez le second cluster KMS, vous pouvez configurer un KMS par défaut pour Data Center 2 et Data Center 3.
+
+Notez que vous ne pouvez pas utiliser de KMS pour les nœuds non liés à l'appliance ou pour les nœuds d'appliance sur lesquels le paramètre *Node Encryption* n'a pas été activé lors de l'installation.
+
+image::../media/kms_per_site.png[KILOMÈTRES PAR site]
+
+
+
+== Que se passe-t-il lorsqu'une clé est tournée ?
+
+En tant que pratique exemplaire en matière de sécurité, vous devez régulièrement link:kms-managing.html#rotate-key["faites pivoter la clé de cryptage"] utiliser chaque KMS configuré.
+
+Lorsque la nouvelle version de clé est disponible :
+
+* Elle est automatiquement distribuée aux nœuds d'appliance chiffrés sur le site ou les sites associés au KMS. La distribution doit se produire dans une heure après la rotation de la clé.
+* Si le nœud d'appliance chiffré est hors ligne lorsque la nouvelle version de clé est distribuée, le nœud reçoit la nouvelle clé dès le redémarrage.
+* Si la nouvelle version de clé ne peut pas être utilisée pour chiffrer les volumes de l'appliance pour une raison quelconque, l'alerte *Echec de la rotation de la clé de chiffrement KMS* est déclenchée pour le nœud de l'appliance. Vous devrez peut-être contacter le support technique pour obtenir de l'aide afin de résoudre cette alerte.
+
+
+
+
+== Puis-je réutiliser un nœud d'appliance après chiffrement ?
+
+Si vous devez installer une appliance chiffrée dans un autre système StorageGRID, vous devez d'abord désactiver le nœud de grille pour déplacer les données d'objet vers un autre nœud. Vous pouvez ensuite utiliser le programme d'installation de l'appliance StorageGRID pour https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/monitoring-node-encryption-in-maintenance-mode.html["Effacez la configuration KMS"^]. L'effacement de la configuration KMS désactive le paramètre *Node Encryption* et supprime l'association entre le nœud de l'appliance et la configuration KMS pour le site StorageGRID.
+
+
+NOTE: Étant donnée l'accès à la clé de chiffrement KMS, toutes les données conservées sur l'appliance ne sont plus accessibles et sont verrouillées en permanence.

@@ -1,0 +1,30 @@
+---
+permalink: ilm/removing-storage-pool.html 
+sidebar: sidebar 
+keywords: remove storage pool 
+summary: 'Vous pouvez supprimer un pool de stockage qui n"est pas utilisé.' 
+---
+= Retirez un pool de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez supprimer un pool de stockage qui n'est pas utilisé.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["autorisations d'accès requises"].
+
+
+.Étapes
+. Sélectionnez *ILM* > *pools de stockage*.
+. Consultez la colonne utilisation d'ILM du tableau pour déterminer si vous pouvez supprimer le pool de stockage.
++
+Vous ne pouvez pas supprimer un pool de stockage s'il est utilisé dans une règle ILM ou dans un profil de code d'effacement. Si nécessaire, sélectionnez *_Storage pool name_* > *ILM usage* pour déterminer où le pool de stockage est utilisé.
+
+. Si le pool de stockage que vous souhaitez supprimer n'est pas utilisé, cochez la case.
+. Sélectionnez *Supprimer*.
+. Sélectionnez *OK*.
+

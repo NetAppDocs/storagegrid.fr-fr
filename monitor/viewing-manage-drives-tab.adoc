@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-manage-drives-tab.html 
+sidebar: sidebar 
+keywords: Manage drives tab, hardware diagnostics, fail drive, logically replace drive 
+summary: 'L"onglet gérer les disques vous permet d"accéder aux détails et d"effectuer des tâches de dépannage et de maintenance sur les disques des appliances qui prennent en charge cette fonctionnalité.' 
+---
+= Affichez l'onglet gérer les lecteurs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'onglet gérer les disques vous permet d'accéder aux détails et d'effectuer des tâches de dépannage et de maintenance sur les disques des appliances qui prennent en charge cette fonctionnalité.
+
+L'onglet gérer les lecteurs vous permet d'effectuer les opérations suivantes :
+
+* Afficher la disposition des disques de stockage des données du système
+* Affichez un tableau répertoriant l'emplacement, le type, l'état, la version du micrologiciel et le numéro de série de chaque lecteur
+* Exécutez les fonctions de dépannage et de maintenance sur chaque disque
+
+
+Pour accéder à l'onglet gérer les lecteurs, vous devez disposer du link:../admin/admin-group-permissions.html["Administrateur de l'appliance de stockage ou autorisation d'accès racine"].
+
+Pour plus d'informations sur l'utilisation de l'onglet gérer les lecteurs, reportez-vous à la section https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/manage-drives-tab.html["Utilisez l'onglet gérer les lecteurs"^].

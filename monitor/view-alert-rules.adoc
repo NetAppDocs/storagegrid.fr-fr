@@ -1,0 +1,80 @@
+---
+permalink: monitor/view-alert-rules.html 
+sidebar: sidebar 
+keywords: how to manage alert rules 
+summary: 'Les règles d"alerte définissent les conditions qui déclenchent des alertes spécifiques. StorageGRID inclut un ensemble de règles d"alerte par défaut que vous pouvez utiliser en l"état ou en modifier, ou vous pouvez créer des règles d"alerte personnalisées.' 
+---
+= Afficher les règles d'alerte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les règles d'alerte définissent les conditions qui déclenchent link:alerts-reference.html["alertes spécifiques"]. StorageGRID inclut un ensemble de règles d'alerte par défaut que vous pouvez utiliser en l'état ou en modifier, ou vous pouvez créer des règles d'alerte personnalisées.
+
+Vous pouvez afficher la liste de toutes les règles d'alerte par défaut et personnalisées pour savoir quelles conditions déclenchent chaque alerte et pour déterminer si les alertes sont désactivées.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+* Vous avez éventuellement regardé la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1["Vidéo : présentation des alertes"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1]
+image::../media/video-screenshot-alert-overview-118.png[Vidéo : présentation des alertes]
+
+
+
+.Étapes
+. Sélectionnez *ALERTES* > *règles*.
++
+La page règles d'alerte s'affiche.
+
++
+image::../media/alert_rules_page.png[Page règles d'alerte]
+
+. Vérifiez les informations du tableau des règles d'alerte :
++
+[cols="1a,3a"]
+|===
+| En-tête de colonne | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom et description uniques de la règle d'alerte. Les règles d'alerte personnalisées sont répertoriées en premier, suivies des règles d'alerte par défaut. Le nom de la règle d'alerte est l'objet des notifications par e-mail.
+
+
+
+ a| 
+Conditions
+ a| 
+Expressions Prometheus qui déterminent le moment où cette alerte est déclenchée. Une alerte peut être déclenchée à un ou plusieurs des niveaux de sévérité suivants, mais une condition pour chaque gravité n'est pas requise.
+
+** *Critique* image:../media/icon_alert_red_critical.png["Icône alerte rouge critique"]: il existe une condition anormale qui a arrêté les opérations normales d'un noeud ou d'un service StorageGRID. Vous devez immédiatement résoudre le problème sous-jacent. Une interruption du service et une perte de données peuvent se produire si le problème n'est pas résolu.
+** *Majeur* image:../media/icon_alert_orange_major.png["Icône alerte Orange majeur"]: il existe une condition anormale qui affecte les opérations en cours ou qui approche du seuil pour une alerte critique. Vous devez examiner les alertes majeures et résoudre tous les problèmes sous-jacents pour vérifier que leur condition anormale n'arrête pas le fonctionnement normal d'un nœud ou d'un service StorageGRID.
+** *Mineur* image:../media/icon_alert_yellow_minor.png["Icône alerte jaune mineure"]: le système fonctionne normalement, mais il existe une condition anormale qui pourrait affecter la capacité de fonctionnement du système s'il continue. Vous devez surveiller et résoudre les alertes mineures qui ne sont pas claires par elles-mêmes pour vous assurer qu'elles n'entraînent pas de problème plus grave.
+
+
+
+
+ a| 
+Type
+ a| 
+Type de règle d'alerte :
+
+** *Default* : règle d'alerte fournie avec le système. Vous pouvez désactiver une règle d'alerte par défaut ou modifier les conditions et la durée d'une règle d'alerte par défaut. Vous ne pouvez pas supprimer une règle d'alerte par défaut.
+** *Par défaut** : règle d'alerte par défaut qui inclut une condition ou une durée modifiée. Si nécessaire, vous pouvez facilement rétablir une condition modifiée par défaut.
+** *Custom* : une règle d'alerte que vous avez créée. Vous pouvez désactiver, modifier et supprimer des règles d'alerte personnalisées.
+
+
+
+
+ a| 
+État
+ a| 
+Si cette règle d'alerte est actuellement activée ou désactivée. Les conditions des règles d'alerte désactivées ne sont pas évaluées et aucune alerte n'est déclenchée.
+
+|===
+

@@ -1,0 +1,53 @@
+---
+permalink: tenant/configuring-platform-services-endpoints.html 
+sidebar: sidebar 
+keywords: how to configure platform services endpoint 
+summary: 'Avant de pouvoir configurer un service de plateforme pour un compartiment, vous devez configurer au moins un point de terminaison afin qu"il soit la destination du service de plateforme.' 
+---
+= Configurer les terminaux des services de plateforme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de pouvoir configurer un service de plateforme pour un compartiment, vous devez configurer au moins un point de terminaison afin qu'il soit la destination du service de plateforme.
+
+L'accès aux services de plateforme est activé par locataire par administrateur StorageGRID. Pour créer ou utiliser un noeud final de services de plate-forme, vous devez être un utilisateur locataire disposant de l'autorisation gérer les noeuds finaux ou accès racine, dans une grille dont la mise en réseau a été configurée pour permettre aux noeuds de stockage d'accéder aux ressources de noeuds finaux externes. Pour un seul locataire, vous pouvez configurer un maximum de 500 terminaux de services de plateforme. Pour plus d'informations, contactez votre administrateur StorageGRID.
+
+
+
+== Qu'est-ce qu'un terminal de services de plateforme ?
+
+Un terminal de services de plateforme spécifie les informations dont StorageGRID a besoin pour accéder à la destination externe.
+
+Par exemple, si vous souhaitez répliquer des objets à partir d'un compartiment StorageGRID vers un compartiment Amazon S3, vous créez un terminal des services de plateforme qui inclut les informations et les identifiants dont StorageGRID a besoin pour accéder au compartiment de destination sur Amazon.
+
+Chaque type de service de plate-forme nécessite son propre terminal, vous devez donc configurer au moins un point final pour chaque service de plate-forme que vous prévoyez d'utiliser. Après avoir défini un noeud final de services de plate-forme, vous utilisez l'URN du noeud final comme destination dans le XML de configuration utilisé pour activer le service.
+
+Vous pouvez utiliser le même point final que la destination pour plusieurs compartiments source. Par exemple, vous pouvez configurer plusieurs compartiments source pour envoyer les métadonnées d'objet vers le même point de terminaison d'intégration de la recherche, afin d'effectuer des recherches dans plusieurs compartiments. Vous pouvez également configurer un compartiment source pour qu'il utilise plusieurs terminaux comme cible, ce qui vous permet d'envoyer des notifications sur la création d'objets à une rubrique Amazon simple notification Service (Amazon SNS) et des notifications sur la suppression d'objets à une autre rubrique Amazon SNS.
+
+
+
+== Terminaux pour la réplication CloudMirror
+
+StorageGRID prend en charge les terminaux de réplication qui représentent des compartiments S3. Ces compartiments peuvent être hébergés sur Amazon Web Services, sur le même déploiement StorageGRID, sur un autre service ou sur un autre déploiement à distance.
+
+
+
+== Terminaux pour les notifications
+
+StorageGRID prend en charge les terminaux Amazon SNS et Kafka. Les terminaux SQS (simple Queue Service) ou Lambda d'AWS ne sont pas pris en charge.
+
+Pour les terminaux Kafka, le protocole TLS mutuel n'est pas pris en charge. Par conséquent, si vous avez `ssl.client.auth` défini sur `required` dans la configuration de votre courtier Kafka, cela peut entraîner des problèmes de configuration du terminal Kafka.
+
+
+
+== Points d'extrémité du service d'intégration de la recherche
+
+StorageGRID prend en charge des terminaux d'intégration de recherche représentant les clusters Elasticsearch. Ces clusters Elasticsearch peuvent se trouver dans un data Center local ou être hébergés dans un cloud AWS ou ailleurs.
+
+Le point final de l'intégration de la recherche fait référence à un index et à un type Elasticsearch spécifiques. Vous devez créer l'index dans Elasticsearch avant la création du noeud final dans StorageGRID, sinon la création du noeud final échouera. Il n'est pas nécessaire de créer le type avant de créer le noeud final. StorageGRID crée le type si nécessaire lors de l'envoi de métadonnées d'objet au terminal.
+
+.Informations associées
+link:../admin/index.html["Administrer StorageGRID"]

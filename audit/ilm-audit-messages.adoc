@@ -1,0 +1,46 @@
+---
+permalink: audit/ilm-audit-messages.html 
+sidebar: sidebar 
+keywords: audit messages, ILM, IDEL, LKCU, ORLM 
+summary: 'Les messages d"audit appartenant à la catégorie d"audit ILM sont utilisés pour les événements liés aux opérations de cycle de vie des informations.' 
+---
+= Messages d'audit ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit appartenant à la catégorie d'audit ILM sont utilisés pour les événements liés aux opérations de gestion du cycle de vie des informations (ILM).
+
+[cols="1a,3a,1a"]
+|===
+| Code | Titre et description du message | Voir 
+
+
+ a| 
+IDEL
+ a| 
+Suppression initiée de l'ILM : ce message d'audit est généré lorsque l'ILM démarre le processus de suppression d'un objet.
+ a| 
+link:idel-ilm-initiated-delete.html["IDEL : suppression initiée ILM"]
+
+
+
+ a| 
+LKCU
+ a| 
+Nettoyage d'objet écrasé. Ce message d'audit est généré lorsqu'un objet écrasé est automatiquement supprimé pour libérer de l'espace de stockage.
+ a| 
+link:lkcu-overwritten-object-cleanup.html["LKCU : nettoyage d'objet écrasé"]
+
+
+
+ a| 
+ORLM
+ a| 
+Règles objet respectées : ce message d'audit est généré lorsque les données objet sont stockées comme spécifié par les règles ILM.
+ a| 
+link:orlm-object-rules-met.html["ORLM : règles d'objet respectées"]
+
+|===

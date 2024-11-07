@@ -1,0 +1,136 @@
+---
+permalink: tenant/enabling-or-disabling-last-access-time-updates.html 
+sidebar: sidebar 
+keywords: how to enable or disable last access time updates 
+summary: 'Lorsque les administrateurs du grid créent les règles de gestion du cycle de vie des informations \(ILM\) pour un système StorageGRID, ils peuvent éventuellement spécifier l"heure d"accès du dernier objet afin de déterminer si le déplacement de cet objet vers un autre emplacement de stockage est requis. Si vous utilisez un locataire S3, vous pouvez activer ces règles en activant les mises à jour de l"heure du dernier accès pour les objets dans un compartiment S3.' 
+---
+= Activez ou désactivez les mises à jour de l'heure du dernier accès
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les administrateurs du grid créent les règles de gestion du cycle de vie des informations d'un système StorageGRID. Ils ont la possibilité de spécifier la date d'accès de dernier objet afin de déterminer si celui-ci doit être déplacé vers un autre emplacement de stockage. Si vous utilisez un locataire S3, vous pouvez activer ces règles en activant les mises à jour de l'heure du dernier accès pour les objets dans un compartiment S3.
+
+Ces instructions s'appliquent uniquement aux systèmes StorageGRID qui incluent au moins une règle ILM utilisant l'option *Last Access Time* comme filtre avancé ou comme heure de référence. Vous pouvez ignorer ces instructions si votre système StorageGRID n'inclut pas une telle règle. Voir link:../ilm/using-last-access-time-in-ilm-rules.html["Utiliser l'heure du dernier accès dans les règles ILM"] pour plus de détails.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+
+
+.Description de la tâche
+*Last Access Time* est l'une des options disponibles pour l'instruction de placement *Reference Time* pour une règle ILM. La définition de l'heure de référence d'une règle sur heure du dernier accès permet aux administrateurs de la grille de spécifier que les objets doivent être placés dans certains emplacements de stockage en fonction du moment où ces objets ont été récupérés (lus ou affichés) pour la dernière fois.
+
+Par exemple, pour s'assurer que les objets récemment affichés restent dans un stockage plus rapide, un administrateur du grid peut créer une règle ILM spécifiant ce qui suit :
+
+* Les objets récupérés au cours du mois dernier doivent rester sur les nœuds de stockage locaux.
+* Les objets qui n'ont pas été récupérés au cours du dernier mois doivent être déplacés vers un emplacement hors site.
+
+
+Par défaut, les mises à jour de l'heure du dernier accès sont désactivées. Si votre système StorageGRID inclut une règle ILM qui utilise l'option *Last Access Time* et que vous souhaitez que cette option s'applique aux objets de ce compartiment, vous devez activer les mises à jour de l'heure du dernier accès pour les compartiments S3 spécifiés dans cette règle.
+
+
+CAUTION: La mise à jour du dernier accès lors de l'extraction d'un objet peut réduire les performances du StorageGRID, en particulier pour les petits objets.
+
+Un impact sur les performances se produit lors des mises à jour des temps de dernier accès, car StorageGRID doit effectuer ces étapes supplémentaires chaque fois que les objets sont récupérés :
+
+* Mettre à jour les objets avec de nouveaux horodatages
+* Ajoutez ces objets à la file d'attente ILM pour une réévaluation des règles et règles ILM actuelles
+
+
+Le tableau récapitule le comportement appliqué à tous les objets du compartiment lorsque l'heure du dernier accès est désactivée ou activée.
+
+[cols="1a,1a,1a,1a,1a"]
+|===
+
+
+.2+| Type de demande 2+| Comportement si l'heure du dernier accès est désactivée (par défaut) 2+| Comportement si l'heure du dernier accès est activée 
+
+
+| Heure du dernier accès mise à jour ? | Objet ajouté à la file d'attente d'évaluation ILM ? | Heure du dernier accès mise à jour ? | Objet ajouté à la file d'attente d'évaluation ILM ? 
+
+
+ a| 
+Demande de récupération d'un objet, de sa liste de contrôle d'accès ou de ses métadonnées
+ a| 
+Non
+ a| 
+Non
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+ a| 
+Demande de mise à jour des métadonnées d'un objet
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+ a| 
+Demande de liste d'objets ou de versions d'objets
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+ a| 
+Non
+
+
+
+ a| 
+Demander de copier un objet d'un compartiment à un autre
+ a| 
+* Non, pour la copie source
+* Oui, pour la copie de destination
+
+ a| 
+* Non, pour la copie source
+* Oui, pour la copie de destination
+
+ a| 
+* Oui, pour la copie source
+* Oui, pour la copie de destination
+
+ a| 
+* Oui, pour la copie source
+* Oui, pour la copie de destination
+
+
+
+
+ a| 
+Demander de terminer un téléchargement partitionné
+ a| 
+Oui, pour l'objet assemblé
+ a| 
+Oui, pour l'objet assemblé
+ a| 
+Oui, pour l'objet assemblé
+ a| 
+Oui, pour l'objet assemblé
+
+|===
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans la table.
++
+La page des détails du compartiment s'affiche.
+
+. Dans l'onglet *Bucket options*, sélectionnez l'accordéon *Last Access Time Updates*.
+. Activer ou désactiver les mises à jour des heures du dernier accès.
+. Sélectionnez *Enregistrer les modifications*.
+

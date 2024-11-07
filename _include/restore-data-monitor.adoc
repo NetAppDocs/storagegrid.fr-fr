@@ -1,0 +1,78 @@
+= 
+:allow-uri-read: 
+
+
+[role="tabbed-block"]
+====
+.Les données répliquées
+--
+* Pour obtenir une estimation du pourcentage d'achèvement de la réparation répliquée, ajoutez l' `show-replicated-repair-status`option à la commande repair-data.
++
+`repair-data show-replicated-repair-status`
+
+* Pour déterminer si les réparations sont terminées :
++
+.. Sélectionnez *NŒUDS* > *_nœud de stockage en cours de réparation_* > *ILM*.
+.. Vérifiez les attributs dans la section évaluation. Lorsque les réparations sont terminées, l'attribut *attente - tous* indique 0 objets.
+
+
+* Pour surveiller la réparation plus en détail :
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_GRID_* > *_Storage Node en cours de réparation_* > *LDR* > *Data Store*.
+.. Utilisez une combinaison des attributs suivants pour déterminer, autant que possible, si les réparations répliquées sont terminées.
++
+
+NOTE: Cassandra présente peut-être des incohérences et les réparations échouées ne sont pas suivies.
+
++
+*** *Réparations tentées (XRPA)* : utilisez cet attribut pour suivre la progression des réparations répliquées. Cet attribut augmente chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque. Lorsque cet attribut n'augmente pas pendant une période plus longue que la période d'acquisition actuelle (fournie par l'attribut *période d'analyse -- estimation*), cela signifie que l'analyse ILM n'a trouvé aucun objet à haut risque qui doit être réparé sur n'importe quel nœud.
++
+
+NOTE: Les objets à haut risque sont des objets qui risquent d'être complètement perdus. Cela n'inclut pas les objets qui ne répondent pas à leur configuration ILM.
+
+*** *Période d'acquisition -- estimée (XSCM)* : utilisez cet attribut pour estimer quand une modification de règle sera appliquée aux objets précédemment ingérés. Si l'attribut *réparations tentées* n'augmente pas pendant une période supérieure à la période d'acquisition actuelle, il est probable que les réparations répliquées soient effectuées. Notez que la période d'acquisition peut changer. L'attribut *période d'acquisition -- estimée (XSCM)* s'applique à la grille entière et est le maximum de toutes les périodes d'acquisition de nœud. Vous pouvez interroger l'historique d'attributs *période de balayage -- estimation* de la grille pour déterminer une période appropriée.
+
+
+
+
+
+
+--
+.Données avec code d'effacement (EC)
+--
+Pour surveiller la réparation des données codées d'effacement et réessayer toute demande qui pourrait avoir échoué :
+
+. Déterminez l'état des réparations des données par code d'effacement :
++
+** Sélectionnez *SUPPORT* > *Tools* > *Metrics* pour afficher le temps de réalisation estimé et le pourcentage de réalisation de la tâche en cours. Sélectionnez ensuite *EC Overview* dans la section Grafana. Examinez les tableaux de bord *Grid EC Job estimé Time to Completion* et *Grid EC Job Percentage Finted*.
+** Utiliser cette commande pour voir le statut d'une opération spécifique `repair-data` :
++
+`repair-data show-ec-repair-status --repair-id repair ID`
+
+** Utilisez cette commande pour lister toutes les réparations :
++
+`repair-data show-ec-repair-status`
+
++
+Le résultat répertorie les informations, y compris `repair ID`, pour toutes les réparations en cours et antérieures.
+
+
+
+. Si le résultat indique que l'opération de réparation a échoué, utilisez l' `--repair-id`option pour réessayer la réparation.
++
+Cette commande relance une réparation de nœud ayant échoué à l'aide de l'ID de réparation 6949309319275667690 :
+
++
+`repair-data start-ec-node-repair --repair-id 6949309319275667690`
+
++
+Cette commande relance une réparation de volume en échec à l'aide de l'ID de réparation 6949309319275667690 :
+
++
+`repair-data start-ec-volume-repair --repair-id 6949309319275667690`
+
+
+
+--
+====

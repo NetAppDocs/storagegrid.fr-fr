@@ -1,0 +1,70 @@
+---
+permalink: tenant/changing-bucket-versioning.html 
+sidebar: sidebar 
+keywords: how to change bucket versioning, disabled versioning, enabled versioning, suspended versioning 
+summary: 'Si vous utilisez un locataire S3, vous pouvez modifier l"état de gestion des versions des compartiments S3.' 
+---
+= Modifiez le contrôle de version d'objet pour un compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3, vous pouvez modifier l'état de gestion des versions des compartiments S3.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+* Vous avez vérifié que le nombre de nœuds de stockage et de sites requis est disponible. Si deux nœuds de stockage ou plus ne sont pas disponibles dans un site, ou si un site n'est pas disponible, les modifications apportées à ces paramètres risquent de ne pas être disponibles.
+
+
+.Description de la tâche
+Vous pouvez activer ou suspendre la gestion des versions d'objet pour un compartiment. Une fois que vous avez activé la gestion des versions pour un compartiment, il ne peut plus revenir à un état sans version. Toutefois, vous pouvez suspendre le contrôle de version du compartiment.
+
+* Désactivé : le contrôle de version n'a jamais été activé
+* Activé : la gestion des versions est activée
+* Suspendu : la gestion des versions a déjà été activée et est suspendue
+
+
+Pour plus d'informations, reportez-vous aux sections suivantes :
+
+* link:../s3/object-versioning.html["Gestion des versions d'objet"]
+* link:../ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Règles et règles ILM pour les objets avec version S3 (exemple 4)"]
+* link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"]
+
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans la table.
++
+La page des détails du compartiment s'affiche.
+
+. Dans l'onglet *Bucket options*, sélectionnez l'accordéon *Object multiversion*.
+. Sélectionnez un état de gestion des versions pour les objets de ce compartiment.
++
+La gestion des versions d'objet doit rester activée pour un compartiment utilisé pour la réplication entre plusieurs grilles. Si le verrouillage d'objet S3 ou la conformité héritée est activée, les options *Object versionnage* sont désactivées.
+
++
+[cols="1a,3a"]
+|===
+| Option | Description 
+
+
+ a| 
+Activez le contrôle des versions
+ a| 
+Activez la gestion des versions d'objet si vous souhaitez stocker chaque version de chaque objet dans ce compartiment. Vous pouvez ensuite récupérer les versions précédentes d'un objet si nécessaire.
+
+Les objets qui se trouvent déjà dans le compartiment sont avec gestion de version lorsqu'ils sont modifiés par l'utilisateur.
+
+
+
+ a| 
+Suspendre la gestion des versions
+ a| 
+Suspendre la gestion des versions d'objet si vous ne souhaitez plus créer de nouvelles versions d'objet. Vous pouvez toujours récupérer toutes les versions d'objet existantes.
+
+|===
+. Sélectionnez *Enregistrer les modifications*.
+

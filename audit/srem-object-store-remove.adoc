@@ -1,0 +1,40 @@
+---
+permalink: audit/srem-object-store-remove.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SREM, Object Store Remove 
+summary: 'Ce message est émis lorsque le contenu est supprimé du stockage persistant et n"est plus accessible via des API régulières.' 
+---
+= SREM : Suppression du magasin d'objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est émis lorsque le contenu est supprimé du stockage persistant et n'est plus accessible via des API régulières.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu supprimé du stockage permanent.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Indique le résultat des opérations de suppression de contenu. La seule valeur définie est :
+
+SUCS : contenu supprimé du stockage persistant
+
+|===
+Ce message d'audit signifie qu'un bloc de contenu donné a été supprimé d'un nœud et ne peut plus être demandé directement. Le message peut être utilisé pour suivre le flux de contenu supprimé dans le système.

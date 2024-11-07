@@ -1,0 +1,367 @@
+---
+permalink: tenant/creating-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to create platform services endpoint 
+summary: 'Vous devez créer au moins un noeud final du type correct avant d"activer un service de plate-forme.' 
+---
+= Créer un terminal de services de plate-forme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez créer au moins un noeud final du type correct avant d'activer un service de plate-forme.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Les services de plateforme ont été activés pour votre compte de locataire par un administrateur StorageGRID.
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gestion des noeuds finaux ou des autorisations d'accès racine"].
+* La ressource référencée par le noeud final des services de plate-forme a été créée :
++
+** Réplication CloudMirror : compartiment S3
+** Notification d'événements : Amazon simple notification Service (Amazon SNS) ou rubrique Kafka
+** Notification de recherche : index Elasticsearch, si le cluster de destination n'est pas configuré pour créer automatiquement des index.
+
+
+* Vous disposez des informations relatives à la ressource de destination :
++
+** Hôte et port pour l'URI (Uniform Resource identifier)
++
+
+NOTE: Si vous prévoyez d'utiliser un compartiment hébergé sur un système StorageGRID comme point de terminaison pour la réplication CloudMirror, contactez l'administrateur de la grille pour déterminer les valeurs à saisir.
+
+** Nom de ressource unique (URN)
++
+link:specifying-urn-for-platform-services-endpoint.html["Spécifiez l'URN du terminal des services de plateforme"]
+
+** Informations d'authentification (si nécessaire) :
++
+[role="tabbed-block"]
+====
+.Rechercher les terminaux d'intégration
+--
+Pour les terminaux d'intégration de recherche, vous pouvez utiliser les informations d'identification suivantes :
+
+*** Clé d'accès : ID de clé d'accès et clé d'accès secrète
+*** HTTP de base : nom d'utilisateur et mot de passe
+
+
+--
+.Terminaux de réplication CloudMirror
+--
+Pour les terminaux de réplication CloudMirror, vous pouvez utiliser les informations d'identification suivantes :
+
+*** Clé d'accès : ID de clé d'accès et clé d'accès secrète
+*** CAP (C2S Access Portal) : URL d'informations d'identification temporaires, certificats de serveur et de client, clés client et phrase de passe de clé privée de client facultative.
+
+
+--
+.Terminaux Amazon SNS
+--
+Pour les terminaux Amazon SNS, vous pouvez utiliser les informations d'identification suivantes :
+
+*** Clé d'accès : ID de clé d'accès et clé d'accès secrète
+
+
+--
+.Les terminaux Kafka
+--
+Pour les terminaux Kafka, vous pouvez utiliser les identifiants suivants :
+
+*** SASL/PLAIN : nom d'utilisateur et mot de passe
+*** SASL/SCRAM-SHA-256 : nom d'utilisateur et mot de passe
+*** SASL/SCRAM-SHA-512 : nom d'utilisateur et mot de passe
+
+
+--
+====
+** Certificat de sécurité (en cas d'utilisation d'un certificat d'autorité de certification personnalisé)
+
+
+* Si les fonctions de sécurité de Elasticsearch sont activées, vous disposez du privilège Monitor cluster pour les tests de connectivité et du privilège write index ou des privilèges index and delete index pour les mises à jour de documents.
+
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Platform services Endpoints*. La page noeuds finaux des services de plate-forme s'affiche.
+. Sélectionnez *Créer un noeud final*.
+. Entrez un nom d'affichage pour décrire brièvement le point final et son objectif.
++
+Le type de service de plate-forme pris en charge par le noeud final est affiché à côté du nom du noeud final lorsqu'il est répertorié sur la page noeuds finaux, de sorte que vous n'avez pas besoin d'inclure ces informations dans le nom.
+
+. Dans le champ *URI*, spécifiez l'identificateur de ressource unique (URI) du noeud final.
++
+--
+Utilisez l'un des formats suivants :
+
+[listing]
+----
+https://host:port
+http://host:port
+----
+Si vous ne spécifiez pas de port, les ports par défaut suivants sont utilisés :
+
+** Port 443 pour les URI HTTPS et port 80 pour les URI HTTP (la plupart des terminaux)
+** Port 9092 pour les URI HTTPS et HTTP (terminaux Kafka uniquement)
+
+
+--
++
+Par exemple, l'URI d'un compartiment hébergé sur StorageGRID peut être :
+
++
+[listing]
+----
+https://s3.example.com:10443
+----
++
+Dans cet exemple, `s3.example.com` représente l'entrée DNS pour l'adresse IP virtuelle (VIP) du groupe haute disponibilité StorageGRID (HA), et `10443` représente le port défini dans le noeud final de l'équilibreur de charge.
+
++
+
+NOTE: Si possible, vous devez vous connecter à un groupe haute disponibilité de nœuds d'équilibrage de la charge pour éviter un point de défaillance unique.
+
++
+De la même manière, l'URI d'un compartiment hébergé sur AWS peut être :
+
++
+[listing]
+----
+https://s3-aws-region.amazonaws.com
+----
++
+
+NOTE: Si le noeud final est utilisé pour le service de réplication CloudMirror, n'incluez pas le nom de compartiment dans l'URI. Vous incluez le nom du compartiment dans le champ *URN*.
+
+. Entrez le nom de ressource unique (URN) du noeud final.
++
+
+NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
+
+. Sélectionnez *Continuer*.
+. Sélectionnez une valeur pour *Type d'authentification*.
++
+[role="tabbed-block"]
+====
+.Rechercher les terminaux d'intégration
+--
+Entrez ou téléchargez les informations d'identification d'un point final d'intégration de recherche.
+
+Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
+
+[cols="1a,2a,2a"]
+|===
+| Type d'authentification | Description | Informations d'identification 
+
+
+ a| 
+Anonyme
+ a| 
+Fournit un accès anonyme à la destination. Fonctionne uniquement pour les terminaux dont la sécurité est désactivée.
+ a| 
+Pas d'authentification.
+
+
+
+ a| 
+Clé d'accès
+ a| 
+Utilise des identifiants de style AWS pour authentifier les connexions avec la destination.
+ a| 
+** ID de clé d'accès
+** Clé d'accès secrète
+
+
+
+
+ a| 
+HTTP de base
+ a| 
+Utilise un nom d'utilisateur et un mot de passe pour authentifier les connexions à la destination.
+ a| 
+** Nom d'utilisateur
+** Mot de passe
+
+
+|===
+--
+.Terminaux de réplication CloudMirror
+--
+Entrez ou téléchargez les informations d'identification d'un point final de réplication CloudMirror.
+
+Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
+
+[cols="1a,2a,2a"]
+|===
+| Type d'authentification | Description | Informations d'identification 
+
+
+ a| 
+Anonyme
+ a| 
+Fournit un accès anonyme à la destination. Fonctionne uniquement pour les terminaux dont la sécurité est désactivée.
+ a| 
+Pas d'authentification.
+
+
+
+ a| 
+Clé d'accès
+ a| 
+Utilise des identifiants de style AWS pour authentifier les connexions avec la destination.
+ a| 
+** ID de clé d'accès
+** Clé d'accès secrète
+
+
+
+
+ a| 
+CAP (portail d'accès C2S)
+ a| 
+Utilise des certificats et des clés pour authentifier les connexions à la destination.
+ a| 
+** URL des informations d'identification temporaires
+** Certificat autorité de certification du serveur (téléchargement de fichiers PEM)
+** Certificat client (téléchargement de fichier PEM)
+** Clé privée client (téléchargement de fichiers PEM, format crypté OpenSSL ou format de clé privée non crypté)
+** Phrase de passe de clé privée du client (facultatif)
+
+
+|===
+--
+.Terminaux Amazon SNS
+--
+Saisissez ou téléchargez les informations d'identification d'un terminal Amazon SNS.
+
+Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
+
+[cols="1a,2a,2a"]
+|===
+| Type d'authentification | Description | Informations d'identification 
+
+
+ a| 
+Anonyme
+ a| 
+Fournit un accès anonyme à la destination. Fonctionne uniquement pour les terminaux dont la sécurité est désactivée.
+ a| 
+Pas d'authentification.
+
+
+
+ a| 
+Clé d'accès
+ a| 
+Utilise des identifiants de style AWS pour authentifier les connexions avec la destination.
+ a| 
+** ID de clé d'accès
+** Clé d'accès secrète
+
+
+|===
+--
+.Les terminaux Kafka
+--
+Entrez ou téléchargez les identifiants d'un terminal Kafka.
+
+Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
+
+[cols="1a,2a,2a"]
+|===
+| Type d'authentification | Description | Informations d'identification 
+
+
+ a| 
+Anonyme
+ a| 
+Fournit un accès anonyme à la destination. Fonctionne uniquement pour les terminaux dont la sécurité est désactivée.
+ a| 
+Pas d'authentification.
+
+
+
+ a| 
+SASL/SIMPLE
+ a| 
+Utilise un nom d'utilisateur et un mot de passe avec du texte brut pour authentifier les connexions à la destination.
+ a| 
+** Nom d'utilisateur
+** Mot de passe
+
+
+
+
+ a| 
+SASL/SCRAM-SHA-256
+ a| 
+Utilise un nom d'utilisateur et un mot de passe à l'aide d'un protocole de réponse de vérification et d'un hachage SHA-256 pour authentifier les connexions à la destination.
+ a| 
+** Nom d'utilisateur
+** Mot de passe
+
+
+
+
+ a| 
+SASL/SCRAM-SHA-512
+ a| 
+Utilise un nom d'utilisateur et un mot de passe à l'aide d'un protocole de réponse de vérification et d'un hachage SHA-512 pour authentifier les connexions à la destination.
+ a| 
+** Nom d'utilisateur
+** Mot de passe
+
+
+|===
+Sélectionnez *utiliser la délégation prise de l'authentification* si le nom d'utilisateur et le mot de passe proviennent d'un jeton de délégation obtenu à partir d'un cluster Kafka.
+
+--
+====
+. Sélectionnez *Continuer*.
+. Sélectionnez un bouton radio pour *Verify Server* pour choisir la manière dont la connexion TLS au noeud final est vérifiée.
++
+[cols="1a,2a"]
+|===
+| Type de vérification du certificat | Description 
+
+
+ a| 
+Utiliser un certificat d'autorité de certification personnalisé
+ a| 
+Utilisez un certificat de sécurité personnalisé. Si vous sélectionnez ce paramètre, copiez et collez le certificat de sécurité personnalisé dans la zone de texte *certificat CA*.
+
+
+
+ a| 
+Utiliser le certificat CA du système d'exploitation
+ a| 
+Utilisez le certificat d'autorité de certification Grid par défaut installé sur le système d'exploitation pour sécuriser les connexions.
+
+
+
+ a| 
+Ne vérifiez pas le certificat
+ a| 
+Le certificat utilisé pour la connexion TLS n'est pas vérifié. Cette option n'est pas sécurisée.
+
+|===
+. Sélectionnez *Test et Créer un noeud final*.
++
+** Un message de réussite s'affiche si le noeud final peut être atteint à l'aide des informations d'identification spécifiées. La connexion au noeud final est validée à partir d'un nœud sur chaque site.
+** Un message d'erreur s'affiche si la validation du noeud final échoue. Si vous devez modifier le noeud final pour corriger l'erreur, sélectionnez *Retour aux détails du noeud final* et mettez à jour les informations. Sélectionnez ensuite *Test et Créer un noeud final*.
++
+
+NOTE: La création du terminal échoue si les services de plate-forme ne sont pas activés pour votre compte de locataire. Veuillez contacter votre administrateur StorageGRID.
+
+
+
+
+
+Après avoir configuré un noeud final, vous pouvez utiliser son URN pour configurer un service de plate-forme.
+
+.Informations associées
+* link:specifying-urn-for-platform-services-endpoint.html["Spécifiez l'URN du terminal des services de plateforme"]
+* link:configuring-cloudmirror-replication.html["Configurez la réplication CloudMirror"]
+* link:configuring-event-notifications.html["Configurer les notifications d'événements"]
+* link:configuring-search-integration-service.html["Configurez le service d'intégration de la recherche"]
+

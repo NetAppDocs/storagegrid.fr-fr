@@ -1,0 +1,487 @@
+---
+permalink: admin/using-storagegrid-security-certificates.html 
+sidebar: sidebar 
+keywords: security certificates, grid CA certificate, types of certificates 
+summary: Les certificats de sécurité sont de petits fichiers de données utilisés pour créer des connexions sécurisées et fiables entre les composants StorageGRID et entre les composants StorageGRID et les systèmes externes. 
+---
+= Gérer les certificats de sécurité
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les certificats de sécurité sont de petits fichiers de données utilisés pour créer des connexions sécurisées et fiables entre les composants StorageGRID et entre les composants StorageGRID et les systèmes externes.
+
+StorageGRID utilise deux types de certificats de sécurité :
+
+* *Les certificats de serveur* sont requis lorsque vous utilisez des connexions HTTPS. Les certificats de serveur permettent d'établir des connexions sécurisées entre les clients et les serveurs, d'authentifier l'identité d'un serveur pour ses clients et de fournir un chemin de communication sécurisé pour les données. Le serveur et le client ont chacun une copie du certificat.
+* *Certificats client* authentifiez une identité client ou utilisateur au serveur, fournissant une authentification plus sécurisée que les mots de passe seuls. Les certificats client ne chiffrent pas les données.
+
+
+Lorsqu'un client se connecte au serveur via HTTPS, le serveur répond avec le certificat du serveur, qui contient une clé publique. Le client vérifie ce certificat en comparant la signature du serveur à la signature figurant sur sa copie du certificat. Si les signatures correspondent, le client démarre une session avec le serveur en utilisant la même clé publique.
+
+StorageGRID fonctionne comme serveur pour certaines connexions (par exemple, le point de terminaison de l'équilibreur de charge) ou comme client pour d'autres connexions (par exemple, le service de réplication CloudMirror).
+
+*Certificat CA grille par défaut*
+
+StorageGRID inclut une autorité de certification intégrée qui génère un certificat d'autorité de certification interne Grid lors de l'installation du système. Par défaut, le certificat de l'autorité de certification Grid est utilisé pour sécuriser le trafic StorageGRID interne. Une autorité de certification externe peut émettre des certificats personnalisés qui sont entièrement conformes aux politiques de sécurité des informations de votre entreprise. Bien que vous puissiez utiliser le certificat d'autorité de certification Grid pour un environnement non productif, la meilleure pratique pour un environnement de production consiste à utiliser des certificats personnalisés signés par une autorité de certification externe. Les connexions non sécurisées sans certificat sont également prises en charge, mais ne sont pas recommandées.
+
+* Les certificats d'autorité de certification personnalisée ne suppriment pas les certificats internes ; cependant, les certificats personnalisés doivent être ceux spécifiés pour vérifier les connexions au serveur.
+* Tous les certificats personnalisés doivent répondre au link:../harden/hardening-guideline-for-server-certificates.html["instructions de renforcement du système pour les certificats de serveur"].
+* StorageGRID prend en charge le regroupement de certificats d'une autorité de certification dans un seul fichier (appelé bundle de certificats d'autorité de certification).
+
+
+
+NOTE: StorageGRID inclut également des certificats CA du système d'exploitation identiques sur toutes les grilles. Dans les environnements de production, assurez-vous de spécifier un certificat personnalisé signé par une autorité de certification externe à la place du certificat d'autorité de certification du système d'exploitation.
+
+Les variantes du serveur et des types de certificats client sont mises en œuvre de plusieurs façons. Avant de configurer le système, tous les certificats nécessaires à votre configuration StorageGRID spécifique doivent être prêts.
+
+
+
+== Accéder aux certificats de sécurité
+
+Vous pouvez accéder aux informations relatives à tous les certificats StorageGRID dans un seul emplacement, ainsi qu'aux liens vers le flux de travail de configuration de chaque certificat.
+
+.Étapes
+. Dans Grid Manager, sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
++
+image::security_certificates.png[Page certificats]
+
+. Sélectionnez un onglet sur la page certificats pour obtenir des informations sur chaque catégorie de certificat et pour accéder aux paramètres du certificat. Vous pouvez accéder à un onglet si vous avez le link:admin-group-permissions.html["autorisation appropriée"].
++
+** *Global* : sécurise l'accès à StorageGRID à partir de navigateurs Web et de clients API externes.
+** *Grid CA* : sécurise le trafic StorageGRID interne.
+** *Client* : sécurise les connexions entre les clients externes et la base de données StorageGRID Prometheus.
+** *Noeuds finaux de l'équilibreur de charge* : sécurise les connexions entre les clients S3 et l'équilibreur de charge StorageGRID.
+** *Locataires* : sécurise les connexions aux serveurs de fédération d'identités ou des terminaux de service de plate-forme aux ressources de stockage S3.
+** *Autre* : sécurise les connexions StorageGRID nécessitant des certificats spécifiques.
++
+Chaque onglet est décrit ci-dessous avec des liens vers des détails de certificat supplémentaires.
+
++
+[role="tabbed-block"]
+====
+.Mondial
+--
+Les certificats globaux sécurisent l'accès StorageGRID à partir de navigateurs Web et de clients API S3 externes. Deux certificats globaux sont initialement générés par l'autorité de certification StorageGRID lors de l'installation. La meilleure pratique pour un environnement de production consiste à utiliser des certificats personnalisés signés par une autorité de certification externe.
+
+*** <<Certificat de l'interface de gestion>>: Sécurise les connexions du navigateur Web client aux interfaces de gestion StorageGRID.
+*** <<Certificat d'API S3>>: Sécurise les connexions API client aux nœuds de stockage, nœuds d'administration et nœuds de passerelle, que les applications client S3 utilisent pour télécharger et télécharger les données d'objet.
+
+
+Les informations sur les certificats globaux installés comprennent :
+
+*** *Nom* : nom du certificat avec lien vers la gestion du certificat.
+*** *Description*
+*** *Type* : personnalisé ou par défaut. + vous devez toujours utiliser un certificat personnalisé pour améliorer la sécurité de la grille.
+*** *Date d'expiration* : si vous utilisez le certificat par défaut, aucune date d'expiration n'est affichée.
+
+
+Vous pouvez :
+
+*** Remplacez les certificats par défaut par des certificats personnalisés signés par une autorité de certification externe pour améliorer la sécurité de la grille :
++
+**** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["Remplacez le certificat d'interface de gestion généré par défaut par StorageGRID"] Utilisé pour les connexions Grid Manager et tenant Manager.
+**** link:configuring-custom-server-certificate-for-storage-node.html["Remplacez le certificat de l'API S3"] Utilisé pour les connexions de nœuds de stockage et de terminaux d'équilibrage de la charge (en option).
+
+
+*** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#restore-the-default-management-interface-certificate["Restaurez le certificat de l'interface de gestion par défaut"].
+*** link:configuring-custom-server-certificate-for-storage-node.html#restore-the-default-s3-api-certificate["Restaurez le certificat d'API S3 par défaut"].
+*** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#use-a-script-to-generate-a-new-self-signed-management-interface-certificate["Utilisez un script pour générer un nouveau certificat d'interface de gestion auto-signé"].
+*** Copiez ou téléchargez le  ou le link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#download-or-copy-the-management-interface-certificate["certificat de l'interface de gestion"]link:configuring-custom-server-certificate-for-storage-node.html#download-or-copy-the-s3-api-certificate["Certificat d'API S3"].
+
+
+--
+.CA grille
+--
+Le <<gridca_details,Certificat CA de la grille>>, généré par l'autorité de certification StorageGRID lors de l'installation de StorageGRID, sécurise tout le trafic StorageGRID interne.
+
+Les informations sur le certificat comprennent la date d'expiration du certificat et son contenu.
+
+Vous pouvez link:copying-storagegrid-system-ca-certificate.html["Copiez ou téléchargez le certificat d'autorité de certification Grid"], mais vous ne pouvez pas le modifier.
+
+--
+.Client
+--
+<<adminclientcert_details,Certificats client>>, Générée par une autorité de certification externe, sécurise les connexions entre les outils de contrôle externes et la base de données StorageGRID Prometheus.
+
+La table de certificats possède une ligne pour chaque certificat client configuré et indique si le certificat peut être utilisé pour l'accès à la base de données Prometheus, ainsi que la date d'expiration du certificat.
+
+Vous pouvez :
+
+*** link:configuring-administrator-client-certificates.html#add-client-certificates["Téléchargez ou générez un nouveau certificat client."]
+*** Sélectionnez un nom de certificat pour afficher les détails du certificat où vous pouvez :
++
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["Modifiez le nom du certificat client."]
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["Définissez l'autorisation d'accès Prometheus."]
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["Téléchargez et remplacez le certificat client."]
+**** link:configuring-administrator-client-certificates.html#download-or-copy-client-certificates["Copiez ou téléchargez le certificat client."]
+**** link:configuring-administrator-client-certificates.html#remove-client-certificates["Supprimez le certificat client."]
+
+
+*** Sélectionnez *actions* pour rapidement link:configuring-administrator-client-certificates.html#edit-client-certificates["modifier"], link:configuring-administrator-client-certificates.html#attach-new-client-certificate["attacher"]ou link:configuring-administrator-client-certificates.html#remove-client-certificates["déposer"] un certificat client. Vous pouvez sélectionner jusqu'à 10 certificats client et les supprimer en une seule fois en utilisant *actions* > *Supprimer*.
+
+
+--
+.Terminaux d'équilibrage de charge
+--
+<<Certificat de terminal de l'équilibreur de charge,Certificats de noeud final de l'équilibreur de charge>> Sécurisez les connexions entre les clients S3 et le service StorageGRID Load Balancer sur les nœuds de passerelle et les nœuds d'administration.
+
+Le tableau des terminaux d'équilibrage de la charge comporte une ligne pour chaque terminal d'équilibrage de la charge configuré et indique si le certificat d'API S3 global ou le certificat de terminal d'équilibreur de charge personnalisé est utilisé pour le terminal. La date d'expiration de chaque certificat s'affiche également.
+
+
+NOTE: Les modifications apportées à un certificat de point final peuvent prendre jusqu'à 15 minutes pour être appliquées à tous les nœuds.
+
+Vous pouvez :
+
+*** link:configuring-load-balancer-endpoints.html["Afficher un point d'extrémité d'équilibreur de charge"], y compris les détails de son certificat.
+*** link:../fabricpool/creating-load-balancer-endpoint-for-fabricpool.html["Spécifiez un certificat de noeud final de l'équilibreur de charge pour FabricPool."]
+*** link:configuring-load-balancer-endpoints.html["Utilisez le certificat d'API S3 global"] au lieu de générer un nouveau certificat de point de terminaison d'équilibreur de charge.
+
+
+--
+.Locataires
+--
+Les locataires peuvent utiliser <<Certificat de fédération des identités,certificats de serveur de fédération des identités>> ou <<Certificat de terminal des services de plate-forme,certificats de terminal du service de plate-forme>> pour sécuriser leurs connexions avec StorageGRID.
+
+La table de tenant dispose d'une ligne pour chaque locataire et indique si chaque locataire a l'autorisation d'utiliser ses propres services de référentiel d'identité ou de plate-forme.
+
+Vous pouvez :
+
+*** link:../tenant/signing-in-to-tenant-manager.html["Sélectionnez un nom de locataire pour vous connecter au Gestionnaire de tenant"]
+*** link:../tenant/using-identity-federation.html["Sélectionnez un nom de locataire pour afficher les détails de la fédération des identités du locataire"]
+*** link:../tenant/editing-platform-services-endpoint.html["Sélectionnez un nom de locataire pour afficher les détails des services de plateforme du locataire"]
+*** link:../tenant/creating-platform-services-endpoint.html["Spécifiez un certificat de noeud final du service de plate-forme pendant la création du noeud final"]
+
+
+--
+.Autre
+--
+StorageGRID utilise d'autres certificats de sécurité pour des fins spécifiques. Ces certificats sont répertoriés par leur nom fonctionnel. Voici d'autres certificats de sécurité :
+
+*** <<Certificat de terminal Cloud Storage Pool,Certificats de pool de stockage cloud>>
+*** <<Certificat de notification d'alerte par e-mail,Certificats de notification d'alerte par e-mail>>
+*** <<Certificat de serveur syslog externe,Certificats de serveur syslog externe>>
+*** <<grid-federation-certificate,Certificats de connexion de fédération de grille>>
+*** <<Certificat de fédération des identités,Certificats de fédération des identités>>
+*** <<Certificat de serveur de gestion des clés (KMS),Certificats de serveur de gestion des clés (KMS)>>
+*** <<Certificat SSO (Single Sign-on),Certificats d'authentification unique>>
+
+
+Informations indique le type de certificat utilisé par une fonction et ses dates d'expiration de certificat de serveur et de client, le cas échéant. La sélection d'un nom de fonction ouvre un onglet de navigateur dans lequel vous pouvez afficher et modifier les détails du certificat.
+
+
+NOTE: Vous ne pouvez afficher et accéder aux informations relatives aux autres certificats que si vous disposez du link:admin-group-permissions.html["autorisation appropriée"].
+
+Vous pouvez :
+
+*** link:../ilm/creating-cloud-storage-pool.html["Spécification d'un certificat de pool de stockage cloud pour S3, C2S S3 ou Azure"]
+*** link:../monitor/email-alert-notifications.html["Spécifiez un certificat pour les notifications par e-mail d'alerte"]
+*** link:../monitor/configure-audit-messages.html#use-external-syslog-server["Utilisez un certificat pour un serveur syslog externe"]
+*** link:grid-federation-manage-connection.html#rotate-connection-certificates["Faire pivoter les certificats de connexion de fédération de grille"]
+*** link:using-identity-federation.html["Afficher et modifier un certificat de fédération d'identités"]
+*** link:kms-adding.html["Télécharger les certificats du serveur de gestion des clés (KMS) et du client"]
+*** link:creating-relying-party-trusts-in-ad-fs.html#create-a-relying-party-trust-manually["Spécifiez manuellement un certificat SSO pour une confiance de partie utilisatrice"]
+
+
+--
+====
+
+
+
+
+
+
+== Détails du certificat de sécurité
+
+Chaque type de certificat de sécurité est décrit ci-dessous, avec des liens vers les instructions d'implémentation.
+
+
+
+=== Certificat de l'interface de gestion
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion entre les navigateurs Web client et l'interface de gestion StorageGRID, permettant aux utilisateurs d'accéder à Grid Manager et au gestionnaire de locataires sans avertissement de sécurité.
+
+Ce certificat authentifie également les connexions de l'API de gestion du grid et de l'API de gestion des locataires.
+
+Vous pouvez utiliser le certificat par défaut créé lors de l'installation ou télécharger un certificat personnalisé.
+ a| 
+*CONFIGURATION* > *sécurité* > *certificats*, sélectionnez l'onglet *Global*, puis *certificat d'interface de gestion*
+ a| 
+link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["Configurer les certificats d'interface de gestion"]
+
+|===
+
+
+=== Certificat d'API S3
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie les connexions client S3 sécurisées vers un nœud de stockage et les terminaux d'équilibrage de la charge (facultatif).
+ a| 
+*CONFIGURATION* > *sécurité* > *certificats*, sélectionnez l'onglet *Global*, puis sélectionnez *certificat API S3*
+ a| 
+link:configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"]
+
+|===
+
+
+=== Certificat CA de la grille
+
+Voir la <<gridca_details,Description du certificat CA de la grille par défaut>>.
+
+
+
+=== Certificat du client administrateur
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Client
+ a| 
+Installé sur chaque client, permettant à StorageGRID d'authentifier l'accès client externe.
+
+* Permet aux clients externes autorisés d'accéder à la base de données StorageGRID Prometheus.
+* Contrôle sécurisé de StorageGRID à l'aide d'outils externes.
+
+ a| 
+*CONFIGURATION* > *sécurité* > *certificats*, puis sélectionnez l'onglet *client*
+ a| 
+link:configuring-administrator-client-certificates.html["Configurer les certificats client"]
+
+|===
+
+
+=== Certificat de terminal de l'équilibreur de charge
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion entre les clients S3 et le service StorageGRID Load Balancer sur les nœuds de passerelle et les nœuds d'administration. Vous pouvez télécharger ou générer un certificat d'équilibreur de charge lorsque vous configurez un noeud final d'équilibreur de charge. Les applications client utilisent le certificat d'équilibreur de charge lors de la connexion à StorageGRID pour enregistrer et récupérer les données d'objet.
+
+Vous pouvez également utiliser une version personnalisée du certificat global <<Certificat d'API S3>>pour authentifier les connexions au service Load Balancer. Si le certificat global est utilisé pour authentifier les connexions de l'équilibreur de charge, vous n'avez pas besoin de télécharger ou de générer un certificat distinct pour chaque noeud final de l'équilibreur de charge.
+
+*Remarque :* le certificat utilisé pour l'authentification de l'équilibreur de charge est le certificat le plus utilisé pendant le fonctionnement normal de l'StorageGRID.
+ a| 
+*CONFIGURATION* > *réseau* > *points d'extrémité de l'équilibreur de charge*
+ a| 
+* link:configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"]
+* link:../fabricpool/creating-load-balancer-endpoint-for-fabricpool.html["Créez un noeud final d'équilibrage de charge pour FabricPool"]
+
+
+|===
+
+
+=== Certificat de terminal Cloud Storage Pool
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion à partir d'un pool de stockage cloud StorageGRID vers un emplacement de stockage externe, tel que S3 Glacier ou Microsoft Azure Blob Storage. Un certificat différent est requis pour chaque type de fournisseur cloud.
+ a| 
+*ILM* > *pools de stockage*
+ a| 
+link:../ilm/creating-cloud-storage-pool.html["Création d'un pool de stockage cloud"]
+
+|===
+
+
+=== Certificat de notification d'alerte par e-mail
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur et client
+ a| 
+Authentifie la connexion entre un serveur de messagerie SMTP et StorageGRID utilisé pour les notifications d'alerte.
+
+* Si les communications avec le serveur SMTP nécessitent TLS (transport Layer Security), vous devez spécifier le certificat AC du serveur de messagerie.
+* Spécifiez un certificat client uniquement si le serveur de messagerie SMTP nécessite des certificats client pour l'authentification.
+
+ a| 
+*ALERTES* > *Configuration de la messagerie*
+ a| 
+link:../monitor/email-alert-notifications.html["Configurez les notifications par e-mail pour les alertes"]
+
+|===
+
+
+=== Certificat de serveur syslog externe
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion TLS ou RELP/TLS entre un serveur syslog externe qui consigne les événements dans StorageGRID.
+
+*Remarque :* un certificat de serveur syslog externe n'est pas requis pour les connexions TCP, RELP/TCP et UDP à un serveur syslog externe.
+ a| 
+*CONFIGURATION* > *surveillance* > *serveur d'audit et syslog*
+ a| 
+link:../monitor/configure-audit-messages.html#use-external-syslog-server["Utiliser un serveur syslog externe"]
+
+|===
+
+
+=== [[GRID-federation-Certificate]]certificat de connexion de fédération de grille
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur et client
+ a| 
+Authentifier et crypter les informations envoyées entre le système StorageGRID actuel et une autre grille dans une connexion de fédération de grille.
+ a| 
+*CONFIGURATION* > *système* > *fédération de grille*
+ a| 
+* link:grid-federation-create-connection.html["Créer des connexions de fédération de grille"]
+* link:grid-federation-manage-connection.html#rotate_grid_fed_certificates["Faire pivoter les certificats de connexion"]
+
+
+|===
+
+
+=== Certificat de fédération des identités
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion entre StorageGRID et un fournisseur d'identité externe, tel qu'Active Directory, OpenLDAP ou Oracle Directory Server. Utilisé pour la fédération des identités, ce qui permet de gérer les groupes et les utilisateurs d'administration par un système externe.
+ a| 
+*CONFIGURATION* > *contrôle d'accès* > *fédération d'identités*
+ a| 
+link:using-identity-federation.html["Utiliser la fédération des identités"]
+
+|===
+
+
+=== Certificat de serveur de gestion des clés (KMS)
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur et client
+ a| 
+Authentifie la connexion entre StorageGRID et un serveur de gestion des clés (KMS) externe qui fournit les clés de chiffrement aux nœuds d'appliance StorageGRID.
+ a| 
+*CONFIGURATION* > *sécurité* > *serveur de gestion des clés*
+ a| 
+link:kms-adding.html["Ajout d'un serveur de gestion des clés (KMS)"]
+
+|===
+
+
+=== Certificat de terminal des services de plate-forme
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentification de la connexion depuis le service de la plateforme StorageGRID vers une ressource de stockage S3
+ a| 
+*Tenant Manager* > *STORAGE (S3)* > *Platform services Endpoints*
+ a| 
+link:../tenant/creating-platform-services-endpoint.html["Créer un terminal de services de plate-forme"]
+
+link:../tenant/editing-platform-services-endpoint.html["Modifier le point final des services de plate-forme"]
+
+|===
+
+
+=== Certificat SSO (Single Sign-on)
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de certificat | Description | Emplacement de navigation | Détails 
+
+
+ a| 
+Serveur
+ a| 
+Authentifie la connexion entre les services de fédération d'identités, tels que Active Directory Federation Services (AD FS) et StorageGRID utilisés pour les demandes SSO (Single Sign-on).
+ a| 
+*CONFIGURATION* > *contrôle d'accès* > *Single Sign-on*
+ a| 
+link:configuring-sso.html["Configurer l'authentification unique"]
+
+|===
+
+
+== Exemples de certificats
+
+
+
+=== Exemple 1 : service Load Balancer
+
+Dans cet exemple, StorageGRID sert de serveur.
+
+. Vous configurez un noeud final de l'équilibreur de charge et téléchargez ou générez un certificat de serveur dans StorageGRID.
+. Vous configurez une connexion client S3 avec le terminal de l'équilibreur de charge et téléchargez le même certificat vers le client.
+. Lorsque le client souhaite enregistrer ou récupérer des données, il se connecte au point de terminaison de l'équilibreur de charge à l'aide de HTTPS.
+. StorageGRID répond avec le certificat du serveur, qui contient une clé publique, et une signature basée sur la clé privée.
+. Le client vérifie ce certificat en comparant la signature du serveur à la signature figurant sur sa copie du certificat. Si les signatures correspondent, le client lance une session à l'aide de la même clé publique.
+. Le client envoie des données d'objet à StorageGRID.
+
+
+
+
+=== Exemple 2 : serveur de gestion externe des clés (KMS)
+
+Dans cet exemple, StorageGRID agit comme client.
+
+. À l'aide du logiciel serveur de gestion de clés externe, vous configurez StorageGRID en tant que client KMS et obtenez un certificat de serveur signé par l'autorité de certification, un certificat de client public et la clé privée pour le certificat client.
+. À l'aide de Grid Manager, vous configurez un serveur KMS et téléchargez les certificats du serveur et du client ainsi que la clé privée du client.
+. Lorsqu'un nœud StorageGRID a besoin d'une clé de chiffrement, il envoie une requête au serveur KMS qui inclut les données du certificat et une signature basée sur la clé privée.
+. Le serveur KMS valide la signature du certificat et décide qu'il peut faire confiance à StorageGRID.
+. Le serveur KMS répond à l'aide de la connexion validée.
+

@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: storagegrid-bluexp.html 
+keywords: storagegrid, how to enable, third-party solutions, tools, applications, examples 
+summary: 'Découvrez comment gérer vos systèmes StorageGRID à partir de BlueXP  à l"aide de Grid Manager et utiliser les services de données de BlueXP pour les sauvegardes, le Tiering des données et bien plus encore.' 
+---
+= Comment gérer StorageGRID à l'aide de BlueXP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Accédez à https://docs.netapp.com/us-en/bluexp-storagegrid/index.html["Gestion StorageGRID via BlueXP"^] pour découvrir comment gérer vos systèmes StorageGRID à partir d'BlueXP  à l'aide de Grid Manager et comment utiliser les services de données BlueXP pour les sauvegardes, le Tiering des données et bien plus encore.

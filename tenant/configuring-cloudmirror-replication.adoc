@@ -1,0 +1,101 @@
+---
+permalink: tenant/configuring-cloudmirror-replication.html 
+sidebar: sidebar 
+keywords: how to configure CloudMirror replication, replication xml 
+summary: Vous activez la réplication CloudMirror pour un compartiment en créant un XML de configuration de réplication de compartiment et en utilisant le gestionnaire de locataires pour appliquer le XML au compartiment. 
+---
+= Configurez la réplication CloudMirror
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour activer la réplication de CloudMirror pour un compartiment, vous créez et appliquez un XML de configuration de réplication de compartiment valide.
+
+.Avant de commencer
+* Les services de plateforme ont été activés pour votre compte de locataire par un administrateur StorageGRID.
+* Vous avez déjà créé un compartiment qui servira de source de réplication.
+* Le noeud final que vous prévoyez d'utiliser comme destination pour la réplication CloudMirror existe déjà, et vous avez son URN.
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisation des stratégies de groupe ou de compartiment lors de la configuration du compartiment à l'aide du Gestionnaire de locataires.
+
+
+.Description de la tâche
+La réplication CloudMirror copie les objets à partir d'un compartiment source vers un compartiment de destination spécifié dans un terminal.
+
+Pour des informations générales sur la réplication de compartiment et la configuration de celle-ci, reportez-vous à la section https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html["Documentation d'Amazon simple Storage Service (S3) : réplication d'objets"^]. Pour plus d'informations sur la manière dont StorageGRID implémente GetBuckeReplication, DeleteBuckeReplication et PutBuckeReplication, reportez-vous au link:../s3/operations-on-buckets.html["Opérations sur les compartiments"].
+
+
+NOTE: La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Pour en savoir plus, voir link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
+
+Notez les conditions et caractéristiques suivantes lors de la configuration de la réplication de CloudMirror :
+
+* Lorsque vous créez et appliquez un XML de configuration de réplication de compartiment valide, il doit utiliser l'URN d'un terminal de compartiment S3 pour chaque destination.
+* La réplication n'est pas prise en charge pour les compartiments source ou de destination lorsque le verrouillage d'objet S3 est activé.
+* Si vous activez la réplication CloudMirror sur un compartiment qui contient des objets, les nouveaux objets ajoutés au compartiment sont répliqués, mais les objets existants du compartiment ne sont pas répliqués. Vous devez mettre à jour des objets existants pour déclencher la réplication.
+* Si vous spécifiez une classe de stockage dans le fichier XML de configuration de réplication, StorageGRID utilise cette classe lors des opérations sur le terminal S3 de destination. Le noeud final de destination doit également prendre en charge la classe de stockage spécifiée. Veillez à suivre les recommandations fournies par le fournisseur du système de destination.
+
+
+.Étapes
+. Activer la réplication pour le compartiment source :
++
+** Utilisez un éditeur de texte pour créer le XML de configuration de réplication requis pour activer la réplication, comme spécifié dans l'API de réplication S3.
+** Lors de la configuration du XML :
++
+*** Notez que StorageGRID ne prend en charge que le V1 de la configuration de la réplication. Cela signifie que StorageGRID ne prend pas en charge l'utilisation de `Filter` l'élément pour les règles et respecte les conventions V1 pour la suppression des versions d'objet. Pour plus d'informations, reportez-vous à la documentation Amazon sur la configuration de la réplication.
+*** Utiliser l'URN d'un terminal du compartiment S3 comme destination.
+*** Si vous le souhaitez, ajoutez l'élément et spécifiez l'une des options `<StorageClass>` suivantes :
++
+****  `STANDARD`: La classe de stockage par défaut. Si vous ne spécifiez pas de classe de stockage lorsque vous téléchargez un objet, la `STANDARD` classe de stockage est utilisée.
+**** `STANDARD_IA`: (Standard - accès peu fréquent.) Utilisez cette classe de stockage pour les données moins consultées, mais qui nécessitent un accès rapide en cas de besoin.
+**** `REDUCED_REDUNDANCY`: Utilisez cette classe de stockage pour les données non critiques et reproductibles qui peuvent être stockées avec moins de redondance que la `STANDARD` classe de stockage.
+
+
+*** Si vous spécifiez un `Role` dans le XML de configuration, il sera ignoré. Cette valeur n'est pas utilisée par StorageGRID.
++
+[listing]
+----
+<ReplicationConfiguration>
+    <Role></Role>
+    <Rule>
+        <Status>Enabled</Status>
+        <Prefix>2020</Prefix>
+        <Destination>
+           <Bucket>urn:sgws:s3:::2017-records</Bucket>
+           <StorageClass>STANDARD</StorageClass>
+         </Destination>
+     </Rule>
+</ReplicationConfiguration>
+----
+
+
+
+
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment source.
++
+La page des détails du compartiment s'affiche.
+
+. Sélectionnez *Platform Services* > *Replication*.
+. Cochez la case *Activer la réplication*.
+. Collez le XML de configuration de réplication dans la zone de texte et sélectionnez *Enregistrer les modifications*.
++
+
+NOTE: Les services de plateforme doivent être activés pour chaque compte de locataire par un administrateur StorageGRID à l'aide de Grid Manager ou de l'API de gestion du grid. Contactez votre administrateur StorageGRID si une erreur se produit lors de l'enregistrement du XML de configuration.
+
+. Vérifiez que la réplication est configurée correctement :
++
+.. Ajoutez un objet au compartiment source qui répond aux exigences de réplication telles que spécifiées dans la configuration de la réplication.
++
+Dans l'exemple présenté précédemment, les objets qui correspondent au préfixe « 2020 » sont répliqués.
+
+.. Confirmer que l'objet a été répliqué vers le compartiment de destination.
++
+Pour les objets de petite taille, la réplication s'effectue rapidement.
+
+
+
+
+
+.Informations associées
+link:creating-platform-services-endpoint.html["Créer un terminal de services de plate-forme"]

@@ -1,0 +1,99 @@
+---
+permalink: fabricpool/creating-ha-group-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, high availability group, HA group, create, creating, virtual IP, VIP, active interface, backup interface 
+summary: 'Lorsque vous configurez StorageGRID pour une utilisation avec FabricPool, vous pouvez éventuellement créer un ou plusieurs groupes haute disponibilité (HA). Un groupe haute disponibilité est un ensemble de nœuds qui contiennent chacun le service StorageGRID Load Balancer. Un groupe haute disponibilité peut contenir des nœuds de passerelle, des nœuds d"administration, ou les deux.' 
+---
+= Créez un groupe haute disponibilité pour FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous configurez StorageGRID pour une utilisation avec FabricPool, vous pouvez éventuellement créer un ou plusieurs groupes haute disponibilité (HA). Un groupe haute disponibilité est un ensemble de nœuds qui contiennent chacun le service StorageGRID Load Balancer. Un groupe haute disponibilité peut contenir des nœuds de passerelle, des nœuds d'administration, ou les deux.
+
+Vous pouvez utiliser un groupe haute disponibilité pour maintenir les connexions de données FabricPool disponibles. Un groupe haute disponibilité utilise des adresses IP virtuelles (VIP) pour fournir un accès haute disponibilité au service Load Balancer. En cas de défaillance de l'interface active du groupe haute disponibilité, une interface de sauvegarde peut gérer la charge de travail avec un faible impact sur les opérations FabricPool.
+
+Pour plus de détails sur cette tâche, reportez-vous link:../admin/managing-high-availability-groups.html["Gérez les groupes haute disponibilité"]à la section . Pour exécuter cette tâche à l'aide de l'assistant de configuration FabricPool, accédez à link:use-fabricpool-setup-wizard-steps.html["Accédez à l'assistant d'installation FabricPool et terminez-le"].
+
+.Avant de commencer
+* Vous avez examiné le link:best-practices-for-high-availability-groups.html["meilleures pratiques pour les groupes haute disponibilité"].
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+* Si vous prévoyez d'utiliser un VLAN, vous avez créé l'interface VLAN. Voir link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"].
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+. Sélectionnez *Créer*.
+. Pour l'étape *entrer les détails*, remplissez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom du groupe HAUTE DISPONIBILITÉ
+ a| 
+Un nom d'affichage unique pour ce groupe haute disponibilité.
+
+
+
+ a| 
+Description (facultatif)
+ a| 
+La description de ce groupe HA.
+
+|===
+. Pour l'étape *Ajouter des interfaces*, sélectionnez les interfaces de nœud que vous souhaitez utiliser dans ce groupe haute disponibilité.
++
+Utilisez les en-têtes de colonne pour trier les lignes ou entrez un terme de recherche pour localiser les interfaces plus rapidement.
+
++
+Vous pouvez sélectionner un ou plusieurs nœuds, mais vous ne pouvez sélectionner qu'une seule interface pour chaque nœud.
+
+. Pour l'étape *hiérarchiser les interfaces*, déterminez l'interface principale et les interfaces de sauvegarde pour ce groupe haute disponibilité.
++
+Faites glisser des lignes pour modifier les valeurs de la colonne *ordre de priorité*.
+
++
+La première interface de la liste est l'interface principale. L'interface principale est l'interface active, sauf en cas de défaillance.
+
++
+Si le groupe haute disponibilité comprend plusieurs interfaces et que l'interface active est défaillante, les adresses IP virtuelles (VIP) sont déplacées vers la première interface de sauvegarde, dans l'ordre de priorité. Si cette interface échoue, les adresses VIP passent à l'interface de sauvegarde suivante, etc. Lorsque les pannes sont résolues, les adresses VIP repassent à l'interface de priorité la plus élevée disponible.
+
+. Pour l'étape *entrer les adresses IP*, renseignez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Sous-réseau CIDR
+ a| 
+Adresse du sous-réseau VIP en notation CIDR&#8212;adresse IPv4 suivie d'une barre oblique et de la longueur du sous-réseau (0-32).
+
+Aucun bit d'hôte ne doit être défini pour l'adresse réseau. Par exemple `192.16.0.0/22`, .
+
+
+
+ a| 
+Adresse IP de la passerelle (facultative)
+ a| 
+Facultatif. Si les adresses IP ONTAP utilisées pour accéder à StorageGRID ne se trouvent pas sur le même sous-réseau que les adresses VIP StorageGRID, entrez l'adresse IP de la passerelle locale VIP StorageGRID. L'adresse IP de la passerelle locale doit se trouver dans le sous-réseau VIP.
+
+
+
+ a| 
+Adresse IP virtuelle
+ a| 
+Entrez au moins une et dix adresses VIP pour l'interface active du groupe HA. Toutes les adresses VIP doivent se trouver dans le sous-réseau VIP.
+
+Au moins une adresse doit être IPv4. Vous pouvez éventuellement spécifier des adresses IPv4 et IPv6 supplémentaires.
+
+|===
+. Sélectionnez *Créer groupe HA*, puis *Terminer*.
+

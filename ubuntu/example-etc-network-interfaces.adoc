@@ -1,0 +1,82 @@
+---
+permalink: ubuntu/example-etc-network-interfaces.html 
+sidebar: sidebar 
+keywords: example etc network interfaces 
+summary: 'Le fichier /etc/network/interfaces comprend trois sections qui définissent les interfaces physiques, l"interface de liaison et les interfaces VLAN. Vous pouvez combiner ces trois exemples de sections dans un seul fichier, qui agrège quatre interfaces physiques Linux en une seule liaison LACP, puis établir trois interfaces VLAN qui soudent le lien pour une utilisation en tant qu"interfaces réseau StorageGRID, Admin et client.' 
+---
+= Exemple /etc/network/interfaces
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le `/etc/network/interfaces` fichier comprend trois sections qui définissent les interfaces physiques, l'interface de liaison et les interfaces VLAN. Vous pouvez combiner ces trois exemples de sections dans un seul fichier, qui agrège quatre interfaces physiques Linux en une seule liaison LACP, puis établir trois interfaces VLAN qui soudent le lien pour une utilisation en tant qu'interfaces réseau StorageGRID, Admin et client.
+
+
+
+== Interfaces physiques
+
+Notez que les switchs à l'autre extrémité des liaisons doivent également traiter les quatre ports comme une seule jonction ou un canal de port LACP et doivent passer au moins les trois VLAN référencés avec des balises.
+
+[listing]
+----
+# loopback interface
+auto lo
+iface lo inet loopback
+
+# ens160 interface
+auto ens160
+iface ens160 inet manual
+    bond-master bond0
+    bond-primary en160
+
+# ens192 interface
+auto ens192
+iface ens192 inet manual
+    bond-master bond0
+
+# ens224 interface
+auto ens224
+iface ens224 inet manual
+    bond-master bond0
+
+# ens256 interface
+auto ens256
+iface ens256 inet manual
+    bond-master bond0
+----
+
+
+== Interface de liaison
+
+[listing]
+----
+# bond0 interface
+auto bond0
+iface bond0 inet manual
+    bond-mode 4
+    bond-miimon 100
+    bond-slaves ens160 ens192 end224 ens256
+----
+
+
+== Interfaces VLAN
+
+[listing]
+----
+# 1001 vlan
+auto bond0.1001
+iface bond0.1001 inet manual
+vlan-raw-device bond0
+
+# 1002 vlan
+auto bond0.1002
+iface bond0.1002 inet manual
+vlan-raw-device bond0
+
+# 1003 vlan
+auto bond0.1003
+iface bond0.1003 inet manual
+vlan-raw-device bond0
+----

@@ -1,0 +1,82 @@
+---
+section: rhel
+title: Installez StorageGRID sur Red Hat Enterprise Linux
+entries:
+- title: Démarrage rapide
+  pdf-filename: Installez StorageGRID sur Red Hat Enterprise Linux
+  url: "/rhel/index.html"
+- title: Planification et préparation de l'installation sur Red Hat
+  entries:
+  - title: Informations et documents requis
+    url: "/rhel/required-materials.html"
+  - title: Téléchargez et extrayez les fichiers d'installation StorageGRID
+    url: "/rhel/downloading-and-extracting-storagegrid-installation-files.html"
+  - title: Vérifiez manuellement les fichiers d'installation
+    url: "/rhel/download-files-verify.html"
+  - title: Configuration logicielle requise
+    url: "/rhel/software-requirements.html"
+  - title: Configuration requise pour le processeur et la RAM
+    url: "/rhel/cpu-and-ram-requirements.html"
+  - title: Les besoins en matière de stockage et de performances
+    url: "/rhel/storage-and-performance-requirements.html"
+  - title: Exigences de migration des conteneurs de nœuds
+    url: "/rhel/node-container-migration-requirements.html"
+  - title: Préparation des hôtes (Red Hat)
+    entries:
+    - title: Modification des paramètres à l'échelle de l'hôte
+      url: "/rhel/how-host-wide-settings-change.html"
+    - title: Installez Linux
+      url: "/rhel/installing-linux.html"
+    - title: Configuration du réseau hôte (Red Hat)
+      url: "/rhel/configuring-host-network.html"
+    - title: Configurer le stockage de l'hôte
+      url: "/rhel/configuring-host-storage.html"
+    - title: Configurer le volume de stockage du moteur du conteneur
+      url: "/rhel/configuring-docker-storage-volume.html"
+    - title: Installez les services d'hôte StorageGRID
+      url: "/rhel/installing-storagegrid-webscale-host-service.html"
+- title: Installation automatisée (Red Hat)
+  url: "/rhel/automating-installation.html"
+- title: Déploiement de nœuds grid virtuels (Red Hat)
+  entries:
+  - title: Créez des fichiers de configuration de nœuds pour les déploiements Red
+      Hat
+    url: "/rhel/creating-node-configuration-files.html"
+  - title: Mode de détection des nœuds du grid sur le nœud d'administration principal
+    url: "/rhel/how-grid-nodes-discover-primary-admin-node.html"
+  - title: Exemple de fichiers de configuration de nœud
+    url: "/rhel/example-node-configuration-files.html"
+  - title: Validation de la configuration StorageGRID
+    url: "/rhel/validating-storagegrid-configuration.html"
+  - title: Démarrez le service d'hôte StorageGRID
+    url: "/rhel/starting-storagegrid-host-service.html"
+- title: Configuration de la grille et installation complète (Red Hat)
+  entries:
+  - title: Accédez au Grid Manager
+    url: "/rhel/navigating-to-grid-manager.html"
+  - title: Spécifiez les informations de licence
+    url: "/rhel/specifying-storagegrid-license-information.html"
+  - title: Ajouter des sites
+    url: "/rhel/adding-sites.html"
+  - title: Spécifiez les sous-réseaux du réseau de la grille
+    url: "/rhel/specifying-grid-network-subnets.html"
+  - title: Approuver les nœuds de la grille en attente
+    url: "/rhel/approving-pending-grid-nodes.html"
+  - title: Spécifiez les informations du serveur NTP
+    url: "/rhel/specifying-network-time-protocol-server-information.html"
+  - title: Spécifiez les informations du serveur DNS
+    url: "/rhel/specifying-domain-name-system-server-information.html"
+  - title: Spécifiez les mots de passe système
+    url: "/rhel/specifying-storagegrid-system-passwords.html"
+  - title: Vérifiez la configuration et terminez l'installation
+    url: "/rhel/reviewing-your-configuration-and-completing-installation.html"
+  - title: Instructions de post-installation
+    url: "/rhel/post-installation-guidelines.html"
+- title: Installation de l'API REST
+  url: "/rhel/overview-of-installation-rest-api.html"
+- title: Par où aller plus loin
+  url: "/rhel/where-to-go-next.html"
+- title: Résoudre les problèmes d'installation
+  url: "/rhel/troubleshooting-installation-issues.html"
+- title: Exemple /etc/sysconfig/network-scripts
+  url: "/rhel/example-etc-sysconfig-network-scripts.html"

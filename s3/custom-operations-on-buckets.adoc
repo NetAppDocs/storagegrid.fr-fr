@@ -1,0 +1,98 @@
+---
+permalink: s3/custom-operations-on-buckets.html 
+sidebar: sidebar 
+keywords: operations, buckets, custom, storagegrid bucket operations 
+summary: 'Le système StorageGRID prend en charge les opérations personnalisées qui sont ajoutées à l"API REST S3.' 
+---
+= Opérations personnalisées StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le système StorageGRID prend en charge les opérations personnalisées qui sont ajoutées à l'API REST S3.
+
+Le tableau suivant répertorie les opérations personnalisées prises en charge par StorageGRID.
+
+[cols="1a,2a"]
+|===
+| Fonctionnement | Description 
+
+
+ a| 
+link:get-bucket-consistency-request.html["OPTIMISEZ la cohérence des compartiments"]
+ a| 
+Renvoie la cohérence appliquée à un compartiment particulier.
+
+
+
+ a| 
+link:put-bucket-consistency-request.html["PRÉSERVER la cohérence du godet"]
+ a| 
+Définit la cohérence appliquée à un compartiment spécifique.
+
+
+
+ a| 
+link:get-bucket-last-access-time-request.html["HEURE du dernier accès au compartiment"]
+ a| 
+Indique si les mises à jour de l'heure du dernier accès sont activées ou désactivées pour un compartiment spécifique.
+
+
+
+ a| 
+link:put-bucket-last-access-time-request.html["METTRE l'heure du dernier accès au compartiment"]
+ a| 
+Permet d'activer ou de désactiver les mises à jour de l'heure du dernier accès pour un compartiment spécifique.
+
+
+
+ a| 
+link:delete-bucket-metadata-notification-configuration-request.html["SUPPRIMEZ la configuration de notification des métadonnées de compartiment"]
+ a| 
+Supprime le XML de configuration de notification de métadonnées associé à un compartiment spécifique.
+
+
+
+ a| 
+link:get-bucket-metadata-notification-configuration-request.html["CONFIGURATION DES notifications de métadonnées de compartiment"]
+ a| 
+Renvoie le XML de configuration de notification de métadonnées associé à un compartiment spécifique.
+
+
+
+ a| 
+link:put-bucket-metadata-notification-configuration-request.html["CONFIGURATION de notification des métadonnées de compartiment"]
+ a| 
+Configure le service de notification des métadonnées pour un compartiment.
+
+
+
+ a| 
+link:get-storage-usage-request.html["DÉCOUVREZ l'utilisation du stockage"]
+ a| 
+Indique la quantité totale de stockage utilisée par un compte et par compartiment associé au compte.
+
+
+
+ a| 
+link:deprecated-put-bucket-request-modifications-for-compliance.html["Obsolète : CreateBucket avec paramètres de conformité"]
+ a| 
+Obsolète et non pris en charge : vous ne pouvez plus créer de compartiments avec conformité activée.
+
+
+
+ a| 
+link:deprecated-get-bucket-compliance-request.html["Obsolète : CONFORMITÉ DES compartiments"]
+ a| 
+Obsolète mais pris en charge : renvoie les paramètres de conformité actuellement en vigueur pour un compartiment compatible existant.
+
+
+
+ a| 
+link:deprecated-put-bucket-compliance-request.html["Obsolète : conformité DES compartiments PUT"]
+ a| 
+Obsolète mais pris en charge : permet de modifier les paramètres de conformité d'un compartiment compatible existant.
+
+|===

@@ -1,0 +1,46 @@
+---
+permalink: maintain/pausing-and-resuming-decommission-process-for-storage-nodes.html 
+sidebar: sidebar 
+keywords: how to pause decommission 
+summary: 'Si vous devez effectuer une deuxième procédure de maintenance, vous pouvez interrompre la procédure de mise hors service d"un nœud de stockage pendant certaines étapes. Une fois l"autre procédure terminée, vous pouvez reprendre la mise hors service.' 
+---
+= Interrompre et reprendre le processus de mise hors service des nœuds de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous devez effectuer une deuxième procédure de maintenance, vous pouvez interrompre la procédure de mise hors service d'un nœud de stockage pendant certaines étapes. Une fois l'autre procédure terminée, vous pouvez reprendre la mise hors service.
+
+
+NOTE: Le bouton *Pause* n'est activé que lorsque les étapes d'évaluation ILM ou de déclassement des données avec code d'effacement sont atteintes. Cependant, l'évaluation ILM (migration des données) continue à s'exécuter en arrière-plan.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.
++
+La page mise hors service s'affiche.
+
+. Sélectionnez *nœuds de mise hors service*.
++
+La page nœuds de mise hors service s'affiche. Lorsque la procédure de mise hors service atteint l'une des étapes suivantes, le bouton *Pause* est activé.
+
++
+** Évaluation des règles ILM
+** Déclassement des données avec code d'effacement
+
+
+. Sélectionnez *Pause* pour suspendre la procédure.
++
+L'étape en cours est mise en pause et le bouton *reprendre* est activé.
+
++
+image::../media/decommission_nodes_procedure_paused.png[Procédure mise hors service des nœuds mise en pause]
+
+. Une fois l'autre procédure de maintenance terminée, sélectionnez *reprendre* pour poursuivre la mise hors service.
+

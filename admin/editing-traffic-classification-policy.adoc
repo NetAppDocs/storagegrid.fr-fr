@@ -1,0 +1,52 @@
+---
+permalink: admin/editing-traffic-classification-policy.html 
+sidebar: sidebar 
+keywords: edit traffic classification policy 
+summary: Vous pouvez modifier une stratégie de classification de trafic pour modifier son nom ou sa description, ou pour créer, modifier ou supprimer des règles ou des limites de la stratégie. 
+---
+= Modifier la stratégie de classification du trafic
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez modifier une stratégie de classification de trafic pour modifier son nom ou sa description, ou pour créer, modifier ou supprimer des règles ou des limites de la stratégie.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
++
+La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans un tableau.
+
+. Modifiez la stratégie à l'aide du menu actions ou de la page de détails. Reportez-vous  à la section link:../admin/creating-traffic-classification-policies.html["créez des stratégies de classification du trafic"] pour savoir ce que vous devez saisir.
++
+[role="tabbed-block"]
+====
+.Menu actions
+--
+.. Cochez la case correspondant à la règle.
+.. Sélectionnez *actions* > *Modifier*.
+
+
+--
+.Page de détails
+--
+.. Sélectionnez le nom de la stratégie.
+.. Sélectionnez le bouton *Modifier* en regard du nom de la stratégie.
+
+
+--
+====
+. Pour l'étape entrer le nom de la stratégie, modifiez éventuellement le nom ou la description de la stratégie et sélectionnez *Continuer*.
+. Pour l'étape Ajouter des règles de correspondance, ajoutez éventuellement une règle ou modifiez *Type* et *valeur de correspondance* de la règle existante, puis sélectionnez *Continuer*.
+. Pour l'étape définir les limites, ajoutez, modifiez ou supprimez une limite, et sélectionnez *Continuer*.
+. Consultez la stratégie mise à jour et sélectionnez *Enregistrer et continuer*.
++
+Les modifications apportées à la stratégie sont enregistrées et le trafic réseau est désormais géré conformément aux règles de classification du trafic. Vous pouvez afficher les diagrammes de trafic et vérifier que les stratégies appliquent les limites de trafic auxquelles vous vous attendez.
+
+

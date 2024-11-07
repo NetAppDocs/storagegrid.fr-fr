@@ -1,0 +1,126 @@
+---
+permalink: maintain/powering-down-host.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, stop services, power down host, power off host 
+summary: Avant de mettre un hôte hors tension, vous devez arrêter les services de tous les nœuds du grid sur cet hôte. 
+---
+= Mettez l'hôte hors tension
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de mettre un hôte hors tension, vous devez arrêter les services de tous les nœuds du grid sur cet hôte.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Arrêter tous les services en cours d'exécution sur le nœud : `service servermanager stop`
++
+L'arrêt des services peut prendre jusqu'à 15 minutes et il est possible que vous souhaitiez vous connecter au système à distance afin de surveiller le processus d'arrêt.
+
+. Répétez les étapes 1 et 2 pour chaque nœud de l'hôte.
+. Si vous disposez d'un hôte Linux :
++
+.. Connectez-vous au système d'exploitation hôte.
+.. Arrêter le nœud : `storagegrid node stop`
+.. Arrêtez le système d'exploitation hôte.
+
+
+. Si le nœud s'exécute sur une machine virtuelle VMware ou s'il s'agit d'un nœud d'appliance, exécutez la commande shutdown : `shutdown -h now`
++
+Exécutez cette étape quel que soit le résultat de la `service servermanager stop` commande.
+
++
+
+NOTE: Après avoir exécutée la `shutdown -h now` commande sur un nœud d'appliance, vous devez mettre l'appliance hors/sous tension pour redémarrer le nœud.
+
++
+Pour l'appliance, cette commande arrête le contrôleur, mais l'appliance est toujours sous tension. Vous devez passer à l'étape suivante.
+
+. Si vous mettez un nœud d'appliance hors tension, suivez les étapes indiquées pour l'appliance.
++
+[role="tabbed-block"]
+====
+.SG6160
+--
+.. Mettez le contrôleur de stockage SG6100-CN hors tension.
+.. Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
+--
+.SGF6112
+--
+.. Mettez l'appareil hors tension.
+.. Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+.SG6000
+--
+.. Attendez que la LED verte cache actif située à l'arrière des contrôleurs de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Mettez l'appareil hors tension et attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+.SG5800
+--
+.. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Dans la page d'accueil de SANtricity System Manager, sélectionnez *Afficher les opérations en cours*.
+.. Vérifiez que toutes les opérations ont été effectuées avant de passer à l'étape suivante.
+.. Mettez les deux boutons marche/arrêt sur le tiroir contrôleur et attendez que toutes les LED du tiroir contrôleur s'éteignent.
+
+
+--
+.SG5700
+--
+.. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Mettez l'appareil hors tension et attendez que toutes les LED et l'activité d'affichage à sept segments s'arrêtent.
+
+
+--
+.SG110 ou SG1100
+--
+.. Mettez l'appareil hors tension.
+.. Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+.SG100 ou SG1000
+--
+.. Mettez l'appareil hors tension.
+.. Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+====
+. Déconnectez-vous du shell de commande : `exit`
+
+
+.Informations associées
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Systèmes de stockage SG6000"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Systèmes de stockage SG5700"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Systèmes de stockage SG5800"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliances de services SG110 et SG1100"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appliances de services SG100 et SG1000"^]
+

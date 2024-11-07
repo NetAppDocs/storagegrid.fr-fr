@@ -1,0 +1,61 @@
+---
+permalink: s3/recommendations-for-implementing-s3-rest-api.html 
+sidebar: sidebar 
+keywords: implement s3 rest api 
+summary: 'Suivez ces recommandations lors de l"implémentation de l"API REST S3 pour une utilisation avec StorageGRID.' 
+---
+= Recommandations pour l'implémentation de l'API REST S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Suivez ces recommandations lors de l'implémentation de l'API REST S3 pour une utilisation avec StorageGRID.
+
+
+
+== Recommandations pour les têtes à des objets inexistants
+
+Si votre application vérifie régulièrement si un objet existe dans un chemin où vous ne vous attendez pas à ce que l'objet existe réellement, vous devez utiliser le "disponible" link:consistency-controls.html["la cohérence"]. Par exemple, vous devez utiliser la cohérence « disponible » si votre application se trouve en tête d'emplacement avant de la METTRE EN PLACE.
+
+Sinon, si l'opération HEAD ne trouve pas l'objet, vous risquez de recevoir un nombre élevé d'erreurs de serveur interne 500 si deux nœuds de stockage ou plus sur le même site sont indisponibles ou si un site distant est inaccessible.
+
+Vous pouvez définir la cohérence « disponible » pour chaque compartiment à l'aide de la link:put-bucket-consistency-request.html["PRÉSERVER la cohérence du godet"] requête ou spécifier la cohérence dans l'en-tête de demande pour une opération d'API individuelle.
+
+
+
+== Recommandations pour les clés d'objet
+
+Suivez ces recommandations pour les noms de clés d'objet, en fonction de la date de création du compartiment.
+
+.Compartiments créés dans StorageGRID 11.4 ou version antérieure
+* N'utilisez pas de valeurs aléatoires comme les quatre premiers caractères des clés d'objet. Cela contraste avec l'ancienne recommandation AWS pour les préfixes de clés. Utilisez plutôt des préfixes non aléatoires et non uniques, tels que `image`.
+* Si vous suivez les recommandations d'AWS pour utiliser des caractères aléatoires et uniques dans les préfixes de clés, préfixez les clés d'objet à l'aide d'un nom de répertoire. C'est-à-dire, utilisez le format suivant :
++
+`mybucket/mydir/f8e3-image3132.jpg`
+
++
+Au lieu de ce format :
+
++
+`mybucket/f8e3-image3132.jpg`
+
+
+
+.Compartiments créés dans StorageGRID 11.4 ou version ultérieure
+Il n'est pas nécessaire de restreindre les noms de clés d'objet pour répondre aux bonnes pratiques de performances. Dans la plupart des cas, vous pouvez utiliser des valeurs aléatoires pour les quatre premiers caractères des noms de clé d'objet.
+
+
+TIP: À cela s'exception près un workload S3 qui supprime en continu tous les objets après une courte période de temps. Pour minimiser l'impact sur les performances de ce cas d'utilisation, il est possible de faire varier la première partie du nom de clé tous les mille objets avec une date comme la date. Supposons par exemple qu'un client S3 écrit généralement 2,000 objets/seconde et que la règle de cycle de vie ILM ou compartiment supprime tous les objets au bout de trois jours. Pour réduire l'impact sur les performances, vous pouvez nommer les clés comme suit : `/mybucket/mydir/_yyyymmddhhmmss_-_random_UUID_.jpg`
+
+
+
+== Recommandations pour les « lectures de plage »
+
+Si link:../admin/configuring-stored-object-compression.html["option globale pour compresser les objets stockés"]est activé, les applications client S3 doivent éviter d'effectuer des opérations GetObject qui spécifient une plage d'octets. Ces opérations de « lecture de plage » sont inefficaces car StorageGRID doit décompresser efficacement les objets pour accéder aux octets demandés. Les opérations GetObject qui demandent une petite plage d'octets à partir d'un objet très volumineux sont particulièrement inefficaces ; par exemple, il est inefficace de lire une plage de 10 Mo à partir d'un objet compressé de 50 Go.
+
+Si les plages sont lues à partir d'objets compressés, les demandes client peuvent être en attente.
+
+
+NOTE: Si vous devez compresser des objets et que votre application client doit utiliser des lectures de plage, augmentez le délai de lecture de l'application.

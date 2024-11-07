@@ -1,0 +1,25 @@
+---
+permalink: upgrade/changes-to-tenant-management-api.html 
+sidebar: sidebar 
+keywords: tenant management api, api, api version, swagger, rest api 
+summary: 'StorageGRID 11.9 utilise la version 4 de l"API de gestion des locataires. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.' 
+---
+= Modifications apportées à l'API de gestion des locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.9 utilise la version 4 de l'API de gestion des locataires. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.
+
+
+NOTE: Vous pouvez continuer à utiliser des versions obsolètes de l'API de gestion des locataires avec StorageGRID 11.9. Cependant, la prise en charge de ces versions de l'API sera supprimée dans une future version de StorageGRID. Après la mise à niveau vers StorageGRID 11.9, vous pouvez désactiver les API obsolètes à l'aide de `PUT /grid/config/management` l'API.
+
+Pour en savoir plus, rendez-vous sur link:../tenant/understanding-tenant-management-api.html["Découvrez l'API de gestion des locataires"].
+
+
+
+== Nouvelle API pour la limite de capacité du compartiment
+
+Vous pouvez utiliser l' `/org/containers/{bucketName}/quota-object-bytes`API avec les opérations GET/PUT pour obtenir et définir la limite de capacité de stockage pour un compartiment.

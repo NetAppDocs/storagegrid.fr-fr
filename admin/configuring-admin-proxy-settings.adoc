@@ -1,0 +1,61 @@
+---
+permalink: admin/configuring-admin-proxy-settings.html 
+sidebar: sidebar 
+keywords: admin proxy, autosupport, non-transparent proxy 
+summary: 'Si vous envoyez des packages AutoSupport via HTTP ou HTTPS, vous pouvez configurer un serveur proxy non transparent entre les nœuds d"administration et le support technique \(AutoSupport\).' 
+---
+= Configurer les paramètres du proxy d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous envoyez des packages AutoSupport via HTTP ou HTTPS, vous pouvez configurer un serveur proxy non transparent entre les nœuds d'administration et le support technique (AutoSupport).
+
+Pour plus d'informations sur AutoSupport, voir link:configure-autosupport-grid-manager.html["Configurez AutoSupport"].
+
+.Avant de commencer
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+
+.Description de la tâche
+Vous pouvez configurer les paramètres d'un proxy d'administration unique.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres proxy*.
++
+La page Paramètres proxy s'affiche. Par défaut, l'option stockage est sélectionnée dans le menu de l'onglet.
+
+. Sélectionnez l'onglet *Admin*.
+. Cochez la case *Activer le proxy Admin*.
+. Entrez le nom d'hôte ou l'adresse IP du serveur proxy.
+. Entrez le port utilisé pour se connecter au serveur proxy.
+. Vous pouvez également saisir un nom d'utilisateur et un mot de passe pour le serveur proxy.
++
+Laissez ces champs vides si votre serveur proxy ne requiert pas de nom d'utilisateur ou de mot de passe.
+
+. Sélectionnez l'une des options suivantes :
++
+** Si vous souhaitez sécuriser la connexion au proxy d'administration, sélectionnez *vérifier le certificat proxy*. Téléchargez un paquet CA pour vérifier l'authenticité des certificats SSL présentés par le serveur proxy d'administration.
++
+
+CAUTION: AutoSupport On Demand, E-Series AutoSupport via StorageGRID et la détermination du chemin de mise à jour sur la page mise à niveau StorageGRID ne fonctionneront pas si un certificat proxy est vérifié.
+
++
+Une fois le paquet CA téléchargé, ses métadonnées s'affichent.
+
+** Si vous ne souhaitez pas valider les certificats lors de la communication avec le serveur proxy d'administration, sélectionnez *ne pas vérifier le certificat proxy*.
+
+
+. Sélectionnez *Enregistrer*.
++
+Une fois le proxy d'administration enregistré, le serveur proxy entre les nœuds d'administration et le support technique est configuré.
+
++
+
+NOTE: Les modifications de proxy peuvent prendre jusqu'à 10 minutes.
+
+. Si vous devez désactiver le proxy admin, décochez la case *Activer le proxy Admin*, puis sélectionnez *Enregistrer*.
+

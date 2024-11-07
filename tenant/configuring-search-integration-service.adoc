@@ -1,0 +1,306 @@
+---
+permalink: tenant/configuring-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to configure search integration service 
+summary: 'Vous activez l"intégration de la recherche pour un compartiment en créant un XML de configuration d"intégration de recherche et en utilisant le gestionnaire de locataires pour appliquer le XML à un compartiment.' 
+---
+= Configurer le service d'intégration de la recherche
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous activez l'intégration de la recherche pour un compartiment en créant un XML d'intégration de recherche et en utilisant le Gestionnaire de locataires pour appliquer le XML au compartiment.
+
+.Avant de commencer
+* Les services de plateforme ont été activés pour votre compte de locataire par un administrateur StorageGRID.
+* Vous avez déjà créé un compartiment S3 dont vous souhaitez indexer le contenu.
+* Le noeud final que vous avez l'intention d'utiliser comme destination pour le service d'intégration de recherche existe déjà, et vous avez son URN.
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisation des stratégies de groupe ou de compartiment lors de la configuration du compartiment à l'aide du Gestionnaire de locataires.
+
+
+.Description de la tâche
+Une fois que vous avez configuré le service d'intégration de recherche pour un compartiment source, la création d'un objet ou la mise à jour des métadonnées ou des balises d'un objet déclenche l'envoi des métadonnées d'objet vers le terminal de destination.
+
+Si vous activez le service d'intégration de recherche pour un compartiment qui contient déjà des objets, les notifications de métadonnées ne sont pas automatiquement envoyées pour les objets existants. Mettez à jour ces objets existants pour vous assurer que leurs métadonnées sont ajoutées à l'index de recherche de destination.
+
+.Étapes
+. Activer l'intégration de la recherche pour un compartiment :
++
+** Utilisez un éditeur de texte pour créer le XML de notification de métadonnées requis pour activer l'intégration de la recherche.
+** Lors de la configuration du XML, utilisez l'URN d'un noeud final d'intégration de recherche comme destination.
++
+Les objets peuvent être filtrés sur le préfixe du nom de l'objet. Par exemple, vous pouvez envoyer des métadonnées pour les objets dont le préfixe est `images` donné à une destination, et des métadonnées pour les objets dont le préfixe est ajouté `videos` à une autre. Les configurations qui comportent des préfixes qui se chevauchent ne sont pas valides et sont rejetées lorsqu'elles sont soumises. Par exemple, une configuration qui inclut une règle pour les objets avec le préfixe `test` et une seconde règle pour les objets avec le préfixe `test2` n'est pas autorisée.
+
++
+Si nécessaire, reportez-vous à la <<example-notification-config,Exemples pour le XML de configuration des métadonnées>>.
+
++
+[listing]
+----
+<MetadataNotificationConfiguration>
+ <Rule>
+    <Status>Enabled</Status>
+    <Prefix></Prefix>
+    <Destination>
+       <Urn>/Urn>
+       </Destination>
+ </Rule>
+</MetadataNotificationConfiguration>
+----
++
+Éléments de la configuration de notification des métadonnées XML :
+
++
+[cols="1a,3a,1a"]
+|===
+| Nom | Description | Obligatoire 
+
+
+ a| 
+Configuration de la MetadaNotificationConfiguration
+ a| 
+Balise de conteneur pour les règles utilisées pour spécifier les objets et la destination des notifications de métadonnées.
+
+Contient un ou plusieurs éléments de règle.
+ a| 
+Oui
+
+
+
+ a| 
+Règle
+ a| 
+Balise de conteneur d'une règle qui identifie les objets dont les métadonnées doivent être ajoutées à un index spécifié.
+
+Les règles avec des préfixes qui se chevauchent sont rejetées.
+
+Inclus dans l'élément MetadaNotificationConfiguration.
+ a| 
+Oui
+
+
+
+ a| 
+ID
+ a| 
+Identifiant unique de la règle.
+
+Inclus dans l'élément règle.
+ a| 
+Non
+
+
+
+ a| 
+État
+ a| 
+L'état peut être « activé » ou « désactivé ». Aucune action n'est prise pour les règles désactivées.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Préfixe
+ a| 
+Les objets qui correspondent au préfixe sont affectés par la règle et leurs métadonnées sont envoyées à la destination spécifiée.
+
+Pour faire correspondre tous les objets, spécifiez un préfixe vide.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Destination
+ a| 
+Balise de conteneur pour la destination d'une règle.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Urne
+ a| 
+URN de la destination où les métadonnées d'objet sont envoyées. Doit être l'URN d'un terminal StorageGRID avec les propriétés suivantes :
+
+*** `es` doit être le troisième élément.
+*** L'URN doit se terminer par l'index et le type où les métadonnées sont stockées, sous la forme `domain-name/myindex/mytype`.
+
+
+Les terminaux sont configurés à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires. Ils se présentent sous la forme suivante :
+
+*** `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+*** `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+Le noeud final doit être configuré avant la soumission du XML de configuration, ou la configuration échouera avec une erreur 404.
+
+L'URNE est incluse dans l'élément destination.
+ a| 
+Oui
+
+|===
+
+
+. Dans le Gestionnaire de locataires, sélectionnez *STORAGE (S3)* > *seaux*.
+. Sélectionnez le nom du compartiment source.
++
+La page des détails du compartiment s'affiche.
+
+. Sélectionnez *Platform Services* > *Search Integration*
+. Cochez la case *Activer l'intégration de la recherche*.
+. Collez la configuration de notification de métadonnées dans la zone de texte, puis sélectionnez *Enregistrer les modifications*.
++
+
+NOTE: Les services de plateforme doivent être activés pour chaque compte de locataire par un administrateur StorageGRID à l'aide de l'API Grid Manager ou de gestion. Contactez votre administrateur StorageGRID si une erreur se produit lors de l'enregistrement du XML de configuration.
+
+. Vérifiez que le service d'intégration de la recherche est configuré correctement :
++
+.. Ajoutez un objet au compartiment source qui répond aux exigences relatives au déclenchement d'une notification de métadonnées comme spécifié dans le XML de configuration.
++
+Dans l'exemple présenté précédemment, tous les objets ajoutés au compartiment déclenchent une notification de métadonnées.
+
+.. Vérifiez qu'un document JSON contenant les métadonnées et les balises de l'objet a été ajouté à l'index de recherche spécifié dans le noeud final.
+
+
+
+
+.Une fois que vous avez terminé
+Si nécessaire, vous pouvez désactiver l'intégration de la recherche pour un compartiment à l'aide de l'une des méthodes suivantes :
+
+* Sélectionnez *STORAGE (S3)* > *Buckets* et décochez la case *Enable search Integration*.
+* Si vous utilisez directement l'API S3, utilisez une demande de notification DE suppression des métadonnées du compartiment. Pour plus d'informations sur l'implémentation des applications client S3, reportez-vous aux instructions.
+
+
+
+
+== [[example-notification-config]]exemple : configuration de notification de métadonnées qui s'applique à tous les objets
+
+Dans cet exemple, les métadonnées d'objet de tous les objets sont envoyées vers la même destination.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:myes:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== Exemple : configuration des notifications de métadonnées avec deux règles
+
+Dans cet exemple, les métadonnées d'objet des objets qui correspondent au préfixe `/images` sont envoyées à une destination, tandis que les métadonnées d'objet des objets correspondant au préfixe `/videos` sont envoyées à une seconde destination.
+
+[listing]
+----
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== Format de notification des métadonnées
+
+Lorsque vous activez le service d'intégration de la recherche pour un compartiment, un document JSON est généré et envoyé au terminal de destination à chaque ajout, mise à jour ou suppression de métadonnées d'objet.
+
+Cet exemple montre un exemple de fichier JSON qui pourrait être généré lors de la création d'un objet avec la clé `SGWS/Tagging.txt` dans un compartiment nommé `test`. Le `test` compartiment n'est pas versionné, la balise est donc `versionId` vide.
+
+[listing]
+----
+{
+  "bucket": "test",
+  "key": "SGWS/Tagging.txt",
+  "versionId": "",
+  "accountId": "86928401983529626822",
+  "size": 38,
+  "md5": "3d6c7634a85436eee06d43415012855",
+  "region":"us-east-1",
+  "metadata": {
+    "age": "25"
+  },
+  "tags": {
+    "color": "yellow"
+  }
+}
+----
+
+
+=== Champs inclus dans le document JSON
+
+Le nom du document inclut le nom du compartiment, le nom de l'objet et l'ID de version, le cas échéant.
+
+Informations sur les compartiments et les objets::
++
+--
+`bucket`: Nom du compartiment
+
+`key`: Nom de clé d'objet
+
+`versionID`: Version de l'objet, pour les objets dans les compartiments multiversion
+
+`region`: Région du compartiment, par exemple `us-east-1`
+
+--
+Métadonnées de système::
++
+--
+`size`: Taille de l'objet (en octets) visible par un client HTTP
+
+`md5`: Hachage d'objet
+
+--
+Métadonnées d'utilisateur::
++
+--
+`metadata`: Toutes les métadonnées utilisateur de l'objet, en tant que paires clé-valeur
+
+`key:value`
+
+--
+Étiquettes::
++
+--
+`tags`: Toutes les balises d'objet définies pour l'objet, en tant que paires clé-valeur
+
+`key:value`
+
+--
+
+
+
+
+=== Affichage des résultats dans Elasticsearch
+
+Pour les balises et les métadonnées d'utilisateur, StorageGRID transmet des dates et des chiffres à Elasticsearch en tant que chaînes ou notifications d'événement S3. Pour configurer Elasticsearch afin d'interpréter ces chaînes comme des dates ou des chiffres, suivez les instructions Elasticsearch pour un mappage dynamique des champs et un mappage des formats de date. Activez les mappages de champs dynamiques sur l'index avant de configurer le service d'intégration de recherche. Une fois qu'un document est indexé, vous ne pouvez pas modifier les types de champ du document dans l'index.

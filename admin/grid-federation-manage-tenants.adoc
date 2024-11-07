@@ -1,0 +1,208 @@
+---
+permalink: admin/grid-federation-manage-tenants.html 
+sidebar: sidebar 
+keywords: grid federation, manage tenant, use grid federation permission, remove permission, cross grid replication 
+summary: 'Vous pouvez autoriser les comptes de locataires S3 à utiliser une connexion de fédération de grid entre deux systèmes StorageGRID. Lorsque les locataires sont autorisés à utiliser une connexion, des étapes spéciales sont requises pour modifier les détails du locataire ou pour supprimer définitivement l"autorisation du locataire pour utiliser la connexion.' 
+---
+= Gérer les locataires autorisés pour la fédération dans le grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez autoriser les comptes de locataires S3 à utiliser une connexion de fédération de grid entre deux systèmes StorageGRID. Lorsque les locataires sont autorisés à utiliser une connexion, des étapes spéciales sont requises pour modifier les détails du locataire ou pour supprimer définitivement l'autorisation d'un locataire d'utiliser la connexion.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille sur l'une des grilles à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"] pour la grille à laquelle vous êtes connecté.
+* Vous avez link:grid-federation-create-connection.html["créé une connexion de fédération de grille"] entre deux grilles.
+* Vous avez examiné les flux de travail pour link:grid-federation-what-is-account-clone.html["clone de compte"] et link:grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"].
+* Si nécessaire, vous avez déjà configuré l'authentification unique (SSO) ou la fédération d'identification pour les deux grilles de la connexion. Voir link:grid-federation-what-is-account-clone.html["Qu'est-ce que le clone de compte"].
+
+
+
+
+== Créez un locataire autorisé
+
+Si vous souhaitez autoriser un compte de locataire nouveau ou existant à utiliser une connexion de fédération de grille pour le clone de compte et la réplication inter-grille, suivez les instructions générales à link:creating-tenant-account.html["Créer un locataire S3"] ou link:editing-tenant-account.html["modifier un compte de locataire"] et notez les points suivants :
+
+* Vous pouvez créer le locataire à partir de l'une ou l'autre grille dans la connexion. La grille dans laquelle un locataire est créé est la _grille source du locataire_.
+* L'état de la connexion doit être *connecté*.
+* Lorsque le locataire est créé ou modifié pour activer l'autorisation *utiliser la connexion de fédération de grille*, puis enregistré sur la première grille, un locataire identique est automatiquement répliqué sur l'autre grille. La grille dans laquelle le locataire est répliqué est la grille de destination du locataire_.
+* Les locataires des deux grilles auront les mêmes ID de compte, nom, description, quota et autorisations à 20 chiffres. Vous pouvez également utiliser le champ *Description* pour identifier le locataire source et le locataire de destination. Par exemple, cette description pour un locataire créé sur la grille 1 s'affiche également pour le locataire répliqué dans la grille 2 : « ce locataire a été créé sur la grille 1 ».
+* Pour des raisons de sécurité, le mot de passe d'un utilisateur root local n'est pas copié dans la grille de destination.
++
+
+TIP: Pour qu'un utilisateur root local puisse se connecter au tenant répliqué sur la grille de destination, un administrateur de grille pour cette grille doit link:changing-password-for-tenant-local-root-user.html["modifiez le mot de passe de l'utilisateur root local"].
+
+* Une fois que le nouveau locataire ou le locataire modifié est disponible sur les deux grilles, les utilisateurs du tenant peuvent effectuer les opérations suivantes :
++
+** Dans la grille source du locataire, créez des groupes et des utilisateurs locaux qui sont automatiquement clonés dans la grille de destination du locataire. Voir link:../tenant/grid-federation-account-clone.html["Cloner des groupes de locataires et des utilisateurs"].
+** Créez de nouvelles clés d'accès S3, qui peuvent être clonées sur la grille de destination du locataire. Voir link:../tenant/grid-federation-clone-keys-with-api.html["Cloner les clés d'accès S3 à l'aide de l'API"].
+** Créez des compartiments identiques sur les deux grilles dans la connexion et activez la réplication de type grille dans une direction ou dans les deux directions. Voir link:../tenant/grid-federation-manage-cross-grid-replication.html["Gérer la réplication entre les grilles"].
+
+
+
+
+
+
+== Afficher un locataire autorisé
+
+Vous pouvez afficher les détails d'un locataire autorisé à utiliser une connexion de fédération de grille.
+
+.Étapes
+. Sélectionnez *LOCATAIRES*.
+. Sur la page tenants, sélectionnez le nom du locataire pour afficher la page des détails du locataire.
++
+S'il s'agit de la grille source du locataire (c'est-à-dire si le locataire a été créé sur cette grille), une bannière apparaît pour vous rappeler que le locataire a été cloné dans une autre grille. Si vous modifiez ou supprimez ce locataire, vos modifications ne seront pas synchronisées avec l'autre grille.
+
++
+image::../media/grid-federation-tenant-detail.png[onglet grid federation de la page de détails du locataire]
+
+. Sélectionnez éventuellement l'onglet *Grid federation* à link:../monitor/grid-federation-monitor-connections.html["surveillez la connexion de fédération de grille"].
+
+
+
+
+== Modifier un locataire autorisé
+
+Si vous devez modifier un locataire doté de l'autorisation *utiliser la connexion de fédération de grille*, suivez les instructions générales pour link:editing-tenant-account.html["modification d'un compte de locataire"] et notez ce qui suit :
+
+* Si un locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous pouvez modifier les détails du locataire à partir de l'une des grilles de la connexion. Toutefois, les modifications que vous apportez ne seront pas copiées dans l'autre grille. Si vous souhaitez que les détails du locataire restent synchronisés entre les grilles, vous devez effectuer les mêmes modifications sur les deux grilles.
+* Vous ne pouvez pas effacer l'autorisation *utiliser la connexion de fédération de grille* lorsque vous modifiez un locataire.
+* Vous ne pouvez pas sélectionner une autre connexion de fédération de grille lorsque vous modifiez un locataire.
+
+
+
+
+== Supprimer un locataire autorisé
+
+Si vous devez supprimer un locataire doté de l'autorisation *utiliser la connexion de fédération de grille*, suivez les instructions générales pour link:deleting-tenant-account.html["suppression d'un compte de locataire"] et notez ce qui suit :
+
+* Avant de pouvoir supprimer le locataire d'origine sur la grille source, vous devez supprimer toutes les rubriques du compte sur la grille source.
+* Avant de supprimer le locataire cloné sur la grille de destination, vous devez supprimer tous les compartiments du compte de la grille de destination.
+* Si vous supprimez le locataire d'origine ou cloné, le compte ne peut plus être utilisé pour la réplication entre les grilles.
+* Si vous supprimez le locataire d'origine sur la grille source, tous les groupes de locataires, utilisateurs ou clés clonés dans la grille de destination ne seront pas affectés. Vous pouvez soit supprimer le locataire cloné, soit lui permettre de gérer ses propres groupes, utilisateurs, clés d'accès et compartiments.
+* Si vous supprimez le locataire cloné sur la grille de destination, des erreurs de clonage se produisent si de nouveaux groupes ou utilisateurs sont ajoutés au locataire d'origine.
++
+Pour éviter ces erreurs, supprimez l'autorisation du locataire d'utiliser la connexion de fédération de grille avant de supprimer le locataire de cette grille.
+
+
+
+
+
+== [[remove-grid-federation-connection-permission]]Supprimer l'autorisation de connexion utiliser la fédération de grille
+
+Pour empêcher un locataire d'utiliser une connexion de fédération de grille, vous devez supprimer l'autorisation *utiliser la connexion de fédération de grille*.
+
+image::../media/grid-federation-remove-permission.png[procédure de suppression de la connexion de fédération de grille]
+
+Avant de supprimer l'autorisation d'un locataire d'utiliser une connexion de fédération de grille, notez ce qui suit :
+
+* Vous ne pouvez pas supprimer l'autorisation *utiliser la connexion de fédération de grille* si la réplication inter-grille est activée pour l'un des compartiments du locataire. Le compte de locataire doit d'abord désactiver la réplication inter-grid pour tous ses compartiments.
+* La suppression de l'autorisation *utiliser la connexion de fédération de grille* ne supprime pas les éléments qui ont déjà été répliqués entre les grilles. Par exemple, les utilisateurs, groupes et objets de tenant qui existent sur les deux grilles ne sont pas supprimés de l'une ou l'autre des grilles lorsque l'autorisation du tenant est supprimée. Si vous souhaitez supprimer ces éléments, vous devez les supprimer manuellement des deux grilles.
+* Si vous souhaitez réactiver cette autorisation avec la même connexion de fédération de grille, supprimez d'abord ce locataire sur la grille de destination. Sinon, la réactivation de cette autorisation entraînera une erreur.
+
+
+
+NOTE: La réactivation de l'autorisation *utiliser la connexion de fédération de grille* fait de la grille locale la grille source et déclenche le clonage vers la grille distante spécifiée par la connexion de fédération de grille sélectionnée. Si le compte de tenant existe déjà sur la grille distante, le clonage entraîne une erreur de conflit.
+
+.Avant de commencer
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"] pour les deux grilles.
+
+
+
+
+=== Désactivez la réplication pour les compartiments de locataires
+
+Dans un premier temps, désactivez la réplication inter-grid pour tous les compartiments de locataires.
+
+.Étapes
+. À partir de l'une des grilles, connectez-vous au Gestionnaire de grille à partir du nœud d'administration principal.
+. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez le nom de la connexion pour afficher ses détails.
+. Dans l'onglet *locataires autorisés*, déterminez si le locataire utilise la connexion.
+. Si le locataire est répertorié, demandez-lui de vous indiquer link:../tenant/grid-federation-manage-cross-grid-replication.html["désactiver la réplication entre les grilles"]tous ses compartiments sur les deux grilles de la connexion.
++
+
+TIP: Vous ne pouvez pas supprimer l'autorisation *utiliser la connexion de fédération de grille* si une réplication de type cross-grid est activée dans des compartiments de tenant. Le locataire doit désactiver la réplication inter-grid pour ses compartiments sur les deux grilles.
+
+
+
+
+
+=== Supprimer l'autorisation pour le locataire
+
+Une fois la réplication multigrille désactivée pour les compartiments de tenant, vous pouvez supprimer l'autorisation du locataire d'utiliser la connexion de fédération GRID.
+
+.Étapes
+. Connectez-vous au Grid Manager à partir du nœud d'administration principal.
+. Supprimez l'autorisation de la page grid federation ou de la page tenants.
++
+[role="tabbed-block"]
+====
+.Page de fédération de grille
+--
+.. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+.. Sélectionnez le nom de la connexion pour afficher sa page de détails.
+.. Dans l'onglet *locataires autorisés*, sélectionnez le bouton radio du locataire.
+.. Sélectionnez *Supprimer l'autorisation*.
+
+
+--
+.Page locataires
+--
+.. Sélectionnez *LOCATAIRES*.
+.. Sélectionnez le nom du locataire pour afficher la page de détails.
+.. Dans l'onglet *grid federation*, sélectionnez le bouton radio de la connexion.
+.. Sélectionnez *Supprimer l'autorisation*.
+
+
+--
+====
+. Passez en revue les avertissements dans la boîte de dialogue de confirmation et sélectionnez *Supprimer*.
++
+** Si l'autorisation peut être supprimée, vous êtes renvoyé à la page des détails et un message de réussite s'affiche. Ce locataire ne peut plus utiliser la connexion de fédération de grille.
+** Si la réplication entre plusieurs compartiments de tenant est toujours activée, une erreur s'affiche.
++
+image::../media/grid-federation-remove-permission-error.png[message d'erreur affiché si cgr est activé pour un compartiment pour le tenant]
+
++
+Vous pouvez effectuer l'une des opérations suivantes :
+
++
+*** (Recommandé.) Connectez-vous au gestionnaire de locataires et désactivez la réplication pour chaque compartiments du locataire. Voir link:../tenant/grid-federation-manage-cross-grid-replication.html["Gérer la réplication entre les grilles"]. Répétez ensuite les étapes pour supprimer l'autorisation *utiliser la connexion grille*.
+*** Supprimez l'autorisation par force. Voir la section suivante.
+
+
+
+
+. Accédez à l'autre grille et répétez ces étapes pour supprimer l'autorisation pour le même locataire sur l'autre grille.
+
+
+
+
+== [[force_remove_permission]]supprimez l'autorisation par la force
+
+Si nécessaire, vous pouvez forcer la suppression de l'autorisation d'un locataire à utiliser une connexion de fédération de grille, même si la réplication inter-grid est activée dans les compartiments de locataires.
+
+Avant de supprimer l'autorisation d'un locataire par la force, notez les considérations générales <<remove-grid-federation-connection-permission,suppression de l'autorisation>>et les considérations supplémentaires suivantes :
+
+* Si vous supprimez l'autorisation *utiliser la connexion de fédération de grille* par force, tous les objets en attente de réplication vers l'autre grille (ingérés mais pas encore répliqués) continueront d'être répliqués. Pour empêcher ces objets en cours d'exécution d'atteindre le compartiment de destination, vous devez également supprimer l'autorisation du locataire sur l'autre grille.
+* Tous les objets ingérés dans le compartiment source après la suppression de l'autorisation *utiliser la connexion de fédération de grille* ne seront jamais répliqués dans le compartiment de destination.
+
+
+.Étapes
+. Connectez-vous au Grid Manager à partir du nœud d'administration principal.
+. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez le nom de la connexion pour afficher sa page de détails.
+. Dans l'onglet *locataires autorisés*, sélectionnez le bouton radio du locataire.
+. Sélectionnez *Supprimer l'autorisation*.
+. Passez en revue les avertissements dans la boîte de dialogue de confirmation et sélectionnez *forcer la suppression*.
++
+Un message de réussite s'affiche. Ce locataire ne peut plus utiliser la connexion de fédération de grille.
+
+. Si nécessaire, accédez à l'autre grille et répétez ces étapes pour forcer la suppression de l'autorisation pour le même compte de tenant sur l'autre grille. Par exemple, vous devez répéter ces étapes sur l'autre grille pour empêcher les objets en cours d'atteindre le compartiment de destination.
+

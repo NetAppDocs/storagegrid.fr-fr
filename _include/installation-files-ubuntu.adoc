@@ -1,0 +1,83 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./bps/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./Debian/NLF000000.txt  a| 
+Un fichier de licence NetApp hors production que vous pouvez utiliser pour tester et réaliser des démonstrations de faisabilité.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb  a| 
+DEB paquet pour installer les images de noeud StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Somme de contrôle MD5 pour le fichier `/debs/storagegrid-webscale-images-version-SHA.deb`.
+
+
+
+| ./Debian/storagegrid-webscale-service-version-SHA.deb  a| 
+Paquet DEB pour l'installation du service hôte StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./debian/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./debian/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./debian/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API Grid Management lorsque l'authentification unique est activée. Vous pouvez également utiliser ce script pour l'intégration de Ping Federate.
+
+
+
+| ./deps/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./deps/configure-storagegrid.blank.json  a| 
+Fichier de configuration vide à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./deps/extras/ansible  a| 
+Exemple de rôle et de manuel de vente Ansible pour la configuration des hôtes Ubuntu ou Debian pour le déploiement de conteneurs StorageGRID. Vous pouvez personnaliser le rôle ou le PlayBook selon vos besoins.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le script Python associé `storagegrid-ssoauth-azure.py` pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./débits/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===

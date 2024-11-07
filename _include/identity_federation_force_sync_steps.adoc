@@ -1,0 +1,17 @@
+= 
+:allow-uri-read: 
+
+
+Le système StorageGRID synchronise régulièrement les groupes fédérés et les utilisateurs à partir du référentiel d'identité. Vous pouvez forcer la synchronisation à démarrer si vous souhaitez activer ou restreindre les autorisations utilisateur le plus rapidement possible.
+
+.Étapes
+. Accédez à la page fédération des identités.
+. Sélectionnez *serveur de synchronisation* en haut de la page.
++
+Le processus de synchronisation peut prendre un certain temps en fonction de votre environnement.
+
++
+
+NOTE: L'alerte *échec de synchronisation de la fédération d'identités* est déclenchée en cas de problème de synchronisation des groupes fédérés et des utilisateurs à partir du référentiel d'identité.
+
+

@@ -1,0 +1,307 @@
+---
+permalink: monitor/email-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: 'Si vous souhaitez que des notifications par e-mail soient envoyées lorsque des alertes se produisent, vous devez fournir des informations sur votre serveur SMTP. Vous devez également saisir des adresses e-mail pour les destinataires des notifications d"alerte.' 
+---
+= Configurez les notifications par e-mail pour les alertes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous souhaitez que des notifications par e-mail soient envoyées lorsque des alertes se produisent, vous devez fournir des informations sur votre serveur SMTP. Vous devez également saisir des adresses e-mail pour les destinataires des notifications d'alerte.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Description de la tâche
+La configuration des e-mails utilisée pour les notifications d'alerte n'est pas utilisée pour les packages AutoSupport. Cependant, vous pouvez utiliser le même serveur de messagerie pour toutes les notifications.
+
+Si votre déploiement StorageGRID inclut plusieurs nœuds d'administration, le nœud d'administration principal est l'expéditeur préféré pour les notifications d'alerte, les packages AutoSupport, les traps et les notifications SNMP. Si le nœud d'administration principal n'est plus disponible, les notifications sont envoyées temporairement par d'autres nœuds d'administration. Voir link:../primer/what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"].
+
+.Étapes
+. Sélectionnez *ALERTES* > *Configuration de la messagerie*.
++
+La page Configuration de l'e-mail s'affiche.
+
+. Cochez la case *Activer les notifications par e-mail* pour indiquer que vous souhaitez que les e-mails de notification soient envoyés lorsque les alertes atteignent des seuils configurés.
++
+Les sections serveur d'e-mail (SMTP), sécurité de la couche de transport (TLS), adresses e-mail et filtres s'affichent.
+
+. Dans la section serveur de messagerie (SMTP), entrez les informations dont StorageGRID a besoin pour accéder à votre serveur SMTP.
++
+Si votre serveur SMTP nécessite une authentification, vous devez fournir à la fois un nom d'utilisateur et un mot de passe.
+
++
+[cols="1a,2a"]
+|===
+| Champ | Entrez 
+
+
+ a| 
+Serveur de messagerie
+ a| 
+Nom de domaine complet (FQDN) ou adresse IP du serveur SMTP.
+
+
+
+ a| 
+Port
+ a| 
+Port utilisé pour accéder au serveur SMTP. Doit être compris entre 1 et 65535.
+
+
+
+ a| 
+Nom d'utilisateur (facultatif)
+ a| 
+Si votre serveur SMTP nécessite une authentification, entrez le nom d'utilisateur à authentifier.
+
+
+
+ a| 
+Mot de passe (facultatif)
+ a| 
+Si votre serveur SMTP nécessite une authentification, entrez le mot de passe à authentifier auprès de.
+
+|===
+. Dans la section adresses e-mail, entrez les adresses e-mail de l'expéditeur et de chaque destinataire.
++
+.. Pour l'adresse électronique *expéditeur*, spécifiez une adresse e-mail valide à utiliser comme adresse de pour les notifications d'alerte.
++
+Par exemple : `storagegrid-alerts@example.com`
+
+.. Dans la section destinataires, entrez une adresse e-mail pour chaque liste d'e-mails ou personne devant recevoir un e-mail lorsqu'une alerte se produit.
++
+Sélectionnez l'icône plus image:../media/icon_plus_sign_black_on_white.gif["icône plus"]pour ajouter des destinataires.
+
+
+
+. Si transport Layer Security (TLS) est requis pour les communications avec le serveur SMTP, sélectionnez *exiger TLS* dans la section transport Layer Security (TLS).
++
+.. Dans le champ *certificat CA*, indiquez le certificat CA qui sera utilisé pour vérifier l'identification du serveur SMTP.
++
+Vous pouvez copier et coller le contenu dans ce champ ou sélectionner *Parcourir* et sélectionner le fichier.
+
++
+Vous devez fournir un seul fichier contenant les certificats de chaque autorité de certification intermédiaire (AC). Le fichier doit contenir chacun des fichiers de certificat d'autorité de certification codés au PEM, concaténés dans l'ordre de la chaîne de certificats.
+
+.. Cochez la case *Envoyer le certificat client* si votre serveur de messagerie SMTP requiert que les expéditeurs de courrier électronique fournissent des certificats client pour l'authentification.
+.. Dans le champ *certificat client*, fournissez le certificat client codé PEM à envoyer au serveur SMTP.
++
+Vous pouvez copier et coller le contenu dans ce champ ou sélectionner *Parcourir* et sélectionner le fichier.
+
+.. Dans le champ *Private Key*, saisissez la clé privée du certificat client dans le codage PEM non chiffré.
++
+Vous pouvez copier et coller le contenu dans ce champ ou sélectionner *Parcourir* et sélectionner le fichier.
+
++
+
+NOTE: Si vous devez modifier la configuration de la messagerie, sélectionnez l'icône représentant un crayon image:../media/icon_edit_tm.png["Icône Modifier"]pour mettre à jour ce champ.
+
+
+
+. Dans la section filtres, sélectionnez les niveaux de gravité des alertes qui doivent donner lieu à des notifications par e-mail, sauf si la règle d'une alerte spécifique a été mise en silence.
++
+[cols="1a,2a"]
+|===
+| Gravité | Description 
+
+
+ a| 
+Mineur, majeur, critique
+ a| 
+Une notification par e-mail est envoyée lorsque la condition mineure, majeure ou critique d'une règle d'alerte est remplie.
+
+
+
+ a| 
+Important, critique
+ a| 
+Une notification par e-mail est envoyée lorsque la condition principale ou critique d'une règle d'alerte est remplie. Les notifications ne sont pas envoyées pour les alertes mineures.
+
+
+
+ a| 
+Critique uniquement
+ a| 
+Une notification par e-mail est envoyée uniquement lorsque la condition critique d'une règle d'alerte est remplie. Les notifications ne sont pas envoyées pour les alertes mineures ou majeures.
+
+|===
+. Lorsque vous êtes prêt à tester vos paramètres de messagerie, procédez comme suit :
++
+.. Sélectionnez *Envoyer e-mail test*.
++
+Un message de confirmation s'affiche, indiquant qu'un e-mail de test a été envoyé.
+
+.. Cochez les cases de tous les destinataires d'e-mail et confirmez qu'un e-mail de test a été reçu.
++
+
+NOTE: Si l'e-mail n'est pas reçu dans quelques minutes ou si l'alerte *échec de notification par e-mail* est déclenchée, vérifiez vos paramètres et réessayez.
+
+.. Connectez-vous à tout autre nœud d'administration et envoyez un e-mail de test pour vérifier la connectivité de tous les sites.
++
+
+NOTE: Lorsque vous testez les notifications d'alertes, vous devez vous connecter à chaque nœud d'administration pour vérifier la connectivité. Cela contraste avec les tests de packages AutoSupport, où tous les nœuds d'administration envoient l'e-mail de test.
+
+
+
+. Sélectionnez *Enregistrer*.
++
+L'envoi d'un e-mail de test n'enregistre pas vos paramètres. Vous devez sélectionner *Enregistrer*.
+
++
+Les paramètres de messagerie sont enregistrés.
+
+
+
+
+
+== Informations incluses dans les notifications par e-mail d'alerte
+
+Après avoir configuré le serveur de messagerie SMTP, des notifications par e-mail sont envoyées aux destinataires désignés lorsqu'une alerte est déclenchée, à moins que la règle d'alerte ne soit supprimée par un silence. Voir link:silencing-alert-notifications.html["Notifications d'alerte de silence"].
+
+Les notifications par e-mail incluent les informations suivantes :
+
+image::../media/alerts_email_notification.png[Notification d'alertes par e-mail]
+
+[cols="1a,6a"]
+|===
+| Légende | Description 
+
+
+ a| 
+1
+ a| 
+Nom de l'alerte, suivi du nombre d'instances actives de cette alerte.
+
+
+
+ a| 
+2
+ a| 
+Description de l'alerte.
+
+
+
+ a| 
+3
+ a| 
+Toutes les actions recommandées pour l'alerte.
+
+
+
+ a| 
+4
+ a| 
+Détails sur chaque instance active de l'alerte, y compris le nœud et le site affectés, la gravité de l'alerte, l'heure UTC au moment où la règle d'alerte a été déclenchée, ainsi que le nom du travail et du service affectés.
+
+
+
+ a| 
+5
+ a| 
+Nom d'hôte du nœud d'administration qui a envoyé la notification.
+
+|===
+
+
+== Mode de regroupement des alertes
+
+Pour empêcher l'envoi d'un nombre excessif de notifications par e-mail lorsque des alertes sont déclenchées, StorageGRID tente de regrouper plusieurs alertes dans la même notification.
+
+Reportez-vous au tableau suivant pour obtenir des exemples de la manière dont StorageGRID regroupe plusieurs alertes dans les notifications par e-mail.
+
+[cols="1a,1a"]
+|===
+| Comportement | Exemple 
+
+
+ a| 
+Chaque notification d'alerte s'applique uniquement aux alertes portant le même nom. Si deux alertes avec des noms différents sont déclenchées en même temps, deux notifications par e-mail sont envoyées.
+ a| 
+* L'alerte A est déclenchée en même temps sur deux nœuds. Une seule notification est envoyée.
+* L'alerte A est déclenchée sur le nœud 1 et l'alerte B est déclenchée simultanément sur le nœud 2. Deux notifications sont envoyées : une pour chaque alerte.
+
+
+
+
+ a| 
+Pour une alerte spécifique sur un nœud spécifique, si les seuils sont atteints pour plus d'un degré de sévérité, une notification est envoyée uniquement pour l'alerte la plus grave.
+ a| 
+* L'alerte A est déclenchée et le seuil d'alerte secondaire, majeur et critique est atteint. Une notification est envoyée pour l'alerte critique.
+
+
+
+
+ a| 
+La première fois qu'une alerte est déclenchée, StorageGRID attend 2 minutes avant d'envoyer une notification. Si d'autres alertes du même nom sont déclenchées pendant ce temps, StorageGRID regroupe toutes les alertes de la notification initiale.​
+ a| 
+. L'alerte A est déclenchée sur le nœud 1 à 08:00. Aucune notification n'a été envoyée.
+. L'alerte A est déclenchée sur le nœud 2 à 08:01. Aucune notification n'a été envoyée.
+. À 08 h 02, une notification est envoyée pour signaler les deux instances de l'alerte.
+
+
+
+
+ a| 
+Si une autre alerte du même nom est déclenchée, StorageGRID attend 10 minutes avant d'envoyer une nouvelle notification. La nouvelle notification signale toutes les alertes actives (alertes en cours qui n'ont pas été désactivées), même si elles ont été signalées précédemment.
+ a| 
+. L'alerte A est déclenchée sur le nœud 1 à 08:00. Une notification est envoyée à 08:02.
+. L'alerte A est déclenchée sur le nœud 2 à 08:05. Une seconde notification est envoyée à 08:15 (10 minutes plus tard). Les deux nœuds sont signalés.
+
+
+
+
+ a| 
+Si plusieurs alertes en cours portent le même nom et que l'une de ces alertes est résolue, une nouvelle notification n'est pas envoyée si l'alerte se reproduit sur le nœud pour lequel l'alerte a été résolue.
+ a| 
+. L'alerte A est déclenchée pour le nœud 1. Une notification est envoyée.
+. L'alerte A est déclenchée pour le nœud 2. Une seconde notification est envoyée.
+. L'alerte A est résolue pour le nœud 2, mais elle reste active pour le nœud 1.
+. L'alerte A est à nouveau déclenchée pour le nœud 2. Aucune nouvelle notification n'est envoyée, car l'alerte est toujours active pour le nœud 1.
+
+
+
+
+ a| 
+StorageGRID continue à envoyer des notifications par e-mail tous les 7 jours jusqu'à ce que toutes les instances de l'alerte soient résolues ou que la règle d'alerte soit désactivée.
+ a| 
+. L'alerte A est déclenchée pour le nœud 1 le 8 mars. Une notification est envoyée.
+. L'alerte A n'est pas résolue ou arrêtée. Des notifications supplémentaires sont envoyées le 15 mars, le 22 mars, le 29 mars, etc.
+
+
+|===
+
+
+== Dépanner les notifications d'alerte par e-mail
+
+Si l'alerte *échec de notification par e-mail* est déclenchée ou si vous ne parvenez pas à recevoir la notification par e-mail d'alerte de test, procédez comme suit pour résoudre le problème.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Étapes
+. Vérifiez vos paramètres.
++
+.. Sélectionnez *ALERTES* > *Configuration de la messagerie*.
+.. Vérifiez que les paramètres du serveur de messagerie (SMTP) sont corrects.
+.. Vérifiez que vous avez spécifié des adresses e-mail valides pour les destinataires.
+
+
+. Vérifiez votre filtre de spam et assurez-vous que l'e-mail n'a pas été envoyé à un dossier indésirable.
+. Demandez à votre administrateur de messagerie de confirmer que les e-mails de l'adresse de l'expéditeur ne sont pas bloqués.
+. Collectez un fichier journal pour le nœud d'administration, puis contactez le support technique.
++
+Le support technique peut utiliser les informations contenues dans les journaux pour vous aider à déterminer ce qui s'est mal passé. Par exemple, le fichier prometheus.log peut afficher une erreur lors de la connexion au serveur spécifié.
+
++
+Voir link:collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"].
+
+

@@ -1,0 +1,328 @@
+---
+permalink: admin/creating-tenant-account.html 
+sidebar: sidebar 
+keywords: create tenant, tenant account 
+summary: 'Vous devez créer au moins un compte de locataire pour contrôler l"accès au stockage dans votre système StorageGRID.' 
+---
+= Créez un compte de locataire
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez créer au moins un compte de locataire pour contrôler l'accès au stockage dans votre système StorageGRID.
+
+Les étapes de création d'un compte de locataire varient selon que link:using-identity-federation.html["fédération des identités"] et  sont configurés et link:configuring-sso.html["authentification unique"]si le compte Grid Manager que vous utilisez pour créer le compte de locataire appartient à un groupe d'administration avec l'autorisation d'accès racine.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine ou de comptes de locataires"].
+* Si le compte de tenant utilise le référentiel d'identité qui a été configuré pour Grid Manager et que vous souhaitez accorder l'autorisation d'accès racine au compte de tenant à un groupe fédéré, vous avez importé ce groupe fédéré dans Grid Manager. Vous n'avez pas besoin d'affecter d'autorisations Grid Manager à ce groupe d'administration. Voir link:managing-admin-groups.html["Gérez les groupes d'administration"].
+* Si vous souhaitez autoriser un locataire S3 à cloner les données de compte et à répliquer les objets de compartiment vers une autre grille à l'aide d'une connexion de fédération de grille :
++
+** Vous avez link:grid-federation-create-connection.html["configurez la connexion de fédération de grille - effectué"].
+** L'état de la connexion est *connecté*.
+** Vous disposez de l'autorisation d'accès racine.
+** Vous avez examiné les considérations relatives à link:grid-federation-manage-tenants.html["gestion des locataires autorisés pour la fédération dans le grid"].
+** Si le compte de tenant utilise le référentiel d'identité configuré pour Grid Manager, vous avez importé le même groupe fédéré dans Grid Manager sur les deux grilles.
++
+Lorsque vous créez le tenant, vous sélectionnez ce groupe pour obtenir l'autorisation d'accès racine initiale pour les comptes de tenant source et de destination.
+
++
+
+TIP: Si ce groupe d'administration n'existe pas sur les deux grilles avant la création du tenant, celui-ci n'est pas répliqué vers la destination.
+
+
+
+
+
+
+
+== Accéder à l'assistant
+
+.Étapes
+. Sélectionnez *LOCATAIRES*.
+. Sélectionnez *Créer*.
+
+
+
+
+== Entrez les détails
+
+.Étapes
+. Entrez les détails du locataire.
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom du compte de locataire. Les noms de locataires n'ont pas besoin d'être uniques. Lorsque le compte de locataire est créé, il reçoit un ID de compte unique à 20 chiffres.
+
+
+
+ a| 
+Description (facultatif)
+ a| 
+Une description pour aider à identifier le locataire.
+
+Si vous créez un locataire qui utilisera une connexion de fédération de grille, vous pouvez utiliser ce champ pour identifier le locataire source et le locataire de destination. Par exemple, cette description pour un locataire créé sur la grille 1 s'affiche également pour le locataire répliqué dans la grille 2 : « ce locataire a été créé sur la grille 1 ».
+
+
+
+ a| 
+Type de client
+ a| 
+Le type de protocole client que ce locataire utilisera, soit *S3* soit *Swift*.
+
+*Remarque* : la prise en charge des applications clientes Swift a été obsolète et sera supprimée dans une version ultérieure.
+
+
+
+ a| 
+Quota de stockage (facultatif)
+ a| 
+Si vous souhaitez que ce locataire ait un quota de stockage, une valeur numérique pour le quota et les unités.
+
+|===
+. Sélectionnez *Continuer*.
+
+
+
+
+== [[admin-tenant-Select-permissions]]sélectionnez les autorisations
+
+.Étapes
+. Si vous le souhaitez, sélectionnez les autorisations de base dont ce locataire doit disposer.
++
+
+NOTE: Certaines de ces autorisations ont des exigences supplémentaires. Pour plus de détails, sélectionnez l'icône d'aide pour chaque autorisation.
+
++
+[cols="1a,3a"]
+|===
+| Autorisations | Si cette option est sélectionnée... 
+
+
+ a| 
+Autoriser les services de plate-forme
+ a| 
+Le locataire peut utiliser des services de plateforme S3 tels que CloudMirror. Voir link:../admin/manage-platform-services-for-tenants.html["Gestion des services de plateforme pour les comptes de locataires S3"].
+
+
+
+ a| 
+Utiliser son propre référentiel d'identité
+ a| 
+Le locataire peut configurer et gérer son propre référentiel d'identité pour les groupes et utilisateurs fédérés. Cette option est désactivée si vous disposez de link:../admin/configuring-sso.html["SSO configuré"] pour votre système StorageGRID.
+
+
+
+ a| 
+Autoriser la sélection S3
+ a| 
+Le locataire peut émettre des requêtes d'API S3 SelectObjectContent pour filtrer et récupérer des données d'objet. Voir link:../admin/manage-s3-select-for-tenant-accounts.html["Gérez S3 Select pour les comptes de locataires"].
+
+*Important* : les requêtes SelectObjectContent peuvent réduire les performances de l'équilibreur de charge pour tous les clients S3 et tous les locataires. Activez cette fonctionnalité uniquement lorsque cela est nécessaire et uniquement pour les locataires de confiance.
+
+|===
+. Si vous le souhaitez, sélectionnez les autorisations avancées dont ce locataire doit disposer.
++
+[cols="1a,3a"]
+|===
+| Autorisations | Si cette option est sélectionnée... 
+
+
+ a| 
+Connexion de fédération de grille
+ a| 
+Le locataire peut utiliser une connexion de fédération de grille qui :
+
+** Provoque le clonage de ce locataire et de tous les groupes de locataires et utilisateurs ajoutés au compte à partir de cette grille (la _grille source_) vers l'autre grille de la connexion sélectionnée (la _grille de destination_).
+** Permet à ce locataire de configurer la réplication entre les compartiments correspondants sur chaque grille.
+
+
+Voir link:../admin/grid-federation-manage-tenants.html["Gérer les locataires autorisés pour la fédération dans le grid"].
+
+
+
+ a| 
+Verrouillage d'objet S3
+ a| 
+Autoriser le locataire à utiliser des fonctionnalités spécifiques de S3 Object Lock :
+
+** *Set maximum Retention Period* définit la durée pendant laquelle les nouveaux objets ajoutés à ce compartiment doivent être conservés, à partir du moment où ils sont ingérés.
+** *Autoriser le mode de conformité* empêche les utilisateurs d'écraser ou de supprimer les versions d'objets protégés pendant la période de rétention.
+
+
+|===
+. Sélectionnez *Continuer*.
+
+
+
+
+== Définissez l'accès racine et créez un locataire
+
+.Étapes
+. Définissez l'accès racine pour le compte de locataire, selon que votre système StorageGRID utilise ou non la fédération des identités, l'authentification unique (SSO), ou les deux.
++
+[cols="1a,2a"]
+|===
+| Option | Faites ça 
+
+
+ a| 
+Si la fédération des identités n'est pas activée
+ a| 
+Spécifiez le mot de passe à utiliser lors de la connexion au tenant en tant qu'utilisateur root local.
+
+
+
+ a| 
+Si la fédération des identités est activée
+ a| 
+.. Sélectionnez un groupe fédéré existant pour obtenir l'autorisation d'accès racine pour le tenant.
+.. Vous pouvez également spécifier le mot de passe à utiliser lors de la connexion au tenant en tant qu'utilisateur root local.
+
+
+
+
+ a| 
+Si la fédération des identités et l'authentification unique (SSO) sont toutes deux activées
+ a| 
+Sélectionnez un groupe fédéré existant pour obtenir l'autorisation d'accès racine pour le tenant. Aucun utilisateur local ne peut se connecter.
+
+|===
+. Sélectionnez *Créer locataire*.
++
+Un message de réussite s'affiche et le nouveau locataire apparaît sur la page locataires. Pour savoir comment afficher les détails des locataires et surveiller l'activité des locataires, reportez-vous à la section link:../monitor/monitoring-tenant-activity.html["Surveillez l'activité des locataires"].
+
++
+
+NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut prendre 15 minutes ou plus en fonction de la connectivité réseau, de l'état du nœud et des opérations Cassandra.
+
+. Si vous avez sélectionné l'autorisation *utiliser la connexion de fédération de grille* pour le locataire :
++
+.. Confirmez qu'un locataire identique a été répliqué sur l'autre grille de la connexion. Les locataires des deux grilles auront les mêmes ID de compte, nom, description, quota et autorisations à 20 chiffres.
++
+
+NOTE: Si le message d'erreur « tenant created without a clone » s'affiche, reportez-vous aux instructions de la section link:grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
+
+.. Si vous avez fourni un mot de passe d'utilisateur root local lors de la définition de l'accès root, link:changing-password-for-tenant-local-root-user.html["modifiez le mot de passe de l'utilisateur root local"] pour le tenant répliqué.
++
+
+TIP: Un utilisateur root local ne peut pas se connecter au gestionnaire de locataires sur la grille de destination tant que le mot de passe n'est pas modifié.
+
+
+
+
+
+
+
+== Se connecter au locataire (facultatif)
+
+Si nécessaire, vous pouvez vous connecter au nouveau locataire maintenant pour terminer la configuration ou vous pouvez vous connecter ultérieurement au locataire. Les étapes de connexion dépendent si vous êtes connecté à Grid Manager à l'aide du port par défaut (443) ou d'un port restreint. Voir link:controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].
+
+
+
+=== Connectez-vous dès maintenant
+
+[cols="1a,3a"]
+|===
+| Si vous utilisez... | Procédez comme ça... 
+
+
+ a| 
+Le port 443 et vous définissez un mot de passe pour l'utilisateur root local
+ a| 
+. Sélectionnez *se connecter en tant que root*.
++
+Lorsque vous vous connectez, des liens s'affichent pour la configuration des compartiments, de la fédération des identités, des groupes et des utilisateurs.
+
+. Sélectionnez les liens pour configurer le compte de tenant.
++
+Chaque lien ouvre la page correspondante dans le Gestionnaire de locataires. Pour compléter la page, reportez-vous à la link:../tenant/index.html["instructions d'utilisation des comptes de tenant"].
+
+
+
+
+
+ a| 
+Le port 443 et vous n'avez pas défini de mot de passe pour l'utilisateur root local
+ a| 
+Sélectionnez *se connecter* et entrez les informations d'identification d'un utilisateur dans le groupe fédéré d'accès racine.
+
+
+
+ a| 
+Un port restreint
+ a| 
+. Sélectionnez *Terminer*
+. Sélectionnez *Restricted* dans la table tenant pour en savoir plus sur l'accès à ce compte de tenant.
++
+L'URL du Gestionnaire de locataires a le format suivant :
+
++
+`https://_FQDN_or_Admin_Node_IP:port_/?accountId=_20-digit-account-id_/`
+
++
+** `_FQDN_or_Admin_Node_IP_` Est un nom de domaine complet ou l'adresse IP d'un nœud d'administration
+** `_port_` est le port réservé aux locataires
+** `_20-digit-account-id_` Est l'ID de compte unique du locataire
+
+
+
+
+|===
+
+
+=== Connectez-vous plus tard
+
+[cols="1a,3a"]
+|===
+| Si vous utilisez... | Effectuez l'une d'entre elles... 
+
+
+ a| 
+Orifice 443
+ a| 
+* Dans Grid Manager, sélectionnez *TENANTS*, puis *connexion* à droite du nom du locataire.
+* Entrez l'URL du locataire dans un navigateur Web :
++
+`https://_FQDN_or_Admin_Node_IP_/?accountId=_20-digit-account-id_/`
+
++
+** `_FQDN_or_Admin_Node_IP_` Est un nom de domaine complet ou l'adresse IP d'un nœud d'administration
+** `_20-digit-account-id_` Est l'ID de compte unique du locataire
+
+
+
+
+
+
+ a| 
+Un port restreint
+ a| 
+* Dans le Gestionnaire de grille, sélectionnez *TENANTS* et sélectionnez *restreint*.
+* Entrez l'URL du locataire dans un navigateur Web :
++
+`https://_FQDN_or_Admin_Node_IP:port_/?accountId=_20-digit-account-id_`
+
++
+** `_FQDN_or_Admin_Node_IP_` Est un nom de domaine complet ou l'adresse IP d'un nœud d'administration
+** `_port_` est le port réservé aux locataires
+** `_20-digit-account-id_` Est l'ID de compte unique du locataire
+
+
+
+
+|===
+
+
+== Configurez le tenant
+
+Suivez les instructions de la section link:../tenant/index.html["Utilisez un compte de locataire"] pour gérer les groupes de locataires et les utilisateurs, les clés d'accès S3, les compartiments, les services de plateforme et le clone de compte et la réplication inter-grid.

@@ -1,0 +1,39 @@
+---
+permalink: s3/object-versioning.html 
+sidebar: sidebar 
+keywords: object version, object versioning 
+summary: 'Vous pouvez définir l"état de gestion des versions d"un compartiment si vous souhaitez conserver plusieurs versions d"un objet. L"activation de la gestion des versions pour un compartiment vous protège contre la suppression accidentelle d"objets et vous permet de récupérer et de restaurer des versions antérieures d"un objet.' 
+---
+= Gestion des versions d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez définir l'état de gestion des versions d'un compartiment si vous souhaitez conserver plusieurs versions de chaque objet. L'activation de la gestion des versions pour un compartiment vous protège contre la suppression accidentelle d'objets et vous permet de récupérer et de restaurer des versions antérieures d'un objet.
+
+Le système StorageGRID implémente la gestion des versions avec prise en charge de la plupart des fonctionnalités et avec certaines limites. StorageGRID prend en charge jusqu'à 10,000 versions de chaque objet.
+
+Le contrôle de version d'objets peut être associé à la gestion du cycle de vie des informations (ILM) d'StorageGRID ou à la configuration du cycle de vie des compartiments S3. Vous devez explicitement activer la gestion des versions pour chaque compartiment. Lorsque la gestion des versions est activée pour un compartiment, un ID de version est attribué à chaque objet ajouté au compartiment, qui est généré par le système StorageGRID.
+
+La suppression de l'authentification multifacteur (MFA) n'est pas prise en charge.
+
+
+NOTE: Le contrôle de version ne peut être activé que pour les compartiments créés avec StorageGRID version 10.3 ou ultérieure.
+
+
+
+== ILM et gestion des versions
+
+Les règles ILM sont appliquées à chaque version d'un objet. Un processus d'analyse ILM analyse en continu tous les objets, puis les évalue à nouveau en fonction de la règle ILM actuelle. Toute modification apportée aux règles ILM est appliquée à tous les objets précédemment ingérées. Ceci inclut les versions préalablement ingérées si la gestion des versions est activée. L'analyse ILM applique les modifications de l'ILM aux objets précédemment ingérées.
+
+Pour les objets S3 dans les compartiments avec gestion des versions, la prise en charge de la gestion des versions vous permet de créer des règles ILM qui utilisent « Noncurrent Time » comme heure de référence (sélectionnez *Yes* pour la question « Apply this rule to Older object versions only? » link:../ilm/create-ilm-rule-enter-details.html["Étape 1 de l'assistant de création de règles ILM"](Appliquer cette règle aux versions d'objets plus anciennes uniquement ?) dans la section ). Lorsqu'un objet est mis à jour, ses versions précédentes deviennent non actuelles. L'utilisation d'un filtre « Noncurrent Time » vous permet de créer des stratégies qui réduisent l'impact sur le stockage des versions précédentes des objets.
+
+
+NOTE: Lorsque vous téléchargez une nouvelle version d'un objet à l'aide d'une opération de téléchargement partitionné, l'heure qui n'est pas à jour pour la version d'origine de l'objet correspond à la création du téléchargement partitionné pour la nouvelle version, et non à la fin du téléchargement partitionné. Dans des cas limités, l'heure non actuelle de la version d'origine peut être des heures ou des jours plus tôt que l'heure de la version actuelle.
+
+.Informations associées
+* link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"]
+* link:../ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Règles et règles ILM pour les objets avec version S3 (exemple 4)"].
+

@@ -1,0 +1,34 @@
+---
+permalink: ubuntu/validating-storagegrid-configuration.html 
+sidebar: sidebar 
+keywords: how to validate StorageGRID configuration 
+summary: Après avoir créé des fichiers de configuration dans /etc/storagegrid/noeuds pour chacun de vos nœuds StorageGRID, vous devez valider le contenu de ces fichiers. 
+---
+= Validation de la configuration StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir créé les fichiers de configuration dans `/etc/storagegrid/nodes` pour chacun de vos nœuds StorageGRID, vous devez valider le contenu de ces fichiers.
+
+Pour valider le contenu des fichiers de configuration, exécutez la commande suivante sur chaque hôte :
+
+[listing]
+----
+sudo storagegrid node validate all
+----
+Si les fichiers sont corrects, le résultat indique *TRANSMIS* pour chaque fichier de configuration, comme indiqué dans l'exemple.
+
+
+NOTE: Lors de l'utilisation d'une seule LUN sur des nœuds de métadonnées uniquement, il se peut que vous receviez un message d'avertissement que vous pouvez ignorer.
+
+image::../media/rhel_node_configuration_file_output.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+
+TIP: Pour une installation automatisée, vous pouvez supprimer ce résultat en utilisant les `-q` options ou de `--quiet` la `storagegrid` commande (par exemple, `storagegrid --quiet...` ). Si vous supprimez la sortie, la commande aura une valeur de sortie non nulle si des avertissements ou des erreurs de configuration ont été détectés.
+
+Si les fichiers de configuration sont incorrects, les problèmes sont affichés comme *AVERTISSEMENT* et *ERREUR*, comme indiqué dans l'exemple. Si des erreurs de configuration sont détectées, vous devez les corriger avant de poursuivre l'installation.
+
+image::../media/rhel_node_configuration_file_output_with_errors.gif[Cette image est expliquée par le texte qui l'entoure.]

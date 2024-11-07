@@ -1,0 +1,483 @@
+---
+permalink: network/internal-grid-node-communications.html 
+sidebar: sidebar 
+keywords: storagegrid, network port, internal communications, ports, TCP, UDP, grid communications, port 
+summary: 'Le pare-feu interne StorageGRID autorise uniquement les connexions entrantes à des ports spécifiques du réseau Grid, à l"exception des ports 22, 80, 123 et 443 \(voir les informations sur les communications externes\). Les connexions sont également acceptées sur les ports définis par les terminaux d"équilibreur de charge.' 
+---
+= Communications internes sur les nœuds de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le pare-feu interne StorageGRID permet les connexions entrantes à des ports spécifiques du réseau de la grille. Les connexions sont également acceptées sur les ports définis par les terminaux d'équilibreur de charge.
+
+
+NOTE: NetApp vous recommande d'activer le trafic ICMP (Internet Control message Protocol) entre les nœuds de la grille. L'autorisation du trafic ICMP peut améliorer les performances de basculement lorsqu'un nœud de grille ne peut pas être atteint.
+
+Outre ICMP et les ports répertoriés dans le tableau, StorageGRID utilise le protocole VRRP (Virtual Router Redundancy Protocol). VRRP est un protocole Internet qui utilise le protocole IP numéro 112. StorageGRID utilise le protocole VRRP en mode monodiffusion uniquement. VRRP n'est requis que si link:../admin/managing-high-availability-groups.html["groupes haute disponibilité"] sont configurés.
+
+
+
+== Instructions pour les nœuds basés sur Linux
+
+Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports au moment du déploiement à l'aide d'un paramètre de configuration de déploiement. Pour plus d'informations sur le remappage des ports et les paramètres de configuration de déploiement, reportez-vous à la section :
+
+* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+
+
+
+
+== Instructions pour les nœuds VMware
+
+Configurez les ports suivants uniquement si vous devez définir des restrictions de pare-feu externes à la mise en réseau VMware.
+
+Si les stratégies de mise en réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports lors du déploiement des nœuds à l'aide du client Web VMware vSphere, ou à l'aide d'un paramètre de fichier de configuration lors de l'automatisation du déploiement des nœuds de la grille. Pour plus d'informations sur le remappage des ports et les paramètres de configuration du déploiement, reportez-vous à la section link:../vmware/index.html["Installez StorageGRID sur VMware"].
+
+
+
+== Consignes pour les nœuds d'appliance
+
+Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports à l'aide du programme d'installation de l'appliance StorageGRID. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-remapping-network-ports-for-appliance.html["Facultatif : remappage des ports réseau pour l'appliance"^].
+
+
+
+== Ports internes StorageGRID
+
+[cols="1a,1a,1a,1a,4a"]
+|===
+| Port | TCP ou UDP | De | À | Détails 
+
+
+ a| 
+22
+ a| 
+TCP
+ a| 
+Nœud d'administration principal
+ a| 
+Tous les nœuds
+ a| 
+Pour les procédures de maintenance, le nœud d'administration principal doit pouvoir communiquer avec tous les autres nœuds via SSH sur le port 22. L'autorisation du trafic SSH depuis d'autres nœuds est facultative.
+
+
+
+ a| 
+80
+ a| 
+TCP
+ a| 
+Appliances
+ a| 
+Nœud d'administration principal
+ a| 
+Utilisé par les appliances StorageGRID pour communiquer avec le nœud d'administration principal afin de démarrer l'installation.
+
+
+
+ a| 
+123
+ a| 
+UDP
+ a| 
+Tous les nœuds
+ a| 
+Tous les nœuds
+ a| 
+Service de protocole de temps de réseau. Chaque nœud synchronise son heure avec chaque autre nœud à l'aide du protocole NTP.
+
+
+
+ a| 
+443
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Utilisé pour communiquer l'état au nœud d'administration principal lors de l'installation et d'autres procédures de maintenance.
+
+
+
+ a| 
+1055
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
+
+
+
+ a| 
+1139
+ a| 
+TCP
+ a| 
+Nœuds de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne entre les nœuds de stockage.
+
+
+
+ a| 
+1501
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Création de rapports, audit et configuration trafic interne.
+
+
+
+ a| 
+1502
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne lié aux protocoles S3 et Swift.
+
+
+
+ a| 
+1504
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds d'administration
+ a| 
+Rapports de service NMS et trafic interne de configuration.
+
+
+
+ a| 
+1505
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds d'administration
+ a| 
+Trafic interne du service AMS.
+
+
+
+ a| 
+1506
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Tous les nœuds
+ a| 
+Trafic interne de l'état du serveur.
+
+
+
+ a| 
+1507
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds de passerelle
+ a| 
+Trafic interne de l'équilibreur de charge.
+
+
+
+ a| 
+1508
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Trafic interne de gestion de la configuration.
+
+
+
+ a| 
+1511
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne de métadonnées.
+
+
+
+ a| 
+7001
+ a| 
+TCP
+ a| 
+Nœuds de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Communication inter-nœud Cassandra TLS avec cluster.
+
+
+
+ a| 
+7443
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Trafic interne pour l'installation, l'extension, la récupération, les autres procédures de maintenance et le signalement des erreurs.
+
+
+
+ a| 
+8011
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
+
+
+
+ a| 
+8443
+ a| 
+TCP
+ a| 
+Nœud d'administration principal
+ a| 
+Nœuds d'appliance
+ a| 
+Trafic interne lié à la procédure de mode de maintenance.
+
+
+
+ a| 
+9042
+ a| 
+TCP
+ a| 
+Nœuds de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Port client Cassandra.
+
+
+
+ a| 
+9999
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Tous les nœuds
+ a| 
+Trafic interne pour plusieurs services. Inclut les procédures de maintenance, les mesures et les mises à jour réseau.
+
+
+
+ a| 
+10226
+ a| 
+TCP
+ a| 
+Nœuds de stockage
+ a| 
+Nœud d'administration principal
+ a| 
+Utilisé par les appliances StorageGRID pour transférer les packages AutoSupport de E-Series SANtricity System Manager vers le nœud d'administration principal.
+
+
+
+ a| 
+10342
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœud d'administration principal
+ a| 
+Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
+
+
+
+ a| 
+18000
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Trafic interne du service de compte.
+
+
+
+ a| 
+18001
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Trafic interne de la fédération des identités.
+
+
+
+ a| 
+18002
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Trafic API interne lié aux protocoles objet
+
+
+
+ a| 
+18003
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Trafic interne des services de plate-forme.
+
+
+
+ a| 
+18017
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne du service Data Mover pour les pools de stockage cloud.
+
+
+
+ a| 
+18019
+ a| 
+TCP
+ a| 
+Nœuds de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne de service de bloc pour le code d'effacement.
+
+
+
+ a| 
+18082
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne lié à S3.
+
+
+
+ a| 
+18083
+ a| 
+TCP
+ a| 
+Tous les nœuds
+ a| 
+Nœuds de stockage
+ a| 
+Trafic interne lié à Swift.
+
+
+
+ a| 
+18086
+ a| 
+TCP
+ a| 
+Tous les nœuds grid
+ a| 
+Tous les nœuds de stockage
+ a| 
+Trafic interne lié au service LDR.
+
+
+
+ a| 
+18200
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage
+ a| 
+Statistiques supplémentaires sur les demandes client.
+
+
+
+ a| 
+19000
+ a| 
+TCP
+ a| 
+Nœuds d'administration/de stockage
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Trafic interne du service Keystone.
+
+|===
+.Informations associées
+link:external-communications.html["Communications externes"]

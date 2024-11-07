@@ -1,0 +1,134 @@
+---
+permalink: ilm/ilm-policy-overview.html 
+sidebar: sidebar 
+keywords: ILM policy, information lifecycle policy considerations 
+summary: 'Une règle de gestion du cycle de vie des informations \(ILM\) est un ensemble ordonné de règles ILM permettant de déterminer la façon dont le système StorageGRID gère les données d"objet au fil du temps.' 
+---
+= Règles ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une règle de gestion du cycle de vie des informations (ILM) est un ensemble ordonné de règles ILM qui détermine la façon dont le système StorageGRID gère les données d'objet au fil du temps.
+
+
+CAUTION: Une règle ILM mal configurée peut entraîner une perte de données irrécupérable. Avant d'activer une politique ILM, examinez attentivement la politique ILM et ses règles ILM, puis simulez la politique ILM. Vérifiez toujours que la politique ILM fonctionne comme prévu.
+
+
+
+== Règle ILM par défaut
+
+Lorsque vous installez StorageGRID et ajoutez des sites, une politique ILM par défaut est automatiquement créée, comme suit :
+
+* Si votre grille contient un site, la stratégie par défaut contient une règle par défaut qui réplique deux copies de chaque objet sur ce site.
+* Si votre grille contient plusieurs sites, la règle par défaut réplique une copie de chaque objet sur chaque site.
+
+
+Si la stratégie par défaut ne répond pas à vos besoins en stockage, vous pouvez créer vos propres règles et règles. Voir link:what-ilm-rule-is.html["Création d'une règle ILM"] et link:creating-ilm-policy.html["Créer une règle ILM"].
+
+
+
+== Une ou plusieurs règles ILM actives ?
+
+Vous pouvez avoir une ou plusieurs règles ILM actives à la fois.
+
+
+
+=== Une politique
+
+Si votre grid utilise un schéma de protection des données simple avec peu de règles spécifiques au locataire et au compartiment, utilisez une règle ILM active unique. Les règles ILM peuvent contenir des filtres pour gérer différents compartiments ou locataires.
+
+image::../media/ilm-policies-single.png[Diagramme de règles ILM uniques]
+
+Lorsque vous ne modifiez qu'une règle et que les exigences d'un locataire changent, vous devez créer une nouvelle règle ILM ou cloner la règle existante pour appliquer les modifications, simuler, puis activer la nouvelle règle ILM. Toute modification de la règle ILM peut entraîner des déplacements d'objets pouvant prendre plusieurs jours et entraîner une latence du système.
+
+
+
+=== Plusieurs règles
+
+Pour offrir différentes options de qualité de service aux locataires, vous pouvez avoir plusieurs règles actives à la fois. Chaque règle peut gérer des locataires, des compartiments S3 et des objets spécifiques. Lorsque vous appliquez ou modifiez une règle pour un ensemble spécifique de locataires ou d'objets, les règles appliquées aux autres locataires et objets ne sont pas affectées.
+
+Balises de règles ILM:: Si vous souhaitez permettre aux locataires de basculer facilement entre plusieurs règles de protection des données par compartiment, utilisez plusieurs règles ILM avec _ILM policy tags_. Vous attribuez chaque règle ILM à une balise, puis les locataires étiquetez un compartiment pour appliquer la règle à ce compartiment. Vous pouvez définir des balises de règles ILM sur des compartiments S3 uniquement.
++
+--
+Par exemple, vous pouvez avoir trois étiquettes nommées Gold, Silver et Bronze. Vous pouvez attribuer une règle ILM à chaque balise, en fonction de la durée et de l'emplacement où cette règle stocke les objets. Les locataires peuvent choisir la règle à utiliser en étiquetant leurs compartiments. Un compartiment marqué Gold est géré par la politique Gold et reçoit le niveau Gold de protection des données et de performances.
+
+--
+Balise de règle ILM par défaut:: Une balise de règle ILM par défaut est automatiquement créée lors de l'installation de StorageGRID. Chaque grille doit avoir une règle active affectée à la balise par défaut. La règle par défaut s'applique à tous les compartiments S3 non balisés.
+
+
+image::../media/ilm-policies-tags-conceptual.png[Diagramme de règles ILM multiples]
+
+
+
+== Comment une règle ILM évalue-t-elle les objets ?
+
+Une règle ILM active permet de contrôler le placement, la durée et la protection des données des objets.
+
+Lorsque les clients enregistrent des objets dans StorageGRID, ils sont évalués par rapport à l'ensemble ordonné de règles ILM dans la règle, comme suit :
+
+. Si les filtres de la première règle de la règle correspondent à un objet, celui-ci est ingéré conformément au comportement d'ingestion de cette règle et stocké conformément aux instructions de placement de cette règle.
+. Si les filtres de la première règle ne correspondent pas à l'objet, l'objet est évalué par rapport à chaque règle ultérieure de la règle jusqu'à ce qu'une correspondance soit établie.
+. Si aucune règle ne correspond à un objet, les instructions de comportement d'ingestion et de placement de la règle par défaut de cette règle sont appliquées. La règle par défaut est la dernière règle d'une stratégie. La règle par défaut doit s'appliquer à tous les locataires, à tous les compartiments S3 et à toutes les versions d'objet. Elle ne peut pas utiliser de filtres avancés.
+
+
+
+
+== Exemple de règle ILM
+
+À titre d'exemple, une politique ILM peut contenir trois règles ILM pour spécifier :
+
+* *Règle 1 : copies répliquées pour le locataire A*
++
+** Faites correspondre tous les objets appartenant au locataire A.
+** Stockez ces objets sous forme de trois copies répliquées sur trois sites.
+** Les objets appartenant à d'autres locataires ne correspondent pas à la règle 1, ils sont donc évalués par rapport à la règle 2.
+
+
+* *Règle 2 : code d'effacement pour les objets supérieurs à 1 Mo*
++
+** Faites correspondre tous les objets d'autres locataires, mais uniquement s'ils sont supérieurs à 1 Mo. Ces objets plus volumineux sont stockés au moyen d'un code d'effacement de 6+3 sur trois sites.
+** Ne correspond pas aux objets de 1 Mo ou moins, ces objets sont donc évalués par rapport à la règle 3.
+
+
+* *Règle 3 : 2 copies 2 centres de données* (par défaut)
++
+** Est la dernière règle et la règle par défaut de la règle. N'utilise pas de filtres.
+** Faites deux copies répliquées de tous les objets qui ne correspondent pas à la règle 1 ou à la règle 2 (objets qui n'appartiennent pas au locataire A de 1 Mo ou moins).
+
+
+
+
+image::../media/ilm_policy_and_rules.png[Règles et règles ILM]
+
+
+
+== Que sont les stratégies actives et inactives ?
+
+Chaque système StorageGRID doit disposer d'au moins une règle ILM active. Si vous souhaitez avoir plusieurs règles ILM actives, vous créez des balises de règles ILM et vous affectez une règle à chaque balise. Les locataires appliquent ensuite des balises aux compartiments S3. La règle par défaut s'applique à tous les objets des compartiments auxquels aucune balise de règle n'est attribuée.
+
+Lorsque vous créez une règle ILM pour la première fois, vous sélectionnez une ou plusieurs règles ILM et vous les organisez dans un ordre spécifique. Après avoir simulé la stratégie pour confirmer son comportement, vous l'activez.
+
+Lorsque vous activez une règle ILM, StorageGRID utilise cette règle pour gérer tous les objets, y compris les objets existants et les objets nouvellement ingérés. Les objets existants peuvent être déplacés vers de nouveaux emplacements lorsque les règles ILM de la nouvelle règle sont mises en œuvre.
+
+Si vous activez plusieurs règles ILM à la fois et que les locataires appliquent des balises de règles à des compartiments S3, les objets de chaque compartiment sont gérés en fonction de la règle attribuée à la balise.
+
+Un système StorageGRID suit l'historique des stratégies qui ont été activées ou désactivées.
+
+
+
+== Facteurs à prendre en compte lors de la création d'une règle ILM
+
+* Utilisez uniquement la règle de base 2 copies fournie par le système dans les systèmes de test. Pour StorageGRID 11.6 et les versions antérieures, la règle Make 2 copies de cette règle utilise le pool de stockage All Storage Nodes, qui contient tous les sites. Si votre système StorageGRID dispose de plusieurs sites, il est possible de placer deux copies d'un objet sur le même site.
++
+
+NOTE: Le pool de stockage tous les nœuds de stockage est automatiquement créé lors de l'installation de StorageGRID 11.6 et des versions antérieures. Si vous effectuez une mise à niveau vers une version ultérieure de StorageGRID, le pool tous les nœuds de stockage existera toujours. Si vous installez StorageGRID 11.7 ou une version ultérieure en tant que nouvelle installation, le pool tous les nœuds de stockage n'est pas créé.
+
+* Lors de la conception d'une nouvelle politique, tenez compte de tous les différents types d'objets pouvant être ingérés dans votre grille. Assurez-vous que la stratégie inclut des règles pour correspondre et placer ces objets selon les besoins.
+* Privilégiez la simplicité des règles ILM. Cela permet d'éviter les situations dangereuses dans lesquelles les données d'objet ne sont pas protégées comme prévu lorsque des modifications sont apportées au système StorageGRID au fil du temps.
+* Assurez-vous que les règles de la police sont dans le bon ordre. Lorsque la stratégie est activée, les objets nouveaux et existants sont évalués par les règles dans l'ordre indiqué, à partir du haut. Par exemple, si la première règle d'une règle correspond à un objet, cet objet ne sera évalué par aucune autre règle.
+* La dernière règle de chaque politique ILM est la règle ILM par défaut, qui ne peut utiliser aucun filtre. Si un objet n'a pas été mis en correspondance par une autre règle, la règle par défaut contrôle l'emplacement de cet objet et la durée de conservation.
+* Avant d'activer une nouvelle stratégie, vérifiez les modifications apportées par la stratégie au placement des objets existants. La modification de l'emplacement d'un objet existant peut entraîner des problèmes de ressources temporaires lorsque les nouveaux placements sont évalués et implémentés.
+

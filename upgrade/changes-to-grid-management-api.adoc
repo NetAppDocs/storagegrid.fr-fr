@@ -1,0 +1,52 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api, usageCacheDuration 
+summary: 'StorageGRID 11.9 utilise la version 4 de l"API de gestion du grid. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.' 
+---
+= Modifications apportées à l'API de gestion du grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.9 utilise la version 4 de l'API de gestion du grid. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.
+
+
+NOTE: Vous pouvez continuer à utiliser des versions obsolètes de l'API de gestion avec StorageGRID 11.9. Cependant, la prise en charge de ces versions de l'API sera supprimée dans une future version de StorageGRID. Après la mise à niveau vers StorageGRID 11.9, vous pouvez désactiver les API obsolètes à l'aide de `PUT /grid/config/management` l'API.
+
+Pour en savoir plus, rendez-vous sur link:../admin/using-grid-management-api.html["Utilisez l'API de gestion du grid"].
+
+
+
+== Vérifiez les paramètres de conformité après avoir activé le verrouillage d'objet S3 global
+
+Vérifiez les paramètres de conformité des locataires existants après avoir activé le paramètre global S3 Object Lock. Lorsque vous activez ce paramètre, les paramètres de verrouillage d'objet S3 par locataire dépendent de la version de StorageGRID au moment de la création du locataire.
+
+
+
+== Suppression des requêtes d'api de gestion héritées
+
+Ces demandes héritées ont été supprimées :
+
+`/grid/server-types`
+
+`/grid/ntp-roles`
+
+
+
+== Modifications apportées à l' `GET /private/storage-usage`API
+
+* Une nouvelle propriété, `usageCacheDuration`, a été ajoutée au corps de réponse. Cette propriété spécifie la durée (en secondes) pendant laquelle le cache de recherche d'utilisation reste valide. Cette valeur s'applique lors de la vérification de l'utilisation par rapport au quota de stockage du locataire et aux limites de capacité du compartiment.
+* Le `GET /api/v4/private/storage-usage` comportement a été corrigé pour correspondre à l'imbrication à partir du schéma.
+* Ces modifications s'appliquent uniquement à l'API privée.
+
+
+
+
+== Modifications apportées à l' `GET cross-grid-replication`API
+
+L'API GET */org/conteneurs/:name/cross-grid-Replication* ne nécessite plus l'(`rootAccess`autorisation accès racine ) ; cependant, vous devez appartenir à un groupe d'utilisateurs disposant de (`viewAllContainers`l'autorisation gérer tous les compartiments (`manageAllContainers`) ou Afficher tous les compartiments ).
+
+L'API PUT */org/conteneurs/:name/cross-grid-Replication* reste inchangée et requiert toujours l'(`rootAccess`autorisation d'accès racine ).

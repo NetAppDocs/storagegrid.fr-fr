@@ -1,0 +1,104 @@
+---
+permalink: rhel/configuring-host-storage.html 
+sidebar: sidebar 
+keywords: how to configure host storage 
+summary: Vous devez allouer des volumes de stockage de blocs à chaque hôte. 
+---
+= Configurer le stockage de l'hôte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez allouer des volumes de stockage de blocs à chaque hôte.
+
+.Avant de commencer
+Vous avez passé en revue les sujets suivants, qui fournissent les informations nécessaires pour accomplir cette tâche :
+
+* link:storage-and-performance-requirements.html["Les besoins en matière de stockage et de performances"]
+* link:node-container-migration-requirements.html["Exigences de migration des conteneurs de nœuds"]
+
+
+.Description de la tâche
+Lors de l'allocation de volumes de stockage en mode bloc (LUN) aux hôtes, utilisez les tableaux de la section « exigences de stockage » pour déterminer les éléments suivants :
+
+* Nombre de volumes requis pour chaque hôte (en fonction du nombre et des types de nœuds à déployer sur cet hôte)
+* Catégorie de stockage pour chaque volume (données système ou données objet)
+* Taille de chaque volume
+
+
+Lors du déploiement de nœuds StorageGRID sur l'hôte, vous utiliserez ces informations ainsi que le nom persistant attribué par Linux à chaque volume physique.
+
+
+NOTE: Il n'est pas nécessaire de partitionner, de formater ou de monter ces volumes ; il vous suffit de vous assurer qu'ils sont visibles par les hôtes.
+
+
+NOTE: Pour les nœuds de stockage des métadonnées uniquement, un seul LUN de données d'objet est requis.
+
+Évitez d'utiliser des fichiers de périphérique spéciaux "bruts" (`/dev/sdb`, par exemple) lorsque vous composez votre liste de noms de volume. Ces fichiers peuvent être modifiés entre les redémarrages de l'hôte, ce qui peut affecter le fonctionnement correct du système. Si vous utilisez des LUN iSCSI et des chemins d'accès multiples de Device Mapper, envisagez d'utiliser des alias de chemins d'accès multiples dans le `/dev/mapper` répertoire, surtout si votre topologie SAN inclut des chemins réseau redondants vers le stockage partagé. Vous pouvez également utiliser les liens logiciels créés par le système sous `/dev/disk/by-path/` pour les noms de vos périphériques persistants.
+
+Par exemple :
+
+[listing]
+----
+ls -l
+$ ls -l /dev/disk/by-path/
+total 0
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:00:07.1-ata-2 -> ../../sr0
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0 -> ../../sda
+lrwxrwxrwx 1 root root 10 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0-part1 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:0:0-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:1:0 -> ../../sdb
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:2:0 -> ../../sdc
+lrwxrwxrwx 1 root root  9 Sep 19 18:53 pci-0000:03:00.0-scsi-0:0:3:0 -> ../../sdd
+----
+Les résultats diffèrent pour chaque installation.
+
+Attribuez des noms conviviaux à chacun de ces volumes de stockage en blocs afin de simplifier l'installation initiale du système StorageGRID et les procédures de maintenance à venir. Si vous utilisez le pilote multivoies du mappeur de périphériques pour un accès redondant aux volumes de stockage partagés, vous pouvez utiliser le `alias` champ de votre `/etc/multipath.conf` fichier.
+
+Par exemple :
+
+[listing]
+----
+multipaths {
+     multipath {
+          wwid 3600a09800059d6df00005df2573c2c30
+          alias docker-storage-volume-hostA
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df3573c2c30
+          alias sgws-adm1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df4573c2c30
+          alias sgws-adm1-audit-logs
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df5573c2c30
+          alias sgws-adm1-tables
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df6573c2c30
+          alias sgws-gw1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df7573c2c30
+          alias sgws-sn1-var-local
+     }
+     multipath {
+          wwid 3600a09800059d6df00005df7573c2c30
+          alias sgws-sn1-rangedb-0
+     }
+     …
+----
+L'utilisation du champ alias de cette façon entraîne l'affichage des alias en tant que périphériques de bloc dans le `/dev/mapper` répertoire de l'hôte, ce qui vous permet de spécifier un nom convivial et facilement validé chaque fois qu'une opération de configuration ou de maintenance nécessite la spécification d'un volume de stockage de bloc.
+
+
+NOTE: Si vous configurez un stockage partagé pour prendre en charge la migration des nœuds StorageGRID et que vous utilisez le multipathing du mappeur de périphériques, vous pouvez créer et installer une connexion commune `/etc/multipath.conf` sur tous les hôtes en colocation. Veillez à utiliser un volume de stockage moteur de mise en conteneurs différent sur chaque hôte, L'utilisation d'alias et l'inclusion du nom d'hôte cible dans l'alias pour chaque LUN de volume de stockage de moteur de conteneur rendent cela facile à mémoriser et est recommandé.
+
+
+NOTE: La prise en charge de Docker, car le moteur de mise en conteneurs pour les déploiements exclusivement logiciels est obsolète. Docker sera remplacé par un autre moteur de mise en conteneurs dans une prochaine version.
+
+.Informations associées
+link:configuring-docker-storage-volume.html["Configurer le volume de stockage du moteur du conteneur"]

@@ -1,0 +1,87 @@
+---
+permalink: admin/manage-link-costs.html 
+sidebar: sidebar 
+keywords: link cost, site latency, manage link costs, prioritize sites 
+summary: 'Les coûts de liaison vous permettent de définir la priorité du site de data Center qui fournit un service demandé lorsqu"au moins deux sites de data Center existent. Vous pouvez ajuster les coûts de liaison pour refléter la latence entre les sites.' 
+---
+= Gérer les coûts de liaison
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les coûts de liaison vous permettent de définir la priorité du site de data Center qui fournit un service demandé lorsqu'au moins deux sites de data Center existent. Vous pouvez ajuster les coûts de liaison pour refléter la latence entre les sites.
+
+
+
+== Quels sont les coûts de liaison ?
+
+* Les coûts des liens permettent de classer par ordre de priorité la copie d'objet utilisée pour les récupérations d'objets.
+* Les coûts des liaisons sont utilisés par l'API de gestion du grid et l'API de gestion des locataires pour déterminer quels services StorageGRID internes utiliser.
+* Les coûts de liaison sont utilisés par le service Load Balancer sur les nœuds d'administration et les nœuds de passerelle pour diriger les connexions client. Voir link:../admin/managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"].
+
+
+Le schéma présente une grille de trois sites avec des coûts de liaison configurés entre les sites :
+
+image::../media/link_costs.gif[Schéma conceptuel des coûts de liaison entre les centres de données]
+
+* Le service Load Balancer sur les nœuds d'administration et les nœuds de passerelle répartit uniformément les connexions client vers tous les nœuds de stockage sur le même site de data Center et vers tous les sites de data Center, avec un coût de liaison de 0.
++
+Dans l'exemple, un nœud passerelle du site de data Center 1 (DC1) distribue également les connexions client aux nœuds de stockage du DC1 et aux nœuds de stockage du DC2. Un nœud de passerelle du DC3 envoie des connexions client uniquement aux nœuds de stockage du DC3.
+
+* Lors de la récupération d'un objet existant sous forme de plusieurs copies répliquées, StorageGRID récupère la copie au niveau du data Center présentant le coût de liaison le plus faible.
++
+Dans cet exemple, si une application client sur DC2 récupère un objet stocké à la fois sur DC1 et DC3, l'objet est récupéré de DC1, car le coût de la liaison de DC1 à DC2 est 0, ce qui est inférieur au coût de la liaison de DC3 à DC2 (25).
+
+
+
+Les coûts de liaison sont des nombres relatifs arbitraires sans unité de mesure spécifique. Par exemple, un coût de lien de 50 est utilisé de manière moins préférentielle qu'un coût de lien de 25. Le tableau indique les coûts de liaison couramment utilisés.
+
+[cols="1a,1a,2a"]
+|===
+| Lien | Coût des liens | Remarques 
+
+
+ a| 
+Entre les sites de data centers physiques
+ a| 
+25 (par défaut)
+ a| 
+Data centers connectés par une liaison WAN.
+
+
+
+ a| 
+Entre des sites de data centers logiques au même emplacement physique
+ a| 
+0
+ a| 
+Data centers logiques dans le même bâtiment physique ou campus connecté par un réseau LAN.
+
+|===
+
+
+== Mettre à jour les coûts des liens
+
+Vous pouvez mettre à jour les coûts de liaison entre les sites de data Center afin de refléter la latence entre les sites.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation de configuration de la page de topologie de grille"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *autre* > *coût du lien*.
++
+image::../media/configuring_link_costs.png[Coût des liens]
+
+. Sélectionnez un site sous *Link Source* et entrez une valeur de coût comprise entre 0 et 100 sous *Link destination*.
++
+Vous ne pouvez pas modifier le coût du lien si la source est identique à la destination.
+
++
+Pour annuler les modifications, sélectionnez image:../media/nms_revert.gif["icône annuler"]*Revert*.
+
+. Sélectionnez *appliquer les modifications*.
+

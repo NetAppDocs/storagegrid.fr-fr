@@ -1,0 +1,47 @@
+---
+permalink: fabricpool/best-practices-ilm.html 
+sidebar: sidebar 
+keywords: FabricPool, best practices, ILM, information lifecycle management, ILM rule, ILM policy, erasure-coding, replication 
+summary: 'Si vous utilisez FabricPool pour hiérarchiser les données vers StorageGRID, vous devez connaître les exigences d"utilisation de la gestion du cycle de vie des informations (ILM) StorageGRID avec les données FabricPool.' 
+---
+= Bonnes pratiques d'utilisation d'ILM avec des données FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez FabricPool pour hiérarchiser les données vers StorageGRID, vous devez connaître les exigences d'utilisation de la gestion du cycle de vie des informations (ILM) StorageGRID avec les données FabricPool.
+
+
+CAUTION: FabricPool ne connaît pas les règles ou les règles ILM de StorageGRID. La perte des données peut se produire si la règle ILM de StorageGRID est mal configurée. Pour plus d'informations, voir link:../ilm/what-ilm-rule-is.html["Les règles ILM permettent de gérer les objets"] et link:../ilm/creating-ilm-policy.html["Création de règles ILM"].
+
+
+
+== Règles d'utilisation d'ILM avec FabricPool
+
+Lorsque vous utilisez l'assistant d'installation FabricPool, il crée automatiquement une règle ILM pour chaque compartiment S3 que vous créez, puis l'ajoute à une règle inactive. Vous êtes invité à activer la stratégie. La règle automatiquement créée respecte les bonnes pratiques recommandées : elle utilise un code d'effacement 2+1 sur un seul site.
+
+Si vous configurez StorageGRID manuellement au lieu d'utiliser l'assistant d'installation FabricPool, lisez ces instructions pour vous assurer que les règles ILM et la politique ILM sont adaptées aux données FabricPool et aux exigences de votre entreprise. Vous devrez peut-être créer de nouvelles règles et mettre à jour vos règles ILM actives pour répondre à ces instructions.
+
+* Vous pouvez utiliser toutes les combinaisons de réplication et de règles de code d'effacement pour protéger les données de Tier cloud.
++
+Il est recommandé d'utiliser un code d'effacement 2+1 sur un site pour une protection des données économique. Le code d'effacement consomme plus de ressources de processeur, mais sa capacité de stockage est bien inférieure à la réplication. Les schémas 4+1 et 6+1 utilisent moins de capacité que le schéma 2+1. Toutefois, les schémas 4+1 et 6+1 sont moins flexibles si vous avez besoin d'ajouter des nœuds de stockage lors de l'extension de grid. Pour plus de détails, voir link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["Ajoutez de la capacité de stockage pour les objets avec code d'effacement"].
+
+* Chaque règle appliquée aux données FabricPool doit au moins deux copies répliquées grâce au code d'effacement.
++
+
+CAUTION: La règle ILM de création d'une seule copie répliquée pendant toute période met les données à risque de perte permanente. Si une seule copie répliquée d'un objet existe, cet objet est perdu en cas de défaillance ou d'erreur importante d'un noeud de stockage. De plus, lors des procédures de maintenance telles que les mises à niveau, l'accès à l'objet est temporairement perdu.
+
+* Si vous avez besoin de link:remove-fabricpool-data.html["Supprimez les données FabricPool de StorageGRID"], utilisez ONTAP pour récupérer toutes les données du volume FabricPool et les promouvoir auprès du Tier de performance.
++
+
+CAUTION: Pour éviter toute perte de données, n'utilisez pas de règle ILM qui expirera ou supprimera les données de Tier cloud FabricPool. Définissez la période de conservation de chaque règle ILM sur *Forever* pour vous assurer que les objets FabricPool ne sont pas supprimés par la ILM de StorageGRID.
+
+* Ne créez pas de règles qui déplacera les données de Tier cloud FabricPool hors du compartiment vers un autre emplacement. Vous ne pouvez pas utiliser un pool de stockage cloud pour déplacer des données FabricPool vers un autre magasin d'objets.
++
+
+NOTE: L'utilisation de pools de stockage cloud avec FabricPool n'est pas prise en charge en raison de la latence ajoutée pour extraire un objet de la cible du pool de stockage cloud.
+
+* Depuis ONTAP 9.8, vous pouvez créer des balises d'objet pour classer et trier les données hiérarchisées pour simplifier la gestion. Par exemple, vous pouvez définir des balises uniquement sur les volumes FabricPool reliés à StorageGRID. Ensuite, lorsque vous créez des règles ILM dans StorageGRID, vous pouvez utiliser le filtre avancé balise d'objet pour sélectionner et placer ces données.
+

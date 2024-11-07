@@ -1,0 +1,26 @@
+---
+permalink: admin/configuring-network-settings.html 
+sidebar: sidebar 
+keywords: network settings, vlan interface, traffic classification 
+summary: Vous pouvez configurer différents paramètres réseau à partir du Gestionnaire de grille pour affiner le fonctionnement de votre système StorageGRID. 
+---
+= Configurez les paramètres réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer différents paramètres réseau à partir du Gestionnaire de grille pour affiner le fonctionnement de votre système StorageGRID.
+
+
+
+== Configurez les interfaces VLAN
+
+Vous pouvez link:configure-vlan-interfaces.html["Créez des interfaces VLAN (Virtual LAN)"]isoler et partitionner le trafic pour assurer la sécurité, la flexibilité et les performances. Chaque interface VLAN est associée à une ou plusieurs interfaces parents sur les nœuds d'administration et les nœuds de passerelle. Vous pouvez utiliser des interfaces VLAN dans des groupes haute disponibilité et dans des terminaux d'équilibrage de charge pour isoler le trafic client ou administratif par application ou locataire.
+
+
+
+== Politiques de classification du trafic
+
+Vous pouvez utiliser link:managing-traffic-classification-policies.html["politiques de classification du trafic"] pour identifier et gérer différents types de trafic réseau, notamment le trafic lié à des compartiments, des locataires, des sous-réseaux clients ou des terminaux d'équilibrage de charge spécifiques. Ces règles peuvent vous aider à limiter le trafic et à surveiller le trafic.

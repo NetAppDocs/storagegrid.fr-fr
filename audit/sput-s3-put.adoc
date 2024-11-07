@@ -1,0 +1,306 @@
+---
+permalink: audit/sput-s3-put.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SPUT, S3 PUT 
+summary: 'Lorsqu"un client S3 émet une transaction PUT, une requête est formulée pour créer un nouvel objet ou un compartiment. Ce message est émis par le serveur si la transaction a réussi.' 
+---
+= SPUT : PUT S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsqu'un client S3 émet une transaction PUT, une demande est formulée pour créer un nouvel objet ou un nouveau compartiment, ou pour supprimer une sous-ressource bucket/objet. Ce message est émis par le serveur si la transaction a réussi.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu demandé. Si le CBID est inconnu, ce champ est défini sur 0. Les opérations sur les compartiments n'incluent pas ce champ.
+
+
+
+ a| 
+CMPS
+ a| 
+Paramètres de conformité
+ a| 
+Les paramètres de conformité utilisés lors de la création du compartiment, s'ils sont présents dans la demande (tronqués aux 1024 premiers caractères).
+
+
+
+ a| 
+CNCH
+ a| 
+En-tête de contrôle de cohérence
+ a| 
+Valeur de l'en-tête de la requête HTTP de contrôle de cohérence, s'il est présent dans la demande.
+
+
+
+ a| 
+CNID
+ a| 
+Identificateur de connexion
+ a| 
+Identifiant système unique pour la connexion TCP/IP.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet récupéré en octets. Les opérations sur les compartiments n'incluent pas ce champ.
+
+
+
+ a| 
+GFID
+ a| 
+ID de connexion de fédération de grille
+ a| 
+ID de connexion de la connexion de fédération de grille associée à une demande PUT de réplication de grille croisée. Inclus uniquement dans les journaux d'audit sur la grille de destination.
+
+
+
+ a| 
+GFSA
+ a| 
+ID de compte source de fédération de grille
+ a| 
+ID de compte du locataire sur la grille source pour une demande PUT de réplication multigrille. Inclus uniquement dans les journaux d'audit sur la grille de destination.
+
+
+
+ a| 
+HTRH
+ a| 
+En-tête de requête HTTP
+ a| 
+Liste des noms et valeurs d'en-tête de requête HTTP consignés sélectionnés lors de la configuration.
+
+ `X-Forwarded-For` Est automatiquement inclus s'il est présent dans la demande et si la `X-Forwarded-For` valeur est différente de l'adresse IP de l'expéditeur de la demande (champ d'audit SAIP).
+
+`x-amz-bypass-governance-retention` est automatiquement inclus s'il est présent dans la demande.
+
+
+
+ a| 
+LKEN
+ a| 
+Verrouillage d'objet activé
+ a| 
+Valeur de l'en-tête `x-amz-bucket-object-lock-enabled`de la demande , s'il est présent dans la demande.
+
+
+
+ a| 
+LKLH
+ a| 
+Verrouillage de l'objet en attente légale
+ a| 
+Valeur de l'en-têtede requête `x-amz-object-lock-legal-hold` , s'il est présent dans la demande PutObject.
+
+
+
+ a| 
+LKMD
+ a| 
+Mode de conservation du verrouillage d'objet
+ a| 
+Valeur de l'en-têtede requête `x-amz-object-lock-mode` , s'il est présent dans la demande PutObject.
+
+
+
+ a| 
+LKRU
+ a| 
+Conservation de l'objet jusqu'à la date
+ a| 
+Valeur de l'en-têtede requête `x-amz-object-lock-retain-until-date` , s'il est présent dans la demande PutObject. Les valeurs sont limitées à 100 ans après la date d'ingestion de l'objet.
+
+
+
+ a| 
+MTME
+ a| 
+Heure de la dernière modification
+ a| 
+Horodatage Unix, en microsecondes, indiquant quand l'objet a été modifié pour la dernière fois.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Résultat de la transaction PUT. Le résultat est toujours :
+
+CMC : réussi
+
+
+
+ a| 
+S3AI
+ a| 
+ID de compte de locataire S3 (expéditeur de la demande)
+ a| 
+ID de compte de locataire de l'utilisateur qui a envoyé la demande. Une valeur vide indique un accès anonyme.
+
+
+
+ a| 
+S3AK
+ a| 
+ID de clé d'accès S3 (expéditeur de la demande)
+ a| 
+ID de clé d'accès S3 écrasé pour l'utilisateur qui a envoyé la demande. Une valeur vide indique un accès anonyme.
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Clé S3
+ a| 
+Le nom de la clé S3 n'inclut pas le nom du compartiment. Les opérations sur les compartiments n'incluent pas ce champ.
+
+
+
+ a| 
+S3SR
+ a| 
+Sous-ressource S3
+ a| 
+Le godet ou la sous-ressource d'objet utilisé, le cas échéant.
+
+
+
+ a| 
+CCUA
+ a| 
+Nom du compte de locataire S3 (expéditeur de la demande)
+ a| 
+Nom du compte de tenant pour l'utilisateur qui a envoyé la demande. Vide pour les demandes anonymes.
+
+
+
+ a| 
+SAIP
+ a| 
+Adresse IP (expéditeur de la demande)
+ a| 
+Adresse IP de l'application client qui a fait la demande.
+
+
+
+ a| 
+SBAC
+ a| 
+Nom de compte de locataire S3 (propriétaire du compartiment)
+ a| 
+Nom du compte du locataire pour le propriétaire du compartiment. Permet d'identifier les accès inter-comptes ou anonymes.
+
+
+
+ a| 
+SBAI
+ a| 
+ID de compte de locataire S3 (propriétaire du compartiment)
+ a| 
+ID du compte du locataire du propriétaire du compartiment cible. Permet d'identifier les accès inter-comptes ou anonymes.
+
+
+
+ a| 
+SFCF
+ a| 
+Configuration des sous-ressources
+ a| 
+La nouvelle configuration de sous-ressource (tronquée aux 1024 premiers caractères).
+
+
+
+ a| 
+SUSR
+ a| 
+URN de l'utilisateur S3 (expéditeur de la demande)
+ a| 
+L'ID du compte de locataire et le nom d'utilisateur de l'utilisateur qui fait la demande. L'utilisateur peut être un utilisateur local ou LDAP. Par exemple : `urn:sgws:identity::03393893651506583485:root`
+
+Vide pour les demandes anonymes.
+
+
+
+ a| 
+TEMPS
+ a| 
+Heure
+ a| 
+Temps de traitement total de la demande en microsecondes.
+
+
+
+ a| 
+TIP
+ a| 
+Adresse IP de l'équilibreur de charge approuvée
+ a| 
+Si la demande a été routée par un équilibreur de charge de couche 7 approuvé, l'adresse IP de l'équilibreur de charge.
+
+
+
+ a| 
+ID ULID
+ a| 
+ID de téléchargement
+ a| 
+Inclus uniquement dans les messages SPUT pour les opérations CompleteMultipartUpload. Indique que toutes les pièces ont été téléchargées et assemblées.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet dans le système StorageGRID.
+
+
+
+ a| 
+VSID
+ a| 
+ID de version
+ a| 
+L'ID de version d'un nouvel objet créé dans un compartiment multiversion. Les opérations sur les compartiments et les objets dans les compartiments non versionnés n'incluent pas ce champ.
+
+
+
+ a| 
+VSST
+ a| 
+Etat de gestion des versions
+ a| 
+Nouvel état de gestion des versions d'un compartiment. Deux États sont utilisés : « activé » ou « suspendu ». Les opérations sur les objets n'incluent pas ce champ.
+
+|===

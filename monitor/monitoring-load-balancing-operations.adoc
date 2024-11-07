@@ -1,0 +1,54 @@
+---
+permalink: monitor/monitoring-load-balancing-operations.html 
+sidebar: sidebar 
+keywords: load balancing, monitoring 
+summary: 'Si vous utilisez un équilibreur de charge pour gérer les connexions client à StorageGRID, vous devez surveiller les opérations d"équilibrage de charge après avoir configuré le système initialement et après avoir effectué des modifications de configuration ou effectué une extension.' 
+---
+= Surveiller les opérations d'équilibrage de charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un équilibreur de charge pour gérer les connexions client à StorageGRID, vous devez surveiller les opérations d'équilibrage de charge après avoir configuré le système initialement et après avoir effectué des modifications de configuration ou effectué une extension.
+
+.Description de la tâche
+Vous pouvez utiliser le service Load Balancer sur les nœuds d'administration ou les nœuds de passerelle, ou un équilibreur de charge tiers externe pour distribuer les requêtes client sur plusieurs nœuds de stockage.
+
+Une fois l'équilibrage de la charge configuré, vérifiez que les opérations d'ingestion et de récupération des objets sont réparties de manière homogène entre les nœuds de stockage. La répartition homogène des demandes permet à StorageGRID de rester réactif aux demandes des clients sous charge et de maintenir les performances des clients.
+
+Si vous avez configuré un groupe haute disponibilité de nœuds de passerelle ou de nœuds d'administration en mode de sauvegarde active/active, seul un nœud du groupe distribue activement les requêtes client.
+
+Pour plus d'informations, voir link:../admin/configuring-client-connections.html["Configurer les connexions client S3"].
+
+.Étapes
+. Si les clients S3 se connectent à l'aide du service Load Balancer, vérifiez que les nœuds d'administration ou les nœuds de passerelle distribuent activement le trafic comme vous le souhaitez :
++
+.. Sélectionnez *NOEUDS*.
+.. Sélectionnez un nœud de passerelle ou un nœud d'administration.
+.. Dans l'onglet *Overview*, vérifiez si une interface de nœud fait partie d'un groupe HA et si l'interface de nœud a le rôle Primary.
++
+Les nœuds ayant le rôle de nœud principal et les nœuds qui ne font pas partie d'un groupe haute disponibilité doivent distribuer activement les demandes aux clients.
+
+.. Pour chaque nœud devant distribuer activement des demandes client, sélectionnez le link:viewing-load-balancer-tab.html["Onglet Load Balancer"].
+.. Consultez le graphique du trafic des demandes d'équilibrage de charge pour la dernière semaine afin de vous assurer que le nœud distribue activement les demandes.
++
+Les nœuds d'un groupe haute disponibilité à sauvegarde active peuvent parfois prendre le rôle de sauvegarde. Pendant ce temps, les nœuds ne distribuent pas les requêtes client.
+
+.. Consultez le graphique du taux de demande entrant de Load Balancer pour la dernière semaine afin de vérifier le débit d'objet du nœud.
+.. Répétez cette procédure pour chaque nœud d'administration ou de passerelle du système StorageGRID.
+.. Vous pouvez également utiliser les stratégies de classification du trafic pour afficher une analyse plus détaillée du trafic desservi par le service Load Balancer.
+
+
+. Vérifiez que ces demandes sont réparties de manière homogène vers les nœuds de stockage.
++
+.. Sélectionnez *_Storage Node_* > *LDR* > *HTTP*.
+.. Examiner le nombre de *sessions entrantes actuellement établies*.
+.. Répétez l'opération pour chaque nœud de stockage de la grille.
++
+Le nombre de sessions doit être approximativement égal sur tous les nœuds de stockage.
+
+
+
+

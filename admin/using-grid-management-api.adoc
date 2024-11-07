@@ -1,0 +1,66 @@
+---
+permalink: admin/using-grid-management-api.html 
+sidebar: sidebar 
+keywords: use the Grid Management API, private API 
+summary: 'Vous pouvez effectuer des tâches de gestion du système à l"aide de l"API REST Grid Management plutôt que de l"interface utilisateur Grid Manager. Par exemple, vous pouvez utiliser l"API pour automatiser les opérations ou créer plusieurs entités plus rapidement (par exemple, les utilisateurs).' 
+---
+= Utilisez l'API de gestion du grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez effectuer des tâches de gestion du système à l'aide de l'API REST Grid Management plutôt que de l'interface utilisateur Grid Manager. Par exemple, vous pouvez utiliser l'API pour automatiser les opérations ou créer plusieurs entités plus rapidement (par exemple, les utilisateurs).
+
+
+
+== Ressources générales
+
+L'API de gestion du grid fournit les ressources de premier niveau suivantes :
+
+* `/grid`: L'accès est limité aux utilisateurs de Grid Manager et est basé sur les autorisations de groupe configurées.
+* `/org`: L'accès est limité aux utilisateurs qui appartiennent à un groupe LDAP local ou fédéré pour un compte locataire. Pour plus de détails, voir link:../tenant/index.html["Utilisez un compte de locataire"].
+* `/private`: L'accès est limité aux utilisateurs de Grid Manager et est basé sur les autorisations de groupe configurées. Les API privées sont susceptibles d'être modifiées sans préavis. Les terminaux privés StorageGRID ignorent également la version API de la demande.
+
+
+
+
+== Émettre des requêtes API
+
+L'API Grid Management utilise la plateforme d'API open source swagger. Swagger fournit une interface utilisateur intuitive qui permet aux développeurs et aux non-développeurs d'effectuer des opérations en temps réel dans StorageGRID avec l'API.
+
+L'interface utilisateur swagger fournit des détails complets et de la documentation pour chaque opération API.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+
+CAUTION: Toutes les opérations d'API que vous effectuez à l'aide de la page Web Documentation de l'API sont des opérations en direct. Veillez à ne pas créer, mettre à jour ou supprimer des données de configuration ou d'autres données par erreur.
+
+.Étapes
+. Dans l'en-tête Grid Manager, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
++
+image::../media/help_menu.png[Menu d'aide]
+
+. Pour effectuer une opération avec l'API privée, sélectionnez *accéder à la documentation API privée* sur la page API de gestion StorageGRID.
++
+Les API privées sont susceptibles d'être modifiées sans préavis. Les terminaux privés StorageGRID ignorent également la version API de la demande.
+
+. Sélectionnez l'opération souhaitée.
++
+Lorsque vous développez une opération API, vous pouvez voir les actions HTTP disponibles, telles QUE GET, PUT, UPDATE ou DELETE.
+
+. Sélectionnez une action HTTP pour afficher les détails de la demande, notamment l'URL du noeud final, la liste de tous les paramètres obligatoires ou facultatifs, un exemple de l'organisme de demande (si nécessaire) et les réponses possibles.
++
+image::../media/swagger_example.png[Exemple de l'interface utilisateur de swagger]
+
+. Déterminez si la demande nécessite des paramètres supplémentaires, tels qu'un ID de groupe ou d'utilisateur. Ensuite, obtenir ces valeurs. Vous devrez peut-être d'abord lancer une autre demande d'API pour obtenir les informations dont vous avez besoin.
+. Déterminez si vous devez modifier l'exemple de corps de la demande. Si c'est le cas, vous pouvez sélectionner *modèle* pour connaître les exigences de chaque champ.
+. Sélectionnez *essayez-le*.
+. Fournir tous les paramètres requis ou modifier le corps de la demande selon les besoins.
+. Sélectionnez *Exécuter*.
+. Vérifiez le code de réponse pour déterminer si la demande a réussi.
+

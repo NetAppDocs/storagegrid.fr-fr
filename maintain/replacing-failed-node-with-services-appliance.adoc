@@ -1,0 +1,35 @@
+---
+permalink: maintain/replacing-failed-node-with-services-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace failed node, services appliance 
+summary: 'Vous pouvez utiliser une appliance de services pour restaurer un nœud de passerelle défaillant, un nœud d"administration non principal défaillant ou un nœud d"administration principal défaillant hébergé sur VMware, un hôte Linux ou une appliance de services. Cette procédure constitue une étape de la procédure de restauration des nœuds de la grille.' 
+---
+= Remplacez le nœud défectueux par l'appliance de services
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser une appliance de services pour restaurer un nœud de passerelle défaillant, un nœud d'administration non principal défaillant ou un nœud d'administration principal défaillant hébergé sur VMware, un hôte Linux ou une appliance de services. Cette procédure constitue une étape de la procédure de restauration des nœuds de la grille.
+
+.Avant de commencer
+* Vous avez déterminé que l'une des situations suivantes est vraie :
++
+** Impossible de restaurer la machine virtuelle hébergeant le nœud.
+** L'hôte Linux physique ou virtuel du nœud grid a échoué et doit être remplacé.
+** L'appliance de services qui héberge le nœud de grid doit être remplacée.
+
+
+* Vous avez confirmé que la version du programme d'installation de l'appliance StorageGRID installée sur l'appliance de services correspond à la version logicielle de votre système StorageGRID. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["Vérifiez et mettez à niveau la version du programme d'installation de l'appliance StorageGRID"^].
+
+
+
+NOTE: Ne déployez pas à la fois une appliance de services SG110 et SG1100 ou une appliance de services SG100 et SG1000 sur le même site. Cela peut entraîner des performances imprévisibles.
+
+.Description de la tâche
+Vous pouvez utiliser une appliance de services pour restaurer un nœud de grille défaillant dans les cas suivants :
+
+* Le nœud défaillant était hébergé sur VMware ou Linux (link:installing-services-appliance-platform-change-only.html["changement de plateforme"])
+* Le nœud défaillant était hébergé sur une appliance de services (link:preparing-appliance-for-reinstallation-platform-replacement-only.html["remplacement de la plate-forme"])
+

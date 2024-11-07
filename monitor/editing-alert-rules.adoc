@@ -1,0 +1,121 @@
+---
+permalink: monitor/editing-alert-rules.html 
+sidebar: sidebar 
+keywords: how to edit alert rules 
+summary: 'Vous pouvez modifier une règle d"alerte pour modifier les conditions de déclenchement, pour une règle d"alerte personnalisée, vous pouvez également mettre à jour le nom de la règle, sa description et les actions recommandées.' 
+---
+= Modifiez les règles d'alerte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez modifier une règle d'alerte pour modifier les conditions de déclenchement, pour une règle d'alerte personnalisée, vous pouvez également mettre à jour le nom de la règle, sa description et les actions recommandées.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Description de la tâche
+Lorsque vous modifiez une règle d'alerte par défaut, vous pouvez modifier les conditions pour les alertes mineures, majeures et critiques, ainsi que la durée. Lorsque vous modifiez une règle d'alerte personnalisée, vous pouvez également modifier le nom, la description et les actions recommandées de la règle.
+
+
+CAUTION: Soyez prudent lorsque vous décidez de modifier une règle d'alerte. Si vous modifiez les valeurs de déclenchement, il est possible que vous ne déteciez pas de problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
+
+.Étapes
+. Sélectionnez *ALERTES* > *règles*.
++
+La page règles d'alerte s'affiche.
+
+. Sélectionnez le bouton radio correspondant à la règle d'alerte que vous souhaitez modifier.
+. Sélectionnez *Modifier la règle*.
++
+La boîte de dialogue Modifier la règle s'affiche. Cet exemple montre une règle d'alerte par défaut, les champs Nom unique, Description et actions recommandées sont désactivés et ne peuvent pas être modifiés.
+
++
+image::../media/alert_rules_edit_rule.png[Alertes > Modifier la règle]
+
+. Cochez ou décochez la case *activé* pour déterminer si cette règle d'alerte est actuellement activée.
++
+Si une règle d'alerte est désactivée, ses expressions ne sont pas évaluées et aucune alerte n'est déclenchée.
+
++
+
+NOTE: Si vous désactivez la règle d'alerte pour une alerte en cours, vous devez attendre quelques minutes que l'alerte n'apparaisse plus comme une alerte active.
+
++
+
+CAUTION: En général, la désactivation d'une règle d'alerte par défaut n'est pas recommandée. Si une règle d'alerte est désactivée, vous risquez de ne pas détecter un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
+
+. Pour les règles d'alerte personnalisées, mettez à jour les informations suivantes si nécessaire.
++
+
+NOTE: Vous ne pouvez pas modifier ces informations pour les règles d'alerte par défaut.
+
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom unique
+ a| 
+Un nom unique pour cette règle. Le nom de la règle d'alerte s'affiche sur la page alertes et est également l'objet des notifications par e-mail. Les noms des règles d'alerte peuvent comporter entre 1 et 64 caractères.
+
+
+
+ a| 
+Description
+ a| 
+Description du problème. La description est le message d'alerte affiché sur la page alertes et dans les notifications par e-mail. Les descriptions des règles d'alerte peuvent comporter entre 1 et 128 caractères.
+
+
+
+ a| 
+Actions recommandées
+ a| 
+En option, les actions recommandées à effectuer lorsque cette alerte est déclenchée. Saisissez les actions recommandées en texte brut (aucun code de mise en forme). Les actions recommandées pour les règles d'alerte peuvent comporter entre 0 et 1,024 caractères.
+
+|===
+. Dans la section Conditions, entrez ou mettez à jour l'expression Prometheus pour un ou plusieurs niveaux de gravité d'alerte.
++
+
+NOTE: Si vous souhaitez restaurer une condition pour une règle d'alerte par défaut modifiée à sa valeur d'origine, sélectionnez les trois points à droite de la condition modifiée.
+
++
+image::../media/alert_rules_edit_revert_to_default.png[Règles d'alerte : rétablissement d'une condition modifiée en valeur par défaut]
+
++
+
+NOTE: Si vous mettez à jour les conditions d'une alerte en cours, vos modifications risquent de ne pas être appliquées tant que la condition précédente n'est pas résolue. La prochaine fois que l'une des conditions de la règle est remplie, l'alerte reflète les valeurs mises à jour.
+
++
+Une expression de base est généralement de la forme :
+
++
+`[metric] [operator] [value]`
+
++
+Les expressions peuvent être de toute longueur, mais apparaissent sur une seule ligne dans l'interface utilisateur. Au moins une expression est requise.
+
++
+Cette expression déclenche une alerte si la quantité de RAM installée pour un nœud est inférieure à 24,000,000,000 octets (24 Go).
+
++
+`node_memory_MemTotal_bytes < 24000000000`
+
+. Dans le champ *durée*, entrez la durée pendant laquelle une condition doit rester en vigueur en continu avant le déclenchement de l'alerte et sélectionnez l'unité de temps.
++
+Pour déclencher une alerte immédiatement lorsqu'une condition devient vraie, entrez *0*. Augmentez cette valeur pour éviter que des conditions temporaires ne déclenchent des alertes.
+
++
+La valeur par défaut est 5 minutes.
+
+. Sélectionnez *Enregistrer*.
++
+Si vous avez modifié une règle d'alerte par défaut, *default** apparaît dans la colonne Type. Si vous avez désactivé une règle d'alerte par défaut ou personnalisée, *Disabled* apparaît dans la colonne *Status*.
+
+

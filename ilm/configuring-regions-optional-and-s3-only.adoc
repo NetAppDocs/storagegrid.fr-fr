@@ -1,0 +1,70 @@
+---
+permalink: ilm/configuring-regions-optional-and-s3-only.html 
+sidebar: sidebar 
+keywords: S3 regions, region, ilm rules 
+summary: Les règles ILM permettent de filtrer des objets en fonction des régions où des compartiments S3 sont créés, ce qui vous permet de stocker des objets provenant de différentes régions dans différents emplacements de stockage. 
+---
+= Configuration des régions (facultatif et S3 uniquement)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les règles ILM permettent de filtrer des objets en fonction des régions où des compartiments S3 sont créés, ce qui vous permet de stocker des objets provenant de différentes régions dans différents emplacements de stockage.
+
+Si vous souhaitez utiliser une région de compartiment S3 comme filtre dans une règle, vous devez d'abord créer les régions à utiliser par les compartiments du système.
+
+
+NOTE: Vous ne pouvez pas modifier la région d'un compartiment après sa création.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Lorsque vous créez un compartiment S3, vous pouvez spécifier une région La spécification d'une région permet au compartiment d'être géographiquement proche de ses utilisateurs, ce qui peut contribuer à optimiser la latence, réduire les coûts et satisfaire aux exigences réglementaires.
+
+Lorsque vous créez une règle ILM, vous pouvez utiliser la région associée à un compartiment S3 comme filtre avancé. Par exemple, vous pouvez concevoir une règle qui s'applique uniquement aux objets dans des compartiments S3 créés dans la `us-west-2` région. Afin d'optimiser la latence, vous pouvez ensuite placer des copies de ces objets sur des nœuds de stockage sur un site de data Center dans cette région.
+
+Lors de la configuration de régions, suivez les consignes suivantes :
+
+* Par défaut, tous les compartiments sont considérés comme appartenant à la `us-east-1` région.
+* Vous devez créer les régions à l'aide de Grid Manager avant de spécifier une région autre que celle par défaut lors de la création de compartiments à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires ou avec l'élément de demande LocationConstraint pour les requêtes d'API PUT S3. Une erreur se produit si une demande PUT Bucket utilise une région qui n'a pas été définie dans StorageGRID.
+* Lors de la création du compartiment S3, vous devez utiliser le nom exact de la région. Les noms de région sont sensibles à la casse. Les caractères autorisés sont des chiffres, des lettres et des tirets.
++
+
+NOTE: L'UE n'est pas considérée comme un alias pour l'ue-Ouest-1. Si vous souhaitez utiliser la région UE ou eu-West-1, vous devez utiliser le nom exact.
+
+* Vous ne pouvez pas supprimer ou modifier une région si elle est utilisée dans une règle affectée à une stratégie (active ou inactive).
+* Si vous utilisez une région non valide en tant que filtre avancé dans une règle ILM, vous ne pouvez pas ajouter cette règle à une règle.
++
+Une région non valide peut se produire si vous utilisez une région en tant que filtre avancé dans une règle ILM, mais que vous supprimez cette région ultérieurement, ou si vous utilisez l'API de gestion de grille pour créer une règle et spécifier une région que vous n'avez pas définie.
+
+* Si vous supprimez une région après l'avoir utilisée pour créer un compartiment S3, vous devez ajouter de nouveau la région si vous souhaitez utiliser le filtre avancé contrainte d'emplacement pour trouver des objets dans ce compartiment.
+
+
+.Étapes
+. Sélectionnez *ILM* > *régions*.
++
+La page régions s'affiche, les régions actuellement définies étant répertoriées. *Région 1* affiche la région par défaut, `us-east-1` qui ne peut pas être modifiée ou supprimée.
+
+. Pour ajouter une région :
++
+.. Sélectionnez *Ajouter une autre région*.
+.. Entrez le nom d'une région à utiliser lors de la création de compartiments S3.
++
+Vous devez utiliser ce nom de région exact comme élément de demande LocationConstraint lorsque vous créez le compartiment S3 correspondant.
+
+
+
+. Pour supprimer une région inutilisée, sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["Supprimer l'icône"].
++
+Un message d'erreur s'affiche si vous tentez de supprimer une région actuellement utilisée dans une stratégie (active ou inactive).
+
+. Une fois les modifications effectuées, sélectionnez *Enregistrer*.
++
+Vous pouvez maintenant sélectionner ces régions dans la section filtres avancés de l'étape 1 de l'assistant de création de règles ILM. Voir link:create-ilm-rule-enter-details.html#use-advanced-filters-in-ilm-rules["Utilisation de filtres avancés dans les règles ILM"].
+
+

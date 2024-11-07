@@ -1,0 +1,78 @@
+---
+permalink: maintain/whats-next-performing-additional-recovery-steps-if-required.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, corrective action, additional recovery 
+summary: 'En fonction des actions spécifiques que vous avez effectuées pour exécuter les nœuds StorageGRID sur l"hôte de remplacement, vous devrez peut-être effectuer des étapes de restauration supplémentaires pour chaque nœud.' 
+---
+= Qu'est-ce qui suit : effectuez des étapes de récupération supplémentaires, si nécessaire
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En fonction des actions spécifiques que vous avez effectuées pour exécuter les nœuds StorageGRID sur l'hôte de remplacement, vous devrez peut-être effectuer des étapes de restauration supplémentaires pour chaque nœud.
+
+La récupération de nœud est terminée si vous n'avez pas besoin d'effectuer d'actions correctives pendant que vous avez remplacé l'hôte Linux ou restauré le nœud de grille défaillant vers le nouvel hôte.
+
+
+
+== Actions correctives et étapes suivantes
+
+Lors du remplacement d'un nœud, vous devrez peut-être effectuer l'une des actions correctives suivantes :
+
+* Vous devez utiliser l' `--force`indicateur pour importer le nœud.
+* Pour tout `<PURPOSE>`, la valeur de la `BLOCK_DEVICE_<PURPOSE>` variable de fichier de configuration fait référence à un périphérique de bloc qui ne contient pas les mêmes données qu'avant la défaillance de l'hôte.
+* Vous avez émis `storagegrid node force-recovery _node-name_` pour le nœud.
+* Vous avez ajouté un nouveau périphérique de bloc.
+
+
+Si vous avez pris *l'une* de ces actions correctives, vous devez effectuer des étapes de récupération supplémentaires.
+
+[cols="2a,1a"]
+|===
+| Type de restauration | Étape suivante 
+
+
+ a| 
+Nœud d'administration principal
+ a| 
+link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"]
+
+
+
+ a| 
+Nœud d'administration non primaire
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Sélectionnez Démarrer la restauration pour configurer un noeud d'administration non primaire"]
+
+
+
+ a| 
+Nœud de passerelle
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["Sélectionnez Démarrer la récupération pour configurer le nœud de passerelle"]
+
+
+
+ a| 
+Nœud de stockage (basé sur logiciel) :
+
+* Si vous deviez utiliser l'indicateur pour importer le nœud, ou si `--force` vous avez émis `storagegrid node force-recovery _node-name_`
+* Si vous deviez effectuer une réinstallation complète du nœud, ou si vous deviez restaurer /var/local
+
+ a| 
+link:selecting-start-recovery-to-configure-storage-node.html["Sélectionnez Démarrer la restauration pour configurer le nœud de stockage"]
+
+
+
+ a| 
+Nœud de stockage (basé sur logiciel) :
+
+* Si vous avez ajouté un nouveau périphérique de bloc.
+* Si, pour n'importe quel `<PURPOSE>`, la valeur de la `BLOCK_DEVICE_<PURPOSE>` variable de fichier de configuration fait référence à un périphérique de bloc qui ne contient pas les mêmes données qu'avant la défaillance de l'hôte.
+
+ a| 
+link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact"]
+
+|===

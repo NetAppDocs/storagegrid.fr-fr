@@ -1,0 +1,24 @@
+---
+permalink: expand/adding-storage-capacity-for-replicated-objects.html 
+sidebar: sidebar 
+keywords: replication, replicated, copies, capacity, storage nodes, expand, expansion 
+summary: 'Si la règle de gestion du cycle de vie des informations \(ILM\) de votre déploiement inclut une règle qui crée des copies répliquées des objets, vous devez tenir compte de la quantité de stockage à ajouter et de l"emplacement d"ajout des nouveaux volumes ou nœuds de stockage.' 
+---
+= Ajoutez de la capacité de stockage pour les objets répliqués
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la règle de gestion du cycle de vie des informations (ILM) de votre déploiement inclut une règle qui crée des copies répliquées des objets, vous devez tenir compte de la quantité de stockage à ajouter et de l'emplacement où ajouter les nouveaux volumes ou nœuds de stockage.
+
+Pour savoir où ajouter du stockage, consultez les règles ILM qui créent des copies répliquées. Si les règles ILM créent au moins deux copies d'objet, prévoyez d'ajouter du stockage à chaque emplacement où les copies d'objet sont créées. À titre d'exemple simple, si vous disposez d'une grille à deux sites et d'une règle ILM pour créer une copie d'objet sur chaque site, vous devez link:../expand/adding-storage-volumes-to-storage-nodes.html["ajouter du stockage"] accéder à chaque site pour augmenter la capacité objet globale de la grille. Pour plus d'informations sur la réplication d'objet, reportez-vous à la section link:../ilm/what-replication-is.html["Qu'est-ce que la réplication"].
+
+Pour des raisons de performance, essayez de préserver l'équilibre entre la capacité de stockage et la puissance de calcul entre les sites. Pour cet exemple, vous devez ajouter le même nombre de nœuds de stockage à chaque site ou des volumes de stockage supplémentaires sur chaque site.
+
+Si vous disposez d'une règle ILM plus complexe qui comprend des règles permettant de placer les objets à différents emplacements en fonction de critères tels que le nom de compartiment ou des règles qui modifient les emplacements des objets au fil du temps, votre analyse des emplacements de stockage requis pour l'extension sera similaire, mais plus complexe.
+
+La vitesse à laquelle la capacité de stockage globale est consommée peut vous aider à déterminer la quantité de stockage à ajouter lors de l'extension et les moments où il faut ajouter de l'espace de stockage. Vous pouvez utiliser le Gestionnaire de grille pour link:../monitor/monitoring-storage-capacity.html["surveillez et tracez la capacité de stockage"].
+
+Lorsque vous planifiez une extension, pensez au délai d'acquisition et d'installation d'un stockage supplémentaire.

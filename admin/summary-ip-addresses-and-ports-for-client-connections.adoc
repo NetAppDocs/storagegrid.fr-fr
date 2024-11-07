@@ -1,0 +1,129 @@
+---
+permalink: admin/summary-ip-addresses-and-ports-for-client-connections.html 
+sidebar: sidebar 
+keywords: ip addresses for client, how to connect to storagegrid, ports, vip 
+summary: 'Pour stocker ou récupérer des objets, les applications client S3 se connectent au service Load Balancer, qui est inclus sur tous les nœuds d"administration et les nœuds de passerelle, ou au service LDR (local distribution Router), qui est inclus sur tous les nœuds de stockage.' 
+---
+= Résumé : adresses IP et ports pour les connexions client
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour stocker ou récupérer des objets, les applications client S3 se connectent au service Load Balancer, qui est inclus sur tous les nœuds d'administration et les nœuds de passerelle, ou au service LDR (local distribution Router), qui est inclus sur tous les nœuds de stockage.
+
+Les applications client peuvent se connecter à StorageGRID en utilisant l'adresse IP d'un nœud grid et le numéro de port du service sur ce nœud. Vous pouvez également créer des groupes haute disponibilité de nœuds d'équilibrage de la charge pour fournir des connexions haute disponibilité utilisant des adresses IP virtuelles (VIP). Si vous souhaitez vous connecter à StorageGRID à l'aide d'un nom de domaine complet (FQDN) au lieu d'une adresse IP ou VIP, vous pouvez configurer des entrées DNS.
+
+Ce tableau récapitule les différentes façons dont les clients peuvent se connecter à StorageGRID ainsi que les adresses IP et les ports utilisés pour chaque type de connexion. Si vous avez déjà créé des terminaux d'équilibrage de charge et des groupes haute disponibilité (HA), reportez-vous à la section <<Où trouver les adresses IP>> pour localiser ces valeurs dans le Gestionnaire de grille.
+
+[cols="1a,1a,1a,1a"]
+|===
+| Là où la connexion est établie | Service auquel le client se connecte | Adresse IP | Port 
+
+
+ a| 
+Groupe HAUTE DISPONIBILITÉ
+ a| 
+Équilibreur de charge
+ a| 
+Adresse IP virtuelle d'un groupe haute disponibilité
+ a| 
+Port attribué au noeud final de l'équilibreur de charge
+
+
+
+ a| 
+Nœud d'administration
+ a| 
+Équilibreur de charge
+ a| 
+Adresse IP du nœud d'administration
+ a| 
+Port attribué au noeud final de l'équilibreur de charge
+
+
+
+ a| 
+Nœud de passerelle
+ a| 
+Équilibreur de charge
+ a| 
+Adresse IP du nœud de passerelle
+ a| 
+Port attribué au noeud final de l'équilibreur de charge
+
+
+
+ a| 
+Nœud de stockage
+ a| 
+LDR
+ a| 
+Adresse IP du nœud de stockage
+ a| 
+Ports S3 par défaut :
+
+* HTTPS : 18082
+* HTTP : 18084
+
+
+|===
+
+
+== Exemples d'URL
+
+Pour connecter une application client au point de terminaison Load Balancer d'un groupe haute disponibilité de nœuds de passerelle, utilisez une URL structurée comme indiqué ci-dessous :
+
+`https://_VIP-of-HA-group:LB-endpoint-port_`
+
+Par exemple, si l'adresse IP virtuelle du groupe haute disponibilité est 192.0.2.5 et que le numéro de port du terminal de l'équilibreur de charge est 10443, une application peut utiliser l'URL suivante pour se connecter à StorageGRID :
+
+`\https://192.0.2.5:10443`
+
+
+
+== Où trouver les adresses IP
+
+. Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+. Pour trouver l'adresse IP d'un nœud de grille :
++
+.. Sélectionnez *NOEUDS*.
+.. Sélectionnez le nœud d'administration, le nœud de passerelle ou le nœud de stockage auquel vous souhaitez vous connecter.
+.. Sélectionnez l'onglet *Aperçu*.
+.. Dans la section informations sur le nœud, notez les adresses IP du nœud.
+.. Sélectionnez *Afficher plus* pour afficher les adresses IPv6 et les mappages d'interface.
++
+Vous pouvez établir des connexions entre les applications client et n'importe quelle adresse IP de la liste :
+
++
+*** *Eth0:* réseau de grille
+*** *Eth1:* réseau d'administration (facultatif)
+*** *Eth2:* réseau client (facultatif)
++
+
+NOTE: Si vous affichez un nœud d'administration ou un nœud de passerelle et qu'il s'agit du nœud actif dans un groupe haute disponibilité, l'adresse IP virtuelle du groupe haute disponibilité est affichée sur eth2.
+
+
+
+
+
+. Pour trouver l'adresse IP virtuelle d'un groupe haute disponibilité :
++
+.. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+.. Dans le tableau, noter l'adresse IP virtuelle du groupe haute disponibilité.
+
+
+. Pour trouver le numéro de port d'un noeud final Load Balancer :
++
+.. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+.. Notez le numéro de port du noeud final que vous souhaitez utiliser.
++
+
+NOTE: Si le numéro de port est 80 ou 443, le noeud final est configuré uniquement sur les noeuds de passerelle, car ces ports sont réservés sur les noeuds d'administration. Tous les autres ports sont configurés sur les nœuds de passerelle et sur les nœuds d'administration.
+
+.. Sélectionnez le nom du noeud final dans la table.
+.. Vérifiez que le *Type de client* (S3) correspond à l'application cliente qui utilisera le noeud final.
+
+
+

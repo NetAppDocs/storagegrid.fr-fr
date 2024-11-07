@@ -1,0 +1,102 @@
+---
+permalink: admin/configuring-s3-api-endpoint-domain-names.html 
+sidebar: sidebar 
+keywords: s3 endpoint domain names, virtual-hosted-style requests 
+summary: Pour prendre en charge les requêtes de type hébergement virtuel S3, vous devez utiliser le gestionnaire Grid pour configurer la liste des noms de domaine de terminaux S3 auxquels les clients S3 se connectent. 
+---
+= Configuration des noms de domaine de terminaux S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour prendre en charge les requêtes de type hébergement virtuel S3, vous devez utiliser le gestionnaire Grid pour configurer la liste des noms de domaine de terminaux S3 auxquels les clients S3 se connectent.
+
+
+CAUTION: L'utilisation d'une adresse IP pour un nom de domaine de noeud final n'est pas prise en charge. Les versions ultérieures empêcheront cette configuration.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez confirmé qu'une mise à niveau de la grille n'est pas en cours.
++
+
+CAUTION: N'apportez aucune modification à la configuration du nom de domaine lorsqu'une mise à niveau de grille est en cours.
+
+
+
+.Description de la tâche
+Pour permettre aux clients d'utiliser les noms de domaine de terminaux S3, vous devez effectuer toutes les opérations suivantes :
+
+* Utilisez le Gestionnaire de grille pour ajouter les noms de domaine de points de terminaison S3 au système StorageGRID.
+* Assurez-vous que le link:../admin/configuring-administrator-client-certificates.html["Certificat utilisé par le client pour les connexions HTTPS à StorageGRID"] est signé pour tous les noms de domaine requis par le client.
++
+Par exemple, si le noeud final est `s3.company.com`, vous devez vous assurer que le certificat utilisé pour les connexions HTTPS inclut le `s3.company.com` noeud final et le caractère générique Subject alternative Name (SAN): `*.s3.company.com`.
+
+* Configurez le serveur DNS utilisé par le client. Incluez les enregistrements DNS pour les adresses IP utilisées par les clients pour établir des connexions et assurez-vous que les enregistrements référencent tous les noms de domaine de point final S3 requis, y compris les noms génériques.
++
+
+NOTE: Les clients peuvent se connecter à StorageGRID à l'aide de l'adresse IP d'un nœud de passerelle, d'un nœud d'administration ou d'un nœud de stockage, ou en se connectant à l'adresse IP virtuelle d'un groupe haute disponibilité. Vous devez comprendre comment les applications client se connectent à la grille pour inclure les adresses IP correctes dans les enregistrements DNS.
+
+
+
+Les clients qui utilisent des connexions HTTPS (recommandées) au grid peuvent utiliser l'un des certificats suivants :
+
+* Les clients qui se connectent à un noeud final d'équilibreur de charge peuvent utiliser un certificat personnalisé pour ce noeud final. Chaque terminal d'équilibrage de la charge peut être configuré de manière à reconnaître différents noms de domaine de terminaux S3.
+* Les clients qui se connectent à un terminal d'équilibrage de charge ou directement à un nœud de stockage peuvent personnaliser le certificat d'API S3 global pour inclure tous les noms de domaine de terminaux S3 requis.
+
+
+
+NOTE: Si vous n'ajoutez pas de noms de domaine de terminaux S3 et que la liste est vide, la prise en charge des demandes de type hébergement virtuel S3 est désactivée.
+
+
+
+== Ajoutez un nom de domaine de terminal S3
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Entrez le nom de domaine dans le champ *Nom de domaine 1*. Sélectionnez *Ajouter un autre nom de domaine* pour ajouter d'autres noms de domaine.
+. Sélectionnez *Enregistrer*.
+. Assurez-vous que les certificats de serveur utilisés par les clients correspondent aux noms de domaine de noeud final S3 requis.
++
+** Si les clients se connectent à un noeud final d'équilibreur de charge qui utilise son propre certificat, link:../admin/configuring-load-balancer-endpoints.html["mettez à jour le certificat associé au noeud final"].
+** Si les clients se connectent à un terminal d'équilibrage de charge qui utilise le certificat d'API S3 global ou directement aux nœuds de stockage, link:../admin/use-s3-setup-wizard-steps.html["Mettez à jour le certificat d'API S3 global"].
+
+
+. Ajoutez les enregistrements DNS requis pour vous assurer que les demandes de nom de domaine de point final peuvent être résolues.
+
+
+.Résultat
+Maintenant, lorsque les clients utilisent le noeud final `_bucket.s3.company.com_`, le serveur DNS se résout sur le noeud final correct et le certificat authentifie le noeud final comme prévu.
+
+
+
+== Renommer un nom de domaine de terminal S3
+
+Si vous modifiez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échouent.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Sélectionnez le champ de nom de domaine que vous souhaitez modifier et apportez les modifications nécessaires.
+. Sélectionnez *Enregistrer*.
+. Sélectionnez *Oui* pour confirmer votre modification.
+
+
+
+
+== Supprimez un nom de domaine de terminal S3
+
+Si vous supprimez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échoueront.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"]en regard du nom de domaine.
+. Sélectionnez *Oui* pour confirmer la suppression.
+
+
+.Informations associées
+* link:../s3/index.html["UTILISEZ L'API REST S3"]
+* link:viewing-ip-addresses.html["Afficher les adresses IP"]
+* link:configure-high-availability-group.html["Configurez les groupes haute disponibilité"]
+

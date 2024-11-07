@@ -1,0 +1,62 @@
+---
+permalink: troubleshoot/troubleshooting-metadata-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot metadata issues 
+summary: 'En cas de problèmes liés aux métadonnées, des alertes vous informeront de la source des problèmes et des mesures recommandées à prendre. En particulier, vous devez ajouter de nouveaux nœuds de stockage si l"alerte de faible stockage des métadonnées est déclenchée.' 
+---
+= Diagnostiquez les problèmes liés aux métadonnées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En cas de problèmes liés aux métadonnées, des alertes vous informeront de la source des problèmes et des mesures recommandées à prendre. En particulier, vous devez ajouter de nouveaux nœuds de stockage si l'alerte de faible stockage des métadonnées est déclenchée.
+
+.Avant de commencer
+Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+.Description de la tâche
+Suivez les actions recommandées pour chaque alerte liée aux métadonnées qui est déclenchée. Si l'alerte *stockage de métadonnées faible* est déclenchée, vous devez ajouter de nouveaux nœuds de stockage.
+
+StorageGRID réserve un certain espace sur le volume 0 de chaque nœud de stockage pour les métadonnées de l'objet. Cet espace, appelé _espace réservé réel_, est subdivisé en l'espace autorisé pour les métadonnées de l'objet (espace de métadonnées autorisé) et l'espace requis pour les opérations de base de données essentielles, telles que la compaction et la réparation. L'espace de métadonnées autorisé régit la capacité globale des objets.
+
+image::../media/metadata_allowed_space_volume_0.png[Espace autorisé pour les métadonnées Volume 0]
+
+Si les métadonnées d'objet consomment plus de 100 % de l'espace autorisé pour les métadonnées, les opérations de base de données ne peuvent pas s'exécuter efficacement et des erreurs se produisent.
+
+Vous pouvez link:../monitor/monitoring-storage-capacity.html#monitor-object-metadata-capacity-for-each-storage-node["Surveillez la capacité des métadonnées d'objet pour chaque nœud de stockage"]vous aider à anticiper les erreurs et à les corriger avant qu'elles ne se produisent.
+
+StorageGRID utilise la métrique Prometheus suivante pour mesurer la totalité de l'espace de métadonnées autorisé :
+
+[listing]
+----
+storagegrid_storage_utilization_metadata_bytes/storagegrid_storage_utilization_metadata_allowed_bytes
+----
+Lorsque cette expression Prometheus atteint certains seuils, l'alerte *stockage de métadonnées faible* est déclenchée.
+
+* *Mineure* : les métadonnées d'objet utilisent au moins 70 % de l'espace autorisé pour les métadonnées. Vous devez ajouter des nœuds de stockage dès que possible.
+* *Majeur* : les métadonnées d'objet utilisent au moins 90 % de l'espace autorisé pour les métadonnées. Vous devez immédiatement ajouter de nouveaux nœuds de stockage.
++
+
+CAUTION: Lorsque les métadonnées d'objet utilisent au moins 90 % de l'espace de métadonnées autorisé, un avertissement s'affiche sur le tableau de bord. Si cet avertissement s'affiche, vous devez immédiatement ajouter de nouveaux nœuds de stockage. Vous ne devez jamais autoriser les métadonnées objet à utiliser plus de 100 % de l'espace autorisé.
+
+* *Critique* : les métadonnées d'objet utilisent au moins 100 % de l'espace de métadonnées autorisé et commencent à consommer l'espace requis pour les opérations essentielles de la base de données. Vous devez arrêter l'ingestion des nouveaux objets et vous devez immédiatement ajouter de nouveaux nœuds de stockage.
+
+
+
+CAUTION: Si la taille du volume 0 est inférieure à celle de l'option de stockage de l'espace réservé aux métadonnées (par exemple, dans un environnement non productif), le calcul de l'alerte *stockage de métadonnées faible* peut être inexact.
+
+.Étapes
+. Sélectionnez *ALERTES* > *actuel*.
+. Dans le tableau des alertes, développez le groupe d'alertes *stockage de métadonnées faible*, si nécessaire, et sélectionnez l'alerte spécifique que vous souhaitez afficher.
+. Vérifiez les détails dans la boîte de dialogue d'alerte.
+. Si une alerte majeure ou critique *stockage de métadonnées faible* a été déclenchée, effectuez immédiatement une extension pour ajouter des nœuds de stockage.
++
+
+NOTE: Dans la mesure où StorageGRID conserve des copies complètes de toutes les métadonnées d'objet sur chaque site, la capacité de métadonnées de l'ensemble de la grille est limitée par la capacité des métadonnées du site le plus petit. Si vous devez ajouter de la capacité de métadonnées à un site, vous devez également link:../expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html["développez n'importe quel autre site"] utiliser le même nombre de nœuds de stockage.
+
++
+Une fois l'extension effectuée, StorageGRID redistribue les métadonnées de l'objet existantes vers les nouveaux nœuds, qui augmentent la capacité globale des métadonnées de la grille. Aucune action de l'utilisateur n'est requise. L'alerte *stockage de métadonnées faible* est effacée.
+
+

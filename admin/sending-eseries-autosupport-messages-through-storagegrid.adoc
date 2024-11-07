@@ -1,0 +1,88 @@
+---
+permalink: admin/sending-eseries-autosupport-messages-through-storagegrid.html 
+sidebar: sidebar 
+keywords: eseries, santricity, system manager, asup, autosupport, technical support, appliance 
+summary: 'Vous pouvez envoyer des packages AutoSupport du Gestionnaire système SANtricity E-Series au support technique via un nœud d"administration StorageGRID plutôt que le port de gestion de l"appliance de stockage.' 
+---
+= Envoyez des packages AutoSupport E-Series via StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez envoyer des packages AutoSupport du Gestionnaire système SANtricity E-Series au support technique via un nœud d'administration StorageGRID plutôt que le port de gestion de l'appliance de stockage.
+
+Pour plus d'informations sur l'utilisation de AutoSupport avec les appliances E-Series, reportez-vous à la section https://docs.netapp.com/us-en/e-series-santricity/sm-support/autosupport-feature-overview.html["Matériel E-Series AutoSupport"^].
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Administrateur de l'appliance de stockage ou autorisation d'accès racine"].
+* Vous avez configuré SANtricity AutoSupport :
++
+** Pour les appliances SG6000 et SG5700 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["Configurez AutoSupport dans SANtricity System Manager"^]
+
+
+
+
+
+NOTE: Vous devez disposer d'un firmware SANtricity 8.70 ou supérieur pour accéder à SANtricity System Manager à l'aide de Grid Manager.
+
+.Description de la tâche
+Les packages AutoSupport E-Series contiennent des informations détaillées sur le matériel de stockage et sont plus spécifiques que les autres packages AutoSupport envoyés par le système StorageGRID.
+
+Vous pouvez configurer une adresse de serveur proxy spéciale dans le Gestionnaire système SANtricity pour transmettre des packages AutoSupport via un nœud d'administration StorageGRID sans utiliser le port de gestion de l'appliance. Les paquets AutoSupport transmis de cette façon sont envoyés par le link:../primer/what-admin-node-is.html["Nœud d'administration de l'expéditeur préféré"], et ils utilisent tous ceux link:../admin/configuring-admin-proxy-settings.html["paramètres du proxy d'administration"] qui ont été configurés dans le Gestionnaire de grille.
+
+
+NOTE: Cette procédure concerne uniquement la configuration d'un serveur proxy StorageGRID pour les packages E-Series AutoSupport. Pour plus de détails sur la configuration E-Series AutoSupport, consultez le https://docs.netapp.com/us-en/e-series-family/index.html["Documentation NetApp E-Series et SANtricity"^].
+
+.Étapes
+. Dans le Gestionnaire de grille, sélectionnez *NOEUDS*.
+. Dans la liste des nœuds de gauche, sélectionnez le nœud d'appliance de stockage à configurer.
+. Sélectionnez *SANtricity System Manager*.
++
+La page d'accueil de SANtricity System Manager s'affiche.
+
++
+image::../media/autosupport_santricity_home_page.png[Page d'accueil de AutoSupport SANtricity]
+
+. Sélectionnez *SUPPORT* > *support Center* > *AutoSupport*.
++
+La page opérations AutoSupport s'affiche.
+
++
+image::../media/autosupport_santricity_operations.png[Opérations AutoSupport SANtricity AutoSupport]
+
+. Sélectionnez *configurer la méthode de livraison AutoSupport*.
++
+La page configurer la méthode de livraison AutoSupport s'affiche.
+
++
+image::../media/autosupport_configure_delivery_santricity.png[AutoSupport configure la méthode de livraison AutoSupport SANtricity]
+
+. Sélectionnez *HTTPS* pour la méthode de livraison.
++
+
+NOTE: Le certificat qui active HTTPS est préinstallé.
+
+. Sélectionnez *via le serveur proxy*.
+. Entrez `tunnel-host` l'adresse *hôte*.
++
+`tunnel-host` Est l'adresse spéciale permettant d'utiliser un nœud d'administration pour envoyer les packages AutoSupport E-Series.
+
+. Entrez `10225` le *Numéro de port*.
++
+`10225` Est le numéro de port sur le serveur proxy StorageGRID qui reçoit les packages AutoSupport du contrôleur E-Series de l'appliance.
+
+. Sélectionnez *Tester la configuration* pour tester le routage et la configuration de votre serveur proxy AutoSupport.
++
+Si c'est le cas, un message s'affiche dans une bannière verte : « votre configuration AutoSupport a été vérifiée ».
+
++
+Si le test échoue, un message d'erreur s'affiche dans une bannière rouge. Vérifiez vos paramètres DNS et la mise en réseau StorageGRID, assurez-vous que le système link:../primer/what-admin-node-is.html["Nœud d'administration de l'expéditeur préféré"] peut se connecter au site de support NetApp, puis réessayez le test.
+
+. Sélectionnez *Enregistrer*.
++
+La configuration est enregistrée et un message de confirmation s'affiche : « la méthode de livraison AutoSupport a été configurée ».
+
+

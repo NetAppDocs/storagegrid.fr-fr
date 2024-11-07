@@ -1,0 +1,96 @@
+---
+permalink: audit/lkdm-leaked-object-cleanup.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LKDM, Leaked Object Cleanup 
+summary:  
+---
+= LKDM : nettoyage d'objets fuyée
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsqu'un morceau qui fuit a été nettoyé ou supprimé. Un bloc peut faire partie d'un objet répliqué ou d'un objet avec code d'effacement.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CLOC
+ a| 
+Emplacement des blocs
+ a| 
+Le chemin du fichier du morceau qui a fui et qui a été supprimé.
+
+
+
+ a| 
+CTYP
+ a| 
+Type de bloc
+ a| 
+Type de bloc :
+
+`ec: Erasure-coded object chunk`
+
+`repl: Replicated object chunk`
+
+
+
+ a| 
+LTYP
+ a| 
+Type de fuite
+ a| 
+Les cinq types de fuites pouvant être détectés :
+
+`object_leaked: Object doesn’t exist in the grid`
+
+`location_leaked: Object exists in the grid, but found location doesn’t belong to object`
+
+`mup_seg_leaked: Multipart upload was stopped or not completed, and the segment/part was left out`
+
+`segment_leaked: Parent UUID/CBID (associated container object) is valid but doesn't contain this segment`
+
+`no_parent: Container object is deleted, but object segment was left out and not deleted`
+
+
+
+ a| 
+CTIM
+ a| 
+Temps de création des blocs
+ a| 
+Heure à laquelle le morceau de fuite a été créé.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet auquel appartient le bloc.
+
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+CBID de l'objet auquel appartient le segment divulgué.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille du bloc en octets.
+
+|===

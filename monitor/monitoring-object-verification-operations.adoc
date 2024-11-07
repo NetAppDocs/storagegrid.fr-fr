@@ -1,0 +1,70 @@
+---
+permalink: monitor/monitoring-object-verification-operations.html 
+sidebar: sidebar 
+keywords: object, verification 
+summary: 'Le système StorageGRID peut vérifier l"intégrité des données d"objet sur les nœuds de stockage en vérifiant la présence d"objets corrompus et manquants.' 
+---
+= Surveiller les opérations de vérification d'objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le système StorageGRID peut vérifier l'intégrité des données d'objet sur les nœuds de stockage en vérifiant la présence d'objets corrompus et manquants.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+
+
+.Description de la tâche
+Deux link:../troubleshoot/verifying-object-integrity.html["processus de vérification"] fonctionnent ensemble pour garantir l'intégrité des données :
+
+* *Vérification de l'arrière-plan* s'exécute automatiquement, en vérifiant continuellement l'exactitude des données de l'objet.
++
+La vérification en arrière-plan vérifie automatiquement et en continu tous les nœuds de stockage pour déterminer s'il existe des copies corrompues des données d'objet répliquées et codées par effacement. Si un problème est détecté, le système StorageGRID tente automatiquement de remplacer les données d'objet corrompues à partir des copies stockées ailleurs dans le système. La vérification en arrière-plan ne s'exécute pas sur les objets d'un pool de stockage cloud.
+
++
+
+NOTE: L'alerte *objet corrompu non identifié détecté* est déclenchée si le système détecte un objet corrompu qui ne peut pas être corrigé automatiquement.
+
+* *La vérification de l'existence d'objet* peut être déclenchée par un utilisateur pour vérifier plus rapidement l'existence (mais pas l'exactitude) des données d'objet.
++
+Le contrôle d'existence d'objet vérifie si toutes les copies répliquées attendues d'objets et de fragments avec code d'effacement existent sur un nœud de stockage. La vérification de l'existence d'un objet permet de vérifier l'intégrité des périphériques de stockage, en particulier si un problème matériel récent peut avoir une incidence sur l'intégrité des données.
+
+
+
+Vous devez consulter régulièrement les résultats des vérifications de fond et des contrôles d'existence d'objet. Recherchez immédiatement toute instance de données d'objet corrompues ou manquantes afin de déterminer la cause première.
+
+.Étapes
+. Examiner les résultats des vérifications de base :
++
+.. Sélectionnez *NODES* > *_Storage Node_* > *Objects*.
+.. Vérifier les résultats de la vérification :
++
+*** Pour vérifier la vérification des données d'objet répliqué, consultez les attributs de la section Vérification.
++
+image::../media/nodes_storage_node_object_verification.png[Nœuds > nœud de stockage > objet > Vérification]
+
+*** Pour vérifier la vérification du fragment avec code d'effacement, sélectionnez *_Storage Node_* > *ILM* et examinez les attributs de la section Vérification du code d'effacement.
++
+image::../media/nodes_storage_node_ilm_ec_verification.png[Nœuds > nœud de stockage > ILM > Vérification EC]
+
++
+Sélectionnez le point d'interrogation image:../media/icon_nms_question.png["point d'interrogation"]en regard du nom d'un attribut pour afficher le texte d'aide.
+
+
+
+
+
+. Examinez les résultats des travaux de vérification de l'existence d'un objet :
++
+.. Sélectionnez *MAINTENANCE* > *Vérification de l'existence d'objet* > *Historique du travail*.
+.. Scannez la colonne copies d'objet manquantes détectées. Si des travaux ont entraîné 100 copies d'objets manquantes ou plus et que l'alerte *objets perdus* a été déclenchée, contactez le support technique.
++
+image::../media/oec_job_history.png[Historique du travail de vérification de l'existence d'un objet]
+
+
+
+

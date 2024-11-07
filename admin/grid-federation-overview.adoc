@@ -1,0 +1,99 @@
+---
+permalink: admin/grid-federation-overview.html 
+sidebar: sidebar 
+keywords: grid federation, cross-grid replication, account clone, cgr, disaster recovery 
+summary: Vous pouvez utiliser la fédération de grid pour cloner les locataires et répliquer leurs objets entre deux systèmes StorageGRID à des fins de reprise après incident. 
+---
+= Qu'est-ce que la fédération de grille ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser la fédération de grid pour cloner les locataires et répliquer leurs objets entre deux systèmes StorageGRID à des fins de reprise après incident.
+
+
+
+== Qu'est-ce qu'une connexion de fédération de grille ?
+
+Une connexion de fédération grid est une connexion bidirectionnelle, fiable et sécurisée entre les nœuds d'administration et de passerelle dans deux systèmes StorageGRID.
+
+
+
+== Flux de travail pour la fédération de grille
+
+Le diagramme de flux de travail récapitule les étapes de configuration d'une connexion de fédération de grille entre deux grilles.
+
+image::../media/grid-federation-workflow.png[Flux de travail de connexion de fédération de grille]
+
+
+
+== Considérations et conditions requises pour les connexions de fédération de grille
+
+* Les grilles utilisées pour la fédération de grille doivent exécuter des versions StorageGRID identiques ou ne doivent pas avoir plus d'une différence de version majeure entre elles.
++
+Pour plus de détails sur les exigences de version, reportez-vous au link:../release-notes/index.html["Notes de mise à jour"].
+
+* Une grille peut avoir une ou plusieurs connexions de fédération de grille à d'autres grilles. Chaque connexion de fédération de grille est indépendante des autres connexions. Par exemple, si la grille 1 a une connexion avec la grille 2 et une seconde connexion avec la grille 3, il n'y a pas de connexion implicite entre la grille 2 et la grille 3.
+* Les connexions de fédération de grille sont bidirectionnelles. Une fois la connexion établie, vous pouvez surveiller et gérer la connexion à partir de l'une ou l'autre grille.
+* Au moins une connexion de fédération de grille doit exister avant de pouvoir utiliser link:grid-federation-what-is-account-clone.html["clone de compte"] ou link:grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"].
+
+
+
+
+=== Exigences en matière de mise en réseau et d'adresse IP
+
+* Les connexions de fédération de grille peuvent se produire sur le réseau de grille, le réseau d'administration ou le réseau client.
+* Une connexion de fédération de grille connecte une grille à une autre grille. La configuration de chaque grille spécifie un point de terminaison de fédération grid sur l'autre grille composé de nœuds d'administration, de nœuds de passerelle ou des deux.
+* Il est recommandé de connecter les link:managing-high-availability-groups.html["Groupes haute disponibilité (HA)"]nœuds de passerelle et d'administration sur chaque grid. L'utilisation des groupes haute disponibilité permet de s'assurer que les connexions de fédération du grid resteront en ligne si les nœuds ne sont plus disponibles. En cas de défaillance de l'interface active de l'un ou l'autre groupe haute disponibilité, la connexion peut utiliser une interface de sauvegarde.
+* Il n'est pas recommandé de créer une connexion de fédération de grille qui utilise l'adresse IP d'un nœud d'administration ou d'un nœud de passerelle unique. Si le nœud devient indisponible, la connexion de fédération de grille devient également indisponible.
+* link:grid-federation-what-is-cross-grid-replication.html["Réplication entre plusieurs grilles"] D'objets exige que les nœuds de stockage de chaque grid puissent accéder aux nœuds d'administration et de passerelle configurés sur l'autre grid. Pour chaque grid, vérifiez que tous les nœuds de stockage disposent d'une route à large bande passante vers en tant que nœuds d'administration ou nœuds de passerelle utilisés pour la connexion.
+
+
+
+
+=== Utilisez des FQDN pour équilibrer la charge de la connexion
+
+Pour un environnement de production, utilisez des noms de domaine complets (FQDN) pour identifier chaque grille de la connexion. Créez ensuite les entrées DNS appropriées, comme suit :
+
+* Le nom de domaine complet de la grille 1 est mappé à une ou plusieurs adresses IP virtuelles (VIP) pour les groupes haute disponibilité de la grille 1 ou à l'adresse IP d'un ou plusieurs nœuds d'administration ou de passerelle de la grille 1.
+* Le nom de domaine complet de la grille 2 est mappé à une ou plusieurs adresses VIP pour la grille 2 ou à l'adresse IP d'un ou plusieurs nœuds d'administration ou de passerelle dans la grille 2.
+
+
+Lorsque vous utilisez plusieurs entrées DNS, les demandes d'utilisation de la connexion sont équilibrées de la manière suivante :
+
+* Les entrées DNS qui correspondent aux adresses VIP de plusieurs groupes haute disponibilité sont équilibrées de charge entre les nœuds actifs des groupes haute disponibilité.
+* Les entrées DNS qui correspondent aux adresses IP de plusieurs nœuds d'administration ou nœuds de passerelle sont équilibrées de charge entre les nœuds mappés.
+
+
+
+
+=== Configuration requise pour les ports
+
+Lors de la création d'une connexion de fédération de grille, vous pouvez spécifier tout numéro de port inutilisé compris entre 23000 et 23999. Les deux grilles de cette connexion utilisent le même port.
+
+Vous devez vous assurer qu'aucun nœud d'une grille n'utilise ce port pour d'autres connexions.
+
+
+
+=== Exigences en matière de certificat
+
+Lorsque vous configurez une connexion de fédération de grille, StorageGRID génère automatiquement quatre certificats SSL :
+
+* Certificats de serveur et de client pour authentifier et crypter les informations envoyées de la grille 1 à la grille 2
+* Certificats de serveur et de client pour authentifier et crypter les informations envoyées de la grille 2 à la grille 1
+
+
+image::../media/grid-federation-certificates.png[Certificats de fédération de grille]
+
+Par défaut, les certificats sont valides pendant 730 jours (2 ans). Lorsque ces certificats sont proches de leur date d'expiration, l'alerte *expiration du certificat de fédération GRID* vous rappelle de faire pivoter les certificats, ce que vous pouvez faire à l'aide de Grid Manager.
+
+
+CAUTION: Si les certificats à l'une des extrémités de la connexion expirent, la connexion cesse de fonctionner. La réplication des données sera en attente jusqu'à la mise à jour des certificats.
+
+.En savoir plus >>
+* link:grid-federation-create-connection.html["Créer des connexions de fédération de grille"]
+* link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"]
+* link:grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"]
+

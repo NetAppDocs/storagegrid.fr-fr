@@ -1,0 +1,38 @@
+---
+permalink: monitor/viewing-storage-tab.html 
+sidebar: sidebar 
+keywords: storage tab 
+summary: 'L"onglet stockage récapitule la disponibilité du stockage et d"autres mesures de stockage.' 
+---
+= Afficher l'onglet stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'onglet stockage récapitule la disponibilité du stockage et d'autres mesures de stockage.
+
+L'onglet stockage s'affiche pour tous les nœuds, chaque site et la grille complète.
+
+
+
+== Graphiques utilisés pour le stockage
+
+Pour les nœuds de stockage, chaque site et la grille dans son intégralité, l'onglet stockage contient des graphiques indiquant la quantité de stockage utilisée par les données d'objet et les métadonnées d'objet au fil du temps.
+
+
+NOTE: Lorsqu'un nœud n'est pas connecté à la grille, comme lors de la mise à niveau ou lorsqu'il est déconnecté, certains metrics peuvent être indisponibles ou exclus des totaux site et grid. Après qu'un nœud se reconnecte à la grille, attendez plusieurs minutes que les valeurs se stabilisent.
+
+image::../media/nodes_storage_node_storage_tab.png[Onglet nœuds > nœud de stockage > stockage]
+
+
+
+== Tables de stockage des périphériques de disque, des volumes et des objets
+
+Pour tous les nœuds, l'onglet stockage contient des détails sur les unités de disque et les volumes du nœud. Pour les nœuds de stockage, le tableau magasins d'objets fournit des informations sur chaque volume de stockage.
+
+image::../media/nodes_page_storage_tables.png[Nœuds tables de stockage des pages]
+
+.Informations associées
+link:monitoring-storage-capacity.html["Surveiller la capacité de stockage"]

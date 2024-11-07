@@ -1,0 +1,47 @@
+---
+permalink: audit/sadd-security-audit-disable.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SADD, Security Audit Disable 
+summary: 'Ce message indique que le service d"origine \(ID de nœud\) a désactivé la journalisation des messages d"audit ; les messages d"audit ne sont plus collectés ni livrés.' 
+---
+= SADD : désactivation de l'audit de sécurité
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message indique que le service d'origine (ID de nœud) a désactivé la journalisation des messages d'audit ; les messages d'audit ne sont plus collectés ou livrés.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+AETM
+ a| 
+Activer la méthode
+ a| 
+Méthode utilisée pour désactiver l'audit.
+
+
+
+ a| 
+AEUN
+ a| 
+Nom d'utilisateur
+ a| 
+Nom d'utilisateur qui a exécuté la commande pour désactiver la journalisation d'audit.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Ce champ a la valeur AUCUNE. RSLT est un champ de message obligatoire, mais n'est pas pertinent pour ce message. AUCUN n'est utilisé plutôt que LES CMC pour que ce message ne soit pas filtré.
+
+|===
+Ce message implique que la journalisation était déjà activée, mais qu'elle a été désactivée. Ces éléments sont généralement utilisés uniquement lors de l'ingestion en bloc afin d'améliorer les performances du système. Suite à l'activité groupée, l'audit est restauré (SADE) et la capacité de désactivation de l'audit est ensuite bloquée de manière permanente.

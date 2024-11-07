@@ -1,0 +1,66 @@
+---
+permalink: admin/configuration-options-for-ha-groups.html 
+sidebar: sidebar 
+keywords: ha groups, best practices, high availability group options 
+summary: Le diagramme suivant fournit des exemples de différentes façons de configurer les groupes haute disponibilité. Chaque option présente des avantages et des inconvénients. 
+---
+= Options de configuration pour les groupes haute disponibilité
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les schémas ci-dessous fournissent des exemples de différentes façons de configurer les groupes haute disponibilité. Chaque option présente des avantages et des inconvénients.
+
+Dans les schémas, le bleu indique l'interface principale du groupe haute disponibilité et la jaune indique l'interface de sauvegarde du groupe haute disponibilité.
+
+image::../media/high_availability_examples.png[Exemples DE HAUTE DISPONIBILITÉ]
+
+Le tableau récapitule les avantages de chaque configuration de haute disponibilité illustrée sur le schéma.
+
+[cols="1a,2a,2a"]
+|===
+| Configuration | Avantages | Inconvénients 
+
+
+ a| 
+Active-Backup HA
+ a| 
+* Gérées par StorageGRID sans dépendances externes
+* Basculement rapide
+
+ a| 
+* Un seul nœud d'un groupe haute disponibilité est actif. Au moins un nœud par groupe haute disponibilité sera inactif.
+
+
+
+
+ a| 
+DNS Round Robin
+ a| 
+* Un débit global supérieur.
+* Aucun hôte inactif.
+
+ a| 
+* Basculement lent, qui peut dépendre du comportement des clients.
+* Nécessite une configuration matérielle en dehors du StorageGRID.
+* Nécessite une vérification de l'état implémentée par le client.
+
+
+
+
+ a| 
+Haute disponibilité actif-actif
+ a| 
+* Le trafic est réparti entre plusieurs groupes haute disponibilité.
+* Débit global élevé qui évolue en même temps que le nombre de groupes HA.
+* Basculement rapide
+
+ a| 
+* Configuration plus complexe.
+* Nécessite une configuration matérielle en dehors du StorageGRID.
+* Nécessite une vérification de l'état implémentée par le client.
+
+
+|===

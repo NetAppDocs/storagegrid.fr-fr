@@ -1,0 +1,42 @@
+---
+permalink: rhel/specifying-network-time-protocol-server-information.html 
+sidebar: sidebar 
+keywords: how to specify network time protocol ntp 
+summary: 'Vous devez spécifier les informations de configuration du protocole NTP \(Network Time Protocol\) pour le système StorageGRID, de sorte que les opérations effectuées sur des serveurs distincts puissent rester synchronisées.' 
+---
+= Spécifiez les informations sur le serveur Network Time Protocol
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez spécifier les informations de configuration du protocole NTP (Network Time Protocol) pour le système StorageGRID, de sorte que les opérations effectuées sur des serveurs distincts puissent rester synchronisées.
+
+.Description de la tâche
+Vous devez indiquer des adresses IPv4 pour les serveurs NTP.
+
+Vous devez indiquer des serveurs NTP externes. Les serveurs NTP spécifiés doivent utiliser le protocole NTP.
+
+Vous devez spécifier quatre références de serveur NTP de Stratum 3 ou supérieur pour éviter les problèmes de dérive du temps.
+
+[NOTE]
+====
+Lorsque vous spécifiez la source NTP externe pour une installation StorageGRID de niveau production, n'utilisez pas le service heure Windows (W32Time) sur une version de Windows antérieure à Windows Server 2016. Le service de temps des versions antérieures de Windows n'est pas suffisamment précis et n'est pas pris en charge par Microsoft pour une utilisation dans des environnements à haute précision, tels que StorageGRID.
+
+https://support.microsoft.com/en-us/help/939322/support-boundary-to-configure-the-windows-time-service-for-high-accura["Limite de prise en charge pour configurer le service de temps Windows pour des environnements de haute précision"^]
+
+====
+Les serveurs NTP externes sont utilisés par les nœuds auxquels vous avez précédemment attribué des rôles NTP primaires.
+
+
+NOTE: Assurez-vous qu'au moins deux nœuds de chaque site peuvent accéder à au moins quatre sources NTP externes. Si un seul nœud d'un site peut atteindre les sources NTP, des problèmes de synchronisation surviennent en cas de panne de ce nœud. En outre, la désignation de deux nœuds par site en tant que sources NTP principales assure une synchronisation précise si un site est isolé du reste de la grille.
+
+.Étapes
+. Spécifiez les adresses IPv4 pour au moins quatre serveurs NTP dans les zones de texte *Server 1* à *Server 4*.
+. Si nécessaire, sélectionnez le signe plus en regard de la dernière entrée pour ajouter des entrées de serveur supplémentaires.
++
+image::../media/8_gmi_installer_ntp_page.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+. Sélectionnez *Suivant*.
+

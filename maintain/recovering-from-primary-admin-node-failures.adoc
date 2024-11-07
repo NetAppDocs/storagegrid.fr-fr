@@ -1,0 +1,30 @@
+---
+permalink: maintain/recovering-from-primary-admin-node-failures.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, primary admin node failure 
+summary: 'Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d"un nœud d"administration principal. Le nœud d"administration principal héberge le service Configuration Management Node \(CMN\) pour la grille.' 
+---
+= Restaurez vos données après une panne de nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d'un nœud d'administration principal. Le nœud d'administration principal héberge le service de nœud de gestion de la configuration (CMN) pour la grille.
+
+
+CAUTION: Vous devez réparer ou remplacer rapidement un nœud d'administration principal en panne, faute de quoi la grille risque de perdre son ingestion de nouveaux objets. La période exacte dépend de votre taux d'acquisition de l'objet : si vous avez besoin d'une évaluation plus précise de la durée de votre grille, contactez le support technique.
+
+Le service de nœud de gestion de la configuration (CMN) sur le nœud d'administration principal est responsable de l'émission de blocs d'identifiants d'objets pour la grille. Ces identificateurs sont attribués aux objets lors de leur ingestion. Les nouveaux objets ne peuvent pas être ingérés à moins que des identifiants soient disponibles. L'ingestion d'objet peut se poursuivre pendant que le CMN n'est pas disponible car la quantité d'identifiants d'un mois environ est mise en cache dans la grille. Cependant, une fois les identificateurs mis en cache épuisés, aucun nouvel objet ne peut être ajouté.
+
+Pour restaurer un nœud d'administration principal, suivez ces étapes générales :
+
+. link:copying-audit-logs-from-failed-primary-admin-node.html["La copie des journaux d'audit à partir d'un nœud d'administration principal a échoué"]
+. link:replacing-primary-admin-node.html["Remplacez le nœud d'administration principal"]
+. link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"]
+. link:assess-hotfix-requirement-during-primary-admin-node-recovery.html["Déterminez si un correctif est requis pour le nœud d'administration principal récupéré"]
+. link:restoring-audit-log-on-recovered-primary-admin-node.html["Restaurez le journal d'audit sur le nœud d'administration principal restauré"]
+. link:restoring-admin-node-database-primary-admin-node.html["Restaurez la base de données du nœud d'administration lors de la récupération d'un nœud d'administration principal"]
+. link:restoring-prometheus-metrics-primary-admin-node.html["Restauration de metrics Prometheus lors de la restauration d'un nœud d'administration principal"]
+

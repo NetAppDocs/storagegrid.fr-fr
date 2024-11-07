@@ -1,0 +1,67 @@
+---
+permalink: fabricpool/creating-traffic-classification-policy-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, traffic classification, traffic policy, QoS, quality of service 
+summary: 'Vous pouvez éventuellement concevoir une règle de classification du trafic StorageGRID afin d"optimiser la qualité de service pour la charge de travail FabricPool.' 
+---
+= Créer une règle de classification du trafic pour FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez éventuellement concevoir une règle de classification du trafic StorageGRID afin d'optimiser la qualité de service pour la charge de travail FabricPool.
+
+Pour plus de détails sur cette tâche, reportez-vous link:../admin/managing-traffic-classification-policies.html["Gérer les stratégies de classification du trafic"]à la section . Pour exécuter cette tâche à l'aide de l'assistant de configuration FabricPool, accédez à link:use-fabricpool-setup-wizard-steps.html["Accédez à l'assistant d'installation FabricPool et terminez-le"].
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Description de la tâche
+Les meilleures pratiques de création d'une stratégie de classification du trafic pour FabricPool dépendent de la charge de travail :
+
+* Si vous prévoyez de transférer les données de la charge de travail principale FabricPool vers StorageGRID, vous devez vous assurer que la charge de travail FabricPool dispose de la plus grande partie de la bande passante. Vous pouvez créer une règle de classification du trafic pour limiter tous les autres workloads.
++
+
+NOTE: En général, les opérations de lecture FabricPool sont plus importantes que les opérations d'écriture.
+
++
+Par exemple, si d'autres clients S3 utilisent ce système StorageGRID, vous devez créer une règle de classification du trafic. Vous pouvez limiter le trafic réseau pour les autres compartiments, locataires, sous-réseaux IP ou terminaux d'équilibrage de charge.
+
+* En règle générale, vous ne devez pas imposer de limites de qualité de service à une charge de travail FabricPool, mais vous devez uniquement limiter les autres charges de travail.
+* Les limites placées sur d'autres charges de travail doivent tenir compte du comportement de ces dernières. Les limites imposées varient également en fonction du dimensionnement et des capacités de votre réseau et du taux d'utilisation attendu.
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Créer*.
+. Entrez un nom et une description (facultatif) pour la stratégie et sélectionnez *Continuer*.
+. Pour l'étape Ajouter des règles de correspondance, ajoutez au moins une règle.
++
+.. Sélectionnez *Ajouter une règle*
+.. Sous Type, sélectionnez *noeud final de l'équilibreur de charge*, puis sélectionnez le noeud final de l'équilibreur de charge que vous avez créé pour FabricPool.
++
+Vous pouvez également sélectionner le compartiment ou le compte de locataire FabricPool.
+
+.. Si vous souhaitez que cette stratégie de trafic limite le trafic pour les autres noeuds finaux, sélectionnez *comparaison inverse*.
+
+
+. Vous pouvez également ajouter une ou plusieurs limites pour contrôler le trafic réseau correspondant à la règle.
++
+
+NOTE: StorageGRID collecte des mesures, même si vous n'ajoutez aucune limite, pour vous permettre de comprendre les tendances du trafic.
+
++
+.. Sélectionnez *Ajouter une limite*.
+.. Sélectionnez le type de trafic que vous souhaitez limiter et la limite à appliquer.
+
+
+. Sélectionnez *Continuer*.
+. Lisez et passez en revue la politique de classification du trafic. Utilisez le bouton *Précédent* pour revenir en arrière et apporter les modifications nécessaires. Lorsque vous êtes satisfait de la stratégie, sélectionnez *Enregistrer et continuer*.
+
+
+.Une fois que vous avez terminé
+link:../admin/viewing-network-traffic-metrics.html["Afficher les données de trafic réseau"] pour vérifier que les stratégies appliquent les limites de trafic que vous attendez.

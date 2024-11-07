@@ -1,0 +1,43 @@
+---
+indexpage:
+  title: Récupérer ou remplacer des nœuds
+  summary: En cas de défaillance d'un nœud de grille, vous pouvez le restaurer en
+    remplaçant le serveur physique ou virtuel défaillant, en réinstallant le logiciel
+    StorageGRID et en restaurant les données récupérables.
+  keywords: recover node, replace node
+  lead: En cas de défaillance d'un nœud de grille, vous pouvez le restaurer en remplaçant
+    le serveur physique ou virtuel défaillant, en réinstallant le logiciel StorageGRID
+    et en restaurant les données récupérables.
+  tiles:
+  - title: Commencez
+    links:
+    - title: Avertissements et considérations
+      url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
+    - title: Rassembler les matériaux nécessaires
+      url: "../maintain/gathering-required-materials-for-grid-node-recovery.html"
+  - title: Restauration des nœuds défaillants
+    links:
+    - title: Avertissements et considérations
+      url: "../maintain/warnings-and-considerations-for-grid-node-recovery.html"
+    - title: Nœuds de stockage
+      url: "../maintain/recovering-from-storage-node-failures.html"
+    - title: Nœuds d'administration
+      url: "../maintain/recovering-from-admin-node-failures.html"
+    - title: Nœuds de passerelle
+      url: "../maintain/replacing-gateway-node.html"
+    - title: Nœuds d'archivage
+      url: "../maintain/recovering-from-archive-node-failures.html"
+  - title: Remplacer le nœud
+    links:
+    - title: Remplacez le nœud Linux
+      url: "../maintain/all-node-types-replacing-linux-node.html"
+    - title: Remplacer le nœud VMware
+      url: "../maintain/all-node-types-replacing-vmware-node.html"
+    - title: Remplacez le nœud Linux ou VMware par une appliance de services
+      url: "../maintain/installing-services-appliance-platform-change-only.html"
+    - title: Clonez le nœud d'appliance
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html
+  - title: Restaurer un site
+    links:
+    - title: Comment le support technique récupère un site
+      url: "../maintain/how-site-recovery-is-performed-by-technical-support.html"

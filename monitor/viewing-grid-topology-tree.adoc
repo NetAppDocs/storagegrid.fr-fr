@@ -1,0 +1,41 @@
+---
+permalink: monitor/viewing-grid-topology-tree.html 
+sidebar: sidebar 
+keywords: how to view the Grid Topology tree 
+summary: 'L"arborescence de la grille topologie permet d"accéder à des informations détaillées sur les éléments du système StorageGRID, notamment les sites, les nœuds de la grille, les services et les composants. Dans la plupart des cas, il vous suffit d"accéder à l"arborescence de la grille topologique lorsque vous y êtes invité ou lorsque vous collaborez avec le support technique.' 
+---
+= Afficher l'arborescence de la grille topologique
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'arborescence de la grille topologie permet d'accéder à des informations détaillées sur les éléments du système StorageGRID, notamment les sites, les nœuds de la grille, les services et les composants. Dans la plupart des cas, il vous suffit d'accéder à l'arborescence de la grille topologique lorsque vous y êtes invité ou lorsque vous collaborez avec le support technique.
+
+Pour accéder à l'arborescence de la topologie de grille, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+
+image::../media/grid_topology_tree.gif[Parties de l'arborescence de la topologie de grille]
+
+Pour développer ou réduire l'arborescence topologie de la grille, cliquez sur image:../media/nms_tree_expand.gif["icône signe plus"] ou image:../media/nms_tree_collapse.gif["icône signe moins"] au niveau du site, du nœud ou du service. Pour développer ou réduire tous les éléments du site entier ou de chaque nœud, maintenez la touche *<Ctrl>* enfoncée et cliquez sur.
+
+
+
+== Attributs des StorageGRID
+
+Attributs valeurs et États du rapport pour la plupart des fonctions du système StorageGRID. Des valeurs d'attribut sont disponibles pour chaque nœud de grille, chaque site et la grille entière.
+
+Les attributs StorageGRID sont utilisés à plusieurs endroits dans le Gestionnaire de grille :
+
+* *Page noeuds* : la plupart des valeurs affichées sur la page noeuds sont des attributs StorageGRID. (Les metrics de Prometheus sont également affichés sur les pages nœuds.)
+* *Grid Topology Tree* : les valeurs d'attribut sont affichées dans l'arborescence de la topologie de la grille (*SUPPORT* > *Outils* > *topologie de la grille*).
+* *Evénements* : les événements système se produisent lorsque certains attributs enregistrent une condition d'erreur ou de panne pour un nœud, y compris des erreurs telles que des erreurs réseau.
+
+
+
+
+=== Valeurs d'attribut
+
+Les attributs sont rapportés sur la base du meilleur effort et sont approximativement corrects. Les mises à jour d'attributs peuvent être perdues dans certains cas, comme la panne d'un service ou la panne et la reconstruction d'un nœud de la grille.
+
+En outre, les retards de propagation peuvent ralentir le reporting des attributs. Les valeurs mises à jour pour la plupart des attributs sont envoyées au système StorageGRID à intervalles fixes. Plusieurs minutes peuvent être nécessaires avant qu'une mise à jour soit visible dans le système et deux attributs qui changent plus ou moins simultanément peuvent être signalés à des moments légèrement différents.

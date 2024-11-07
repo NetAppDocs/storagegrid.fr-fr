@@ -1,0 +1,115 @@
+---
+permalink: monitor/viewing-dashboard.html 
+sidebar: sidebar 
+keywords: how to view dashboard, how to configure dashboard 
+summary: 'Vous pouvez utiliser le tableau de bord pour surveiller les activités du système en un coup d"œil. Vous pouvez créer des tableaux de bord personnalisés pour contrôler votre implémentation de StorageGRID.' 
+---
+= Affichez et gérez le tableau de bord
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le tableau de bord pour surveiller les activités du système en un coup d'œil. Vous pouvez créer des tableaux de bord personnalisés pour contrôler votre implémentation de StorageGRID.
+
+
+TIP: Pour modifier les unités des valeurs de stockage affichées dans le Gestionnaire de grille, sélectionnez la liste déroulante utilisateur dans le coin supérieur droit du Gestionnaire de grille, puis sélectionnez *Préférences utilisateur*.
+
+Votre tableau de bord peut varier en fonction de la configuration du système.
+
+image::../media/grid_manager_dashboard.png[Tableau de bord de Grid Manager]
+
+
+
+== Afficher le tableau de bord
+
+Le tableau de bord se compose d'onglets contenant des informations spécifiques sur le système StorageGRID. Chaque onglet contient des catégories d'informations affichées sur les cartes.
+
+Vous pouvez utiliser le tableau de bord fourni par le système, tel qu'il est. En outre, vous pouvez créer des tableaux de bord personnalisés contenant uniquement les onglets et cartes pertinents pour la surveillance de votre implémentation de StorageGRID.
+
+Les onglets du tableau de bord fournis par le système contiennent des cartes présentant les types d'informations suivants :
+
+[cols="1a,3a"]
+|===
+| Du tableau de bord fourni par le système | Contient 
+
+
+ a| 
+Présentation
+ a| 
+Informations générales sur la grille, telles que les alertes actives, l'utilisation de l'espace et le nombre total d'objets de la grille.
+
+
+
+ a| 
+Performances
+ a| 
+Utilisation de l'espace, stockage utilisé au fil du temps, opérations S3, durée de la demande, taux d'erreur.
+
+
+
+ a| 
+Stockage
+ a| 
+Utilisation des quotas des locataires et de l'espace logique. Prévisions de l'utilisation de l'espace pour les données utilisateur et les métadonnées.
+
+
+
+ a| 
+ILM
+ a| 
+File d'attente de gestion du cycle de vie des informations et taux d'évaluation.
+
+
+
+ a| 
+Nœuds
+ a| 
+Utilisation du CPU, des données et de la mémoire par nœud. Opérations S3 par nœud. Distribution nœud à site.
+
+|===
+Certaines cartes peuvent être agrandies pour faciliter la visualisation. Sélectionnez l'icône Agrandir image:../media/icon_dashboard_card_maximize.png["Icône Agrandir"]dans le coin supérieur droit de la carte. Pour fermer une carte agrandie, sélectionnez l'icône réduire image:../media/icon_dashboard_card_minimize.png["Icône réduire"]ou sélectionnez *Fermer*.
+
+
+
+== Gestion des tableaux de bord
+
+Si vous disposez d'un accès racine (voir link:../admin/admin-group-permissions.html["Autorisations de groupe d'administration"]), vous pouvez effectuer les tâches de gestion suivantes pour les tableaux de bord :
+
+* Créez un tableau de bord personnalisé à partir de zéro. Vous pouvez utiliser des tableaux de bord personnalisés pour contrôler quelles informations StorageGRID sont affichées et comment elles sont organisées.
+* Cloner un tableau de bord pour créer des tableaux de bord personnalisés.
+* Définir un tableau de bord actif pour un utilisateur. Le tableau de bord actif peut être celui fourni par le système ou un tableau de bord personnalisé.
+* Définissez un tableau de bord par défaut, qui correspond à ce que tous les utilisateurs voient, à moins qu'ils n'activent leur propre tableau de bord.
+* Modifiez le nom d'un tableau de bord.
+* Modifiez un tableau de bord pour ajouter ou supprimer des onglets et des cartes. Vous pouvez avoir un minimum de 1 et un maximum de 20 onglets.
+* Déposer un tableau de bord.
+
+
+
+NOTE: Si vous disposez d'une autre autorisation que l'accès racine, vous ne pouvez définir qu'un tableau de bord actif.
+
+Pour gérer les tableaux de bord, sélectionnez *actions* > *gérer les tableaux de bord*.
+
+image::../media/dashboard_manage.png[Gestion des tableaux de bord]
+
+
+
+== Configurer les tableaux de bord
+
+Pour créer un nouveau tableau de bord en clonant le tableau de bord actif, sélectionnez *actions* > *Cloner le tableau de bord actif*.
+
+Pour modifier ou cloner un tableau de bord existant, sélectionnez *actions* > *gérer les tableaux de bord*.
+
+
+NOTE: Le tableau de bord fourni par le système ne peut pas être modifié ou supprimé.
+
+Lors de la configuration d'un tableau de bord, vous pouvez :
+
+* Ajouter ou supprimer des onglets
+* Renommez les onglets et donnez des noms uniques aux nouveaux onglets
+* Ajoutez, supprimez ou réorganisez (faites glisser) des cartes pour chaque onglet
+* Sélectionnez la taille des cartes individuelles en sélectionnant *S*, *M*, *L* ou *XL* en haut de la carte
+
+
+image::../media/dashboard_configure.png[Configurer le tableau de bord]

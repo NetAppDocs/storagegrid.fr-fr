@@ -1,0 +1,29 @@
+---
+permalink: network/grid-network-topology.html 
+sidebar: sidebar 
+keywords: grid network topology 
+summary: La topologie réseau la plus simple est créée en configurant le réseau Grid uniquement. 
+---
+= Topologie du réseau grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La topologie réseau la plus simple est créée en configurant le réseau Grid uniquement.
+
+Lorsque vous configurez le réseau Grid, vous définissez l'adresse IP de l'hôte, le masque de sous-réseau et l'adresse IP de la passerelle pour l'interface eth0 de chaque nœud de la grille.
+
+Lors de la configuration, vous devez ajouter tous les sous-réseaux du réseau Grid à la liste de sous-réseaux du réseau Grid (GNSL). Cette liste inclut tous les sous-réseaux de tous les sites, et peut également inclure des sous-réseaux externes permettant l'accès à des services critiques tels que NTP, DNS ou LDAP.
+
+Lors de l'installation, l'interface réseau de grille applique des routes statiques pour tous les sous-réseaux du GNSL et définit la route par défaut du nœud vers la passerelle réseau de grille si elle est configurée. Le GNSL n'est pas nécessaire s'il n'y a pas de réseau client et que la passerelle réseau Grid est la route par défaut du nœud. Des routes hôte vers tous les autres nœuds de la grille sont également générées.
+
+Dans cet exemple, tout le trafic partage le même réseau, y compris le trafic lié aux requêtes des clients S3 et aux fonctions d'administration et de maintenance.
+
+
+NOTE: Cette topologie est adaptée aux déploiements sur un seul site qui ne sont pas disponibles en externe, aux démonstrations de faisabilité ou aux déploiements de test, ou lorsqu'un équilibreur de charge tiers agit comme limite d'accès client. Lorsque cela est possible, le réseau Grid doit être utilisé exclusivement pour le trafic interne. Le réseau d'administration et le réseau client disposent d'autres restrictions de pare-feu qui bloquent le trafic externe vers les services internes. L'utilisation du réseau Grid pour le trafic client externe est prise en charge, mais cette utilisation offre moins de couches de protection.
+
+image::../media/grid_network.png[Réseau Grid]
+
+image::../media/grid_network_ips.png[Adresses IP du réseau grid]

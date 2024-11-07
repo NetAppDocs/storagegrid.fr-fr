@@ -1,0 +1,99 @@
+---
+permalink: admin/guidelines-for-storagegrid-networks.html 
+sidebar: sidebar 
+keywords: admin network, client network, grid network, access interface, trunk interface 
+summary: 'StorageGRID prend en charge jusqu"à trois interfaces réseau par nœud de grid, vous permettant de configurer le réseau pour chaque nœud de grid en fonction de vos besoins de sécurité et d"accès.' 
+---
+= Instructions pour les réseaux StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le Gestionnaire de grille pour configurer et gérer les réseaux et les connexions StorageGRID.
+
+Reportez-vous  à la section link:configuring-client-connections.html["Configurer les connexions client S3"] pour savoir comment connecter les clients S3.
+
+
+
+== Réseaux StorageGRID par défaut
+
+Par défaut, StorageGRID prend en charge trois interfaces réseau par nœud grid, ce qui vous permet de configurer le réseau pour chaque nœud grid en fonction de vos besoins de sécurité et d'accès.
+
+Pour plus d'informations sur la topologie réseau, reportez-vous à la section link:../network/index.html["Instructions de mise en réseau"].
+
+
+
+=== Réseau Grid
+
+Obligatoire. Le réseau Grid est utilisé pour l'ensemble du trafic StorageGRID interne. Il assure la connectivité entre tous les nœuds de la grille, sur tous les sites et sous-réseaux.
+
+
+
+=== Réseau d'administration
+
+Facultatif. Le réseau d'administration est généralement utilisé pour l'administration et la maintenance du système. Il peut également être utilisé pour l'accès au protocole client. Le réseau Admin est généralement un réseau privé et n'a pas besoin d'être routable entre les sites.
+
+
+
+=== Réseau client
+
+Facultatif. Le réseau client est un réseau ouvert généralement utilisé pour fournir un accès aux applications client S3, de sorte que le réseau Grid peut être isolé et sécurisé. Le réseau client peut communiquer avec tout sous-réseau accessible via la passerelle locale.
+
+
+
+== Directives
+
+* Chaque nœud StorageGRID requiert une interface réseau, une adresse IP, un masque de sous-réseau et une passerelle dédiés pour chaque réseau auquel il est attribué.
+* Un nœud de grille ne peut pas avoir plus d'une interface sur un réseau.
+* Une passerelle unique, par réseau et par nœud grid est prise en charge et doit être sur le même sous-réseau que le nœud. Vous pouvez implémenter un routage plus complexe dans la passerelle, si nécessaire.
+* Sur chaque nœud, chaque réseau est mappé à une interface réseau spécifique.
++
+[cols="1a,1a"]
+|===
+| Le réseau | Nom de l'interface 
+
+
+ a| 
+Grille
+ a| 
+eth0
+
+
+
+ a| 
+Administrateur (en option)
+ a| 
+eth1
+
+
+
+ a| 
+Client (facultatif)
+ a| 
+eth2
+
+|===
+* Si le nœud est connecté à une appliance StorageGRID, des ports spécifiques sont utilisés pour chaque réseau. Pour plus de détails, reportez-vous aux instructions d'installation de votre appareil.
+* La route par défaut est générée automatiquement, par nœud. Si eth2 est activé, 0.0.0.0/0 utilise le réseau client sur eth2. Si eth2 n'est pas activé, alors 0.0.0.0/0 utilise le réseau Grid sur eth0.
+* Le réseau client n'est opérationnel qu'après que le nœud de la grille ait rejoint la grille
+* Le réseau Admin peut être configuré pendant le déploiement du nœud grid pour permettre l'accès à l'interface utilisateur d'installation avant que la grille soit entièrement installée.
+
+
+
+
+== Interfaces en option
+
+Vous pouvez également ajouter des interfaces supplémentaires à un nœud. Par exemple, vous pouvez ajouter une interface de jonction à un noeud Admin ou Gateway, de sorte que vous pouvez utiliser link:../admin/configure-vlan-interfaces.html["Interfaces VLAN"] pour isoler le trafic appartenant à différentes applications ou locataires. Vous pouvez également ajouter une interface d'accès à utiliser dans un link:../admin/configure-high-availability-group.html["Groupe haute disponibilité (HA)"].
+
+Pour ajouter une jonction ou des interfaces d'accès, consultez les éléments suivants :
+
+* *VMware (après l'installation du nœud)* : link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware : ajoutez du jonction ou des interfaces d'accès à un nœud"]
++
+** *Red Hat Enterprise Linux (avant d'installer le nœud)* : link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *Ubuntu ou Debian (avant d'installer le nœud)* : link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *RHEL, Ubuntu ou Debian (après l'installation du nœud)* : link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux : ajoutez une jonction ou des interfaces d'accès à un nœud"]
+
+
+

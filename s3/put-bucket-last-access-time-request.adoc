@@ -1,0 +1,50 @@
+---
+permalink: s3/put-bucket-last-access-time-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, put bucket last access time request 
+summary: 'La demande D"heure de dernier accès À GET Bucket vous permet de déterminer si les dernières mises à jour de temps d"accès sont activées ou désactivées pour les compartiments individuels.' 
+---
+= METTRE l'heure du dernier accès au compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La demande d'heure de dernier accès AU compartiment PERMET d'activer ou de désactiver les mises à jour des temps de dernier accès pour chaque compartiment. La désactivation des mises à jour du temps d'accès précédent améliore les performances. Il s'agit du paramètre par défaut pour tous les compartiments créés avec la version 10.3.0, ou ultérieure.
+
+Pour effectuer cette opération, vous devez disposer de l'autorisation s3:PutBuckLastAccessTime pour un compartiment ou être un compte root.
+
+
+NOTE: À partir de StorageGRID version 10.3, les mises à jour de l'heure du dernier accès sont désactivées par défaut pour tous les nouveaux compartiments. Si des compartiments ont été créés à l'aide d'une version antérieure de StorageGRID et que vous souhaitez faire correspondre le nouveau comportement par défaut, vous devez désactiver explicitement les mises à jour de la dernière heure d'accès pour chacune de ces rubriques précédentes. Vous pouvez activer ou désactiver les mises à jour de l'heure du dernier accès à l'aide de la demande PUT Bucket Last Access Time ou de la page de détails d'un compartiment dans le Gestionnaire de locataires. Voir link:../tenant/enabling-or-disabling-last-access-time-updates.html["Activez ou désactivez les mises à jour de l'heure du dernier accès"].
+
+Si les dernières mises à jour de temps d'accès sont désactivées pour un compartiment, les opérations suivantes sont appliquées sur le compartiment :
+
+* Les requêtes GetObject, GetObjectAcl, GetObjectTagging et HeadObject ne mettent pas à jour l'heure du dernier accès. L'objet n'est pas ajouté aux files d'attente pour l'évaluation de la gestion du cycle de vie des informations (ILM).
+* Les requêtes CopyObject et PutObjectTagging qui ne mettent à jour que les métadonnées mettent également à jour l'heure du dernier accès. L'objet est ajouté aux files d'attente pour l'évaluation ILM.
+* Si les mises à jour de l'heure du dernier accès sont désactivées pour le compartiment source, les requêtes CopyObject ne mettent pas à jour l'heure du dernier accès pour le compartiment source. L'objet copié n'est pas ajouté aux files d'attente pour l'évaluation ILM du compartiment source. Cependant, pour la destination, les requêtes CopyObject mettent toujours à jour l'heure du dernier accès. La copie de l'objet est ajoutée aux files d'attente pour l'évaluation ILM.
+* CompleteMultipartUpload demande la mise à jour de l'heure du dernier accès. L'objet terminé est ajouté aux files d'attente pour l'évaluation ILM.
+
+
+
+
+== Exemples de demandes
+
+Cet exemple permet d'activer le temps du dernier accès pour un compartiment.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=enabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+Cet exemple désactive l'heure du dernier accès pour un compartiment.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=disabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----

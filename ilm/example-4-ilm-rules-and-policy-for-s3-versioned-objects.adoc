@@ -1,0 +1,138 @@
+---
+permalink: ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.html 
+sidebar: sidebar 
+keywords: object versions, example ILM rule, information lifecycle rule examples 
+summary: 'Si la gestion des versions est activée sur un compartiment S3, vous pouvez gérer les versions d"objets non actuelles en incluant des règles dans votre règle ILM qui utilisent l"heure non courante comme heure de référence.' 
+---
+= Exemple 4 : règles et règles ILM pour les objets avec version S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la gestion des versions est activée dans un compartiment S3, vous pouvez gérer les versions d'objets non actuelles en incluant des règles dans votre règle ILM qui utilisent l'heure non courante comme heure de référence.
+
+
+CAUTION: Si vous spécifiez une durée de conservation limitée pour les objets, ces objets seront supprimés définitivement après la période de temps atteinte. Assurez-vous de bien comprendre la durée pendant laquelle les objets seront conservés.
+
+Comme le montre cet exemple, vous pouvez contrôler la quantité de stockage utilisée par les objets avec version à l'aide d'instructions de placement différentes pour les versions d'objets non actuelles.
+
+
+CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règles ILM sont nombreuses. Avant d'activer une nouvelle stratégie, simulez-la pour confirmer qu'elle fonctionnera comme prévu pour protéger le contenu contre la perte.
+
+
+NOTE: Pour effectuer une simulation de règle ILM sur une version non actuelle d'un objet, vous devez connaître l'UUID ou CBID de la version de l'objet. Pour rechercher l'UUID et le CBID, utilisez link:verifying-ilm-policy-with-object-metadata-lookup.html["recherche de métadonnées d'objet"] tant que l'objet est toujours à jour.
+
+.Informations associées
+link:how-objects-are-deleted.html["Comment supprimer les objets"]
+
+
+
+== Règle ILM 1, par exemple 4 : trois copies économisées sur 10 ans
+
+Cet exemple de règle ILM stocke une copie de chaque objet sur trois sites pendant 10 ans.
+
+Cette règle s'applique à tous les objets, qu'ils soient versionnés ou non.
+
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Pools de stockage
+ a| 
+Trois pools de stockage, chacun étant constitué de data centers différents : site 1, site 2 et site 3.
+
+
+
+ a| 
+Nom de la règle
+ a| 
+Trois copies dix ans
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Placements
+ a| 
+Au jour 0, conservez trois copies répliquées pendant 10 ans (3,652 jours), une dans le site 1, une dans le site 2 et une dans le site 3. Au bout de 10 ans, supprimez toutes les copies de l'objet.
+
+|===
+
+
+== Règle ILM 2, par exemple 4 : enregistrez deux copies de versions non actuelles pendant 2 ans
+
+Cet exemple de règle ILM stocke deux copies des versions non actuelles d'un objet avec version S3 pendant 2 ans.
+
+La règle ILM 1 s'applique à toutes les versions de l'objet, c'est pourquoi vous devez créer une autre règle pour filtrer toutes les versions non actuelles.
+
+Pour créer une règle qui utilise « Noncurrent Time » comme heure de référence, sélectionnez *Oui* pour la question, « appliquer cette règle aux anciennes versions d'objet uniquement (dans les compartiments S3 avec multiversion activée) ? » À l'étape 1 (entrer les détails) de l'assistant de création de règles ILM. Lorsque vous sélectionnez *Oui*, _Noncurrent Time_ est automatiquement sélectionné pour l'heure de référence et vous ne pouvez pas sélectionner une autre heure de référence.
+
+image::../media/ilm-rule-apply-only-to-older-object-verions.png[Appliquer la règle ILM uniquement aux versions d'objets plus anciennes (heure non actuelle)]
+
+Dans cet exemple, seules deux copies des versions non actuelles sont stockées, et ces copies seront stockées pendant deux ans.
+
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Pools de stockage
+ a| 
+Deux pools de stockage, situés chacun au niveau de data centers différents : site 1 et site 2.
+
+
+
+ a| 
+Nom de la règle
+ a| 
+Versions non actuelles : deux copies deux ans
+
+
+
+ a| 
+Heure de référence
+ a| 
+Heure non actuelle
+
+Sélection automatique lorsque vous sélectionnez *Oui* pour la question « appliquer cette règle aux anciennes versions d'objet uniquement (dans les compartiments S3 avec gestion des versions activée) ? » Dans l'assistant de création d'une règle ILM.
+
+
+
+ a| 
+Placements
+ a| 
+Le jour 0 par rapport à l'heure non courante (c'est-à-dire, à partir du jour où la version de l'objet devient la version non actuelle), conserver deux copies répliquées des versions de l'objet non actuel pendant 2 ans (730 jours), une dans le site 1 et une dans le site 2. À la fin de 2 ans, supprimer les versions non actuelles.
+
+|===
+
+
+== Règle ILM, par exemple 4 : objets avec version S3
+
+Si vous souhaitez gérer des versions plus anciennes d'un objet différemment de la version actuelle, les règles qui utilisent l'heure « Noncurrent Time » comme heure de référence doivent apparaître dans la politique ILM avant les règles qui s'appliquent à la version d'objet actuelle.
+
+Une règle ILM pour les objets avec version S3 peut inclure des règles ILM :
+
+* Conservez les versions plus anciennes (non actuelles) de chaque objet pendant 2 ans, à partir du jour où la version n'est plus à jour.
++
+
+NOTE: Les règles « temps non courant » doivent apparaître dans la stratégie avant les règles qui s'appliquent à la version d'objet actuelle. Sinon, les versions d'objet non actuelles ne seront jamais mises en correspondance avec la règle « Noncurrent Time ».
+
+* Lors de l'ingestion, créez trois copies répliquées et stockez une copie sur chacun des trois sites. Conservez les copies de la version actuelle de l'objet pendant 10 ans.
+
+
+Lorsque vous simulez l'exemple de stratégie, vous vous attendez à ce que les objets test soient évalués comme suit :
+
+* Toutes les versions d'objet non courantes seront mises en correspondance par la première règle. Si une version d'objet non actuelle a plus de 2 ans, elle est supprimée définitivement par ILM (toutes les copies de la version non actuelle sont supprimées de la grille).
+* La version actuelle de l'objet sera comparée à la seconde règle. Lorsque la version actuelle de l'objet est stockée pendant 10 ans, le processus ILM ajoute un marqueur de suppression comme version actuelle de l'objet et rend la version précédente de l'objet « non actuelle ». Lors de la prochaine évaluation ILM, cette version non actuelle est mise en correspondance avec la première règle. Par conséquent, la copie sur le site 3 est purgée et les deux copies sur le site 1 et le site 2 sont conservées pendant 2 ans supplémentaires.
+

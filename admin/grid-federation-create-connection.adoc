@@ -1,0 +1,157 @@
+---
+permalink: admin/grid-federation-create-connection.html 
+sidebar: sidebar 
+keywords: grid federation, create connection, configure connection 
+summary: 'Vous pouvez créer une connexion de fédération de grille entre deux systèmes StorageGRID si vous souhaitez cloner les détails du locataire et répliquer les données d"objet.' 
+---
+= Créer des connexions de fédération de grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez créer une connexion de fédération de grille entre deux systèmes StorageGRID si vous souhaitez cloner les détails du locataire et répliquer les données d'objet.
+
+Comme illustré dans la figure, la création d'une connexion de fédération de grille inclut des étapes sur les deux grilles. Vous ajoutez la connexion sur une grille et la remplissez sur l'autre grille. Vous pouvez commencer à partir de n'importe quelle grille.
+
+image::../media/grid-federation-create-connection.png[présentation graphique des étapes de création d'une connexion sur deux grilles]
+
+.Avant de commencer
+* Vous avez examiné le link:grid-federation-overview.html["considérations et exigences"] pour configurer les connexions de fédération de grille.
+* Si vous prévoyez d'utiliser des noms de domaine complets (FQDN) pour chaque grille au lieu d'adresses IP ou VIP, vous savez quels noms utiliser et vous avez confirmé que le serveur DNS de chaque grille contient les entrées appropriées.
+* Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous disposez des droits d'accès racine et de la phrase de passe de provisionnement pour les deux grilles.
+
+
+
+
+== Ajouter une connexion
+
+Effectuez ces étapes sur l'un des deux systèmes StorageGRID.
+
+.Étapes
+. Connectez-vous au Grid Manager à partir du nœud d'administration principal de l'une des grilles.
+. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Ajouter une connexion*.
+. Entrez les détails de la connexion.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom de la connexion
+ a| 
+Un nom unique pour vous aider à reconnaître cette connexion, par exemple, « grille 1-grille 2 ».
+
+
+
+ a| 
+FQDN ou IP pour cette grille
+ a| 
+L'une des options suivantes :
+
+** Nom de domaine complet de la grille dans laquelle vous êtes actuellement connecté
+** Adresse VIP d'un groupe haute disponibilité sur cette grille
+** Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur cette grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille de destination peut atteindre.
+
+
+
+
+ a| 
+Port
+ a| 
+Le port que vous souhaitez utiliser pour cette connexion. Vous pouvez entrer n'importe quel numéro de port inutilisé compris entre 23000 et 23999.
+
+Les deux grilles de cette connexion utilisent le même port. Vous devez vous assurer qu'aucun nœud d'une grille n'utilise ce port pour d'autres connexions.
+
+
+
+ a| 
+Jours de validité du certificat pour cette grille
+ a| 
+Nombre de jours pendant lesquels vous souhaitez que les certificats de sécurité pour cette grille dans la connexion soient valides. La valeur par défaut est 730 jours (2 ans), mais vous pouvez entrer une valeur comprise entre 1 et 762 jours.
+
+StorageGRID génère automatiquement des certificats client et serveur pour chaque grille lorsque vous enregistrez la connexion.
+
+
+
+ a| 
+Phrase secrète de provisionnement pour cette grille
+ a| 
+Phrase secrète de provisionnement de la grille à laquelle vous êtes connecté.
+
+
+
+ a| 
+FQDN ou IP pour l'autre grille
+ a| 
+L'une des options suivantes :
+
+** Nom de domaine complet de la grille à laquelle vous souhaitez vous connecter
+** Adresse VIP d'un groupe HA sur l'autre grid
+** Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur l'autre grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille source peut atteindre.
+
+
+|===
+. Sélectionnez *Enregistrer et continuer*.
+. Pour l'étape Télécharger le fichier de vérification, sélectionnez *Télécharger le fichier de vérification*.
++
+Une fois la connexion terminée sur l'autre grille, vous ne pouvez plus télécharger le fichier de vérification depuis l'une ou l'autre grille.
+
+. Localisez le fichier téléchargé (`_connection-name_.grid-federation`) et enregistrez-le dans un emplacement sûr.
++
+
+CAUTION: Ce fichier contient des secrets (masqués en tant que `***`) et d'autres détails sensibles et doit être stocké et transmis en toute sécurité.
+
+. Sélectionnez *Fermer* pour revenir à la page de fédération de grille.
+. Vérifiez que la nouvelle connexion est affichée et que son *état de connexion* est *en attente de connexion*.
+. Fournissez le `_connection-name_.grid-federation` fichier à l'administrateur de grille pour l'autre grille.
+
+
+
+
+== Connexion complète
+
+Procédez comme suit sur le système StorageGRID auquel vous vous connectez (l'autre grille).
+
+.Étapes
+. Connectez-vous au Grid Manager à partir du nœud d'administration principal.
+. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Télécharger le fichier de vérification* pour accéder à la page Télécharger.
+. Sélectionnez *Télécharger le fichier de vérification*. Ensuite, naviguez jusqu'au fichier téléchargé à partir de la première grille et sélectionnez(`_connection-name_.grid-federation`-le.
++
+Les détails de la connexion sont affichés.
+
+. Vous pouvez également saisir un nombre différent de jours valides pour les certificats de sécurité de cette grille. Par défaut, l'entrée *Certificate valid Days* correspond à la valeur que vous avez entrée sur la première grille, mais chaque grille peut utiliser des dates d'expiration différentes.
++
+En général, utilisez le même nombre de jours pour les certificats des deux côtés de la connexion.
+
++
+
+CAUTION: Si les certificats à l'une des extrémités de la connexion expirent, la connexion cesse de fonctionner et les réplications sont en attente jusqu'à ce que les certificats soient mis à jour.
+
+. Saisissez la phrase de passe de provisionnement pour la grille à laquelle vous êtes actuellement connecté.
+. Sélectionnez *Enregistrer et tester*.
++
+Les certificats sont générés et la connexion est testée. Si la connexion est valide, un message de réussite s'affiche et la nouvelle connexion apparaît sur la page de fédération de grille. *État de la connexion* sera *connecté*.
+
++
+Si un message d'erreur s'affiche, résoudre les problèmes éventuels. Voir link:grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
+
+. Accédez à la page grid federation sur la première grille et actualisez le navigateur. Vérifiez que l'état de la *connexion* est maintenant *connecté*.
+. Une fois la connexion établie, supprimez de manière sécurisée toutes les copies du fichier de vérification.
++
+Si vous modifiez cette connexion, un nouveau fichier de vérification sera créé. Le fichier d'origine ne peut pas être réutilisé.
+
+
+
+.Une fois que vous avez terminé
+* Passez en revue les considérations relatives à link:grid-federation-manage-tenants.html["gestion des locataires autorisés"].
+* link:creating-tenant-account.html["Créez un ou plusieurs nouveaux comptes de locataire"], Attribuez l'autorisation *utiliser la connexion de fédération de grille* et sélectionnez la nouvelle connexion.
+* link:grid-federation-manage-connection.html["Gérer la connexion"] selon les besoins. Vous pouvez modifier les valeurs de connexion, tester une connexion, faire pivoter les certificats de connexion ou supprimer une connexion.
+* link:../monitor/grid-federation-monitor-connections.html["Surveiller la connexion"] Dans le cadre de vos activités de surveillance StorageGRID normales.
+* link:grid-federation-troubleshoot.html["Dépanner la connexion"], y compris la résolution des alertes et erreurs liées au clone de compte et à la réplication inter-grille.
+

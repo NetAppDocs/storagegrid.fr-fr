@@ -1,0 +1,65 @@
+---
+permalink: ilm/manage-ilm-policy-tags.html 
+sidebar: sidebar 
+keywords: ILM policy tag 
+summary: Vous pouvez afficher les détails des balises de règles ILM, modifier une balise ou supprimer une balise. 
+---
+= Gestion des balises de règles ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher les détails des balises de règles ILM, modifier une balise ou supprimer une balise.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["autorisations d'accès requises"].
+
+
+
+
+== Afficher le détail des balises de règles ILM
+
+Pour afficher les détails d'une étiquette :
+
+. Sélectionnez *ILM* > *balises de stratégie*.
+. Sélectionnez le nom de la stratégie dans la table. La page de détails de l'étiquette s'affiche.
+. Sur la page de détails, affichez l'historique précédent des stratégies attribuées.
+. Affichez une stratégie en la sélectionnant.
+
+
+
+
+== Modifiez la balise de règle ILM
+
+
+NOTE: Les noms et les descriptions des étiquettes sont visibles pour les locataires. Choisissez des valeurs qui aideront les locataires à prendre une décision éclairée lors de la sélection des balises de règles à affecter à leurs compartiments. Par exemple, si la règle attribuée supprime des objets après un certain temps, vous pouvez l'indiquer dans la description. N'incluez pas d'informations sensibles dans ces champs.
+
+Pour modifier la description d'une balise existante :
+
+. Sélectionnez *ILM* > *balises de stratégie*.
+. Cochez la case correspondant à la balise, puis sélectionnez *Modifier*.
++
+Vous pouvez également sélectionner le nom de la balise. La page de détails de la balise s'affiche et vous pouvez sélectionner *Modifier* sur cette page.
+
+. Modifiez la description de la balise si nécessaire
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Suppression de la balise de règle ILM
+
+Lorsque vous supprimez une balise de règle, la règle par défaut s'applique à tous les compartiments affectés à cette balise.
+
+Pour supprimer une balise :
+
+. Sélectionnez *ILM* > *balises de stratégie*.
+. Cochez la case correspondant à la balise, puis sélectionnez *Supprimer*. Une boîte de dialogue de confirmation s'affiche.
++
+Vous pouvez également sélectionner le nom de la balise. La page de détails de la balise s'affiche et vous pouvez sélectionner *Supprimer* sur cette page.
+
+. Sélectionnez *Oui* pour supprimer la balise.
+

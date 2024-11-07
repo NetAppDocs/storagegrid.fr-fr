@@ -1,0 +1,100 @@
+---
+permalink: monitor/monitoring-events.html 
+sidebar: sidebar 
+keywords: monitor, monitoring events, events, storageGRID events 
+summary: 'Vous pouvez surveiller les événements détectés par un nœud de grille, y compris les événements personnalisés que vous avez créés pour suivre les événements qui sont consignés sur le serveur syslog. Le message dernier événement affiché dans Grid Manager fournit plus d"informations sur l"événement le plus récent.' 
+---
+= Contrôle des événements
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez surveiller les événements détectés par un nœud de grille, y compris les événements personnalisés que vous avez créés pour suivre les événements qui sont consignés sur le serveur syslog. Le message dernier événement affiché dans Grid Manager fournit plus d'informations sur l'événement le plus récent.
+
+Les messages d'événement sont également répertoriés dans `/var/local/log/bycast-err.log` le fichier journal. Voir la link:logs-files-reference.html["Référence des fichiers journaux"].
+
+L'alarme SMTT (Total Events) peut être déclenchée à plusieurs reprises par des problèmes tels que des problèmes de réseau, des pannes de courant ou des mises à niveau. Cette section contient des informations sur l'investigation des événements afin que vous puissiez mieux comprendre pourquoi ces alarmes se sont produites. Si un événement s'est produit à cause d'un problème connu, il est possible de réinitialiser les compteurs d'événements.
+
+.Étapes
+. Examinez les événements du système pour chaque nœud du grid :
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_site_* > *_grid node_* > *SSM* > *Events* > *Overview* > *main*.
+
+
+. Générer une liste de messages d'événement précédents pour vous aider à isoler les problèmes qui se sont produits auparavant :
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_site_* > *_grid node_* > *SSM* > *Events* > *Reports*.
+.. Sélectionnez *texte*.
++
+L'attribut *Last Event* n'apparaît pas dans le link:using-charts-and-reports.html["affichage des graphiques"]. Pour l'afficher :
+
+.. Remplacez *attribut* par *dernier événement*.
+.. Vous pouvez également sélectionner une période pour *requête rapide*.
+.. Sélectionnez *mettre à jour*.
++
+image::../media/events_report.gif[Page Events]
+
+
+
+
+
+
+
+== Créer des événements syslog personnalisés
+
+Les événements personnalisés vous permettent de suivre tous les événements utilisateur du noyau, du démon, de l'erreur et du niveau critique consignés sur le serveur syslog. Un événement personnalisé peut être utile pour surveiller l'occurrence des messages du journal système (et donc les événements de sécurité réseau et les défaillances matérielles).
+
+.Description de la tâche
+Pensez à créer des événements personnalisés pour surveiller les problèmes récurrents. Les considérations suivantes s'appliquent aux événements personnalisés.
+
+* Après la création d'un événement personnalisé, chaque occurrence de celui-ci est surveillée.
+* Pour créer un événement personnalisé basé sur des mots clés dans les `/var/local/log/messages` fichiers, les journaux de ces fichiers doivent être :
++
+** Généré par le noyau
+** Généré par un démon ou un programme utilisateur au niveau d'erreur ou critique
+
+
+
+
+*Note:* toutes les entrées dans les fichiers ne seront pas `/var/local/log/messages` appariées à moins qu'elles ne répondent aux exigences énoncées ci-dessus.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *événements personnalisés*.
+. Cliquez sur *Modifier* image:../media/icon_nms_edit.gif["icône crayon"] (ou sur *Insérer* image:../media/icon_nms_insert.gif["icône plus"] s'il ne s'agit pas du premier événement).
+. Entrez une chaîne d'événement personnalisée, par exemple, l'arrêt
++
+image::../media/custom_events.png[capture d'écran indiquant où saisir une chaîne d'événement personnalisée]
+
+. Sélectionnez *appliquer les modifications*.
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_GRID node_* > *SSM* > *Events*.
+. Localisez l'entrée événements personnalisés dans le tableau Evénements et surveillez la valeur de *Count*.
++
+Si le nombre augmente, un événement personnalisé que vous surveillez est déclenché sur ce nœud de la grille.
+
++
+image::../media/custom_events_count.png[SSM > Evénements > page Présentation]
+
+
+
+
+
+== Réinitialisez le nombre d'événements personnalisés
+
+Si vous souhaitez réinitialiser le compteur uniquement pour les événements personnalisés, vous devez utiliser la page topologie de la grille dans le menu support.
+
+La réinitialisation d'un compteur entraîne le déclenchement de l'alarme par l'événement suivant. En revanche, lorsque vous reconnaissez une alarme, celle-ci n'est déclenchée que si le niveau de seuil suivant est atteint.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_GRID node_* > *SSM* > *Events* > *Configuration* > *main*.
+. Cochez la case *Réinitialiser* pour les événements personnalisés.
++
+image::../media/custom_events_reset.gif[Capture d'écran à SSM > événements > Configuration > main]
+
+. Sélectionnez *appliquer les modifications*.
+

@@ -1,0 +1,146 @@
+---
+permalink: admin/reviewing-storagegrid-encryption-methods.html 
+sidebar: sidebar 
+keywords: encryption, encrypting data, best practices 
+summary: StorageGRID propose plusieurs options pour le chiffrement des données. Consultez les méthodes disponibles pour identifier les méthodes qui répondent à vos exigences en matière de protection des données. 
+---
+= Étudiez les méthodes de cryptage StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID propose plusieurs options pour le chiffrement des données. Consultez les méthodes disponibles pour identifier les méthodes qui répondent à vos exigences en matière de protection des données.
+
+Le tableau fournit un récapitulatif détaillé des méthodes de cryptage disponibles dans StorageGRID.
+
+[cols="1a,1a,1a"]
+|===
+| Option de chiffrement | Comment cela fonctionne | S'applique à 
+
+
+ a| 
+Serveur de gestion des clés (KMS) dans Grid Manager
+ a| 
+Vous link:kms-configuring.html["configurer un serveur de gestion des clés"] pour le site StorageGRID et https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["activez le chiffrement des nœuds pour l'appliance"^]. Ensuite, un nœud d'appliance se connecte au KMS pour demander une clé de chiffrement (KEK). Cette clé chiffre et décrypte la clé de chiffrement des données (DEK) sur chaque volume.
+ a| 
+Nœuds d'appliance sur lesquels *Node Encryption* est activé pendant l'installation. Toutes les données de l'appliance sont protégées contre les pertes ou les suppressions physiques du data Center.
+
+*Remarque* : la gestion des clés de chiffrement avec un KMS n'est prise en charge que pour les nœuds de stockage et les appliances de services.
+
+
+
+ a| 
+Page chiffrement de lecteur dans le programme d'installation de l'appliance StorageGRID
+ a| 
+Si l'appliance contient des disques qui prennent en charge le chiffrement matériel, vous pouvez définir une phrase secrète de lecteur lors de l'installation. Lorsque vous définissez une phrase de passe pour un disque, il est impossible à quiconque de récupérer des données valides sur les disques qui ont été supprimés du système, sauf s'il connaît la phrase de passe. Avant de commencer l'installation, accédez à *Configure Hardware* > *Drive Encryption* pour définir une phrase de passe de lecteur qui s'applique à tous les disques à chiffrement automatique gérés par StorageGRID d'un nœud.
+ a| 
+Les appliances contiennent des disques à chiffrement automatique. Toutes les données des disques sécurisés sont protégées contre les pertes ou suppressions physiques du data Center.
+
+Le chiffrement de disque ne s'applique pas aux disques gérés par SANtricity. Si vous disposez d'une appliance de stockage avec disques à chiffrement automatique et contrôleurs SANtricity, vous pouvez activer la sécurité des disques dans SANtricity.
+
+
+
+ a| 
+Sécurité des disques dans SANtricity System Manager
+ a| 
+Si la fonction de sécurité des lecteurs est activée pour votre appliance StorageGRID, vous pouvez utiliser https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity System Manager"^] pour créer et gérer la clé de sécurité. La clé est requise pour accéder aux données sur les disques sécurisés.
+ a| 
+Dispositifs de stockage équipés de disques Full Disk Encryption (FDE) ou de disques à autocryptage. Toutes les données des disques sécurisés sont protégées contre les pertes ou suppressions physiques du data Center. Utilisation avec certaines appliances de stockage ou avec des appliances de services impossible.
+
+
+
+ a| 
+Chiffrement des objets stockés
+ a| 
+Vous activez l'link:changing-network-options-object-encryption.html["Chiffrement des objets stockés"]option dans le Gestionnaire de grille. Lorsqu'il est activé, tout nouvel objet non chiffré au niveau du compartiment ou de l'objet est chiffré lors de l'ingestion.
+ a| 
+Données d'objet S3 récemment ingérées.
+
+Les objets stockés existants ne sont pas chiffrés. Les métadonnées d'objet et les autres données sensibles ne sont pas chiffrées.
+
+
+
+ a| 
+Chiffrement de compartiment S3
+ a| 
+Vous lancez une demande PutBucketEncryption pour activer le cryptage du compartiment. Tout nouvel objet non chiffré au niveau de l'objet est chiffré lors de l'ingestion.
+ a| 
+Données d'objet S3 récemment ingérées uniquement.
+
+Le chiffrement doit être spécifié pour le compartiment. Les objets de compartiment existants ne sont pas chiffrés. Les métadonnées d'objet et les autres données sensibles ne sont pas chiffrées.
+
+link:../s3/operations-on-buckets.html["Opérations sur les compartiments"]
+
+
+
+ a| 
+Chiffrement côté serveur d'objets S3 (SSE)
+ a| 
+Vous exécutez une demande S3 pour stocker un objet et inclure l'en- `x-amz-server-side-encryption`tête de la demande.
+ a| 
+Données d'objet S3 récemment ingérées uniquement.
+
+Le chiffrement doit être spécifié pour l'objet. Les métadonnées d'objet et les autres données sensibles ne sont pas chiffrées.
+
+StorageGRID gère les clés.
+
+link:../s3/using-server-side-encryption.html["Utilisez le cryptage côté serveur"]
+
+
+
+ a| 
+Chiffrement côté serveur objet S3 avec clés fournies par le client (SSE-C)
+ a| 
+Vous émettez une demande S3 pour stocker un objet et incluez trois en-têtes de requête.
+
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+
+ a| 
+Données d'objet S3 récemment ingérées uniquement.
+
+Le chiffrement doit être spécifié pour l'objet. Les métadonnées d'objet et les autres données sensibles ne sont pas chiffrées.
+
+Les clés sont gérées en dehors du StorageGRID.
+
+link:../s3/using-server-side-encryption.html["Utilisez le cryptage côté serveur"]
+
+
+
+ a| 
+Chiffrement de volume ou de datastore externe
+ a| 
+Vous utilisez une méthode de chiffrement autres que StorageGRID pour chiffrer un volume ou un datastore entier, si votre plateforme de déploiement le prend en charge.
+ a| 
+Toutes les données d'objet, de métadonnées et de configuration du système, en supposant que chaque volume ou datastore est chiffré.
+
+Une méthode de chiffrement externe permet un contrôle plus précis des clés et des algorithmes de chiffrement. Peut être combiné avec les autres méthodes répertoriées.
+
+
+
+ a| 
+Chiffrement d'objet en dehors de StorageGRID
+ a| 
+Vous utilisez une méthode de chiffrement à l'extérieur de StorageGRID pour chiffrer les données d'objet et les métadonnées avant leur ingestion dans StorageGRID.
+ a| 
+Données et métadonnées d'objet uniquement (les données de configuration du système ne sont pas chiffrées).
+
+Une méthode de chiffrement externe permet un contrôle plus précis des clés et des algorithmes de chiffrement. Peut être combiné avec les autres méthodes répertoriées.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html["Amazon simple Storage Service - Guide de l'utilisateur : protection des données à l'aide du chiffrement côté client"^]
+
+|===
+
+
+== Utilisez plusieurs méthodes de chiffrement
+
+Selon vos besoins, vous pouvez utiliser plusieurs méthodes de chiffrement à la fois. Par exemple :
+
+* Vous pouvez utiliser un KMS pour protéger les nœuds de l'appliance et utiliser la fonctionnalité de sécurité des disques de SANtricity System Manager pour « double chiffrement » des données sur les disques à chiffrement automatique des mêmes appliances.
+* Vous pouvez utiliser un KMS pour sécuriser les données des nœuds de l'appliance et utiliser l'option de chiffrement des objets stockés pour chiffrer tous les objets lors de leur ingestion.
+
+
+Si seule une petite partie de vos objets doit être cryptée, pensez à contrôler le chiffrement au niveau du compartiment ou de l'objet au niveau individuel. L'activation de plusieurs niveaux de chiffrement a un coût supplémentaire en termes de performance.

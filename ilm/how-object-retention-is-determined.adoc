@@ -1,0 +1,96 @@
+---
+permalink: ilm/how-object-retention-is-determined.html 
+sidebar: sidebar 
+keywords: how object retention is determined 
+summary: 'StorageGRID fournit aux administrateurs du grid et aux utilisateurs de locataires individuels les options permettant de spécifier la durée de stockage des objets. En général, les instructions de conservation fournies par un utilisateur locataire ont priorité sur les instructions de conservation fournies par l"administrateur de la grille.' 
+---
+= Méthode de détermination de la conservation des objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID fournit aux administrateurs du grid et aux utilisateurs de locataires individuels les options permettant de spécifier la durée de stockage des objets. En général, les instructions de conservation fournies par un utilisateur locataire ont priorité sur les instructions de conservation fournies par l'administrateur de la grille.
+
+
+
+== Contrôle de la conservation des objets par les utilisateurs locataires
+
+Les utilisateurs locataires peuvent utiliser ces méthodes pour contrôler la durée de stockage de leurs objets dans StorageGRID :
+
+* Si le paramètre global S3 Object Lock est activé pour la grille, les utilisateurs locataires S3 peuvent créer des compartiments avec S3 Object Lock activé, puis sélectionner une *période de conservation par défaut* pour chaque compartiment.
+* Si le paramètre global S3 Object Lock est activé pour la grille, les locataires S3 peuvent créer des compartiments avec le verrouillage d'objet S3 activé, puis utiliser l'API REST S3 pour spécifier les paramètres de conservation à la date et la conservation légale de chaque version d'objet ajoutée dans ce compartiment.
++
+** Aucune méthode ne permet de supprimer une version d'objet faisant l'objet d'une conservation légale.
+** Avant que la date de conservation d'une version d'objet ne soit atteinte, cette version ne peut pas être supprimée par aucune méthode.
+** Les objets d'un compartiment lorsque le verrouillage d'objet S3 est activé sont conservés « indéfiniment » par ILM. Une fois la date de conservation atteinte, une version d'objet peut être supprimée par une demande client ou l'expiration du cycle de vie du compartiment. Voir link:managing-objects-with-s3-object-lock.html["Gestion des objets avec le verrouillage d'objets S3"].
+
+
+* Les locataires S3 peuvent ajouter une configuration du cycle de vie à leurs compartiments pour définir une action d'expiration. En cas de cycle de vie d'un compartiment, StorageGRID stocke un objet jusqu'à ce que la date ou le nombre de jours spécifiés dans l'action expiration soit atteint, à moins que le client ne supprime d'abord l'objet. Voir link:../s3/create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"].
+* Un client S3 peut émettre une demande de suppression d'objet. StorageGRID privilégie toujours les demandes de suppression client sur le cycle de vie du compartiment S3 ou la ILM pour déterminer si supprimer ou conserver un objet.
+
+
+
+
+== Comment les administrateurs du grid contrôlent-ils la conservation des objets
+
+Les administrateurs du grid peuvent utiliser ces méthodes pour contrôler la conservation des objets :
+
+* Définissez une période de conservation maximale du verrouillage objet S3 pour chaque locataire. Les utilisateurs locataires peuvent ensuite définir une période de conservation par défaut pour chacun de leurs compartiments. La période de conservation maximale est également appliquée aux objets nouvellement ingérés pour ce compartiment (date de conservation jusqu'à l'objet).
+* Créez des instructions de placement ILM pour contrôler la durée de stockage des objets. Lorsque les objets sont comparés par une règle ILM, StorageGRID les stocke jusqu'à la dernière période de la règle ILM. Les objets sont conservés indéfiniment si « indéfiniment » est spécifié pour les instructions de placement.
+* Indépendamment de la durée de conservation des objets, les paramètres ILM contrôlent les types de copies d'objet (répliquées ou codées d'effacement) stockées et l'emplacement de ces copies (nœuds de stockage ou pools de stockage cloud).
+
+
+
+
+== Interaction du cycle de vie des compartiments S3 et de la ILM
+
+Lorsqu'un cycle de vie d'un compartiment S3 est configuré, les actions d'expiration du cycle de vie remplacent la règle ILM pour les objets qui correspondent au filtre de cycle de vie. Par conséquent, un objet peut être conservé dans la grille même après l'expiration des instructions ILM de placement de l'objet.
+
+
+
+== Exemples de conservation d'objets
+
+Pour mieux comprendre les interactions entre le verrouillage objet S3, les paramètres du cycle de vie des compartiments, les demandes de suppression de clients et la gestion des règles ILM, prenez en compte ces exemples.
+
+
+
+=== Exemple 1 : le cycle de vie des compartiments S3 permet de conserver les objets plus longtemps que ILM
+
+ILM:: Stockez deux copies pendant 1 an (365 jours)
+Cycle de vie des compartiments:: Expire les objets dans 2 ans (730 jours)
+Résultat:: StorageGRID stocke l'objet pendant 730 jours. StorageGRID utilise les paramètres du cycle de vie du compartiment pour déterminer s'il faut supprimer ou conserver un objet.
+
+
+
+NOTE: Si le cycle de vie des compartiments précise que les objets doivent être conservés plus longtemps que spécifié par l'ILM, StorageGRID continue d'utiliser les instructions de placement du ILM pour déterminer le nombre et le type de copies à stocker. Dans cet exemple, deux copies de l'objet continueront à être stockées dans StorageGRID au lieu de 366 à 730 jours.
+
+
+
+=== Exemple 2 : le cycle de vie des compartiments S3 expire les objets avant la gestion du cycle de vie des règles
+
+ILM:: Stockage de deux copies pendant 2 ans (730 jours)
+Cycle de vie des compartiments:: Expiration des objets en 1 an (365 jours)
+Résultat:: StorageGRID supprime les deux copies de l'objet après le jour 365.
+
+
+
+
+=== Exemple 3 : la suppression du client annule le cycle de vie du compartiment et la ILM
+
+ILM:: Stockage de deux copies sur des nœuds de stockage « à l'infini »
+Cycle de vie des compartiments:: Expire les objets dans 2 ans (730 jours)
+Demande de suppression du client:: Émis le jour 400
+Résultat:: StorageGRID supprime les deux copies de l'objet le jour 400 en réponse à la requête de suppression du client.
+
+
+
+
+=== Exemple 4 : le verrouillage d'objet S3 remplace la demande de suppression du client
+
+Verrouillage d'objet S3:: Conserver jusqu'à ce jour pour une version d'objet : 2026-03-31. Une obligation légale n'est pas en vigueur.
+Règle ILM conforme:: Stockage de deux copies sur des nœuds de stockage « à l'infini »
+Demande de suppression du client:: Publiée le 2024-03-31
+Résultat:: StorageGRID ne supprimera pas la version de l'objet car la date de conservation est encore à 2 ans.
+

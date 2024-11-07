@@ -1,0 +1,60 @@
+---
+permalink: admin/deactivate-features-from-api.html 
+sidebar: sidebar 
+keywords: deactivate features from api 
+summary: 'Vous pouvez utiliser l"API de gestion de grille pour désactiver complètement certaines fonctions du système StorageGRID. Lorsqu"une fonction est désactivée, aucune autorisation ne peut être attribuée pour effectuer les tâches associées à cette fonctionnalité.' 
+---
+= Désactivez les fonctions à l'aide de l'API
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser l'API de gestion de grille pour désactiver complètement certaines fonctions du système StorageGRID. Lorsqu'une fonction est désactivée, aucune autorisation ne peut être attribuée pour effectuer les tâches associées à cette fonctionnalité.
+
+.Description de la tâche
+Le système de fonctions désactivées vous permet d'empêcher l'accès à certaines fonctions du système StorageGRID. La désactivation d'une fonctionnalité est le seul moyen d'empêcher l'utilisateur racine ou les utilisateurs appartenant à des groupes d'administration disposant de l'autorisation *accès racine* d'utiliser cette fonctionnalité.
+
+Pour comprendre l'utilité de cette fonctionnalité, prenez en compte le scénario suivant :
+
+_La Société A est un fournisseur de services qui loue la capacité de stockage de son système StorageGRID en créant des comptes de tenant. Pour protéger la sécurité des objets de leurs détenteurs de bail, la Société A veut s'assurer que ses employés ne peuvent jamais accéder à un compte de locataire après le déploiement du compte._
+
+_Société A peut atteindre cet objectif en utilisant le système Désactiver les fonctions dans l'API de gestion de grille. En désactivant complètement la fonction *Modifier le mot de passe root* du locataire dans le Gestionnaire de grille (à la fois l'interface utilisateur et l'API), la société A garantit que les utilisateurs Admin, y compris l'utilisateur root et les utilisateurs appartenant à des groupes avec l'autorisation *Root Access*, ne peuvent pas modifier le mot de passe de l'utilisateur root d'un compte de locataire._
+
+.Étapes
+. Accédez à la documentation de swagger pour l'API Grid Management. Voir link:using-grid-management-api.html["Utilisez l'API de gestion du grid"].
+. Localisez le point d'extrémité Désactiver les fonctions.
+. Pour désactiver une fonction, par exemple changer le mot de passe racine du locataire, envoyez un corps à l'API comme suit :
++
+`{ "grid": {"changeTenantRootPassword": true} }`
+
++
+Une fois la demande terminée, la fonction de modification du mot de passe racine du locataire est désactivée. L'autorisation de gestion *Modifier le mot de passe root* du locataire n'apparaît plus dans l'interface utilisateur et toute demande d'API qui tente de modifier le mot de passe root d'un locataire échoue avec "403 interdit".
+
+
+
+
+
+== Réactiver les fonctions désactivées
+
+Par défaut, vous pouvez utiliser l'API Grid Management pour réactiver une fonction qui a été désactivée. Toutefois, si vous souhaitez empêcher la réactivation des fonctions désactivées, vous pouvez désactiver la fonction *activeFeatures* elle-même.
+
+
+CAUTION: La fonction *activateFeatures* ne peut pas être réactivée. Si vous décidez de désactiver cette fonction, sachez que vous perdrez définitivement la capacité de réactiver les autres fonctions désactivées. Vous devez contacter le support technique pour restaurer toute fonctionnalité perdue.
+
+.Étapes
+. Accédez à la documentation de swagger pour l'API Grid Management.
+. Localisez le point d'extrémité Désactiver les fonctions.
+. Pour réactiver toutes les fonctions, envoyez un corps à l'API comme suit :
++
+`{ "grid": null }`
+
++
+Lorsque cette demande est terminée, toutes les fonctions, y compris la fonction Modifier le mot de passe racine du locataire, sont réactivées. L'autorisation de gestion *Modifier le mot de passe racine* du locataire apparaît maintenant dans l'interface utilisateur et toute demande d'API qui tente de modifier le mot de passe racine d'un locataire va réussir, en supposant que l'utilisateur dispose de l'autorisation de gestion *accès racine* ou *changer le mot de passe racine du locataire*.
+
+
+
+
+TIP: L'exemple précédent provoque la réactivation des fonctions _All_ DESACTIVE. Si d'autres fonctions doivent rester désactivées, vous devez les spécifier explicitement dans la demande PUT. Par exemple, pour réactiver la fonction Modifier le mot de passe root du locataire et continuer à désactiver l'autorisation de gestion storageAdmin, envoyez cette demande PUT: +
+`{ "grid": {"storageAdmin": true} }`

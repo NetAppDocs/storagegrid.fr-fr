@@ -1,0 +1,94 @@
+---
+permalink: tenant/grid-federation-clone-keys-with-api.html 
+sidebar: sidebar 
+keywords: s3 access key, secret key id, account clone, tenant manager api 
+summary: 'Si votre compte de locataire dispose de l"autorisation utiliser la fédération dans le grid, vous pouvez utiliser l"API de gestion des locataires pour cloner manuellement les clés d"accès S3 du locataire de la grille source vers le locataire de la grille de destination.' 
+---
+= Cloner les clés d'accès S3 à l'aide de l'API
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération grid*, vous pouvez utiliser l'API de gestion des locataires pour cloner manuellement les clés d'accès S3 du locataire de la grille source vers le locataire de la grille de destination.
+
+.Avant de commencer
+* Le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille*.
+* La connexion de fédération de grille a un *état de connexion* de *connecté*.
+* Vous êtes connecté au gestionnaire de locataires sur la grille source du locataire à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez vos propres informations d'identification S3 ou autorisations d'accès racine"].
+* Si vous clonez des clés d'accès pour un utilisateur local, l'utilisateur existe déjà sur les deux grilles.
++
+
+NOTE: Lorsque vous clonez les clés d'accès S3 d'un utilisateur fédéré, ces deux clés sont ajoutées au locataire de destination.
+
+
+
+
+
+== Clonez vos propres clés d'accès
+
+Vous pouvez cloner vos propres clés d'accès si vous devez accéder aux mêmes compartiments sur les deux grilles.
+
+.Étapes
+. À l'aide du gestionnaire de locataires sur la grille source link:creating-your-own-s3-access-keys.html["créez vos propres clés d'accès"]et téléchargez le `.csv` fichier.
+. Dans le haut du Gestionnaire de locataires, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
+. Dans la section *s3*, sélectionnez le noeud final suivant :
++
+`POST /org/users/current-user/replicate-s3-access-key`
+
++
+image::../media/grid-federation-post-current-user-replicate.png[POST-terminal pour la réplication de sa propre clé d'accès]
+
+. Sélectionnez *essayez-le*.
+. Dans la zone de texte *body*, remplacez les entrées d'exemple pour *accesskey* et *secretAccessKey* par les valeurs du fichier *.csv* que vous avez téléchargé.
++
+Veillez à conserver les guillemets doubles autour de chaque chaîne.
+
++
+image::../media/grid-federation-clone-access-key.png[API du gestionnaire de locataires saisie de valeurs pour cloner la clé d'accès]
+
+. Si la clé expire, remplacez l'exemple de *expire* par la date et l'heure d'expiration sous forme de chaîne au format de données ISO 8601 (par exemple, `2024-02-28T22:46:33-08:00`). Si la clé n'expire pas, entrez *null* comme valeur pour l'entrée *Expires* (ou supprimez la ligne *Expires* et la virgule précédente).
+. Sélectionnez *Exécuter*.
+. Vérifiez que le code de réponse du serveur est *204*, ce qui indique que la clé a été correctement clonée dans la grille de destination.
+
+
+
+
+== Cloner les clés d'accès d'un autre utilisateur
+
+Vous pouvez cloner les clés d'accès d'un autre utilisateur s'il doit accéder aux mêmes compartiments sur les deux grilles.
+
+.Étapes
+. À l'aide du gestionnaire de locataires sur la grille source link:creating-another-users-s3-access-keys.html["Créez les clés d'accès S3 de l'autre utilisateur"]et téléchargez le `.csv` fichier.
+. Dans le haut du Gestionnaire de locataires, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
+. Obtenez l'ID utilisateur. Vous aurez besoin de cette valeur pour cloner les clés d'accès des autres utilisateurs.
++
+.. Dans la section *Users*, sélectionnez le noeud final suivant :
++
+`GET /org/users`
+
+.. Sélectionnez *essayez-le*.
+.. Spécifiez les paramètres que vous souhaitez utiliser lors de la recherche d'utilisateurs.
+.. Sélectionnez *Exécuter*.
+.. Recherchez l'utilisateur dont vous souhaitez cloner les clés et copiez le numéro dans le champ *ID*.
+
+
+. Dans la section *s3*, sélectionnez le noeud final suivant :
++
+`POST /org/users/{userId}/replicate-s3-access-key`
+
++
+image::../media/grid-federation-post-other-user.png[POST-terminal pour la réplication de la clé d'accès d'un autre utilisateur]
+
+. Sélectionnez *essayez-le*.
+. Dans la zone de texte *userid*, collez l'ID utilisateur que vous avez copié.
+. Dans la zone de texte *body*, remplacez les entrées d'exemple pour *example Access key* et *secret Access key* par les valeurs du fichier *.csv* pour cet utilisateur.
++
+Veillez à conserver les guillemets doubles autour de la chaîne.
+
+. Si la clé expire, remplacez l'exemple de *expire* par la date et l'heure d'expiration sous forme de chaîne au format de données ISO 8601 (par exemple, `2023-02-28T22:46:33-08:00`). Si la clé n'expire pas, entrez *null* comme valeur pour l'entrée *Expires* (ou supprimez la ligne *Expires* et la virgule précédente).
+. Sélectionnez *Exécuter*.
+. Vérifiez que le code de réponse du serveur est *204*, ce qui indique que la clé a été correctement clonée dans la grille de destination.
+

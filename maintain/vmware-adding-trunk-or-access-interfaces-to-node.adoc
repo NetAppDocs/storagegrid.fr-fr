@@ -1,0 +1,61 @@
+---
+permalink: maintain/vmware-adding-trunk-or-access-interfaces-to-node.html 
+sidebar: sidebar 
+keywords: add extra interface to node, access interface, VM interface 
+summary: 'Vous pouvez ajouter des lignes réseau supplémentaires ou des interfaces d"accès à un nœud de machine virtuelle après son installation. Les interfaces que vous ajoutez s"affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.' 
+---
+= VMware : ajoutez du jonction ou des interfaces d'accès à un nœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois le nœud installé, vous pouvez ajouter une jonction ou une interface d'accès à un nœud de machine virtuelle. Les interfaces que vous ajoutez s'affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.
+
+.Avant de commencer
+* Vous avez accès aux instructions pour link:../vmware/index.html["Installation de StorageGRID sur votre plate-forme VMware"].
+* Vous disposez des machines virtuelles VMware des nœuds d'administration et des nœuds de passerelle.
+* Vous disposez d'un sous-réseau réseau qui n'est pas utilisé comme réseau, administrateur ou réseau client.
+* Vous avez le `Passwords.txt` fichier.
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+
+CAUTION: N'essayez pas d'ajouter des interfaces à un nœud pendant qu'une mise à niveau logicielle, une procédure de restauration ou une procédure d'extension est active.
+
+.Description de la tâche
+Procédez comme suit pour ajouter une ou plusieurs interfaces supplémentaires à un nœud VMware après l'installation du nœud. Par exemple, vous pouvez ajouter une interface de jonction à un noeud d'administration ou de passerelle, de sorte que vous pouvez utiliser des interfaces VLAN pour isoler le trafic appartenant à différentes applications ou locataires. Vous pouvez également ajouter une interface d'accès à utiliser au sein d'un groupe de haute disponibilité (HA).
+
+Si vous ajoutez une interface de jonction, vous devez configurer une interface VLAN dans StorageGRID. Si vous ajoutez une interface d'accès, vous pouvez l'ajouter directement à un groupe haute disponibilité ; il n'est pas nécessaire de configurer une interface VLAN.
+
+Le nœud peut être indisponible durant une courte période lors de l'ajout d'interfaces.
+
+.Étapes
+. Dans vCenter, ajoutez une nouvelle carte réseau (de type VMXNET3) à un nœud d'administration et à une machine virtuelle de nœud de passerelle. Cochez les cases *connecté* et *se connecter à la mise sous tension*.
++
+image::../media/vcenter.png[VCenter]
+
+. Utilisez SSH pour vous connecter au nœud d'administration ou au nœud de passerelle.
+. Utilisez `ip link show` pour confirmer que le nouveau sens256 d'interface réseau est détecté.
++
+[listing]
+----
+ip link show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:4e:5b brd ff:ff:ff:ff:ff:ff
+3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:fa:ce brd ff:ff:ff:ff:ff:ff
+4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1400 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:d6:87 brd ff:ff:ff:ff:ff:ff
+5: ens256: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq master ens256vrf state UP mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:a0:ea:88 brd ff:ff:ff:ff:ff:ff
+----
+
+
+.Une fois que vous avez terminé
+* Si vous avez ajouté une ou plusieurs interfaces de jonction, reportez-vous à link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"] pour configurer une ou plusieurs interfaces VLAN pour chaque nouvelle interface parent.
+* Si vous avez ajouté une ou plusieurs interfaces d'accès, accédez à link:../admin/configure-high-availability-group.html["configurez les groupes haute disponibilité"] pour ajouter les nouvelles interfaces directement aux groupes haute disponibilité.
+

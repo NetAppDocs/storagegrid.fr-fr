@@ -1,0 +1,349 @@
+---
+permalink: ilm/what-erasure-coding-schemes-are.html 
+sidebar: sidebar 
+keywords: erasure-coding scheme 
+summary: 'Les schémas de codage d"effacement contrôlent le nombre de fragments de données et le nombre de fragments de parité créés pour chaque objet.' 
+---
+= Que sont les schémas de code d'effacement ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les schémas de codage d'effacement contrôlent le nombre de fragments de données et le nombre de fragments de parité créés pour chaque objet.
+
+Lorsque vous créez ou modifiez une règle ILM, vous sélectionnez un schéma de code d'effacement disponible. StorageGRID crée automatiquement des schémas de code d'effacement en fonction du nombre de nœuds et de sites qui composent le pool de stockage que vous souhaitez utiliser.
+
+
+
+== Protection des données
+
+Le système StorageGRID utilise l'algorithme de codage d'effacement Reed-Solomon. L'algorithme coupe un objet en `k` fragments de données et calcule les `m` fragments de parité.
+
+Les `k + m = n` fragments sont répartis entre les `n` nœuds de stockage pour assurer la protection des données comme suit :
+
+* Pour récupérer ou réparer un objet, `k` des fragments sont nécessaires.
+* Un objet peut supporter jusqu'à des `m` fragments perdus ou corrompus. Plus la valeur de est `m` élevée, plus la tolérance de panne est élevée.
+
+
+La meilleure protection des données est assurée par le schéma de code d'effacement avec la tolérance de défaillance de nœud ou de volume la plus élevée au sein d'un pool de stockage.
+
+
+
+== Surcharge du stockage
+
+La surcharge de stockage d'un schéma de code d'effacement est calculée en divisant le nombre de fragments de parité (`m`) par le nombre de fragments de données (`k`. Vous pouvez utiliser la surconsommation de stockage pour calculer la quantité d'espace disque requise par chaque objet avec code d'effacement :
+
+`_disk space_ = _object size_ + (_object size_ * _storage overhead_)`
+
+Par exemple, si vous stockez un objet de 10 Mo avec le schéma 4+2 (qui affiche une surcharge du stockage de 50 %), l'objet utilise 15 Mo de stockage grid. Si vous stockez le même objet de 10 Mo avec le schéma 6+2 (qui affiche une surcharge de stockage de 33 %), l'objet consomme environ 13.3 Mo.
+
+Sélectionnez le schéma de code d'effacement dont la valeur totale est la plus faible, en fonction de `k+m` vos besoins. Les schémas de code d'effacement avec un nombre réduit de fragments sont plus efficaces sur le plan de la capacité de calcul car :
+
+* Un nombre inférieur de fragments est créé et distribué (ou récupéré) par objet
+* Elles offrent de meilleures performances car la taille de fragment est plus grande
+* En outre, moins de nœuds peuvent être ajoutés dans un link:../expand/index.html["l'extension des systèmes permet de stocker plus de stockage"]
+
+
+
+
+== Instructions relatives aux pools de stockage
+
+Lorsque vous sélectionnez le pool de stockage à utiliser pour une règle qui crée une copie avec code d'effacement, suivez les consignes suivantes pour les pools de stockage :
+
+* Le pool de stockage doit inclure trois sites ou plus, ou exactement un site.
++
+
+NOTE: Le code d'effacement ne peut pas être utilisé si le pool de stockage comprend deux sites.
+
++
+** <<Schémas de code d'effacement pour les pools de stockage contenant au moins trois sites,Schémas de code d'effacement pour les pools de stockage contenant au moins trois sites>>
+** <<Schémas de code d'effacement pour pools de stockage sur un site,Schémas de code d'effacement pour pools de stockage sur un site>>
+
+
+* N'utilisez pas de pool de stockage incluant le site tous les sites.
+* Le pool de stockage doit inclure au moins les `_k+m_ +1` nœuds de stockage capables de stocker les données d'objet.
++
+
+NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir uniquement les métadonnées d'objet, pas les données d'objet. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
++
+Le nombre minimal de nœuds de stockage requis est `k+m`. Toutefois, il est possible de disposer d'au moins un nœud de stockage supplémentaire pour empêcher les défaillances d'entrée et les arriérés ILM en cas d'indisponibilité temporaire d'un nœud de stockage requis.
+
+
+
+
+
+== Schémas de code d'effacement pour les pools de stockage contenant au moins trois sites
+
+Le tableau ci-dessous décrit les schémas de code d'effacement actuellement pris en charge par StorageGRID pour les pools de stockage incluant au moins trois sites. Tous ces programmes offrent une protection contre les pertes de site. Un site peut être perdu et l'objet sera toujours accessible.
+
+Pour les schémas de code d'effacement qui assurent une protection contre la perte de site, le nombre recommandé de nœuds de stockage dans le pool de stockage dépasse `_k+m_ +1` car chaque site requiert au moins trois nœuds de stockage.
+
+[cols="1a,1a,1a,1a,1a,1a"]
+|===
+| Schéma de code d'effacement (_k+m_) | Nombre minimal de sites déployés | Nombre recommandé de nœuds de stockage sur chaque site | Nombre total recommandé de nœuds de stockage | Protection contre la perte de site ? | Surcharge du stockage 
+
+
+ a| 
+4+2
+ a| 
+3
+ a| 
+3
+ a| 
+9
+ a| 
+Oui
+ a| 
+50%
+
+
+
+ a| 
+6+2
+ a| 
+4
+ a| 
+3
+ a| 
+12
+ a| 
+Oui
+ a| 
+33%
+
+
+
+ a| 
+8+2
+ a| 
+5
+ a| 
+3
+ a| 
+15
+ a| 
+Oui
+ a| 
+25%
+
+
+
+ a| 
+6+3
+ a| 
+3
+ a| 
+4
+ a| 
+12
+ a| 
+Oui
+ a| 
+50%
+
+
+
+ a| 
+9+3
+ a| 
+4
+ a| 
+4
+ a| 
+16
+ a| 
+Oui
+ a| 
+33%
+
+
+
+ a| 
+2+1
+ a| 
+3
+ a| 
+3
+ a| 
+9
+ a| 
+Oui
+ a| 
+50%
+
+
+
+ a| 
+4+1
+ a| 
+5
+ a| 
+3
+ a| 
+15
+ a| 
+Oui
+ a| 
+25%
+
+
+
+ a| 
+6+1
+ a| 
+7
+ a| 
+3
+ a| 
+21
+ a| 
+Oui
+ a| 
+17%
+
+
+
+ a| 
+7+5
+ a| 
+3
+ a| 
+5
+ a| 
+15
+ a| 
+Oui
+ a| 
+71%
+
+|===
+
+NOTE: StorageGRID requiert au moins trois nœuds de stockage par site. Pour utiliser le schéma 7+5, chaque site requiert au moins quatre nœuds de stockage. Il est recommandé d'utiliser cinq nœuds de stockage par site.
+
+Lors de la sélection d'un schéma de code d'effacement assurant la protection du site, équilibrez l'importance relative des facteurs suivants :
+
+* *Nombre de fragments*: La performance et la flexibilité d'expansion sont généralement meilleures quand le nombre total de fragments est plus faible.
+* *Tolérance aux pannes* : la tolérance aux pannes est augmentée en ayant plus de segments de parité (c'est-à-dire lorsque `m` a une valeur plus élevée).
+* *Trafic réseau*: Lors de la récupération après des pannes, l'utilisation d'un schéma avec plus de fragments (c'est-à-dire, un total plus élevé pour `k+m`) crée plus de trafic réseau.
+* *Surcharge de stockage* : les schémas qui génèrent une surcharge plus élevée requièrent davantage d'espace de stockage par objet.
+
+
+Par exemple, lorsque vous décidez d'un schéma 4+2 et 6+3 (qui ont tous deux des frais de stockage de 50 %), sélectionnez le schéma 6+3 si une tolérance de panne supplémentaire est nécessaire. Sélectionnez le schéma 4+2 si les ressources réseau sont limitées. Si tous les autres facteurs sont égaux, sélectionnez 4+2 parce qu'il a un nombre total de fragments inférieur.
+
+
+NOTE: Si vous n'êtes pas certain du schéma à utiliser, sélectionnez 4+2 ou 6+3, ou contactez le support technique.
+
+
+
+== Schémas de code d'effacement pour pools de stockage sur un site
+
+Un pool de stockage sur un site prend en charge tous les schémas de codage d'effacement définis pour trois sites ou plus, à condition que le site dispose de suffisamment de nœuds de stockage.
+
+Le nombre minimal de nœuds de stockage requis est `k+m`, mais un pool de stockage avec des `k+m +1` nœuds de stockage est recommandé. Par exemple, le schéma de code d'effacement 2+1 requiert un pool de stockage avec au moins trois nœuds de stockage, mais quatre nœuds de stockage sont recommandés.
+
+[cols="1a,1a,1a,1a"]
+|===
+| Schéma de code d'effacement (_k+m_) | Nombre minimal de nœuds de stockage | Nombre recommandé de nœuds de stockage | Surcharge du stockage 
+
+
+ a| 
+4+2
+ a| 
+6
+ a| 
+7
+ a| 
+50%
+
+
+
+ a| 
+6+2
+ a| 
+8
+ a| 
+9
+ a| 
+33%
+
+
+
+ a| 
+8+2
+ a| 
+10
+ a| 
+11
+ a| 
+25%
+
+
+
+ a| 
+6+3
+ a| 
+9
+ a| 
+10
+ a| 
+50%
+
+
+
+ a| 
+9+3
+ a| 
+12
+ a| 
+13
+ a| 
+33%
+
+
+
+ a| 
+2+1
+ a| 
+3
+ a| 
+4
+ a| 
+50%
+
+
+
+ a| 
+4+1
+ a| 
+5
+ a| 
+6
+ a| 
+25%
+
+
+
+ a| 
+6+1
+ a| 
+7
+ a| 
+8
+ a| 
+17%
+
+
+
+ a| 
+7+5
+ a| 
+12
+ a| 
+13
+ a| 
+71%
+
+|===

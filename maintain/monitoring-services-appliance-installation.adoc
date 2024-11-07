@@ -1,0 +1,82 @@
+---
+permalink: maintain/monitoring-services-appliance-installation.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance 
+summary: 'Le programme d"installation de l"appliance StorageGRID indique l"état jusqu"à ce que l"installation soit terminée. Une fois l"installation du logiciel terminée, l"appliance est redémarrée.' 
+---
+= Installation de l'appareil des services du moniteur
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le programme d'installation de l'appliance StorageGRID indique l'état jusqu'à ce que l'installation soit terminée. Une fois l'installation du logiciel terminée, l'appliance est redémarrée.
+
+.Étapes
+. Pour contrôler la progression de l'installation, cliquez sur *Monitor installation* dans la barre de menus.
++
+La page installation du moniteur affiche la progression de l'installation.
+
++
+image::../media/monitor_installation_services_appl.png[Installation du moniteur - Appliance des services]
+
++
+La barre d'état bleue indique la tâche en cours. Les barres d'état vertes indiquent que les tâches ont été effectuées avec succès.
+
++
+
+NOTE: Le programme d'installation s'assure que les tâches terminées lors d'une installation précédente ne sont pas réexécutées. Si vous réexécutez une installation, toutes les tâches qui n'ont pas besoin d'être réexécutées s'affichent avec une barre d'état verte et un état « ignoré ».
+
+. Passez en revue l'état d'avancement des deux premières étapes d'installation.
++
+** *1. Configurer le stockage*
++
+Au cours de cette étape, le programme d'installation efface toute configuration existante des disques et configure les paramètres hôte.
+
+** *2. Installez OS*
++
+Au cours de cette étape, le programme d'installation copie l'image de base du système d'exploitation pour StorageGRID du nœud d'administration principal vers l'appliance ou installe le système d'exploitation de base à partir du package d'installation du nœud d'administration principal.
+
+
+
+. Continuez à surveiller la progression de l'installation jusqu'à ce que l'un des événements suivants se produise :
++
+** Pour les nœuds de passerelle d'appliance ou les nœuds d'administration de l'appliance non primaire, l'étape *installer StorageGRID* s'interrompt et un message s'affiche sur la console intégrée, vous invitant à approuver ce nœud sur le nœud d'administration à l'aide du Gestionnaire de grille.
++
+image::../media/monitor_installation_install_sgws.gif[L'image est décrite par le texte environnant]
+
+** Pour les nœuds d'administration principaux de l'appliance, une cinquième phase (Load StorageGRID installer) s'affiche. Si la cinquième phase est en cours pendant plus de 10 minutes, actualisez la page manuellement.
++
+image::../media/monitor_reinstallation_primary_admin.png[Capture d'écran de la 5e phase pour la réinstallation du nœud d'administration principal]
+
+
+
+. Passez à l'étape suivante du processus de restauration pour le type de nœud de grille d'appliance que vous restaurez.
++
+[cols="1a,2a"]
+|===
+| Type de restauration | Référence 
+
+
+ a| 
+Nœud de passerelle
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["Sélectionnez Démarrer la récupération pour configurer le nœud de passerelle"]
+
+
+
+ a| 
+Nœud d'administration non primaire
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Sélectionnez Démarrer la restauration pour configurer un noeud d'administration non primaire"]
+
+
+
+ a| 
+Nœud d'administration principal
+ a| 
+link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"]
+
+|===
+

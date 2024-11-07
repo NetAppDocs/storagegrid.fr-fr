@@ -1,0 +1,52 @@
+---
+permalink: upgrade/upgrade-workflow.html 
+sidebar: sidebar 
+keywords: upgrade workflow 
+summary: Avant de commencer la mise à niveau, passez en revue le workflow général. La page mise à niveau de StorageGRID vous guide tout au long des étapes de mise à niveau. 
+---
+= Démarrage rapide de la mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de commencer la mise à niveau, passez en revue le workflow général. La page mise à niveau de StorageGRID vous guide à chaque étape de la mise à niveau.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Une seule"] Préparez les hôtes Linux
+[role="quick-margin-para"]
+Si des nœuds StorageGRID sont déployés sur des hôtes Linux, link:linux-installing-rpm-or-deb-package-on-all-hosts.html["Installez le package RPM ou DEB sur chaque hôte"] avant de démarrer la mise à niveau.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Téléchargez les fichiers de mise à niveau et de correctif
+[role="quick-margin-para"]
+Depuis le nœud d'administration principal, accédez à la page mise à niveau StorageGRID et téléchargez le fichier de mise à niveau et le fichier correctif, si nécessaire.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Télécharger le package de récupération
+[role="quick-margin-para"]
+Téléchargez le progiciel de récupération actuel avant de démarrer la mise à niveau.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Exécuter des précontrôles de mise à niveau
+[role="quick-margin-para"]
+Les précontrôles de mise à niveau vous aident à détecter les problèmes, de sorte que vous pouvez les résoudre avant de commencer la mise à niveau réelle.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] Démarrer la mise à niveau
+[role="quick-margin-para"]
+Lorsque vous démarrez la mise à niveau, les précontrôles sont à nouveau exécutés et le nœud d'administration principal est mis à niveau automatiquement. Vous ne pouvez pas accéder au gestionnaire de grille pendant la mise à niveau du nœud d'administration principal. Les journaux d'audit seront également indisponibles. Cette mise à niveau peut prendre jusqu'à 30 minutes.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Six"] Télécharger le package de récupération
+[role="quick-margin-para"]
+Une fois le nœud d'administration principal mis à niveau, téléchargez un nouveau package de récupération.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sept"] Approuver les nœuds
+[role="quick-margin-para"]
+Vous pouvez approuver des nœuds grid individuels, des groupes de nœuds grid ou tous les nœuds.
+
+
+CAUTION: N'approuvez pas la mise à niveau d'un nœud grid sauf si vous êtes sûr que ce nœud est prêt à être arrêté et redémarré.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-8.png["Huit"] Reprendre les opérations
+[role="quick-margin-para"]
+Une fois tous les nœuds de la grille mis à niveau, de nouvelles fonctionnalités sont activées et vous pouvez reprendre les opérations. Vous devez attendre d'effectuer une procédure de mise hors service ou d'extension jusqu'à ce que la tâche d'arrière-plan *mettre à niveau la base de données* et la tâche *étapes finales de mise à niveau* soient terminées.
+
+.Informations associées
+link:estimating-time-to-complete-upgrade.html["Estimer le temps nécessaire pour effectuer une mise à niveau"]

@@ -1,0 +1,62 @@
+---
+permalink: tenant/index.html 
+sidebar: sidebar 
+keywords: use tenant account 
+summary: 'Un compte de locataire vous permet d"utiliser l"API REST S3 (simple Storage Service) ou l"API REST Swift pour stocker et récupérer des objets dans un système StorageGRID.' 
+---
+= Utilisez un compte de locataire
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un compte de locataire vous permet d'utiliser l'API REST S3 (simple Storage Service) ou l'API REST Swift pour stocker et récupérer des objets dans un système StorageGRID.
+
+
+
+== Qu'est-ce qu'un compte de locataire ?
+
+Chaque compte de locataire possède ses propres groupes, utilisateurs, compartiments S3, conteneurs Swift et objets fédérés.
+
+Les comptes de tenant peuvent être utilisés pour isoler les objets stockés par des entités différentes. Par exemple, vous pouvez utiliser plusieurs comptes locataires pour l'une de ces utilisations :
+
+* *Utilisation en entreprise :* si le système StorageGRID est utilisé au sein d'une entreprise, le stockage objet de la grille peut être séparé par les différents services de l'organisation. Par exemple, il peut y avoir des comptes de tenant pour le service Marketing, le service Customer support, le service des ressources humaines, etc.
++
+
+NOTE: Si vous utilisez le protocole client S3, vous pouvez également utiliser des compartiments S3 et des règles de compartiment pour isoler les objets entre les différents départements d'une entreprise. Vous n'avez pas besoin de créer des comptes de locataire distincts. Voir les instructions d'implémentation link:../s3/bucket-and-group-access-policies.html["Compartiments S3 et règles de compartiments"] pour plus d'informations.
+
+* *Cas d'utilisation du fournisseur de services :* si le système StorageGRID est utilisé par un fournisseur de services, le stockage objet de la grille peut être séparé par les différentes entités qui louent le stockage. Il peut s'agir, par exemple, de comptes de locataires pour la société A, la société B, la société C, etc.
+
+
+
+
+== Comment créer un compte de locataire
+
+Les comptes de tenant sont créés par un link:../admin/managing-tenants.html["Administrateur du grid StorageGRID utilisant le gestionnaire de grille"]. Lors de la création d'un compte de locataire, l'administrateur de la grille spécifie ce qui suit :
+
+* Informations de base comprenant le nom du locataire, le type de client (S3) et le quota de stockage facultatif.
+* Autorisations pour le compte de locataire, par exemple si le compte de locataire peut utiliser les services de la plateforme S3, configurer son propre référentiel d'identité, utiliser S3 Select ou utiliser une connexion de fédération grid.
+* Accès racine initial pour le locataire, selon que le système StorageGRID utilise des groupes et utilisateurs locaux, la fédération des identités ou l'authentification unique (SSO).
+
+
+En outre, les administrateurs du grid peuvent activer le paramètre de verrouillage objet S3 pour le système StorageGRID si les comptes de locataires S3 doivent être conformes aux exigences réglementaires. Lorsque le verrouillage des objets S3 est activé, tous les comptes de locataires S3 peuvent créer et gérer des compartiments conformes.
+
+
+
+=== Configurez les locataires S3
+
+Après un link:../admin/creating-tenant-account.html["Le compte de locataire S3 est créé"], vous pouvez accéder au gestionnaire de locataires pour effectuer des tâches telles que :
+
+* Configurer la fédération des identités (sauf si le référentiel d'identité est partagé avec la grille)
+* Gestion des groupes et des utilisateurs
+* Utilisez la fédération grid pour le clone de compte et la réplication inter-grid
+* Gestion des clés d'accès S3
+* Création et gestion de compartiments S3
+* Utilisez les services de plateforme S3
+* Utiliser S3 Select
+* Contrôle de l'utilisation du stockage
+
+
+
+TIP: Bien que vous puissiez créer et gérer des compartiments S3 avec le gestionnaire des locataires, vous devez utiliser un link:../s3/index.html["Client S3"] ou link:use-s3-console.html["Console S3"] pour ingérer et gérer les objets.

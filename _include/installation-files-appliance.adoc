@@ -1,0 +1,21 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb  a| 
+DEB package pour l'installation des images de noeud StorageGRID sur vos appareils.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Somme de contrôle MD5 pour le fichier `/debs/storagegridwebscale-
+images-version-SHA.deb`.
+
+|===
+
+NOTE: Pour l'installation de l'appliance, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau. L'appliance peut télécharger les fichiers requis à partir du nœud d'administration principal.

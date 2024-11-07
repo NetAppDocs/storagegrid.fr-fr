@@ -1,0 +1,79 @@
+---
+permalink: audit/gnrg-gnds-registration.html 
+sidebar: sidebar 
+keywords: storagegrid, audi, message, GNRG, GNDS Registration 
+summary: 'Le service CMN génère ce message d"audit lorsqu"un service a mis à jour ou enregistré des informations sur lui-même dans le système StorageGRID.' 
+---
+= GNRG : enregistrement GNDS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le service CMN génère ce message d'audit lorsqu'un service a mis à jour ou enregistré des informations sur lui-même dans le système StorageGRID.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Résultat de la demande de mise à jour :
+
+* CMC : réussi
+* SUNV : service non disponible
+* GERR : autre panne
+
+
+
+
+ a| 
+GNID
+ a| 
+ID du nœud
+ a| 
+ID de nœud du service qui a lancé la demande de mise à jour.
+
+
+
+ a| 
+GNTP
+ a| 
+Type de périphérique
+ a| 
+Type de périphérique du nœud de grid (par exemple BLDR pour un service LDR).
+
+
+
+ a| 
+GNDV
+ a| 
+Version du modèle de périphérique
+ a| 
+Chaîne identifiant la version du modèle de terminal du nœud de grille dans le bundle DMDL.
+
+
+
+ a| 
+GNP
+ a| 
+Groupe
+ a| 
+Groupe auquel appartient le nœud de la grille (dans le contexte des coûts de lien et du classement des requêtes de service).
+
+
+
+ a| 
+GNIA
+ a| 
+Adresse IP
+ a| 
+Adresse IP du nœud de la grille.
+
+|===
+Ce message est généré chaque fois qu'un nœud de la grille met à jour son entrée dans le pack Grid Nodes.

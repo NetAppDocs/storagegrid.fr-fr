@@ -1,0 +1,158 @@
+---
+permalink: audit/orlm-object-rules-met.html 
+sidebar: sidebar 
+keywords: audit message, ORLM, Object Rules Met, ilm rule 
+summary: 'Ce message est généré lorsque l"objet est stocké et copié comme spécifié par les règles ILM.' 
+---
+= ORLM : règles d'objet respectées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque l'objet est stocké et copié comme spécifié par les règles ILM.
+
+
+NOTE: Le message ORLM n'est pas généré lorsqu'un objet est stocké avec succès par la règle de création de 2 copies par défaut si une autre règle de la stratégie utilise le filtre avancé taille d'objet.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+BUID
+ a| 
+Cueilleur de godet
+ a| 
+Champ ID de compartiment. Utilisé pour les opérations internes. S'affiche uniquement si STAT est PRGD.
+
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+CBID de l'objet.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet en octets.
+
+
+
+ a| 
+EMPLACEMENTS
+ a| 
+Emplacements
+ a| 
+L'emplacement de stockage des données d'objet dans le système StorageGRID. La valeur des EMPLACEMENTS est "" si l'objet n'a pas d'emplacement (par exemple, il a été supprimé).
+
+CLEC : pour les objets avec code d'effacement, l'ID de profil de code d'effacement et l'ID de groupe de codes d'effacement appliqués aux données de l'objet.
+
+CLDI : pour les objets répliqués, l'ID de nœud LDR et l'ID de volume de l'emplacement de l'objet.
+
+CLNL : ID de nœud D'ARC de l'emplacement de l'objet si les données de l'objet sont archivées.
+
+
+
+ a| 
+CHEMIN
+ a| 
+Compartiment/clé S3
+ a| 
+Nom du compartiment S3 et nom de la clé S3.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Résultat de l'opération ILM.
+
+SUC : l'opération ILM a réussi.
+
+
+
+ a| 
+RÈGLE
+ a| 
+Libellé de règles
+ a| 
+Étiquette lisible par l'homme donnée à la règle ILM appliquée à cet objet.
+
+
+
+ a| 
+SEGC
+ a| 
+UUID du conteneur
+ a| 
+UUID du conteneur pour l'objet segmenté. Cette valeur n'est disponible que si l'objet est segmenté.
+
+
+
+ a| 
+SGCB
+ a| 
+CBID du conteneur
+ a| 
+CBID du conteneur pour l'objet segmenté. Cette valeur n'est disponible que pour les objets segmentés et partitionnés.
+
+
+
+ a| 
+URGENCE
+ a| 
+État
+ a| 
+État de l'opération ILM.
+
+L'OPÉRATION ILM est terminée pour l'objet.
+
+DFER: L'objet a été marqué pour une future réévaluation ILM.
+
+PRGD : l'objet a été supprimé du système StorageGRID.
+
+NLOC : les données d'objet ne sont plus disponibles dans le système StorageGRID. Cet état peut indiquer que toutes les copies des données d'objet sont manquantes ou endommagées.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet dans le système StorageGRID.
+
+
+
+ a| 
+VSID
+ a| 
+ID de version
+ a| 
+L'ID de version d'un nouvel objet créé dans un compartiment multiversion. Les opérations sur les compartiments et les objets dans les compartiments non versionnés n'incluent pas ce champ.
+
+|===
+Le message d'audit ORLM peut être émis plusieurs fois pour un seul objet. Par exemple, il est émis chaque fois que l'un des événements suivants se produit :
+
+* Les règles ILM de l'objet sont satisfaites à jamais.
+* Les règles ILM de l'objet sont satisfaites pour cette époque.
+* Les règles ILM ont supprimé l'objet.
+* Le processus de vérification en arrière-plan détecte qu'une copie des données d'objet répliqué est corrompue. Le système StorageGRID effectue une évaluation ILM pour remplacer l'objet corrompu.
+
+
+.Informations associées
+* link:object-ingest-transactions.html["Transactions d'ingestion d'objets"]
+* link:object-delete-transactions.html["Transactions de suppression d'objet"]
+

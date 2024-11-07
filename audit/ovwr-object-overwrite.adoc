@@ -1,0 +1,93 @@
+---
+permalink: audit/ovwr-object-overwrite.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, OVWR, Object Overwrite 
+summary: 'Ce message est généré lorsqu"une opération \(client-demandé\) externe entraîne le remplacement d"un objet par un autre objet.' 
+---
+= OVWR : remplacement d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsqu'une opération externe (client-demandé) provoque le remplacement d'un objet par un autre objet.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identifiant de bloc de contenu (nouveau)
+ a| 
+CBID du nouvel objet.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille d'objet précédente
+ a| 
+Taille, en octets, de l'objet à remplacer.
+
+
+
+ a| 
+OCBD
+ a| 
+Identifiant de bloc de contenu (précédent)
+ a| 
+CBID de l'objet précédent.
+
+
+
+ a| 
+UUID
+ a| 
+ID universel unique (nouveau)
+ a| 
+Identifiant du nouvel objet dans le système StorageGRID.
+
+
+
+ a| 
+OUID
+ a| 
+ID universel unique (précédent)
+ a| 
+Identifiant de l'objet précédent dans le système StorageGRID.
+
+
+
+ a| 
+CHEMIN
+ a| 
+Chemin d'objet S3
+ a| 
+Chemin d'accès à l'objet S3 utilisé pour l'objet précédent et le nouvel objet
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Résultat de la transaction de remplacement d'objet. Le résultat est toujours :
+
+CMC : réussi
+
+
+
+ a| 
+SGRP
+ a| 
+Site (groupe)
+ a| 
+S'il est présent, l'objet écrasé a été supprimé sur le site spécifié, ce qui n'est pas le site où l'objet écrasé a été ingéré.
+
+|===

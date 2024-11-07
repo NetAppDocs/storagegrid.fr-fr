@@ -1,0 +1,172 @@
+---
+permalink: audit/system-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, system, ECOC, ETAF, GNRG, GNUR, GTED, GTST, GTSU, LLST, OLST, SADD, SADE, SVRF, SVRU, SYSD, SYST, SYSU, VLST 
+summary: 'Les messages d"audit appartenant à la catégorie d"audit du système sont utilisés pour les événements liés au système d"audit lui-même, aux États de nœud de grille, à l"activité de tâche à l"échelle du système \(tâches de grille\) et aux opérations de sauvegarde de service.' 
+---
+= Messages d'audit système
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit appartenant à la catégorie d'audit du système sont utilisés pour les événements liés au système d'audit lui-même, aux États des nœuds de la grille, à l'activité des tâches à l'échelle du système (tâches de la grille) et aux opérations de sauvegarde des services.
+
+[cols="1a,2a,1a"]
+|===
+| Code | Titre et description du message | Voir 
+
+
+ a| 
+ECMC
+ a| 
+Fragment de données manquant avec code d'effacement : indique qu'un fragment de données manquant avec code d'effacement a été détecté.
+ a| 
+link:ecmc-missing-erasure-coded-data-fragment.html["ECMC : fragment de données avec code d'effacement manquant"]
+
+
+
+ a| 
+ECOC
+ a| 
+Fragment de données avec code d'effacement corrompu : indique qu'un fragment de données avec code d'effacement corrompu a été détecté.
+ a| 
+link:ecoc-corrupt-erasure-coded-data-fragment.html["ECOC : fragment de données avec code d'effacement corrompu"]
+
+
+
+ a| 
+EN
+ a| 
+Échec de l'authentification de sécurité : une tentative de connexion à l'aide du protocole TLS (transport Layer Security) a échoué.
+ a| 
+link:etaf-security-authentication-failed.html["ETAF : échec de l'authentification de sécurité"]
+
+
+
+ a| 
+GNRG
+ a| 
+Enregistrement GNDS : service mis à jour ou enregistré des informations sur lui-même dans le système StorageGRID.
+ a| 
+link:gnrg-gnds-registration.html["GNRG : enregistrement GNDS"]
+
+
+
+ a| 
+GNUR
+ a| 
+Annulation de l'enregistrement du GNDS : un service s'est désinscrit du système StorageGRID.
+ a| 
+link:gnur-gnds-unregistration.html["GNUR : non-inscription du GNDS"]
+
+
+
+ a| 
+GTED
+ a| 
+Tâche de grille terminée : le service CMN a terminé le traitement de la tâche de grille.
+ a| 
+link:gted-grid-task-ended.html["GTED : tâche de grille terminée"]
+
+
+
+ a| 
+GTST
+ a| 
+Tâche de grille démarrée : le service CMN a commencé à traiter la tâche de grille.
+ a| 
+link:gtst-grid-task-started.html["GTST : tâche de grille démarrée"]
+
+
+
+ a| 
+GTSU
+ a| 
+Tâche de grille soumise : une tâche de grille a été envoyée au service CMN.
+ a| 
+link:gtsu-grid-task-submitted.html["GTSU : tâche de grille soumise"]
+
+
+
+ a| 
+LLST
+ a| 
+Emplacement perdu : ce message d'audit est généré en cas de perte d'un emplacement.
+ a| 
+link:llst-location-lost.html["LLST : emplacement perdu"]
+
+
+
+ a| 
+OLST
+ a| 
+Objet perdu : un objet demandé ne peut pas se trouver dans le système StorageGRID.
+ a| 
+link:olst-system-detected-lost-object.html["OLST : le système a détecté un objet perdu"]
+
+
+
+ a| 
+AJOUTER
+ a| 
+Désactivation de l'audit de sécurité : l'enregistrement des messages d'audit a été désactivé.
+ a| 
+link:sadd-security-audit-disable.html["SADD : désactivation de l'audit de sécurité"]
+
+
+
+ a| 
+SADE
+ a| 
+Activation de l'audit de sécurité : la journalisation des messages d'audit a été restaurée.
+ a| 
+link:sade-security-audit-enable.html["SADE : activation de l'audit de sécurité"]
+
+
+
+ a| 
+SVRF
+ a| 
+Échec de la vérification du magasin d'objets : échec de la vérification d'un bloc de contenu.
+ a| 
+link:svrf-object-store-verify-fail.html["SVRF : échec de la vérification du magasin d'objets"]
+
+
+
+ a| 
+SVRU
+ a| 
+Vérification du magasin d'objets Inconnu : données d'objet inattendues détectées dans le magasin d'objets.
+ a| 
+link:svru-object-store-verify-unknown.html["SVRU : Vérification du magasin d'objets inconnue"]
+
+
+
+ a| 
+SYSD
+ a| 
+Arrêt du nœud : un arrêt a été demandé.
+ a| 
+link:sysd-node-stop.html["SYSD : arrêt du nœud"]
+
+
+
+ a| 
+SYST
+ a| 
+Arrêt du nœud : un service a démarré un arrêt normal.
+ a| 
+link:syst-node-stopping.html["SYST : arrêt du nœud"]
+
+
+
+ a| 
+SYSU
+ a| 
+Node Start : service démarré, la nature de l'arrêt précédent est indiquée dans le message.
+ a| 
+link:sysu-node-start.html["SYSU : démarrage du nœud"]
+
+|===

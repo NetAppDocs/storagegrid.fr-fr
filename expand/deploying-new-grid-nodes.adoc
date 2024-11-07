@@ -1,0 +1,198 @@
+---
+permalink: expand/deploying-new-grid-nodes.html 
+sidebar: sidebar 
+keywords: expansion, add nodes 
+summary: 'Les étapes du déploiement de nouveaux nœuds de grille dans une extension sont les mêmes que celles utilisées lors de l"installation initiale de la grille. Vous devez déployer tous les nouveaux nœuds de la grille avant de pouvoir réaliser l"extension.' 
+---
+= Déploiement de nouveaux nœuds grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les étapes du déploiement de nouveaux nœuds de grille dans une extension sont les mêmes que celles utilisées lors de l'installation initiale de la grille. Vous devez déployer tous les nouveaux nœuds de la grille avant de pouvoir réaliser l'extension.
+
+Lorsque vous développez une grille, les nœuds que vous ajoutez n'ont pas à correspondre aux types de nœuds existants. Vous pouvez ajouter des nœuds VMware, des nœuds basés sur des conteneurs Linux ou des nœuds d'appliance.
+
+
+
+== VMware : déployez les nœuds grid
+
+Vous devez déployer une machine virtuelle dans VMware vSphere pour chaque nœud VMware que vous souhaitez ajouter à l'extension.
+
+.Étapes
+. link:../vmware/deploying-storagegrid-node-as-virtual-machine.html["Déployez le nouveau nœud en tant que machine virtuelle"] Et connectez-le à un ou plusieurs réseaux StorageGRID.
++
+Lorsque vous déployez le nœud, vous pouvez remappage les ports de nœud ou augmenter les paramètres de processeur ou de mémoire.
+
+. Après avoir déployé tous les nouveaux nœuds VMware, link:performing-expansion.html["effectuer la procédure d'extension"].
+
+
+
+
+== Linux : déployez des nœuds grid
+
+Vous pouvez déployer des nœuds grid sur de nouveaux hôtes Linux ou sur des hôtes Linux existants. Si vous avez besoin d'hôtes Linux supplémentaires pour prendre en charge les exigences en matière de processeur, de RAM et de stockage des nœuds StorageGRID que vous souhaitez ajouter à votre grille, vous devez les préparer de la même manière que lorsque vous les avez installés pour la première fois. Vous déployez ensuite les nœuds d'extension de la même manière que vous avez déployé des nœuds grid lors de l'installation.
+
+.Avant de commencer
+* Vous disposez des instructions d'installation de StorageGRID pour votre version de Linux, et vous avez examiné la configuration matérielle et la configuration de stockage requise.
++
+** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+
+
+* Si vous prévoyez de déployer de nouveaux nœuds grid sur des hôtes existants, vous avez confirmé que les hôtes existants disposent de suffisamment de processeur, de mémoire RAM et de capacité de stockage pour les nœuds supplémentaires.
+* Vous disposez d'un plan pour réduire les domaines d'échec. Par exemple, vous ne devez pas déployer tous les nœuds de passerelle sur un hôte physique unique.
++
+
+CAUTION: Dans un déploiement de production, n'exécutez pas plus d'un nœud de stockage sur un seul hôte physique ou virtuel. L'utilisation d'un hôte dédié pour chaque nœud de stockage fournit un domaine de défaillance isolé.
+
+* Si le nœud StorageGRID utilise le stockage affecté à un système NetApp ONTAP, vérifiez que cette FabricPool règle n'est pas activée pour le volume. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
+
+
+.Étapes
+. Si vous ajoutez de nouveaux hôtes, accédez aux instructions d'installation pour le déploiement des nœuds StorageGRID.
+. Pour déployer les nouveaux hôtes, suivez les instructions de préparation des hôtes.
+. Pour créer des fichiers de configuration de nœuds et valider la configuration StorageGRID, suivez les instructions de déploiement des nœuds grid.
+. Si vous ajoutez des nœuds à un nouvel hôte Linux, démarrez le service d'hôte StorageGRID.
+. Si vous ajoutez des nœuds à un hôte Linux existant, démarrez les nouveaux nœuds à l'aide de l'interface de ligne de commande du service hôte StorageGRID :``sudo storagegrid node start [<node name\>]``
+
+
+.Une fois que vous avez terminé
+Après le déploiement de tous les nouveaux nœuds de grille, vous pouvez link:performing-expansion.html["réalisation de l'extension"].
+
+
+
+== Appliances : déploiement de nœuds de stockage, de passerelle ou d'administration non primaires
+
+Pour installer le logiciel StorageGRID sur un nœud d'appliance, utilisez le programme d'installation de l'appliance StorageGRID, qui est inclus sur l'appliance. Dans une extension, chaque appliance de stockage fonctionne comme un seul nœud de stockage, et chaque appliance de services fonctionne comme un seul nœud de passerelle ou un nœud d'administration non primaire. Tout appareil peut se connecter au réseau Grid, au réseau Admin et au réseau client.
+
+.Avant de commencer
+* L'appliance a été installée dans un rack ou une armoire, connectée à vos réseaux et sous tension.
+* Vous avez terminé les https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["Configurer le matériel"^] étapes.
++
+La configuration du matériel de l'appliance comprend les étapes requises pour configurer les connexions StorageGRID (liaisons réseau et adresses IP), ainsi que les étapes facultatives pour activer le chiffrement de nœud, modifier le mode RAID et remaper les ports réseau.
+
+* Tous les sous-réseaux de réseau Grid répertoriés sur la page de configuration IP du programme d'installation de l'appliance StorageGRID ont été définis dans la liste de sous-réseaux de réseau de grille sur le nœud d'administration principal.
+* Le firmware du programme d'installation de l'appliance StorageGRID sur l'appliance de remplacement est compatible avec la version du logiciel StorageGRID actuellement exécutée sur votre grid. Si les versions ne sont pas compatibles, vous devez mettre à niveau le micrologiciel du programme d'installation de l'appliance StorageGRID.
+* Vous avez un ordinateur portable de service avec un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous connaissez l'une des adresses IP attribuées au contrôleur de calcul de l'appliance. Vous pouvez utiliser l'adresse IP de n'importe quel réseau StorageGRID connecté.
+
+
+.Description de la tâche
+Le processus d'installation de StorageGRID sur un nœud d'appliance comprend les phases suivantes :
+
+* Vous spécifiez ou confirmez l'adresse IP du nœud d'administration principal et le nom du nœud d'appliance.
+* Vous démarrez l'installation et attendez que les volumes soient configurés et que le logiciel soit installé.
++
+Pendant les tâches d'installation de l'appliance, l'installation s'interrompt. Pour reprendre l'installation, connectez-vous au Grid Manager, approuvez tous les nœuds de la grille et terminez le processus d'installation de StorageGRID.
+
++
+
+NOTE: Si vous devez déployer plusieurs nœuds d'appliance à la fois, vous pouvez automatiser le processus d'installation à l'aide du `configure-sga.py` script d'installation de l'appliance.
+
+
+
+.Étapes
+. Ouvrez un navigateur et entrez l'une des adresses IP du contrôleur de calcul de l'appliance.
++
+`https://_Controller_IP_:8443`
+
++
+La page d'accueil du programme d'installation de l'appliance StorageGRID s'affiche.
+
+. Dans la section connexion *Primary Admin Node*, déterminez si vous devez spécifier l'adresse IP du noeud d'administration principal.
++
+Si vous avez déjà installé d'autres nœuds dans ce centre de données, le programme d'installation de l'appliance StorageGRID peut détecter automatiquement cette adresse IP, en supposant que le nœud d'administration principal, ou au moins un autre nœud de grille avec ADMIN_IP configuré, soit présent sur le même sous-réseau.
+
+. Si cette adresse IP n'apparaît pas ou si vous devez la modifier, spécifiez l'adresse :
++
+[cols="1a,2a"]
+|===
+| Option | Description 
+
+
+ a| 
+Entrée IP manuelle
+ a| 
+.. Décochez la case *Activer la découverte du noeud d'administration*.
+.. Saisissez l'adresse IP manuellement.
+.. Cliquez sur *Enregistrer*.
+.. Attendez que l'état de connexion de la nouvelle adresse IP soit prêt.
+
+
+
+
+ a| 
+Détection automatique de tous les nœuds d'administration principaux connectés
+ a| 
+.. Cochez la case *Activer la découverte du noeud d'administration*.
+.. Attendez que la liste des adresses IP découvertes s'affiche.
+.. Sélectionnez le nœud d'administration principal de la grille dans laquelle ce nœud de stockage de l'appliance sera déployé.
+.. Cliquez sur *Enregistrer*.
+.. Attendez que l'état de connexion de la nouvelle adresse IP soit prêt.
+
+
+|===
+. Dans le champ *Nom du noeud*, entrez le nom que vous souhaitez utiliser pour ce noeud de l'appliance, puis sélectionnez *Enregistrer*.
++
+Le nom de nœud est attribué à ce nœud d'appliance dans le système StorageGRID. Elle s'affiche sur la page nœuds (onglet Présentation) dans Grid Manager. Si nécessaire, vous pouvez modifier le nom du nœud lors de l'approbation.
+
+. Dans la section *installation*, vérifiez que l'état actuel est "prêt à démarrer l'installation de _nom de noeud_ dans la grille avec le noeud Admin principal _admin_ip_" et que le bouton *Démarrer l'installation* est activé.
++
+Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres de port. Pour obtenir des instructions, reportez-vous aux instructions d'entretien de votre appareil.
+
+. Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, sélectionnez *Démarrer l'installation*.
++
+image::../media/appliance_installer_home_start_installation_enabled.gif[Cette image est décrite par le texte environnant.]
+
++
+L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
+
+. Si votre extension inclut plusieurs nœuds d'appliance, répétez les étapes précédentes pour chaque appliance.
++
+
+NOTE: Si vous devez déployer plusieurs nœuds de stockage d'appliance à la fois, vous pouvez automatiser le processus d'installation à l'aide du script d'installation de l'appliance configure-sga.py.
+
+. Si vous devez accéder manuellement à la page installation du moniteur, sélectionnez *installation du moniteur* dans la barre de menus.
++
+La page installation du moniteur affiche la progression de l'installation.
+
++
+image::../media/monitor_installation_configure_storage.gif[Cette image est expliquée par le texte qui l'entoure.]
+
++
+La barre d'état bleue indique la tâche en cours. Les barres d'état vertes indiquent que les tâches ont été effectuées avec succès.
+
++
+
+NOTE: Le programme d'installation s'assure que les tâches terminées lors d'une installation précédente ne sont pas réexécutées. Si vous réexécutez une installation, toutes les tâches qui n'ont pas besoin d'être réexécutées s'affichent avec une barre d'état verte et un état « ignoré ».
+
+. Passez en revue l'état d'avancement des deux premières étapes d'installation.
++
+*1. Configurer l'appliance*
+
++
+Au cours de cette étape, l'un des processus suivants se produit :
+
++
+** Pour une appliance de stockage, le programme d'installation se connecte au contrôleur de stockage, efface toute configuration existante, communique avec SANtricity OS pour configurer les volumes et configure les paramètres de l'hôte.
+** Pour une appliance de services, le programme d'installation efface toute configuration existante des disques du contrôleur de calcul et configure les paramètres de l'hôte.
+
+
++
+*2. Installez OS*
+
++
+Au cours de cette étape, le programme d'installation copie l'image du système d'exploitation de base pour StorageGRID sur l'appliance.
+
+. Continuez à surveiller la progression de l'installation jusqu'à ce qu'un message s'affiche dans la fenêtre de la console, vous invitant à utiliser le gestionnaire de grille pour approuver le nœud.
++
+
+NOTE: Attendez que tous les nœuds ajoutés à cette extension soient prêts pour approbation avant de passer à Grid Manager pour approuver les nœuds.
+
++
+image::../media/monitor_installation_install_sgws.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+

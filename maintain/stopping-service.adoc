@@ -1,0 +1,53 @@
+---
+permalink: maintain/stopping-service.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, stop service, service 
+summary: 'Certaines procédures de maintenance exigent d"arrêter un seul service tout en maintenant d"autres services sur le nœud de la grille en cours d"exécution. N"arrêtez les services individuels que si vous y êtes invité par une procédure de maintenance.' 
+---
+= Arrêtez l'entretien
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Certaines procédures de maintenance exigent d'arrêter un seul service tout en maintenant d'autres services sur le nœud de la grille en cours d'exécution. N'arrêtez les services individuels que si vous y êtes invité par une procédure de maintenance.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Description de la tâche
+Lorsque vous utilisez ces étapes pour « arrêter administrativement » un service, Server Manager ne redémarre pas automatiquement le service. Vous devez démarrer le service unique manuellement ou redémarrer Server Manager.
+
+Si vous devez arrêter le service LDR sur un nœud de stockage, veillez à savoir qu'il peut prendre un certain temps pour arrêter le service s'il existe des connexions actives.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Arrêter un service individuel : `service _servicename_ stop`
++
+Par exemple :
+
++
+[listing]
+----
+service ldr stop
+----
++
+
+NOTE: L'arrêt des services peut prendre jusqu'à 11 minutes.
+
+. Déconnectez-vous du shell de commande : `exit`
+
+
+.Informations associées
+link:forcing-service-to-terminate.html["Forcer la fin du service"]

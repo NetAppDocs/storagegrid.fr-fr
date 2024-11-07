@@ -1,0 +1,36 @@
+---
+permalink: maintain/starting-server-manager-and-all-services.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, server manager, start server manager, start services, start all services 
+summary: Vous devrez peut-être démarrer Server Manager, qui démarre également tous les services sur le nœud de la grille. 
+---
+= Démarrez Server Manager et tous les services
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être démarrer Server Manager, qui démarre également tous les services sur le nœud de la grille.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Description de la tâche
+Le démarrage de Server Manager sur un nœud de la grille sur lequel il est déjà en cours d'exécution entraîne le redémarrage de Server Manager et de tous les services sur le nœud de la grille.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Démarrez Server Manager : `service servermanager start`
+. Déconnectez-vous du shell de commande : `exit`
+

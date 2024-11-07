@@ -1,0 +1,51 @@
+---
+permalink: maintain/gathering-required-materials-site-decom.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission 
+summary: Avant de mettre un site hors service, vous devez obtenir les documents suivants. 
+---
+= Rassembler les matériaux nécessaires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de mettre un site hors service, vous devez obtenir les documents suivants.
+
+[cols="1a,2a"]
+|===
+| Élément | Remarques 
+
+
+ a| 
+Fichier de package de récupération `.zip`
+ a| 
+Vous devez télécharger le fichier du progiciel de récupération le plus récent `.zip`(`sgws-recovery-package-id-revision.zip` ). Vous pouvez utiliser le fichier du progiciel de récupération pour restaurer le système en cas de défaillance.
+
+link:downloading-recovery-package.html["Téléchargez le progiciel de restauration"]
+
+
+
+ a| 
+`Passwords.txt` fichier
+ a| 
+Ce fichier contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande et est inclus dans le progiciel de récupération.
+
+
+
+ a| 
+Phrase secrète pour le provisionnement
+ a| 
+La phrase de passe est créée et documentée lors de l'installation initiale du système StorageGRID. La phrase de passe de provisionnement ne se trouve pas dans `Passwords.txt` le fichier.
+
+
+
+ a| 
+Description de la topologie du système StorageGRID avant la mise hors service
+ a| 
+Le cas échéant, procurez-vous toute documentation décrivant la topologie actuelle du système.
+
+|===
+.Informations associées
+link:../admin/web-browser-requirements.html["Navigateurs Web pris en charge"]

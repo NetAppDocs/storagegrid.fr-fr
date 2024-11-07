@@ -1,0 +1,72 @@
+---
+permalink: monitor/collecting-log-files-and-system-data.html 
+sidebar: sidebar 
+keywords: how to collect system data, how to collect logs 
+summary: 'Vous pouvez utiliser le Gestionnaire de grille pour récupérer les fichiers journaux et les données système \(y compris les données de configuration\) pour votre système StorageGRID.' 
+---
+= Collecte de fichiers journaux et de données système
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le Gestionnaire de grille pour récupérer les fichiers journaux et les données système (y compris les données de configuration) de votre système StorageGRID.
+
+.Avant de commencer
+* Vous devez être connecté au gestionnaire de grille sur le nœud d'administration principal à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous devez disposer de la phrase secrète pour le provisionnement.
+
+
+.Description de la tâche
+Vous pouvez utiliser le gestionnaire de grille pour collecter link:logs-files-reference.html["fichiers journaux"], les données système et les données de configuration de n'importe quel nœud de grille pour la période que vous sélectionnez. Les données sont collectées et archivées dans un fichier .tar.gz que vous pouvez ensuite télécharger sur votre ordinateur local.
+
+Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *journaux*.
++
+image::../media/support_logs_select_nodes.png[Capture d'écran de l'interface de collecte de journaux]
+
+. Sélectionnez les nœuds de grille pour lesquels vous souhaitez collecter les fichiers journaux.
++
+Si nécessaire, vous pouvez collecter des fichiers journaux pour l'intégralité de la grille ou un site de data Center.
+
+. Sélectionnez une *heure de début* et *heure de fin* pour définir la plage horaire des données à inclure dans les fichiers journaux.
++
+Si vous sélectionnez une période très longue ou que vous collectez des journaux de tous les nœuds d'un grand grid, l'archivage des journaux risque de devenir trop volumineux pour être stocké sur un nœud, ou trop volumineux pour être collecté sur le nœud d'administration principal pour le téléchargement. Dans ce cas, vous devez redémarrer la collecte de journaux avec un jeu de données plus petit.
+
+. Sélectionnez les types de journaux que vous souhaitez collecter.
++
+** *Journaux d'applications* : journaux spécifiques à l'application que le support technique utilise le plus fréquemment pour le dépannage. Les journaux collectés sont un sous-ensemble des journaux d'application disponibles.
+** *Journaux d'audit* : journaux contenant les messages d'audit générés pendant le fonctionnement normal du système.
+** *Trace réseau* : journaux utilisés pour le débogage réseau.
+** *Base de données Prometheus* : indicateurs de séries chronologiques des services sur tous les nœuds.
+
+
+. Vous pouvez également saisir des notes concernant les fichiers journaux que vous recueillez dans la zone de texte *Notes*.
++
+Vous pouvez utiliser ces notes pour fournir des informations de support technique sur le problème qui vous a demandé de collecter les fichiers journaux. Vos notes sont ajoutées à un fichier appelé `info.txt`, ainsi qu'à d'autres informations sur la collection de fichiers journaux. Le `info.txt` fichier est enregistré dans le package d'archivage du fichier journal.
+
+. Saisissez le mot de passe de provisionnement de votre système StorageGRID dans la zone de texte *phrase de passe de provisionnement*.
+. Sélectionnez *collecter les journaux*.
++
+Lorsque vous soumettez une nouvelle demande, la collection précédente de fichiers journaux est supprimée.
+
++
+Vous pouvez utiliser la page journaux pour surveiller la progression de la collecte des fichiers journaux pour chaque nœud de la grille.
+
++
+Si vous recevez un message d'erreur sur la taille du journal, essayez de collecter les journaux pour une période plus courte ou pour moins de nœuds.
+
+. Sélectionnez *Download* lorsque la collecte des fichiers journaux est terminée.
++
+Le fichier _.tar.gz_ contient tous les fichiers journaux de tous les nœuds de la grille où la collecte des journaux a réussi. Dans le fichier combiné _.tar.gz_, il y a une archive de fichier journal pour chaque nœud de la grille.
+
+
+
+.Une fois que vous avez terminé
+Vous pouvez télécharger à nouveau le package d'archivage des fichiers journaux ultérieurement si nécessaire.
+
+Vous pouvez également sélectionner *Supprimer* pour supprimer le paquet d'archive de fichier journal et libérer de l'espace disque. Le progiciel d'archivage du fichier journal actuel est automatiquement supprimé lors de la prochaine collecte de fichiers journaux.

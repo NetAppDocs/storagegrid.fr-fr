@@ -1,0 +1,33 @@
+---
+permalink: vmware/specifying-grid-network-subnets.html 
+sidebar: sidebar 
+keywords: how to specify Grid Network subnets 
+summary: Vous devez spécifier les sous-réseaux utilisés sur le réseau grille. 
+---
+= Spécifiez les sous-réseaux du réseau de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez spécifier les sous-réseaux utilisés sur le réseau grille.
+
+.Description de la tâche
+Les entrées de sous-réseau incluent les sous-réseaux du réseau de la grille pour chaque site de votre système StorageGRID, ainsi que tous les sous-réseaux devant être accessibles via le réseau de la grille.
+
+Si vous avez plusieurs sous-réseaux de grille, la passerelle de réseau de grille est requise. Tous les sous-réseaux de la grille spécifiés doivent être accessibles via cette passerelle.
+
+.Étapes
+. Spécifiez l'adresse réseau CIDR pour au moins un réseau Grid dans la zone de texte *sous-réseau 1*.
+. Cliquez sur le signe plus à côté de la dernière entrée pour ajouter une entrée réseau supplémentaire. Vous devez spécifier tous les sous-réseaux pour tous les sites du réseau Grid.
++
+** Si vous avez déjà déployé au moins un nœud, cliquez sur *détecter les sous-réseaux de réseaux de grille* pour remplir automatiquement la liste de sous-réseaux de réseau de grille avec les sous-réseaux signalés par les nœuds de grille enregistrés avec le gestionnaire de grille.
+** Vous devez ajouter manuellement tout sous-réseau pour les serveurs NTP, DNS, LDAP ou autres serveurs externes auxquels vous accédez via la passerelle réseau Grid.
++
+image::../media/4_gmi_installer_grid_network_page.gif[Spécifiez les sous-réseaux]
+
+
+
+. Cliquez sur *Suivant*.
+

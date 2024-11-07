@@ -1,0 +1,63 @@
+---
+permalink: tenant/creating-your-own-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to create your own S3 access key 
+summary: 'Si vous utilisez un locataire S3 et que vous disposez de l"autorisation appropriée, vous pouvez créer vos propres clés d"accès S3. Vous devez disposer d"une clé d"accès pour accéder à vos compartiments et objets.' 
+---
+= Créez vos propres clés d'accès S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3 et que vous disposez de l'autorisation appropriée, vous pouvez créer vos propres clés d'accès S3. Vous devez disposer d'une clé d'accès pour accéder à vos compartiments et objets.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez vos propres informations d'identification S3 ou autorisations d'accès racine"].
+
+
+.Description de la tâche
+Vous pouvez créer une ou plusieurs clés d'accès S3 qui vous permettent de créer et de gérer des compartiments pour votre compte de locataire. Après avoir créé une nouvelle clé d'accès, mettez à jour l'application avec votre nouvel ID de clé d'accès et votre clé d'accès secrète. Pour des raisons de sécurité, ne créez pas plus de clés que nécessaire et supprimez les clés que vous n'utilisez pas. Si vous n'avez qu'une seule clé et que vous êtes sur le point d'expirer, créez une nouvelle clé avant l'expiration de l'ancienne, puis supprimez l'ancienne.
+
+Chaque clé peut avoir une heure d'expiration spécifique ou pas d'expiration. Suivez les directives ci-dessous pour l'heure d'expiration :
+
+* Définissez une durée d'expiration pour vos clés afin de limiter votre accès à une certaine période. La définition d'un délai d'expiration court peut vous aider à réduire le risque si votre ID de clé d'accès et votre clé secrète sont exposés accidentellement. Les clés expirées sont supprimées automatiquement.
+* Si le risque de sécurité dans votre environnement est faible et que vous n'avez pas besoin de créer régulièrement de nouvelles clés, vous n'avez pas besoin de définir une heure d'expiration pour vos clés. Si vous décidez plus tard de créer de nouvelles clés, supprimez les anciennes clés manuellement.
+
+
+
+CAUTION: Vous pouvez accéder aux compartiments S3 et aux objets appartenant à votre compte à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour votre compte dans le Gestionnaire des locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées de votre compte et ne les partagez jamais avec d'autres utilisateurs.
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Mes clés d'accès*.
++
+La page Mes touches d'accès s'affiche et répertorie toutes les clés d'accès existantes.
+
+. Sélectionnez *Créer clé*.
+. Effectuez l'une des opérations suivantes :
++
+** Sélectionnez *ne définissez pas d'heure d'expiration* pour créer une clé qui n'expire pas. (Valeur par défaut)
+** Sélectionnez *définissez une heure d'expiration* et définissez la date et l'heure d'expiration.
++
+
+NOTE: La date d'expiration peut être au maximum de cinq ans à compter de la date actuelle. La durée d'expiration peut être d'au moins une minute à partir de l'heure actuelle.
+
+
+
+. Sélectionnez *Créer une clé d'accès*.
++
+La boîte de dialogue Télécharger la clé d'accès s'affiche, avec la liste de votre ID de clé d'accès et de votre clé secrète d'accès.
+
+. Copiez l'ID de la clé d'accès et la clé secrète dans un emplacement sûr, ou sélectionnez *Download .csv* pour enregistrer un fichier de feuille de calcul contenant l'ID de la clé d'accès et la clé secrète d'accès.
++
+
+CAUTION: Ne fermez pas cette boîte de dialogue tant que vous n'avez pas copié ou téléchargé ces informations. Vous ne pouvez pas copier ou télécharger de clés après la fermeture de la boîte de dialogue.
+
+. Sélectionnez *Terminer*.
++
+La nouvelle clé apparaît sur la page Mes clés d'accès.
+
+. Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération grid*, vous pouvez utiliser l'API de gestion des locataires pour cloner manuellement les clés d'accès S3 du locataire de la grille source vers le locataire de la grille de destination. Voir link:grid-federation-clone-keys-with-api.html["Cloner les clés d'accès S3 à l'aide de l'API"].
+

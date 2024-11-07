@@ -1,0 +1,49 @@
+---
+permalink: audit/gted-grid-task-ended.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, GTED, Grid Task Ended 
+summary: 'Ce message d"audit indique que le service CMN a terminé le traitement de la tâche de grille spécifiée et a déplacé la tâche vers la table Historique. Si le résultat est SUC, ABRT ou ROLF, un message d"audit correspondant à la tâche de grille démarrée sera affiché. Les autres résultats indiquent que le traitement de cette tâche de grille n"a jamais démarré.' 
+---
+= GTED : tâche de grille terminée
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message d'audit indique que le service CMN a terminé le traitement de la tâche de grille spécifiée et a déplacé la tâche vers la table Historique. Si le résultat est SUC, ABRT ou ROLF, un message d'audit correspondant à la tâche de grille démarrée sera affiché. Les autres résultats indiquent que le traitement de cette tâche de grille n'a jamais démarré.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+2
+ a| 
+ID de tâche
+ a| 
+Ce champ identifie de manière unique une tâche de grille générée et permet de gérer la tâche de grille tout au long de son cycle de vie.
+
+*Remarque :* l'ID de tâche est attribué au moment où une tâche de grille est générée, et non au moment où elle est soumise. Une tâche de grille donnée peut être soumise plusieurs fois. Dans ce cas, le champ ID tâche n'est pas suffisant pour lier de manière unique les messages d'audit soumis, lancés et terminés.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Résultat de l'état final de la tâche de grille :
+
+* SUC : la tâche de grille s'est terminée avec succès.
+* ABRT : la tâche de grille a été interrompue sans erreur de retour arrière.
+* ROLF : la tâche de grille a été interrompue et n'a pas pu terminer le processus de restauration.
+* ANNUL : la tâche de grille a été annulée par l'utilisateur avant son démarrage.
+* EXPR : la tâche de grille a expiré avant son démarrage.
+* IVLD : la tâche de grille n'était pas valide.
+* AUTH : la tâche de grille n'était pas autorisée.
+* DUPL : la tâche de grille a été rejetée en double.
+
+
+|===

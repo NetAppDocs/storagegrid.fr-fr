@@ -1,0 +1,126 @@
+---
+permalink: ilm/how-objects-are-deleted.html 
+sidebar: sidebar 
+keywords: ILM deletion, how objects are deleted 
+summary: 'StorageGRID peut supprimer des objets en réponse directe à une requête d"un client ou automatiquement à la suite de l"expiration du cycle de vie d"un compartiment S3 ou des exigences de la politique ILM. Pour gérer plus efficacement les objets, il est important de comprendre les différentes méthodes de suppression des objets et la façon dont StorageGRID les gère.' 
+---
+= Comment supprimer les objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID peut supprimer des objets en réponse directe à une requête d'un client ou automatiquement à la suite de l'expiration du cycle de vie d'un compartiment S3 ou des exigences de la politique ILM. Pour gérer plus efficacement les objets, il est important de comprendre les différentes méthodes de suppression des objets et la façon dont StorageGRID les gère.
+
+StorageGRID peut utiliser l'une des deux méthodes suivantes pour supprimer les objets :
+
+* Suppression synchrone : lorsque StorageGRID reçoit une demande de suppression de client, toutes les copies d'objet sont supprimées immédiatement. Le client est informé que la suppression a réussi une fois les copies supprimées.
+* Les objets sont placés en file d'attente pour suppression : lorsque StorageGRID reçoit une requête de suppression, l'objet est mis en attente pour suppression et le client est immédiatement informé de l'réussie de cette suppression. Les copies d'objet sont supprimées ultérieurement par le traitement ILM en arrière-plan.
+
+
+Lors de la suppression d'objets, StorageGRID utilise la méthode qui optimise les performances de suppression, réduit les retards de suppression et libère de l'espace le plus rapidement possible.
+
+Le tableau résume le moment où StorageGRID utilise chaque méthode.
+
+[cols="1a,3a"]
+|===
+| Méthode d'exécution de la suppression | Lorsqu'il est utilisé 
+
+
+ a| 
+Les objets sont placés en file d'attente pour suppression
+ a| 
+Lorsque *l'une* des conditions suivantes est vraie :
+
+* La suppression automatique d'objet a été déclenchée par l'un des événements suivants :
++
+** La date d'expiration ou le nombre de jours pendant la configuration du cycle de vie d'un compartiment S3 est atteint.
+** La dernière période spécifiée dans une règle ILM s'écoule.
+
+
++
+*Remarque :* les objets d'un compartiment pour lequel le verrouillage d'objet S3 est activé ne peuvent pas être supprimés s'ils sont en attente légale ou si une date de conservation jusqu'à a été spécifiée mais pas encore remplie.
+
+* Un client S3 demande la suppression et une ou plusieurs des conditions suivantes sont remplies :
++
+** Les copies ne peuvent pas être supprimées dans les 30 secondes qui suivent, car, par exemple, un emplacement d'objet est temporairement indisponible.
+** Les files d'attente de suppression d'arrière-plan sont inactives.
+
+
+
+
+
+
+ a| 
+Suppression immédiate d'objets (suppression synchrone)
+ a| 
+Lorsqu'un client S3 effectue une requête de suppression et que *toutes* des conditions suivantes sont remplies :
+
+* Toutes les copies peuvent être supprimées en 30 secondes.
+* Les files d'attente de suppression d'arrière-plan contiennent des objets à traiter.
+
+
+|===
+Lorsque les clients S3 font des demandes de suppression, StorageGRID commence par ajouter des objets à la file d'attente de suppression. Il passe ensuite en mode suppression synchrone. S'assurer que la file d'attente de suppression en arrière-plan contient des objets à traiter, ce qui permet à StorageGRID de traiter les suppressions plus efficacement, en particulier pour les clients à faible simultanéité, tout en aidant à empêcher la suppression des arriérés du client.
+
+
+
+== Temps nécessaire à la suppression des objets
+
+La façon dont StorageGRID supprime des objets peut avoir un impact sur le fonctionnement du système :
+
+* Lorsque StorageGRID effectue une suppression synchrone, StorageGRID peut donner jusqu'à 30 secondes pour renvoyer un résultat au client. Cela signifie que la suppression peut se produire plus lentement, même si les copies sont réellement supprimées plus rapidement que lors de la mise en file d'attente d'objets StorageGRID pour suppression.
+* Si vous surveillez de près les performances de suppression lors d'une suppression en bloc, vous remarquerez peut-être que la vitesse de suppression semble lente après la suppression d'un certain nombre d'objets. Ce changement survient lorsque StorageGRID passe d'objets de mise en file d'attente pour suppression à des fins de suppression synchrone. La réduction apparente du taux de suppression ne signifie pas que les copies d'objet sont supprimées plus lentement. Au contraire, elle indique qu'en moyenne, l'espace est maintenant libéré plus rapidement.
+
+
+Si vous supprimez un grand nombre d'objets et que vous souhaitez libérer rapidement de l'espace, pensez à utiliser une requête client pour supprimer des objets au lieu de les supprimer à l'aide d'ILM ou d'autres méthodes. En général, l'espace est libéré plus rapidement lors de la suppression d'espace par les clients, car StorageGRID peut utiliser la suppression synchrone.
+
+Le temps nécessaire pour libérer de l'espace après la suppression d'un objet dépend de plusieurs facteurs :
+
+* Si les copies d'objet sont supprimées de manière synchrone ou mises en file d'attente pour être supprimées ultérieurement (pour les demandes de suppression de client).
+* D'autres facteurs, tels que le nombre d'objets dans la grille ou la disponibilité des ressources de la grille lorsque les copies d'objet sont mises en file d'attente pour suppression (pour les suppressions de clients et d'autres méthodes).
+
+
+
+
+== Suppression d'objets avec version S3
+
+Lorsque le contrôle de version est activé pour un compartiment S3, StorageGRID suit un comportement Amazon S3 pour répondre aux demandes de suppression, qu'elles proviennent d'un client S3, de l'expiration d'un cycle de vie d'un compartiment S3 ou des exigences de la règle ILM.
+
+Lorsque des objets sont versionnés, les demandes de suppression d'objets ne suppriment pas la version actuelle de l'objet et ne libèrent pas d'espace. Une demande de suppression d'objet crée un marqueur de suppression de zéro octet en tant que version actuelle de l'objet, ce qui rend la version précédente de l'objet « non actuelle ». Un marqueur de suppression d'objet devient un marqueur de suppression d'objet expiré lorsqu'il s'agit de la version actuelle et qu'il n'existe aucune version non courante.
+
+Bien que l'objet n'ait pas été supprimé, StorageGRID se comporte comme si la version actuelle de l'objet n'est plus disponible. Les requêtes à cet objet renvoient 404 NotFound. Cependant, les données d'objet non actuelles n'ayant pas été supprimées, les demandes qui spécifient une version non actuelle de l'objet peuvent réussir.
+
+Pour libérer de l'espace lors de la suppression d'objets multiversion ou pour supprimer des marqueurs de suppression, utilisez l'une des méthodes suivantes :
+
+* *Demande client S3* : spécifiez l'ID de version de l'objet dans la demande de SUPPRESSION D'objet S3 (`DELETE /object?versionId=ID`). Notez que cette demande ne supprime que les copies d'objet pour la version spécifiée (les autres versions occupent toujours de l'espace).
+* *Cycle de vie du compartiment* : utilisez l' `NoncurrentVersionExpiration`action dans la configuration du cycle de vie du compartiment. Lorsque le nombre de NonactuelDays spécifié est atteint, StorageGRID supprime définitivement toutes les copies des versions d'objets non courants. Ces versions d'objet ne peuvent pas être restaurées.
++
+L' `NewerNoncurrentVersions`action dans la configuration du cycle de vie du compartiment spécifie le nombre de versions non actuelles conservées dans un compartiment S3 versionné. S'il y a plus de versions non actuelles que `NewerNoncurrentVersions` ce qui est spécifié, StorageGRID supprime les versions plus anciennes lorsque la valeur NoncurrentDays s'est écoulée. Le `NewerNoncurrentVersions` seuil remplace les règles de cycle de vie fournies par ILM, ce qui signifie qu'un objet non courant avec une version comprise dans le seuil est conservé si une `NewerNoncurrentVersions` ILM demande sa suppression.
+
++
+Pour supprimer les marqueurs de suppression d'objets expirés, utilisez `Expiration` l'action avec l'une des balises suivantes : `ExpiredObjectDeleteMarker`, `Days` ou `Date`.
+
+* *ILM*: link:creating-ilm-policy.html["Cloner une règle active"] Et ajouter deux règles ILM à la nouvelle politique:
++
+** Première règle : utilisez « Noncurrent Time » comme heure de référence pour faire correspondre les versions non actuelles de l'objet. Dans link:create-ilm-rule-enter-details.html["Étape 1 (entrer les détails) de l'assistant de création de règles ILM"], sélectionnez *Oui* pour la question, "appliquer cette règle aux anciennes versions d'objet uniquement (dans les compartiments S3 avec gestion des versions activée) ?"
+** Deuxième règle : utilisez *le temps d'ingestion* pour correspondre à la version actuelle. La règle « Noncurrent Time » doit apparaître dans la police au-dessus de la règle *Ingest Time*.
++
+Pour supprimer les marqueurs de suppression d'objets expirés, utilisez une règle *heure de réception* pour correspondre aux marqueurs de suppression actuels. Les marqueurs de suppression ne sont supprimés que lorsqu'une *période* de *jours* est passée et que le créateur de suppression actuel est arrivé à expiration (il n'y a pas de versions non actuelles).
+
+
+
+* *Supprimer les objets dans le compartiment* : utilisez le gestionnaire de tenant pour link:../tenant/deleting-s3-bucket-objects.html["supprimez toutes les versions d'objet"], y compris les marqueurs de suppression, à partir d'un compartiment.
+
+
+Lorsqu'un objet versionné est supprimé, StorageGRID crée un marqueur de suppression de zéro octet comme version actuelle de l'objet. Tous les objets et les marqueurs de suppression doivent être supprimés avant qu'un compartiment multiversion ne puisse être supprimé.
+
+* Les marqueurs de suppression créés dans StorageGRID 11.7 ou version antérieure peuvent uniquement être supprimés par le biais de requêtes client S3. Ils ne sont pas supprimés par ILM, les règles de cycle de vie des compartiments ou par la suppression d'objets dans les opérations de compartiment.
+* Les marqueurs de suppression d'un compartiment créé dans StorageGRID 11.8 ou une version ultérieure peuvent être supprimés par ILM, les règles de cycle de vie des compartiments, la suppression d'objets dans les opérations de compartiment ou une suppression explicite d'un client S3.
+
+
+.Informations associées
+* link:../s3/index.html["UTILISEZ L'API REST S3"]
+* link:example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Exemple 4 : règles et règles ILM pour les objets avec version S3"]
+

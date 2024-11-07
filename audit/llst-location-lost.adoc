@@ -1,0 +1,99 @@
+---
+permalink: audit/llst-location-lost.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LLST, Location Lost 
+summary: 'Ce message est généré chaque fois qu"un emplacement de la copie d"objet \(répliquée ou avec code d"effacement\) est introuvable.' 
+---
+= LLST : emplacement perdu
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré chaque fois qu'un emplacement pour une copie d'objet (répliquée ou avec code d'effacement) est introuvable.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+BIL
+ a| 
+CBID
+ a| 
+CBID affecté.
+
+
+
+ a| 
+ECPR
+ a| 
+Profil de codage d'effacement
+ a| 
+Pour les données d'objet avec code d'effacement. ID du profil de code d'effacement utilisé.
+
+
+
+ a| 
+LTYP
+ a| 
+Type d'emplacement
+ a| 
+CLDI (Online) : pour les données d'objet répliquées
+
+CLEC (en ligne) : pour les données d'objet avec code d'effacement
+
+CLNL (Nearline) : pour les données d'objets répliqués archivés
+
+
+
+ a| 
+NON
+ a| 
+ID de nœud source
+ a| 
+ID de nœud sur lequel les emplacements ont été perdus.
+
+
+
+ a| 
+PCLD
+ a| 
+Chemin d'accès à l'objet répliqué
+ a| 
+Chemin complet vers l'emplacement du disque des données de l'objet perdu. Renvoyé uniquement lorsque LTYP a une valeur CLDI (c'est-à-dire pour les objets répliqués).
+
+Prend le formulaire `/var/local/rangedb/2/p/13/13/00oJs6X%{h{U)SeUFxE@`
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Toujours AUCUNE. RSLT est un champ de message obligatoire, mais n'est pas pertinent pour ce message. AUCUN n'est utilisé plutôt que LES CMC pour que ce message ne soit pas filtré.
+
+
+
+ a| 
+TSRC
+ a| 
+Déclenchement de la source
+ a| 
+UTILISATEUR : utilisateur déclenché
+
+SYST : déclenchement du système
+
+
+
+ a| 
+UUID
+ a| 
+ID universel unique
+ a| 
+Identifiant de l'objet affecté dans le système StorageGRID.
+
+|===

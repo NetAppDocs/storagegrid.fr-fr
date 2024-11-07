@@ -1,0 +1,185 @@
+---
+permalink: s3/put-object-copy.html 
+sidebar: sidebar 
+keywords: put object copy, CopyObject 
+summary: 'Vous pouvez utiliser la requête CopyObject S3 pour créer une copie d"un objet déjà stocké dans S3. Une opération CopyObject est identique à une opération GET, puis PUT.' 
+---
+= Objet de copie
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser la requête CopyObject S3 pour créer une copie d'un objet déjà stocké dans S3. Une opération CopyObject est identique à l'exécution de GetObject suivie de PutObject.
+
+
+
+== Résoudre les conflits
+
+Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
+
+
+
+== Taille de l'objet
+
+La taille _recommandée_ maximale pour une opération PutObject unique est de 5 Gio (5,368,709,120 octets). Si vous avez des objets dont la valeur est supérieure à 5 Gio, utilisez la link:operations-for-multipart-uploads.html["téléchargement partitionné"]valeur.
+
+La taille _supportée_ maximale pour une opération PutObject unique est de 5 Tio (5,497,558,138,880 octets).
+
+
+NOTE: Si vous avez mis à niveau à partir de StorageGRID 11.6 ou version antérieure, l'alerte PUT objet taille trop grande de S3 sera déclenchée si vous tentez de télécharger un objet dont la valeur dépasse 5 Gio. Si vous avez une nouvelle installation de StorageGRID 11.7 ou 11.8, l'alerte ne sera pas déclenchée dans ce cas. Toutefois, pour s'aligner sur la norme AWS S3, les futures versions d'StorageGRID ne prendront pas en charge le chargement d'objets de plus de 5 Gio.
+
+
+
+== Caractères UTF-8 dans les métadonnées utilisateur
+
+Si une requête inclut (non échappé) les valeurs UTF-8 dans le nom de clé ou la valeur des métadonnées définies par l'utilisateur, le comportement StorageGRID n'est pas défini.
+
+StorageGRID n'analyse ni n'interprète pas les caractères UTF-8 qui se sont échappé dans le nom de clé ou la valeur des métadonnées définies par l'utilisateur. Les caractères UTF-8 échappés sont traités comme des caractères ASCII :
+
+* Les requêtes réussissent si les métadonnées définies par l'utilisateur incluent des caractères UTF-8 échappés.
+* StorageGRID ne renvoie pas l' `x-amz-missing-meta`en-tête si la valeur interprétée du nom ou de la valeur de la clé contient des caractères non imprimables.
+
+
+
+
+== En-têtes de demande pris en charge
+
+Les en-têtes de requête suivants sont pris en charge :
+
+* `Content-Type`
+* `x-amz-copy-source`
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-if-modified-since`
+* `x-amz-meta-`, suivi d'une paire nom-valeur contenant des métadonnées définies par l'utilisateur
+* `x-amz-metadata-directive`: La valeur par défaut est `COPY`, qui vous permet de copier l'objet et les métadonnées associées.
++
+Vous pouvez spécifier de `REPLACE` remplacer les métadonnées existantes lors de la copie de l'objet ou de mettre à jour les métadonnées de l'objet.
+
+* `x-amz-storage-class`
+* `x-amz-tagging-directive`: La valeur par défaut est `COPY`, qui vous permet de copier l'objet et toutes les balises.
++
+Vous pouvez spécifier `REPLACE` d'écraser les balises existantes lors de la copie de l'objet ou de mettre à jour les balises.
+
+* En-têtes de demande de verrouillage d'objet S3 :
++
+** `x-amz-object-lock-mode`
+** `x-amz-object-lock-retain-until-date`
+** `x-amz-object-lock-legal-hold`
++
+Si une demande est effectuée sans ces en-têtes, les paramètres de rétention par défaut du compartiment sont utilisés pour calculer le mode de version de l'objet et conserver jusqu'à la date. Voir link:use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+
+
+
+* En-têtes de demande SSE :
++
+** `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`
+** `x-amz-copy-source​-server-side-encryption-customer-key`
+** `x-amz-copy-source​-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption`
+** `x-amz-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption-customer-key`
+** `x-amz-server-side-encryption-customer-algorithm`
++
+Voir <<Demander des en-têtes pour le cryptage côté serveur>>
+
+
+
+
+
+
+
+== En-têtes de requête non pris en charge
+
+Les en-têtes de demande suivants ne sont pas pris en charge :
+
+* `Cache-Control`
+* `Content-Disposition`
+* `Content-Encoding`
+* `Content-Language`
+* `Expires`
+* `x-amz-checksum-algorithm`
++
+Lorsque vous copiez un objet, si celui-ci possède un checksum, StorageGRID ne copie pas cette valeur de checksum vers le nouvel objet. Ce comportement s'applique que vous essayiez ou non d'utiliser `x-amz-checksum-algorithm` dans la demande d'objet.
+
+* `x-amz-website-redirect-location`
+
+
+
+
+== Options de classe de stockage
+
+L' `x-amz-storage-class`en-tête de requête est pris en charge et affecte le nombre de copies d'objet créées par StorageGRID si la règle ILM correspondante utilise la fonction Dual commit ou Balanced link:../ilm/data-protection-options-for-ingest.html["option d'ingestion"].
+
+* `STANDARD`
++
+(Valeur par défaut) Spécifie une opération d'ingestion à double validation lorsque la règle ILM utilise l'option de validation double, ou lorsque l'option équilibrée revient à créer des copies intermédiaires.
+
+* `REDUCED_REDUNDANCY`
++
+Spécifie une opération d'entrée de validation unique lorsque la règle ILM utilise l'option Double allocation ou lorsque l'option équilibrée revient à créer des copies intermédiaires.
+
++
+
+NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'objet S3 activé, l' `REDUCED_REDUNDANCY`option est ignorée. Si vous ingérer un objet dans un compartiment compatible hérité, l' `REDUCED_REDUNDANCY`option renvoie une erreur. StorageGRID procède toujours à une récupération à double engagement afin de satisfaire les exigences de conformité.
+
+
+
+
+
+== Utilisation de x-amz-copy-source dans CopyObject
+
+Si le compartiment source et la clé, spécifiés dans l' `x-amz-copy-source`en-tête, sont différents du compartiment et de la clé de destination, une copie des données de l'objet source est écrite vers la destination.
+
+Si la source et la destination correspondent et que l' `x-amz-metadata-directive`en-tête est spécifié comme `REPLACE`, les métadonnées de l'objet sont mises à jour avec les valeurs de métadonnées fournies dans la requête. Dans ce cas, StorageGRID ne réingère pas l'objet. Ceci a deux conséquences importantes :
+
+* Vous ne pouvez pas utiliser CopyObject pour chiffrer un objet existant ou pour modifier le chiffrement d'un objet existant. Si vous fournissez l' `x-amz-server-side-encryption`en-tête ou l' `x-amz-server-side-encryption-customer-algorithm`en-tête, StorageGRID rejette la demande et renvoie `XNotImplemented`.
+* L'option de comportement d'ingestion spécifiée dans la règle ILM correspondante n'est pas utilisée. Tout changement au placement d'objet déclenché par la mise à jour est apporté lors de l'évaluation de ILM par des processus ILM en arrière-plan normaux.
++
+En d'autres termes, si la règle ILM utilise l'option strict pour le comportement d'ingestion, aucune action n'est entreprise si les placements d'objet requis ne peuvent pas être effectués (par exemple, parce qu'un nouvel emplacement n'est pas disponible). L'objet mis à jour conserve son emplacement actuel jusqu'à ce que le placement requis soit possible.
+
+
+
+
+
+== Demander des en-têtes pour le cryptage côté serveur
+
+Si vous link:using-server-side-encryption.html["utilisez le chiffrement côté serveur"], les en-têtes de requête que vous fournissez dépendent du cryptage de l'objet source et de l'intention de chiffrer l'objet cible.
+
+* Si l'objet source est chiffré à l'aide d'une clé fournie par le client (SSE-C), vous devez inclure les trois en-têtes suivants dans la requête CopyObject, afin que l'objet puisse être décrypté puis copié :
++
+** `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`: Spécifiez `AES256`.
+** `x-amz-copy-source​-server-side-encryption-customer-key`: Spécifiez la clé de chiffrement que vous avez fournie lors de la création de l'objet source.
+** `x-amz-copy-source​-server-side-encryption-customer-key-MD5`: Spécifiez le résumé MD5 que vous avez fourni lors de la création de l'objet source.
+
+
+* Si vous souhaitez chiffrer l'objet cible (la copie) avec une clé unique que vous fournissez et gérez, incluez les trois en-têtes suivants :
++
+** `x-amz-server-side-encryption-customer-algorithm`: Spécifiez `AES256`.
+** `x-amz-server-side-encryption-customer-key`: Spécifiez une nouvelle clé de chiffrement pour l'objet cible.
+** `x-amz-server-side-encryption-customer-key-MD5`: Spécifiez le résumé MD5 de la nouvelle clé de chiffrement.
+
+
++
+
+CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. Si vous perdez une clé de chiffrement, vous perdez l'objet correspondant. Avant d'utiliser des clés fournies par le client pour sécuriser les données d'objet, consultez les considérations relatives à link:using-server-side-encryption.html["utilisation du chiffrement côté serveur"].
+
+* Si vous souhaitez crypter l'objet cible (la copie) avec une clé unique gérée par StorageGRID (SSE), incluez cet en-tête dans la demande CopyObject :
++
+** `x-amz-server-side-encryption`
++
+
+NOTE: La `server-side-encryption` valeur de l'objet ne peut pas être mise à jour. Au lieu de cela, faites une copie avec une nouvelle `server-side-encryption` valeur en utilisant `x-amz-metadata-directive`: `REPLACE`.
+
+
+
+
+
+
+
+== Gestion des versions
+
+Si le compartiment source est versionné, vous pouvez utiliser l' `x-amz-copy-source`en-tête pour copier la dernière version d'un objet. Pour copier une version spécifique d'un objet, vous devez spécifier explicitement la version à copier à l'aide de la `versionId` sous-ressource. Si le compartiment de destination est versionné, la version générée est renvoyée dans l' `x-amz-version-id`en-tête de réponse. Si la gestion des versions est suspendue pour le compartiment cible, `x-amz-version-id` renvoie une valeur « null ».

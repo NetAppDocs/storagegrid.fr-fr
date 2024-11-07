@@ -1,0 +1,129 @@
+---
+section: tenant
+title: Utilisez un compte de locataire
+entries:
+- title: Qu'est-ce que le compte locataire
+  pdf-filename: Utilisez un compte de locataire StorageGRID
+  url: "/tenant/index.html"
+- title: Comment se connecter et se déconnecter
+  entries:
+  - title: Connectez-vous au Gestionnaire de locataires
+    url: "/tenant/signing-in-to-tenant-manager.html"
+  - title: Déconnectez-vous du Gestionnaire de locataires
+    url: "/tenant/signing-out-of-tenant-manager.html"
+- title: Tableau de bord du gestionnaire des locataires
+  url: "/tenant/understanding-tenant-manager-dashboard.html"
+- title: API de gestion des locataires
+  entries:
+  - title: Compréhension de l'API de gestion des locataires
+    url: "/tenant/understanding-tenant-management-api.html"
+  - title: Gestion des versions de l'API de gestion des locataires
+    url: "/tenant/tenant-management-api-versioning.html"
+  - title: Protection contre la contrefaçon de demandes intersites (CSRF)
+    url: "/tenant/protecting-against-cross-site-request-forgery-csrf.html"
+- title: Utiliser les connexions de fédération de grille
+  entries:
+  - title: Cloner des groupes de locataires et des utilisateurs
+    url: "/tenant/grid-federation-account-clone.html"
+  - title: Cloner les clés d'accès S3 à l'aide de l'API
+    url: "/tenant/grid-federation-clone-keys-with-api.html"
+  - title: Gérer la réplication entre les grilles
+    url: "/tenant/grid-federation-manage-cross-grid-replication.html"
+  - title: Afficher les connexions de fédération de grille
+    url: "/tenant/grid-federation-view-connections-tenant.html"
+- title: Gestion des groupes et des utilisateurs
+  entries:
+  - title: Utiliser la fédération des identités
+    url: "/tenant/using-identity-federation.html"
+  - title: Gestion des groupes de locataires
+    entries:
+    - title: Créer des groupes S3
+      url: "/tenant/creating-groups-for-s3-tenant.html"
+    - title: Créer des groupes Swift
+      url: "/tenant/creating-groups-for-swift-tenant.html"
+    - title: Autorisations de gestion des locataires
+      url: "/tenant/tenant-management-permissions.html"
+    - title: Gérer les groupes
+      url: "/tenant/manage-groups.html"
+  - title: Gérez les utilisateurs locaux
+    url: "/tenant/managing-local-users.html"
+- title: Gestion des clés d'accès S3
+  entries:
+  - title: Clés d'accès aux locataires
+    pdf-filename: Gestion des clés d'accès S3
+    url: "/tenant/managing-s3-access-keys.html"
+  - title: Créer vos clés d'accès S3
+    url: "/tenant/creating-your-own-s3-access-keys.html"
+  - title: Affichez vos clés d'accès S3
+    url: "/tenant/viewing-your-s3-access-keys.html"
+  - title: Supprimez vos clés d'accès S3
+    url: "/tenant/deleting-your-own-s3-access-keys.html"
+  - title: Créez les clés d'accès S3 d'un autre utilisateur
+    url: "/tenant/creating-another-users-s3-access-keys.html"
+  - title: Afficher les clés d'accès S3 d'un autre utilisateur
+    url: "/tenant/viewing-another-users-s3-access-keys.html"
+  - title: Supprimez les clés d'accès S3 d'un autre utilisateur
+    url: "/tenant/deleting-another-users-s3-access-keys.html"
+- title: Gestion des compartiments S3
+  entries:
+  - title: Créer un compartiment
+    url: "/tenant/creating-s3-bucket.html"
+  - title: Afficher les détails du compartiment
+    url: "/tenant/viewing-s3-bucket-details.html"
+  - title: Appliquez la balise de règle ILM au compartiment
+    url: "/tenant/ilm-policy-tags.html"
+  - title: Gestion de la règle de compartiment
+    url: "/tenant/manage-bucket-policy.html"
+  - title: Gestion de la cohérence des compartiments
+    url: "/tenant/manage-bucket-consistency.html"
+  - title: Activez ou désactivez les mises à jour de l'heure du dernier accès
+    url: "/tenant/enabling-or-disabling-last-access-time-updates.html"
+  - title: Modifier la gestion des versions d'objet
+    url: "/tenant/changing-bucket-versioning.html"
+  - title: Utilisez le verrouillage d'objet S3
+    url: "/tenant/using-s3-object-lock.html"
+  - title: Mettre à jour la conservation par défaut du verrouillage d'objet S3
+    url: "/tenant/update-default-retention-settings.html"
+  - title: Configurer le partage de ressources inter-sources (CORS)
+    url: "/tenant/configuring-cross-origin-resource-sharing-cors.html"
+  - title: Supprime les objets du compartiment
+    url: "/tenant/deleting-s3-bucket-objects.html"
+  - title: Supprimer le compartiment
+    url: "/tenant/deleting-s3-bucket.html"
+  - title: Utiliser la console S3
+    url: "/tenant/use-s3-console.html"
+- title: Gérez les services de la plateforme S3
+  entries:
+  - title: Services de plateforme S3
+    pdf-filename: Gérez les services de la plateforme S3
+    entries:
+    - title: Considérations relatives aux services de plateforme
+      url: "/tenant/considerations-for-platform-services.html"
+    - title: Service de réplication CloudMirror
+      url: "/tenant/understanding-cloudmirror-replication-service.html"
+    - title: Notifications pour les compartiments
+      url: "/tenant/understanding-notifications-for-buckets.html"
+    - title: Service d'intégration de la recherche
+      url: "/tenant/understanding-search-integration-service.html"
+  - title: Gérez les terminaux des services de plateforme
+    entries:
+    - title: Configurer les terminaux des services de plateforme
+      url: "/tenant/configuring-platform-services-endpoints.html"
+    - title: Spécifiez URN
+      url: "/tenant/specifying-urn-for-platform-services-endpoint.html"
+    - title: Créer un point final
+      url: "/tenant/creating-platform-services-endpoint.html"
+    - title: Tester la connexion
+      url: "/tenant/testing-connection-for-platform-services-endpoint.html"
+    - title: Editer le point final
+      url: "/tenant/editing-platform-services-endpoint.html"
+    - title: Supprimer le noeud final
+      url: "/tenant/deleting-platform-services-endpoint.html"
+    - title: Dépanner les erreurs de services de plate-forme
+      url: "/tenant/troubleshooting-platform-services-endpoint-errors.html"
+  - title: Configurez la réplication CloudMirror
+    url: "/tenant/configuring-cloudmirror-replication.html"
+  - title: Configurer les notifications d'événements
+    url: "/tenant/configuring-event-notifications.html"
+  - title: Configurez le service d'intégration de la recherche
+    url: "/tenant/configuring-search-integration-service.html"

@@ -1,0 +1,181 @@
+---
+permalink: tenant/using-s3-object-lock.html 
+sidebar: sidebar 
+keywords: how to use s3 object lock 
+summary: Vous pouvez utiliser le verrouillage objet S3 si les compartiments et les objets doivent respecter les exigences réglementaires en matière de conservation des données. 
+---
+= Utilisez le verrouillage d'objet S3 pour conserver les objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le verrouillage objet S3 si les compartiments et les objets doivent respecter les exigences réglementaires en matière de conservation des données.
+
+
+NOTE: Votre administrateur de grille doit vous donner l'autorisation d'utiliser des fonctions spécifiques de verrouillage d'objet S3.
+
+
+
+== Qu'est-ce que le verrouillage objet S3 ?
+
+La fonctionnalité de verrouillage objet StorageGRID S3 est une solution de protection des objets équivalente au verrouillage objet S3 dans Amazon simple Storage Service (Amazon S3).
+
+Lorsque le paramètre de verrouillage objet S3 global est activé pour un système StorageGRID, un compte de locataire S3 peut créer des compartiments avec ou sans verrouillage objet S3 activé. Si le verrouillage objet S3 est activé pour un compartiment, la gestion des versions de compartiment est requise et elle est automatiquement activée.
+
+*Un compartiment sans S3 Object Lock* ne peut contenir que des objets sans paramètres de rétention spécifiés. Aucun objet ingéré ne possède de paramètres de conservation.
+
+*Un compartiment avec S3 Object Lock* peut contenir des objets avec et sans paramètres de conservation spécifiés par les applications client S3. Certains objets ingérés auront des paramètres de conservation.
+
+*Un compartiment avec le verrouillage d'objet S3 et la rétention par défaut configurés* peut avoir téléchargé des objets avec des paramètres de rétention spécifiés et de nouveaux objets sans paramètres de rétention. Les nouveaux objets utilisent le paramètre par défaut, car le paramètre de rétention n'a pas été configuré au niveau de l'objet.
+
+En effet, tous les objets nouvellement ingérés ont des paramètres de conservation lorsque la conservation par défaut est configurée. Les objets existants sans paramètres de conservation d'objet ne sont pas affectés.
+
+
+
+=== Modes de rétention
+
+La fonction de verrouillage d'objet StorageGRID S3 prend en charge deux modes de conservation pour appliquer différents niveaux de protection aux objets. Ces modes sont équivalents aux modes de conservation Amazon S3.
+
+* En mode conformité :
++
+** L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+** La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+** La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+* En mode gouvernance :
++
+** Les utilisateurs disposant d'une autorisation spéciale peuvent utiliser un en-tête de contournement dans les demandes pour modifier certains paramètres de conservation.
+** Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+** Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+
+
+
+
+=== Paramètres de conservation pour les versions d'objet
+
+Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisateurs peuvent utiliser l'application client S3 pour spécifier éventuellement les paramètres de conservation suivants pour chaque objet ajouté au compartiment :
+
+* *Mode de conservation* : conformité ou gouvernance.
+* *Conserver-jusqu'à-date*: Si la date de conservation d'une version d'objet est dans le futur, l'objet peut être récupéré, mais il ne peut pas être supprimé.
+* *Mise en garde légale* : l'application d'une mise en garde légale à une version d'objet verrouille immédiatement cet objet. Par exemple, vous devrez peut-être mettre une obligation légale sur un objet lié à une enquête ou à un litige juridique. Une obligation légale n'a pas de date d'expiration, mais reste en place jusqu'à ce qu'elle soit explicitement supprimée. Les dispositions légales sont indépendantes de la date de conservation.
++
+
+NOTE: Si un objet fait l'objet d'une conservation légale, personne ne peut le supprimer, quel que soit son mode de conservation.
+
++
+Pour plus de détails sur les paramètres de l'objet, reportez-vous à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+
+
+
+
+
+=== Paramètre de rétention par défaut pour les compartiments
+
+Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisateurs peuvent spécifier les paramètres par défaut suivants pour le compartiment :
+
+* *Mode de rétention par défaut* : conformité ou gouvernance.
+* *Période de rétention par défaut* : durée pendant laquelle les nouvelles versions d'objets ajoutées à ce compartiment doivent être conservées, à partir du jour où elles sont ajoutées.
+
+
+Les paramètres de compartiment par défaut s'appliquent uniquement aux nouveaux objets qui ne disposent pas de leurs propres paramètres de conservation. Les objets de compartiment existants ne sont pas affectés lorsque vous ajoutez ou modifiez ces paramètres par défaut.
+
+Voir link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link:../tenant/update-default-retention-settings.html["Mettre à jour la conservation par défaut du verrouillage d'objet S3"].
+
+
+
+== Tâches de verrouillage d'objet S3
+
+Les listes suivantes destinées aux administrateurs du grid et aux utilisateurs de locataires contiennent des tâches de haut niveau relatives à l'utilisation de la fonction S3 Object Lock.
+
+Administrateur du grid::
++
+--
+* Activez le paramètre de verrouillage d'objet S3 global pour l'ensemble du système StorageGRID.
+* Assurez-vous que les politiques de gestion du cycle de vie des informations (ILM) sont _conformes_; c'est-àlink:../ilm/managing-objects-with-s3-object-lock.html["Exigences des compartiments avec le verrouillage objet S3 activé"]-dire qu'elles respectent le .
+* Si nécessaire, autorisez un locataire à utiliser le mode de conservation Compliance. Sinon, seul le mode gouvernance est autorisé.
+* Si nécessaire, définissez une période de conservation maximale pour un locataire.
+
+
+--
+Utilisateur locataire::
++
+--
+* Considérations relatives aux compartiments et aux objets avec le verrouillage d'objet S3
+* Si nécessaire, contactez l'administrateur de la grille pour activer le paramètre global S3 Object Lock et définir les autorisations.
+* Créez des compartiments avec le verrouillage d'objet S3 activé.
+* Vous pouvez également configurer les paramètres de conservation par défaut d'un compartiment :
++
+** Mode de conservation par défaut : gouvernance ou conformité, si l'administrateur du grid l'autorise.
+** Période de conservation par défaut : doit être inférieure ou égale à la période de conservation maximale définie par l'administrateur du grid.
+
+
+* Utilisez l'application client S3 pour ajouter des objets et définir éventuellement la conservation propre à l'objet :
++
+** Mode de rétention. Gouvernance ou conformité, si l'administrateur du grid l'autorise.
+** Conserver la date de fin : doit être inférieur ou égal à ce qui est autorisé par la période de conservation maximale définie par l'administrateur de la grille.
+
+
+
+
+--
+
+
+
+
+== Conditions requises pour les compartiments avec verrouillage objet S3 activé
+
+* Si le paramètre global de verrouillage objet S3 est activé pour le système StorageGRID, vous pouvez utiliser le gestionnaire de locataires, l'API de gestion des locataires ou l'API REST S3 pour créer des compartiments avec le verrouillage objet S3 activé.
+* Si vous prévoyez d'utiliser le verrouillage d'objet S3, vous devez activer le verrouillage d'objet S3 lors de la création du compartiment. Vous ne pouvez pas activer le verrouillage objet S3 pour un compartiment existant.
+* Lorsque le verrouillage d'objet S3 est activé pour un compartiment, StorageGRID active automatiquement le contrôle de version pour ce compartiment. Vous ne pouvez pas désactiver le verrouillage objet S3 ou suspendre la gestion des versions pour le compartiment.
+* Vous pouvez également spécifier un mode de conservation et une période de conservation par défaut pour chaque compartiment à l'aide du gestionnaire des locataires, de l'API de gestion des locataires ou de l'API REST S3. Les paramètres de conservation par défaut du compartiment s'appliquent uniquement aux nouveaux objets ajoutés au compartiment qui ne disposent pas de leurs propres paramètres de conservation. Vous pouvez remplacer ces paramètres par défaut en spécifiant un mode de conservation et une date de conservation jusqu'à pour chaque version d'objet lors du téléchargement.
+* La configuration du cycle de vie des compartiments est prise en charge pour les compartiments avec le verrouillage objet S3 activé.
+* La réplication CloudMirror n'est pas prise en charge pour les compartiments avec le verrouillage objet S3 activé.
+
+
+
+
+== Exigences relatives aux objets dans les compartiments avec le verrouillage d'objet S3 activé
+
+* Pour protéger une version d'objet, vous pouvez spécifier les paramètres de conservation par défaut du compartiment ou les paramètres de conservation pour chaque version d'objet. Les paramètres de conservation au niveau objet peuvent être spécifiés à l'aide de l'application client S3 ou de l'API REST S3.
+* Les paramètres de conservation s'appliquent aux versions d'objet individuelles. Une version d'objet peut avoir à la fois un paramètre de conservation à la date et un paramètre de conservation légal, l'un mais pas l'autre, ou l'autre. La spécification d'un paramètre de conservation à la date ou d'un paramètre de conservation légal pour un objet protège uniquement la version spécifiée dans la demande. Vous pouvez créer de nouvelles versions de l'objet, tandis que la version précédente de l'objet reste verrouillée.
+
+
+
+
+== Cycle de vie des objets dans des compartiments avec verrouillage objet S3 activé
+
+Chaque objet enregistré dans un compartiment lorsque le verrouillage objet S3 est activé passe par les étapes suivantes :
+
+. *Entrée d'objet*
++
+Lors de l'ajout d'une version d'objet à un compartiment pour lequel S3 Object Lock est activé, les paramètres de conservation sont appliqués comme suit :
+
++
+** Si des paramètres de rétention sont spécifiés pour l'objet, les paramètres de niveau objet sont appliqués. Tous les paramètres de compartiment par défaut sont ignorés.
+** Si aucun paramètre de conservation n'est spécifié pour l'objet, les paramètres de compartiment par défaut sont appliqués, s'ils existent.
+** Si aucun paramètre de conservation n'est spécifié pour l'objet ou le compartiment, l'objet n'est pas protégé par le verrouillage objet S3.
+
+
++
+Si les paramètres de conservation sont appliqués, l'objet et les métadonnées S3 définies par l'utilisateur sont protégés.
+
+. *Conservation et suppression d'objets*
++
+StorageGRID stocke plusieurs copies de chaque objet protégé pendant la période de conservation spécifiée. Le nombre et le type exacts de copies d'objet et d'emplacements de stockage sont déterminés par les règles de conformité dans les politiques ILM actives. La possibilité de supprimer un objet protégé avant d'atteindre sa date de conservation jusqu'à dépend de son mode de conservation.
+
++
+** Si un objet fait l'objet d'une conservation légale, personne ne peut le supprimer, quel que soit son mode de conservation.
+
+
+
+
+
+
+== Est-il toujours possible de gérer des compartiments existants conformes ?
+
+La fonction de verrouillage d'objet S3 remplace la fonction de conformité disponible dans les versions StorageGRID précédentes. Si vous avez créé des compartiments conformes à l'aide d'une version précédente de StorageGRID, vous pouvez continuer à gérer les paramètres de ces compartiments. Toutefois, vous ne pouvez plus créer de compartiments conformes. Pour obtenir des instructions, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^].

@@ -1,0 +1,31 @@
+---
+permalink: audit/syst-node-stopping.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SYST, Node Stopping 
+summary: 'Lorsqu"un service est correctement arrêté, ce message est généré pour indiquer que l"arrêt a été demandé et que le service a lancé sa séquence d"arrêt. SYST peut être utilisé pour déterminer si l"arrêt a été demandé, avant le redémarrage du service \(contrairement à SYSD, qui est généralement envoyé après le redémarrage du service.\)' 
+---
+= SYST : arrêt du nœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsqu'un service est correctement arrêté, ce message est généré pour indiquer que l'arrêt a été demandé et que le service a lancé sa séquence d'arrêt. SYST peut être utilisé pour déterminer si l'arrêt a été demandé, avant le redémarrage du service (contrairement à SYSD, qui est généralement envoyé après le redémarrage du service).
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+RSLT
+ a| 
+Nettoyer l'arrêt
+ a| 
+La nature de l'arrêt :
+
+SUCS : le système s'est arrêté correctement.
+
+|===
+Le message n'indique pas si le serveur hôte est arrêté, seul le service de génération de rapports. Le code RSLT d'un message SYST ne peut pas indiquer un arrêt « non planifié », car le message est généré uniquement par des arrêts « corrects ».

@@ -1,0 +1,20 @@
+---
+permalink: audit/index.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, log, structure, content 
+summary: 'Ces instructions contiennent des informations sur la structure et le contenu des messages d"audit StorageGRID et des journaux d"audit. Vous pouvez utiliser ces informations pour lire et analyser la piste d"audit de l"activité du système.' 
+---
+= Journaux et messages d'audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ces instructions contiennent des informations sur la structure et le contenu des messages d'audit StorageGRID et des journaux d'audit. Vous pouvez utiliser ces informations pour lire et analyser la piste d'audit de l'activité du système.
+
+Ces instructions s'adresse aux administrateurs responsables de la production de rapports d'activité et d'utilisation du système qui nécessitent une analyse des messages d'audit du système StorageGRID.
+
+Pour utiliser le fichier journal texte, vous devez avoir accès au partage d'audit configuré sur le nœud d'administration.
+
+Pour plus d'informations sur la configuration des niveaux de messages d'audit et l'utilisation d'un serveur syslog externe, reportez-vous à la section link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].

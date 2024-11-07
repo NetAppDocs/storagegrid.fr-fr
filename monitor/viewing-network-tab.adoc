@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-network-tab.html 
+sidebar: sidebar 
+keywords: network tab 
+summary: 'L"onglet réseau affiche un graphique indiquant le trafic réseau reçu et envoyé sur toutes les interfaces réseau du nœud, du site ou de la grille.' 
+---
+= Afficher l'onglet réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'onglet réseau affiche un graphique indiquant le trafic réseau reçu et envoyé sur toutes les interfaces réseau du nœud, du site ou de la grille.
+
+L'onglet réseau s'affiche pour tous les nœuds, chaque site et la grille entière.
+
+Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
+
+Pour les nœuds, le tableau interfaces réseau fournit des informations sur les ports réseau physiques de chaque nœud. Le tableau des communications réseau fournit des détails sur les opérations de réception et de transmission de chaque nœud et sur tout compteur d'erreurs signalé par le pilote.
+
+image::../media/nodes_page_network_tab.png[Page noeuds onglet réseau]
+
+.Informations associées
+link:monitoring-network-connections-and-performance.html["Contrôle des connexions réseau et des performances"]

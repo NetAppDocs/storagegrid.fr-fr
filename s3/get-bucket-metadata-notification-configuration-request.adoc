@@ -1,0 +1,182 @@
+---
+permalink: s3/get-bucket-metadata-notification-configuration-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET bucket metadata notification configuration 
+summary: 'La demande de configuration DE notification DE métadonnées GET Bucket vous permet de récupérer le XML de configuration utilisé pour configurer l"intégration de la recherche pour chaque compartiment.' 
+---
+= CONFIGURATION DES notifications de métadonnées de compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La demande de configuration DE notification DE métadonnées GET Bucket vous permet de récupérer le XML de configuration utilisé pour configurer l'intégration de la recherche pour chaque compartiment.
+
+Pour effectuer cette opération, vous devez disposer de l'autorisation s3:GetBuckeMetadanotification, ou être root de compte.
+
+
+
+== Exemple de demande
+
+Cette requête récupère la configuration de notification des métadonnées pour le compartiment nommé `bucket`.
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?x-ntap-sg-metadata-notification HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== Réponse
+
+L'organe de réponse inclut la configuration de notification des métadonnées pour le compartiment. La configuration de notification des métadonnées vous permet de déterminer la configuration du compartiment pour l'intégration de la recherche. En d'autres termes, il vous permet de déterminer les objets à indexer et à quels terminaux leurs métadonnées d'objet sont envoyées.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:_region:account-ID_:domain/_mydomain/myindex/mytype_</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+Chaque configuration de notification de métadonnées comprend une ou plusieurs règles. Chaque règle indique les objets qu'elle s'applique ainsi que la destination à laquelle StorageGRID doit envoyer les métadonnées d'objet. Les destinations doivent être spécifiées à l'aide de l'URN d'un terminal StorageGRID.
+
+[cols="1a,2a,1a"]
+|===
+| Nom | Description | Obligatoire 
+
+
+ a| 
+Configuration de la MetadaNotificationConfiguration
+ a| 
+Balise de conteneur pour les règles utilisées pour spécifier les objets et la destination des notifications de métadonnées.
+
+Contient un ou plusieurs éléments de règle.
+ a| 
+Oui
+
+
+
+ a| 
+Règle
+ a| 
+Balise de conteneur d'une règle qui identifie les objets dont les métadonnées doivent être ajoutées à un index spécifié.
+
+Les règles avec des préfixes qui se chevauchent sont rejetées.
+
+Inclus dans l'élément MetadaNotificationConfiguration.
+ a| 
+Oui
+
+
+
+ a| 
+ID
+ a| 
+Identifiant unique de la règle.
+
+Inclus dans l'élément règle.
+ a| 
+Non
+
+
+
+ a| 
+État
+ a| 
+L'état peut être « activé » ou « désactivé ». Aucune action n'est prise pour les règles désactivées.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Préfixe
+ a| 
+Les objets qui correspondent au préfixe sont affectés par la règle et leurs métadonnées sont envoyées à la destination spécifiée.
+
+Pour faire correspondre tous les objets, spécifiez un préfixe vide.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Destination
+ a| 
+Balise de conteneur pour la destination d'une règle.
+
+Inclus dans l'élément règle.
+ a| 
+Oui
+
+
+
+ a| 
+Urne
+ a| 
+URN de la destination où les métadonnées d'objet sont envoyées. Doit être l'URN d'un terminal StorageGRID avec les propriétés suivantes :
+
+* `es` doit être le troisième élément.
+* L'URN doit se terminer par l'index et le type où les métadonnées sont stockées, sous la forme `domain-name/myindex/mytype`.
+
+
+Les terminaux sont configurés à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires. Ils se présentent sous la forme suivante :
+
+* `arn:aws:es:_region:account-ID_:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+Le noeud final doit être configuré avant la soumission du XML de configuration, ou la configuration échouera avec une erreur 404.
+
+L'urne est incluse dans l'élément destination.
+ a| 
+Oui
+
+|===
+
+
+== Exemple de réponse
+
+Le XML inclus entre les  `<MetadataNotificationConfiguration></MetadataNotificationConfiguration>` balises montre comment l'intégration avec un noeud final d'intégration de recherche est configurée pour le compartiment. Dans cet exemple, les métadonnées d'objet sont envoyées à un index Elasticsearch nommé `current` et type nommé `2017` qui est hébergé dans un domaine AWS nommé `records`.
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Thu, 20 Jul 2017 18:24:05 GMT
+Connection: KEEP-ALIVE
+Server: StorageGRID/11.0.0
+x-amz-request-id: 3832973499
+Content-Length: 264
+Content-Type: application/xml
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix>2017</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/records/current/2017</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.Informations associées
+link:../tenant/index.html["Utilisez un compte de locataire"]

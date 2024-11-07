@@ -1,0 +1,24 @@
+---
+permalink: network/admin-network-topology.html 
+sidebar: sidebar 
+keywords: admin network topology, using admin network 
+summary: 'L"utilisation d"un réseau d"administration est facultative. L"une des façons de pouvoir utiliser un réseau d"administration et un réseau de grille consiste à configurer un réseau de grille routable et un réseau d"administration limité pour chaque nœud.' 
+---
+= Topologie du réseau d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'utilisation d'un réseau d'administration est facultative. L'une des façons de pouvoir utiliser un réseau d'administration et un réseau de grille consiste à configurer un réseau de grille routable et un réseau d'administration limité pour chaque nœud.
+
+Lorsque vous configurez le réseau Admin, vous définissez l'adresse IP de l'hôte, le masque de sous-réseau et l'adresse IP de la passerelle pour l'interface eth1 de chaque nœud de la grille.
+
+Le réseau d'administration peut être unique à chaque nœud et peut être composé de plusieurs sous-réseaux. Chaque nœud peut être configuré avec une liste de sous-réseau externe (AESL, Admin External Subnet List). L'AESL répertorie les sous-réseaux accessibles sur le réseau Admin pour chaque nœud. L'AESL doit également inclure les sous-réseaux de tous les services que la grille aura accès via le réseau d'administration, tels que NTP, DNS, KMS et LDAP. Des routes statiques sont appliquées pour chaque sous-réseau dans l'AESL.
+
+Dans cet exemple, le réseau Grid est utilisé pour le trafic lié aux requêtes des clients S3 et à la gestion des objets, tandis que le réseau Admin est utilisé pour les fonctions d'administration.
+
+image::../media/grid_admin_networks.png[Réseaux d'administration du grid]
+
+image::../media/grid_admin_networks_ips.png[Adresses IP des réseaux d'administration du grid]

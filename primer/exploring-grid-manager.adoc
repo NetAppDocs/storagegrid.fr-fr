@@ -1,0 +1,263 @@
+---
+permalink: primer/exploring-grid-manager.html 
+sidebar: sidebar 
+keywords: what is the grid manager, grid manager dashboard 
+summary: 'L"interface graphique Web du gestionnaire de grid permet de configurer, de gérer et de surveiller votre système StorageGRID.' 
+---
+= Explorez le Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'interface graphique Web du gestionnaire de grid permet de configurer, de gérer et de surveiller votre système StorageGRID.
+
+
+NOTE: Le Gestionnaire de grille est mis à jour avec chaque version et peut ne pas correspondre aux exemples de captures d'écran de cette page.
+
+Lorsque vous vous connectez à Grid Manager, vous vous connectez à un noeud d'administration. Chaque système StorageGRID comprend un nœud d'administration principal et un nombre quelconque de nœuds d'administration non primaires. Vous pouvez vous connecter à n'importe quel nœud d'administration et chaque nœud d'administration affiche une vue similaire du système StorageGRID.
+
+Vous pouvez accéder au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+
+
+== Tableau de bord de Grid Manager
+
+Lorsque vous vous connectez pour la première fois au Gestionnaire de grille, vous pouvez utiliser le tableau de bord pour link:../monitor/viewing-dashboard.html["surveiller les activités du système"]obtenir un aperçu.
+
+Le tableau de bord contient des informations sur l'état et les performances du système, l'utilisation du stockage, les processus ILM, les opérations S3 et les nœuds de la grille. Vous pouvez link:../monitor/viewing-dashboard.html["configurer le tableau de bord"]choisir parmi une collection de cartes contenant les informations dont vous avez besoin pour surveiller efficacement votre système.
+
+image::../media/grid_manager_dashboard_and_menu.png[Tableau de bord dans Grid Manager]
+
+Pour une explication des informations affichées sur chaque carte, sélectionnez l'icône d'aide de image:../media/icon_nms_question.png["icône point d'interrogation"]cette carte.
+
+
+
+== Champ de recherche
+
+Le champ *Search* de la barre d'en-tête vous permet de naviguer rapidement vers une page spécifique dans Grid Manager. Par exemple, vous pouvez entrer *km* pour accéder à la page serveur de gestion des clés (KMS).
+
+Vous pouvez utiliser *Search* pour rechercher des entrées dans la barre latérale du Gestionnaire de grille et dans les menus Configuration, Maintenance et support. Vous pouvez également rechercher par nom des éléments tels que les nœuds de grid et les comptes de locataire.
+
+
+
+== Menu aide
+
+Le menu aide image:../media/icon-help-menu-bar.png["icône d'aide dans la barre de menus"]permet d'accéder aux éléments suivants :
+
+* L'link:../fabricpool/use-fabricpool-setup-wizard.html["FabricPool"]assistant etlink:../admin/use-s3-setup-wizard.html["Configuration de S3"]
+* Centre de documentation StorageGRID pour la version actuelle
+* link:../admin/using-grid-management-api.html["Documentation de l'API"]
+* Informations sur la version de StorageGRID actuellement installée
+
+
+
+
+== Menu alertes
+
+Le menu alertes offre une interface facile à utiliser pour détecter, évaluer et résoudre les problèmes susceptibles de se produire lors du fonctionnement de StorageGRID.
+
+Dans le menu alertes, vous pouvez effectuer les opérations suivantes link:../monitor/managing-alerts.html["gestion des alertes"]:
+
+* Examiner les alertes en cours
+* Examiner les alertes résolues
+* Configurez les silences pour supprimer les notifications d'alerte
+* Définissez des règles d'alerte pour les conditions qui déclenchent des alertes
+* Configurez le serveur de messagerie pour les notifications d'alerte
+
+
+
+
+== Page nœuds
+
+La link:../monitor/viewing-nodes-page.html["Page nœuds"] affiche des informations sur la grille entière, chaque site de la grille et chaque nœud d'un site.
+
+La page d'accueil nœuds affiche des mesures combinées pour l'ensemble de la grille. Pour afficher les informations d'un site ou nœud particulier, sélectionnez le site ou le nœud.
+
+image::../media/nodes_page.png[page principale des nœuds]
+
+
+
+== Page locataires
+
+Le link:../admin/managing-tenants.html["Page locataires"]vous permet de link:../tenant/index.html["créez et contrôlez les comptes de locataires du stockage"]le faire pour votre système StorageGRID. Vous devez créer au moins un compte de tenant pour spécifier qui peut stocker et récupérer des objets et la fonctionnalité qui leur est disponible.
+
+La page locataires fournit également des détails sur l'utilisation pour chaque locataire, y compris la quantité de stockage utilisée et le nombre d'objets. Si vous définissez un quota lors de la création du locataire, vous pouvez voir la part utilisée de ce quota.
+
+image::../media/tenants_page.png[Menu et page locataires]
+
+
+
+== Menu ILM
+
+Le système link:using-information-lifecycle-management.html["Menu ILM"]vous permet link:../ilm/index.html["Configuration des règles et des règles de gestion du cycle de vie des informations (ILM"]de gérer la durabilité et la disponibilité des données. Vous pouvez également saisir un identifiant d'objet pour afficher les métadonnées de cet objet.
+
+Le menu ILM permet de consulter et de gérer les informations ILM :
+
+* Règles
+* Stratégies
+* Balises de stratégie
+* Pools de stockage
+* Niveaux de stockage
+* Régions
+* Recherche de métadonnées d'objet
+
+
+
+
+== Menu Configuration
+
+Le menu Configuration vous permet de spécifier les paramètres réseau, les paramètres de sécurité, les paramètres système, les options de surveillance et les options de contrôle d'accès.
+
+
+
+=== Tâches réseau
+
+Les tâches réseau incluent :
+
+* link:../admin/managing-high-availability-groups.html["Gestion des groupes haute disponibilité"]
+* link:../admin/managing-load-balancing.html["Gestion des terminaux d'équilibrage de la charge"]
+* link:../admin/configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"]
+* link:../admin/managing-traffic-classification-policies.html["Gestion des stratégies de classification du trafic"]
+* link:../admin/configure-vlan-interfaces.html["Configuration des interfaces VLAN"]
+
+
+
+
+=== Tâches de sécurité
+
+Les tâches de sécurité comprennent :
+
+* link:../admin/using-storagegrid-security-certificates.html["Gestion des certificats de sécurité"]
+* link:../admin/manage-firewall-controls.html["Gestion des contrôles de pare-feu internes"]
+* link:../admin/kms-configuring.html["Configuration des serveurs de gestion des clés"]
+* Configuration des paramètres de sécurité, y compris les link:../admin/manage-tls-ssh-policy.html["Règles TLS et SSH"], link:../admin/changing-network-options-object-encryption.html["options de sécurité du réseau et des objets"]et link:../admin/changing-browser-session-timeout-interface.html["paramètres de sécurité de l'interface"].
+* Configuration des paramètres d'un link:../admin/configuring-storage-proxy-settings.html["proxy de stockage"] ou d'un link:../admin/configuring-admin-proxy-settings.html["proxy d'administration"]
+
+
+
+
+=== Tâches système
+
+Les tâches système incluent :
+
+* Utilisation link:../admin/grid-federation-overview.html["fédération des grilles"] pour cloner les informations de compte de locataire et répliquer les données d'objet entre deux systèmes StorageGRID.
+* Éventuellement, activation de l'link:../admin/configuring-stored-object-compression.html["Compresser les objets stockés"]option.
+* link:../ilm/managing-objects-with-s3-object-lock.html["Gestion du verrouillage d'objet S3"]
+* Présentation des options de stockage telles que link:../admin/what-object-segmentation-is.html["segmentation d'objet"] et link:../admin/what-storage-volume-watermarks-are.html["filigranes de volume de stockage"].
+* link:../ilm/manage-erasure-coding-profiles.html["Gestion des profils de code d'effacement"].
+
+
+
+
+=== Tâches de surveillance
+
+Les tâches de surveillance incluent :
+
+* link:../monitor/configure-audit-messages.html["Configuration des messages d'audit et des destinations des journaux"]
+* link:../monitor/using-snmp-monitoring.html["Utilisation de la surveillance SNMP"]
+
+
+
+
+=== Tâches de contrôle d'accès
+
+Les tâches de contrôle d'accès comprennent :
+
+* link:../admin/managing-admin-groups.html["Gestion des groupes d'administration"]
+* link:../admin/managing-users.html["Gestion des utilisateurs admin"]
+* Modification du link:../admin/changing-provisioning-passphrase.html["phrase secrète de provisionnement"]ou link:../admin/change-node-console-password.html["mots de passe de la console de nœuds"]
+* link:../admin/using-identity-federation.html["Utilisation de la fédération des identités"]
+* link:../admin/configuring-sso.html["Configuration de SSO"]
+
+
+
+
+== Menu Maintenance
+
+Le menu Maintenance vous permet d'effectuer des tâches de maintenance, de maintenance du système et de maintenance du réseau.
+
+
+
+=== Tâches
+
+Les tâches de maintenance sont les suivantes :
+
+* link:../maintain/decommission-procedure.html["Désaffectation des opérations"] pour supprimer les sites et les nœuds de grille inutilisés
+* link:../expand/index.html["Opérations d'extension"] pour ajouter de nouveaux nœuds et sites de grille
+* link:../maintain/warnings-and-considerations-for-grid-node-recovery.html["Procédures de restauration des nœuds de la grille"] pour remplacer un nœud défaillant et restaurer les données
+* link:../maintain/rename-grid-site-node-overview.html["Renommer les procédures"] pour modifier les noms d'affichage de votre grille, de vos sites et de vos nœuds
+* link:../troubleshoot/verifying-object-integrity.html["Opérations de vérification de l'existence des objets"] pour vérifier l'existence (bien que ce ne soit pas l'exactitude) des données d'objet
+* Exécution d'une link:../maintain/rolling-reboot-procedure.html["redémarrage en continu"] pour redémarrer plusieurs nœuds de grille
+* link:../maintain/restoring-volume.html["Opérations de restauration de volumes"]
+
+
+
+
+=== Système
+
+Les tâches de maintenance du système que vous pouvez effectuer sont les suivantes :
+
+* link:../admin/viewing-storagegrid-license-information.html["Affichage des informations de licence StorageGRID"] ou link:../admin/updating-storagegrid-license-information.html["mise à jour des informations de licence"]
+* Génération et téléchargement du link:../maintain/downloading-recovery-package.html["Package de restauration"]
+* Effectuer des mises à jour logicielles StorageGRID, y compris des mises à niveau logicielles, des correctifs et des mises à jour du logiciel SANtricity OS sur des appliances sélectionnées
++
+** link:../upgrade/index.html["Procédure de mise à jour"]
+** link:../maintain/storagegrid-hotfix-procedure.html["Procédure de correctif"]
+** https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg6000.html["Mise à niveau du système d'exploitation SANtricity sur les contrôleurs de stockage SG6000 à l'aide du gestionnaire de grid"^]
+** https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg5700.html["Mise à niveau du système d'exploitation SANtricity sur les contrôleurs de stockage SG5700 à l'aide du gestionnaire de grid"^]
+
+
+
+
+
+
+=== Le réseau
+
+Les tâches de maintenance réseau que vous pouvez effectuer sont les suivantes :
+
+* link:../maintain/configuring-dns-servers.html["Configuration des serveurs DNS"]
+* link:../maintain/updating-subnets-for-grid-network.html["Mise à jour des sous-réseaux réseau de la grille"]
+* link:../maintain/configuring-ntp-servers.html["Gestion des serveurs NTP"]
+
+
+
+
+== Menu support
+
+Le menu support fournit des options qui vous aident à analyser et à dépanner votre système.
+
+
+
+=== Outils
+
+À partir de la section Outils du menu support, vous pouvez :
+
+* link:../admin/configure-autosupport-grid-manager.html["Configurez AutoSupport"]
+* link:../monitor/running-diagnostics.html["Exécuter les diagnostics"] sur l'état actuel de la grille
+* link:../monitor/viewing-grid-topology-tree.html["Accédez à l'arborescence topologie de la grille"] pour afficher des informations détaillées sur les nœuds de grille, les services et les attributs
+* link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]
+* link:../monitor/reviewing-support-metrics.html["Examinez les metrics de support"]
++
+
+NOTE: Les outils disponibles dans l'option *Metrics* sont destinés à être utilisés par le support technique. Certaines fonctions et options de menu de ces outils ne sont intentionnellement pas fonctionnelles.
+
+
+
+
+
+=== Alarmes (existantes)
+
+Les informations relatives aux alarmes héritées ont été supprimées de cette version de la documentation. Reportez-vous à la https://docs.netapp.com/us-en/storagegrid-118/monitor/managing-alerts-and-alarms.html["Gestion des alertes et des alarmes (documentation StorageGRID 11.8)"^].
+
+
+
+=== Autre
+
+Dans la section autre du menu support, vous pouvez :
+
+* Gérer link:../admin/manage-link-costs.html["coût du lien"]
+* Afficher les link:../admin/viewing-notification-status-and-queues.html["Système de gestion de réseau (NMS)"] entrées
+* Gérer link:../admin/what-storage-volume-watermarks-are.html["filigranes de stockage"]
+

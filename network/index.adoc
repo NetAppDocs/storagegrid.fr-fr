@@ -1,0 +1,62 @@
+---
+permalink: network/index.html 
+sidebar: sidebar 
+keywords: storagegrid, network, networking, ethernet, subnet, routing 
+summary: 'Utilisez ces instructions pour en savoir plus sur l"architecture StorageGRID et les topologies réseau, ainsi que sur les exigences de configuration et de provisionnement réseau.' 
+---
+= Instructions de mise en réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez ces instructions pour en savoir plus sur l'architecture StorageGRID et les topologies réseau, ainsi que sur les exigences de configuration et de provisionnement réseau.
+
+
+
+== À propos de ces instructions
+
+Ces instructions fournissent des informations permettant de créer l'infrastructure réseau StorageGRID avant de déployer et de configurer des nœuds StorageGRID. Utilisez ces directives pour vous assurer que la communication peut se produire entre tous les nœuds de la grille et entre la grille et les clients et services externes.
+
+Les clients externes et les services externes doivent se connecter aux réseaux StorageGRID pour exécuter les fonctions suivantes :
+
+* Le stockage et la récupération des données d'objet
+* Recevoir des notifications par e-mail
+* Accès à l'interface de gestion StorageGRID (Grid Manager et tenant Manager)
+* Accéder au partage d'audit (facultatif)
+* Fournir des services tels que :
++
+** NTP (Network Time Protocol)
+** Système de noms de domaine (DNS)
+** Serveur de gestion des clés (KMS)
+
+
+
+
+Le réseau StorageGRID doit être configuré de manière appropriée pour gérer le trafic pour ces fonctions, et bien plus encore.
+
+
+
+== Avant de commencer
+
+La configuration de la mise en réseau d'un système StorageGRID nécessite un haut niveau d'expérience en matière de commutation Ethernet, de mise en réseau TCP/IP, de sous-réseaux, de routage réseau et de pare-feu.
+
+Avant de configurer la mise en réseau, familiarisez-vous avec l'architecture StorageGRID comme décrit dans link:../primer/index.html["Découvrez StorageGRID"].
+
+Après avoir déterminé les réseaux StorageGRID que vous souhaitez utiliser et la façon dont ces réseaux seront configurés, vous pouvez installer et configurer les nœuds StorageGRID en suivant les instructions appropriées.
+
+.Installez les nœuds d'appliance
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Installez le matériel de l'appliance"^]
+
+
+.Installation des nœuds basés sur logiciel
+* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+* link:../vmware/index.html["Installez StorageGRID sur VMware"]
+
+
+.Configuration et administration du logiciel StorageGRID
+* link:../admin/index.html["Administrer StorageGRID"]
+* link:../release-notes/index.html["Notes de mise à jour"]
+

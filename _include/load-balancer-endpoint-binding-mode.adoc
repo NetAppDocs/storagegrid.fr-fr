@@ -1,0 +1,40 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,3a"]
+|===
+| Mode | Description 
+
+
+ a| 
+Global (par défaut)
+ a| 
+Les clients peuvent accéder au point final en utilisant l'adresse IP de n'importe quel nœud de passerelle ou nœud d'administration, l'adresse IP virtuelle (VIP) de n'importe quel groupe haute disponibilité sur n'importe quel réseau, ou un FQDN correspondant.
+
+Utilisez le paramètre *Global* (valeur par défaut) sauf si vous devez restreindre l'accessibilité de ce point final.
+
+
+
+ a| 
+Adresses IP virtuelles de groupes haute disponibilité
+ a| 
+Les clients doivent utiliser une adresse IP virtuelle (ou le nom de domaine complet correspondant) d'un groupe haute disponibilité pour accéder à ce point final.
+
+Les terminaux associés à ce mode de liaison peuvent tous utiliser le même numéro de port, tant que les groupes haute disponibilité que vous sélectionnez pour les terminaux ne se chevauchent pas.
+
+
+
+ a| 
+Interfaces de nœuds
+ a| 
+Les clients doivent utiliser les adresses IP (ou les FQDN correspondants) des interfaces de nœud sélectionnées pour accéder à ce noeud final.
+
+
+
+ a| 
+Type de nœud
+ a| 
+En fonction du type de nœud que vous sélectionnez, les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration ou l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud de passerelle pour accéder à ce point final.
+
+|===

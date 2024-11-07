@@ -1,0 +1,406 @@
+---
+permalink: maintain/gathering-required-materials-for-grid-node-recovery.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery, grid node recovery, node recovery 
+summary: 'Avant d"effectuer des procédures de maintenance, vous devez vous assurer que vous disposez des matériaux nécessaires pour récupérer un nœud de grille défaillant.' 
+---
+= Collectez les ressources requises pour la restauration des nœuds du grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'effectuer des procédures de maintenance, vous devez vous assurer que vous disposez des matériaux nécessaires pour récupérer un nœud de grille défaillant.
+
+[cols="1a,2a"]
+|===
+| Élément | Remarques 
+
+
+ a| 
+Archive de l'installation de StorageGRID
+ a| 
+Si vous avez besoin de restaurer un nœud grid, vous devez vous en remettre <<download-and-extract-install-files-recover,Téléchargez les fichiers d'installation de StorageGRID>>à votre plateforme.
+
+*Remarque :* vous n'avez pas besoin de télécharger des fichiers si vous récupérez des volumes de stockage défectueux sur un noeud de stockage.
+
+
+
+ a| 
+L'ordinateur portable de service
+ a| 
+L'ordinateur portable de service doit être équipé des éléments suivants :
+
+* Port réseau
+* Client SSH (par exemple, PuTTY)
+* link:../admin/web-browser-requirements.html["Navigateur Web pris en charge"]
+
+
+
+
+ a| 
+Fichier de package de récupération `.zip`
+ a| 
+Obtenez une copie du fichier de progiciel de récupération le plus récent `.zip` :
+`sgws-recovery-package-_id-revision_.zip`
+
+Le contenu du `.zip` fichier est mis à jour chaque fois que le système est modifié. Vous êtes invité à stocker la version la plus récente du progiciel de restauration dans un emplacement sécurisé après avoir effectué de telles modifications. Utilisez la copie la plus récente pour récupérer des données suite à des défaillances du grid.
+
+Si le nœud d'administration principal fonctionne normalement, vous pouvez télécharger le progiciel de restauration à partir de Grid Manager. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+
+Si vous ne parvenez pas à accéder à Grid Manager, vous pouvez trouver des copies chiffrées du progiciel de récupération sur certains nœuds de stockage qui contiennent le service ADC. Sur chaque nœud de stockage, examinez cet emplacement pour le package de récupération : `/var/local/install/sgws-recovery-package-_grid-id_-_revision_.zip.gpg` utilisez le package de récupération avec le numéro de révision le plus élevé.
+
+
+
+ a| 
+`Passwords.txt` fichier
+ a| 
+Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de restauration.
+
+
+
+ a| 
+Phrase secrète pour le provisionnement
+ a| 
+La phrase de passe est créée et documentée lors de l'installation initiale du système StorageGRID. La phrase de passe de provisionnement ne se trouve pas dans `Passwords.txt` le fichier.
+
+
+
+ a| 
+Documentation actuelle pour votre plate-forme
+ a| 
+Rendez-vous sur le site Web du fournisseur de la plate-forme pour obtenir de la documentation.
+
+Pour connaître les versions de votre plate-forme actuellement prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^].
+
+|===
+
+
+== Téléchargez et extrayez les fichiers d'installation StorageGRID
+
+.[[download-and-extract-install-files-recover]]
+Téléchargez le logiciel et extrayez les fichiers, sauf si vous êtes link:recovering-from-storage-node-failures.html["Récupération des volumes de stockage défectueux sur un noeud de stockage"].
+
+Vous devez utiliser la version de StorageGRID en cours d'exécution sur la grille.
+
+.Étapes
+. Déterminez quelle version du logiciel est actuellement installée. Dans la partie supérieure du Gestionnaire de grille, sélectionnez l'icône d'aide et sélectionnez *About*.
+. Accédez à la https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Page de téléchargements NetApp pour StorageGRID"^].
+. Sélectionnez la version de StorageGRID en cours d'exécution sur la grille.
++
+Les versions du logiciel StorageGRID ont ce format : `11.x.y`.
+
+. Connectez-vous avec le nom d'utilisateur et le mot de passe de votre compte NetApp.
+. Lisez le contrat de licence de l'utilisateur final, cochez la case, puis sélectionnez *accepter et continuer*.
+. Dans la colonne *Install StorageGRID* de la page de téléchargement, sélectionnez le `.tgz` fichier ou `.zip` pour votre plate-forme.
++
+La version affichée dans le fichier d'archive d'installation doit correspondre à la version du logiciel actuellement installé.
+
++
+Utilisez le `.zip` fichier si vous exécutez Windows.
+
++
+[cols="1a,2a"]
+|===
+| Plateforme | Archive d'installation 
+
+
+ a| 
+Red Hat Enterprise Linux
+| `StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz` 
+
+
+ a| 
+Ubuntu ou Debian ou Appliances
+| `StorageGRID-Webscale-_version_-DEB-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.tgz` 
+
+
+ a| 
+VMware
+| `StorageGRID-Webscale-_version_-VMware-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-VMware-_uniqueID_.tgz` 
+|===
+. Téléchargez et extrayez le fichier d'archive.
+. Suivez l'étape appropriée pour votre plate-forme afin de choisir les fichiers dont vous avez besoin, en fonction de votre plate-forme et des nœuds de grille que vous devez récupérer.
++
+Les chemins répertoriés dans l'étape pour chaque plate-forme sont relatifs au répertoire de niveau supérieur installé par le fichier d'archive.
+
+. Si vous récupérez un link:../rhel/index.html["Système Red Hat Enterprise Linux"], sélectionnez les fichiers appropriés.
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./rpms/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./rpms/NLF000000.txt  a| 
+Licence gratuite qui ne fournit aucun droit d'assistance pour le produit.
+
+
+
+| ./rpms/StorageGRID-Webscale-Images-_version_-SHA.rpm  a| 
+Progiciel RPM pour l'installation des images de nœud StorageGRID sur vos hôtes RHEL.
+
+
+
+| ./rpms/StorageGRID-Webscale-Service-_version_-SHA.rpm  a| 
+Progiciel RPM pour l'installation du service hôte StorageGRID sur vos hôtes RHEL.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./rpms/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./rpms/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./rpms/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./rpms/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API Grid Management lorsque l'authentification unique est activée. Vous pouvez également utiliser ce script pour l'intégration de Ping Federate.
+
+
+
+| ./rpms/configure-storagegrid.blank.json  a| 
+Fichier de configuration vide à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./rpms/extras/ansible  a| 
+Exemple de rôle Ansible et de manuel de vente pour la configuration des hôtes RHEL pour le déploiement de conteneurs StorageGRID. Vous pouvez personnaliser le rôle ou le PlayBook selon vos besoins.
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le script Python associé `storagegrid-ssoauth-azure.py` pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./rpms/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===
+. Si vous récupérez un link:../ubuntu/index.html["Système Ubuntu ou Debian"], sélectionnez les fichiers appropriés.
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./bps/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./Debian/NLF000000.txt  a| 
+Un fichier de licence NetApp hors production que vous pouvez utiliser pour tester et réaliser des démonstrations de faisabilité.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb  a| 
+DEB paquet pour installer les images de noeud StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Somme de contrôle MD5 pour le fichier `/debs/storagegrid-webscale-images-version-SHA.deb`.
+
+
+
+| ./Debian/storagegrid-webscale-service-version-SHA.deb  a| 
+Paquet DEB pour l'installation du service hôte StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./debian/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./debian/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./debian/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API Grid Management lorsque l'authentification unique est activée. Vous pouvez également utiliser ce script pour l'intégration de Ping Federate.
+
+
+
+| ./deps/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./deps/configure-storagegrid.blank.json  a| 
+Fichier de configuration vide à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./deps/extras/ansible  a| 
+Exemple de rôle et de manuel de vente Ansible pour la configuration des hôtes Ubuntu ou Debian pour le déploiement de conteneurs StorageGRID. Vous pouvez personnaliser le rôle ou le PlayBook selon vos besoins.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le script Python associé `storagegrid-ssoauth-azure.py` pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./débits/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===
+. Si vous récupérez un link:../vmware/index.html["Système VMware"], sélectionnez les fichiers appropriés.
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./vsphere/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./vsphere/NLF000000.txt  a| 
+Licence gratuite qui ne fournit aucun droit d'assistance pour le produit.
+
+
+
+| ./vsphere/NetApp-SG-version-SHA.vmdk  a| 
+Fichier de disque de machine virtuelle utilisé comme modèle pour créer des machines virtuelles de nœud de grille.
+
+
+
+| ./vsphere/vsphere-primary-admin.ovf ./vsphere/vsphere-primary-admin.mf  a| 
+Le fichier modèle Open Virtualization format (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement du nœud d'administration principal.
+
+
+
+| ./vsphere/vsphere-non-primary-admin.ovf ./vsphere/vsphere-non-primary-admin.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement de nœuds Admin non primaires.
+
+
+
+| ./vsphere/vsphere-gateway.ovf ./vsphere/vsphere-gateway.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement des nœuds de passerelle.
+
+
+
+| ./vsphere/vsphere-storage.ovf ./vsphere/vsphere-storage.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement des nœuds de stockage basés sur des machines virtuelles.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
+Script de shell de Bash utilisé pour automatiser le déploiement de nœuds de grille virtuels.
+
+
+
+| ./vsphere/deploy-vsphere-ovftool-sample.ini  a| 
+Exemple de fichier de configuration à utiliser avec le `deploy-vsphere-ovftool.sh` script.
+
+
+
+| ./vsphere/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./vsphere/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./vsphere/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée. Vous pouvez également utiliser ce script pour l'intégration de Ping Federate.
+
+
+
+| ./vsphere/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./vsphere/configure-storagegrid.blank.json  a| 
+Fichier de configuration vide à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le script Python associé `storagegrid-ssoauth-azure.py` pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./vsphere/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===
+. Si vous récupérez un système basé sur l'appliance StorageGRID, sélectionnez les fichiers appropriés.
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb  a| 
+DEB package pour l'installation des images de noeud StorageGRID sur vos appareils.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Somme de contrôle MD5 pour le fichier `/debs/storagegridwebscale-
+images-version-SHA.deb`.
+
+|===
+
+NOTE: Pour l'installation de l'appliance, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau. L'appliance peut télécharger les fichiers requis à partir du nœud d'administration principal.

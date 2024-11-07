@@ -1,0 +1,27 @@
+---
+permalink: primer/retrieve-data-flow.html 
+sidebar: sidebar 
+keywords: object data, retrieve 
+summary: 'Une opération de récupération se compose d"un flux de données défini entre le système StorageGRID et le client. Le système utilise des attributs pour suivre l"extraction de l"objet à partir d"un nœud de stockage ou, si nécessaire, d"un pool de stockage cloud.' 
+---
+= Récupérer le flux de données
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une opération de récupération se compose d'un flux de données défini entre le système StorageGRID et le client. Le système utilise des attributs pour suivre l'extraction de l'objet à partir d'un nœud de stockage ou, si nécessaire, d'un pool de stockage cloud.
+
+Le service LDR du nœud de stockage interroge le magasin de métadonnées afin d'obtenir l'emplacement des données d'objet et les récupère à partir du service LDR source. De préférence, la récupération se fait à partir d'un nœud de stockage. Si l'objet n'est pas disponible sur un nœud de stockage, la demande de récupération est dirigée vers un pool de stockage cloud.
+
+
+NOTE: Si la seule copie d'objet se trouve sur le stockage AWS Glacier ou sur le niveau Azure Archive, l'application client doit émettre une requête S3 RestoreObject pour restaurer une copie récupérable vers le pool de stockage cloud.
+
+image::../media/retrieve_data_flow.png[Récupérer]
+
+. Le service LDR reçoit une requête de récupération de l'application cliente.
+. Le service LDR interroge le magasin de métadonnées afin d'obtenir l'emplacement des données et des métadonnées d'objet.
+. Le service LDR transmet la requête de récupération au service LDR source.
+. Le service LDR source renvoie les données d'objet du service LDR interrogé et le système renvoie l'objet à l'application client.
+

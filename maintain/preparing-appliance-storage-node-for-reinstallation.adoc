@@ -1,0 +1,43 @@
+---
+permalink: maintain/preparing-appliance-storage-node-for-reinstallation.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance, reinstallation appliance, reinstall appliance 
+summary: 'Lors de la restauration d"un nœud de stockage d"appliance, vous devez d"abord préparer l"appliance pour la réinstallation du logiciel StorageGRID.' 
+---
+= Préparez le nœud de stockage de l'appliance pour la réinstallation
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lors de la restauration d'un nœud de stockage d'appliance, vous devez d'abord préparer l'appliance pour la réinstallation du logiciel StorageGRID.
+
+.Étapes
+. Connectez-vous au noeud de stockage défaillant :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Préparez le nœud de stockage de l'appliance pour l'installation du logiciel StorageGRID. `sgareinstall`
+. Lorsque vous êtes invité à continuer, entrez : `y`
++
+L'appliance redémarre et votre session SSH se termine. La disponibilité du programme d'installation de l'appliance StorageGRID prend généralement 5 minutes environ, même si dans certains cas, vous devrez attendre jusqu'à 30 minutes.
+
++
+
+CAUTION: N'essayez pas d'accélérer le redémarrage en mettant l'appareil hors tension ou en le réinitialisant autrement. Vous pouvez interrompre les mises à niveau automatiques du BIOS, du contrôleur BMC ou d'autres micrologiciels.
+
++
+Le nœud de stockage de l'appliance StorageGRID est réinitialisé et les données du nœud de stockage ne sont plus accessibles. Les adresses IP configurées pendant le processus d'installation d'origine doivent rester intactes ; cependant, il est recommandé de confirmer cette opération une fois la procédure terminée.
+
++
+Une fois la commande exécutée `sgareinstall`, tous les comptes, mots de passe et clés SSH provisionnés par StorageGRID sont supprimés et de nouvelles clés hôte sont générées.
+
+

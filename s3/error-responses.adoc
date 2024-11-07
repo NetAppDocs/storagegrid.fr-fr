@@ -1,0 +1,378 @@
+---
+permalink: s3/error-responses.html 
+sidebar: sidebar 
+keywords: error, error responses 
+summary: 'Le système StorageGRID prend en charge toutes les réponses d"erreur de l"API REST S3 standard qui s"appliquent. En outre, l"implémentation de StorageGRID ajoute plusieurs réponses personnalisées.' 
+---
+= Réponses d'erreur
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le système StorageGRID prend en charge toutes les réponses d'erreur de l'API REST S3 standard qui s'appliquent. En outre, l'implémentation de StorageGRID ajoute plusieurs réponses personnalisées.
+
+
+
+== Codes d'erreur de l'API S3 pris en charge
+
+[cols="1a,1a"]
+|===
+| Nom | Statut HTTP 
+
+
+ a| 
+AccessDenied
+ a| 
+403 interdit
+
+
+
+ a| 
+BadDigest
+ a| 
+400 demande erronée
+
+
+
+ a| 
+BucketAlreadyExists
+ a| 
+409 conflit
+
+
+
+ a| 
+BucketNotEmpty
+ a| 
+409 conflit
+
+
+
+ a| 
+Corps entier
+ a| 
+400 demande erronée
+
+
+
+ a| 
+Erreur interne
+ a| 
+500 erreur interne du serveur
+
+
+
+ a| 
+InvalidAccessKeyId
+ a| 
+403 interdit
+
+
+
+ a| 
+Invalides
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidBucketName
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidBucketState
+ a| 
+409 conflit
+
+
+
+ a| 
+InvalidDigest
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidEncryptionAlgorithmError
+ a| 
+400 demande erronée
+
+
+
+ a| 
+Invalidpart
+ a| 
+400 demande erronée
+
+
+
+ a| 
+Ordre de pièce InvalidPartOrder
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidRange
+ a| 
+416 Plage demandée non satisfiable
+
+
+
+ a| 
+InvalidRequest
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidStorageClass
+ a| 
+400 demande erronée
+
+
+
+ a| 
+InvalidTag
+ a| 
+400 demande erronée
+
+
+
+ a| 
+URI non valide
+ a| 
+400 demande erronée
+
+
+
+ a| 
+KeyToolong
+ a| 
+400 demande erronée
+
+
+
+ a| 
+MalformedXML
+ a| 
+400 demande erronée
+
+
+
+ a| 
+MetadaTooLarge
+ a| 
+400 demande erronée
+
+
+
+ a| 
+MethodNotAlldue
+ a| 
+405 méthode non autorisée
+
+
+
+ a| 
+MissingContentLength
+ a| 
+411 longueur requise
+
+
+
+ a| 
+Erreur MissingestBodyError
+ a| 
+400 demande erronée
+
+
+
+ a| 
+En-tête MissinécuritéSent
+ a| 
+400 demande erronée
+
+
+
+ a| 
+NoSuchBucket
+ a| 
+404 introuvable
+
+
+
+ a| 
+NoSuchKey
+ a| 
+404 introuvable
+
+
+
+ a| 
+NoSuchUpload
+ a| 
+404 introuvable
+
+
+
+ a| 
+Note d'implémentation
+ a| 
+501 non mis en œuvre
+
+
+
+ a| 
+NoSuchBucketPolicy
+ a| 
+404 introuvable
+
+
+
+ a| 
+ObjectLockNotConfigurationError
+ a| 
+404 introuvable
+
+
+
+ a| 
+Pré-conditionFailed
+ a| 
+412 Echec de la condition préalable
+
+
+
+ a| 
+RequestTimeTooSkewed
+ a| 
+403 interdit
+
+
+
+ a| 
+Disponibilité des services
+ a| 
+503 Service indisponible
+
+
+
+ a| 
+SignatureDoesNotMatch
+ a| 
+403 interdit
+
+
+
+ a| 
+TooManyseaux
+ a| 
+400 demande erronée
+
+
+
+ a| 
+UserKeyMustBeSpecified
+ a| 
+400 demande erronée
+
+|===
+
+
+== Codes d'erreur personnalisés StorageGRID
+
+[cols="2a,2a,1a"]
+|===
+| Nom | Description | Statut HTTP 
+
+
+ a| 
+XBuckeLifecycleNotAlldue
+ a| 
+La configuration du cycle de vie des compartiments n'est pas autorisée dans un compartiment conforme aux anciennes
+ a| 
+400 demande erronée
+
+
+
+ a| 
+XBuckePolicyParseException
+ a| 
+Impossible d'analyser la politique de compartiment JSON.
+ a| 
+400 demande erronée
+
+
+
+ a| 
+XComplanceConflitt
+ a| 
+Opération refusée en raison des paramètres de conformité hérités.
+ a| 
+403 interdit
+
+
+
+ a| 
+XComplanceReduceRAIDForbidden
+ a| 
+La réduction de la redondance est interdite dans le compartiment conforme aux réglementations existantes
+ a| 
+400 demande erronée
+
+
+
+ a| 
+XMaxBucketPolicyLengthExcediédé
+ a| 
+Votre politique dépasse la longueur maximale autorisée pour la règle de gestion des compartiments.
+ a| 
+400 demande erronée
+
+
+
+ a| 
+XMissingInternalRequestHeader
+ a| 
+En-tête d'une demande interne manquant.
+ a| 
+400 demande erronée
+
+
+
+ a| 
+XNoSuchBucketCompliance
+ a| 
+La conformité héritée n'est pas activée dans le compartiment spécifié.
+ a| 
+404 introuvable
+
+
+
+ a| 
+XNotAcceptable
+ a| 
+La demande contient un ou plusieurs en-têtes Accept qui n'ont pas pu être satisfaits.
+ a| 
+406 non acceptable
+
+
+
+ a| 
+XNotImplementation
+ a| 
+La demande que vous avez fournie implique une fonctionnalité qui n'est pas implémentée.
+ a| 
+501 non mis en œuvre
+
+|===

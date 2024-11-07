@@ -1,0 +1,553 @@
+---
+permalink: admin/configuring-load-balancer-endpoints.html 
+sidebar: sidebar 
+keywords: how to configure load balancer endpoint, how to attach certificate to load balancer endpoint 
+summary: 'Les terminaux d"équilibrage de la charge déterminent les ports et les protocoles réseau que les clients S3 peuvent utiliser lors de la connexion à l"équilibreur de charge StorageGRID sur les nœuds de passerelle et d"administration. Vous pouvez également utiliser des noeuds finaux pour accéder au Gestionnaire de grille, au Gestionnaire de locataires, ou aux deux.' 
+---
+= Configurer les terminaux de l'équilibreur de charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les terminaux d'équilibrage de la charge déterminent les ports et les protocoles réseau que les clients S3 peuvent utiliser lors de la connexion à l'équilibreur de charge StorageGRID sur les nœuds de passerelle et d'administration. Vous pouvez également utiliser des noeuds finaux pour accéder au Gestionnaire de grille, au Gestionnaire de locataires, ou aux deux.
+
+
+TIP: Les détails SWIFT ont été supprimés de cette version du site doc. Voir https://docs.netapp.com/us-en/storagegrid-118/admin/configuring-client-connections.html["Configurez les connexions des clients S3 et Swift"^].
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous avez examiné le link:managing-load-balancing.html["considérations relatives à l'équilibrage de charge"].
+* Si vous avez précédemment remappé un port que vous prévoyez d'utiliser pour le noeud final de l'équilibreur de charge, vous avez link:../maintain/removing-port-remaps.html["retirez le schéma de câblage des ports - effectué"].
+* Vous avez créé tous les groupes à haute disponibilité (HA) que vous prévoyez d'utiliser. Les groupes HAUTE DISPONIBILITÉ sont recommandés, mais pas obligatoires. Voir link:managing-high-availability-groups.html["Gérez les groupes haute disponibilité"].
+* Si le noeud final de l'équilibreur de charge sera utilisé par link:../admin/manage-s3-select-for-tenant-accounts.html["Locataires S3 pour S3 Select"], il ne doit pas utiliser les adresses IP ou les FQDN des nœuds sans système d'exploitation. Seules les appliances de services et les nœuds logiciels basés sur VMware sont autorisés pour les terminaux d'équilibrage de charge utilisés pour S3 Select.
+* Vous avez configuré toutes les interfaces VLAN que vous prévoyez d'utiliser. Voir link:configure-vlan-interfaces.html["Configurez les interfaces VLAN"].
+* Si vous créez un noeud final HTTPS (recommandé), vous disposez des informations relatives au certificat de serveur.
++
+
+NOTE: Les modifications apportées à un certificat de point final peuvent prendre jusqu'à 15 minutes pour être appliquées à tous les nœuds.
+
++
+** Pour télécharger un certificat, vous avez besoin du certificat de serveur, de la clé privée de certificat et, éventuellement, d'un bundle CA.
+** Pour générer un certificat, vous devez disposer de tous les noms de domaine et adresses IP que les clients S3 utiliseront pour accéder au terminal. Vous devez également connaître le sujet (Nom unique).
+** Si vous souhaitez utiliser le certificat d'API StorageGRID S3 (qui peut également être utilisé pour les connexions directes aux nœuds de stockage), vous avez déjà remplacé le certificat par défaut par un certificat personnalisé signé par une autorité de certification externe. Voir link:../admin/configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"].
+
+
+
+
+
+
+== Créer un noeud final d'équilibreur de charge
+
+Chaque terminal de l'équilibreur de charge client S3 spécifie un port, un type de client (S3) et un protocole réseau (HTTP ou HTTPS). Les noeuds finaux de l'équilibreur de charge de l'interface de gestion indiquent un port, un type d'interface et un réseau client non fiable.
+
+
+
+=== Accéder à l'assistant
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+. Pour créer un noeud final pour un client S3 ou Swift, sélectionnez l'onglet *S3 ou Swift client*.
+. Pour créer un noeud final permettant d'accéder au Gestionnaire de grille, au Gestionnaire de locataires ou aux deux, sélectionnez l'onglet *interface de gestion*.
+. Sélectionnez *Créer*.
+
+
+
+
+=== Saisissez les détails du point final
+
+.Étapes
+. Sélectionnez les instructions appropriées pour entrer les détails du type de point final que vous souhaitez créer.
+
+
+[role="tabbed-block"]
+====
+.Client S3 ou Swift
+--
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom descriptif du noeud final, qui apparaîtra dans le tableau sur la page noeuds finaux de l'équilibreur de charge.
+
+
+
+ a| 
+Port
+ a| 
+Port StorageGRID que vous souhaitez utiliser pour l'équilibrage de charge. Ce champ est défini par défaut sur 10433 pour le premier noeud final que vous créez, mais vous pouvez entrer n'importe quel port externe inutilisé de 1 à 65535.
+
+Si vous entrez *80* ou *8443*, le noeud final est configuré uniquement sur les noeuds passerelle, sauf si vous avez libéré le port 8443. Vous pouvez ensuite utiliser le port 8443 en tant que terminal S3 et le port sera configuré à la fois sur les nœuds de passerelle et d'administration.
+
+
+
+ a| 
+Type de client
+ a| 
+Type d'application client qui utilisera ce noeud final, *S3* ou *Swift*.
+
+
+
+ a| 
+Protocole réseau
+ a| 
+Protocole réseau utilisé par les clients lors de la connexion à ce noeud final.
+
+* Sélectionnez *HTTPS* pour la communication sécurisée et cryptée TLS (recommandé). Vous devez joindre un certificat de sécurité avant de pouvoir enregistrer le noeud final.
+* Sélectionnez *HTTP* pour une communication moins sécurisée et non chiffrée. Utilisez HTTP uniquement pour une grille autre que la production.
+
+
+|===
+--
+.Interface de gestion
+--
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom descriptif du noeud final, qui apparaîtra dans le tableau sur la page noeuds finaux de l'équilibreur de charge.
+
+
+
+ a| 
+Port
+ a| 
+Port StorageGRID que vous souhaitez utiliser pour accéder au Gestionnaire de grille, au Gestionnaire de locataires ou aux deux.
+
+* Gestionnaire de grille : *8443*
+* Gestionnaire de locataires : *9443*
+* Gestionnaire de grille et gestionnaire de locataire : *443*
+
+
+*Remarque* : vous pouvez utiliser ces ports prédéfinis ou d'autres ports disponibles.
+
+
+
+ a| 
+Type d'interface
+ a| 
+Sélectionnez le bouton radio de l'interface StorageGRID à laquelle vous allez accéder à l'aide de ce noeud final.
+
+
+
+ a| 
+Réseau client non fiable
+ a| 
+Sélectionnez *Oui* si ce noeud final doit être accessible aux réseaux clients non approuvés. Sinon, sélectionnez *non*.
+
+Lorsque vous sélectionnez *Oui*, le port est ouvert sur tous les réseaux clients non approuvés.
+
+*Remarque* : vous ne pouvez configurer qu'un port pour qu'il soit ouvert ou fermé aux réseaux clients non approuvés lorsque vous créez le noeud final de l'équilibreur de charge.
+
+|===
+--
+====
+. Sélectionnez *Continuer*.
+
+
+
+
+=== Sélectionnez un mode de reliure
+
+.Étapes
+. Sélectionnez un mode de liaison pour le noeud final afin de contrôler la façon dont le noeud final est accessible à l'aide de n'importe quelle adresse IP ou à l'aide d'adresses IP et d'interfaces réseau spécifiques.
++
+Certains modes de liaison sont disponibles pour les noeuds finaux clients ou les noeuds finaux de l'interface de gestion. Tous les modes pour les deux types de point final sont répertoriés ici.
+
++
+[cols="1a,3a"]
+|===
+| Mode | Description 
+
+
+ a| 
+Global (par défaut pour les noeuds finaux clients)
+ a| 
+Les clients peuvent accéder au point final en utilisant l'adresse IP de n'importe quel nœud de passerelle ou nœud d'administration, l'adresse IP virtuelle (VIP) de n'importe quel groupe haute disponibilité sur n'importe quel réseau, ou un FQDN correspondant.
+
+Utilisez le paramètre *Global* sauf si vous devez restreindre l'accessibilité de ce noeud final.
+
+
+
+ a| 
+Adresses IP virtuelles de groupes haute disponibilité
+ a| 
+Les clients doivent utiliser une adresse IP virtuelle (ou le nom de domaine complet correspondant) d'un groupe haute disponibilité pour accéder à ce point final.
+
+Les terminaux associés à ce mode de liaison peuvent tous utiliser le même numéro de port, tant que les groupes haute disponibilité que vous sélectionnez pour les terminaux ne se chevauchent pas.
+
+
+
+ a| 
+Interfaces de nœuds
+ a| 
+Les clients doivent utiliser les adresses IP (ou les FQDN correspondants) des interfaces de nœud sélectionnées pour accéder à ce noeud final.
+
+
+
+ a| 
+Type de nœud (terminaux client uniquement)
+ a| 
+En fonction du type de nœud que vous sélectionnez, les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration ou l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud de passerelle pour accéder à ce point final.
+
+
+
+ a| 
+Tous les nœuds d'administration (valeur par défaut pour les terminaux de l'interface de gestion)
+ a| 
+Les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration pour accéder à ce point final.
+
+|===
++
+Si plusieurs noeuds finaux utilisent le même port, StorageGRID utilise cet ordre de priorité pour décider quel noeud final utiliser : *adresses IP virtuelles des groupes HA* > *interfaces de noeud* > *Type de noeud* > *Global*.
+
++
+Si vous créez des terminaux d'interface de gestion, seuls les nœuds d'administration sont autorisés.
+
+. Si vous avez sélectionné *IP virtuelles de groupes HA*, sélectionnez un ou plusieurs groupes HA.
++
+Si vous créez des terminaux d'interface de gestion, sélectionnez les VIP associés uniquement aux nœuds d'administration.
+
+. Si vous avez sélectionné *Node interfaces*, sélectionnez une ou plusieurs interfaces de nœud pour chaque noeud d'administration ou nœud de passerelle que vous souhaitez associer à ce noeud final.
+. Si vous avez sélectionné *Type de noeud*, sélectionnez soit noeuds Admin, qui comprend à la fois le noeud Admin principal et tous les noeuds Admin non primaires, soit noeuds Gateway.
+
+
+
+
+=== Contrôle de l'accès des locataires
+
+
+NOTE: Un noeud final de l'interface de gestion ne peut contrôler l'accès des locataires que lorsque le noeud final possède le <<enter-endpoint-details,Type d'interface du gestionnaire de locataires>>.
+
+.Étapes
+. Pour l'étape *tenant Access*, sélectionnez l'une des options suivantes :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Autoriser tous les locataires (par défaut)
+ a| 
+Tous les comptes de locataires peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+Vous devez sélectionner cette option si vous n'avez pas encore créé de compte de locataire. Après avoir ajouté des comptes de locataire, vous pouvez modifier le terminal de l'équilibreur de charge pour autoriser ou bloquer des comptes spécifiques.
+
+
+
+ a| 
+Autoriser les locataires sélectionnés
+ a| 
+Seuls les comptes de locataire sélectionnés peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+
+
+ a| 
+Bloquez les locataires sélectionnés
+ a| 
+Les comptes de locataire sélectionnés ne peuvent pas utiliser ce terminal pour accéder à leurs compartiments. Tous les autres locataires peuvent utiliser ce noeud final.
+
+|===
+. Si vous créez un noeud final *HTTP*, vous n'avez pas besoin de joindre un certificat. Sélectionnez *Créer* pour ajouter le nouveau noeud final de l'équilibreur de charge. Ensuite, passez à <<after-you-finish,Une fois que vous avez terminé>>. Sinon, sélectionnez *Continuer* pour joindre le certificat.
+
+
+
+
+=== Joindre un certificat
+
+.Étapes
+. Si vous créez un noeud final *HTTPS*, sélectionnez le type de certificat de sécurité que vous souhaitez associer au noeud final.
++
+Le certificat sécurise les connexions entre les clients S3 et le service Load Balancer sur un nœud d'administration ou des nœuds de passerelle.
+
++
+** *Télécharger le certificat*. Sélectionnez cette option si vous avez des certificats personnalisés à télécharger.
+** *Générer un certificat*. Sélectionnez cette option si vous avez les valeurs nécessaires pour générer un certificat personnalisé.
+** *Utiliser le certificat StorageGRID S3*. Sélectionnez cette option si vous souhaitez utiliser le certificat d'API S3 global, qui peut également être utilisé pour les connexions directes aux nœuds de stockage.
++
+Vous ne pouvez sélectionner cette option que si vous avez remplacé le certificat d'API S3 par défaut, signé par l'autorité de certification de la grille, par un certificat personnalisé signé par une autorité de certification externe. Voir link:../admin/configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"].
+
+** *Utiliser le certificat d'interface de gestion*. Sélectionnez cette option si vous souhaitez utiliser le certificat de l'interface de gestion globale, qui peut également être utilisé pour les connexions directes aux nœuds d'administration.
+
+
+. Si vous n'utilisez pas le certificat StorageGRID S3, téléchargez ou générez le certificat.
++
+[role="tabbed-block"]
+====
+.Télécharger le certificat
+--
+.. Sélectionnez *Télécharger le certificat*.
+.. Téléchargez les fichiers de certificat de serveur requis :
++
+*** *Certificat de serveur* : fichier de certificat de serveur personnalisé dans le codage PEM.
+*** *Clé privée de certificat* : fichier de clé privée de certificat de serveur personnalisé (`.key`).
++
+
+NOTE: Les clés privées EC doivent être de 224 bits ou plus. Les clés privées RSA doivent être de 2048 bits ou plus.
+
+*** *Paquet CA* : un fichier facultatif unique contenant les certificats de chaque autorité de certification intermédiaire (AC). Le fichier doit contenir chacun des fichiers de certificat d'autorité de certification codés au PEM, concaténés dans l'ordre de la chaîne de certificats.
+
+
+.. Développez *Détails du certificat* pour afficher les métadonnées de chaque certificat que vous avez téléchargé. Si vous avez téléchargé un bundle CA facultatif, chaque certificat s'affiche sur son propre onglet.
++
+*** Sélectionnez *Télécharger le certificat* pour enregistrer le fichier de certificat ou sélectionnez *Télécharger le paquet CA* pour enregistrer le lot de certificats.
++
+Spécifiez le nom du fichier de certificat et l'emplacement de téléchargement. Enregistrez le fichier avec l'extension `.pem`.
+
++
+Par exemple : `storagegrid_certificate.pem`
+
+*** Sélectionnez *Copy certificate PEM* ou *Copy CA bundle PEM* pour copier le contenu du certificat pour le coller ailleurs.
+
+
+.. Sélectionnez *Créer*. + le noeud final de l'équilibreur de charge est créé. Le certificat personnalisé est utilisé pour toutes les nouvelles connexions ultérieures entre les clients S3 ou l'interface de gestion et le terminal.
+
+
+--
+.Générez un certificat
+--
+.. Sélectionnez *générer certificat*.
+.. Spécifiez les informations de certificat :
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom de domaine
+ a| 
+Un ou plusieurs noms de domaine complets à inclure dans le certificat. Utilisez un * comme caractère générique pour représenter plusieurs noms de domaine.
+
+
+
+ a| 
+IP
+ a| 
+Une ou plusieurs adresses IP à inclure dans le certificat.
+
+
+
+ a| 
+Objet (facultatif)
+ a| 
+Objet X.509 ou nom distinctif (DN) du propriétaire du certificat.
+
+Si aucune valeur n'est saisie dans ce champ, le certificat généré utilise le premier nom de domaine ou l'adresse IP comme nom commun de l'objet (CN).
+
+
+
+ a| 
+Jours valides
+ a| 
+Nombre de jours après la création, pendant lesquels le certificat expire.
+
+
+
+ a| 
+Ajouter des extensions d'utilisation de clé
+ a| 
+Si cette option est sélectionnée (par défaut et recommandée), l'utilisation des clés et les extensions d'utilisation des clés étendues sont ajoutées au certificat généré.
+
+Ces extensions définissent l'objectif de la clé contenue dans le certificat.
+
+*Remarque* : ne cochez pas cette case si vous rencontrez des problèmes de connexion avec des clients plus anciens lorsque les certificats incluent ces extensions.
+
+|===
+.. Sélectionnez *generate*.
+.. Sélectionnez *Détails du certificat* pour afficher les métadonnées du certificat généré.
++
+*** Sélectionnez *Télécharger le certificat* pour enregistrer le fichier de certificat.
++
+Spécifiez le nom du fichier de certificat et l'emplacement de téléchargement. Enregistrez le fichier avec l'extension `.pem`.
+
++
+Par exemple : `storagegrid_certificate.pem`
+
+*** Sélectionnez *Copier le certificat PEM* pour copier le contenu du certificat pour le coller ailleurs.
+
+
+.. Sélectionnez *Créer*.
++
+Le noeud final de l'équilibreur de charge est créé. Le certificat personnalisé est utilisé pour toutes les nouvelles connexions ultérieures entre les clients S3 ou l'interface de gestion et ce terminal.
+
+
+
+--
+====
+
+
+
+
+=== Une fois que vous avez terminé
+
+.Étapes
+. Si vous utilisez un DNS, assurez-vous que le DNS inclut un enregistrement pour associer le nom de domaine complet (FQDN) StorageGRID à chaque adresse IP que les clients utiliseront pour établir des connexions.
++
+L'adresse IP que vous entrez dans l'enregistrement DNS dépend de l'utilisation ou non d'un groupe HA de nœuds d'équilibrage de la charge :
+
++
+** Si vous avez configuré un groupe haute disponibilité, les clients se connectent aux adresses IP virtuelles de ce groupe haute disponibilité.
+** Si vous n'utilisez pas de groupe haute disponibilité, les clients se connectent au service StorageGRID Load Balancer à l'aide de l'adresse IP d'un nœud de passerelle ou d'un nœud d'administration.
++
+Vous devez également vous assurer que l'enregistrement DNS référence tous les noms de domaine de point final requis, y compris les noms de caractères génériques.
+
+
+
+. Fournir aux clients S3 les informations nécessaires pour se connecter au terminal :
++
+** Numéro de port
+** Nom de domaine ou adresse IP complet
+** Tous les détails de certificat requis
+
+
+
+
+
+
+== Afficher et modifier les points finaux de l'équilibreur de charge
+
+Vous pouvez afficher les détails des noeuds finaux existants de l'équilibreur de charge, y compris les métadonnées de certificat d'un noeud final sécurisé. Vous pouvez modifier certains paramètres pour un point final.
+
+* Pour afficher les informations de base de tous les noeuds finaux de l'équilibreur de charge, consultez les tableaux de la page noeuds finaux de l'équilibreur de charge.
+* Pour afficher tous les détails sur un noeud final spécifique, y compris les métadonnées du certificat, sélectionnez le nom du noeud final dans le tableau. Les informations affichées varient en fonction du type de noeud final et de sa configuration.
++
+image::../media/load_balancer_endpoint_details.png[Détails du terminal de l'équilibreur de charge]
+
+* Pour modifier un noeud final, utilisez le menu *actions* de la page noeuds finaux du répartiteur de charge.
++
+
+NOTE: Si vous perdez l'accès à Grid Manager lors de la modification du port d'un noeud final d'interface de gestion, mettez à jour l'URL et le port pour rétablir l'accès.
+
++
+
+TIP: Après avoir modifié un noeud final, vous devrez peut-être attendre jusqu'à 15 minutes que vos modifications soient appliquées à tous les noeuds.
+
++
+[cols="1a, 2a,2a"]
+|===
+| Tâche | Menu actions | Page de détails 
+
+
+ a| 
+Modifier le nom du point final
+ a| 
+.. Cochez la case du point final.
+.. Sélectionnez *actions* > *Modifier le nom du point final*.
+.. Saisissez le nouveau nom.
+.. Sélectionnez *Enregistrer*.
+
+ a| 
+.. Sélectionnez le nom du noeud final pour afficher les détails.
+.. Sélectionnez l'icône Modifier image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Saisissez le nouveau nom.
+.. Sélectionnez *Enregistrer*.
+
+
+
+
+ a| 
+Modifier le port du point final
+ a| 
+.. Cochez la case du point final.
+.. Sélectionnez *actions* > *Modifier le port de point final*
+.. Entrez un numéro de port valide.
+.. Sélectionnez *Enregistrer*.
+
+ a| 
+_n/a_
+
+
+
+ a| 
+Modifier le mode de liaison du point final
+ a| 
+.. Cochez la case du point final.
+.. Sélectionnez *actions* > *Modifier le mode de liaison du point final*.
+.. Mettez à jour le mode de liaison si nécessaire.
+.. Sélectionnez *Enregistrer les modifications*.
+
+ a| 
+.. Sélectionnez le nom du noeud final pour afficher les détails.
+.. Sélectionnez *Modifier le mode de liaison*.
+.. Mettez à jour le mode de liaison si nécessaire.
+.. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+ a| 
+Modifier le certificat de point final
+ a| 
+.. Cochez la case du point final.
+.. Sélectionnez *actions* > *Modifier le certificat de point final*.
+.. Chargez ou générez un nouveau certificat personnalisé ou commencez à utiliser le certificat S3 global, si nécessaire.
+.. Sélectionnez *Enregistrer les modifications*.
+
+ a| 
+.. Sélectionnez le nom du noeud final pour afficher les détails.
+.. Sélectionnez l'onglet *certificat*.
+.. Sélectionnez *Modifier le certificat*.
+.. Chargez ou générez un nouveau certificat personnalisé ou commencez à utiliser le certificat S3 global, si nécessaire.
+.. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+ a| 
+Modifier l'accès du locataire
+ a| 
+.. Cochez la case du point final.
+.. Sélectionnez *actions* > *Modifier l'accès locataire*.
+.. Choisissez une autre option d'accès, sélectionnez ou supprimez des locataires de la liste, ou effectuez les deux.
+.. Sélectionnez *Enregistrer les modifications*.
+
+ a| 
+.. Sélectionnez le nom du noeud final pour afficher les détails.
+.. Sélectionnez l'onglet *tenant Access*.
+.. Sélectionnez *Modifier l'accès locataire*.
+.. Choisissez une autre option d'accès, sélectionnez ou supprimez des locataires de la liste, ou effectuez les deux.
+.. Sélectionnez *Enregistrer les modifications*.
+
+
+|===
+
+
+
+
+== Supprimez les points finaux de l'équilibreur de charge
+
+Vous pouvez supprimer un ou plusieurs noeuds finaux à l'aide du menu *actions*, ou vous pouvez supprimer un seul noeud final de la page de détails.
+
+
+CAUTION: Pour éviter toute interruption de service, mettez à jour toutes les applications client S3 affectées avant de supprimer un terminal d'équilibrage de la charge. Mettez à jour chaque client pour vous connecter à l'aide d'un port attribué à un autre noeud final de l'équilibreur de charge. Assurez-vous également de mettre à jour les informations de certificat requises.
+
+
+NOTE: Si vous perdez l'accès à Grid Manager lors de la suppression d'un noeud final d'interface de gestion, mettez l'URL à jour.
+
+* Pour supprimer un ou plusieurs noeuds finaux :
++
+.. Sur la page équilibreur de charge, cochez la case correspondant à chaque noeud final à supprimer.
+.. Sélectionnez *actions* > *Supprimer*.
+.. Sélectionnez *OK*.
+
+
+* Pour supprimer un noeud final de la page de détails :
++
+.. Dans la page équilibreur de charge, sélectionnez le nom du noeud final.
+.. Sélectionnez *Supprimer* sur la page de détails.
+.. Sélectionnez *OK*.
+
+
+

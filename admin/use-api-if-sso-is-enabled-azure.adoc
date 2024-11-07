@@ -1,0 +1,74 @@
+---
+permalink: admin/use-api-if-sso-is-enabled-azure.html 
+sidebar: sidebar 
+keywords: how to access storagegrid API if SSO is enabled with Azure 
+summary: 'Si vous avez configuré et activé la connexion unique (SSO) et que vous utilisez Azure comme fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d"authentification valide pour l"API Grid Management ou l"API de gestion des locataires.' 
+---
+= Utiliser l'API si l'authentification unique est activée (Azure)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous link:../admin/configuring-sso.html["Authentification unique (SSO) configurée et activée"]utilisez et que vous utilisez Azure en tant que fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d'authentification valide pour l'API de gestion du grid ou l'API de gestion des locataires.
+
+
+
+== Connectez-vous à l'API si l'authentification unique Azure est activée
+
+Ces instructions s'appliquent si vous utilisez Azure comme fournisseur d'identité SSO
+
+.Avant de commencer
+* Vous connaissez l'adresse e-mail SSO et le mot de passe d'un utilisateur fédéré appartenant à un groupe d'utilisateurs StorageGRID.
+* Pour accéder à l'API de gestion des locataires, vous connaissez l'ID du compte locataire.
+
+
+.Description de la tâche
+Pour obtenir un jeton d'authentification, vous pouvez utiliser les exemples de scripts suivants :
+
+* Le `storagegrid-ssoauth-azure.py` script Python
+*  `storagegrid-ssoauth-azure.js`Script Node.js
+
+
+Les deux scripts se trouvent dans le répertoire des fichiers d'installation StorageGRID (`./rpms`pour Red Hat Enterprise Linux, `./debs` Ubuntu ou Debian et `./vsphere` VMware).
+
+Pour écrire votre propre intégration d'API avec Azure, consultez le `storagegrid-ssoauth-azure.py` script. Le script Python fait deux requêtes directement à StorageGRID (d'abord pour obtenir la SAMLRequest et plus tard pour obtenir le jeton d'autorisation), et appelle également le script Node.js pour interagir avec Azure afin d'effectuer les opérations SSO.
+
+Les opérations SSO peuvent être exécutées à l'aide d'une série de requêtes d'API, mais cette opération n'est pas simple. Le module Puppeteer Node.js est utilisé pour gratter l'interface SSO Azure.
+
+Si vous avez un problème de codage d'URL, vous pouvez voir l'erreur : `Unsupported SAML version`.
+
+.Étapes
+. Installez les dépendances requises comme suit :
++
+.. Installez Node.js (voir https://nodejs.org/en/download/["https://nodejs.org/en/download/"^]).
+.. Installez les modules Node.js requis (maripeteer et jsdom) :
++
+`npm install -g <module>`
+
+
+
+. Passez le script Python à l'interpréteur Python pour exécuter le script.
++
+Le script Python appelle ensuite le script Node.js correspondant pour exécuter les interactions SSO Azure.
+
+. Lorsque vous y êtes invité, entrez des valeurs pour les arguments suivants (ou transmettez-les à l'aide de paramètres) :
++
+** Adresse e-mail SSO utilisée pour se connecter à Azure
+** L'adresse de StorageGRID
+** L'ID du compte de locataire, pour accéder à l'API de gestion des locataires
+
+
+. Lorsque vous y êtes invité, saisissez le mot de passe et préparez-vous à fournir une autorisation MFA à Azure si nécessaire.
++
+image::../media/sso_api_password_mfa.png[Invite de saisie du mot de passe et de l'authentification multifacteur]
+
++
+
+NOTE: Le script suppose que l'authentification multifacteur est effectuée à l'aide de l'authentificateur Microsoft. Vous devrez peut-être modifier le script pour prendre en charge d'autres formes de MFA (comme la saisie d'un code reçu dans un message texte).
+
++
+Le jeton d'autorisation StorageGRID est fourni dans la sortie. Vous pouvez maintenant utiliser le token pour d'autres requêtes, de la même manière que vous utilisiez l'API si SSO n'était pas utilisé.
+
+

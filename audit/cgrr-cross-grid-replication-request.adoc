@@ -1,0 +1,98 @@
+---
+permalink: audit/cgrr-cross-grid-replication-request.html 
+sidebar: sidebar 
+keywords: cgrr, cross-grid replication request, audit message, 
+summary: Ce message est généré lorsque StorageGRID tente une opération de réplication multigrille pour répliquer des objets entre des compartiments dans une connexion de fédération de grille. 
+---
+= CGRR : demande de réplication croisée
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque StorageGRID tente une opération de réplication multigrille pour répliquer des objets entre des compartiments dans une connexion de fédération de grille.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CSIZ
+ a| 
+Taille de l'objet
+ a| 
+Taille de l'objet en octets.
+
+L'attribut CSIZ a été introduit dans StorageGRID 11.8. Par conséquent, les requêtes de réplication multigrille couvrant une mise à niveau StorageGRID 11.7 à 11.8 peuvent avoir une taille d'objet totale inexacte.
+
+
+
+ a| 
+S3AI
+ a| 
+ID de compte locataire S3
+ a| 
+ID du compte de locataire qui détient le compartiment à partir duquel l'objet est répliqué.
+
+
+
+ a| 
+GFID
+ a| 
+ID de connexion de fédération de grille
+ a| 
+ID de la connexion de fédération de grille utilisée pour la réplication inter-grille.
+
+
+
+ a| 
+OPER
+ a| 
+Opération CGR
+ a| 
+Type d'opération de réplication inter-grille qui a été tentée :
+
+* 0 = objet répliqué
+* 1 = objet multipièce répliqué
+* 2 = marqueur de suppression répliqué
+
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Clé S3
+ a| 
+Le nom de la clé S3 n'inclut pas le nom du compartiment.
+
+
+
+ a| 
+VSID
+ a| 
+ID de version
+ a| 
+ID de version de la version spécifique d'un objet en cours de réplication.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Renvoie réussi (SUCS) ou erreur générale (GERR).
+
+|===

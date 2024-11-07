@@ -1,0 +1,89 @@
+---
+permalink: admin/editing-tenant-account.html 
+sidebar: sidebar 
+keywords: edit tenant account, change tenant name, allow platform services, tenant quota 
+summary: 'Vous pouvez modifier un compte de locataire pour modifier le nom d"affichage, le quota de stockage ou les autorisations de locataire.' 
+---
+= Modifiez le compte de tenant
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez modifier un compte de locataire pour modifier le nom d'affichage, le quota de stockage ou les autorisations de locataire.
+
+
+TIP: Si un locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous pouvez modifier les détails du locataire à partir de l'une des grilles de la connexion. Toutefois, toute modification apportée à une grille dans la connexion ne sera pas copiée dans l'autre grille. Si vous souhaitez que les détails du locataire soient synchronisés exactement entre les grilles, effectuez les mêmes modifications sur les deux grilles. Voir link:grid-federation-manage-tenants.html["Gérez les locataires autorisés pour la connexion de fédération de grille"].
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine ou de comptes de locataires"].
+
+
+
+NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut prendre 15 minutes ou plus en fonction de la connectivité réseau, de l'état du nœud et des opérations Cassandra.
+
+.Étapes
+. Sélectionnez *LOCATAIRES*.
++
+image::../media/tenant_accounts_page.png[Page comptes de tenant]
+
+. Recherchez le compte de locataire à modifier.
++
+Utilisez la zone de recherche pour rechercher un locataire par nom ou ID locataire.
+
+. Sélectionnez le locataire. Vous pouvez effectuer l'une des opérations suivantes :
++
+** Cochez la case du locataire, puis sélectionnez *actions* > *Modifier*.
+** Sélectionnez le nom du locataire pour afficher la page des détails, puis sélectionnez *Modifier*.
+
+
+. Si vous le souhaitez, modifiez les valeurs de ces champs :
++
+** *Nom*
+** *Description*
+** *Quota de stockage*
+
+
+. Sélectionnez *Continuer*.
+. Sélectionnez ou désélectionnez les autorisations pour le compte de tenant.
++
+** Si vous désactivez *Platform Services* pour un locataire qui les utilise déjà, les services qu'ils ont configurés pour leurs compartiments S3 cessent de fonctionner. Aucun message d'erreur n'est envoyé au locataire. Par exemple, si le locataire a configuré la réplication CloudMirror pour un compartiment S3, il peut toujours stocker les objets dans le compartiment, mais les copies de ces objets ne sont plus effectuées dans le compartiment S3 externe qu'ils ont configuré en tant que terminal. Voir link:manage-platform-services-for-tenants.html["Gestion des services de plateforme pour les comptes de locataires S3"].
+** Modifiez le paramètre de *Use own Identity source* pour déterminer si le compte de tenant utilisera son propre référentiel d'identité ou le référentiel d'identité configuré pour le gestionnaire de grille.
++
+Si *utiliser le propre référentiel d'identité* est :
+
++
+*** Désactivé et sélectionné, le locataire a déjà activé son propre référentiel d'identité. Un locataire doit désactiver son référentiel d'identité avant de pouvoir utiliser le référentiel d'identité configuré pour Grid Manager.
+*** Désactivé et non sélectionné, SSO est activé pour le système StorageGRID. Le locataire doit utiliser le référentiel d'identité qui a été configuré pour Grid Manager.
+
+
+** Sélectionnez ou désélectionnez l'autorisation *Autoriser S3 Select* selon les besoins. Voir link:manage-s3-select-for-tenant-accounts.html["Gérez S3 Select pour les comptes de locataires"].
+** Pour supprimer l'autorisation *utiliser la connexion de fédération de grille* :
++
+... Sélectionnez l'onglet *Grid federation*.
+... Sélectionnez *Supprimer l'autorisation*.
+
+
+** Pour ajouter l'autorisation *utiliser la connexion de fédération de grille* :
++
+... Sélectionnez l'onglet *Grid federation*.
+... Cochez la case *utiliser la connexion de fédération de grille*.
+... Si vous le souhaitez, sélectionnez *Cloner les utilisateurs et groupes locaux existants* pour les cloner dans la grille distante. Si vous le souhaitez, vous pouvez arrêter le clonage en cours ou réessayer le clonage si certains utilisateurs ou groupes locaux n'ont pas pu être clonés après la dernière opération de clonage.
+
+
+** Pour définir une période de rétention maximale ou autoriser le mode de conformité :
++
+
+NOTE: Le verrouillage d'objet S3 doit être activé sur la grille pour que vous puissiez utiliser ces paramètres.
+
++
+... Sélectionnez l'onglet *S3 Object Lock*.
+... Pour *définir la période de rétention maximale*, entrez une valeur et sélectionnez la période dans le menu déroulant.
+... Pour *Autoriser le mode de conformité*, cochez la case.
+
+
+
+
+

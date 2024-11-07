@@ -1,0 +1,60 @@
+---
+permalink: expand/contacting-technical-support.html 
+sidebar: sidebar 
+keywords: troubleshoot expansion, contact technical support 
+summary: 'Si vous rencontrez des erreurs pendant le processus d"expansion de grille que vous ne pouvez pas résoudre ou si une tâche de grille échoue, collectez les fichiers journaux et contactez le support technique.' 
+---
+= Résolution des problèmes d'extension
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous rencontrez des erreurs pendant le processus d'expansion de grille que vous ne pouvez pas résoudre ou si une tâche de grille échoue, collectez les fichiers journaux et contactez le support technique.
+
+Avant de contacter le support technique, collectez les fichiers journaux requis pour faciliter le dépannage.
+
+.Étapes
+. Se connecter au nœud d'extension qui a rencontré des défaillances :
++
+.. Entrez la commande suivante :``ssh -p 8022 admin@_grid_node_IP_``
++
+
+NOTE: Le port 8022 est le port SSH du système d'exploitation de base, tandis que le port 22 est le port SSH du moteur de mise en conteneurs exécutant StorageGRID.
+
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Une fois connecté en tant que root, l'invite passe de `$` à `#`.
+
+. En fonction de la phase d'installation atteinte, récupérez l'un des journaux suivants disponibles sur le nœud de la grille :
++
+[cols="1a,2a"]
+|===
+| Plateforme | Journaux 
+
+
+ a| 
+VMware
+ a| 
+** `/var/log/daemon.log`
+** `/var/log/storagegrid/daemon.log`
+** `/var/log/storagegrid/nodes/<node-name>.log`
+
+
+
+
+ a| 
+Linux
+ a| 
+** `/var/log/storagegrid/daemon.log`
+** `/etc/storagegrid/nodes/<node-name>.conf` (pour chaque nœud défaillant)
+** `/var/log/storagegrid/nodes/<node-name>.log` (pour chaque nœud défaillant ; peut n'exister)
+
+
+|===
+

@@ -1,0 +1,58 @@
+---
+permalink: tenant/deleting-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to delete S3 bucket 
+summary: Vous pouvez utiliser le Gestionnaire de locataires pour supprimer un compartiment S3 vide. 
+---
+= Supprimez le compartiment S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le Gestionnaire de locataires pour supprimer une ou plusieurs compartiments S3 vides.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+* Les compartiments à supprimer sont vides. Si les rubriques que vous souhaitez supprimer sont _not_ vides, link:../tenant/deleting-s3-bucket-objects.html["supprimez des objets du compartiment"].
+
+
+.Description de la tâche
+Ces instructions expliquent comment supprimer un compartiment S3 à l'aide du Gestionnaire des locataires. Vous pouvez également supprimer des compartiments S3 à l'aide de link:understanding-tenant-management-api.html["API de gestion des locataires"]link:../s3/operations-on-buckets.html["L'API REST S3"]la ou de la .
+
+Vous ne pouvez pas supprimer un compartiment S3 s'il contient des objets, des versions d'objets non actuelles ou des marqueurs de suppression. Pour plus d'informations sur la suppression des objets avec version S3, reportez-vous à la section link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"].
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
++
+La page compartiments s'affiche et affiche tous les compartiments S3 existants.
+
+. Utilisez le menu *actions* ou la page de détails pour un compartiment spécifique.
++
+[role="tabbed-block"]
+====
+.Menu actions
+--
+.. Cochez la case correspondant à chaque compartiment à supprimer.
+.. Sélectionnez *actions* > *Supprimer des compartiments*.
+
+
+--
+.Page de détails
+--
+.. Sélectionnez un nom de compartiment pour afficher ses détails.
+.. Sélectionnez *Supprimer le compartiment*.
+
+
+--
+====
+. Lorsque la boîte de dialogue de confirmation s'affiche, sélectionnez *Oui*.
++
+La fonction StorageGRID confirme que chaque compartiment est vide, puis supprime chaque compartiment. Cette opération peut prendre quelques minutes.
+
++
+Si un compartiment n'est pas vide, un message d'erreur s'affiche. Vous devez link:../tenant/deleting-s3-bucket-objects.html["supprimez tous les objets et tous les marqueurs de suppression dans le compartiment"] avant de pouvoir supprimer le compartiment.
+
+

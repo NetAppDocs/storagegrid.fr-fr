@@ -1,0 +1,62 @@
+---
+permalink: ilm/advantages-disadvantages-and-requirements-for-ec.html 
+sidebar: sidebar 
+keywords: erasure coding advantages, disadvantages, EC requirements 
+summary: 'Avant de décider s"il est nécessaire d"utiliser la réplication ou le codage d"effacement pour protéger les données d"objet contre la perte, vous devez connaître les avantages, les inconvénients et les exigences du codage d"effacement.' 
+---
+= Avantages, inconvénients et exigences du code d'effacement
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de décider s'il est nécessaire d'utiliser la réplication ou le codage d'effacement pour protéger les données d'objet contre la perte, vous devez connaître les avantages, les inconvénients et les exigences du codage d'effacement.
+
+
+
+== Avantages du code d'effacement
+
+Par rapport à la réplication, le codage d'effacement assure une fiabilité, une disponibilité et une efficacité du stockage supérieures.
+
+* *Fiabilité*: La fiabilité est évaluée en termes de tolérance de pannes, c'est-à-dire le nombre de défaillances simultanées qui peuvent être soutenues sans perte de données. Avec la réplication, plusieurs copies identiques sont stockées sur différents nœuds et entre plusieurs sites. Avec le codage d'effacement, un objet est codé en données et fragments de parité, puis distribué sur de nombreux nœuds et sites. Cette dispersion assure à la fois la protection des pannes sur le site et sur les nœuds. Par rapport à la réplication, le codage d'effacement améliore la fiabilité pour des coûts de stockage comparables.
+* *Disponibilité* : la disponibilité peut être définie comme la possibilité de récupérer des objets en cas de défaillance ou d'accès aux nœuds de stockage. Par rapport à la réplication, le codage d'effacement assure une disponibilité supérieure et un coût de stockage comparable.
+* *Efficacité du stockage* : pour des niveaux similaires de disponibilité et de fiabilité, les objets protégés par le codage d'effacement consomment moins d'espace disque que les mêmes objets s'ils sont protégés par la réplication. Par exemple, un objet de 10 Mo répliqué sur deux sites consomme 20 Mo d'espace disque (deux copies), tandis qu'un objet dont le code d'effacement est défini sur trois sites et dont le schéma de code d'effacement est 6+3 ne consomme que 15 Mo d'espace disque.
++
+
+NOTE: L'espace disque des objets avec code d'effacement est calculé selon la taille de l'objet et la surcharge du stockage. Le pourcentage de surcharge de stockage est le nombre de fragments de parité divisé par le nombre de fragments de données.
+
+
+
+
+
+== Inconvénients du code d'effacement
+
+Par rapport à la réplication, le code d'effacement présente les inconvénients suivants :
+
+* En fonction du schéma de code d'effacement, une augmentation du nombre de nœuds et de sites de stockage est recommandée. En revanche, si vous répliquez les données d'objet, vous n'avez besoin que d'un seul nœud de stockage pour chaque copie. Voir link:what-erasure-coding-schemes-are.html#erasure-coding-schemes-for-storage-pools-containing-three-or-more-sites["Schémas de code d'effacement pour les pools de stockage contenant au moins trois sites"] et link:what-erasure-coding-schemes-are.html#erasure-coding-schemes-for-one-site-storage-pools["Schémas de code d'effacement pour pools de stockage sur un site"].
+* Coût et complexité accrus de l'expansion du stockage. Pour étendre un déploiement qui utilise la réplication, vous ajoutez de la capacité de stockage à chaque emplacement où les copies d'objet sont effectuées. Pour étendre un déploiement qui utilise le code d'effacement, vous devez tenir compte à la fois du schéma de code d'effacement utilisé et de la façon dont les nœuds de stockage existants sont complets. Par exemple, si vous attendez que les nœuds existants soient pleins à 100 %, vous devez ajouter au moins `k+m` nœuds de stockage. Toutefois, si vous développez lorsque les nœuds existants sont pleins à 70 %, vous pouvez ajouter deux nœuds par site tout en optimisant la capacité de stockage utilisable. Pour plus d'informations, voir link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["Ajoutez de la capacité de stockage pour les objets avec code d'effacement"].
+* Le codage d'effacement entre sites répartis géographiquement augmente la latence de récupération. Les fragments d'objet d'un objet dont le code d'effacement et la distribution sont répartis sur des sites distants sont plus longs à récupérer sur des connexions WAN qu'un objet répliqué et disponible localement (le site auquel le client se connecte).
+* Lorsque vous utilisez le codage d'effacement sur des sites répartis géographiquement, le trafic réseau WAN est plus important pour les récupérations et les réparations, en particulier pour les objets fréquemment récupérés ou pour la réparation d'objets via les connexions réseau WAN.
+* Lorsque vous utilisez le codage d'effacement sur plusieurs sites, le débit maximal d'objets diminue considérablement à mesure que la latence du réseau entre les sites augmente. Cette diminution est due à la diminution correspondante du débit du réseau TCP, ce qui affecte la rapidité avec laquelle le système StorageGRID peut stocker et récupérer des fragments d'objet.
+* Plus grande utilisation des ressources de calcul.
+
+
+
+
+== Quand utiliser le code d'effacement
+
+Le code d'effacement convient mieux aux exigences suivantes :
+
+* Objets dont la taille est supérieure à 1 Mo.
++
+
+NOTE: Le codage d'effacement convient mieux aux objets de plus de 1 Mo. N'utilisez pas le code d'effacement pour les objets inférieurs à 200 Ko afin d'éviter la surcharge liée à la gestion de très petits fragments de code d'effacement.
+
+* Stockage à long terme ou à froid pour le contenu rarement récupéré.
+* Haute disponibilité et fiabilité des données.
+* Protégez-vous contre les défaillances complètes du site et des nœuds.
+* Efficacité du stockage.
+* Les déploiements sur un seul site exigent une protection efficace des données avec une seule copie avec code d'effacement plutôt que plusieurs copies répliquées.
+* Déploiements sur plusieurs sites pour lesquels la latence inter-site est inférieure à 100 ms.
+

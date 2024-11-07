@@ -1,0 +1,170 @@
+---
+permalink: admin/managing-load-balancing.html 
+sidebar: sidebar 
+keywords: manage load balancing, balance workload, client ingest, client retrieval, distribute connection 
+summary: 'L"équilibrage des charges vous permet de gérer les workloads d"ingestion et de récupération à partir des clients S3.' 
+---
+= Considérations relatives à l'équilibrage de charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'équilibrage des charges vous permet de gérer les workloads d'ingestion et de récupération à partir des clients S3.
+
+
+
+== Qu'est-ce que l'équilibrage de la charge ?
+
+Lorsqu'une application client enregistre ou récupère les données d'un système StorageGRID, StorageGRID utilise un équilibreur de charge pour gérer la charge de travail d'ingestion et de récupération. L'équilibrage de la charge optimise la vitesse et la capacité de connexion en répartissant la charge de travail sur plusieurs nœuds de stockage.
+
+Le service StorageGRID Load Balancer est installé sur tous les nœuds d'administration et sur tous les nœuds de passerelle. Il assure l'équilibrage de la charge de couche 7. Il effectue la résiliation du protocole TLS (transport Layer Security) des requêtes du client, inspecte les requêtes et établit de nouvelles connexions sécurisées vers les nœuds de stockage.
+
+Le service Load Balancer de chaque nœud fonctionne indépendamment lors du transfert du trafic client vers les nœuds de stockage. Par le biais d'un processus de pondération, le service Load Balancer achemine davantage de requêtes vers des nœuds de stockage avec une disponibilité de processeur supérieure.
+
+
+NOTE: Bien que le service StorageGRID Load Balancer soit le mécanisme d'équilibrage de la charge recommandé, vous pouvez à la place intégrer un équilibreur de charge tiers. Pour plus d'informations, contactez votre représentant de compte NetApp ou reportez-vous à la https://fieldportal.netapp.com/content/2666394["Tr-4626 : équilibreurs de charge mondiaux et tiers StorageGRID"^].
+
+
+
+== De combien de nœuds d'équilibrage de charge ai-je besoin ?
+
+Dans le cadre des meilleures pratiques générales, chaque site de votre système StorageGRID doit inclure au moins deux nœuds avec le service Load Balancer. Par exemple, un site peut inclure deux nœuds de passerelle ou un nœud d'administration et un nœud de passerelle. Assurez-vous qu'il existe une infrastructure réseau, matérielle ou de virtualisation adéquate pour chaque nœud d'équilibrage de charge, que vous utilisiez des appliances de services, des nœuds bare Metal ou des nœuds basés sur des machines virtuelles.
+
+
+
+== Qu'est-ce qu'un terminal d'équilibrage de charge ?
+
+Un noeud final d'équilibrage de charge définit le port et le protocole réseau (HTTPS ou HTTP) utilisés par les demandes d'applications clientes entrantes et sortantes pour accéder aux noeuds qui contiennent le service d'équilibrage de charge. Le noeud final définit également le type de client (S3), le mode de liaison et éventuellement une liste de locataires autorisés ou bloqués.
+
+Pour créer un noeud final d'équilibrage de charge, sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux d'équilibrage de charge* ou exécutez l'assistant d'installation FabricPool et S3. Pour obtenir des instructions :
+
+* link:configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"]
+* link:use-s3-setup-wizard-steps.html["Utilisez l'assistant d'installation S3"]
+* link:../fabricpool/use-fabricpool-setup-wizard-steps.html["Utilisez l'assistant de configuration FabricPool"]
+
+
+
+
+=== Considérations relatives au port
+
+Par défaut, le port d'un noeud final d'équilibrage de charge est 10433 pour le premier noeud final que vous créez, mais vous pouvez spécifier tout port externe inutilisé compris entre 1 et 65535. Si vous utilisez le port 80 ou 443, le noeud final utilisera le service Load Balancer sur les noeuds passerelle uniquement. Ces ports sont réservés sur des nœuds d'administration. Si vous utilisez le même port pour plusieurs noeuds finaux, vous devez spécifier un mode de liaison différent pour chaque noeud final.
+
+Les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir la link:../network/network-port-reference.html["Référence du port réseau"].
+
+
+
+=== Considérations relatives au protocole réseau
+
+Dans la plupart des cas, les connexions entre les applications clientes et StorageGRID doivent utiliser le chiffrement TLS (transport Layer Security). La connexion à StorageGRID sans chiffrement TLS est prise en charge, mais elle n'est pas recommandée, en particulier dans les environnements de production. Lorsque vous sélectionnez le protocole réseau pour le noeud final de l'équilibreur de charge StorageGRID, vous devez sélectionner *HTTPS*.
+
+
+
+=== Considérations relatives aux certificats de terminaux d'équilibrage de charge
+
+Si vous sélectionnez *HTTPS* comme protocole réseau pour le noeud final de l'équilibreur de charge, vous devez fournir un certificat de sécurité. Lorsque vous créez le terminal de l'équilibreur de charge, vous pouvez utiliser l'une de ces trois options :
+
+* *Télécharger un certificat signé (recommandé)*. Ce certificat peut être signé par une autorité de certification publique ou privée. Il est recommandé d'utiliser un certificat de serveur d'autorité de certification de confiance publique pour sécuriser la connexion. Contrairement aux certificats générés, les certificats signés par une autorité de certification peuvent être permutés sans interruption, ce qui permet d'éviter les problèmes d'expiration.
++
+Vous devez obtenir les fichiers suivants avant de créer le noeud final de l'équilibreur de charge :
+
++
+** Le fichier de certificat de serveur personnalisé.
+** Le fichier de clé privée du certificat de serveur personnalisé.
+** Éventuellement, un paquet CA des certificats de chaque autorité de certification intermédiaire émettrice.
+
+
+* *Générer un certificat auto-signé*.
+* *Utilisez le certificat StorageGRID S3 global*. Vous devez télécharger ou générer une version personnalisée de ce certificat avant de pouvoir le sélectionner pour le noeud final de l'équilibreur de charge. Voir link:../admin/configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"].
+
+
+
+
+==== Quelles valeurs ai-je besoin ?
+
+Pour créer le certificat, vous devez connaître tous les noms de domaine et adresses IP utilisés par les applications client S3 pour accéder au terminal.
+
+L'entrée *Subject DN* (Distinguished Name) du certificat doit inclure le nom de domaine complet que l'application client utilisera pour StorageGRID. Par exemple :
+
+[listing]
+----
+Subject DN: /C=Country/ST=State/O=Company,Inc./CN=s3.storagegrid.example.com
+----
+Si nécessaire, le certificat peut utiliser des caractères génériques pour représenter les noms de domaine complets de tous les nœuds d'administration et nœuds de passerelle exécutant le service Load Balancer. Par exemple, `*.storagegrid._example_.com` utilise le caractère générique * pour représenter `adm1.storagegrid._example_.com` et `gn1.storagegrid._example_.com`.
+
+Si vous prévoyez d'utiliser des requêtes de type hébergement virtuel S3, le certificat doit également inclure une entrée *alternative Name* pour chaque link:../admin/configuring-s3-api-endpoint-domain-names.html["Nom du domaine du terminal S3"] que vous avez configuré, y compris les noms génériques. Par exemple :
+
+[listing]
+----
+Alternative Name: DNS:*.s3.storagegrid.example.com
+----
+
+NOTE: Si vous utilisez des caractères génériques pour les noms de domaine, consultez le link:../harden/hardening-guideline-for-server-certificates.html["Consignes de renforcement des certificats de serveur"].
+
+Vous devez également définir une entrée DNS pour chaque nom du certificat de sécurité.
+
+
+
+==== Comment gérer les certificats arrivant à expiration ?
+
+
+CAUTION: Si le certificat utilisé pour sécuriser la connexion entre l'application S3 et StorageGRID expire, l'application risque de perdre temporairement l'accès à StorageGRID.
+
+Pour éviter les problèmes d'expiration des certificats, suivez les bonnes pratiques suivantes :
+
+* Surveillez attentivement toutes les alertes signalant l'approche des dates d'expiration des certificats, telles que le *expiration du certificat de noeud final de l'équilibreur de charge* et le *expiration du certificat de serveur global pour les alertes de l'API S3*.
+* Synchronisez toujours les versions du certificat des applications StorageGRID et S3. Si vous remplacez ou renouvelez le certificat utilisé pour un terminal d'équilibrage de charge, vous devez remplacer ou renouveler le certificat équivalent utilisé par l'application S3.
+* Utiliser un certificat d'autorité de certification signé publiquement. Si vous utilisez un certificat signé par une autorité de certification, vous pouvez remplacer les certificats bientôt expirés sans interruption.
+* Si vous avez généré un certificat StorageGRID auto-signé et que ce certificat est sur le point d'expirer, vous devez le remplacer manuellement dans StorageGRID et dans l'application S3 avant que le certificat existant n'expire.
+
+
+
+
+=== Considérations relatives au mode de liaison
+
+Le mode de liaison vous permet de contrôler les adresses IP qui peuvent être utilisées pour accéder à un noeud final de l'équilibreur de charge. Si un noeud final utilise un mode de liaison, les applications clientes peuvent uniquement accéder au noeud final si elles utilisent une adresse IP autorisée ou son nom de domaine complet (FQDN) correspondant. Les applications clientes utilisant une autre adresse IP ou un autre nom de domaine complet ne peuvent pas accéder au point final.
+
+Vous pouvez spécifier l'un des modes de reliure suivants :
+
+* *Global* (par défaut) : les applications clientes peuvent accéder au noeud final en utilisant l'adresse IP de n'importe quel noeud de passerelle ou noeud d'administration, l'adresse IP virtuelle (VIP) de n'importe quel groupe HA sur n'importe quel réseau, ou un FQDN correspondant. Utilisez ce paramètre, sauf si vous avez besoin de restreindre l'accessibilité d'un noeud final.
+* *Adresses IP virtuelles des groupes HA*. Les applications client doivent utiliser une adresse IP virtuelle (ou le nom de domaine complet correspondant) d'un groupe haute disponibilité.
+* *Interfaces de nœud*. Les clients doivent utiliser les adresses IP (ou les FQDN correspondants) des interfaces de nœud sélectionnées.
+* *Type de noeud*. En fonction du type de nœud que vous sélectionnez, les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration ou l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud de passerelle.
+
+
+
+
+=== Considérations relatives à l'accès des locataires
+
+L'accès aux locataires est une fonction de sécurité facultative qui vous permet de contrôler quels comptes de locataires StorageGRID peuvent utiliser un terminal d'équilibrage des charges pour accéder à leurs compartiments. Vous pouvez autoriser tous les locataires à accéder à un noeud final (par défaut), ou vous pouvez spécifier une liste des locataires autorisés ou bloqués pour chaque noeud final.
+
+Vous pouvez utiliser cette fonction pour améliorer l'isolation de sécurité entre les locataires et leurs terminaux. Par exemple, vous pouvez utiliser cette fonction pour vous assurer que les matériaux les plus secrets ou les matériaux hautement classés appartenant à un locataire restent complètement inaccessibles aux autres locataires.
+
+
+NOTE: Aux fins du contrôle d'accès, le locataire est déterminé à partir des clés d'accès utilisées dans la demande du client, si aucune clé d'accès n'est fournie dans le cadre de la demande (par exemple avec un accès anonyme), le propriétaire du compartiment est utilisé pour déterminer le locataire.
+
+
+
+==== Exemple d'accès aux locataires
+
+Pour comprendre le fonctionnement de cette fonction de sécurité, prenez l'exemple suivant :
+
+. Vous avez créé deux terminaux d'équilibrage de charge, comme suit :
++
+** *Noeud final public* : utilise le port 10443 et permet l'accès à tous les locataires.
+** *Point final Top secret* : utilise le port 10444 et permet l'accès au locataire *Top secret* uniquement. Tous les autres locataires ne peuvent pas accéder à ce noeud final.
+
+
+. Le `top-secret.pdf` est dans un seau appartenant au locataire *Top secret*.
+
+
+Pour accéder au `top-secret.pdf`, un utilisateur du locataire *Top secret* peut émettre une demande GET à `\https://w.x.y.z:10444/top-secret.pdf`. Comme ce locataire est autorisé à utiliser le noeud final 10444, l'utilisateur peut accéder à l'objet. Cependant, si un utilisateur appartenant à un autre locataire envoie la même requête à la même URL, il reçoit un message accès refusé immédiat. L'accès est refusé même si les informations d'identification et la signature sont valides.
+
+
+
+== Disponibilité du processeur
+
+Le service Load Balancer sur chaque nœud d'administration et de passerelle fonctionne de manière indépendante lors du transfert du trafic S3 vers les nœuds de stockage. Par le biais d'un processus de pondération, le service Load Balancer achemine davantage de requêtes vers des nœuds de stockage avec une disponibilité de processeur supérieure. Les informations de charge de l'UC du nœud sont mises à jour toutes les quelques minutes, mais la pondération peut être mise à jour plus fréquemment. Tous les nœuds de stockage se voient attribuer une valeur de poids de base minimale, même si un nœud indique une utilisation de 100 % ou ne parvient pas à signaler son utilisation.
+
+Dans certains cas, les informations relatives à la disponibilité du processeur sont limitées au site où se trouve le service Load Balancer.

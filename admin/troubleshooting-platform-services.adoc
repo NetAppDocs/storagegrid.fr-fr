@@ -1,0 +1,142 @@
+---
+permalink: admin/troubleshooting-platform-services.html 
+sidebar: sidebar 
+keywords: troubleshoot platform services, platform services endpoint error 
+summary: 'Les terminaux utilisés dans les services de plateforme sont créés et gérés par les utilisateurs locataires dans le Gestionnaire de locataires. Toutefois, si un locataire a des problèmes de configuration ou d"utilisation des services de plateforme, vous pouvez utiliser le Gestionnaire de grille pour résoudre le problème.' 
+---
+= Résoudre les problèmes liés aux services de plateforme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les terminaux utilisés dans les services de plateforme sont créés et gérés par les utilisateurs locataires dans le Gestionnaire de locataires. Toutefois, si un locataire a des problèmes de configuration ou d'utilisation des services de plateforme, vous pouvez utiliser le Gestionnaire de grille pour résoudre le problème.
+
+
+
+== Problèmes liés aux nouveaux terminaux
+
+Avant qu'un locataire ne puisse utiliser les services de plateforme, il doit créer un ou plusieurs terminaux à l'aide du Gestionnaire des locataires. Chaque terminal représente une destination externe pour un service de plateforme, par exemple un compartiment StorageGRID S3, un compartiment Amazon Web Services, une rubrique Amazon simple notification Service, une rubrique Kafka ou un cluster Elasticsearch hébergé localement ou sur AWS. Chaque noeud final comprend à la fois l'emplacement de la ressource externe et les informations d'identification nécessaires pour accéder à cette ressource.
+
+Lorsqu'un locataire crée un noeud final, le système StorageGRID valide que ce dernier existe et qu'il peut être atteint à l'aide des identifiants spécifiés. La connexion au noeud final est validée à partir d'un nœud sur chaque site.
+
+Si la validation du noeud final échoue, un message d'erreur explique pourquoi la validation du noeud final a échoué. L'utilisateur locataire doit résoudre le problème, puis essayer de créer à nouveau le noeud final.
+
+
+NOTE: La création du terminal échoue si les services de plateforme ne sont pas activés pour le compte de locataire.
+
+
+
+== Problèmes avec les terminaux existants
+
+Si une erreur se produit lorsque StorageGRID tente d'atteindre un noeud final existant, un message s'affiche sur le tableau de bord dans le Gestionnaire de locataires.
+
+image::../media/tenant_dashboard_endpoint_error.png[message d'erreur de point final sur le tableau de bord]
+
+Les utilisateurs locataires peuvent accéder à la page noeuds finaux pour consulter le message d'erreur le plus récent pour chaque noeud final et déterminer la durée de l'erreur. La colonne *dernière erreur* affiche le message d'erreur le plus récent pour chaque noeud final et indique la durée de l'erreur. Des erreurs incluant l'image:../media/icon_alert_red_critical.png["Icône X rouge"]icône se sont produites au cours des 7 derniers jours.
+
+image::../media/endpoints_last_error.png[Capture d'écran de la page des points de terminaison affichant la colonne dernière erreur]
+
+
+NOTE: Certains messages d'erreur dans la colonne *dernière erreur* peuvent inclure un LogId entre parenthèses. Un administrateur de grille ou le support technique peut utiliser cet ID pour trouver des informations plus détaillées sur l'erreur dans bycast.log.
+
+
+
+== Problèmes liés aux serveurs proxy
+
+Si vous avez configuré un link:configuring-storage-proxy-settings.html["proxy de stockage"] entre les noeuds de stockage et les noeuds finaux du service de plate-forme, des erreurs peuvent se produire si votre service proxy n'autorise pas les messages de StorageGRID. Pour résoudre ces problèmes, vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages liés au service de plate-forme ne sont pas bloqués.
+
+
+
+== Déterminez si une erreur s'est produite
+
+Si des erreurs de noeud final se sont produites au cours des 7 derniers jours, le tableau de bord du gestionnaire de locataires affiche un message d'alerte. Vous pouvez accéder à la page noeuds finaux pour obtenir plus de détails sur l'erreur.
+
+
+
+== Échec des opérations client
+
+Certains problèmes de service de plateforme peuvent entraîner l'échec des opérations client dans le compartiment S3. Par exemple, les opérations client S3 échouent si le service RSM (Replicated State machine) interne s'arrête ou s'il y a trop de messages de services de plate-forme en file d'attente pour la livraison.
+
+Pour vérifier l'état des services :
+
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_site_* > *_Storage Node_* > *SSM* > *Services*.
+
+
+
+
+== Erreurs récupérables et récupérables du point final
+
+Une fois les noeuds finaux créés, des erreurs de demande de service de plate-forme peuvent se produire pour diverses raisons. Certaines erreurs peuvent être récupérées avec l'intervention de l'utilisateur. Par exemple, des erreurs récupérables peuvent se produire pour les raisons suivantes :
+
+* Les informations d'identification de l'utilisateur ont été supprimées ou ont expiré.
+* Le compartiment de destination n'existe pas.
+* La notification ne peut pas être remise.
+
+
+Si StorageGRID rencontre une erreur récupérable, la demande de service de plate-forme sera relancée jusqu'à ce qu'elle réussisse.
+
+D'autres erreurs sont irrécupérables. Par exemple, une erreur irrécupérable se produit si le noeud final est supprimé.
+
+Si StorageGRID rencontre une erreur de point final irrécupérable :
+
+* Dans Grid Manager, accédez à *support* > *Tools* > *Metrics* > *Grafana* > *Platform Services Overview* pour afficher les détails de l'erreur.
+* Dans le Gestionnaire de locataires, accédez à *STORAGE (S3)* > *Platform Services Endpoints* pour afficher les détails de l'erreur.
+* Vérifier si le `/var/local/log/bycast-err.log` présente des erreurs. Les nœuds de stockage disposant du service ADC contiennent ce fichier journal.
+
+
+
+
+== Les messages des services de plateforme ne peuvent pas être transmis
+
+Si la destination rencontre un problème qui l'empêche d'accepter des messages de services de plate-forme, l'opération client sur le compartiment réussit, mais le message des services de plate-forme n'est pas livré. Par exemple, cette erreur peut se produire si les informations d'identification sont mises à jour sur la destination de sorte que StorageGRID ne puisse plus s'authentifier auprès du service de destination.
+
+Recherchez les alertes associées.
+
+
+
+== Des performances plus lentes pour les demandes de services de plateforme
+
+Le logiciel StorageGRID peut canaliser les demandes S3 entrantes pour un compartiment si le taux d'envoi des demandes dépasse le taux à partir duquel le terminal de destination peut recevoir les demandes. La restriction ne se produit que lorsqu'il existe un arriéré de demandes en attente d'envoi vers le noeud final de destination.
+
+Le seul effet visible est que les requêtes S3 entrantes prennent plus de temps à s'exécuter. Si vous commencez à détecter les performances beaucoup plus lentes, vous devez réduire le taux d'entrée ou utiliser un terminal avec une capacité plus élevée. Si l'carnet de commandes des requêtes continue d'augmenter, les opérations S3 des clients (par EXEMPLE, LES requêtes PUT) finiront par échouer.
+
+Les demandes CloudMirror sont plus susceptibles d'être affectées par les performances du terminal de destination, car ces demandes impliquent généralement plus de transfert de données que les demandes d'intégration de recherche ou de notification d'événements.
+
+
+
+== Les demandes de service de la plateforme échouent
+
+Pour afficher le taux d'échec de la demande pour les services de plate-forme :
+
+. Sélectionnez *NOEUDS*.
+. Sélectionnez *_site_* > *Platform Services*.
+. Afficher le tableau des taux d'erreur de demande.
++
+image::../media/nodes_page_site_level_platform_services.gif[Nœuds page Services de plateforme au niveau du site]
+
+
+
+
+
+== Alerte de services de plate-forme non disponibles
+
+L'alerte *Platform services unavailable* indique qu'aucune opération de service de plate-forme ne peut être effectuée sur un site car trop de nœuds de stockage avec le service RSM sont en cours d'exécution ou disponibles.
+
+Le service RSM garantit que les demandes de service de plate-forme sont envoyées à leurs points de terminaison respectifs.
+
+Pour résoudre cette alerte, déterminez quels nœuds de stockage du site incluent le service RSM. (Le service RSM est présent sur les nœuds de stockage qui incluent également le service ADC.) Ensuite, assurez-vous qu'une simple majorité de ces nœuds de stockage sont en cours d'exécution et disponibles.
+
+
+NOTE: Si plusieurs nœuds de stockage contenant le service RSM échouent sur un site, vous perdez toute demande de service de plateforme en attente pour ce site.
+
+
+
+== Conseils de dépannage supplémentaires pour les terminaux des services de plateforme
+
+Pour plus d'informations, voir link:../tenant/troubleshooting-platform-services-endpoint-errors.html["Utiliser un compte locataire  ; dépanner les terminaux des services de plateforme"].
+
+.Informations associées
+link:../troubleshoot/index.html["Dépanner le système StorageGRID"]

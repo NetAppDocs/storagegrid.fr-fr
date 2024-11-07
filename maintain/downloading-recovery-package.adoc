@@ -1,0 +1,36 @@
+---
+permalink: maintain/downloading-recovery-package.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery package 
+summary: Le fichier progiciel de récupération vous permet de restaurer le système StorageGRID en cas de défaillance. 
+---
+= Téléchargez le progiciel de restauration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le fichier progiciel de récupération vous permet de restaurer le système StorageGRID en cas de défaillance.
+
+.Avant de commencer
+* À partir du nœud d'administration principal, vous êtes connecté au gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+Téléchargez le fichier du pack de récupération actuel avant de modifier la topologie du grid sur le système StorageGRID ou avant de mettre à niveau le logiciel. Téléchargez ensuite une nouvelle copie du progiciel de récupération après avoir modifié la topologie de la grille ou après la mise à niveau du logiciel.
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+. Entrez la phrase de passe de provisionnement et sélectionnez *Démarrer le téléchargement*.
++
+Le téléchargement commence immédiatement.
+
+. Une fois le téléchargement terminé, ouvrez `.zip` le fichier et confirmez que vous pouvez accéder au contenu, y compris au `Passwords.txt` fichier.
+. Copiez le fichier du progiciel de récupération téléchargé (`.zip`) dans deux emplacements sécurisés et séparés.
++
+
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+
+

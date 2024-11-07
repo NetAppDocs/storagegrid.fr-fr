@@ -1,0 +1,57 @@
+---
+permalink: troubleshoot/confirming-object-data-locations.html 
+sidebar: sidebar 
+keywords: how to confirm object location, object metadata lookup 
+summary: 'En fonction du problème, vous pouvez confirmer l"emplacement de stockage des données d"objet. Par exemple, vous pouvez vérifier que la règle ILM fonctionne comme prévu et que les données d"objet sont stockées à l"emplacement prévu.' 
+---
+= Confirmer l'emplacement des données d'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Selon le problème, vous pouvez vouloir link:../audit/object-ingest-transactions.html["confirmez l'emplacement de stockage des données d'objet"]. Par exemple, vous pouvez vérifier que la règle ILM fonctionne comme prévu et que les données d'objet sont stockées à l'emplacement prévu.
+
+.Avant de commencer
+* Vous devez disposer d'un identifiant d'objet, qui peut être l'un des suivants :
++
+** *UUID* : identifiant unique universel de l'objet. Saisissez le UUID en majuscules.
+** *CBID* : identifiant unique de l'objet dans StorageGRID . Vous pouvez obtenir le CBID d'un objet à partir du journal d'audit. Saisissez le CBID en majuscules.
+** *S3 bucket et clé d'objet* : lorsqu'un objet est ingéré via link:../s3/operations-on-objects.html["Interface S3"], l'application client utilise une combinaison de clé de compartiment et d'objet pour stocker et identifier l'objet.
+
+
+
+
+.Étapes
+. Sélectionnez *ILM* > *Object metadata Lookup*.
+. Saisissez l'identifiant de l'objet dans le champ *Identificateur*.
++
+Vous pouvez entrer un UUID, un CBID, un compartiment S3/une clé-objet ou un nom-objet/conteneur Swift.
+
+. Si vous souhaitez rechercher une version spécifique de l'objet, saisissez l'ID de version (facultatif).
++
+image::../media/object_lookup.png[Page recherche d'objets]
+
+. Sélectionnez *rechercher*.
++
+Le s'link:../ilm/verifying-ilm-policy-with-object-metadata-lookup.html["résultats de la recherche de métadonnées d'objet"]affiche. Cette page répertorie les types d'informations suivants :
+
++
+** Les métadonnées système, y compris l'ID d'objet (UUID), l'ID de version (facultatif), le nom de l'objet, le nom du conteneur, le nom ou l'ID du compte de locataire, la taille logique de l'objet, la date et l'heure de la première création de l'objet, ainsi que la date et l'heure de la dernière modification de l'objet.
+** Toutes les paires de clé-valeur de métadonnées utilisateur personnalisées associées à l'objet.
+** Pour les objets S3, toutes les paires de clé-valeur de balise d'objet associées à l'objet.
+** Pour les copies d'objet répliquées, emplacement de stockage actuel de chaque copie.
+** Pour les copies d'objets avec code d'effacement, l'emplacement de stockage actuel de chaque fragment.
+** Pour les copies d'objet dans Cloud Storage Pool, l'emplacement de l'objet, notamment le nom du compartiment externe et l'identifiant unique de l'objet.
+** Pour les objets segmentés et les objets multisegments, une liste de segments d'objet, y compris les identificateurs de segments et la taille des données. Pour les objets de plus de 100 segments, seuls les 100 premiers segments sont affichés.
+** Toutes les métadonnées d'objet dans le format de stockage interne non traité. Ces métadonnées brutes incluent les métadonnées du système interne qui ne sont pas garanties de la version à la version.
++
+L'exemple suivant présente les résultats de la recherche de métadonnées d'objet pour un objet de test S3 stocké sous forme de deux copies répliquées.
+
+
+
++
+image::../media/object_lookup_results.png[Résultats de la recherche d'objets]
+
+

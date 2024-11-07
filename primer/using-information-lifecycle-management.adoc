@@ -1,0 +1,90 @@
+---
+permalink: primer/using-information-lifecycle-management.html 
+sidebar: sidebar 
+keywords: what is information lifecycle management, how to use ilm 
+summary: 'La gestion du cycle de vie des informations \(ILM\) permet de contrôler le placement, la durée et le comportement d"ingestion de tous les objets de votre système StorageGRID. Les règles ILM déterminent la façon dont StorageGRID stocke les objets au fil du temps. Vous configurez une ou plusieurs règles ILM, puis les ajoutez à une règle ILM.' 
+---
+= Gestion du cycle de vie des informations
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La gestion du cycle de vie des informations (ILM) permet de contrôler le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID. Les règles ILM déterminent la façon dont StorageGRID stocke les objets au fil du temps. Vous configurez une ou plusieurs règles ILM, puis les ajoutez à une règle ILM.
+
+Une grille n'a qu'une seule règle active à la fois. Une politique peut contenir plusieurs règles.
+
+Les règles ILM définissent :
+
+* Les objets à stocker. Une règle peut s'appliquer à tous les objets ou vous pouvez spécifier des filtres pour identifier les objets auxquels une règle s'applique. Par exemple, une règle ne peut s'appliquer qu'aux objets associés à certains comptes de locataire, à des compartiments S3 spécifiques, à des conteneurs Swift ou à des valeurs de métadonnées spécifiques.
+* Type et emplacement de stockage. Les objets peuvent être stockés sur des nœuds de stockage ou dans des pools de stockage cloud.
+* Le type de copie d'objet effectuée. Les copies peuvent être répliquées ou avec code d'effacement.
+* Pour les copies répliquées, le nombre de copies effectuées.
+* Pour les copies avec code d'effacement, le schéma de code d'effacement utilisé.
+* Évolution au fil du temps vers l'emplacement de stockage et le type de copies d'un objet
+* La protection des données objet lors de l'ingestion des objets dans la grille (placement synchrone ou double allocation).
+
+
+Les métadonnées d'objet ne sont pas gérées par les règles ILM. Les métadonnées d'objet sont stockées dans la base de données Cassandra, dans ce qu'on appelle un magasin de métadonnées. Trois copies des métadonnées des objets sont automatiquement conservées sur chaque site afin de protéger les données contre les pertes.
+
+
+
+== Exemple de règle ILM
+
+À titre d'exemple, une règle ILM peut spécifier les éléments suivants :
+
+* Appliquer uniquement aux objets appartenant au locataire A.
+* Faites deux copies répliquées de ces objets et stockez chaque copie sur un site différent.
+* Conserver les deux copies « indéfiniment », ce qui signifie que StorageGRID ne les supprimera pas automatiquement. À la place, StorageGRID les conserve jusqu'à leur suppression par une demande de suppression de client ou avant l'expiration d'un cycle de vie de compartiment.
+* Utilisez l'option équilibrée pour le comportement d'ingestion : l'instruction de placement sur deux sites est appliquée dès que le locataire A enregistre un objet dans StorageGRID, à moins qu'il ne soit pas possible d'effectuer immédiatement les deux copies requises.
++
+Par exemple, si le site 2 est injoignable lorsque le locataire A enregistre un objet, StorageGRID effectue deux copies provisoires sur les nœuds de stockage du site 1. Dès que le site 2 sera disponible, StorageGRID effectuera la copie requise sur ce site.
+
+
+
+
+
+== Évaluation des objets par une règle ILM
+
+Les règles ILM actives de votre système StorageGRID contrôlent le placement, la durée et le comportement d'ingestion de tous les objets.
+
+Lorsque des clients enregistrent des objets dans StorageGRID, les objets sont évalués en fonction du jeu ordonné de règles ILM de la politique active, comme suit :
+
+. Si les filtres de la première règle de la règle correspondent à un objet, celui-ci est ingéré conformément au comportement d'ingestion de cette règle et stocké conformément aux instructions de placement de cette règle.
+. Si les filtres de la première règle ne correspondent pas à l'objet, l'objet est évalué par rapport à chaque règle ultérieure de la règle jusqu'à ce qu'une correspondance soit établie.
+. Si aucune règle ne correspond à un objet, les instructions de comportement d'ingestion et de placement de la règle par défaut de cette règle sont appliquées. La règle par défaut est la dernière règle d'une stratégie et ne peut pas utiliser de filtres. Elle doit s'appliquer à tous les locataires, à tous les compartiments et à toutes les versions d'objet.
+
+
+
+
+== Exemple de règle ILM
+
+À titre d'exemple, une politique ILM peut contenir trois règles ILM pour spécifier :
+
+* *Règle 1 : copies répliquées pour le locataire A*
++
+** Faites correspondre tous les objets appartenant au locataire A.
+** Stockez ces objets sous forme de trois copies répliquées sur trois sites.
+** Les objets appartenant à d'autres locataires ne correspondent pas à la règle 1, ils sont donc évalués par rapport à la règle 2.
+
+
+* *Règle 2 : code d'effacement pour les objets supérieurs à 1 Mo*
++
+** Faites correspondre tous les objets d'autres locataires, mais uniquement s'ils sont supérieurs à 1 Mo. Ces objets plus volumineux sont stockés au moyen d'un code d'effacement de 6+3 sur trois sites.
+** Ne correspond pas aux objets de 1 Mo ou moins, ces objets sont donc évalués par rapport à la règle 3.
+
+
+* *Règle 3 : 2 copies 2 centres de données* (par défaut)
++
+** Est la dernière règle et la règle par défaut de la règle. N'utilise pas de filtres.
+** Faites deux copies répliquées de tous les objets qui ne correspondent pas à la règle 1 ou à la règle 2 (objets qui n'appartiennent pas au locataire A de 1 Mo ou moins).
+
+
+
+
+image::../media/ilm_policy_and_rules.png[Règles et règles ILM]
+
+.Informations associées
+* link:../ilm/index.html["Gestion des objets avec ILM"]
+

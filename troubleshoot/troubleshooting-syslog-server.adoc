@@ -1,0 +1,148 @@
+---
+permalink: troubleshoot/troubleshooting-syslog-server.html 
+sidebar: sidebar 
+keywords: how to troubleshoot the external syslog server 
+summary: 'Le tableau suivant décrit les messages d"erreur pouvant être liés à un serveur syslog externe et répertorie les actions correctives.' 
+---
+= Dépanner un serveur syslog externe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le tableau suivant décrit les messages d'erreur pouvant être liés à un serveur syslog externe et répertorie les actions correctives.
+
+Pour plus d'informations sur l'envoi d'informations d'audit à un serveur syslog externe, reportez-vous à la section :
+
+* link:../monitor/considerations-for-external-syslog-server.html["Considérations relatives à l'utilisation d'un serveur syslog externe"]
+* link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"]
+
+
+[cols="1a,3a"]
+|===
+| Message d'erreur | Description et actions recommandées 
+
+
+ a| 
+Impossible de résoudre le nom d'hôte
+ a| 
+Le FQDN que vous avez saisi pour le serveur syslog n'a pas pu être résolu en adresse IP.
+
+. Vérifiez le nom d'hôte que vous avez saisi. Si vous avez saisi une adresse IP, assurez-vous qu'elle est valide en notation W.X.Y.Z (« décimale à points »).
+. Vérifier que les serveurs DNS sont configurés correctement.
+. Vérifiez que chaque nœud peut accéder aux adresses IP du serveur DNS.
+
+
+
+
+ a| 
+Connexion refusée
+ a| 
+Une connexion TCP ou TLS au serveur syslog a été refusée. Il se peut qu'il n'y ait pas d'écoute de service sur le port TCP ou TLS de l'hôte, ou qu'un pare-feu bloque l'accès.
+
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP, le port et le protocole corrects pour le serveur syslog.
+. Vérifiez que l'hôte du service syslog exécute un démon syslog écouté sur le port spécifié.
+. Vérifiez qu'un pare-feu ne bloque pas l'accès aux connexions TCP/TLS depuis les nœuds vers l'adresse IP et le port du serveur syslog.
+
+
+
+
+ a| 
+Réseau inaccessible
+ a| 
+Le serveur syslog ne se trouve pas sur un sous-réseau directement connecté. Un routeur a renvoyé un message d’échec ICMP pour indiquer qu’il n’a pas pu transférer les messages de test des nœuds répertoriés vers le serveur syslog.
+
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP correct pour le serveur syslog.
+. Pour chaque nœud répertorié, vérifiez la liste de sous-réseaux du réseau Grid, les listes de sous-réseaux des réseaux Admin et les passerelles réseau client. Confirmez que ces éléments sont configurés pour acheminer le trafic vers le serveur syslog via l'interface réseau et la passerelle prévues (grille, Admin ou client).
+
+
+
+
+ a| 
+Hôte inaccessible
+ a| 
+Le serveur syslog se trouve sur un sous-réseau directement connecté (sous-réseau utilisé par les nœuds répertoriés pour leurs adresses IP Grid, Admin ou client). Les nœuds ont tenté d’envoyer des messages de test, mais n’ont pas reçu de réponses aux requêtes ARP pour l’adresse MAC du serveur syslog.
+
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP correct pour le serveur syslog.
+. Vérifiez que l'hôte exécutant le service syslog est actif.
+
+
+
+
+ a| 
+La connexion a expiré
+ a| 
+Une tentative de connexion TCP/TLS a été effectuée, mais aucune réponse n'a été reçue depuis longtemps du serveur syslog. Il peut y avoir une mauvaise configuration de routage ou un pare-feu peut tomber du trafic sans envoyer de réponse (configuration commune).
+
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP correct pour le serveur syslog.
+. Pour chaque nœud répertorié, vérifiez la liste de sous-réseaux du réseau Grid, les listes de sous-réseaux des réseaux Admin et les passerelles réseau client. Vérifiez qu'ils sont configurés pour acheminer le trafic vers le serveur syslog à l'aide de l'interface réseau et de la passerelle (Grid, Admin ou client) sur lesquelles vous vous attendez à ce que le serveur syslog soit atteint.
+. Vérifiez qu'un pare-feu ne bloque pas l'accès aux connexions TCP/TLS à partir des nœuds répertoriés sur l'IP et le port du serveur syslog.
+
+
+
+
+ a| 
+Connexion fermée par le partenaire
+ a| 
+Une connexion TCP au serveur syslog a été établie avec succès, mais elle a été fermée ultérieurement. Plusieurs raisons peuvent expliquer ce phénomène :
+
+* Le serveur syslog a peut-être été redémarré ou redémarré.
+* Le nœud et le serveur syslog peuvent avoir des paramètres TCP/TLS différents.
+* Un pare-feu intermédiaire pourrait fermer les connexions TCP inactives.
+* Un serveur non syslog qui écoute sur le port du serveur syslog a peut-être fermé la connexion.
+
+
+Pour résoudre ce problème :
+
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP, le port et le protocole corrects pour le serveur syslog.
+. Si vous utilisez TLS, vérifiez que le serveur syslog utilise également TLS. Si vous utilisez TCP, vérifiez que le serveur syslog utilise également TCP.
+. Vérifiez qu'un pare-feu intermédiaire n'est pas configuré pour fermer les connexions TCP inactives.
+
+
+
+
+ a| 
+Erreur de certificat TLS
+ a| 
+Le certificat de serveur reçu du serveur syslog n'était pas compatible avec le bundle de certificats CA et le certificat client que vous avez fournis.
+
+. Vérifiez que le groupe de certificats de l'autorité de certification et le certificat client (le cas échéant) sont compatibles avec le certificat de serveur sur le serveur syslog.
+. Vérifiez que les identités du certificat de serveur du serveur syslog incluent les valeurs IP ou FQDN attendues.
+
+
+
+
+ a| 
+Transfert suspendu
+ a| 
+Les enregistrements syslog ne sont plus transférés vers le serveur syslog et StorageGRID ne peut pas détecter la raison.
+
+Examinez les journaux de débogage fournis avec cette erreur pour tenter de déterminer la cause principale.
+
+
+
+ a| 
+Session TLS interrompue
+ a| 
+Le serveur syslog a mis fin à la session TLS et StorageGRID ne parvient pas à détecter la raison.
+
+. Examinez les journaux de débogage fournis avec cette erreur pour tenter de déterminer la cause principale.
+. Vérifiez que vous avez saisi le nom de domaine complet ou l'adresse IP, le port et le protocole corrects pour le serveur syslog.
+. Si vous utilisez TLS, vérifiez que le serveur syslog utilise également TLS. Si vous utilisez TCP, vérifiez que le serveur syslog utilise également TCP.
+. Vérifiez que le groupe de certificats de l'autorité de certification et le certificat client (le cas échéant) sont compatibles avec le certificat de serveur du serveur syslog.
+. Vérifiez que les identités du certificat de serveur du serveur syslog incluent les valeurs IP ou FQDN attendues.
+
+
+
+
+ a| 
+Échec de la requête de résultats
+ a| 
+Le nœud d'administration utilisé pour la configuration et le test du serveur syslog ne peut pas demander les résultats de test à partir des nœuds répertoriés. Un ou plusieurs nœuds sont peut-être en panne.
+
+. Suivez les étapes de dépannage standard pour vous assurer que les nœuds sont en ligne et que tous les services attendus sont en cours d'exécution.
+. Redémarrez le service ETCD sur les nœuds répertoriés.
+
+
+|===

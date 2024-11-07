@@ -1,0 +1,178 @@
+---
+permalink: ilm/create-ilm-rule-define-placements.html 
+sidebar: sidebar 
+keywords: ilm rule step 2, define placements 
+summary: 'L"étape définir les placements de l"assistant Créer une règle ILM vous permet de définir les instructions de placement qui déterminent la durée de stockage des objets, le type de copies \(répliquées ou avec code d"effacement\), l"emplacement de stockage et le nombre de copies.' 
+---
+= Étape 2 sur 3 : définir les placements
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'étape *Define stages* de l'assistant Create ILM Rule vous permet de définir les instructions de placement qui déterminent la durée de stockage des objets, le type de copies (répliquées ou avec code d'effacement), l'emplacement de stockage et le nombre de copies.
+
+
+NOTE: Les captures d'écran illustrées sont des exemples. Vos résultats peuvent varier en fonction de votre version de StorageGRID.
+
+.Description de la tâche
+Une règle ILM peut inclure une ou plusieurs instructions de placement. Chaque instruction de placement s'applique à une seule période de temps. Lorsque vous utilisez plusieurs instructions, les périodes doivent être contiguës et au moins une instruction doit commencer le jour 0. Les instructions peuvent se poursuivre indéfiniment ou jusqu'à ce que vous n'ayez plus besoin de copies d'objet.
+
+Chaque instruction de placement peut avoir plusieurs lignes si vous voulez créer différents types de copies ou utiliser différents emplacements au cours de cette période.
+
+Dans cet exemple, la règle ILM stocke une copie répliquée sur le site 1 et une copie répliquée sur le site 2 pour la première année. Après un an, une copie avec code d'effacement pour 2+1 est effectuée et enregistrée sur un seul site.
+
+image::../media/ilm_create_ilm_rule_wizard_2.png[Assistant de création de règles ILM étape 2]
+
+.Étapes
+. Pour *temps de référence*, sélectionnez le type de temps à utiliser lors du calcul de l'heure de début d'une instruction de placement.
++
+[cols="1a,2a"]
+|===
+| Option | Description 
+
+
+ a| 
+Temps d'ingestion
+ a| 
+Heure à laquelle l'objet a été ingéré.
+
+
+
+ a| 
+Heure du dernier accès
+ a| 
+Heure à laquelle l'objet a été récupéré pour la dernière fois (lu ou affiché).
+
+Pour utiliser cette option, les mises à jour de l'heure du dernier accès doivent être activées pour le compartiment S3. Reportez-vous à la link:using-last-access-time-in-ilm-rules.html["Utiliser l'heure du dernier accès dans les règles ILM"].
+
+
+
+ a| 
+Heure de création définie par l'utilisateur
+ a| 
+Heure spécifiée dans les métadonnées définies par l'utilisateur.
+
+
+
+ a| 
+Heure non actuelle
+ a| 
+"Heure non actuelle" est automatiquement sélectionné si vous avez sélectionné *Oui* pour la question, "appliquer cette règle aux anciennes versions d'objet uniquement (dans les compartiments S3 avec gestion des versions activée)?" dans link:create-ilm-rule-enter-details.html["Étape 1 de l'assistant de création de règles ILM"].
+
+|===
++
+Si vous souhaitez créer une règle _complice_, vous devez sélectionner *heure d'ingestion*. Reportez-vous à la link:managing-objects-with-s3-object-lock.html["Gestion des objets avec le verrouillage d'objets S3"].
+
+. Dans la section *période et placements*, entrez une heure de début et une durée pour la première période.
++
+Par exemple, vous pouvez spécifier l'emplacement de stockage des objets pour la première année (_du magasin du jour 0 pendant 365 jours_). Au moins une instruction doit commencer au jour 0.
+
+. Pour créer des copies répliquées :
++
+.. Dans la liste déroulante *stocker les objets par*, sélectionnez *répliquer*.
+.. Sélectionnez le nombre de copies à effectuer.
++
+Un avertissement s'affiche si vous changez le nombre de copies en 1. La règle ILM de création d'une seule copie répliquée pendant toute période met les données à risque de perte permanente. Reportez-vous à la link:why-you-should-not-use-single-copy-replication.html["Pourquoi ne pas utiliser la réplication à copie unique"].
+
++
+Pour éviter ce risque, effectuez une ou plusieurs des actions suivantes :
+
++
+*** Augmentez le nombre de copies pour la période.
+*** Ajoutez des copies à d'autres pools de stockage ou à un pool de stockage cloud.
+*** Sélectionnez *code d'effacement* au lieu de *répliquer*.
++
+Vous pouvez ignorer cet avertissement en toute sécurité si cette règle crée déjà plusieurs copies pour toutes les périodes.
+
+
+
+.. Dans le champ *copies AT*, sélectionnez les pools de stockage à ajouter.
++
+*Si vous spécifiez un seul pool de stockage*, sachez que StorageGRID ne peut stocker qu'une seule copie répliquée d'un objet sur un nœud de stockage donné. Si votre grille comprend trois nœuds de stockage et que vous sélectionnez 4 comme nombre de copies, seules trois copies seront faites&#8212;une copie pour chaque nœud de stockage.
+
++
+L'alerte *ILM placement inaccessible* est déclenchée pour indiquer que la règle ILM n'a pas pu être complètement appliquée.
+
++
+*Si vous spécifiez plus d'un pool de stockage*, gardez ces règles à l'esprit :
+
++
+*** Le nombre de copies ne peut pas être supérieur au nombre de pools de stockage.
+*** Si le nombre de copies équivaut au nombre de pools de stockage, une copie de l'objet est stockée dans chaque pool de stockage.
+*** Si le nombre de copies est inférieur au nombre de pools de stockage, une copie est stockée sur le site d'ingestion, puis le système distribue les copies restantes afin de maintenir un équilibre entre l'utilisation du disque dans les pools, tout en veillant à ce qu'aucun site ne reçoive plus d'une copie d'un objet.
+*** Si les pools de stockage se chevauchent (contiennent les mêmes nœuds de stockage), toutes les copies de l'objet peuvent être enregistrées sur un seul site. Par conséquent, ne spécifiez pas le pool de stockage tous les nœuds (StorageGRID 11.6 et versions antérieures) et un autre pool de stockage.
+
+
+
+
+. Pour créer une copie avec code d'effacement :
++
+.. Dans la liste déroulante *stocker les objets par*, sélectionnez *code d'effacement*.
++
+
+NOTE: Le codage d'effacement convient mieux aux objets de plus de 1 Mo. N'utilisez pas le code d'effacement pour les objets inférieurs à 200 Ko afin d'éviter la surcharge liée à la gestion de très petits fragments de code d'effacement.
+
+.. Si vous n'avez pas ajouté de filtre de taille d'objet pour une valeur supérieure à 200 Ko, sélectionnez *Précédent* pour revenir à l'étape 1. Ensuite, sélectionnez *Ajouter un filtre avancé* et définissez un filtre *taille de l'objet* sur une valeur supérieure à 200 Ko.
+.. Sélectionnez le pool de stockage à ajouter et le schéma de code d'effacement à utiliser.
++
+L'emplacement de stockage d'une copie avec code d'effacement comprend le nom du schéma de code d'effacement, suivi du nom du pool de stockage.
+
++
+Les schémas de code d'effacement disponibles sont limités par le nombre de nœuds de stockage dans le pool de stockage que vous sélectionnez. Un `Recommended` badge apparaît à côté des schémas qui fournissent le link:../ilm/what-erasure-coding-schemes-are.html["protection optimale ou réduction des surcharges de stockage"].
+
+
+
+. Facultatif :
++
+.. Sélectionnez *Ajouter un autre type ou un autre emplacement* pour créer des copies supplémentaires à différents emplacements.
+.. Sélectionnez *Ajouter une autre période* pour ajouter différentes périodes.
++
+[NOTE]
+====
+Les suppressions d'objets se produisent en fonction des paramètres suivants :
+
+*** Les objets sont automatiquement supprimés à la fin de la période finale, sauf si une autre période se termine par *Forever*.
+*** Selon link:../ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html#example-of-bucket-lifecycle-taking-priority-over-ilm-policy["paramètres de période de conservation des compartiments et des locataires"]la , les objets peuvent ne pas être supprimés, même si la période de conservation ILM se termine.
+
+
+====
+
+
+. Pour stocker des objets dans un pool de stockage cloud :
++
+.. Dans la liste déroulante *stocker les objets par*, sélectionnez *répliquer*.
+.. Sélectionnez le champ *copies at*, puis sélectionnez un pool de stockage cloud.
++
+Lorsque vous utilisez des pools de stockage cloud, gardez ces règles à l'esprit :
+
++
+*** Vous ne pouvez pas sélectionner plusieurs pools de stockage cloud dans une instruction de placement unique. De même, vous ne pouvez pas sélectionner un pool de stockage cloud et un pool de stockage dans la même instruction de placement.
+*** Vous ne pouvez stocker qu'une seule copie d'un objet dans un pool de stockage cloud donné. Un message d'erreur s'affiche si vous définissez *copies* sur 2 ou plus.
+*** Vous ne pouvez pas stocker plusieurs copies d'objet simultanément dans un pool de stockage cloud. Un message d'erreur apparaît si plusieurs parutions utilisant un pool de stockage cloud présentent des dates redondantes ou si plusieurs lignes du même placement utilisent un pool de stockage cloud.
+*** Vous pouvez stocker un objet dans un pool de stockage cloud en même temps que celui-ci sous forme de copies répliquées ou avec code d'effacement dans StorageGRID. Toutefois, vous devez inclure plusieurs lignes dans l'instruction de placement pour la période, afin de pouvoir spécifier le nombre et les types de copies pour chaque emplacement.
+
+
+
+
+. Dans le diagramme de conservation, confirmez vos instructions de placement.
++
+Dans cet exemple, la règle ILM stocke une copie répliquée sur le site 1 et une copie répliquée sur le site 2 pour la première année. Au bout d'un an et pendant 10 ans supplémentaires, une copie avec code d'effacement 6+3 sera sauvegardée sur trois sites. Au bout de 11 ans au total, les objets seront supprimés de StorageGRID.
+
++
+La section analyse des règles du diagramme de rétention indique :
+
++
+** La protection contre la perte de site StorageGRID s'appliquera pendant toute la durée de cette règle.
+** Les objets traités par cette règle seront supprimés après le jour 4015.
++
+Reportez-vous à link:using-multiple-storage-pools-for-cross-site-replication.html["Activer la protection contre la perte de site."]
+
++
+image::../media/ilm_rule_retention_diagram.png[Schéma de conservation des règles ILM]
+
+
+
+. Sélectionnez *Continuer*. link:create-ilm-rule-select-ingest-behavior.html["Étape 3 (Sélectionner le comportement d'ingestion)"] De l'assistant de création d'une règle ILM s'affiche.
+

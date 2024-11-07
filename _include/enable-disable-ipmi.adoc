@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: Vous pouvez activer ou désactiver l'accès IPMI à distance pour tous les dispositifs contenant un contrôleur BMC. L'interface IPMI distante permet à toute personne disposant d'un compte BMC et d'un mot de passe d'accéder à votre matériel de bas niveau à vos appliances StorageGRID. Si vous n'avez pas besoin d'un accès IPMI à distance à BMC, désactivez cette option à l'aide de l'une des méthodes suivantes : + dans le Gestionnaire de grille, accédez à *CONFIGURATION* > *sécurité* > *Paramètres de sécurité* > *appareils* et décochez la case *Activer l'accès IPMI à distance*. + dans l'API de gestion de grille, utilisez le noeud final privé : `PUT /private/bmc`.

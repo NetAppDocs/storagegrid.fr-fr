@@ -1,0 +1,36 @@
+---
+permalink: tenant/deleting-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to delete tenant platform services endpoint 
+summary: Vous pouvez supprimer un noeud final si vous ne souhaitez plus utiliser le service de plate-forme associé. 
+---
+= Supprimer le noeud final des services de plate-forme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez supprimer un noeud final si vous ne souhaitez plus utiliser le service de plate-forme associé.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gestion des noeuds finaux ou des autorisations d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Platform services Endpoints*.
++
+La page noeuds finaux des services de plate-forme s'affiche et affiche la liste des noeuds finaux des services de plate-forme déjà configurés.
+
+. Cochez la case correspondant à chaque point final à supprimer.
++
+
+NOTE: Si vous supprimez un noeud final de services de plate-forme en cours d'utilisation, le service de plate-forme associé sera désactivé pour tous les compartiments qui utilisent le noeud final. Toutes les demandes qui n'ont pas encore été traitées seront supprimées. Toutes les nouvelles demandes seront toujours générées jusqu'à ce que vous modifiiez la configuration de compartiment pour ne plus référencer l'URN supprimé. StorageGRID signale ces demandes comme des erreurs irrécupérables.
+
+. Sélectionnez *actions* > *Supprimer le point final*.
++
+Un message de confirmation s'affiche.
+
+. Sélectionnez *Supprimer le point final*.
+

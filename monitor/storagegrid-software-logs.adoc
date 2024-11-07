@@ -1,0 +1,416 @@
+---
+permalink: monitor/storagegrid-software-logs.html 
+sidebar: sidebar 
+keywords: logs 
+summary: Les journaux StorageGRID vous permettent de résoudre les problèmes. 
+---
+= Journaux du logiciel StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les journaux StorageGRID vous permettent de résoudre les problèmes.
+
+
+NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou modifier la destination des informations d'audit telles que `bycast.log` et `nms.log`, reportez-vous à la section link:../monitor/configure-audit-messages.html#["Configurez les messages d'audit et les destinations des journaux"].
+
+
+
+== Journaux StorageGRID généraux
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/bycast.log  a| 
+Fichier de dépannage StorageGRID principal. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_Node_* > *SSM* > *Events*.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/bycast-err.log  a| 
+Contient un sous-ensemble de `bycast.log` (messages avec ERREUR DE gravité et CRITIQUE). Des messages CRITIQUES sont également affichés dans le système. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_Node_* > *SSM* > *Events*.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/core/  a| 
+Contient tous les fichiers core dump créés si le programme se termine anormalement. Les causes possibles sont les échecs d'assertion, les violations ou les retards de thread.
+
+*Remarque* : le fichier ``/var/local/core/kexec_cmd` existe généralement sur les nœuds de l'appliance et n'indique pas d'erreur.
+ a| 
+Tous les nœuds
+
+|===
+
+
+== Journaux liés au chiffrement
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/ssh-config-generation.log  a| 
+Contient des journaux relatifs à la génération de configurations SSH et au rechargement de services SSH.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/nginx/config-generation.log  a| 
+Contient les journaux relatifs à la génération des configurations nginx et au rechargement des services nginx.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/nginx-gw/config-generation.log  a| 
+Contient les journaux relatifs à la génération des configurations nginx-gw (et au rechargement des services nginx-gw).
+ a| 
+Nœuds d'administration et de passerelle
+
+
+
+| /var/local/log/update-cipher-configurations.log  a| 
+Contient des journaux relatifs à la configuration des règles TLS et SSH.
+ a| 
+Tous les nœuds
+
+|===
+
+
+== Journaux de fédération du grid
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/update_grid_federation_config.log  a| 
+Contient les journaux relatifs à la génération des configurations nginx et nginx-gw pour les connexions de fédération de grille.
+ a| 
+Tous les nœuds
+
+|===
+
+
+== Journaux NMS
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/nms.log  a| 
+* Capture des notifications à partir du Grid Manager et du tenant Manager.
+* Capture les événements liés au fonctionnement du service NMS. Par exemple, les notifications par e-mail et les modifications de configuration.
+* Contient des mises à jour de bundle XML résultant des modifications de configuration effectuées dans le système.
+* Contient des messages d'erreur liés au sous-échantillonnage de l'attribut effectué une fois par jour.
+* Contient les messages d'erreur du serveur Web Java, par exemple les erreurs de génération de page et les erreurs HTTP Status 500.
+
+ a| 
+Nœuds d'administration
+
+
+
+| /var/local/log/nms.errlog  a| 
+Contient des messages d'erreur relatifs aux mises à niveau de la base de données MySQL.
+
+Contient le flux erreur standard (stderr) des services correspondants. Il y a un fichier journal par service. Ces fichiers sont généralement vides, sauf en cas de problème avec le service.
+ a| 
+Nœuds d'administration
+
+
+
+| /var/local/log/nms.requestlog  a| 
+Contient des informations sur les connexions sortantes de l'API de gestion vers les services StorageGRID internes.
+ a| 
+Nœuds d'administration
+
+|===
+
+
+== Journaux Server Manager
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/servermanager.log  a| 
+Fichier journal de l'application Server Manager exécutée sur le serveur.
+ a| 
+Tous les nœuds
+
+
+
+| /Var/local/log/GridstatBackend.errlog  a| 
+Fichier journal de l'application back-end de l'interface utilisateur graphique de Server Manager.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/gridstat.errlog  a| 
+Fichier journal de l'interface graphique de Server Manager.
+ a| 
+Tous les nœuds
+
+|===
+
+
+== Journaux des services StorageGRID
+
+[cols="3a,3a,2a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/acct.errlog  a| 
+ a| 
+Nœuds de stockage exécutant le service ADC
+
+
+
+| /var/local/log/adc.errlog  a| 
+Contient le flux erreur standard (stderr) des services correspondants. Il y a un fichier journal par service. Ces fichiers sont généralement vides, sauf en cas de problème avec le service.
+ a| 
+Nœuds de stockage exécutant le service ADC
+
+
+
+| /var/local/log/ams.errlog  a| 
+ a| 
+Nœuds d'administration
+
+
+
+| /var/local/log/cassandra/system.log  a| 
+Informations pour le magasin de métadonnées (base de données Cassandra) pouvant être utilisées en cas de problème lors de l'ajout de nouveaux nœuds de stockage ou si la tâche de réparation nodetool cale.
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/cassandra-reaper.log  a| 
+Informations concernant le service Cassandra Reaper, qui répare les données de la base de données Cassandra.
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/cassandra-reaper.errlog  a| 
+Informations d'erreur pour le service Cassandra Reaper.
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/chunk.errlog  a| 
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/cmn.errlog  a| 
+ a| 
+Nœuds d'administration
+
+
+
+| /var/local/log/cms.errlog  a| 
+Ce fichier journal peut être présent sur les systèmes qui ont été mis à niveau à partir d'une ancienne version de StorageGRID. Il contient des informations héritées.
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/dds.errlog  a| 
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/dmv.errlog  a| 
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/dylip*  a| 
+Contient des journaux liés au service dynap, qui surveille la grille pour les modifications IP dynamiques et met à jour la configuration locale.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/grafana.log  a| 
+Journal associé au service Grafana, utilisé pour la visualisation des metrics dans Grid Manager.
+ a| 
+Nœuds d'administration
+
+
+
+| /var/local/log/hagroups.log  a| 
+Journal associé aux groupes haute disponibilité.
+ a| 
+Nœuds d'administration et nœuds de passerelle
+
+
+
+| /var/local/log/hagroups_events.log  a| 
+Suivi des changements d'état, tels que la transition de LA SAUVEGARDE vers LE MAÎTRE ou LE DÉFAUT.
+ a| 
+Nœuds d'administration et nœuds de passerelle
+
+
+
+| /var/local/log/idnt.errlog  a| 
+ a| 
+Nœuds de stockage exécutant le service ADC
+
+
+
+| /var/local/log/jaeger.log  a| 
+Journal associé au service jaeger, qui est utilisé pour la collecte de traces.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/kstn.errlog  a| 
+ a| 
+Nœuds de stockage exécutant le service ADC
+
+
+
+| /var/local/log/lambda*  a| 
+Contient les journaux du service S3 Select.
+ a| 
+Nœuds d'administration et de passerelle
+
+Seuls certains nœuds d'administration et de passerelle contiennent ce journal. Voir la link:../admin/manage-s3-select-for-tenant-accounts.html["Exigences et limitations de S3 Select pour les nœuds d'administration et de passerelle"].
+
+
+
+| /var/local/log/ldr.errlog  a| 
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/miscd/*.log  a| 
+Contient des journaux pour le service MISCd (démon de contrôle du service d'information), qui fournit une interface pour interroger et gérer les services sur d'autres nœuds et pour gérer les configurations environnementales sur le nœud, comme interroger l'état des services s'exécutant sur d'autres nœuds.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/nginx/*.log  a| 
+Contient des journaux pour le service nginx, qui agit comme un mécanisme d'authentification et de communication sécurisée pour divers services de réseau (comme Prometheus et Dynap) pour pouvoir communiquer avec les services sur d'autres nœuds via des API HTTPS.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/nginx-gw/*.log  a| 
+Contient les journaux généraux relatifs au service nginx-gw, y compris les journaux d'erreurs et les journaux des ports d'administration restreints sur les nœuds d'administration.
+ a| 
+Nœuds d'administration et nœuds de passerelle
+
+
+
+| /var/local/log/nginx-gw/cgr-access.log.gz  a| 
+Contient des journaux d'accès relatifs au trafic de réplication inter-grid.
+ a| 
+Nœuds d'administration, nœuds de passerelle ou les deux, en fonction de la configuration de fédération grid. Uniquement disponible sur la grille de destination pour la réplication inter-grid.
+
+
+
+| /var/local/log/nginx-gw/endpoint-access.log.gz  a| 
+Contient les journaux d'accès du service Load Balancer, qui assure l'équilibrage de la charge du trafic S3 entre les clients et les nœuds de stockage.
+ a| 
+Nœuds d'administration et nœuds de passerelle
+
+
+
+| /var/local/log/persistence*  a| 
+Contient les journaux du service Persistence, qui gère les fichiers sur le disque racine qui doivent persister au cours d'un redémarrage.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/prometheus.log  a| 
+Pour tous les nœuds, il contient le journal de service de l'exportateur de nœuds et le journal des services de metrics de l'outil d'exportation de nœuds.
+
+Pour les nœuds d'administration, contient également les journaux des services Prometheus et Alert Manager.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/raft.log  a| 
+Contient la sortie de la bibliothèque utilisée par le service RSM pour le protocole de radeau.
+ a| 
+Nœuds de stockage avec service RSM
+
+
+
+| /var/local/log/rms.errlog  a| 
+Contient les journaux du service RSM (State machine Service) répliqué, qui est utilisé pour les services de plate-forme S3.
+ a| 
+Nœuds de stockage avec service RSM
+
+
+
+| /var/local/log/ssm.errlog  a| 
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/update-s3vs-domains.log  a| 
+Contient des journaux relatifs aux mises à jour de traitement pour la configuration des noms de domaine hébergés sur des serveurs virtuels S3.consultez les instructions d'implémentation des applications client S3.
+ a| 
+Nœuds d'administration et de passerelle
+
+
+
+| /var/local/log/update-snmp-firewall.*  a| 
+Contiennent des journaux relatifs aux ports de pare-feu gérés pour SNMP.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/update-sysl.log  a| 
+Contient des journaux relatifs aux modifications apportées à la configuration syslog du système.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/update-traffic-classes.log  a| 
+Contient des journaux relatifs aux modifications apportées à la configuration des classificateurs de trafic.
+ a| 
+Nœuds d'administration et de passerelle
+
+
+
+| /var/local/log/update-utcn.log  a| 
+Contient des journaux liés au mode réseau client non fiable sur ce nœud.
+ a| 
+Tous les nœuds
+
+|===
+.Informations associées
+* link:about-bycast-log.html["Sur le bycast.log"]
+* link:../s3/index.html["UTILISEZ L'API REST S3"]
+

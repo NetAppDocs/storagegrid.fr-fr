@@ -1,0 +1,80 @@
+---
+permalink: maintain/restoring-network-connectivity-for-isolated-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, network connection, restore network connection, isolated node, restore isolated node connection 
+summary: 'Dans certaines circonstances, un ou plusieurs groupes de nœuds peuvent ne pas être en mesure de contacter le reste de la grille. Par exemple, les modifications d"adresse IP à l"échelle du site ou de la grille peuvent entraîner l"isolement de nœuds.' 
+---
+= Restaurez la connectivité réseau pour les nœuds isolés
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dans certaines circonstances, un ou plusieurs groupes de nœuds peuvent ne pas être en mesure de contacter le reste de la grille. Par exemple, les modifications d'adresse IP à l'échelle du site ou de la grille peuvent entraîner l'isolement de nœuds.
+
+.Description de la tâche
+L'isolation des nœuds est indiquée par :
+
+* Alertes, telles que *Impossible de communiquer avec le noeud* (*alertes* > *actuel*)
+* Diagnostics liés à la connectivité (*SUPPORT* > *Tools* > *Diagnostics*)
+
+
+L'existence de nœuds isolés entraîne notamment les conséquences suivantes :
+
+* Si plusieurs nœuds sont isolés, il se peut que vous ne puissiez pas vous connecter à ou accéder à Grid Manager.
+* Si plusieurs nœuds sont isolés, les valeurs d'utilisation du stockage et de quota affichées sur le tableau de bord pour le gestionnaire de locataires peuvent être obsolètes. Les totaux seront mis à jour lorsque la connectivité réseau sera restaurée.
+
+
+Pour résoudre le problème d'isolation, vous exécutez un utilitaire de ligne de commande sur chaque nœud isolé ou sur un nœud d'un groupe (tous les nœuds d'un sous-réseau ne contenant pas le noeud d'administration principal) isolé de la grille. L'utilitaire fournit aux nœuds l'adresse IP d'un nœud non isolé dans la grille, ce qui permet au nœud ou au groupe isolé de nœuds de contacter à nouveau toute la grille.
+
+
+NOTE: Si le système de noms de domaine multidiffusion (mDNS) est désactivé sur les réseaux, vous devrez peut-être exécuter l'utilitaire de ligne de commande sur chaque nœud isolé.
+
+.Étapes
+Cette procédure ne s'applique pas lorsque seuls certains services sont hors ligne ou signalent des erreurs de communication.
+
+. Accédez au nœud et vérifiez `/var/local/log/dynip.log` la présence de messages d'isolation.
++
+Par exemple :
+
++
+[listing]
+----
+[2018-01-09T19:11:00.545] UpdateQueue - WARNING -- Possible isolation, no contact with other nodes.
+If this warning persists, manual action might be required.
+----
++
+Si vous utilisez la console VMware, un message indiquant que le nœud peut être isolé s'affiche.
+
++
+Sur les déploiements Linux, des messages d'isolation apparaissent dans `/var/log/storagegrid/node/<nodename>.log` les fichiers.
+
+. Si les messages d'isolement sont récurrents et persistants, exécutez la commande suivante :
++
+`add_node_ip.py <address>`
+
++
+Où `<address>` est l'adresse IP d'un nœud distant connecté à la grille.
+
++
+[listing]
+----
+# /usr/sbin/add_node_ip.py  10.224.4.210
+
+Retrieving local host information
+Validating remote node at address 10.224.4.210
+Sending node IP hint for 10.224.4.210 to local node
+Local node found on remote node. Update complete.
+----
+. Vérifiez les éléments suivants pour chaque nœud précédemment isolé :
++
+** Les services du nœud ont démarré.
+** L'état du service IP dynamique est « en cours d'exécution » après l'exécution de la `storagegrid-status` commande.
+** Sur la page nœuds, le nœud n'apparaît plus déconnecté du reste de la grille.
+
+
+
+
+
+NOTE: Si l'exécution de la `add_node_ip.py` commande ne résout pas le problème, d'autres problèmes de mise en réseau peuvent devoir être résolus.

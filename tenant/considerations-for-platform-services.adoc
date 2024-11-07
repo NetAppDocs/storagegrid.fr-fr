@@ -1,0 +1,215 @@
+---
+permalink: tenant/considerations-for-platform-services.html 
+sidebar: sidebar 
+keywords: considerations for using platform services 
+summary: 'Avant d"implémenter les services de plateforme, examinez la présentation et les considérations relatives à l"utilisation de ces services.' 
+---
+= Présentation et éléments à prendre en compte pour les services de plateforme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'implémenter les services de plateforme, examinez la présentation et les considérations relatives à l'utilisation de ces services.
+
+Pour plus d'informations sur S3, reportez-vous à link:../s3/index.html["UTILISEZ L'API REST S3"]la section .
+
+
+
+== Présentation des services de plateforme
+
+Les services de plateforme StorageGRID vous aident à mettre en œuvre une stratégie de cloud hybride en vous permettant d'envoyer des notifications d'événements et des copies d'objets S3 et de métadonnées d'objet à des destinations externes.
+
+L'emplacement cible des services de plateforme étant généralement externe à votre déploiement StorageGRID, les services de plateforme vous offrent la puissance et la flexibilité offertes par l'utilisation de ressources de stockage externes, de services de notification et de services de recherche ou d'analyse pour vos données.
+
+Toute combinaison de services de plateforme peut être configurée pour un seul compartiment S3. Par exemple, vous pouvez configurer à la fois le link:../tenant/understanding-cloudmirror-replication-service.html["Service CloudMirror"] et le link:../tenant/understanding-notifications-for-buckets.html["notifications"] dans un compartiment StorageGRID S3 afin de mettre en miroir des objets spécifiques vers Amazon simple Storage Service (S3), tout en envoyant une notification sur chacun de ces objets à une application de surveillance tierce pour vous aider à suivre vos dépenses AWS.
+
+
+TIP: L'utilisation des services de la plateforme doit être activée pour chaque compte de locataire par un administrateur StorageGRID à l'aide de Grid Manager ou de l'API de gestion du grid.
+
+
+
+== Configuration des services de plate-forme
+
+Les services de plate-forme communiquent avec les noeuds finaux externes que vous configurez à l'aide du link:configuring-platform-services-endpoints.html["Gestionnaire de locataires"]ou du link:understanding-tenant-management-api.html["API de gestion des locataires"]. Chaque terminal représente une destination externe, par exemple un compartiment StorageGRID S3, un compartiment Amazon Web Services, une rubrique Amazon SNS ou un cluster Elasticsearch hébergé localement, sur AWS ou ailleurs.
+
+Après avoir créé un noeud final externe, vous pouvez activer un service de plate-forme pour un compartiment en ajoutant une configuration XML au compartiment. La configuration XML identifie les objets sur lesquels le compartiment doit agir, l'action que le compartiment doit effectuer et le point de terminaison que le compartiment doit utiliser pour le service.
+
+Vous devez ajouter des configurations XML distinctes pour chaque service de plate-forme que vous souhaitez configurer. Par exemple :
+
+* Si vous souhaitez que tous les objets dont les clés commencent par `/images` soient répliqués sur un compartiment Amazon S3, vous devez ajouter une configuration de réplication au compartiment source.
+* Si vous souhaitez également envoyer des notifications lorsque ces objets sont stockés dans le compartiment, vous devez ajouter une configuration de notifications.
+* Si vous souhaitez indexer les métadonnées de ces objets, vous devez ajouter la configuration de notification des métadonnées utilisée pour implémenter l'intégration de la recherche.
+
+
+Le format du XML de configuration est régi par les API REST S3 utilisées pour mettre en œuvre les services de plateforme StorageGRID :
+
+[cols="1a,2a,1a"]
+|===
+| Service de plateforme | L'API REST S3 | Reportez-vous à la section 
+
+
+ a| 
+Réplication CloudMirror
+ a| 
+* GetBuckeReplication
+* PutBuckeReplication
+
+ a| 
+* link:configuring-cloudmirror-replication.html["Réplication CloudMirror"]
+* link:../s3/operations-on-buckets.html["Opérations sur les compartiments"]
+
+
+
+
+ a| 
+Notifications
+ a| 
+* GetBucketNotifationConfiguration
+* PutBucketNotifationConfiguration
+
+ a| 
+* link:configuring-event-notifications.html["Notifications"]
+* link:../s3/operations-on-buckets.html["Opérations sur les compartiments"]
+
+
+
+
+ a| 
+Intégration de la recherche
+ a| 
+* CONFIGURATION DES notifications de métadonnées de compartiment
+* CONFIGURATION de notification des métadonnées de compartiment
+
+ a| 
+* link:configuring-search-integration-service.html["Intégration de la recherche"]
+* link:../s3/custom-operations-on-buckets.html["Opérations personnalisées StorageGRID"]
+
+
+|===
+
+
+== Considérations relatives à l'utilisation des services de plate-forme
+
+[cols="1a,3a"]
+|===
+| Réflexion | Détails 
+
+
+ a| 
+Surveillance des terminaux de destination
+ a| 
+Vous devez surveiller la disponibilité de chaque point final de destination. Si la connexion au point final de destination est perdue pendant une période prolongée et qu'il existe un important retard de requêtes, les demandes client supplémentaires (telles QUE LES requêtes ENVOYÉES) à StorageGRID échoueront. Vous devez réessayer ces demandes ayant échoué lorsque le noeud final devient accessible.
+
+
+
+ a| 
+Limitation du terminal de destination
+ a| 
+Le logiciel StorageGRID peut canaliser les demandes S3 entrantes pour un compartiment si le taux d'envoi des demandes dépasse le taux à partir duquel le terminal de destination peut recevoir les demandes. La restriction ne se produit que lorsqu'il existe un arriéré de demandes en attente d'envoi vers le noeud final de destination.
+
+Le seul effet visible est que les requêtes S3 entrantes prennent plus de temps à s'exécuter. Si vous commencez à détecter les performances beaucoup plus lentes, vous devez réduire le taux d'entrée ou utiliser un terminal avec une capacité plus élevée. Si l'carnet de commandes des requêtes continue d'augmenter, les opérations S3 des clients (par EXEMPLE, LES requêtes PUT) finiront par échouer.
+
+Les demandes CloudMirror sont plus susceptibles d'être affectées par les performances du terminal de destination, car ces demandes impliquent généralement plus de transfert de données que les demandes d'intégration de recherche ou de notification d'événements.
+
+
+
+ a| 
+Garanties de commande
+ a| 
+StorageGRID garantit l'ordre des opérations sur un objet d'un site. Tant que toutes les opérations relatives à un objet se trouvent sur le même site, l'état final de l'objet (pour la réplication) sera toujours égal à l'état dans StorageGRID.
+
+StorageGRID tente également de commander des demandes lorsque des opérations sont effectuées sur des sites StorageGRID. Par exemple, si vous écrivez un objet initialement sur le site A, puis que vous le remplacez par un autre objet au niveau du site B, le dernier objet répliqué par CloudMirror vers le compartiment de destination n'est pas garanti que ce nouvel objet soit.
+
+
+
+ a| 
+Suppressions d'objets basées sur des règles ILM
+ a| 
+Pour correspondre au comportement de suppression des CRR AWS et Amazon simple notification Service, les requêtes CloudMirror et de notification d'événement ne sont pas envoyées lorsqu'un objet du compartiment source est supprimé en raison des règles ILM de StorageGRID. Par exemple, aucune demande de notification de CloudMirror ou d'événement n'est envoyée si une règle ILM supprime un objet au bout de 14 jours.
+
+Au contraire, les demandes d'intégration de la recherche sont envoyées lorsque les objets sont supprimés du fait de ILM.
+
+
+
+ a| 
+À l'aide des terminaux Kafka
+ a| 
+Pour les terminaux Kafka, le protocole TLS mutuel n'est pas pris en charge. Par conséquent, si vous avez `ssl.client.auth` défini sur `required` dans la configuration de votre courtier Kafka, cela peut entraîner des problèmes de configuration du terminal Kafka.
+
+L'authentification des terminaux Kafka utilise les types d'authentification suivants. Ces types sont différents de ceux utilisés pour l'authentification d'autres terminaux, tels qu'Amazon SNS, et nécessitent des informations d'identification de nom d'utilisateur et de mot de passe.
+
+* SASL/SIMPLE
+* SASL/SCRAM-SHA-256
+* SASL/SCRAM-SHA-512
+
+
+*Remarque :* les paramètres du proxy de stockage configuré ne s'appliquent pas aux noeuds finaux des services de la plateforme Kafka.
+
+|===
+
+
+== Considérations relatives à l'utilisation du service de réplication CloudMirror
+
+[cols="1a,3a"]
+|===
+| Réflexion | Détails 
+
+
+ a| 
+État de la réplication
+ a| 
+StorageGRID ne prend pas en charge la `x-amz-replication-status` barre de coupe.
+
+
+
+ a| 
+Taille de l'objet
+ a| 
+La taille maximale des objets qui peuvent être répliqués dans un compartiment de destination par le service de réplication CloudMirror est de 5 Tio, soit la même que la taille maximale de l'objet _pris en charge_.
+
+*Remarque* : la taille _recommandée_ maximale pour une opération PutObject unique est de 5 Gio (5,368,709,120 octets). Si vos objets sont supérieurs à 5 Gio, utilisez le téléchargement partitionné.
+
+
+
+ a| 
+Gestion des versions du compartiment et ID de version
+ a| 
+Si le compartiment S3 source de StorageGRID est activé pour la gestion des versions, vous devez également activer la gestion des versions pour le compartiment de destination.
+
+Lors de l'utilisation du contrôle de version, notez que l'ordre des versions d'objet dans le compartiment de destination est meilleur effort et n'est pas garanti par le service CloudMirror, en raison des limites du protocole S3.
+
+*Remarque* : les ID de version du compartiment source dans StorageGRID ne sont pas liés aux ID de version du compartiment de destination.
+
+
+
+ a| 
+Balisage des versions d'objets
+ a| 
+Le service CloudMirror ne réplique pas les requêtes PutObjectTagging ou DeleteObjectTagging qui fournissent un ID de version, en raison des limitations du protocole S3. Étant donné que les ID de version de la source et de la destination ne sont pas liés, il n'est pas possible de s'assurer qu'une mise à jour de balise vers un ID de version spécifique sera répliquée.
+
+En revanche, le service CloudMirror réplique les requêtes PutObjectTagging ou DeleteObjectTagging qui ne spécifient pas d'ID de version. Ces demandes mettent à jour les balises pour la clé la plus récente (ou la dernière version si le compartiment est versionné). Les ings normaux avec des étiquettes (et non les mises à jour de marquage) sont également répliqués.
+
+
+
+ a| 
+Téléchargements partitionnés et `ETag` valeurs
+ a| 
+Lors de la mise en miroir d'objets qui ont été téléchargés à l'aide d'un téléchargement partitionné, le service CloudMirror ne conserve pas les pièces. Par conséquent, la `ETag` valeur de l'objet symétrique sera différente de celle `ETag` de l'objet d'origine.
+
+
+
+ a| 
+Chiffrement des objets avec SSE-C (chiffrement côté serveur avec clés fournies par le client)
+ a| 
+Le service CloudMirror ne prend pas en charge les objets cryptés avec SSE-C. si vous essayez d'ingérer un objet dans le compartiment source pour la réplication CloudMirror et que la demande inclut les en-têtes de requête SSE-C, l'opération échoue.
+
+
+
+ a| 
+Compartiment avec verrouillage objet S3 activé
+ a| 
+La réplication n'est pas prise en charge pour les compartiments source ou de destination lorsque le verrouillage d'objet S3 est activé.
+
+|===

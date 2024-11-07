@@ -1,0 +1,191 @@
+---
+permalink: s3/operations-on-objects.html 
+sidebar: sidebar 
+keywords: bucket, buckets, operations on buckets 
+summary: 'Cette section décrit la manière dont le système StorageGRID implémente les opérations de l"API REST S3 pour les objets.' 
+---
+= Opérations sur les objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit la manière dont le système StorageGRID implémente les opérations de l'API REST S3 pour les objets.
+
+Les conditions suivantes s'appliquent à toutes les opérations d'objet :
+
+* StorageGRID link:consistency-controls.html["valeurs de cohérence"]sont pris en charge par toutes les opérations sur les objets, à l'exception des opérations suivantes :
++
+** GetObjectAcl
+** `OPTIONS /`
+** PutObjectLegalHold
+** PutObjectRetention
+** SelectObjectContent
+
+
+* Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
+* Tous les objets d'un compartiment StorageGRID sont détenus par le propriétaire du compartiment, y compris les objets créés par un utilisateur anonyme ou par un autre compte.
+* Les objets de données ingérés dans le système StorageGRID via Swift ne sont pas accessibles via S3.
+
+
+Le tableau ci-dessous décrit la manière dont StorageGRID implémente les opérations sur les objets de l'API REST S3.
+
+[cols="1a,2a"]
+|===
+| Fonctionnement | Mise en place 
+
+
+ a| 
+DeleteObject
+ a| 
+L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
+
+Lors du traitement d'une requête DeleteObject, StorageGRID tente de supprimer immédiatement toutes les copies de l'objet de tous les emplacements stockés. En cas de succès, StorageGRID renvoie immédiatement une réponse au client. Si toutes les copies ne peuvent pas être supprimées dans les 30 secondes (par exemple, parce qu'un emplacement est temporairement indisponible), StorageGRID met les copies en file d'attente pour suppression et indique que le client a réussi.
+
+Gestion des versions:: Pour supprimer une version spécifique, le demandeur doit être le propriétaire du compartiment et utiliser la `versionId` sous-ressource. L'utilisation de cette sous-ressource supprime définitivement la version. Si le `versionId` correspond à un marqueur de suppression, l'en-tête de réponse `x-amz-delete-marker` est renvoyé à `true`.
++
+--
+* Si un objet est supprimé sans la `versionId` sous-ressource sur un compartiment avec la gestion des versions activée, il génère un marqueur de suppression. Le `versionId` pour le marqueur de suppression est renvoyé à l'aide de `x-amz-version-id` l'en-tête de réponse et l' `x-amz-delete-marker`en-tête de réponse est renvoyé à `true`.
+* Si un objet est supprimé sans la `versionId` sous-ressource sur un compartiment avec la gestion des versions suspendue, il entraîne la suppression permanente d'une version 'null' existante ou d'un marqueur de suppression 'null', et la génération d'un nouveau marqueur de suppression 'null'. L' `x-amz-delete-marker`en-tête de réponse est renvoyé à `true`.
++
+*Remarque* : dans certains cas, plusieurs marqueurs de suppression peuvent exister pour un objet.
+
+
+
+--
+
+
+Reportez-vous  à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"] pour savoir comment supprimer des versions d'objets en mode GOUVERNANCE.
+
+
+
+ a| 
+DeleteObjects
+
+(Précédemment nommé, SUPPRIMER plusieurs objets)
+ a| 
+L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
+
+Plusieurs objets peuvent être supprimés dans le même message de demande.
+
+Reportez-vous  à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"] pour savoir comment supprimer des versions d'objets en mode GOUVERNANCE.
+
+
+
+ a| 
+DeleteObjectTagging
+ a| 
+Utilise la `tagging` sous-ressource pour supprimer toutes les balises d'un objet.
+
+Gestion des versions:: Si le `versionId` paramètre de requête n'est pas spécifié dans la requête, l'opération supprime toutes les balises de la version la plus récente de l'objet dans un compartiment versionné. Si la version actuelle de l'objet est un marqueur de suppression, l'état "MethodNotAllowed" est renvoyé avec l' `x-amz-delete-marker`en-tête de réponse défini sur `true`.
+
+
+
+
+ a| 
+GetObject
+ a| 
+link:get-object.html["GetObject"]
+
+
+
+ a| 
+GetObjectAcl
+ a| 
+Si les informations d'identification d'accès nécessaires sont fournies pour le compte, l'opération renvoie une réponse positive ainsi que l'ID, le DisplayName et l'autorisation du propriétaire de l'objet, ce qui indique que le propriétaire dispose d'un accès complet à l'objet.
+
+
+
+ a| 
+GetObjectLegalHold
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
+
+
+
+ a| 
+GetObjectRetention
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
+
+
+
+ a| 
+GetObjectTagging
+ a| 
+Utilise la `tagging` sous-ressource pour renvoyer toutes les balises d'un objet.
+
+Gestion des versions:: Si le `versionId` paramètre de requête n'est pas spécifié dans la requête, l'opération renvoie toutes les balises de la version la plus récente de l'objet dans un compartiment versionné. Si la version actuelle de l'objet est un marqueur de suppression, l'état "MethodNotAllowed" est renvoyé avec l' `x-amz-delete-marker`en-tête de réponse défini sur `true`.
+
+
+
+
+ a| 
+Objet principal
+ a| 
+link:head-object.html["Objet principal"]
+
+
+
+ a| 
+Objet de restauration
+ a| 
+link:post-object-restore.html["Objet de restauration"]
+
+
+
+ a| 
+PutObject
+ a| 
+link:put-object.html["PutObject"]
+
+
+
+ a| 
+Objet de copie
+
+(Objet PUT précédemment nommé - Copier)
+ a| 
+link:put-object-copy.html["Objet de copie"]
+
+
+
+ a| 
+PutObjectLegalHold
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
+
+
+
+ a| 
+PutObjectRetention
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
+
+
+
+ a| 
+Marquage PutObject
+ a| 
+Utilise la `tagging` sous-ressource pour ajouter un ensemble de balises à un objet existant.
+
+Limites des balises d'objet:: Vous pouvez ajouter des balises à de nouveaux objets lorsque vous les téléchargez ou les ajouter à des objets existants. StorageGRID et Amazon S3 prennent en charge jusqu'à 10 balises pour chaque objet. Les balises associées à un objet doivent avoir des clés de balise uniques. Une clé de balise peut comporter jusqu'à 128 caractères Unicode et les valeurs de balise peuvent comporter jusqu'à 256 caractères Unicode. Les clés et les valeurs sont sensibles à la casse
+Mises à jour des balises et comportement d'ingestion:: Lorsque vous utilisez PutObjectTagging pour mettre à jour les balises d'un objet, StorageGRID ne réingère pas l'objet. Cela signifie que l'option de comportement d'ingestion spécifiée dans la règle ILM correspondante n'est pas utilisée. Tout changement au placement d'objet déclenché par la mise à jour est apporté lors de l'évaluation de ILM par des processus ILM en arrière-plan normaux.
++
+--
+En d'autres termes, si la règle ILM utilise l'option strict pour le comportement d'ingestion, aucune action n'est entreprise si les placements d'objet requis ne peuvent pas être effectués (par exemple, parce qu'un nouvel emplacement n'est pas disponible). L'objet mis à jour conserve son emplacement actuel jusqu'à ce que le placement requis soit possible.
+
+--
+Résolution des conflits:: Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
+Gestion des versions:: Si le `versionId` paramètre de requête n'est pas spécifié dans la requête, l'opération ajoute des balises à la version la plus récente de l'objet dans un compartiment versionné. Si la version actuelle de l'objet est un marqueur de suppression, l'état "MethodNotAllowed" est renvoyé avec l' `x-amz-delete-marker`en-tête de réponse défini sur `true`.
+
+
+
+
+ a| 
+SelectObjectContent
+ a| 
+link:select-object-content.html["SelectObjectContent"]
+
+|===

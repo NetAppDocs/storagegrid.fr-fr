@@ -1,0 +1,108 @@
+---
+permalink: tenant/viewing-s3-bucket-details.html 
+sidebar: sidebar 
+keywords: how to view bucket details 
+summary: Vous pouvez afficher les compartiments de votre compte de locataire. 
+---
+= Afficher les détails du compartiment
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher les compartiments de votre compte de locataire.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Accès racine, gestion de tous les compartiments ou autorisation Afficher tous les compartiments"]. Ces autorisations remplacent les paramètres d'autorisation dans les stratégies de groupe ou de compartiment.
+
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
++
+La page compartiments s'affiche.
+
+. Consultez le tableau récapitulatif pour chaque compartiment.
++
+Si nécessaire, vous pouvez trier les informations par colonne, ou vous pouvez avancer et revenir à la liste.
+
++
+
+NOTE: Les valeurs nombre d'objets, espace utilisé et utilisation affichées sont des estimations. Ces estimations sont affectées par le moment de l'ingestion, la connectivité réseau et l'état des nœuds. Si la gestion des versions des compartiments est activée, les versions des objets supprimés sont incluses dans le nombre d'objets.
+
++
+Nom:: Nom unique du compartiment, qui ne peut pas être modifié.
+Fonctionnalités activées:: Liste des fonctions activées pour le compartiment.
+Verrouillage d'objet S3:: Indique si le verrouillage d'objet S3 est activé pour le compartiment.
++
+--
+Cette colonne apparaît uniquement si le verrouillage objet S3 est activé pour la grille. Cette colonne affiche également des informations pour tous les compartiments conformes existants.
+
+--
+Région:: La région du compartiment, qui ne peut pas être modifiée. Cette colonne est masquée par défaut.
+Nombre d'objets:: Nombre d'objets dans ce compartiment. Si la gestion des versions des compartiments est activée, les versions d'objets non actuelles sont incluses dans cette valeur.
++
+--
+Lorsque des objets sont ajoutés ou supprimés, il est possible que cette valeur ne soit pas mise à jour immédiatement.
+
+--
+Espace utilisé:: Taille logique de tous les objets du compartiment. La taille logique n'inclut pas l'espace réel requis pour les copies répliquées ou avec code d'effacement, ni pour les métadonnées d'objet.
++
+--
+La mise à jour de cette valeur peut prendre jusqu'à 10 minutes.
+
+--
+Du stockage:: Pourcentage utilisé de la limite de capacité du godet, si un pourcentage a été défini.
++
+--
+La valeur d'utilisation est basée sur des estimations internes et peut être dépassée dans certains cas. Par exemple, StorageGRID vérifie la limite de capacité (si elle est définie) lorsqu'un locataire commence à télécharger des objets et rejette de nouvelles iningests dans ce compartiment si le locataire a dépassé la limite de capacité. Cependant, StorageGRID ne prend pas en compte la taille du téléchargement actuel lorsqu'il détermine si la limite de capacité a été dépassée. En cas de suppression d'objets, un locataire peut temporairement empêcher le chargement de nouveaux objets dans ce compartiment jusqu'à ce que l'utilisation de la limite de capacité soit recalculée. Les calculs peuvent prendre 10 minutes ou plus.
+
+Cette valeur indique la taille logique et non la taille physique nécessaire au stockage des objets et de leurs métadonnées.
+
+--
+Capacité:: S'il est défini, la limite de capacité du godet.
+Date de création:: Date et heure de création du compartiment. Cette colonne est masquée par défaut.
+
+
+. Pour afficher les détails d'un compartiment spécifique, sélectionnez le nom du compartiment dans le tableau.
++
+.. Affichez le récapitulatif en haut de la page Web pour confirmer les détails du compartiment, tels que le nombre de régions et d'objets.
+.. Afficher la barre d'utilisation de la limite de capacité. Si l'utilisation est de 100 % ou proche de 100 %, envisagez d'augmenter la limite ou de supprimer certains objets.
+.. Au besoin, sélectionnez *Supprimer les objets dans le compartiment* et *Supprimer le compartiment*.
++
+[CAUTION]
+====
+Soyez attentif aux mises en garde qui apparaissent lorsque vous sélectionnez chacune de ces options. Pour plus d'informations, se reporter à :
+
+*** link:deleting-s3-bucket-objects.html["Supprime tous les objets d'un compartiment"]
+*** link:deleting-s3-bucket.html["Supprimer un compartiment"] (le godet doit être vide)
+
+
+====
+.. Afficher ou modifier les paramètres du compartiment dans chacun des onglets, selon les besoins.
++
+*** *S3 Console* : permet d'afficher les objets du compartiment. Pour plus d'informations, reportez-vous link:use-s3-console.html["Utiliser la console S3"]à .
+*** *Options de compartiment* : afficher ou modifier les paramètres des options. Certains paramètres, tels que S3 Object Lock, ne peuvent pas être modifiés après la création du compartiment.
++
+**** link:manage-bucket-consistency.html["Gestion de la cohérence des compartiments"]
+**** link:enabling-or-disabling-last-access-time-updates.html["Mises à jour de l'heure du dernier accès"]
+**** link:../tenant/creating-s3-bucket.html#capacity-limit["Limite de capacité"]
+**** link:changing-bucket-versioning.html["Gestion des versions d'objet"]
+**** link:using-s3-object-lock.html["Verrouillage d'objet S3"]
+**** link:update-default-retention-settings.html["Rétention de compartiments par défaut"]
+**** link:grid-federation-manage-cross-grid-replication.html["Gérer la réplication entre les grilles"] (si autorisé pour le locataire)
+
+
+*** *Platform services*: link:considerations-for-platform-services.html["Gestion des services de plateforme"] (Si autorisé pour le locataire)
+*** *Accès au compartiment* : afficher ou modifier les paramètres des options. Vous devez disposer d'autorisations d'accès spécifiques.
++
+**** Configurer link:configuring-cross-origin-resource-sharing-cors.html["Partage de ressources interorigine (CORS)"] pour que le compartiment et les objets du compartiment soient accessibles aux applications Web d'autres domaines.
+**** link:../tenant/manage-bucket-policy.html["Contrôler l'accès des utilisateurs"] Pour un compartiment S3 et les objets dans ce compartiment.
+
+
+
+
+
+
+

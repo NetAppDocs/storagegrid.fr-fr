@@ -1,0 +1,65 @@
+---
+permalink: maintain/reviewing-ilm-policy-and-storage-configuration.html 
+sidebar: sidebar 
+keywords: storagegrid, restore, ilm policy, storage configuration 
+summary: Si vous prévoyez de désaffecter un nœud de stockage, vous devez consulter la politique ILM de votre système StorageGRID avant de commencer le processus de mise hors service. 
+---
+= Examiner la règle ILM et la configuration du stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous prévoyez de désaffecter un nœud de stockage, nous vous recommandons de consulter la politique ILM de votre système StorageGRID avant de lancer le processus de désaffectation.
+
+Pendant la mise hors service, toutes les données d'objet sont migrées du nœud de stockage hors service vers d'autres nœuds de stockage.
+
+
+NOTE: La politique ILM que vous avez _pendant_ la mise hors service sera celle utilisée _après_ la mise hors service. Vous devez vous assurer que cette règle répond à vos besoins en matière de données avant la mise hors service et une fois la mise hors service terminée.
+
+Vous devez passer en revue les règles de chacun link:../ilm/creating-ilm-policy.html["Règle ILM active"] pour vous assurer que le système StorageGRID continuera à avoir une capacité suffisante du type correct et aux emplacements appropriés pour permettre la mise hors service d'un nœud de stockage.
+
+Tenez compte des points suivants :
+
+* Sera-t-il possible que les services d'évaluation ILM copient les données d'objet si les règles ILM sont respectées ?
+* Que se passe-t-il si un site devient temporairement indisponible pendant la mise hors service ? Des copies supplémentaires peuvent-elles être effectuées dans un autre emplacement ?
+* En quoi le processus de mise hors service aura-t-il une incidence sur la distribution finale du contenu? Comme décrit à la section link:consolidating-storage-nodes.html["Consolidez les nœuds de stockage"], vous devez link:../expand/index.html["Ajout de nœuds de stockage"] avant de mettre hors service les anciens. Si vous ajoutez un nœud de stockage de remplacement plus grand après avoir désaffectant un nœud de stockage plus petit, les anciens nœuds de stockage peuvent être proches de leur capacité et le nouveau nœud de stockage n'aurait presque pas de contenu. La plupart des opérations d'écriture des nouvelles données d'objet sont ensuite dirigées vers le nouveau nœud de stockage, ce qui réduit l'efficacité globale des opérations système.
+* Le système inclura-t-il à tout moment suffisamment de nœuds de stockage pour satisfaire aux règles ILM actives ?
++
+
+NOTE: Une règle ILM insatisfaite peut entraîner des backlogs et des alertes et peut arrêter le fonctionnement du système StorageGRID.
+
+
+
+Vérifiez que la topologie proposée qui résultera du processus de désaffectation respecte la politique ILM en évaluant les zones répertoriées dans le tableau.
+
+[cols="1a,2a"]
+|===
+| Domaine à évaluer | Que faut-il prendre en compte 
+
+
+ a| 
+Capacité disponible
+ a| 
+Y aura-t-il une capacité de stockage suffisante pour prendre en charge toutes les données d'objet stockées dans le système StorageGRID, y compris les copies permanentes des données d'objet actuellement stockées sur le nœud de stockage à mettre hors service ?
+
+Y aura-t-il suffisamment de capacité pour gérer la croissance prévue des données d'objet stockées pendant un délai raisonnable après la fin de la mise hors service ?
+
+
+
+ a| 
+Emplacement de stockage
+ a| 
+Si la capacité reste dans l'ensemble du système StorageGRID, la capacité est-elle suffisante aux bons emplacements afin de satisfaire aux règles métier du système StorageGRID ?
+
+
+
+ a| 
+Type de stockage
+ a| 
+Y aura-t-il suffisamment de stockage pour le type approprié une fois la mise hors service terminée ?
+
+Par exemple, les règles ILM peuvent déplacer le contenu d'un type de stockage vers un autre à mesure que le contenu vieillit. Dans ce cas, vous devez vous assurer qu'un espace de stockage suffisant du type approprié est disponible dans la configuration finale du système StorageGRID.
+
+|===

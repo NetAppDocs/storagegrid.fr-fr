@@ -1,0 +1,220 @@
+---
+permalink: maintain/restoring-existing-nodes.html 
+sidebar: sidebar 
+keywords: recover, restore node to host, node configuration file, start host service 
+summary: Pour restaurer un nœud de grille défaillant sur un nouvel hôte Linux, procédez comme suit afin de restaurer le fichier de configuration du nœud. 
+---
+= Restaurez les nœuds de la grille sur l'hôte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour restaurer un nœud de grille défaillant sur un nouvel hôte Linux, procédez comme suit afin de restaurer le fichier de configuration du nœud.
+
+. <<restore-validate-grid-nodes,Restaurer et valider le nœud>> en restaurant le fichier de configuration du nœud. Pour une nouvelle installation, vous créez un fichier de configuration de nœud pour chaque nœud de grille à installer sur un hôte. Lors de la restauration d'un nœud de grille sur un hôte de remplacement, vous restaurez ou remplacez le fichier de configuration de nœud pour les nœuds de grille défaillants.
+. <<start-storagegrid-host-service,Démarrez le service d'hôte StorageGRID>>.
+. Au besoin, <<recover-nodes-fail-start,restaurez tous les nœuds qui ne démarrent pas>>.
+
+
+Si des volumes de stockage en blocs ont été préservés à partir de l'hôte précédent, vous devrez peut-être effectuer des procédures de restauration supplémentaires. Les commandes de cette section vous aident à déterminer les procédures supplémentaires requises.
+
+
+
+== Restaurez et validez les nœuds de la grille
+
+Vous devez restaurer les fichiers de configuration de la grille de tout nœud de grille ayant échoué, puis valider les fichiers de configuration de la grille et résoudre les erreurs éventuelles.
+
+.Description de la tâche
+Vous pouvez importer tout nœud de grille qui doit être présent sur l'hôte, tant que son `/var/local` volume n'a pas été perdu en raison de la défaillance de l'hôte précédent. Par exemple, ce `/var/local` volume peut toujours exister si vous avez utilisé le stockage partagé pour les volumes de données système StorageGRID, comme décrit dans les instructions d'installation de StorageGRID pour votre système d'exploitation Linux. L'importation du nœud restaure son fichier de configuration de nœud vers l'hôte.
+
+S'il n'est pas possible d'importer des nœuds manquants, vous devez recréer leurs fichiers de configuration de grille.
+
+Vous devez ensuite valider le fichier de configuration de la grille et résoudre tous les problèmes de réseau ou de stockage qui pourraient se produire avant de redémarrer StorageGRID. Lorsque vous recréez le fichier de configuration d'un nœud, vous devez utiliser le même nom pour le nœud de remplacement utilisé pour le nœud en cours de restauration.
+
+Pour plus d'informations sur l'emplacement du volume pour un nœud, reportez-vous aux instructions d'installation `/var/local`.
+
+* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+
+
+.Étapes
+. Sur la ligne de commande de l'hôte restauré, répertorier tous les nœuds StorageGRID actuellement configurés :``sudo storagegrid node list``
++
+Si aucun nœud de grille n'est configuré, il n'y aura pas de sortie. Si certains nœuds de grid sont configurés, la sortie doit être au format suivant :
+
++
+[listing]
+----
+Name               Metadata-Volume
+================================================================
+dc1-adm1           /dev/mapper/sgws-adm1-var-local
+dc1-gw1            /dev/mapper/sgws-gw1-var-local
+dc1-sn1            /dev/mapper/sgws-sn1-var-local
+dc1-arc1           /dev/mapper/sgws-arc1-var-local
+----
++
+Si certains ou tous les nœuds de grille qui doivent être configurés sur l'hôte ne sont pas répertoriés, vous devez restaurer les nœuds de grille manquants.
+
+. Pour importer des nœuds de grille ayant un `/var/local` volume :
++
+.. Exécutez la commande suivante pour chaque nœud que vous souhaitez importer :``sudo storagegrid node import node-var-local-volume-path``
++
+La `storagegrid node import` commande réussit uniquement si le nœud cible a été arrêté correctement sur l'hôte sur lequel il a été exécuté en dernier. Si ce n'est pas le cas, vous observez une erreur semblable à ce qui suit :
+
++
+`This node (_node-name_) appears to be owned by another host (UUID host-uuid).`
+
++
+`Use the --force flag if you are sure import is safe.`
+
+.. Si une erreur s'est produite au sujet du nœud appartenant à un autre hôte, exécutez de nouveau la commande avec `--force` l'indicateur pour terminer l'importation :``sudo storagegrid --force node import node-var-local-volume-path``
++
+
+NOTE: Tous les nœuds importés avec l' `--force`indicateur nécessitent des étapes de récupération supplémentaires avant de pouvoir rejoindre la grille, comme décrit dans link:whats-next-performing-additional-recovery-steps-if-required.html["Qu'est-ce qui suit : effectuez d'autres étapes de restauration, le cas échéant"].
+
+
+
+. Pour les nœuds grid qui ne disposent pas de `/var/local` volume, recréez le fichier de configuration du nœud pour le restaurer sur l'hôte. Pour obtenir des instructions, reportez-vous à la section :
++
+** link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud pour Red Hat Enterprise Linux"]
+** link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud pour Ubuntu ou Debian"]
++
+
+NOTE: Lorsque vous recréez le fichier de configuration d'un nœud, vous devez utiliser le même nom pour le nœud de remplacement utilisé pour le nœud en cours de restauration. Pour les déploiements Linux, assurez-vous que le nom du fichier de configuration contient le nom du nœud. Lorsque cela est possible, vous devez utiliser les mêmes interfaces réseau, les mêmes mappages de périphériques de bloc et les mêmes adresses IP. Cette pratique réduit la quantité de données à copier sur le nœud lors de la restauration, ce qui peut accélérer la restauration (dans certains cas, quelques minutes au lieu de plusieurs semaines).
+
++
+
+NOTE: Si vous utilisez de nouveaux périphériques de bloc (périphériques que le nœud StorageGRID n'a pas utilisés auparavant) comme valeurs pour l'une des variables de configuration commençant par `BLOCK_DEVICE_` lorsque vous recréez le fichier de configuration d'un nœud, suivez les instructions de la section <<fix-block-errors,Corrigez les erreurs de périphérique de bloc manquantes>>.
+
+
+
+. Exécutez la commande suivante sur l'hôte restauré pour lister tous les nœuds StorageGRID.
++
+`sudo storagegrid node list`
+
+. Valider le fichier de configuration de nœud pour chaque nœud de la grille dont le nom s'affiche dans la sortie de la liste des nœuds StorageGRID :
++
+`sudo storagegrid node validate _node-name_`
+
++
+Vous devez corriger toute erreur ou avertissement avant de démarrer le service hôte StorageGRID. Les sections suivantes donnent plus de détails sur les erreurs susceptibles d'avoir une importance particulière pendant la récupération.
+
+
+
+
+
+=== Corrigez les erreurs d'interface réseau manquantes
+
+Si le réseau hôte n'est pas configuré correctement ou si un nom est mal orthographié, une erreur se produit lorsque StorageGRID vérifie le mappage spécifié dans le `/etc/storagegrid/nodes/_node-name_.conf` fichier.
+
+Une erreur ou un avertissement correspondant à ce modèle peut s'afficher :
+
+[listing]
+----
+Checking configuration file /etc/storagegrid/nodes/<node-name>.conf for node <node-name>...
+ERROR: <node-name>: GRID_NETWORK_TARGET = <host-interface-name>
+       <node-name>: Interface <host-interface-name>' does not exist
+----
+L'erreur peut être signalée pour le réseau Grid, le réseau Admin ou le réseau client. Cette erreur signifie que le `/etc/storagegrid/nodes/_node-name_.conf` fichier mappe le réseau StorageGRID indiqué sur l'interface hôte nommée `_host-interface-name_`, mais qu'il n'y a pas d'interface avec ce nom sur l'hôte actuel.
+
+Si vous recevez cette erreur, vérifiez que vous avez effectué les étapes de la section link:deploying-new-linux-hosts.html["Déploiement de nouveaux hôtes Linux"]. Utilisez les mêmes noms pour toutes les interfaces hôtes que ceux utilisés sur l'hôte d'origine.
+
+Si vous ne parvenez pas à nommer les interfaces hôtes pour qu'elles correspondent au fichier de configuration du nœud, vous pouvez modifier le fichier de configuration du nœud et modifier la valeur de GRID_NETWORK_TARGET, ADMIN_NETWORK_TARGET ou client_NETWORK_TARGET pour qu'elle corresponde à une interface hôte existante.
+
+Assurez-vous que l'interface hôte donne accès au port réseau physique ou au VLAN approprié et que l'interface ne fait pas directement référence à un périphérique de liaison ou de pont. Vous devez soit configurer un VLAN (soit une autre interface virtuelle) sur le périphérique de liaison de l'hôte, soit utiliser un pont et une paire Ethernet virtuelle (veth).
+
+
+
+=== Corrigez les erreurs de périphérique de bloc manquantes
+
+Le système vérifie que chaque nœud récupéré est associé à un fichier spécial de périphérique de bloc valide ou à un lien logiciel valide vers un fichier spécial de périphérique de bloc. Si StorageGRID trouve un mappage non valide dans le `/etc/storagegrid/nodes/_node-name_.conf` fichier, une erreur de périphérique de bloc manquant s'affiche.
+
+Si vous observez une erreur correspondant à ce modèle :
+
+[listing]
+----
+Checking configuration file /etc/storagegrid/nodes/<node-name>.conf for node <node-name>...
+ERROR: <node-name>: BLOCK_DEVICE_PURPOSE = <path-name>
+       <node-name>: <path-name> does not exist
+----
+Cela signifie que `/etc/storagegrid/nodes/_node-name_.conf` mappe le périphérique de bloc utilisé par _nom-noeud_ pour `PURPOSE` au nom-chemin donné dans le système de fichiers Linux, mais qu'il n'existe pas de fichier spécial de périphérique de bloc valide, ou de lien logiciel vers un fichier spécial de périphérique de bloc, à cet emplacement.
+
+Vérifiez que vous avez effectué les étapes de la section link:deploying-new-linux-hosts.html["Déploiement de nouveaux hôtes Linux"]. Utilisez les mêmes noms de périphériques persistants pour tous les périphériques de bloc que ceux utilisés sur l'hôte d'origine.
+
+Si vous ne parvenez pas à restaurer ou à recréer le fichier spécial de périphérique de bloc manquant, vous pouvez attribuer un nouveau périphérique de bloc de la taille et de la catégorie de stockage appropriées et modifier le fichier de configuration de nœud pour modifier la valeur de à pointer vers le nouveau fichier spécial de périphérique de `BLOCK_DEVICE_PURPOSE` bloc.
+
+Déterminez la taille et la catégorie de stockage appropriées à l'aide des tableaux correspondant à votre système d'exploitation Linux :
+
+* link:../rhel/storage-and-performance-requirements.html["Exigences en matière de stockage et de performances pour Red Hat Enterprise Linux"]
+* link:../ubuntu/storage-and-performance-requirements.html["Exigences en matière de stockage et de performances pour Ubuntu ou Debian"]
+
+
+Consultez les recommandations de configuration du stockage hôte avant de procéder au remplacement du périphérique de bloc :
+
+* link:../rhel/configuring-host-storage.html["Configurez le stockage hôte pour Red Hat Enterprise Linux"]
+* link:../ubuntu/configuring-host-storage.html["Configurer le stockage hôte pour Ubuntu ou Debian"]
+
+
+
+NOTE: Si vous devez fournir un nouveau périphérique de stockage en mode bloc pour l'une des variables de fichier de configuration commençant par `BLOCK_DEVICE_` parce que le périphérique de bloc d'origine a été perdu avec l'hôte en panne, assurez-vous que le nouveau périphérique de bloc n'est pas formaté avant de tenter d'autres procédures de récupération. Le nouveau périphérique de bloc n'est pas formaté si vous utilisez un stockage partagé et que vous avez créé un nouveau volume. Si vous n'êtes pas certain, exécutez la commande suivante sur tout nouveau fichier spécial de périphérique de stockage en mode bloc.
+
+[CAUTION]
+====
+Exécutez la commande suivante uniquement pour les nouveaux périphériques de stockage en mode bloc. N'exécutez pas cette commande si vous pensez que le stockage en mode bloc contient toujours des données valides pour le nœud en cours de restauration, car toutes les données du périphérique seront perdues.
+
+`sudo dd if=/dev/zero of=/dev/mapper/my-block-device-name bs=1G count=1`
+
+====
+
+
+== Démarrez le service d'hôte StorageGRID
+
+Pour démarrer vos nœuds StorageGRID et s'assurer qu'ils redémarrent après un redémarrage de l'hôte, vous devez activer et démarrer le service hôte StorageGRID.
+
+.Étapes
+. Exécutez les commandes suivantes sur chaque hôte :
++
+[listing]
+----
+sudo systemctl enable storagegrid
+sudo systemctl start storagegrid
+----
+. Exécutez la commande suivante pour vérifier que le déploiement se déroule :
++
+[listing]
+----
+sudo storagegrid node status node-name
+----
+. Si l'un des nœuds renvoie l'état « non en cours d'exécution » ou « arrêté », exécutez la commande suivante :
++
+[listing]
+----
+sudo storagegrid node start node-name
+----
+. Si vous avez déjà activé et démarré le service hôte StorageGRID (ou si vous n'êtes pas sûr que le service a été activé et démarré), exécutez également la commande suivante :
++
+[listing]
+----
+sudo systemctl reload-or-restart storagegrid
+----
+
+
+
+
+== Restaurez les nœuds qui ne démarrent pas normalement
+
+Si un nœud StorageGRID ne rejoint pas la grille normalement et qu'il n'apparaît pas comme récupérable, il est possible qu'il soit corrompu. Vous pouvez forcer le nœud en mode de récupération.
+
+.Étapes
+. Vérifiez que la configuration réseau du nœud est correcte.
++
+Le nœud n'a peut-être pas pu rejoindre la grille en raison de mappages d'interface réseau incorrects ou d'une adresse IP ou d'une passerelle de réseau Grid incorrecte.
+
+. Si la configuration réseau est correcte, lancer la `force-recovery` commande :
++
+`sudo storagegrid node force-recovery _node-name_`
+
+. Effectuez les étapes de restauration supplémentaires pour le nœud. Voir link:whats-next-performing-additional-recovery-steps-if-required.html["Qu'est-ce qui suit : effectuez d'autres étapes de restauration, le cas échéant"].
+

@@ -1,0 +1,299 @@
+---
+section: admin
+title: Administrer StorageGRID
+entries:
+- title: Tâches d'administration
+  pdf-filename: Administration d'un système StorageGRID
+  url: "/admin/index.html"
+- title: Lancez-vous avec Grid Manager
+  entries:
+  - title: Navigateurs Web pris en charge
+    url: "/admin/web-browser-requirements.html"
+  - title: Connectez-vous au Grid Manager
+    url: "/admin/signing-in-to-grid-manager.html"
+  - title: Déconnectez-vous du Grid Manager
+    url: "/admin/signing-out-of-grid-manager.html"
+  - title: Changer votre mot de passe
+    url: "/admin/changing-your-password.html"
+  - title: Afficher les informations de licence StorageGRID
+    url: "/admin/viewing-storagegrid-license-information.html"
+  - title: Mettez à jour les informations de licence StorageGRID
+    url: "/admin/updating-storagegrid-license-information.html"
+  - title: Utilisez l'API
+    entries:
+    - title: Utilisez l'API de gestion du grid
+      pdf-filename: API de gestion du grid
+      url: "/admin/using-grid-management-api.html"
+    - title: Opérations de l'API de gestion du grid
+      url: "/admin/grid-management-api-operations.html"
+    - title: Gestion des versions de l'API de gestion du grid
+      url: "/admin/grid-management-api-versioning.html"
+    - title: Protection contre la contrefaçon de demandes intersites (CSRF)
+      url: "/admin/protecting-against-cross-site-request-forgery-csrf.html"
+    - title: Utilisez l'API si l'authentification unique est activée
+      entries:
+      - title: Active Directory
+        url: "/admin/use-api-if-sso-is-enabled-adfs.html"
+      - title: Azure
+        url: "/admin/use-api-if-sso-is-enabled-azure.html"
+      - title: PingFederate
+        url: "/admin/use-api-if-sso-is-enabled-ping.html"
+    - title: Désactivez les fonctions à l'aide de l'API
+      url: "/admin/deactivate-features-from-api.html"
+- title: Contrôle de l'accès à StorageGRID
+  entries:
+  - title: Accès StorageGRID
+    pdf-filename: Contrôle de l'accès à StorageGRID
+    url: "/admin/controlling-storagegrid-access.html"
+  - title: Modifiez la phrase secrète de provisionnement
+    url: "/admin/changing-provisioning-passphrase.html"
+  - title: Changer les mots de passe de la console du nœud
+    url: "/admin/change-node-console-password.html"
+  - title: Modifier les mots de passe d'accès SSH
+    url: "/admin/change-ssh-access-passwords.html"
+  - title: Utiliser la fédération des identités
+    url: "/admin/using-identity-federation.html"
+  - title: Gérez les groupes d'administration
+    url: "/admin/managing-admin-groups.html"
+  - title: Autorisations de groupe d'administration
+    url: "/admin/admin-group-permissions.html"
+  - title: Gérer les utilisateurs
+    url: "/admin/managing-users.html"
+  - title: Utilisation de la connexion unique (SSO)
+    entries:
+    - title: Configurer l'authentification unique
+      url: "/admin/configuring-sso.html"
+    - title: Configuration requise pour l'authentification unique
+      url: "/admin/requirements-for-sso.html"
+    - title: Confirmez que les utilisateurs fédérés peuvent se connecter
+      url: "/admin/confirming-federated-users-can-sign-in.html"
+    - title: Utiliser le mode sandbox
+      url: "/admin/using-sandbox-mode.html"
+    - title: Créer des fiducies de tiers de confiance dans AD FS
+      url: "/admin/creating-relying-party-trusts-in-ad-fs.html"
+    - title: Création d'applications d'entreprise dans Azure
+      url: "/admin/creating-enterprise-application-azure.html"
+    - title: Créer des connexions SP dans PingFederate
+      url: "/admin/creating-sp-connection-ping.html"
+    - title: Désactiver l'authentification unique
+      url: "/admin/disabling-single-sign-on.html"
+    - title: Désactivez et réactivez temporairement l'authentification unique pour
+        un nœud d'administration
+      url: "/admin/temporarily-disabling-and-reenabling-sso-for-admin-node.html"
+- title: Utiliser la fédération de grille
+  entries:
+  - title: Qu'est-ce que la fédération de grille
+    pdf-filename: Utiliser la fédération de grille
+    url: "/admin/grid-federation-overview.html"
+  - title: Qu'est-ce que le clone de compte
+    url: "/admin/grid-federation-what-is-account-clone.html"
+  - title: Qu'est-ce que la réplication cross-grid
+    url: "/admin/grid-federation-what-is-cross-grid-replication.html"
+  - title: Comparez la réplication entre les grilles et la réplication CloudMirror
+    url: "/admin/grid-federation-compare-cgr-to-cloudmirror.html"
+  - title: Créer des connexions de fédération de grille
+    url: "/admin/grid-federation-create-connection.html"
+  - title: Gérer les connexions de fédération de grille
+    url: "/admin/grid-federation-manage-connection.html"
+  - title: Gérer les locataires autorisés
+    url: "/admin/grid-federation-manage-tenants.html"
+  - title: Dépanner les erreurs de fédération de grille
+    url: "/admin/grid-federation-troubleshoot.html"
+  - title: Identifier et réessayer les opérations de réplication ayant échoué
+    url: "/admin/grid-federation-retry-failed-replication.html"
+- title: Gérer la sécurité
+  entries:
+  - title: Composants de sécurité
+    pdf-filename: Gérer la sécurité
+    url: "/admin/manage-security.html"
+  - title: Étudiez les méthodes de cryptage StorageGRID
+    url: "/admin/reviewing-storagegrid-encryption-methods.html"
+  - title: Gérer les certificats
+    entries:
+    - title: Gérer les certificats de sécurité
+      pdf-filename: Gérer les certificats de sécurité
+      url: "/admin/using-storagegrid-security-certificates.html"
+    - title: Types de certificat de serveur pris en charge
+      url: "/admin/global-certificate-types.html"
+    - title: Configurer les certificats d'interface de gestion
+      url: "/admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html"
+    - title: Configurer les certificats d'API S3
+      url: "/admin/configuring-custom-server-certificate-for-storage-node.html"
+    - title: Copiez ou téléchargez le certificat de l'autorité de certification Grid
+      url: "/admin/copying-storagegrid-system-ca-certificate.html"
+    - title: Configurez les certificats StorageGRID pour FabricPool
+      url: "/admin/configuring-storagegrid-certificates-for-fabricpool.html"
+    - title: Configurer les certificats client
+      url: "/admin/configuring-administrator-client-certificates.html"
+  - title: Configurez les paramètres de sécurité
+    entries:
+    - title: Gestion des règles TLS et SSH
+      url: "/admin/manage-tls-ssh-policy.html"
+    - title: Configurer la sécurité du réseau et des objets
+      url: "/admin/changing-network-options-object-encryption.html"
+    - title: Modifier les paramètres de sécurité de l'interface
+      url: "/admin/changing-browser-session-timeout-interface.html"
+  - title: Configurer les serveurs de gestion des clés
+    entries:
+    - title: Qu'est-ce que le serveur de gestion des clés
+      pdf-filename: Configurer les serveurs de gestion des clés
+      url: "/admin/kms-configuring.html"
+    - title: KM et configuration de l'appliance
+      url: "/admin/kms-overview-of-kms-and-appliance-configuration.html"
+    - title: Considérations et conditions requises pour l'utilisation d'un serveur
+        de gestion des clés
+      url: "/admin/kms-considerations-and-requirements.html"
+    - title: Considérations relatives à la modification du KMS pour un site
+      url: "/admin/kms-considerations-for-changing-for-site.html"
+    - title: Configurer StorageGRID en tant que client dans le KMS
+      url: "/admin/kms-configuring-storagegrid-as-client.html"
+    - title: Ajout d'un serveur de gestion des clés (KMS)
+      url: "/admin/kms-adding.html"
+    - title: Gérer un KMS
+      url: "/admin/kms-managing.html"
+  - title: Gérer les paramètres proxy
+    entries:
+    - title: Configurer le proxy de stockage
+      url: "/admin/configuring-storage-proxy-settings.html"
+    - title: Configurer le proxy d'administration
+      url: "/admin/configuring-admin-proxy-settings.html"
+  - title: Contrôle des pare-feu
+    entries:
+    - title: Contrôler l'accès au niveau du pare-feu externe
+      url: "/admin/controlling-access-through-firewalls.html"
+    - title: Gérer le pare-feu interne
+      url: "/admin/manage-firewall-controls.html"
+    - title: Configurer le pare-feu interne
+      url: "/admin/configure-firewall-controls.html"
+- title: Gérer les locataires
+  entries:
+  - title: Que sont les comptes de locataire
+    url: "/admin/managing-tenants.html"
+    pdf-filename: Gérer les locataires
+  - title: Créer un compte de locataire
+    url: "/admin/creating-tenant-account.html"
+  - title: Modifiez le compte de tenant
+    url: "/admin/editing-tenant-account.html"
+  - title: Modifiez le mot de passe de l'utilisateur racine local du locataire
+    url: "/admin/changing-password-for-tenant-local-root-user.html"
+  - title: Supprimer le compte de locataire
+    url: "/admin/deleting-tenant-account.html"
+  - title: Gestion des services de plateforme
+    entries:
+    - title: Qu'est-ce que les services de plateforme
+      pdf-filename: Gestion des services de plateforme pour les comptes de locataires
+        S3
+      url: "/admin/manage-platform-services-for-tenants.html"
+    - title: Réseau et ports pour les services de plate-forme
+      url: "/admin/networking-and-ports-for-platform-services.html"
+    - title: Livraison par site de messages de services de plate-forme
+      url: "/admin/per-site-delivery-of-platform-services-messages.html"
+    - title: Résoudre les problèmes liés aux services de plateforme
+      url: "/admin/troubleshooting-platform-services.html"
+  - title: Gérez S3 Select pour les comptes de locataires
+    url: "/admin/manage-s3-select-for-tenant-accounts.html"
+- title: Configurer les connexions client
+  entries:
+  - title: Tâches de configuration
+    pdf-filename: Configurer les connexions client S3
+    url: "/admin/configuring-client-connections.html"
+  - title: Sécurité pour les clients S3
+    url: "/admin/security-for-clients.html"
+  - title: Utilisation de l'assistant d'installation S3
+    entries:
+    - title: Considérations et configuration requise de l'assistant d'installation
+        S3
+      url: "/admin/use-s3-setup-wizard.html"
+    - title: Accédez à l'assistant d'installation de l'application S3 et complétez-le
+      url: "/admin/use-s3-setup-wizard-steps.html"
+  - title: Gérer les groupes de haute disponibilité
+    entries:
+    - title: Qu'est-ce que le groupe haute disponibilité
+      pdf-filename: Gestion des groupes haute disponibilité
+      url: "/admin/managing-high-availability-groups.html"
+    - title: Comment sont utilisés les groupes haute disponibilité
+      url: "/admin/how-ha-groups-are-used.html"
+    - title: Options de configuration pour les groupes haute disponibilité
+      url: "/admin/configuration-options-for-ha-groups.html"
+    - title: Configuration des groupes haute disponibilité
+      url: "/admin/configure-high-availability-group.html"
+  - title: Gérer l'équilibrage des charges
+    entries:
+    - title: Considérations relatives à l'équilibrage de charge
+      url: "/admin/managing-load-balancing.html"
+    - title: Configurer les terminaux de l'équilibreur de charge
+      url: "/admin/configuring-load-balancer-endpoints.html"
+  - title: Configuration des noms de domaine de terminaux S3
+    url: "/admin/configuring-s3-api-endpoint-domain-names.html"
+  - title: 'Résumé : adresses IP et ports pour les connexions client'
+    url: "/admin/summary-ip-addresses-and-ports-for-client-connections.html"
+- title: Gestion des réseaux et des connexions
+  entries:
+  - title: Configurez les paramètres réseau
+    url: "/admin/configuring-network-settings.html"
+    pdf-filename: Gestion des réseaux et des connexions
+  - title: Instructions pour les réseaux StorageGRID
+    url: "/admin/guidelines-for-storagegrid-networks.html"
+  - title: Afficher les adresses IP
+    url: "/admin/viewing-ip-addresses.html"
+  - title: Configurez les interfaces VLAN
+    url: "/admin/configure-vlan-interfaces.html"
+  - title: Gérer les stratégies de classification du trafic
+    entries:
+    - title: Qu'est-ce que la politique de classification du trafic
+      pdf-filename: Gérer les stratégies de classification du trafic
+      url: "/admin/managing-traffic-classification-policies.html"
+    - title: Créer des stratégies de classification du trafic
+      url: "/admin/creating-traffic-classification-policies.html"
+    - title: Modifier une règle de classification de trafic
+      url: "/admin/editing-traffic-classification-policy.html"
+    - title: Supprimer une règle de classification du trafic
+      url: "/admin/deleting-traffic-classification-policy.html"
+    - title: Afficher les données de trafic réseau
+      url: "/admin/viewing-network-traffic-metrics.html"
+  - title: Chiffrement pris en charge pour les connexions TLS sortantes
+    url: "/admin/supported-ciphers-for-outgoing-tls-connections.html"
+  - title: Avantages des connexions HTTP actives, inactives et simultanées
+    url: "/admin/benefits-of-active-idle-and-concurrent-http-connections.html"
+  - title: Gérer les coûts de liaison
+    url: "/admin/manage-link-costs.html"
+- title: Utiliser AutoSupport
+  entries:
+  - title: Qu'est-ce que AutoSupport
+    pdf-filename: Utiliser AutoSupport
+    url: "/admin/what-is-autosupport.html"
+  - title: Configurez AutoSupport
+    url: "/admin/configure-autosupport-grid-manager.html"
+  - title: Déclencher manuellement un package AutoSupport
+    url: "/admin/manually-triggering-autosupport-message.html"
+  - title: Dépanner les packages AutoSupport
+    url: "/admin/troubleshooting-autosupport-messages.html"
+  - title: Envoyez des packages AutoSupport E-Series via StorageGRID
+    url: "/admin/sending-eseries-autosupport-messages-through-storagegrid.html"
+- title: Gérer des nœuds de stockage
+  entries:
+  - title: Gestion des nœuds de stockage
+    pdf-filename: Gérer des nœuds de stockage
+    url: "/admin/managing-storage-nodes.html"
+  - title: Utilisez les options de stockage
+    entries:
+    - title: Qu'est-ce que la segmentation des objets
+      url: "/admin/what-object-segmentation-is.html"
+    - title: Que sont les filigranes du volume de stockage
+      url: "/admin/what-storage-volume-watermarks-are.html"
+  - title: Gérer le stockage des métadonnées d'objet
+    url: "/admin/managing-object-metadata-storage.html"
+  - title: Augmenter le paramètre espace réservé des métadonnées
+    url: "/admin/increasing-metadata-reserved-space-setting.html"
+  - title: Compresser les objets stockés
+    url: "/admin/configuring-stored-object-compression.html"
+  - title: Gérer des nœuds de stockage complets
+    url: "/admin/managing-full-storage-nodes.html"
+- title: Gérer les nœuds d'administration
+  entries:
+  - title: Utiliser plusieurs nœuds d'administration
+    url: "/admin/using-multiple-admin-nodes.html"
+  - title: Identifiez le nœud d'administration principal
+    url: "/admin/identifying-primary-admin-node.html"
+  - title: Afficher l'état des notifications et les files d'attente
+    url: "/admin/viewing-notification-status-and-queues.html"

@@ -1,0 +1,31 @@
+---
+permalink: ilm/what-replication-is.html 
+sidebar: sidebar 
+keywords: replication, object copies 
+summary: 'La réplication est l"une des deux méthodes utilisées par StorageGRID pour stocker les données d"objet. Lorsque les objets correspondent à une règle ILM utilisant la réplication, le système crée des copies exactes des données en mode objet et les stocke sur des nœuds de stockage.' 
+---
+= Qu'est-ce que la réplication ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La réplication est l'une des deux méthodes utilisées par StorageGRID pour stocker les données d'objet (le code d'effacement est l'autre méthode). Lorsque les objets correspondent à une règle ILM utilisant la réplication, le système crée des copies exactes des données en mode objet et les stocke sur des nœuds de stockage.
+
+Lorsque vous configurez une règle ILM pour créer des copies répliquées, vous spécifiez le nombre de copies à créer, l'emplacement où elles doivent être stockées, ainsi que la durée de stockage de ces copies à chaque emplacement.
+
+L'exemple de règle ILM décrit deux copies répliquées de chaque objet placées dans un pool de stockage contenant trois nœuds de stockage.
+
+image::../media/ilm_replication_make_2_copies.png[Règle de création de 2 copies]
+
+Lorsque StorageGRID met les objets en correspondance avec cette règle, elle crée deux copies de l'objet, en plaçant chaque copie sur un autre nœud de stockage du pool. Les deux copies peuvent être placées sur deux des trois nœuds de stockage disponibles. Dans ce cas, la règle a placé des copies d'objet sur les nœuds de stockage 2 et 3. Comme il existe deux copies, l'objet peut être récupéré en cas de défaillance de l'un des nœuds du pool de stockage.
+
+
+NOTE: StorageGRID ne peut stocker qu'une seule copie répliquée d'un objet sur un nœud de stockage donné. Si le grid inclut trois nœuds de stockage et que vous créez une règle ILM de 4 copies, seules trois copies sont effectuées, une copie pour chaque nœud de stockage. L'alerte *ILM placement inaccessible* est déclenchée pour indiquer que la règle ILM n'a pas pu être complètement appliquée.
+
+.Informations associées
+* link:what-erasure-coding-is.html["Qu'est-ce que le code d'effacement"]
+* link:what-storage-pool-is.html["Qu'est-ce qu'un pool de stockage"]
+* link:using-multiple-storage-pools-for-cross-site-replication.html["Protection contre la perte de site à l'aide de la réplication et du code d'effacement"]
+

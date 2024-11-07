@@ -1,0 +1,83 @@
+---
+permalink: tenant/understanding-tenant-management-api.html 
+sidebar: sidebar 
+keywords: how to understand tenant management api 
+summary: 'Vous pouvez effectuer des tâches de gestion du système via l"API REST de gestion des locataires plutôt que dans l"interface utilisateur du gestionnaire de locataires. Par exemple, vous pouvez utiliser l"API pour automatiser les opérations ou créer plusieurs entités plus rapidement (par exemple, les utilisateurs).' 
+---
+= Compréhension de l'API de gestion des locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez effectuer des tâches de gestion du système via l'API REST de gestion des locataires plutôt que dans l'interface utilisateur du gestionnaire de locataires. Par exemple, vous pouvez utiliser l'API pour automatiser les opérations ou créer plusieurs entités plus rapidement (par exemple, les utilisateurs).
+
+L'API de gestion des locataires :
+
+* Utilise la plate-forme API open source swagger. Swagger fournit une interface utilisateur intuitive qui permet aux développeurs et aux non-développeurs d'interagir avec l'API. L'interface utilisateur swagger fournit des détails complets et de la documentation pour chaque opération API.
+* Utilise link:tenant-management-api-versioning.html["gestion des versions pour prendre en charge les mises à niveau sans interruption"].
+
+
+Pour accéder à la documentation de swagger pour l'API de gestion des locataires :
+
+. Connectez-vous au Gestionnaire de locataires.
+. Dans le haut du Gestionnaire de locataires, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
+
+
+
+
+== Opérations API
+
+L'API de gestion des locataires organise les opérations API disponibles dans les sections suivantes :
+
+* *Compte* : opérations sur le compte locataire actuel, y compris l'obtention d'informations sur l'utilisation du stockage.
+* *Auth* : opérations pour effectuer l'authentification de session utilisateur.
++
+L'API de gestion des locataires prend en charge le schéma d'authentification par jeton Bearer. Pour une connexion locataire, vous devez fournir un nom d'utilisateur, un mot de passe et un ID de compte dans le corps JSON de la demande d'authentification (c'est-à-dire, `POST /api/v3/authorize`). Si l'utilisateur est authentifié, un jeton de sécurité est renvoyé. Ce token doit être fourni dans l'en-tête des requêtes API suivantes (« autorisation : jeton porteur »).
+
++
+Pour plus d'informations sur l'amélioration de la sécurité d'authentification, reportez-vous à la section link:protecting-against-cross-site-request-forgery-csrf.html["Protéger contre la contrefaçon de demandes intersites"].
+
++
+
+NOTE: Si l'authentification unique (SSO) est activée pour le système StorageGRID, vous devez effectuer différentes étapes pour l'authentification. Voir la link:../admin/using-grid-management-api.html["Instructions d'utilisation de l'API de gestion de grille"].
+
+* *Config* : opérations liées à la version du produit et aux versions de l'API de gestion des locataires. Vous pouvez lister la version du produit ainsi que les versions principales de l'API prises en charge par cette version.
+* *Conteneurs* : opérations sur les compartiments S3 ou les conteneurs Swift.
+* *Désactivé-features* : opérations permettant d'afficher les fonctions qui auraient pu être désactivées.
+* *Noeuds finaux* : opérations pour gérer un noeud final. Les terminaux permettent à un compartiment S3 d'utiliser un service externe pour la réplication StorageGRID CloudMirror, les notifications ou l'intégration de la recherche.
+* *Grid-federation-connections* : opérations sur les connexions de fédération de grille et la réplication de grille transversale.
+* *Groupes* : opérations de gestion des groupes de locataires locaux et de récupération des groupes de locataires fédérés à partir d'un référentiel d'identité externe.
+* *Identity-source* : opérations permettant de configurer un référentiel d'identité externe et de synchroniser manuellement les informations relatives au groupe fédéré et à l'utilisateur.
+* *ilm* : opérations sur les paramètres de gestion du cycle de vie de l'information (ILM).
+* *Régions* : opérations permettant de déterminer quelles régions ont été configurées pour le système StorageGRID.
+* *s3* : opérations de gestion des clés d'accès S3 pour les utilisateurs locataires.
+* *s3-object-lock* : opérations sur les paramètres globaux de verrouillage d'objet S3, utilisées pour prendre en charge la conformité réglementaire.
+* *Utilisateurs* : opérations pour afficher et gérer les utilisateurs locataires.
+
+
+
+
+== Détails de l'opération
+
+Lorsque vous développez chaque opération d'API, vous pouvez voir son action HTTP, son URL de point final, une liste de tous les paramètres obligatoires ou facultatifs, un exemple du corps de la demande (si nécessaire) et les réponses possibles.
+
+image::../media/tenant_api_swagger_example.gif[Exemple d'opération D'OBTENTION de groupes dans l'API swagger]
+
+
+
+== Émettre des requêtes API
+
+
+CAUTION: Toutes les opérations d'API que vous effectuez à l'aide de la page Web Documentation de l'API sont des opérations en direct. Veillez à ne pas créer, mettre à jour ou supprimer des données de configuration ou d'autres données par erreur.
+
+.Étapes
+. Sélectionnez l'action HTTP pour afficher les détails de la demande.
+. Déterminez si la demande nécessite des paramètres supplémentaires, tels qu'un ID de groupe ou d'utilisateur. Ensuite, obtenir ces valeurs. Vous devrez peut-être d'abord lancer une autre demande d'API pour obtenir les informations dont vous avez besoin.
+. Déterminez si vous devez modifier l'exemple de corps de la demande. Si c'est le cas, vous pouvez sélectionner *modèle* pour connaître les exigences de chaque champ.
+. Sélectionnez *essayez-le*.
+. Fournir tous les paramètres requis ou modifier le corps de la demande selon les besoins.
+. Sélectionnez *Exécuter*.
+. Vérifiez le code de réponse pour déterminer si la demande a réussi.
+

@@ -1,0 +1,124 @@
+---
+permalink: upgrade/how-your-system-is-affected-during-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, firmware, appliance, alert 
+summary: Découvrez les conséquences sur votre système StorageGRID lors de la mise à niveau. 
+---
+= Quel est l'impact de votre système pendant la mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez les conséquences sur votre système StorageGRID lors de la mise à niveau.
+
+
+
+== Les mises à niveau de StorageGRID ne générant pas de perturbation
+
+Le système StorageGRID peut ingérer et récupérer les données depuis les applications client tout au long du processus de mise à niveau. Si vous approuvez la mise à niveau de tous les nœuds du même type (par exemple, nœuds de stockage), les nœuds sont arrêtés un par un. Ainsi, il n'y a pas de temps lorsque tous les nœuds de grid ou tous les nœuds de grid d'un certain type sont indisponibles.
+
+Pour assurer une disponibilité continue, vérifiez que votre règle ILM contient des règles qui spécifient le stockage de plusieurs copies de chaque objet. Vous devez également vous assurer que tous les clients S3 externes sont configurés pour envoyer des demandes à l'un des éléments suivants :
+
+* Adresse IP virtuelle d'un groupe haute disponibilité (HA)
+* Équilibreur de charge tiers haute disponibilité
+* Plusieurs nœuds de passerelle pour chaque client
+* Plusieurs nœuds de stockage pour chaque client
+
+
+
+
+== Les applications client peuvent subir des interruptions à court terme
+
+Le système StorageGRID peut ingérer et récupérer des données provenant des applications client tout au long du processus de mise à niveau. Toutefois, les connexions client vers des nœuds de passerelle ou de stockage individuels peuvent être interrompues temporairement si la mise à niveau doit redémarrer des services sur ces nœuds. La connectivité sera restaurée une fois le processus de mise à niveau terminé et les services reprendront sur les nœuds individuels.
+
+Vous devrez peut-être planifier un temps d'indisponibilité pour effectuer une mise à niveau si une perte de connectivité pendant une courte période n'est pas acceptable. Vous pouvez utiliser l'approbation sélective pour planifier la mise à jour de certains nœuds.
+
+
+NOTE: Vous pouvez utiliser plusieurs passerelles et groupes haute disponibilité pour assurer le basculement automatique lors du processus de mise à niveau. Voir les instructions pour link:../admin/configure-high-availability-group.html["configuration des groupes haute disponibilité"].
+
+
+
+== Le micrologiciel de l'appliance est mis à niveau
+
+Pendant la mise à niveau de StorageGRID 11.9 :
+
+* Tous les nœuds d'appliance StorageGRID sont automatiquement mis à niveau vers la version 3.9 du firmware du programme d'installation de l'appliance StorageGRID.
+* Les appliances SG6060 et SGF6024 sont automatiquement mises à niveau vers la version 3B08.EX du firmware du BIOS et la version 4.00.07 du firmware du BMC.
+* Les appliances SG100 et SG1000 sont automatiquement mises à niveau vers la version 3B13.EC du firmware du BIOS et la version 4.74.07 du firmware du BMC.
+* Les appliances SGF6112, SG6160, SG110 et SG1100 sont automatiquement mises à niveau vers la version 3.16.07 du firmware BMC.
+
+
+
+
+== Les règles ILM sont gérées différemment en fonction de leur état
+
+* La stratégie active reste la même après la mise à niveau.
+* Seules les 10 dernières règles historiques sont conservées lors de la mise à niveau.
+* Si une stratégie est proposée, elle sera supprimée lors de la mise à niveau.
+
+
+
+
+== Il est possible que des alertes soient déclenchées
+
+Des alertes peuvent être déclenchées lorsque les services démarrent et s'arrêtent, et lorsque le système StorageGRID fonctionne comme un environnement de version mixte (certains nœuds de grid exécutant une version antérieure, alors que d'autres ont été mis à niveau vers une version plus récente). D'autres alertes peuvent être déclenchées une fois la mise à niveau terminée.
+
+Par exemple, vous pouvez voir l'alerte *Impossible de communiquer avec le nœud* lorsque les services sont arrêtés, ou vous pouvez voir l'alerte *Cassandra communication error* lorsque certains nœuds ont été mis à niveau vers StorageGRID 11.9 mais que d'autres nœuds exécutent encore StorageGRID 11.8. En général, ces alertes s'efface une fois la mise à niveau terminée.
+
+L'alerte *ILM placement unatteignable* peut être déclenchée lorsque les nœuds de stockage sont arrêtés lors de la mise à niveau vers StorageGRID 11.9. Cette alerte peut persister 1 jour après la fin de la mise à niveau.
+
+Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes liées à la mise à niveau en sélectionnant *alertes récemment résolues* ou *alertes actuelles* dans le tableau de bord de Grid Manager.
+
+
+
+== De nombreuses notifications SNMP sont générées
+
+Notez que de nombreuses notifications SNMP peuvent être générées lorsque les nœuds de la grille sont arrêtés et redémarrés lors de la mise à niveau. Pour éviter les notifications excessives, décochez la case *Activer les notifications d'agent SNMP* (*CONFIGURATION* > *surveillance* > *agent SNMP*) pour désactiver les notifications SNMP avant de démarrer la mise à niveau. Ensuite, réactivez les notifications une fois la mise à niveau terminée.
+
+
+
+== Les modifications de configuration sont restreintes
+
+
+NOTE: Cette liste s'applique spécifiquement aux mises à niveau de StorageGRID 11.8 vers StorageGRID 11.9. Si vous effectuez une mise à niveau vers une autre version de StorageGRID, reportez-vous à la liste des modifications restreintes dans les instructions de mise à niveau de cette version.
+
+Jusqu'à la fin de la tâche *Activer la nouvelle fonction* :
+
+* N'apportez aucune modification à la configuration de la grille.
+* N'activez ou ne désactivez aucune nouvelle fonctionnalité.
+* Ne mettez pas à jour la configuration ILM. Sinon, vous risquez d'avoir un comportement ILM incohérent et inattendu.
+* N'appliquez pas de correctif ou ne restaurez pas de nœud de grille.
++
+
+NOTE: Contactez le support technique si vous avez besoin de restaurer un nœud pendant la mise à niveau.
+
+* Lors de la mise à niveau vers StorageGRID 11.9, vous ne devez pas gérer les groupes haute disponibilité, les interfaces VLAN ni les terminaux d'équilibrage de la charge.
+* Ne supprimez aucun groupe haute disponibilité qu'une fois la mise à niveau vers StorageGRID 11.9 terminée. Les adresses IP virtuelles d'autres groupes haute disponibilité peuvent devenir inaccessibles.
+
+
+Jusqu'à la fin de la tâche *étapes de mise à niveau finale* :
+
+* N'effectuez pas de procédure d'extension.
+* N'effectuez pas de procédure de mise hors service.
+
+
+
+
+== Vous ne pouvez pas afficher les détails des compartiments ni gérer ces compartiments depuis le gestionnaire de locataires
+
+Lors de la mise à niveau vers StorageGRID 11.9 (c'est-à-dire lorsque le système fonctionne comme un environnement à versions mixtes), vous ne pouvez pas afficher les détails des compartiments ni gérer les compartiments à l'aide du gestionnaire de locataires. L'une des erreurs suivantes apparaît sur la page compartiments du Gestionnaire de locataires :
+
+* Vous ne pouvez pas utiliser cette API pendant la mise à niveau vers 11.9.
+* Vous ne pouvez pas afficher les détails de la gestion des versions du compartiment dans le Gestionnaire de locataires pendant la mise à niveau vers la version 11.9.
+
+
+Cette erreur se résoudra une fois la mise à niveau vers 11.9 terminée.
+
+.Solution de contournement
+Pendant la mise à niveau vers la version 11.9, utilisez les outils suivants pour afficher les détails des compartiments ou gérer les compartiments au lieu d'utiliser le gestionnaire de locataires :
+
+* Pour effectuer des opérations S3 standard sur un compartiment, utilisez le link:../s3/operations-on-buckets.html["L'API REST S3"] ou le link:../tenant/understanding-tenant-management-api.html["API de gestion des locataires"].
+* Pour exécuter des opérations personnalisées StorageGRID sur un compartiment (par exemple, affichage et modification de la cohérence du compartiment, activation ou désactivation des dernières mises à jour des heures d'accès ou configuration de l'intégration des recherches), utilisez l'API de gestion des locataires.
+

@@ -1,0 +1,39 @@
+---
+permalink: tenant/testing-connection-for-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to test platform services endpoint connection 
+summary: 'Si la connexion à un service de plate-forme a changé, vous pouvez tester la connexion du noeud final pour vérifier que la ressource de destination existe et qu"elle peut être atteinte à l"aide des informations d"identification que vous avez spécifiées.' 
+---
+= Tester la connexion pour le point final des services de plate-forme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la connexion à un service de plate-forme a changé, vous pouvez tester la connexion du noeud final pour vérifier que la ressource de destination existe et qu'elle peut être atteinte à l'aide des informations d'identification que vous avez spécifiées.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gestion des noeuds finaux ou des autorisations d'accès racine"].
+
+
+.Description de la tâche
+StorageGRID ne vérifie pas que les informations d'identification disposent des autorisations appropriées.
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Platform services Endpoints*.
++
+La page noeuds finaux des services de plate-forme s'affiche et affiche la liste des noeuds finaux des services de plate-forme déjà configurés.
+
+. Sélectionnez le noeud final dont vous souhaitez tester la connexion.
++
+La page des détails du point final s'affiche.
+
+. Sélectionnez *Tester la connexion*.
++
+** Un message de réussite s'affiche si le noeud final peut être atteint à l'aide des informations d'identification spécifiées. La connexion au noeud final est validée à partir d'un nœud sur chaque site.
+** Un message d'erreur s'affiche si la validation du noeud final échoue. Si vous devez modifier le noeud final pour corriger l'erreur, sélectionnez *Configuration* et mettez à jour les informations. Sélectionnez ensuite *Test et enregistrer les modifications*.
+
+
+

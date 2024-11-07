@@ -1,0 +1,152 @@
+---
+permalink: s3/use-s3-select.html 
+sidebar: sidebar 
+keywords: use S3 Select, S3 Select 
+summary: StorageGRID prend en charge les clauses, types de données, opérateurs et mots-clés réservés Amazon S3 Select pour la commande SelectObjectContent. 
+---
+= Utiliser S3 Select
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID prend en charge les clauses, types de données et opérateurs Amazon S3 Select suivants pour le link:select-object-content.html["Commande SelectObjectContent"].
+
+
+NOTE: Les éléments non répertoriés ne sont pas pris en charge.
+
+Pour la syntaxe, voir link:select-object-content.html["SelectObjectContent"]. Pour plus d'informations sur S3 Select, reportez-vous au https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html["Documentation AWS pour S3 Select"^] .
+
+Seuls les comptes de tenant dont S3 Select est activé peuvent émettre des requêtes SelectObjectContent. Voir la link:../admin/manage-s3-select-for-tenant-accounts.html["Considérations et configuration requise pour l'utilisation de S3 Select"].
+
+
+
+== Clauses
+
+* SÉLECTIONNER la liste
+* Clause FROM
+* Clause WHERE
+* Clause DE LIMITE
+
+
+
+
+== Types de données
+
+* bool
+* entier
+* chaîne
+* flottement
+* décimale, numérique
+* horodatage
+
+
+
+
+== Opérateurs
+
+
+
+=== Opérateurs logiques
+
+* ET
+* PAS
+* OU
+
+
+
+
+=== Opérateurs de comparaison
+
+* <
+* >
+* &lt ;=
+* >=
+* =
+* =
+* <>
+* !=
+* ENTRE
+* DANS
+
+
+
+
+=== Opérateurs de correspondance de répétition
+
+* COMME
+* _
+* %
+
+
+
+
+=== Opérateurs unitaires
+
+* EST NULL
+* N'EST PAS NULL
+
+
+
+
+=== Opérateurs mathématiques
+
+* +
+* -
+* *
+* /
+* %
+
+
+StorageGRID suit la priorité de l'opérateur Amazon S3 Select.
+
+
+
+== Fonctions d'agrégation
+
+* MOY()
+* NOMBRE(*)
+* MAX()
+* MIN()
+* SOMME()
+
+
+
+
+== Fonctions conditionnelles
+
+* CASSE
+* FUSIONNE
+* NULLIF
+
+
+
+
+== Fonctions de conversion
+
+* CAST (pour les types de données pris en charge)
+
+
+
+
+== Fonctions de date
+
+* DATE_AJOUTER
+* DATE_DIFF
+* EXTRAIRE
+* TO_STRING
+* TO_TIMESTAMP
+* CODE D'ARTICLE
+
+
+
+
+== Fonctions de chaîne
+
+* CHAR_LENGTH, CARACTÈRE_LENGTH
+* ABAISSEMENT
+* SOUS-CHAÎNE
+* GARNITURE
+* SUPÉRIEUR
+

@@ -1,0 +1,94 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: audit, object storage, object management, object retrieval, node transfer, verification, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
+summary: 'Vous devez connaître les messages d"audit appartenant à la catégorie d"audit du stockage objet. Ce sont des événements liés au stockage et à la gestion des objets dans le système StorageGRID. Il s"agit notamment du stockage objet et des récupérations, des transferts entre nœuds grid et nœuds.' 
+---
+= Messages d'audit du stockage objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit appartenant à la catégorie d'audit du stockage objet sont utilisés pour les événements liés au stockage et à la gestion d'objets au sein du système StorageGRID. Il s'agit notamment du stockage objet et des récupérations, des transferts entre nœuds grid et nœuds.
+
+
+NOTE: Les codes d'audit sont supprimés du produit et de la documentation, car les fonctionnalités sont obsolètes. Si vous rencontrez un code d'audit qui n'est pas répertorié ici, consultez les versions précédentes de cette rubrique pour connaître les versions antérieures de SG. Par exemple https://docs.netapp.com/us-en/storagegrid-118/audit/object-storage-audit-messages.html["Messages d'audit du stockage objet StorageGRID 11.8"^], .
+
+[cols="1a,2a,1a"]
+|===
+| Code | Description | Voir 
+
+
+ a| 
+BROR
+ a| 
+Demande de lecture seule du compartiment : un compartiment est entré ou a quitté le mode lecture seule.
+ a| 
+link:bror-bucket-read-only-request.html["BROR : demande en lecture seule du compartiment"]
+
+
+
+ a| 
+CBSE
+ a| 
+Objet Envoyer fin : l'entité source a terminé une opération de transfert des données nœud-grille vers nœud-grille.
+ a| 
+link:cbse-object-send-end.html["CBSE : fin de l'envoi de l'objet"]
+
+
+
+ a| 
+CBRE
+ a| 
+Fin de réception de l'objet : l'entité de destination a terminé une opération de transfert des données nœud-grille vers nœud-grille.
+ a| 
+link:cbre-object-receive-end.html["CBRE : fin de la réception de l'objet"]
+
+
+
+ a| 
+CGRR
+ a| 
+Demande de réplication multigrille : StorageGRID a tenté une opération de réplication multigrille pour répliquer des objets entre des compartiments dans une connexion de fédération de grille.
+ a| 
+link:cgrr-cross-grid-replication-request.html["CGRR : demande de réplication croisée"]
+
+
+
+ a| 
+EBDL
+ a| 
+Suppression d'un compartiment vide : l'analyse ILM a supprimé un objet d'un compartiment qui supprime tous les objets (opération de compartiment vide).
+ a| 
+link:ebdl-empty-bucket-delete.html["EBDL : suppression du compartiment vide"]
+
+
+
+ a| 
+EBKR
+ a| 
+Demande de compartiment vide : un utilisateur a envoyé une demande d'activation ou de désactivation de compartiment vide (c'est-à-dire de supprimer des objets de compartiment ou d'arrêter la suppression d'objets).
+ a| 
+link:ebkr-empty-bucket-request.html["EBKR : demande de godet vide"]
+
+
+
+ a| 
+BALAYAGE
+ a| 
+Validation d'un magasin d'objets : un bloc de contenu a été entièrement stocké et vérifié, et peut désormais être demandé.
+ a| 
+link:scmt-object-store-commit.html["SCMT : demande de validation de magasin d'objets"]
+
+
+
+ a| 
+SREM
+ a| 
+Suppression du magasin d'objets : un bloc de contenu a été supprimé d'un nœud de grille et ne peut plus être demandé directement.
+ a| 
+link:srem-object-store-remove.html["SREM : Suppression du magasin d'objets"]
+
+|===

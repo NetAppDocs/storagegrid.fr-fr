@@ -1,0 +1,38 @@
+---
+permalink: monitor/removing-custom-alert-rules.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: 'Vous pouvez supprimer une règle d"alerte personnalisée si vous ne souhaitez plus l"utiliser.' 
+---
+= Supprimez les règles d'alerte personnalisées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez supprimer une règle d'alerte personnalisée si vous ne souhaitez plus l'utiliser.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *ALERTES* > *règles*.
++
+La page règles d'alerte s'affiche.
+
+. Sélectionnez le bouton radio de la règle d'alerte personnalisée que vous souhaitez supprimer.
++
+Vous ne pouvez pas supprimer une règle d'alerte par défaut.
+
+. Sélectionnez *Supprimer la règle personnalisée*.
++
+Une boîte de dialogue de confirmation s'affiche.
+
+. Sélectionnez *OK* pour supprimer la règle d'alerte.
++
+Toutes les instances actives de l'alerte seront résolues dans un délai de 10 minutes.
+
+

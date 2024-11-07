@@ -1,0 +1,123 @@
+---
+permalink: maintain/shutting-down-grid-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, node shutdown, shut down node, node shut down 
+summary: Vous pouvez arrêter un nœud de grille à partir du shell de commande du nœud. 
+---
+= Arrêter le nœud de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez arrêter un nœud de grille à partir du shell de commande du nœud.
+
+.Avant de commencer
+* Vous avez le `Passwords.txt` fichier.
+
+
+.Description de la tâche
+Avant d'effectuer cette procédure, consultez les considérations suivantes :
+
+* En général, vous ne devez pas arrêter plusieurs nœuds à la fois pour éviter les perturbations.
+* N'arrêtez pas un nœud pendant une procédure de maintenance sauf instruction explicite de la documentation ou du support technique.
+* Le processus d'arrêt dépend de l'endroit où le nœud est installé, comme suit :
++
+** L'arrêt d'un nœud VMware arrête la machine virtuelle.
+** L'arrêt d'un nœud Linux arrête le conteneur.
+** L'arrêt d'un nœud d'appliance StorageGRID arrête le contrôleur de calcul.
+
+
+* Si vous prévoyez d'arrêter plusieurs nœuds de stockage d'un site, arrêtez d'ingérer les objets sur ce site pendant environ une heure avant d'arrêter les nœuds.
++
+Si une règle ILM utilise l'option d'ingestion *Dual Commit* (ou si une règle utilise l'option *Balanced* et que toutes les copies requises ne peuvent pas être créées immédiatement), StorageGRID valide immédiatement tous les objets nouvellement ingérés sur deux nœuds de stockage sur le même site et évalue ILM ultérieurement. Si plusieurs nœuds de stockage d'un site sont arrêté, il se peut que vous ne puissiez pas accéder aux objets récemment acquis pendant la durée de l'arrêt. Les opérations d'écriture peuvent également échouer si un nombre trop faible de nœuds de stockage restent disponibles sur le site. Voir link:../ilm/index.html["Gestion des objets avec ILM"].
+
+
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Arrêter tous les services : `service servermanager stop`
++
+L'arrêt des services peut prendre jusqu'à 15 minutes et il est possible que vous souhaitiez vous connecter au système à distance afin de surveiller le processus d'arrêt.
+
+. Si le nœud s'exécute sur une machine virtuelle VMware ou s'il s'agit d'un nœud d'appliance, exécutez la commande shutdown : `shutdown -h now`
++
+Exécutez cette étape quel que soit le résultat de la `service servermanager stop` commande.
+
++
+
+NOTE: Après avoir exécutée la `shutdown -h now` commande sur un nœud d'appliance, vous devez mettre l'appliance hors/sous tension pour redémarrer le nœud.
+
++
+Pour l'appliance, cette commande arrête le contrôleur, mais l'appliance est toujours sous tension. Vous devez passer à l'étape suivante.
+
+. Si vous mettez un nœud d'appliance hors tension, suivez les étapes indiquées pour l'appliance.
++
+[role="tabbed-block"]
+====
+.SG6160
+--
+.. Mettez le contrôleur de stockage SG6100-CN hors tension.
+.. Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
+--
+.SGF6112
+--
+.. Mettez l'appareil hors tension.
+.. Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+.SG6000
+--
+.. Attendez que la LED verte cache actif située à l'arrière des contrôleurs de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Mettez l'appareil hors tension et attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+.SG5800
+--
+.. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Dans la page d'accueil de SANtricity System Manager, sélectionnez *Afficher les opérations en cours*.
+.. Vérifiez que toutes les opérations ont été effectuées avant de passer à l'étape suivante.
+.. Mettez les deux boutons marche/arrêt sur le tiroir contrôleur et attendez que toutes les LED du tiroir contrôleur s'éteignent.
+
+
+--
+.SG5700
+--
+.. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Mettez l'appareil hors tension et attendez que toutes les LED et l'activité d'affichage à sept segments s'arrêtent.
+
+
+--
+.SG100 ou SG1000
+--
+.. Mettez l'appareil hors tension.
+.. Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+--
+====
+

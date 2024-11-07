@@ -1,0 +1,31 @@
+---
+permalink: admin/viewing-ip-addresses.html 
+sidebar: sidebar 
+keywords: ip address, view ip addresses for nodes, what is node ip address 
+summary: 'Vous pouvez afficher l"adresse IP de chaque nœud grid dans votre système StorageGRID. Vous pouvez ensuite utiliser cette adresse IP pour vous connecter au nœud de grille sur la ligne de commande et effectuer diverses procédures de maintenance.' 
+---
+= Afficher les adresses IP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher l'adresse IP de chaque nœud grid dans votre système StorageGRID. Vous pouvez ensuite utiliser cette adresse IP pour vous connecter au nœud de grille sur la ligne de commande et effectuer diverses procédures de maintenance.
+
+.Avant de commencer
+Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+.Description de la tâche
+Pour plus d'informations sur la modification des adresses IP, reportez-vous à link:../maintain/configuring-ip-addresses.html["Configurez les adresses IP"]la section .
+
+.Étapes
+. Sélectionnez *NODES* > *_grid node_* > *Overview*.
+. Sélectionnez *Afficher plus* à droite du titre des adresses IP.
++
+Les adresses IP de ce nœud de grille sont répertoriées dans un tableau.
+
++
+image::../media/nodes_page_overview_tab_extended.png[Adresses IP de la page noeuds]
+
+

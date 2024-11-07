@@ -1,0 +1,37 @@
+---
+permalink: admin/deleting-tenant-account.html 
+sidebar: sidebar 
+keywords: tenant, delete, remove tenant 
+summary: 'Vous pouvez supprimer un compte de tenant si vous souhaitez supprimer définitivement l"accès du locataire au système.' 
+---
+= Supprimer le compte de locataire
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez supprimer un compte de tenant si vous souhaitez supprimer définitivement l'accès du tenant au système.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez supprimé tous les compartiments S3 et tous les objets associés au compte de locataire.
+* Si le locataire est autorisé à utiliser une connexion de fédération de grille, vous avez examiné les considérations relatives à link:grid-federation-manage-tenants.html["Suppression d'un locataire avec l'autorisation utiliser la connexion de fédération de grille"].
+
+
+.Étapes
+. Sélectionnez *LOCATAIRES*.
+. Recherchez le ou les comptes de tenant que vous souhaitez supprimer.
++
+Utilisez la zone de recherche pour rechercher un locataire par nom ou ID locataire.
+
+. Pour supprimer plusieurs locataires, cochez les cases et sélectionnez *actions* > *Supprimer*.
+. Pour supprimer un seul locataire, effectuez l'une des opérations suivantes :
++
+** Cochez la case et sélectionnez *actions* > *Supprimer*.
+** Sélectionnez le nom du locataire pour afficher la page des détails, puis sélectionnez *actions* > *Supprimer*.
+
+
+. Sélectionnez *Oui*.
+

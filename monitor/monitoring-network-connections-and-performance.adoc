@@ -1,0 +1,97 @@
+---
+permalink: monitor/monitoring-network-connections-and-performance.html 
+sidebar: sidebar 
+keywords: monitoring, monitoring network connections, network, network performance 
+summary: 'L"intégrité et la bande passante du réseau entre les nœuds et les sites, ainsi que l"utilisation des ressources par les nœuds de grid individuels, sont essentielles à l"efficacité des opérations.' 
+---
+= Surveiller les ressources réseau et système
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'intégrité et la bande passante du réseau entre les nœuds et les sites, ainsi que l'utilisation des ressources par les nœuds de grid individuels, sont essentielles à l'efficacité des opérations.
+
+
+
+== Contrôle des connexions réseau et des performances
+
+La connectivité réseau et la bande passante sont d'autant plus importantes si votre stratégie de gestion du cycle de vie des informations (ILM) copie les objets répliqués entre des sites ou stocke des objets avec code d'effacement au moyen d'un système qui assure la protection contre la perte de site. Si le réseau entre les sites n'est pas disponible, que la latence du réseau est trop élevée ou que la bande passante du réseau est insuffisante, certaines règles ILM risquent de ne pas pouvoir placer les objets là où prévu. Cela peut entraîner des échecs d'ingestion (lorsque l'option d'ingestion stricte est sélectionnée pour les règles ILM) ou de mauvaises performances d'ingestion et de journalisation des règles ILM.
+
+Utilisez le gestionnaire de grille pour surveiller la connectivité et les performances du réseau, afin de résoudre rapidement tout problème.
+
+Vous pouvez également link:../admin/managing-traffic-classification-policies.html["création de stratégies de classification du trafic réseau"]surveiller le trafic lié à des locataires, des compartiments, des sous-réseaux ou des terminaux d'équilibrage de la charge. Vous pouvez définir des règles de limitation du trafic selon vos besoins.
+
+.Étapes
+. Sélectionnez *NOEUDS*.
++
+La page nœuds s'affiche. Chaque nœud de la grille est répertorié au format de tableau.
+
++
+image::../media/nodes_menu.png[Menu noeuds]
+
+. Sélectionnez le nom de la grille, un site de centre de données spécifique ou un nœud de grille, puis sélectionnez l'onglet *réseau*.
++
+Le graphique trafic réseau fournit un récapitulatif du trafic réseau global pour la grille dans son ensemble, le site du centre de données ou le nœud.
+
++
+image::../media/nodes_page_network_traffic_graph.png[Courbes de trafic réseau de la page noeuds]
+
++
+.. Si vous avez sélectionné un nœud de grille, faites défiler vers le bas pour consulter la section *interfaces réseau* de la page.
++
+image::../media/nodes_page_network_interfaces.png[Nœuds page interfaces réseau]
+
+.. Pour les nœuds de grille, faites défiler vers le bas pour consulter la section *communication réseau* de la page.
++
+Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
+
++
+image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
+
+
+
+. Utilisez les indicateurs associés à vos stratégies de classification de trafic pour surveiller le trafic réseau.
++
+.. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
++
+La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
+
++
+image::../media/traffic_classification_policies_main_screen_w_examples.png[Politique de trafic pour un exemple de graphique]
+
+.. Pour afficher les graphiques présentant les mesures de réseau associées à une stratégie, sélectionnez le bouton radio à gauche de la stratégie, puis cliquez sur *métriques*.
+.. Consultez les graphiques pour comprendre le trafic réseau associé à la stratégie.
++
+Si une politique de classification du trafic est conçue pour limiter le trafic réseau, analysez la fréquence à laquelle le trafic est limité et déterminez si la politique continue de répondre à vos besoins. De temps en tempslink:../admin/managing-traffic-classification-policies.html["ajustez chaque stratégie de classification du trafic au besoin"], .
+
+
+
+
+
+.Informations associées
+* link:viewing-network-tab.html["Afficher l'onglet réseau"]
+* link:monitoring-system-health.html#monitor-node-connection-states["Surveiller les États de connexion du nœud"]
+
+
+
+
+== Contrôle des ressources au niveau des nœuds
+
+Surveiller les nœuds de grid individuels pour vérifier leurs niveaux d'utilisation des ressources. Si les nœuds sont constamment surchargés, un nombre plus élevé de nœuds peut être requis pour une efficacité optimale des opérations.
+
+.Étapes
+. Dans la page *NODES*, sélectionnez le noeud.
+. Sélectionnez l'onglet *matériel* pour afficher les graphiques de l'utilisation de l'UC et de la mémoire.
++
+image::../media/nodes_page_hardware_tab_graphs.png[Onglet matériel de la page nœuds]
+
+. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
+. Si le nœud est hébergé sur une appliance de stockage ou sur une appliance de services, faites défiler la page vers le bas pour afficher les tableaux des composants. L'état de tous les composants doit être « nominal ». Rechercher les composants ayant un autre état.
+
+
+.Informations associées
+* link:viewing-hardware-tab.html#view-information-about-appliance-storage-nodes["Afficher des informations sur les nœuds de stockage de l'appliance"]
+* link:viewing-hardware-tab.html#view-information-about-appliance-admin-nodes-and-gateway-nodes["Affiche des informations sur les nœuds d'administration de l'appliance et les nœuds de passerelle"]
+

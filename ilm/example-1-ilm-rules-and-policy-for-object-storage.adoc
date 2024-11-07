@@ -1,0 +1,125 @@
+---
+permalink: ilm/example-1-ilm-rules-and-policy-for-object-storage.html 
+sidebar: sidebar 
+keywords: example ILM rule, information lifecycle rule examples 
+summary: Vous pouvez utiliser les exemples de règles et de règle suivants comme point de départ pour définir une règle ILM afin de répondre à vos exigences de protection et de conservation des objets. 
+---
+= Exemple 1 : règles et règles ILM pour le stockage objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser les exemples de règles et de règle suivants comme point de départ pour définir une règle ILM afin de répondre à vos exigences de protection et de conservation des objets.
+
+
+CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règles ILM sont nombreuses. Avant d'activer une nouvelle stratégie, simulez-la pour confirmer qu'elle fonctionnera comme prévu pour protéger le contenu contre la perte.
+
+
+
+== Règle ILM 1, exemple 1 : copie des données d'objet vers deux sites
+
+Cet exemple de règle ILM copie les données d'objet dans des pools de stockage de deux sites.
+
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Pools de stockage sur un site
+ a| 
+Deux pools de stockage, chacun contenant des sites différents, nommés site 1 et site 2.
+
+
+
+ a| 
+Nom de la règle
+ a| 
+Deux copies deux sites
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Placements
+ a| 
+Du jour 0 à l'infini, conservez une copie répliquée sur le site 1 et une copie répliquée sur le site 2.
+
+|===
+La section analyse des règles du diagramme de rétention indique :
+
+* La protection contre la perte de site StorageGRID s'appliquera pendant toute la durée de cette règle.
+* Les objets traités par cette règle ne seront pas supprimés par ILM.
+
+
+image::../media/ilm_rule_two_copies_two_data_centers.png[Règle ILM 1, exemple 1 : copie des données d'objet vers deux sites]
+
+
+
+== Règle ILM 2, exemple 1 : profil de code d'effacement avec mise en correspondance des compartiments
+
+Cet exemple de règle ILM utilise un profil de code d'effacement et un compartiment S3 pour déterminer l'emplacement et la durée de stockage de l'objet.
+
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Pool de stockage avec plusieurs sites
+ a| 
+* Un pool de stockage sur trois sites (sites 1, 2, 3)
+* Utilisez le schéma de code d'effacement 6+3
+
+
+
+
+ a| 
+Nom de la règle
+ a| 
+Dossiers financiers du compartiment S3
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Placements
+ a| 
+Pour les objets du compartiment S3 nommés finance-records, créez une copie avec code d'effacement dans le pool spécifié par le profil de code d'effacement. Conserver cette copie pour toujours.
+
+|===
+image::../media/ilm_rule_ec_for_s3_bucket_finance_records.png[Règle ILM 2, exemple 1 : profil de code d'effacement avec mise en correspondance des compartiments]
+
+
+
+== Règle ILM, par exemple 1
+
+Dans la pratique, la plupart des règles ILM sont simples, même si le système StorageGRID vous permet de concevoir des règles ILM complexes et sophistiquées.
+
+Une règle ILM standard pour un grid multisite peut inclure des règles ILM, telles que :
+
+* Lors de l'ingestion, stockez tous les objets appartenant au compartiment S3 nommé `finance-records` dans un pool de stockage contenant trois sites. Utilisez le code d'effacement 6+3.
+* Si un objet ne correspond pas à la première règle ILM, utilisez la règle ILM par défaut de la règle, deux copies de data centers, pour stocker une copie de cet objet sur le site 1 et une copie sur le site 2.
++
+image::../media/policy_1_configured_policy.png[Règle ILM, par exemple 1]
+
+
+
+.Informations associées
+* link:ilm-policy-overview.html["Règles ILM"]
+* link:creating-ilm-policy.html["Création de règles ILM"]
+

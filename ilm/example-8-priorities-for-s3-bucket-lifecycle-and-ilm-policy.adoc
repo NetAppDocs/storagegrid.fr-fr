@@ -1,0 +1,118 @@
+---
+permalink: ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html 
+sidebar: sidebar 
+keywords: retention priority, example S3 bucket lifecycle, example ILM policy 
+summary: Selon la configuration du cycle de vie, les objets suivent les paramètres de conservation du cycle de vie du compartiment S3 ou une règle ILM. 
+---
+= Exemple 8 : priorités pour le cycle de vie des compartiments S3 et la règle ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Selon la configuration du cycle de vie, les objets suivent les paramètres de conservation du cycle de vie du compartiment S3 ou une règle ILM.
+
+
+
+== Exemple de cycle de vie du compartiment qui est prioritaire sur la règle ILM
+
+Politique ILM::
++
+--
+* Règle basée sur une référence d'heure non courante : au jour 0, conserver X copies pendant 20 jours
+* Règle basée sur la référence d'heure d'entrée (par défaut) : au jour 0, conserver X copies pendant 50 jours
+
+
+--
+Cycle de vie du godet:: `"Filter": {"Prefix": "docs/"}, "Expiration": {"Days": 100}, "NoncurrentVersionExpiration": {"NoncurrentDays": 5}`
+Résultat::
++
+--
+* Un objet nommé « docs/text » est ingéré. Elle correspond au filtre de cycle de vie du compartiment du préfixe « docs/ ».
++
+** Au bout de 100 jours, un marqueur de suppression est créé et « docs/text » n'est plus à jour.
+** Au bout de 5 jours, 105 jours au total depuis l'entrée, « docs/text » est supprimé.
+** Après 95 jours, soit un total de 200 jours depuis l'entrée et de 100 jours depuis la création du marqueur de suppression, le marqueur de suppression périmé est supprimé.
+
+
+* Un objet nommé « vidéo/film » est ingéré. Elle ne correspond pas au filtre et utilise la stratégie de conservation ILM.
++
+** Après 50 jours, un marqueur de suppression est créé et « vidéo/film » devient non courant.
+** Après 20 jours, un total de 70 jours depuis l'entrée, "vidéo/film" est supprimé.
+** Après 30 jours, soit un total de 100 jours depuis l'entrée et de 50 jours depuis la création du marqueur de suppression, le marqueur de suppression périmé est supprimé.
+
+
+
+
+--
+
+
+
+
+== Exemple de cycle de vie de compartiment permettant implicitement de conserver indéfiniment
+
+Politique ILM::
++
+--
+* Règle basée sur une référence d'heure non courante : au jour 0, conserver X copies pendant 20 jours
+* Règle basée sur la référence d'heure d'entrée (par défaut) : au jour 0, conserver X copies pendant 50 jours
+
+
+--
+Cycle de vie du godet:: `"Filter": {"Prefix": "docs/"}, "Expiration": {"ExpiredObjectDeleteMarker": true}`
+Résultat::
++
+--
+* Un objet nommé « docs/text » est ingéré. Elle correspond au filtre de cycle de vie du compartiment du préfixe « docs/ ».
++
+L' `Expiration`action ne s'applique qu'aux marqueurs de suppression expirés, ce qui implique de conserver tout le reste indéfiniment (en commençant par "docs/").
+
++
+Les marqueurs de suppression commençant par « docs/ » sont supprimés lorsqu'ils sont expirés.
+
+* Un objet nommé « vidéo/film » est ingéré. Elle ne correspond pas au filtre et utilise la stratégie de conservation ILM.
++
+** Après 50 jours, un marqueur de suppression est créé et « vidéo/film » devient non courant.
+** Après 20 jours, un total de 70 jours depuis l'entrée, "vidéo/film" est supprimé.
+** Après 30 jours, soit un total de 100 jours depuis l'entrée et de 50 jours depuis la création du marqueur de suppression, le marqueur de suppression périmé est supprimé.
+
+
+
+
+--
+
+
+
+
+== Exemple d'utilisation du cycle de vie du compartiment pour dupliquer la règle ILM et nettoyer les marqueurs de suppression expirés
+
+Politique ILM::
++
+--
+* Règle basée sur une référence d'heure non courante : au jour 0, conserver X copies pendant 20 jours
+* Règle basée sur la référence d'heure d'ingestion (par défaut) : au jour 0, conserver X copies indéfiniment
+
+
+--
+Cycle de vie du godet:: `"Filter": {}, "Expiration": {"ExpiredObjectDeleteMarker": true}, "NoncurrentVersionExpiration": {"NoncurrentDays": 20}`
+Résultat::
++
+--
+* La règle ILM est dupliquée tout au long du cycle de vie du compartiment.
++
+** La règle permanente de la règle ILM permet de supprimer les objets manuellement et de nettoyer les versions non actuelles au bout de 20 jours. Par conséquent, la règle de temps d'entrée conserve indéfiniment les marqueurs de suppression expirés.
+** Le cycle de vie du compartiment duplique le comportement de la règle ILM lors de l'ajout de `"ExpiredObjectDeleteMarker": true`, qui supprime les marqueurs de suppression une fois qu'ils ont expiré
+
+
+* Un objet est ingéré. L'absence de filtre signifie que le cycle de vie du compartiment s'applique à tous les objets et remplace les paramètres de conservation ILM.
++
+** Lorsqu'un locataire émet une demande de suppression d'objet, un marqueur de suppression est créé et l'objet est mis à jour.
+** Au bout de 20 jours, l'objet non courant est supprimé et le marqueur de suppression a expiré.
+** Peu de temps après, le marqueur de suppression périmé est supprimé.
+
+
+
+
+--
+

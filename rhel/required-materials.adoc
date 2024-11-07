@@ -1,0 +1,68 @@
+---
+permalink: rhel/required-materials.html 
+sidebar: sidebar 
+keywords: installation materials red hat linux 
+summary: 'Avant d"installer StorageGRID, rassemblez et préparez le matériel requis.' 
+---
+= Informations et documents requis
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'installer StorageGRID, rassemblez et préparez les informations et les documents requis.
+
+
+
+== Informations requises
+
+Plan du réseau:: Réseaux que vous prévoyez de connecter à chaque nœud StorageGRID. StorageGRID prend en charge plusieurs réseaux pour la séparation du trafic, la sécurité et la facilité d'administration.
++
+--
+Voir StorageGRID link:../network/index.html["Instructions de mise en réseau"].
+
+--
+Informations sur le réseau:: Adresses IP à attribuer à chaque nœud de grille et adresses IP des serveurs DNS et NTP.
+Serveurs pour nœuds grid:: Identifier un ensemble de serveurs (physiques, virtuels ou les deux) qui, dans l'agrégat, fournissent suffisamment de ressources pour prendre en charge le nombre et le type de nœuds StorageGRID que vous prévoyez de déployer.
++
+--
+
+NOTE: Si votre installation StorageGRID n'utilise pas de nœuds de stockage (matériels) StorageGRID, vous devez utiliser un stockage RAID matériel avec un cache d'écriture protégé par batterie (BBWC). StorageGRID ne prend pas en charge l'utilisation de réseaux de stockage virtuels (VSAN), de RAID logiciel ou aucune protection RAID.
+
+--
+Migration des nœuds (si nécessaire):: link:node-container-migration-requirements.html["conditions requises pour la migration des nœuds"]Si vous souhaitez effectuer une maintenance planifiée sur des hôtes physiques sans interruption de service, consultez le .
+Informations associées:: https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^]
+
+
+
+
+== Matériel requis
+
+Licence NetApp StorageGRID:: Vous devez disposer d'une licence NetApp valide et signée numériquement.
+
+
+
+NOTE: Une licence de non-production, qui peut être utilisée pour les tests et les grilles de preuve de concept, est incluse dans l'archive d'installation de StorageGRID.
+
+Archive de l'installation de StorageGRID:: link:downloading-and-extracting-storagegrid-installation-files.html["Téléchargez l'archive d'installation de StorageGRID et extrayez les fichiers"].
+L'ordinateur portable de service:: Le système StorageGRID est installé par le biais d'un ordinateur portable de service.
++
+--
+L'ordinateur portable de service doit posséder :
+
+* Port réseau
+* Client SSH (par exemple, PuTTY)
+* link:../admin/web-browser-requirements.html["Navigateur Web pris en charge"]
+
+
+--
+Documentation StorageGRID::
++
+--
+* link:../release-notes/index.html["Notes de mise à jour"]
+* link:../admin/index.html["Instructions d'administration de StorageGRID"]
+
+
+--
+

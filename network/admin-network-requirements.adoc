@@ -1,0 +1,22 @@
+---
+permalink: network/admin-network-requirements.html 
+sidebar: sidebar 
+keywords: admin network requirements, guidelines for admin network, aesl 
+summary: 'Le réseau d"administration est facultatif. Si vous envisagez de configurer un réseau d"administration, suivez les exigences et les instructions ci-dessous.' 
+---
+= Configuration requise pour le réseau d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le réseau d'administration est facultatif. Si vous envisagez de configurer un réseau d'administration, suivez les exigences et les instructions ci-dessous.
+
+Les utilisations typiques du réseau d'administration incluent les connexions de gestion, AutoSupport, KMS et les connexions aux serveurs critiques tels que NTP, DNS et LDAP si ces connexions ne sont pas fournies via le réseau Grid ou le réseau client.
+
+
+NOTE: Le réseau Admin et l'AESL peuvent être uniques à chaque nœud, tant que les services réseau et les clients souhaités sont accessibles.
+
+
+NOTE: Vous devez définir au moins un sous-réseau sur le réseau d'administration pour activer les connexions entrantes à partir de sous-réseaux externes. Des routes statiques sont générées automatiquement sur chaque nœud pour chaque sous-réseau de l'AESL.

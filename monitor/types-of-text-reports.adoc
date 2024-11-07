@@ -1,0 +1,112 @@
+---
+permalink: monitor/types-of-text-reports.html 
+sidebar: sidebar 
+keywords: how to use text reports 
+summary: 'Les rapports texte affichent une représentation textuelle des valeurs de données d"attribut traitées par le service NMS. Il existe deux types de rapports générés selon la période de temps sur laquelle vous vous signalez : des rapports de texte brut pour des périodes inférieures à une semaine et des rapports de texte agrégés pour des périodes supérieures à une semaine.' 
+---
+= Utilisez les rapports texte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les rapports texte affichent une représentation textuelle des valeurs de données d'attribut traitées par le service NMS. Il existe deux types de rapports générés selon la période de temps sur laquelle vous vous signalez : des rapports de texte brut pour des périodes inférieures à une semaine et des rapports de texte agrégés pour des périodes supérieures à une semaine.
+
+
+
+== Rapports de texte brut
+
+Un rapport en texte brut affiche des détails sur l'attribut sélectionné :
+
+* Heure de réception : date et heure locales auxquelles une valeur d'échantillon des données d'un attribut a été traitée par le service NMS.
+* Heure de l'échantillon : date et heure locales auxquelles une valeur d'attribut a été échantillonnée ou modifiée à la source.
+* Valeur : valeur d'attribut au moment de l'échantillon.
+
+
+image::../media/raw_text_report.gif[capture d'écran affichant le rapport de texte brut]
+
+
+
+== Agréger les rapports de texte
+
+Un rapport texte agrégé affiche des données sur une période plus longue (généralement une semaine) qu'un rapport texte brut. Chaque entrée est le résultat d'un résumé de plusieurs valeurs d'attribut (un ensemble de valeurs d'attribut) par le service NMS dans le temps en une seule entrée avec des valeurs moyennes, maximales et minimales dérivées de l'agrégation.
+
+Chaque entrée affiche les informations suivantes :
+
+* Heure d'agrégation : dernière date et heure locales que le service NMS a agrégées (recueillies) un ensemble de valeurs d'attribut modifiées.
+* Valeur moyenne : moyenne de la valeur de l'attribut sur la période de temps agrégée.
+* Valeur minimale : valeur minimale sur la période de temps agrégée.
+* Valeur maximale : valeur maximale sur la période de temps agrégée.
+
+
+image::../media/aggregate_text_report.gif[capture d'écran affichant le rapport texte global]
+
+
+
+== Générer des rapports texte
+
+Les rapports texte affichent une représentation textuelle des valeurs de données d'attribut traitées par le service NMS. Vous pouvez générer des rapports sur un site de data Center, un nœud grid, un composant ou un service.
+
+.Avant de commencer
+* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Pour les données d'attribut qui devraient changer en permanence, ces données d'attribut sont échantillonnées par le service NMS (à la source) à intervalles réguliers. Pour les données d'attribut qui changent rarement (par exemple, les données en fonction d'événements tels que les changements d'état ou d'état), une valeur d'attribut est envoyée au service NMS lorsque la valeur change.
+
+Le type de rapport affiché dépend de la période configurée. Par défaut, les rapports de texte agrégés sont générés pour les périodes de plus d'une semaine.
+
+Le texte gris indique que le service a été désactivé administrativement au cours de l'échantillonnage. Le texte bleu indique que le service était dans un état inconnu.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_grid node_* > *_component ou service_* > *Reports* > *Text*.
+. Sélectionnez l'attribut à rapporter dans la liste déroulante *attribut*.
+. Sélectionnez le nombre de résultats par page dans la liste déroulante *Résultats par page*.
+. Pour arrondir les valeurs à un maximum de trois décimales (par exemple, pour les attributs signalés en pourcentage), décochez la case *données brutes*.
+. Sélectionnez la période à laquelle effectuer le rapport dans la liste déroulante *requête rapide*.
++
+Sélectionnez l'option requête personnalisée pour sélectionner une plage de temps spécifique.
+
++
+Le rapport apparaît après quelques instants. Prévoir plusieurs minutes pour la totalisation de longues plages de temps.
+
+. Si vous avez sélectionné requête personnalisée, vous devez personnaliser la période de rapport en entrant *Date de début* et *Date de fin*.
++
+Utilisez le format `YYYY/MM/DDHH:MM:SS` en heure locale. Des zéros non significatifs sont nécessaires pour correspondre au format. Par exemple, la validation a échoué dans 2017/4/6 7:30:00. Le format correct est: 2017/04/06 07:30:00.
+
+. Cliquez sur *mettre à jour*.
++
+Un rapport texte est généré au bout de quelques instants. Prévoir plusieurs minutes pour la totalisation de longues plages de temps. En fonction de la durée définie pour la requête, un rapport texte brut ou texte agrégé s'affiche.
+
+
+
+
+
+== Exporter les rapports texte
+
+Les rapports texte exportés ouvrent un nouvel onglet de navigateur, qui vous permet de sélectionner et de copier les données.
+
+.Description de la tâche
+Les données copiées peuvent ensuite être enregistrées dans un nouveau document (par exemple, une feuille de calcul) et utilisées pour analyser les performances du système StorageGRID.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Créer un rapport texte.
+. Cliquez sur *Exporter*image:../media/icon_export.gif["icône exporter"].
++
+image::../media/export_text_report.gif[capture d'écran décrite par le texte environnant]
+
++
+La fenêtre Exporter un rapport texte s'ouvre et affiche le rapport.
+
++
+image::../media/export_text_report_data.gif[capture d'écran montrant un exemple de rapport texte]
+
+. Sélectionnez et copiez le contenu de la fenêtre Exporter un rapport texte.
++
+Ces données peuvent maintenant être collées dans un document tiers, tel qu'une feuille de calcul.
+
+

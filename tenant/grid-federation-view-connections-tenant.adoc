@@ -1,0 +1,91 @@
+---
+permalink: tenant/grid-federation-view-connections-tenant.html 
+sidebar: sidebar 
+keywords: grid federation connection, view, clear error, last error 
+summary: 'Si votre compte de locataire dispose de l"autorisation utiliser la fédération de grille, vous pouvez afficher les connexions autorisées.' 
+---
+= Afficher les connexions de fédération de grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous pouvez afficher les connexions autorisées.
+
+.Avant de commencer
+* Le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille*.
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Grid federation connections*.
++
+La page de connexion de fédération de grille s'affiche et comprend un tableau qui résume les informations suivantes :
+
++
+[cols="1a,2a"]
+|===
+| Colonne | Description 
+
+
+ a| 
+Nom de la connexion
+ a| 
+Les connexions de fédération de grille que ce locataire a l'autorisation d'utiliser.
+
+
+
+ a| 
+Compartiments avec réplication inter-grid
+ a| 
+Pour chaque connexion de fédération de grid, les compartiments de locataire pour lesquels la réplication inter-grid est activée. Les objets ajoutés à ces compartiments seront répliqués sur l'autre grille de la connexion.
+
+
+
+ a| 
+Dernière erreur
+ a| 
+Pour chaque connexion de fédération de grille, l'erreur la plus récente se produit, le cas échéant, lors de la réplication des données vers l'autre grille. Voir <<clear-last-error,Effacez la dernière erreur>>.
+
+|===
+. Si vous le souhaitez, sélectionnez un nom de compartiment à link:viewing-s3-bucket-details.html["afficher les détails du compartiment"].
+
+
+
+
+== [[Clear-last-error]]efface la dernière erreur
+
+Une erreur peut apparaître dans la colonne *dernière erreur* pour l'une des raisons suivantes :
+
+* La version de l'objet source est introuvable.
+* Le compartiment source est introuvable.
+* Le compartiment de destination a été supprimé.
+* Le compartiment de destination a été recréé par un autre compte.
+* La gestion des versions du compartiment de destination est suspendue.
+* Le compartiment de destination a été recréé par le même compte, mais il n'est plus versionné.
+
+
+
+NOTE: Cette colonne affiche uniquement la dernière erreur de réplication inter-grille à se produire ; les erreurs précédentes qui se sont peut-être produites ne seront pas affichées.
+
+.Étapes
+. Si un message apparaît dans la colonne *dernière erreur*, affichez le texte du message.
++
+Par exemple, cette erreur indique que le compartiment de destination de la réplication inter-grid était dans un état non valide, probablement parce que la gestion de version a été suspendue ou que le verrouillage d'objet S3 a été activé.
+
++
+image::../media/grid-federation-cgr-object-example-last-error.png[grid-federation-cgr-object-example-last-error]
+
+. Effectuez toutes les actions recommandées. Par exemple, si la gestion des versions a été suspendue dans le compartiment de destination pour la réplication inter-grid, réactivez la gestion des versions pour ce compartiment.
+. Sélectionnez la connexion dans le tableau.
+. Sélectionnez *Effacer erreur*.
+. Sélectionnez *Oui* pour effacer le message et mettre à jour l'état du système.
+. Patientez 5-6 minutes, puis ingérer un nouvel objet dans le compartiment. Vérifiez que le message d'erreur ne réapparaît pas.
++
+
+NOTE: Pour vous assurer que le message d'erreur est effacé, attendez au moins 5 minutes après l'horodatage dans le message avant d'ingérer un nouvel objet.
+
+. Pour déterminer si des objets n'ont pas pu être répliqués en raison de l'erreur de compartiment, reportez-vous à la section link:../admin/grid-federation-retry-failed-replication.html["Identifier et réessayer les opérations de réplication ayant échoué"].
+

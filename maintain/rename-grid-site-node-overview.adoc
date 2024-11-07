@@ -1,0 +1,212 @@
+---
+permalink: maintain/rename-grid-site-node-overview.html 
+sidebar: sidebar 
+keywords: rename grid, rename site, rename node, display name, system name 
+summary: 'Si nécessaire, vous pouvez modifier les noms d"affichage affichés dans le Gestionnaire de grille pour l"ensemble de votre grille, chaque site et chaque nœud. Vous pouvez mettre à jour les noms d"affichage en toute sécurité et à tout moment.' 
+---
+= Utilisez la procédure de renommage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si nécessaire, vous pouvez modifier les noms d'affichage affichés dans le Gestionnaire de grille pour l'ensemble de la grille, chaque site et chaque nœud. Vous pouvez mettre à jour les noms d'affichage en toute sécurité et à tout moment.
+
+
+
+== Qu'est-ce que la procédure de renommage ?
+
+Lorsque vous installez StorageGRID au départ, vous spécifiez un nom pour la grille, chaque site et chaque nœud. Ces noms initiaux sont connus sous le nom de _System Names_, et ils sont les noms initialement affichés dans StorageGRID.
+
+Les noms de système sont requis pour les opérations StorageGRID internes et ne peuvent pas être modifiés. Toutefois, vous pouvez utiliser la procédure rename pour définir de nouveaux _noms d'affichage_ pour la grille, chaque site et chaque nœud. Ces noms d'affichage apparaissent dans divers emplacements StorageGRID au lieu (ou dans certains cas, en plus de) des noms de système sous-jacents.
+
+Utilisez la procédure de renommage pour corriger les fautes de frappe, mettre en œuvre une convention de nommage différente ou indiquer qu'un site et tous ses nœuds ont été déplacés. Contrairement aux noms des systèmes, les noms d'affichage peuvent être mis à jour en fonction des besoins et sans incidence sur les opérations StorageGRID.
+
+
+
+== Où les noms du système et de l'affichage apparaissent-ils ?
+
+Le tableau suivant récapitule les emplacements où les noms des systèmes et les noms d'affichage sont affichés dans l'interface utilisateur de StorageGRID et dans les fichiers StorageGRID.
+
+[cols="2a,2a,3a"]
+|===
+| Emplacement | Nom du système | Nom d'affichage 
+
+
+ a| 
+Pages Grid Manager
+ a| 
+Affiché sauf si l'élément est renommé
+ a| 
+Si un élément est renommé, affiché à la place du nom du système dans les emplacements suivants :
+
+* Tableau de bord
+* Page nœuds
+* Pages de configuration pour les groupes haute disponibilité, les terminaux d'équilibrage de charge, les interfaces VLAN, les serveurs de gestion des clés, les mots de passe grid, et le contrôle du pare-feu
+* Alertes
+* Définitions de pool de stockage
+* Page de recherche de métadonnées d'objet
+* Pages relatives aux procédures de maintenance, y compris la mise à niveau, le correctif, la mise à niveau du système d'exploitation SANtricity, la mise hors service, expansion, récupération et vérification de l'existence de l'objet
+* Pages de support (journaux et diagnostics)
+* Page d'ouverture de session unique, en regard du nom d'hôte du nœud d'administration dans le tableau pour les détails du nœud d'administration
+
+
+
+
+ a| 
+*NOEUDS* > *vue d'ensemble* pour un noeud
+ a| 
+Toujours affiché
+ a| 
+S'affiche uniquement si l'élément est renommé
+
+
+
+ a| 
+Pages héritées dans le gestionnaire de grille (par exemple, *SUPPORT* > *topologie de grille*)
+ a| 
+Illustré
+ a| 
+Non illustré
+
+
+
+ a| 
+*API Node-Health*
+ a| 
+Toujours renvoyé
+ a| 
+Renvoyé uniquement si l'élément est renommé
+
+
+
+ a| 
+Lors de l'utilisation de SSH pour accéder à un nœud
+ a| 
+Affiché comme nom principal, sauf si l'élément a été renommé :
+
+`admin@SYSTEM-NAME: ~ $`
+
+Inclus entre parenthèses lorsque l'élément est renommé :
+
+`admin@DISPLAY-NAME(SYSTEM-NAME):~ $`
+ a| 
+Affiché comme nom principal lorsque l'élément est renommé :
+
+`admin@DISPLAY-NAME(SYSTEM-NAME):~ $`
+
+
+
+ a| 
+`Passwords.txt` Dans le progiciel de récupération
+ a| 
+Comme illustré `Server Name`
+ a| 
+Comme illustré `Display Name`
+
+
+
+ a| 
+`/etc/hosts` sur tous les nœuds
+
+Par exemple :
+
+`10.96.99.128 SYSTEM-NAME 28989c59-a2c3-4d30-bb09-6879adf2437f DISPLAY-NAME localhost-grid # storagegrid-gen-host`
+ a| 
+Toujours affiché dans la deuxième colonne
+ a| 
+Lorsque l'élément est renommé, il apparaît dans la quatrième colonne
+
+
+
+ a| 
+`topology-display-names.json`, Inclus avec les données AutoSupport
+ a| 
+Non inclus
+ a| 
+Vide, sauf si les éléments ont été renommés ; sinon, mappe les ID de grille, de site et de nœud sur leurs noms d'affichage.
+
+|===
+
+
+== Afficher les exigences relatives au nom
+
+Avant d'utiliser cette procédure, vérifiez les exigences relatives aux noms d'affichage.
+
+
+
+=== Afficher les noms des nœuds
+
+Les noms d'affichage des nœuds doivent respecter les règles suivantes :
+
+* Doit être unique sur l'ensemble de votre système StorageGRID.
+* Ne peut pas être identique au nom système d'un autre élément de votre système StorageGRID.
+* Doit contenir au moins 1 et 32 caractères.
+* Peut contenir des chiffres, des tirets (-) et des lettres majuscules et minuscules.
+* Peut commencer ou se terminer par une lettre ou un chiffre, mais ne peut pas commencer ou se terminer par un tiret.
+* Ne peut pas être tous des nombres.
+* Ne sont pas sensibles à la casse. Par exemple, `DC1-ADM` et `dc1-adm` sont considérés comme des doublons.
+
+
+Vous pouvez renommer un nœud avec un nom d'affichage précédemment utilisé par un autre nœud, à condition que le renommage ne crée pas de nom d'affichage ni de nom de système en double.
+
+
+
+=== Afficher les noms de la grille et des sites
+
+Les noms d'affichage de la grille et des sites suivent les mêmes règles avec les exceptions suivantes :
+
+* Peut inclure des espaces.
+* Les caractères spéciaux suivants peuvent être inclus : `= - _ : , . @ !`
+* Vous pouvez commencer et terminer par les caractères spéciaux, y compris les tirets.
+* Il peut s'agir de tous les chiffres ou de caractères spéciaux.
+
+
+
+
+== Meilleures pratiques relatives aux noms d'affichage
+
+Si vous prévoyez de renommer plusieurs éléments, documentez votre schéma de dénomination général avant d'utiliser cette procédure. Trouvez un système qui garantit que les noms sont uniques, cohérents et faciles à comprendre d'un seul coup d'œil.
+
+Vous pouvez utiliser n'importe quelle convention de dénomination adaptée aux besoins de votre entreprise. Prenez en compte les suggestions de base suivantes concernant les éléments à inclure :
+
+* *Indicateur de site* : si vous avez plusieurs sites, ajoutez un code de site à chaque nom de nœud.
+* *Type de noeud* : les noms de noeud indiquent généralement le type de noeud. Vous pouvez utiliser des abréviations telles que `s`, `adm` et `gw` (noeud de stockage, noeud d'administration et noeud de passerelle).
+* *Numéro de nœud* : si un site contient plusieurs nœuds d'un type particulier, ajoutez un numéro unique au nom de chaque nœud.
+
+
+Réfléchissez deux fois avant d'ajouter des détails spécifiques aux noms susceptibles de changer au fil du temps. Par exemple, n'incluez pas d'adresses IP dans les noms de nœuds car ces adresses peuvent être modifiées. De même, l'emplacement des racks ou les numéros de modèle des appliances peuvent changer si vous déplacez des équipements ou mettez à niveau le matériel.
+
+
+
+=== Exemples de noms d'affichage
+
+Supposons que votre système StorageGRID dispose de trois data centers et que chaque data Center dispose de nœuds de différents types. Vos noms d'affichage peuvent être aussi simples que ceux-ci :
+
+* *Grille* : `StorageGRID Deployment`
+* *Premier site* : `Data Center 1`
++
+** `dc1-adm1`
+** `dc1-s1`
+** `dc1-s2`
+** `dc1-s3`
+** `dc1-gw1`
+
+
+* *Deuxième site*: `Data Center 2`
++
+** `dc2-adm2`
+** `dc2-s1`
+** `dc2-s2`
+** `dc2-s3`
+
+
+* *Troisième site*: `Data Center 3`
++
+** `dc3-s1`
+** `dc3-s2`
+** `dc3-s3`
+
+
+

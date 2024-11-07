@@ -1,0 +1,35 @@
+---
+permalink: admin/disabling-single-sign-on.html 
+sidebar: sidebar 
+keywords: disable sso, disable single sign on 
+summary: 'Vous pouvez désactiver l"authentification unique \(SSO\) si vous ne souhaitez plus utiliser cette fonctionnalité. Vous devez désactiver l"authentification unique avant de pouvoir désactiver la fédération des identités.' 
+---
+= Désactiver l'authentification unique
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez désactiver l'authentification unique (SSO) si vous ne souhaitez plus utiliser cette fonctionnalité. Vous devez désactiver l'authentification unique avant de pouvoir désactiver la fédération des identités.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *contrôle d'accès* > *connexion unique*.
++
+La page authentification unique s'affiche.
+
+. Sélectionnez l'option *Disabled*.
+. Sélectionnez *Enregistrer*.
++
+Un message d'avertissement s'affiche pour indiquer que les utilisateurs locaux pourront maintenant se connecter.
+
+. Sélectionnez *OK*.
++
+La prochaine fois que vous vous connectez à StorageGRID, la page de connexion StorageGRID s'affiche et vous devez entrer le nom d'utilisateur et le mot de passe d'un utilisateur StorageGRID local ou fédéré.
+
+

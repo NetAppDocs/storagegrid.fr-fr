@@ -1,0 +1,139 @@
+---
+permalink: vmware/storage-and-performance-requirements.html 
+sidebar: sidebar 
+keywords: storage requirements, performance requirements, netapp ontap, fabricpool 
+summary: 'Vous devez connaître les besoins en performances et en stockage des nœuds StorageGRID hébergés par des machines virtuelles, afin que vous puissiez disposer d"un espace suffisant pour prendre en charge la configuration initiale et l"extension future du stockage.' 
+---
+= Les besoins en matière de stockage et de performances
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez connaître les besoins en performances et en stockage des nœuds StorageGRID hébergés par des machines virtuelles, afin que vous puissiez disposer d'un espace suffisant pour prendre en charge la configuration initiale et l'extension future du stockage.
+
+
+
+== Exigences en matière de performances
+
+Les performances du volume du système d'exploitation et du premier volume de stockage ont un impact significatif sur les performances globales du système. Assurez-vous que ces baies offrent les performances appropriées en termes de latence, d'opérations d'entrée/sortie par seconde (IOPS) et de débit.
+
+Tous les nœuds StorageGRID nécessitent que le lecteur du système d'exploitation et tous les volumes de stockage aient une mise en cache à écriture différée activée. Le cache doit se trouver sur un support protégé ou persistant.
+
+
+
+== Ainsi que les machines virtuelles qui utilisent le stockage NetApp ONTAP
+
+Si vous déployez un nœud StorageGRID en tant que machine virtuelle avec un stockage affecté à un système NetApp ONTAP, vous avez confirmé que cette FabricPool règle n'est pas activée pour le volume. Par exemple, si un nœud StorageGRID s'exécute en tant que machine virtuelle sur un hôte VMware, assurez-vous que la règle de hiérarchisation FabricPool n'est pas activée pour le volume qui sauvegarde le datastore du nœud. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
+
+
+NOTE: N'utilisez jamais FabricPool pour transférer automatiquement toutes les données liées à StorageGRID vers StorageGRID. Le Tiering des données StorageGRID vers StorageGRID augmente la complexité opérationnelle et la résolution des problèmes.
+
+
+
+== Nombre de machines virtuelles requises
+
+Chaque site StorageGRID requiert au moins trois nœuds de stockage.
+
+
+
+== Besoins en stockage par type de nœud
+
+Dans un environnement de production, les machines virtuelles des nœuds StorageGRID doivent répondre à des exigences variées, en fonction des types de nœuds.
+
+
+NOTE: Les snapshots de disque ne peuvent pas être utilisés pour restaurer les nœuds de grille. Reportez-vous plutôt aux link:../maintain/warnings-and-considerations-for-grid-node-recovery.html["restauration du nœud grid"]procédures pour chaque type de nœud.
+
+[cols="1a,2a"]
+|===
+| Type de nœud | Stockage 
+
+
+ a| 
+Nœud d'administration
+ a| 
+LUN DE 100 GO POUR OS
+
+LUN de 200 Go pour les tables de nœuds d'administration
+
+LUN de 200 Go pour le journal d'audit du nœud d'administration
+
+
+
+ a| 
+Nœud de stockage
+ a| 
+LUN DE 100 GO POUR OS
+
+3 LUN pour chaque nœud de stockage sur cet hôte
+
+*Remarque* : un nœud de stockage peut avoir 1 à 16 LUN de stockage ; au moins 3 LUN de stockage sont recommandées.
+
+Taille minimale par LUN : 4 To
+
+Taille de la LUN testée maximale : 39 To.
+
+
+
+ a| 
+Nœud de stockage (métadonnées uniquement)
+ a| 
+LUN DE 100 GO POUR OS
+
+1 LUN
+
+Taille minimale par LUN : 4 To
+
+*Remarque* : il n'y a pas de taille maximale pour le LUN unique. La capacité excédentaire est ainsi économisée en cas d'utilisation future.
+
+*Remarque* : un seul rangedb est requis pour les nœuds de stockage de métadonnées uniquement.
+
+
+
+ a| 
+Nœud de passerelle
+ a| 
+LUN DE 100 GO POUR OS
+
+|===
+
+NOTE: Selon le niveau d'audit configuré, la taille des entrées utilisateur telles que le nom de clé d'objet S3, Et la quantité de données des journaux d'audit à conserver, il peut être nécessaire d'augmenter la taille de la LUN des journaux d'audit sur chaque nœud d'administration.en général, une grille génère environ 1 Ko de données d'audit par opération S3, Cela signifie qu'un LUN de 200 Go peut prendre en charge 70 millions d'opérations par jour ou 800 opérations par seconde pendant deux à trois jours.
+
+
+
+== Besoins de stockage des nœuds de stockage
+
+Un nœud de stockage logiciel peut disposer de 1 à 16 volumes de stockage, dont -3 volumes ou plus sont recommandés. Chaque volume de stockage doit être supérieur ou égale à 4 To.
+
+
+NOTE: Un nœud de stockage d'appliance peut disposer d'un maximum de 48 volumes de stockage.
+
+Comme illustré dans la figure, StorageGRID réserve l'espace des métadonnées d'objet sur le volume de stockage 0 de chaque nœud de stockage. Tout espace restant sur le volume de stockage 0 et tout autre volume de stockage du nœud de stockage est utilisé exclusivement pour les données d'objet.
+
+image::../media/metadata_space_storage_node.png[Nœud de stockage de l'espace de métadonnées]
+
+Pour assurer la redondance et protéger les métadonnées d'objet contre la perte, StorageGRID stocke trois copies des métadonnées de tous les objets du système sur chaque site. Les trois copies de métadonnées d'objet sont réparties de manière uniforme sur tous les nœuds de stockage de chaque site.
+
+Lors de l'installation d'une grille avec des nœuds de stockage de métadonnées uniquement, la grille doit également contenir un nombre minimal de nœuds pour le stockage objet. Pour plus d'informations sur les nœuds de stockage des métadonnées uniquement, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
+* Pour un grid à un seul site, au moins deux nœuds de stockage sont configurés pour les objets et les métadonnées.
+* Pour une grille multisite, au moins un nœud de stockage par site est configuré pour les objets et les métadonnées.
+
+
+Lorsque vous attribuez de l'espace au volume 0 d'un nouveau nœud de stockage, vous devez vous assurer qu'il y a suffisamment d'espace pour la portion de ce nœud de toutes les métadonnées d'objet.
+
+* Au moins, vous devez affecter au volume 0 au moins 4 To.
++
+
+NOTE: Si vous n'utilisez qu'un seul volume de stockage pour un nœud de stockage et que vous attribuez 4 To ou moins au volume, le nœud de stockage peut passer à l'état de stockage en lecture seule au démarrage et stocker uniquement les métadonnées d'objet.
+
++
+
+NOTE: Si vous attribuez moins de 500 Go au volume 0 (utilisation hors production uniquement), 10 % de la capacité du volume de stockage est réservée aux métadonnées.
+
+* Si vous installez un nouveau système (StorageGRID 11.6 ou supérieur) et que chaque nœud de stockage dispose de 128 Go ou plus de RAM, attribuez 8 To ou plus au volume 0. L'utilisation d'une valeur plus grande pour le volume 0 peut augmenter l'espace autorisé pour les métadonnées sur chaque nœud de stockage.
+* Lorsque vous configurez différents nœuds de stockage pour un site, utilisez le même paramètre pour le volume 0 si possible. Si un site contient des nœuds de stockage de différentes tailles, le nœud de stockage avec le plus petit volume 0 déterminera la capacité des métadonnées de ce site.
+
+
+Pour plus de détails, rendez-vous sur link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"].

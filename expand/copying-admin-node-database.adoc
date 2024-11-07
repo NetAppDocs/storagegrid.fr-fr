@@ -1,0 +1,76 @@
+---
+permalink: expand/copying-admin-node-database.html 
+sidebar: sidebar 
+keywords: copy Admin Node database, alert history, Admin Node expansion 
+summary: 'Lorsque vous ajoutez des nœuds d"administration via une procédure d"extension, vous pouvez éventuellement copier la base de données du nœud d"administration principal vers le nouveau nœud d"administration. La copie de la base de données vous permet de conserver des informations historiques sur les attributs, les alertes et les alertes.' 
+---
+= Copiez la base de données du nœud d'administration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous ajoutez des nœuds d'administration via une procédure d'extension, vous pouvez éventuellement copier la base de données du nœud d'administration principal vers le nouveau nœud d'administration. La copie de la base de données vous permet de conserver des informations historiques sur les attributs, les alertes et les alertes.
+
+.Avant de commencer
+* Vous avez terminé les étapes d'extension requises pour ajouter un nœud d'administration.
+* Vous avez le `Passwords.txt` fichier.
+* Vous avez la phrase secrète pour le provisionnement.
+
+
+.Description de la tâche
+Le processus d'activation du logiciel StorageGRID crée une base de données vide pour le service NMS sur le nœud d'administration d'extension. Lorsque le service NMS démarre sur le nœud d'administration d'extension, il enregistre les informations concernant les serveurs et services qui font actuellement partie du système ou qui sont ajoutés ultérieurement. Cette base de données de nœud d'administration contient les informations suivantes :
+
+* Historique des alertes
+* Données d'attributs historiques, utilisées dans les graphiques de style hérité de la page nœuds
+
+
+Pour vous assurer que la base de données du nœud d'administration est cohérente entre les nœuds, vous pouvez copier la base de données du nœud d'administration principal vers le nœud d'administration d'extension.
+
+
+NOTE: La copie de la base de données du noeud d'administration principal (le noeud d'administration__source_) vers un noeud d'administration d'extension peut prendre plusieurs heures. Pendant cette période, le gestionnaire de grille est inaccessible.
+
+Procédez comme suit pour arrêter le service MI et le service API de gestion sur le nœud d'administration principal et le nœud d'administration d'extension avant de copier la base de données.
+
+.Étapes
+. Effectuez les étapes suivantes sur le nœud d'administration principal :
++
+.. Connectez-vous au nœud d'administration :
++
+... Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+... Entrez la commande suivante pour basculer en root : `su -`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+.. Exécutez la commande suivante : `recover-access-points`
+.. Saisissez la phrase secrète pour le provisionnement.
+.. Arrêtez le service MI : `service mi stop`
+.. Arrêtez le service Management application Program interface (mgmt-api) : `service mgmt-api stop`
+
+
+. Procédez comme suit sur le nœud d'administration d'extension :
++
+.. Connectez-vous au nœud d'administration d'extension :
++
+... Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+... Entrez la commande suivante pour basculer en root : `su -`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+.. Arrêtez le service MI : `service mi stop`
+.. Arrêtez le service mgmt-api : `service mgmt-api stop`
+.. Ajoutez la clé privée SSH à l'agent SSH. Entrer :``ssh-add``
+.. Entrez le mot de passe d'accès SSH indiqué dans le `Passwords.txt` fichier.
+.. Copiez la base de données du nœud d'administration source vers le nœud d'administration d'extension : `/usr/local/mi/bin/mi-clone-db.sh _Source_Admin_Node_IP_`
+.. Lorsque vous y êtes invité, confirmez que vous souhaitez remplacer la base DE données MI sur le nœud d'administration d'extension.
++
+La base de données et ses données historiques sont copiées dans le nœud d'administration d'extension. Lorsque la copie est terminée, le script démarre le nœud d'administration d'extension.
+
+.. Lorsque vous n'avez plus besoin d'un accès sans mot de passe à d'autres serveurs, supprimez la clé privée de l'agent SSH. Entrer :``ssh-add -D``
+
+
+. Redémarrez les services sur le nœud d'administration principal : `service servermanager start`
+

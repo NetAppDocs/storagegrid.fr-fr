@@ -1,0 +1,258 @@
+---
+permalink: troubleshoot/verifying-object-integrity.html 
+sidebar: sidebar 
+keywords: how to verify object integrity, object existence check, background verification 
+summary: 'Le système StorageGRID vérifie l"intégrité des données d"objet sur les nœuds de stockage, en vérifiant la présence d"objets corrompus et manquants.' 
+---
+= Vérifiez l'intégrité de l'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le système StorageGRID vérifie l'intégrité des données d'objet sur les nœuds de stockage, en vérifiant la présence d'objets corrompus et manquants.
+
+Il existe deux processus de vérification : la vérification des antécédents et la vérification de l'existence des objets (anciennement appelée vérification de premier plan). Elles travaillent ensemble pour assurer l'intégrité des données. La vérification en arrière-plan s'exécute automatiquement et vérifie en continu l'exactitude des données d'objet. La vérification de l'existence d'un objet peut être déclenchée par un utilisateur pour vérifier plus rapidement l'existence (mais pas l'exactitude) d'objets.
+
+
+
+== Qu'est-ce que la vérification des antécédents ?
+
+Le processus de vérification en arrière-plan vérifie automatiquement et en continu les nœuds de stockage pour détecter des copies corrompues de données d'objet et tente automatiquement de résoudre les problèmes qu'il trouve.
+
+La vérification en arrière-plan vérifie l'intégrité des objets répliqués et des objets avec code d'effacement, comme suit :
+
+* *Objets répliqués* : si le processus de vérification en arrière-plan trouve un objet répliqué corrompu, la copie corrompue est supprimée de son emplacement et mise en quarantaine ailleurs sur le noeud de stockage. Une nouvelle copie non corrompue est ensuite générée et placée pour respecter les règles ILM actives. Il se peut que la nouvelle copie ne soit pas placée sur le nœud de stockage utilisé pour la copie d'origine.
+
+
+
+NOTE: Les données d'objet corrompues sont mises en quarantaine au lieu d'être supprimées du système, de sorte qu'elles soient toujours accessibles. Pour plus d'informations sur l'accès aux données d'objet en quarantaine, contactez le support technique.
+
+* *Objets avec code d'effacement* : si le processus de vérification en arrière-plan détecte qu'un fragment d'un objet avec code d'effacement est corrompu, StorageGRID tente automatiquement de reconstruire le fragment manquant en place sur le même nœud de stockage, en utilisant les données restantes et les fragments de parité. Si le fragment corrompu ne peut pas être reconstruit, une tentative est faite pour extraire une autre copie de l'objet. Lorsque la récupération réussit, une évaluation du ILM est effectuée pour créer une copie de remplacement de l'objet avec code d'effacement.
++
+Le processus de vérification en arrière-plan vérifie uniquement les objets sur les nœuds de stockage. Elle ne vérifie pas les objets dans un pool de stockage cloud. Les objets doivent être âgés de plus de quatre jours pour être admissibles à la vérification des antécédents.
+
+
+
+La vérification des antécédents s'exécute à un taux continu conçu pour ne pas interférer avec les activités ordinaires du système. Impossible d'arrêter la vérification en arrière-plan. Toutefois, vous pouvez augmenter le taux de vérification en arrière-plan pour vérifier plus rapidement le contenu d'un nœud de stockage si vous soupçonnez un problème.
+
+
+
+=== Alertes liées à la vérification des antécédents
+
+Si le système détecte un objet corrompu qu'il ne peut pas corriger automatiquement (parce que la corruption empêche l'objet d'être identifié), l'alerte *objet corrompu non identifié détecté* est déclenchée.
+
+Si la vérification en arrière-plan ne peut pas remplacer un objet corrompu car il ne peut pas localiser une autre copie, l'alerte *objets perdus* est déclenchée.
+
+
+
+=== Modifier le taux de vérification des antécédents
+
+Vous pouvez modifier la vitesse à laquelle la vérification en arrière-plan vérifie les données d'objet répliquées sur un nœud de stockage si vous avez des problèmes d'intégrité des données.
+
+.Avant de commencer
+* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Vous pouvez modifier le taux de vérification pour la vérification en arrière-plan sur un nœud de stockage :
+
+* Adaptatif : paramètre par défaut. La tâche est conçue pour vérifier à un maximum de 4 Mo/s ou 10 objets/s (selon la première limite dépassée).
+* Élevé : la vérification du stockage s'effectue rapidement, à une vitesse qui peut ralentir les activités ordinaires des systèmes.
+
+
+Utilisez le taux de vérification élevé uniquement si vous soupçonnez qu'une erreur matérielle ou logicielle pourrait avoir des données d'objet corrompues. Une fois la vérification de l'arrière-plan de priorité élevée terminée, le taux de vérification se réinitialise automatiquement sur Adaptive.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Storage Node_* > *LDR* > *Verification*.
+. Sélectionnez *Configuration* > *main*.
+. Accédez à *LDR* > *Verification* > *Configuration* > *main*.
+. Sous Vérification de l'arrière-plan, sélectionnez *taux de vérification* > *taux élevé* ou *taux de vérification* > *adaptatif*.
++
+image::../media/background_verification_rate.png[Réglage du taux de vérification]
+
+. Cliquez sur *appliquer les modifications*.
+. Surveiller les résultats de la vérification en arrière-plan des objets répliqués.
++
+.. Accédez à *NOEUDS* > *_Storage Node_* > *objets*.
+.. Dans la section Vérification, surveillez les valeurs de *objets corrompus* et *objets corrompus non identifiés*.
++
+Si la vérification en arrière-plan trouve des données d'objet répliqué corrompues, la mesure *objets corrompus* est incrémentée et StorageGRID tente d'extraire l'identificateur d'objet des données, comme suit :
+
++
+*** Si l'identifiant d'objet peut être extrait, StorageGRID crée automatiquement une nouvelle copie des données de l'objet. La nouvelle copie peut être effectuée à n'importe quel endroit du système StorageGRID qui respecte les règles ILM actives.
+*** Si l'identifiant de l'objet ne peut pas être extrait (car il a été corrompu), la mesure *objets corrompus non identifiés* est incrémentée et l'alerte *objet corrompu non identifié détecté* est déclenchée.
+
+
+.. Si des données d'objet répliqué corrompues sont trouvées, contactez le support technique pour déterminer la cause première de la corruption.
+
+
+. Surveillez les résultats de la vérification en arrière-plan des objets avec code d'effacement.
++
+Si la vérification en arrière-plan détecte des fragments corrompus de données d'objet codées par effacement, l'attribut fragments corrompus détectés est incrémenté. StorageGRID restaure en reconstruisant le fragment corrompu sur le même nœud de stockage.
+
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_Storage Node_* > *LDR* > *codage d'effacement*.
+.. Dans le tableau Résultats de la vérification, surveillez l'attribut fragments corrompus détectés (ECCD).
+
+
+. Une fois les objets corrompus automatiquement restaurés par le système StorageGRID, réinitialisez le nombre d'objets corrompus.
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_Storage Node_* > *LDR* > *Verification* > *Configuration*.
+.. Sélectionnez *Réinitialiser le nombre d'objets corrompus*.
+.. Cliquez sur *appliquer les modifications*.
+
+
+. Si vous êtes sûr que les objets mis en quarantaine ne sont pas nécessaires, vous pouvez les supprimer.
++
+
+NOTE: Si l'alerte *objets perdus* a été déclenchée, le support technique peut vouloir accéder aux objets mis en quarantaine pour aider à déboguer le problème sous-jacent ou tenter de récupérer les données.
+
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_Storage Node_* > *LDR* > *Verification* > *Configuration*.
+.. Sélectionnez *Supprimer les objets en quarantaine*.
+.. Sélectionnez *appliquer les modifications*.
+
+
+
+
+
+
+== Qu'est-ce que la vérification de l'existence d'objet ?
+
+Le contrôle d'existence d'objet vérifie si toutes les copies répliquées attendues d'objets et de fragments avec code d'effacement existent sur un nœud de stockage. La vérification de l'existence des objets ne vérifie pas les données de l'objet lui-même (la vérification en arrière-plan le fait) ; elle permet plutôt de vérifier l'intégrité des périphériques de stockage, en particulier si un problème matériel récent pouvait affecter l'intégrité des données.
+
+Contrairement à la vérification de l'arrière-plan, qui se produit automatiquement, vous devez démarrer manuellement un travail de vérification de l'existence d'un objet.
+
+Le contrôle d'existence des objets lit les métadonnées de chaque objet stocké dans StorageGRID et vérifie l'existence de copies d'objet répliquées et de fragments d'objet avec code d'effacement. Les données manquantes sont traitées comme suit :
+
+* *Copies répliquées* : si une copie des données d'objet répliqué est manquante, StorageGRID tente automatiquement de remplacer la copie d'une autre copie stockée dans le système. Le nœud de stockage exécute une copie existante via une évaluation ILM. Elle détermine que la politique ILM actuelle n'est plus respectée pour cet objet, car une autre copie est manquante. Une nouvelle copie est générée et placée pour respecter les règles ILM actives du système. Cette nouvelle copie peut ne pas être placée au même endroit où la copie manquante a été stockée.
+* *Fragments codés par effacement* : si un fragment d'un objet codé par effacement est manquant, StorageGRID tente automatiquement de reconstruire le fragment manquant sur le même nœud de stockage en utilisant les fragments restants. Si le fragment manquant ne peut pas être reconstruit (en raison de la perte d'un trop grand nombre de fragments), ILM tente de trouver une autre copie de l'objet, qu'il peut utiliser pour générer un nouveau fragment avec code d'effacement.
+
+
+
+
+=== Exécutez la vérification de l'existence d'objet
+
+Vous créez et exécutez un travail de vérification de l'existence d'un objet à la fois. Lorsque vous créez un travail, vous sélectionnez les nœuds de stockage et les volumes à vérifier. Vous sélectionnez également la cohérence du travail.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Vous avez vérifié que les nœuds de stockage à vérifier sont en ligne. Sélectionnez *NOEUDS* pour afficher la table des noeuds. Assurez-vous qu'aucune icône d'alerte n'apparaît en regard du nom du nœud pour les nœuds que vous souhaitez vérifier.
+* Vous avez vérifié que les procédures suivantes sont *non* exécutées sur les nœuds que vous voulez vérifier :
++
+** Extension de la grille pour ajouter un nœud de stockage
+** Désaffectation du nœud de stockage
+** Restauration d'un volume de stockage défaillant
+** Récupération d'un nœud de stockage avec un lecteur système défaillant
+** Rééquilibrage EC
+** Clone du nœud d'appliance
+
+
+
+
+Le contrôle d'existence d'objet ne fournit pas d'informations utiles pendant que ces procédures sont en cours.
+
+.Description de la tâche
+Une tâche de vérification de l'existence d'un objet peut prendre des jours ou des semaines, selon le nombre d'objets dans la grille, les nœuds et volumes de stockage sélectionnés et la cohérence sélectionnée. Vous ne pouvez exécuter qu'une seule tâche à la fois, mais vous pouvez sélectionner plusieurs nœuds de stockage et volumes en même temps.
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *Vérification d'existence d'objet*.
+. Sélectionnez *Créer un travail*. L'assistant création d'un objet Vérification de l'existence s'affiche.
+. Sélectionnez les nœuds contenant les volumes à vérifier. Pour sélectionner tous les nœuds en ligne, cochez la case *Node name* dans l'en-tête de colonne.
++
+Vous pouvez effectuer vos recherches par nom de nœud ou site.
+
++
+Vous ne pouvez pas sélectionner de nœuds qui ne sont pas connectés à la grille.
+
+. Sélectionnez *Continuer*.
+. Sélectionnez un ou plusieurs volumes pour chaque nœud de la liste. Vous pouvez rechercher des volumes à l'aide du numéro du volume de stockage ou du nom du nœud.
++
+Pour sélectionner tous les volumes pour chaque nœud sélectionné, cochez la case *Storage volume* dans l'en-tête de colonne.
+
+. Sélectionnez *Continuer*.
+. Sélectionnez la cohérence du travail.
++
+La cohérence détermine le nombre de copies des métadonnées d'objet utilisées pour la vérification de l'existence des objets.
+
++
+** *Site fort* : deux copies de métadonnées sur un seul site.
+** *Fort-global*: Deux copies de métadonnées à chaque site.
+** *Tout* (par défaut) : les trois copies des métadonnées de chaque site.
++
+Pour plus d'informations sur la cohérence, reportez-vous aux descriptions fournies par l'assistant.
+
+
+
+. Sélectionnez *Continuer*.
+. Vérifiez et vérifiez vos sélections. Vous pouvez sélectionner *Précédent* pour passer à l'étape précédente de l'assistant afin de mettre à jour vos sélections.
++
+Un travail de vérification de l'existence d'un objet est généré et exécuté jusqu'à ce que l'un des événements suivants se produise :
+
++
+** Le travail se termine.
+** Vous mettez en pause ou annulez le travail. Vous pouvez reprendre un travail que vous avez interrompu, mais vous ne pouvez pas reprendre un travail que vous avez annulé.
+** Le travail se bloque. L'alerte * Vérification de l'existence de l'objet a calé* est déclenchée. Suivez les actions correctives spécifiées pour l'alerte.
+** Le travail échoue. L'alerte *échec de la vérification de l'existence de l'objet* est déclenchée. Suivez les actions correctives spécifiées pour l'alerte.
+** Un message « Service non disponible » ou « erreur de serveur interne » s'affiche. Au bout d'une minute, actualisez la page pour continuer à surveiller le travail.
++
+
+NOTE: Si nécessaire, vous pouvez naviguer hors de la page de vérification de l'existence d'un objet et revenir à la page de suivi du travail.
+
+
+
+. Pendant l'exécution du travail, affichez l'onglet *travail actif* et notez la valeur des copies d'objet manquantes détectées.
++
+Cette valeur représente le nombre total de copies manquantes d'objets répliqués et d'objets avec code d'effacement avec un ou plusieurs fragments manquants.
+
++
+Si le nombre de copies d'objet manquantes détectées est supérieur à 100, il peut y avoir un problème avec le stockage du nœud de stockage.
+
++
+image::../media/oec_active.png[Travail OEC actif]
+
+. Une fois le travail terminé, prenez les mesures supplémentaires requises :
++
+** Si les copies d'objet manquantes détectées sont nulles, aucun problème n'a été trouvé. Aucune action n'est requise.
+** Si les copies d'objet manquantes détectées sont supérieures à zéro et que l'alerte *objets perdus* n'a pas été déclenchée, toutes les copies manquantes ont été réparées par le système. Vérifiez que tout problème matériel a été corrigé pour éviter d'endommager ultérieurement les copies d'objet.
+** Si les copies d'objet manquantes détectées sont supérieures à zéro et que l'alerte *objets perdus* a été déclenchée, l'intégrité des données pourrait être affectée. Contactez l'assistance technique.
+** Vous pouvez rechercher des copies d'objet perdues en utilisant grep pour extraire les messages d'audit LLST : `grep LLST audit_file_name`.
++
+Cette procédure est similaire à celle de link:../troubleshoot/investigating-lost-objects.html["analyse des objets perdus"], bien que pour les copies d'objet que vous recherchez `LLST` à la place de `OLST` .
+
+
+
+. Si vous avez sélectionné une cohérence solide ou globale pour le travail, attendez environ trois semaines avant d'exécuter à nouveau le travail sur les mêmes volumes.
++
+Lorsque StorageGRID a eu le temps d'assurer la cohérence des métadonnées pour les nœuds et les volumes inclus dans le travail, réexécuter ce travail peut effacer les copies d'objet manquantes, ou faire vérifier d'autres copies d'objet si elles ne sont pas prises en compte.
+
++
+.. Sélectionnez *MAINTENANCE* > *Vérification de l'existence d'objet* > *Historique du travail*.
+.. Déterminez les travaux prêts à être réexécutés :
++
+... Consultez la colonne *end Time* pour déterminer les tâches qui ont été exécutées il y a plus de trois semaines.
+... Pour ces travaux, scannez la colonne de contrôle de cohérence pour obtenir un site fort ou fort-global.
+
+
+.. Cochez la case de chaque travail à repasser, puis sélectionnez *repassage*.
++
+image::../media/oec_rerun.png[Repassage OEC]
+
+.. Dans l'assistant Réanalyser les travaux, examinez les nœuds et volumes sélectionnés et la cohérence.
+.. Lorsque vous êtes prêt à réexécuter les travaux, sélectionnez *repassage*.
+
+
+
+
+L'onglet travail actif s'affiche. Tous les travaux que vous avez sélectionnés sont réexécutés comme un travail à une cohérence de site fort. Un champ *travaux connexes* de la section Détails répertorie les ID des travaux d'origine.
+
+.Une fois que vous avez terminé
+Si vous avez toujours des problèmes d'intégrité des données, accédez à *SUPPORT* > *Outils* > *topologie de grille* > *_site_* > *_Storage Node_* > *LDR* > *Verification* > *Configuration* > *main* et augmentez le taux de vérification en arrière-plan. La vérification en arrière-plan vérifie l'exactitude de toutes les données d'objet stockées et répare tout problème détecté. Trouver et réparer les problèmes le plus rapidement possible réduit le risque de perte de données.

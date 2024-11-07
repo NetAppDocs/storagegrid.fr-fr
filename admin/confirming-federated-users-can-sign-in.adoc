@@ -1,0 +1,68 @@
+---
+permalink: admin/confirming-federated-users-can-sign-in.html 
+sidebar: sidebar 
+keywords: sso configuration 
+summary: 'Avant d"activer la connexion unique \(SSO\), vous devez confirmer qu"au moins un utilisateur fédéré peut se connecter au Grid Manager et se connecter au tenant Manager pour tout compte de tenant existant.' 
+---
+= Confirmez que les utilisateurs fédérés peuvent se connecter
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'activer l'authentification unique (SSO), vous devez confirmer qu'au moins un utilisateur fédéré peut se connecter au Grid Manager et au tenant Manager pour tout compte de tenant existant.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez déjà configuré la fédération des identités.
+
+
+.Étapes
+. S'il existe des comptes de tenant existants, vérifiez qu'aucun des locataires n'utilise son propre référentiel d'identité.
++
+
+TIP: Lorsque vous activez SSO, un référentiel d'identité configuré dans le Gestionnaire de locataires est remplacé par le référentiel d'identité configuré dans le Gestionnaire de grille. Les utilisateurs appartenant au référentiel d'identité du locataire ne pourront plus se connecter à moins qu'ils aient un compte avec le référentiel d'identité Grid Manager.
+
++
+.. Connectez-vous au Gestionnaire de locataires pour chaque compte de locataire.
+.. Sélectionnez *ACCESS MANAGEMENT* > *identity federation*.
+.. Vérifiez que la case *Activer la fédération d'identité* n'est pas cochée.
+.. Si c'est le cas, vérifiez que tous les groupes fédérés pouvant être utilisés pour ce compte de tenant ne sont plus nécessaires, décochez la case et sélectionnez *Enregistrer*.
+
+
+. Vérifiez qu'un utilisateur fédéré peut accéder au Grid Manager :
++
+.. Dans Grid Manager, sélectionnez *CONFIGURATION* > *contrôle d'accès* > *groupes d'administration*.
+.. Assurez-vous qu'au moins un groupe fédéré a été importé du référentiel d'identité Active Directory et qu'il a reçu l'autorisation d'accès racine.
+.. Se déconnecter.
+.. Confirmez que vous pouvez vous reconnecter au Grid Manager en tant qu'utilisateur dans le groupe fédéré.
+
+
+. S'il existe des comptes de tenant existants, confirmez qu'un utilisateur fédéré disposant d'une autorisation d'accès racine peut se connecter :
++
+.. Dans Grid Manager, sélectionnez *TENANTS*.
+.. Sélectionnez le compte locataire, puis sélectionnez *actions* > *Modifier*.
+.. Dans l'onglet entrer les détails, sélectionnez *Continuer*.
+.. Si la case *utiliser le propre référentiel d'identité* est cochée, décochez la case et sélectionnez *Enregistrer*.
++
+image::../media/sso_uses_own_identity_source_for_tenant.png[Case à cocher Modifier le compte de locataire > utiliser le propre référentiel d'identité non sélectionnée]
+
++
+La page tenant s'affiche.
+
+.. Sélectionnez le compte de tenant, sélectionnez *connexion* et connectez-vous au compte de tenant en tant qu'utilisateur racine local.
+.. Dans le Gestionnaire de locataires, sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+.. Assurez-vous qu'au moins un groupe fédéré du Grid Manager a reçu l'autorisation d'accès racine pour ce locataire.
+.. Se déconnecter.
+.. Confirmez que vous pouvez vous reconnecter au locataire en tant qu'utilisateur dans le groupe fédéré.
+
+
+
+
+.Informations associées
+* link:requirements-for-sso.html["Configuration requise et considérations pour l'authentification unique"]
+* link:managing-admin-groups.html["Gérez les groupes d'administration"]
+* link:../tenant/index.html["Utilisez un compte de locataire"]
+

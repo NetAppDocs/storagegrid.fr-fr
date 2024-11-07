@@ -1,0 +1,49 @@
+---
+permalink: admin/viewing-storagegrid-license-information.html 
+sidebar: sidebar 
+keywords: storagegrid license, view license, licensed capacity of grid 
+summary: Vous pouvez afficher les informations relatives aux licences de votre système StorageGRID, comme la capacité de stockage maximale de votre réseau, si nécessaire. 
+---
+= Afficher les informations de licence StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher les informations relatives aux licences de votre système StorageGRID, comme la capacité de stockage maximale de votre réseau, si nécessaire.
+
+.Avant de commencer
+Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+.Description de la tâche
+En cas de problème avec la licence logicielle de ce système StorageGRID, la carte d'état d'intégrité du tableau de bord comprend une icône d'état de la licence et un lien *Licence*. Ce numéro indique le nombre de problèmes liés à la licence.
+
+image::../media/dashboard_health_panel_license_status.png[État de la licence de la carte d'état d'intégrité du tableau de bord]
+
+.Étapes
+. Accédez à la page Licence en effectuant l'une des opérations suivantes :
++
+** Sélectionnez *MAINTENANCE* > *système* > *Licence*.
+** Dans la carte d'état d'intégrité du tableau de bord, sélectionnez l'icône d'état de la licence ou le lien *Licence*.
++
+Ce lien apparaît uniquement en cas de problème avec la licence.
+
+
+
+. Afficher les détails en lecture seule de la licence actuelle :
++
+** ID du système StorageGRID, qui est le numéro d'identification unique de cette installation StorageGRID
+** Numéro de série de la licence
+** Type de licence, soit *perpétuel* soit *abonnement*
+** Capacité de stockage sous licence de la grille
+** Capacité de stockage prise en charge
+** Date de fin de licence. *N/A* apparaît pour une licence perpétuelle.
+** Date de fin du support
++
+Cette date est lue à partir du fichier de licence actuel et peut être obsolète si vous avez prolongé ou renouvelé le contrat de service de support après avoir obtenu le fichier de licence. Pour mettre à jour cette valeur, voir link:updating-storagegrid-license-information.html["Mettez à jour les informations de licence StorageGRID"]. Vous pouvez également afficher la date de fin réelle du contrat à l'aide de Active IQ.
+
+** Contenu du fichier texte de licence
+
+
+

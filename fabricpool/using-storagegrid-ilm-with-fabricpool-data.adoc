@@ -1,0 +1,154 @@
+---
+permalink: fabricpool/using-storagegrid-ilm-with-fabricpool-data.html 
+sidebar: sidebar 
+keywords: FabricPool, requirements, ILM, information lifecycle management, ILM rule, ILM rules, ILM policy, erasure coding, replication, cloud storage pool, glacier 
+summary: Cet exemple de règle simple vous permet de commencer par vos propres règles et règles ILM. 
+---
+= Configurez la solution ILM pour les données FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cet exemple de règle simple vous permet de commencer par vos propres règles et règles ILM.
+
+Nous partons du principe que vous concevez les règles ILM et une règle ILM pour un système StorageGRID qui possède quatre nœuds de stockage dans un data Center unique à Denver, Colorado. Dans cet exemple, les données FabricPool utilisent un compartiment nommé `fabricpool-bucket`.
+
+
+CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règles ILM sont nombreuses. Avant d'activer une nouvelle stratégie, simulez-la pour confirmer qu'elle fonctionnera comme prévu pour protéger le contenu contre la perte. Pour en savoir plus, voir link:../ilm/index.html["Gestion des objets avec ILM"].
+
+
+CAUTION: Pour éviter toute perte de données, n'utilisez pas de règle ILM qui expirera ou supprimera les données de Tier cloud FabricPool. Définissez la période de conservation sur *Forever* pour vous assurer que les objets FabricPool ne sont pas supprimés par la ILM de StorageGRID.
+
+.Avant de commencer
+* Vous avez examiné le link:best-practices-ilm.html["Bonnes pratiques d'utilisation d'ILM avec des données FabricPool"].
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Permission d'accès ILM ou racine"].
+* Si vous avez mis à niveau vers StorageGRID 11.9 à partir d'une version précédente de StorageGRID, vous avez configuré le pool de stockage que vous utiliserez. En général, vous devez créer un pool de stockage pour chaque site StorageGRID que vous utiliserez pour stocker des données.
++
+
+NOTE: Cette condition préalable ne s'applique pas si vous avez installé StorageGRID 11.7 ou 11.8. Lors de l'installation initiale de l'une de ces versions, les pools de stockage sont automatiquement créés pour chaque site.
+
+
+
+.Étapes
+. Créez une règle ILM appliquée uniquement aux données de `fabricpool-bucket`la . cet exemple de règle crée des copies avec code d'effacement.
++
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Nom de la règle
+ a| 
+2 + 1 code d'effacement pour données FabricPool
+
+
+
+ a| 
+Nom du compartiment
+ a| 
+`fabricpool-bucket`
+
+Vous pouvez également filtrer le compte de tenant FabricPool.
+
+
+
+ a| 
+Filtres avancés
+ a| 
+Taille de l'objet supérieure à 0.2 Mo.
+
+*Remarque :* FabricPool écrit uniquement des objets de 4 Mo, mais vous devez ajouter un filtre de taille d'objet car cette règle utilise le code d'effacement.
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Période de temps et placements
+ a| 
+Magasin du jour 0 pour toujours
+
+Stockez les objets par code d'effacement à l'aide d'un schéma EC 2+1 à Denver et conservez-les indéfiniment dans StorageGRID.
+
+
+CAUTION: Pour éviter toute perte de données, n'utilisez pas de règle ILM qui expirera ou supprimera les données de Tier cloud FabricPool.
+
+
+
+ a| 
+Comportement d'ingestion
+ a| 
+Équilibré
+
+|===
+. Créez une règle ILM par défaut qui crée deux copies répliquées de tout objet non associé à la première règle. Ne sélectionnez pas de filtre de base (compte de locataire ou nom de compartiment) ni de filtre avancé.
++
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Nom de la règle
+ a| 
+Deux copies répliquées
+
+
+
+ a| 
+Nom du compartiment
+ a| 
+_aucun_
+
+
+
+ a| 
+Filtres avancés
+ a| 
+_aucun_
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Période de temps et placements
+ a| 
+Magasin du jour 0 pour toujours
+
+Stockage d'objets en répliquant 2 copies à Denver.
+
+
+
+ a| 
+Comportement d'ingestion
+ a| 
+Équilibré
+
+|===
+. Créez une règle ILM et sélectionnez les deux règles. Comme la règle de réplication n'utilise aucun filtre, elle peut être la règle par défaut (dernière) de la règle.
+. Ingestion des objets de test dans la grille.
+. Simuler la règle avec les objets de test pour vérifier le comportement.
+. Activer la règle.
+
+
+Lorsque cette règle est activée, StorageGRID place les données d'objet comme suit :
+
+* Les données hiérarchisées depuis FabricPool dans `fabricpool-bucket` sont codées avec le code d'effacement 2+1. Deux fragments de données et un fragment de parité seront placés sur trois nœuds de stockage différents.
+* Tous les objets dans tous les autres compartiments sont répliqués. Deux copies sont créées et placées sur deux nœuds de stockage différents.
+* Les copies seront conservées dans StorageGRID indéfiniment. La solution ILM de StorageGRID ne supprime pas ces objets.
+

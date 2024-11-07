@@ -1,0 +1,87 @@
+---
+permalink: s3/complete-multipart-upload.html 
+sidebar: sidebar 
+keywords: multipart upload, object, object size 
+summary: 'L"opération CompleteMultipartUpload effectue un téléchargement partitionné d"un objet en assemblant les pièces précédemment téléchargées.' 
+---
+= CompleteMultipartUpload
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'opération CompleteMultipartUpload effectue un téléchargement partitionné d'un objet en assemblant les pièces précédemment téléchargées.
+
+
+NOTE: StorageGRID prend en charge les valeurs non consécutives par ordre croissant pour le `partNumber` paramètre de requête avec CompleteMultipartUpload. Le paramètre peut commencer par n'importe quelle valeur.
+
+
+
+== Résoudre les conflits
+
+Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
+
+
+
+== En-têtes de demande pris en charge
+
+Les en-têtes de requête suivants sont pris en charge :
+
+* `x-amz-checksum-sha256`
+* `x-amz-storage-class`
++
+L' `x-amz-storage-class`en-tête affecte le nombre de copies objet créées par StorageGRID si la règle ILM correspondante spécifie le link:../ilm/data-protection-options-for-ingest.html["Double allocation ou option d'ingestion équilibrée"].
+
+* `STANDARD`
++
+(Valeur par défaut) Spécifie une opération d'ingestion à double validation lorsque la règle ILM utilise l'option de validation double, ou lorsque l'option équilibrée revient à créer des copies intermédiaires.
+
+* `REDUCED_REDUNDANCY`
++
+Spécifie une opération d'entrée de validation unique lorsque la règle ILM utilise l'option Double allocation ou lorsque l'option équilibrée revient à créer des copies intermédiaires.
+
++
+
+NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'objet S3 activé, l' `REDUCED_REDUNDANCY`option est ignorée. Si vous ingérer un objet dans un compartiment compatible hérité, l' `REDUCED_REDUNDANCY`option renvoie une erreur. StorageGRID procède toujours à une récupération à double engagement afin de satisfaire les exigences de conformité.
+
+
+
+
+CAUTION: Si un téléchargement partitionné n'est pas terminé dans les 15 jours, l'opération est marquée comme inactive et toutes les données associées sont supprimées du système.
+
+
+NOTE: La `ETag` valeur renvoyée n'est pas une somme MD5 des données, mais suit l'implémentation de l'API Amazon S3 de la `ETag` valeur pour les objets multipart.
+
+
+
+== En-têtes de requête non pris en charge
+
+Les en-têtes de demande suivants ne sont pas pris en charge :
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+== Gestion des versions
+
+Cette opération termine un téléchargement partitionné. Si la gestion des versions est activée pour un compartiment, la version de l'objet est créée une fois le téléchargement partitionné terminé.
+
+Si la gestion des versions est activée pour un compartiment, une unique `versionId` est automatiquement générée pour la version de l'objet stocké. Ceci `versionId` est également renvoyé dans la réponse à l'aide de l' `x-amz-version-id`en-tête de réponse.
+
+Si la gestion des versions est suspendue, la version de l'objet est stockée avec une valeur `versionId` NULL et si une version nulle existe déjà, elle sera écrasée.
+
+
+NOTE: Lorsque le contrôle de version est activé pour un compartiment, le fait de terminer un téléchargement partitionné crée toujours une nouvelle version, même si des téléchargements partitionnés simultanés sont terminés sur la même clé d'objet. Lorsque le contrôle de version n'est pas activé pour un compartiment, il est possible de lancer un téléchargement partitionné et de lancer un autre lancement de téléchargement partitionné et de le terminer d'abord sur la même clé d'objet. Pour les compartiments non versionnés, le téléchargement partitionné de la dernière version est prioritaire.
+
+
+
+== Échec de la réplication, de la notification ou de la notification des métadonnées
+
+Si le compartiment dans lequel le téléchargement partitionné est configuré pour un service de plateforme, le téléchargement partitionné réussit même si l'action de réplication ou de notification associée échoue.
+
+Un locataire peut déclencher la réplication ou la notification d'échec en mettant à jour les métadonnées ou les balises de l'objet. Un locataire peut soumettre à nouveau les valeurs existantes afin d'éviter toute modification non souhaitée.
+
+Reportez-vous à la link:../admin/troubleshooting-platform-services.html["Résoudre les problèmes liés aux services de plateforme"].

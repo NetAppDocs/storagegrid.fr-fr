@@ -1,0 +1,70 @@
+---
+permalink: admin/changing-browser-session-timeout-interface.html 
+sidebar: sidebar 
+keywords: security, browser inactivity timeout, management API stack track 
+summary: 'Les paramètres de sécurité de l"interface vous permettent de contrôler si les utilisateurs sont déconnectés s"ils sont inactifs pendant plus de temps que spécifié et si une trace de pile est incluse dans les réponses d"erreur de l"API.' 
+---
+= Modifier les paramètres de sécurité de l'interface
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les paramètres de sécurité de l'interface vous permettent de contrôler si les utilisateurs sont déconnectés s'ils sont inactifs pendant plus de temps que spécifié et si une trace de pile est incluse dans les réponses d'erreur de l'API.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Description de la tâche
+La page *Paramètres de sécurité* inclut les paramètres *délai d'inactivité du navigateur* et *trace de pile de l'API de gestion*.
+
+Délai d'inactivité du navigateur dépassé:: Indique la durée pendant laquelle le navigateur d'un utilisateur peut être inactif avant que l'utilisateur ne soit déconnecté. La valeur par défaut est 15 minutes.
++
+--
+Le délai d'inactivité du navigateur est également contrôlé par les éléments suivants :
+
+* Un minuteur StorageGRID séparé non configurable, inclus pour la sécurité du système. Le jeton d'authentification de chaque utilisateur expire 16 heures après la connexion de l'utilisateur. Lorsque l'authentification d'un utilisateur expire, cet utilisateur est automatiquement déconnecté, même si le délai d'inactivité du navigateur est désactivé ou si la valeur du délai d'inactivité du navigateur n'a pas été atteinte. Pour renouveler le jeton, l'utilisateur doit se reconnecter.
+* Paramètres de délai d'expiration pour le fournisseur d'identité, en supposant que l'authentification unique (SSO) est activée pour StorageGRID.
++
+Si la fonction SSO est activée et que le navigateur d'un utilisateur arrive à expiration, l'utilisateur doit saisir à nouveau ses informations d'identification SSO pour accéder à StorageGRID à nouveau. Voir link:configuring-sso.html["Configurer l'authentification unique"].
+
+
+
+--
+Trace de la pile de l'API de gestion:: Contrôle si une trace de pile est renvoyée dans les réponses d'erreur de l'API Grid Manager et tenant Manager.
++
+--
+Cette option est désactivée par défaut, mais vous pouvez activer cette fonctionnalité pour un environnement de test. En général, vous devez laisser la trace de pile désactivée dans les environnements de production pour éviter de révéler les détails logiciels internes en cas d'erreurs d'API.
+
+--
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres de sécurité*.
+. Sélectionnez l'onglet *interface*.
+. Pour modifier le paramètre de délai d'inactivité du navigateur :
++
+.. Développez l'accordéon.
+.. Pour modifier la période de temporisation, spécifiez une valeur comprise entre 60 secondes et 7 jours. Le délai par défaut est de 15 minutes.
+.. Pour désactiver cette fonction, décochez la case.
+.. Sélectionnez *Enregistrer*.
++
+Le nouveau paramètre n'affecte pas les utilisateurs qui sont actuellement connectés. Les utilisateurs doivent se reconnecter ou actualiser leur navigateur pour que le nouveau paramètre de délai d'attente prenne effet.
+
+
+
+. Pour modifier le paramètre de trace de pile de l'API de gestion :
++
+.. Développez l'accordéon.
+.. Cochez cette case pour renvoyer une trace de pile dans les réponses d'erreur de l'API Grid Manager et tenant Manager.
++
+
+CAUTION: Laissez la trace de pile désactivée dans les environnements de production pour éviter de révéler les détails logiciels internes en cas d'erreur d'API.
+
+.. Sélectionnez *Enregistrer*.
+
+
+

@@ -1,0 +1,56 @@
+---
+permalink: primer/what-gateway-node-is.html 
+sidebar: sidebar 
+keywords: gateway nodes, api gateway 
+summary: 'Les nœuds de passerelle fournissent une interface dédiée d"équilibrage de la charge que les applications client S3 peuvent utiliser pour se connecter à StorageGRID. L"équilibrage de la charge optimise la vitesse et la capacité de connexion en répartissant la charge de travail sur plusieurs nœuds de stockage. Les nœuds de passerelle sont facultatifs.' 
+---
+= Qu'est-ce qu'un nœud de passerelle ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les nœuds de passerelle fournissent une interface dédiée d'équilibrage de la charge que les applications client S3 peuvent utiliser pour se connecter à StorageGRID. L'équilibrage de la charge optimise la vitesse et la capacité de connexion en répartissant la charge de travail sur plusieurs nœuds de stockage. Les nœuds de passerelle sont facultatifs.
+
+Le service StorageGRID Load Balancer est fourni sur tous les nœuds d'administration et sur tous les nœuds de passerelle. Il effectue la résiliation du protocole TLS (transport Layer Security) des requêtes du client, inspecte les requêtes et établit de nouvelles connexions sécurisées vers les nœuds de stockage. Le service Load Balancer dirige les clients de manière transparente vers un nœud de stockage optimal, de sorte que la défaillance des nœuds, voire d'un site entier, soit transparente.
+
+Vous configurez un ou plusieurs noeuds finaux d'équilibrage de charge pour définir le port et le protocole réseau (HTTPS ou HTTP) que les demandes des clients entrants et sortants utiliseront pour accéder aux services d'équilibrage de charge sur les noeuds d'administration et de passerelle. Le terminal de l'équilibreur de charge définit également le type de client (S3), le mode de liaison et, éventuellement, la liste des locataires autorisés ou bloqués. Voir link:../admin/managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"].
+
+Si nécessaire, vous pouvez regrouper les interfaces réseau de plusieurs nœuds de passerelle et nœuds d'administration dans un groupe haute disponibilité. En cas de défaillance de l'interface active du groupe haute disponibilité, une interface de sauvegarde peut gérer la charge de travail de l'application client. Voir link:../admin/managing-high-availability-groups.html["Gestion des groupes haute disponibilité"].
+
+
+
+== Services primaires pour les nœuds de passerelle
+
+Le tableau ci-dessous présente les services principaux pour les nœuds de passerelle ; toutefois, ce tableau ne répertorie pas tous les services de nœud.
+
+[cols="1a,2a"]
+|===
+| Service | Fonction de touche 
+
+
+ a| 
+Haute disponibilité
+ a| 
+Gère les adresses IP virtuelles haute disponibilité pour les groupes de nœuds d'administration et de nœuds de passerelle.
+
+*Remarque :* ce service se trouve également sur les noeuds d'administration.
+
+
+
+ a| 
+Équilibreur de charge
+ a| 
+Équilibrage de la charge de couche 7 du trafic S3 des clients vers les nœuds de stockage. Il s'agit du mécanisme d'équilibrage de charge recommandé.
+
+*Remarque :* ce service se trouve également sur les noeuds d'administration.
+
+
+
+ a| 
+Moniteur d'état du serveur (SSM)
+ a| 
+Surveille le système d'exploitation et le matériel sous-jacent.
+
+|===

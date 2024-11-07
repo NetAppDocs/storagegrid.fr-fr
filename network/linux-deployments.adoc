@@ -1,0 +1,139 @@
+---
+permalink: network/linux-deployments.html 
+sidebar: sidebar 
+keywords: linux network, container engine, red hat enterprise linux rhel network, ubuntu network 
+summary: 'Garantissant efficacité, fiabilité et sécurité, le système StorageGRID s"exécute sous Linux comme un ensemble de moteurs de mise en conteneurs. La configuration réseau liée au moteur de mise en conteneurs n"est pas requise dans un système StorageGRID.' 
+---
+= Déploiements Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Garantissant efficacité, fiabilité et sécurité, le système StorageGRID s'exécute sous Linux comme un ensemble de moteurs de mise en conteneurs. La configuration réseau liée au moteur de mise en conteneurs n'est pas requise dans un système StorageGRID.
+
+Utilisez un périphérique sans lien, tel qu'une paire VLAN ou Ethernet virtuel (veth), pour l'interface réseau du conteneur. Spécifiez ce périphérique comme interface réseau dans le fichier de configuration de nœud.
+
+
+CAUTION: N'utilisez pas de périphérique de liaison ou de pont directement comme interface réseau du conteneur. Cela pourrait empêcher le démarrage du nœud en raison d'un problème de noyau lié à l'utilisation de macvlan avec des périphériques de liaison et de pont dans l'espace de noms de conteneur.
+
+Voir les instructions d'installation pour link:../rhel/index.html["Red Hat Enterprise Linux"] les  déploiements oulink:../ubuntu/index.html["Ubuntu ou Debian"].
+
+
+
+== Configuration réseau de l'hôte pour les déploiements de moteurs de conteneurs
+
+Avant de démarrer votre déploiement StorageGRID sur une plateforme de moteur de conteneurs, déterminez les réseaux (Grid, Admin, client) que chaque nœud utilisera. Vous devez vous assurer que l'interface réseau de chaque nœud est configurée sur l'interface hôte physique ou virtuelle appropriée, et que chaque réseau dispose de suffisamment de bande passante.
+
+
+
+=== Hôtes physiques
+
+Si vous utilisez des hôtes physiques pour prendre en charge les nœuds grid :
+
+* Vérifiez que tous les hôtes utilisent la même interface hôte pour chaque interface de nœud. Cette stratégie simplifie la configuration de l'hôte et permet la migration de nœuds à venir.
+* Obtenir une adresse IP pour l'hôte physique lui-même.
++
+
+NOTE: Une interface physique sur l'hôte peut être utilisée par l'hôte lui-même et un ou plusieurs nœuds exécutés sur l'hôte. Toutes les adresses IP attribuées à l'hôte ou aux nœuds utilisant cette interface doivent être uniques. L'hôte et le nœud ne peuvent pas partager d'adresses IP.
+
+* Ouvrez les ports requis vers l'hôte.
+* Si vous prévoyez d'utiliser des interfaces VLAN dans StorageGRID, l'hôte doit disposer d'une ou plusieurs interfaces de jonction qui fournissent l'accès aux VLAN souhaités. Ces interfaces peuvent être transmises au conteneur de nœud comme eth0, eth2, ou comme interfaces supplémentaires. Pour ajouter une jonction ou des interfaces d'accès, consultez les éléments suivants :
++
+** *RHEL (avant l'installation du nœud)* : link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *Ubuntu ou Debian (avant d'installer le nœud)* : link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *RHEL, Ubuntu ou Debian (après l'installation du nœud)* : link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux : ajoutez une jonction ou des interfaces d'accès à un nœud"]
+
+
+
+
+
+
+=== Recommandations minimales sur la bande passante
+
+Le tableau suivant présente les recommandations minimales de bande passante pour chaque type de nœud StorageGRID et chaque type de réseau. Vous devez provisionner chaque hôte physique ou virtuel avec une bande passante réseau suffisante pour répondre aux besoins de bande passante minimale de l'agrégat pour le nombre et le type de nœuds StorageGRID que vous prévoyez d'exécuter sur cet hôte.
+
+[cols="1a,1a,1a,1a"]
+|===
+| Type de nœud 3+| Type de réseau 
+
+
+ a| 
+ a| 
+Grille
+ a| 
+Admin
+ a| 
+Client
+
+
+
+ a| 
+ a| 
+*Bande passante LAN minimale*
+
+
+
+ a| 
+Admin
+ a| 
+10 Gbit/s.
+ a| 
+1 Gbit/s.
+ a| 
+1 Gbit/s.
+
+
+
+ a| 
+Passerelle
+ a| 
+10 Gbit/s.
+ a| 
+1 Gbit/s.
+ a| 
+10 Gbit/s.
+
+
+
+ a| 
+Stockage
+ a| 
+10 Gbit/s.
+ a| 
+1 Gbit/s.
+ a| 
+10 Gbit/s.
+
+
+
+ a| 
+Archivage
+ a| 
+10 Gbit/s.
+ a| 
+1 Gbit/s.
+ a| 
+10 Gbit/s.
+
+|===
+
+NOTE: Ce tableau n'inclut pas la bande passante SAN, requise pour l'accès au stockage partagé. Si vous utilisez un stockage partagé accessible via Ethernet (iSCSI ou FCoE), vous devez provisionner des interfaces physiques distinctes sur chaque hôte pour fournir suffisamment de bande passante SAN. Pour éviter tout goulet d'étranglement, la bande passante SAN d'un hôte donné doit correspondre à peu près à la bande passante réseau du nœud de stockage de l'agrégat pour tous les nœuds de stockage exécutant cet hôte.
+
+Utilisez le tableau pour déterminer le nombre minimal d'interfaces réseau à provisionner sur chaque hôte, en fonction du nombre et du type de nœuds StorageGRID que vous prévoyez d'exécuter sur cet hôte.
+
+Par exemple, pour exécuter un nœud d'administration, un nœud de passerelle et un nœud de stockage sur un même hôte :
+
+* Connecter les réseaux Grid et Admin sur le nœud d'administration (10 + 1 = 11 Gbit/s requis)
+* Connecter les réseaux Grid et client sur le nœud passerelle (10 + 10 = 20 Gbit/s requis)
+* Connexion du réseau Grid sur le nœud de stockage (10 Gbit/s requis)
+
+
+Dans ce scénario, vous devez fournir un minimum de 11 + 20 + 10 = 41 Gbit/s de bande passante réseau, Qui peut être remplie par deux interfaces 40 Gbits/s ou cinq interfaces 10 Gbits/s, potentiellement agrégées dans les lignes réseau, puis partagées par les trois VLAN ou plus transportant les sous-réseaux Grid, Admin et client locaux au centre de données physique contenant l'hôte.
+
+Pour connaître les méthodes recommandées de configuration des ressources physiques et réseau sur les hôtes de votre cluster StorageGRID afin de préparer le déploiement StorageGRID, consultez les éléments suivants :
+
+* link:../rhel/configuring-host-network.html["Configurer le réseau hôte (Red Hat Enterprise Linux)"]
+* link:../ubuntu/configuring-host-network.html["Configurer le réseau hôte (Ubuntu ou Debian)"]
+

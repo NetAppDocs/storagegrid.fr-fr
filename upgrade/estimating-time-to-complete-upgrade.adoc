@@ -1,0 +1,144 @@
+---
+permalink: upgrade/estimating-time-to-complete-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, time estimate, duration, cassandra upgrade 
+summary: Réfléchissez au moment opportun pour effectuer une mise à niveau, en fonction du temps nécessaire. Soyez conscient des opérations que vous pouvez et ne pouvez pas effectuer à chaque étape de la mise à niveau. 
+---
+= Estimer le temps nécessaire pour effectuer une mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Réfléchissez au moment opportun pour effectuer une mise à niveau, en fonction du temps nécessaire. Soyez conscient des opérations que vous pouvez et ne pouvez pas effectuer à chaque étape de la mise à niveau.
+
+.Description de la tâche
+Le temps nécessaire à une mise à niveau d'StorageGRID dépend de divers facteurs, tels que la charge client et les performances matérielles.
+
+Le tableau résume les principales tâches de mise à niveau et indique le temps approximatif requis pour chaque tâche. Les étapes qui suivent le tableau fournissent des instructions que vous pouvez utiliser pour estimer le temps de mise à niveau de votre système.
+
+[cols="1a,2a,2a,4a"]
+|===
+| Tâche de mise à niveau | Description | Temps approximatif requis | Au cours de cette tâche 
+
+
+ a| 
+Exécutez des contrôles préalables et mettez à niveau le nœud d'administration principal
+ a| 
+Les précontrôles de mise à niveau sont exécutés et le nœud d'administration principal est arrêté, mis à niveau et redémarré.
+ a| 
+de 30 minutes à 1 heure, avec les nœuds d'appliance de services qui demandent le plus de temps.
+
+Les erreurs de vérification préalable non résolues augmentent ce temps.
+ a| 
+Vous ne pouvez pas accéder au nœud d'administration principal. Des erreurs de connexion peuvent être signalées, que vous pouvez ignorer.
+
+L'exécution des contrôles préalables à la mise à niveau avant le démarrage de la mise à niveau vous permet de résoudre les erreurs avant la fenêtre de maintenance de mise à niveau planifiée.
+
+
+
+ a| 
+Démarrez le service de mise à niveau
+ a| 
+Le fichier logiciel est distribué et le service de mise à niveau démarre.
+ a| 
+3 minutes par nœud de grid
+ a| 
+
+
+
+ a| 
+Mettez à niveau les autres nœuds grid
+ a| 
+Le logiciel de tous les autres nœuds de la grille est mis à niveau, dans l'ordre dans lequel vous approuvez les nœuds. Chaque nœud de votre système est mis hors service un par un.
+ a| 
+de 15 minutes à 1 heure par nœud, avec des nœuds d'appliance exigeant le plus de temps
+
+*Remarque* : pour les nœuds d'appliance, le programme d'installation de l'appliance StorageGRID est automatiquement mis à jour vers la dernière version.
+ a| 
+* Ne modifiez pas la configuration de la grille.
+* Ne modifiez pas la configuration du niveau d'audit.
+* Ne mettez pas à jour la configuration ILM.
+* Vous n'êtes pas en mesure d'effectuer d'autres procédures de maintenance, comme le correctif, la mise hors service ou l'extension.
+
+
+*Remarque* : si vous devez effectuer une récupération, contactez le support technique.
+
+
+
+ a| 
+Activer les fonctions
+ a| 
+Les nouvelles fonctionnalités de la nouvelle version sont activées.
+ a| 
+Moins de 5 minutes
+ a| 
+* Ne modifiez pas la configuration de la grille.
+* Ne modifiez pas la configuration du niveau d'audit.
+* Ne mettez pas à jour la configuration ILM.
+* Vous ne pouvez pas effectuer une autre procédure de maintenance.
+
+
+
+
+ a| 
+Mettre à niveau la base de données
+ a| 
+Le processus de mise à niveau vérifie chaque nœud pour vérifier que la base de données Cassandra n'a pas besoin d'être mise à jour.
+ a| 
+10 secondes par nœud ou quelques minutes pour l'ensemble du grid
+ a| 
+La mise à niveau de StorageGRID 11.8 vers 11.9 ne nécessite pas de mise à niveau de la base de données Cassandra. Cependant, le service Cassandra sera arrêté et redémarré sur chaque nœud de stockage.
+
+Pour les futures versions d'StorageGRID, l'étape de mise à jour de la base de données Cassandra peut prendre plusieurs jours.
+
+
+
+ a| 
+Dernières étapes de mise à niveau
+ a| 
+Les fichiers temporaires sont supprimés et la mise à niveau vers la nouvelle version se termine.
+ a| 
+5 minutes
+ a| 
+Lorsque la tâche *étapes finales de mise à niveau* est terminée, vous pouvez effectuer toutes les procédures de maintenance.
+
+|===
+.Étapes
+. Estimez le temps nécessaire à la mise à niveau de tous les nœuds du grid.
++
+.. Multipliez par 1 heure/nœud le nombre de nœuds de votre système StorageGRID.
++
+En règle générale, les nœuds d'appliance sont plus longs à mettre à niveau que les nœuds basés sur logiciel.
+
+.. Ajoutez 1 heure à cette heure pour tenir compte du temps nécessaire au téléchargement du `.upgrade` fichier, exécuter des validations de précontrôle et terminer les étapes finales de mise à niveau.
+
+
+. Si vous avez des nœuds Linux, ajoutez 15 minutes pour chaque nœud afin de tenir compte du temps nécessaire au téléchargement et à l'installation du package RPM ou DEB.
+. Calculer le temps total estimé pour la mise à niveau en ajoutant les résultats des étapes 1 et 2.
+
+
+
+
+== Exemple : temps estimé pour la mise à niveau vers StorageGRID 11.9
+
+Supposons que votre système dispose de 14 nœuds de grille, dont 8 sont des nœuds Linux.
+
+. Multipliez 14 par 1 heure/nœud.
+. Ajoutez 1 heure pour prendre en compte les étapes de téléchargement, de vérification préalable et finales.
++
+La durée estimée de mise à niveau de tous les nœuds est de 15 heures.
+
+. Multipliez 8 par 15 minutes/nœud pour tenir compte du temps nécessaire à l'installation du package RPM ou DEB sur les nœuds Linux.
++
+La durée estimée de cette étape est de 2 heures.
+
+. Ajoutez les valeurs ensemble.
++
+Vous devez prévoir jusqu'à 17 heures pour effectuer la mise à niveau de votre système vers StorageGRID 11.9.0.
+
+
+
+
+NOTE: Si nécessaire, vous pouvez diviser la fenêtre de maintenance en fenêtres plus petites en approuvant des sous-ensembles de nœuds de grille pour la mise à niveau dans plusieurs sessions. Par exemple, vous pouvez préférer mettre à niveau les nœuds sur le site A en une session, puis mettre à niveau les nœuds sur le site B dans une session ultérieure. Si vous choisissez d'effectuer la mise à niveau dans plusieurs sessions, sachez que vous ne pouvez pas commencer à utiliser les nouvelles fonctionnalités tant que tous les nœuds n'ont pas été mis à niveau.

@@ -1,0 +1,134 @@
+---
+permalink: audit/mgau-management-audit-message.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, MGAU, Management audit message 
+summary: 'La catégorie gestion consigne les requêtes utilisateur dans l"API de gestion. Chaque requête qui n"est pas une requête GET ou HEAD à l"API consigne une réponse avec le nom d"utilisateur, l"IP et le type de requête à l"API.' 
+---
+= MGAU : message d'audit de gestion
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La catégorie gestion consigne les requêtes utilisateur dans l'API de gestion. Chaque requête HTTP qui n'est pas une requête GET ou HEAD à un URI d'API valide consigne une réponse contenant le nom d'utilisateur, l'adresse IP et le type de requête à l'API. Les URI d'API non valides (tels que /api/v3-Authorise) et les demandes non valides d'URI d'API valides ne sont pas consignés.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+MDIP
+ a| 
+Adresse IP de destination
+ a| 
+Adresse IP du serveur (destination).
+
+
+
+ a| 
+ADNM
+ a| 
+Nom de domaine
+ a| 
+Nom du domaine hôte.
+
+
+
+ a| 
+MPAT
+ a| 
+CHEMIN de la demande
+ a| 
+Le chemin de la demande.
+
+
+
+ a| 
+MPQP
+ a| 
+Paramètres de requête
+ a| 
+Paramètres de requête pour la demande.
+
+
+
+ a| 
+MBD
+ a| 
+Corps de la demande
+ a| 
+Le contenu de l'organisme de demande. Lorsque le corps de réponse est enregistré par défaut, le corps de la demande est enregistré dans certains cas lorsque le corps de réponse est vide. Comme les informations suivantes ne sont pas disponibles dans le corps de réponse, elles sont extraites du corps de la demande pour les méthodes SUIVANTES :
+
+* Nom d'utilisateur et ID de compte dans *POST Authorise*
+* Nouvelle configuration de sous-réseaux dans *POST /grid/grid-Networks/update*
+* Nouveaux serveurs NTP dans *POST /grid/ntp-servers/update*
+* ID de serveur déclassés dans *POST /grid/serveurs/désaffecter*
+
+
+*Remarque :* les informations sensibles sont soit supprimées (par exemple, une clé d'accès S3), soit masquées par des astérisques (par exemple, un mot de passe).
+
+
+
+ a| 
+MMD
+ a| 
+Méthode de demande
+ a| 
+La méthode de requête HTTP :
+
+* POST
+* EN
+* SUPPRIMER
+* CORRECTIF
+
+
+
+
+ a| 
+MRSC
+ a| 
+Code de réponse
+ a| 
+Le code de réponse.
+
+
+
+ a| 
+MRSP
+ a| 
+Corps de réponse
+ a| 
+Le contenu de la réponse (le corps de réponse) est consigné par défaut.
+
+*Remarque :* les informations sensibles sont soit supprimées (par exemple, une clé d'accès S3), soit masquées par des astérisques (par exemple, un mot de passe).
+
+
+
+ a| 
+MSIP
+ a| 
+Adresse IP source
+ a| 
+Adresse IP du client (source).
+
+
+
+ a| 
+UUUN
+ a| 
+URN utilisateur
+ a| 
+URN (nom de ressource uniforme) de l'utilisateur qui a envoyé la demande.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Renvoie réussi (CS) ou l'erreur signalée par le back-end.
+
+|===

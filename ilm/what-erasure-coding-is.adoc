@@ -1,0 +1,38 @@
+---
+permalink: ilm/what-erasure-coding-is.html 
+sidebar: sidebar 
+keywords: what is erasure coding, what is ec 
+summary: 'Le code d"effacement est l"une des deux méthodes utilisées par StorageGRID pour stocker des données en mode objet. Lorsque les objets correspondent à une règle ILM utilisant le code d"effacement, ces objets sont découpés en fragments de données, des fragments de parité supplémentaires sont calculés et chaque fragment est stocké sur un autre nœud de stockage.' 
+---
+= Qu'est-ce que le code d'effacement ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le code d'effacement fait partie des deux méthodes utilisées par StorageGRID pour stocker les données en mode objet (la réplication est l'autre méthode). Lorsque les objets correspondent à une règle ILM utilisant le code d'effacement, ces objets sont découpés en fragments de données, des fragments de parité supplémentaires sont calculés et chaque fragment est stocké sur un autre nœud de stockage.
+
+Lorsqu'un objet est accédé, il est réassemblé à l'aide des fragments stockés. En cas de corruption ou de perte d'un fragment de parité, l'algorithme de code d'effacement peut recréer ce fragment à l'aide d'un sous-ensemble des données restantes et des fragments de parité.
+
+Au fur et à mesure que vous créez des règles ILM, StorageGRID crée des profils de code d'effacement qui prennent en charge ces règles. Vous pouvez afficher la liste des profils de code d'effacement, link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["renommer un profil de code d'effacement"], ou link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["Désactivez un profil de code d'effacement s'il n'est actuellement utilisé dans aucune règle ILM"].
+
+L'exemple suivant illustre l'utilisation d'un algorithme de code d'effacement sur les données d'un objet. Dans cet exemple, la règle ILM utilise un schéma de code d'effacement 4+2. Chaque objet est tranché en quatre fragments de données égaux et deux fragments de parité sont calculés à partir des données d'objet. Chacun des six fragments est stocké sur un nœud différent sur trois sites du data Center pour assurer la protection des données en cas de défaillance d'un nœud ou de perte d'un site.
+
+image::../media/ec_three_sites_4_plus_2.png[Codage d'effacement sur trois sites 4 plus 2]
+
+Le schéma de code d'effacement 4+2 peut être configuré de différentes manières. Par exemple, vous pouvez configurer un pool de stockage sur un seul site qui contient six nœuds de stockage. Pour link:using-multiple-storage-pools-for-cross-site-replication.html["protection contre la perte de site"], vous pouvez utiliser un pool de stockage contenant trois sites avec trois nœuds de stockage sur chaque site. Un objet peut être récupéré tant que quatre des six fragments (données ou parité) restent disponibles. Jusqu'à deux fragments peuvent être perdus sans perte des données de l'objet. Si un site entier est perdu, l'objet peut toujours être récupéré ou réparé, tant que tous les autres fragments restent accessibles.
+
+image::../media/ec_recoverable_4_plus_2.png[Codage d'effacement récupérable 4 plus 2]
+
+Si plus de deux nœuds de stockage sont perdus, l'objet n'est pas récupérable.
+
+image::../media/ec_unrecoverable_4_plus_2.png[Codage d'effacement irrécupérable 4 plus 2]
+
+.Informations associées
+* link:what-replication-is.html["Qu'est-ce que la réplication"]
+* link:what-storage-pool-is.html["Qu'est-ce qu'un pool de stockage"]
+* link:what-erasure-coding-schemes-are.html["Que sont les schémas de code d'effacement"]
+* link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["Renommer un profil de code d'effacement"]
+* link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["Désactiver un profil de code d'effacement"]
+

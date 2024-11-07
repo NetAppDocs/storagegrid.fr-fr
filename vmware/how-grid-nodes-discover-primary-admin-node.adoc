@@ -1,0 +1,32 @@
+---
+permalink: vmware/how-grid-nodes-discover-primary-admin-node.html 
+sidebar: sidebar 
+keywords: how grid nodes discover the primary Admin Node 
+summary: 'Les nœuds de grid communiquent avec le nœud d"administration principal pour la configuration et la gestion. Chaque nœud de la grille doit connaître l"adresse IP du nœud d"administration principal sur le réseau Grid.' 
+---
+= Mode de détection des nœuds du grid sur le nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les nœuds de grid communiquent avec le nœud d'administration principal pour la configuration et la gestion. Chaque nœud de la grille doit connaître l'adresse IP du nœud d'administration principal sur le réseau Grid.
+
+Pour vous assurer qu'un nœud de grille peut accéder au nœud d'administration principal, vous pouvez effectuer l'une des opérations suivantes lors du déploiement du nœud :
+
+* Vous pouvez utiliser le paramètre ADMIN_IP pour saisir manuellement l'adresse IP du nœud d'administration principal.
+* Vous pouvez omettre le paramètre ADMIN_IP pour que le nœud de la grille détecte automatiquement la valeur. La détection automatique est particulièrement utile lorsque le réseau Grid utilise DHCP pour attribuer l'adresse IP au nœud d'administration principal.
+
+
+La découverte automatique du nœud d'administration principal s'effectue à l'aide d'un système de noms de domaine multicast (mDNS). Lors du premier démarrage du nœud d'administration principal, il publie son adresse IP à l'aide de mDNS. Les autres nœuds du même sous-réseau peuvent alors interroger l'adresse IP et l'acquérir automatiquement. Cependant, comme le trafic IP multicast n'est généralement pas routable entre les sous-réseaux, les nœuds des autres sous-réseaux ne peuvent pas acquérir directement l'adresse IP du nœud Admin principal.
+
+[NOTE]
+====
+Si vous utilisez la détection automatique :
+
+* Vous devez inclure le paramètre ADMIN_IP pour au moins un nœud de grille sur les sous-réseaux auxquels le nœud d'administration principal n'est pas directement connecté. Ce nœud de grille publie ensuite l'adresse IP du nœud d'administration principal pour les autres nœuds du sous-réseau à détecter avec mDNS.
+* Assurez-vous que votre infrastructure réseau prend en charge le trafic IP multicast dans un sous-réseau.
+
+
+====

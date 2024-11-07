@@ -1,0 +1,131 @@
+---
+permalink: ilm/what-ilm-rule-is.html 
+sidebar: sidebar 
+keywords: what is information lifecycle rule, ilm rule 
+summary: 'Pour gérer les objets, vous créez un ensemble de règles de gestion du cycle de vie des informations \(ILM\) et vous les organisez en une politique ILM.' 
+---
+= Les règles ILM permettent de gérer les objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour gérer les objets, vous créez un ensemble de règles de gestion du cycle de vie des informations (ILM) et vous les organisez en une règle ILM.
+
+Chaque objet ingéré dans le système est évalué par rapport à la règle active. Lorsqu'une règle de la règle correspond aux métadonnées d'un objet, les instructions de la règle déterminent les actions que StorageGRID prend pour copier et stocker cet objet.
+
+
+NOTE: Les métadonnées de l'objet ne sont pas gérées par des règles ILM. Les métadonnées d'objet sont stockées dans la base de données Cassandra, dans ce qu'on appelle un magasin de métadonnées. Trois copies des métadonnées des objets sont automatiquement conservées sur chaque site afin de protéger les données contre les pertes.
+
+
+
+== Éléments d'une règle ILM
+
+Une règle ILM comporte trois éléments :
+
+* *Critères de filtrage* : les filtres de base et avancés d'une règle définissent les objets auxquels la règle s'applique. Si un objet correspond à tous les filtres, StorageGRID applique la règle et crée les copies d'objet spécifiées dans les instructions de placement de la règle.
+* *Instructions de placement* : les instructions de placement d'une règle définissent le nombre, le type et l'emplacement des copies d'objet. Chaque règle peut inclure une séquence d'instructions de placement pour modifier le nombre, le type et l'emplacement des copies d'objet au fil du temps. À l'expiration de la période de temps pour un placement, les instructions du placement suivant sont automatiquement appliquées par l'évaluation ILM suivante.
+* *Comportement d'ingestion* : le comportement d'ingestion d'une règle vous permet de choisir la façon dont les objets filtrés par la règle sont protégés lors de leur ingestion (lorsqu'un client S3 enregistre un objet dans la grille).
+
+
+
+
+== Filtrage de règles ILM
+
+Lorsque vous créez une règle ILM, vous spécifiez des filtres pour identifier les objets auxquels la règle s'applique.
+
+Dans le cas le plus simple, une règle ne peut pas utiliser de filtres. Toute règle qui n'utilise pas de filtre s'applique à tous les objets. Elle doit donc être la dernière règle (par défaut) d'une politique ILM. La règle par défaut fournit des instructions de stockage pour les objets qui ne correspondent pas aux filtres d'une autre règle.
+
+* Les filtres de base vous permettent d'appliquer différentes règles à de grands groupes d'objets distincts. Ces filtres vous permettent d'appliquer une règle à des comptes de locataire spécifiques, à des compartiments S3 spécifiques, ou aux deux.
++
+Les filtres de base vous permettent d'appliquer facilement différentes règles à un grand nombre d'objets. Par exemple, les données financières de votre entreprise peuvent être stockées pour répondre à la réglementation, tandis que les données du service marketing doivent être stockées pour faciliter les opérations quotidiennes. Après avoir créé des comptes de tenant distincts pour chaque service ou après avoir séparé les données des différents services dans des compartiments S3 distincts, vous pouvez facilement créer une règle qui s'applique à tous les enregistrements financiers et une deuxième règle qui s'applique à toutes les données de marketing.
+
+* Les filtres avancés vous offrent un contrôle granulaire. Vous pouvez créer des filtres pour sélectionner des objets en fonction des propriétés d'objet suivantes :
++
+** Temps d'ingestion
+** Heure du dernier accès
+** Tout ou partie du nom de l'objet (clé)
+** Contrainte d'emplacement (S3 uniquement)
+** Taille de l'objet
+** Métadonnées d'utilisateur
+** Balise objet (S3 uniquement)
+
+
+
+
+Vous pouvez filtrer les objets selon des critères très spécifiques. Par exemple, les objets stockés par le service d'imagerie de l'hôpital peuvent être utilisés fréquemment s'ils ont moins de 30 jours et rarement par la suite, tandis que les objets contenant les informations relatives aux visites des patients peuvent devoir être copiés dans le service de facturation du siège social du réseau de santé. Vous pouvez créer des filtres qui identifient chaque type d'objet en fonction du nom, de la taille, des balises d'objet S3 ou de tout autre critère pertinent. Il crée ensuite des règles distinctes pour stocker chaque ensemble d'objets de façon appropriée.
+
+Vous pouvez combiner des filtres selon vos besoins dans une seule règle. Par exemple, le service marketing pourrait souhaiter stocker des fichiers d'images volumineux différemment des dossiers de fournisseurs, tandis que le service des ressources humaines pourrait avoir besoin de stocker les dossiers du personnel dans une zone géographique spécifique et des informations sur les politiques de manière centralisée. Dans ce cas, vous pouvez créer des règles qui filtrent par compte de locataire pour séparer les enregistrements de chaque service, tout en utilisant des filtres dans chaque règle pour identifier le type spécifique d'objets auquel la règle s'applique.
+
+
+
+== Instructions de placement des règles ILM
+
+Les instructions de placement déterminent l'emplacement, le moment et le mode de stockage des données objet. Une règle ILM peut inclure une ou plusieurs instructions de placement. Chaque instruction de placement s'applique à une seule période de temps.
+
+Lorsque vous créez des instructions de positionnement :
+
+* Vous commencez par spécifier l'heure de référence, qui détermine le début des instructions de positionnement. L'heure de référence peut être lorsqu'un objet est ingéré, lorsqu'un objet est accédé, lorsqu'un objet versionné devient non courant ou une heure définie par l'utilisateur.
+* Vous spécifiez ensuite le moment où le placement s'appliquera, par rapport à l'heure de référence. Par exemple, un placement peut commencer le jour 0 et se poursuivre pendant 365 jours, par rapport à l'ingestion de l'objet.
+* Enfin, vous spécifiez le type de copies (réplication ou codage d'effacement) et l'emplacement de stockage des copies. Par exemple, vous pouvez stocker deux copies répliquées sur deux sites différents.
+
+
+Chaque règle peut définir plusieurs placements pour une période unique et différents placements pour différentes périodes.
+
+* Pour placer des objets à plusieurs emplacements pendant une seule période, sélectionnez *Ajouter un autre type ou un autre emplacement* pour ajouter plus d'une ligne pour cette période.
+* Pour placer des objets à différents emplacements dans différentes périodes, sélectionnez *Ajouter une autre période* pour ajouter la période suivante. Spécifiez ensuite une ou plusieurs lignes dans la période.
+
+
+L'exemple illustre deux instructions de positionnement sur la page Define stages de l'assistant Create ILM Rule.
+
+image::../media/ilm_rule_multiple_placements_in_single_time_period.png[Écran de placement ILM de Grid Manager]
+
+La première instruction de placement image:../media/icon_number_1.png["Icône numéro 1"]comporte deux lignes pour la première année :
+
+* La première ligne crée deux copies d'objets répliquées sur deux sites de data Center.
+* La deuxième ligne crée une copie avec code d'effacement 6+3 sur tous les sites de data Center.
+
+
+La deuxième instruction de placement image:../media/icon_number_2.png["Icône numéro 1"]crée deux copies après un an et les conserve indéfiniment.
+
+Lorsque vous définissez l'ensemble des instructions de placement pour une règle, vous devez vous assurer qu'au moins une instruction de placement commence au jour 0, qu'il n'y a pas d'écart entre les périodes que vous avez définies, et que l'instruction de placement final continue soit indéfiniment ou jusqu'à ce que vous n'ayez plus besoin de copies d'objet.
+
+À chaque expiration de la règle, les instructions de placement de contenu pour la période suivante sont appliquées. De nouvelles copies d'objet sont créées et les copies inutiles sont supprimées.
+
+
+
+== Comportement d'ingestion des règles ILM
+
+Le comportement d'ingestion détermine si les copies d'objet sont immédiatement placées conformément aux instructions de la règle, ou si des copies intermédiaires sont effectuées et que les instructions de placement sont appliquées ultérieurement. Les comportements d'ingestion suivants sont disponibles pour les règles ILM :
+
+* *Équilibré*: StorageGRID tente de faire toutes les copies spécifiées dans la règle ILM à l'entrée; si ce n'est pas possible, des copies intermédiaires sont faites et le succès est renvoyé au client. Les copies spécifiées dans la règle ILM sont effectuées lorsque cela est possible.
+* *Strict* : toutes les copies spécifiées dans la règle ILM doivent être effectuées avant que le succès ne soit renvoyé au client.
+* *Dual commit* : StorageGRID effectue immédiatement des copies intermédiaires de l'objet et renvoie le succès au client. Les copies spécifiées dans la règle ILM sont effectuées lorsque cela est possible.
+
+
+.Informations associées
+* link:data-protection-options-for-ingest.html["Options d'ingestion"]
+* link:advantages-disadvantages-of-ingest-options.html["Avantages, inconvénients et limites des options d'acquisition"]
+* link:../s3/consistency-controls.html#how-consistency-controls-and-ILM-rules-interact["Impact de la cohérence et des règles ILM pour la protection des données"]
+
+
+
+
+== Exemple de règle ILM
+
+À titre d'exemple, une règle ILM peut spécifier les éléments suivants :
+
+* Appliquer uniquement aux objets appartenant au locataire A.
+* Faites deux copies répliquées de ces objets et stockez chaque copie sur un site différent.
+* Conserver les deux copies « indéfiniment », ce qui signifie que StorageGRID ne les supprimera pas automatiquement. À la place, StorageGRID les conserve jusqu'à leur suppression par une demande de suppression de client ou avant l'expiration d'un cycle de vie de compartiment.
+* Utilisez l'option équilibrée pour le comportement d'ingestion : l'instruction de placement sur deux sites est appliquée dès que le locataire A enregistre un objet dans StorageGRID, à moins qu'il ne soit pas possible d'effectuer immédiatement les deux copies requises.
++
+Par exemple, si le site 2 est injoignable lorsque le locataire A enregistre un objet, StorageGRID effectue deux copies provisoires sur les nœuds de stockage du site 1. Dès que le site 2 sera disponible, StorageGRID effectuera la copie requise sur ce site.
+
+
+
+.Informations associées
+* link:what-storage-pool-is.html["Qu'est-ce qu'un pool de stockage"]
+* link:what-cloud-storage-pool-is.html["Qu'est-ce qu'un pool de stockage cloud"]
+

@@ -1,0 +1,27 @@
+---
+permalink: network/subnet-requirements.html 
+sidebar: sidebar 
+keywords: network subnets 
+summary: Respectez les exigences et les directives suivantes pour les sous-réseaux réseau. 
+---
+= Exigences relatives au sous-réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Respectez les exigences et les directives suivantes pour les sous-réseaux réseau.
+
+
+NOTE: Chaque réseau doit être connecté à son propre sous-réseau qui ne se chevauchent pas avec un autre réseau du nœud.
+
+Les restrictions suivantes sont appliquées par le Grid Manager pendant le déploiement. Ils sont fournis ici pour vous aider dans la planification du réseau de pré-déploiement.
+
+* Le masque de sous-réseau d'une adresse IP réseau ne peut pas être 255.255.255.254 ou 255.255.255.255 (/31 ou /32 en notation CIDR).
+* Le sous-réseau défini par une adresse IP d'interface réseau et un masque de sous-réseau (CIDR) ne peut pas chevaucher le sous-réseau d'une autre interface configurée sur le même nœud.
+* Le sous-réseau du réseau Grid pour chaque nœud doit être inclus dans le GNSL.
+* Le sous-réseau Admin Network ne peut pas chevaucher le sous-réseau Grid Network, le sous-réseau client Network ou tout sous-réseau dans le GNSL.
+* Les sous-réseaux de l'AESL ne peuvent pas se chevaucher avec les sous-réseaux de la GNSL.
+* Le sous-réseau du réseau client ne peut pas chevaucher le sous-réseau du réseau Grid, le sous-réseau du réseau Admin, tout sous-réseau du réseau GNSL ou tout sous-réseau de l'AESL.
+

@@ -1,0 +1,224 @@
+---
+permalink: admin/grid-federation-troubleshoot.html 
+sidebar: sidebar 
+keywords: troubleshoot, grid federation connection, account clone, cross-grid replication, alerts, errors 
+summary: Vous devrez peut-être résoudre les problèmes liés aux alertes et aux erreurs liées aux connexions de fédération du grid, au clone de compte et à la réplication intergrille. 
+---
+= Dépanner les erreurs de fédération de grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être résoudre les problèmes liés aux alertes et aux erreurs liées aux connexions de fédération du grid, au clone de compte et à la réplication intergrille.
+
+
+
+== [[Grid-federation-Errors]]alertes et erreurs de connexion de fédération de grille
+
+Vous pouvez recevoir des alertes ou rencontrer des erreurs avec vos connexions de fédération de grille.
+
+Après avoir effectué des modifications pour résoudre un problème de connexion, testez la connexion pour vous assurer que l'état de la connexion revient à *connecté*. Pour obtenir des instructions, reportez-vous à la section link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"].
+
+
+
+=== Alerte d'échec de la connexion de fédération de grille
+
+.Problème
+L'alerte *échec de la connexion de fédération de grille* a été déclenchée.
+
+.Détails
+Cette alerte indique que la connexion de fédération de grille entre les grilles ne fonctionne pas.
+
+.Actions recommandées
+. Vérifiez les paramètres de la page de fédération de grille pour les deux grilles. Vérifier que toutes les valeurs sont correctes. Voir link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"].
+. Vérifiez les certificats utilisés pour la connexion. Assurez-vous qu'il n'y a pas d'alertes pour les certificats de fédération de grille expirés et que les détails de chaque certificat sont valides. Reportez-vous aux instructions relatives à la rotation link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"]des certificats de connexion dans .
+. Vérifiez que tous les nœuds d'administration et de passerelle des deux grilles sont en ligne et disponibles. Résolvez les alertes susceptibles d'affecter ces nœuds et réessayez.
+. Si vous avez fourni un nom de domaine complet (FQDN) pour la grille locale ou distante, vérifiez que le serveur DNS est en ligne et disponible. Reportez-vous  à la section link:grid-federation-overview.html["Qu'est-ce que la fédération de grille ?"] pour connaître la configuration réseau, l'adresse IP et DNS requise.
+
+
+
+
+=== Expiration de l'alerte de certificat de fédération de grille
+
+.Problème
+L'alerte *expiration du certificat de fédération de grille* a été déclenchée.
+
+.Détails
+Cette alerte indique qu'un ou plusieurs certificats de fédération de grille sont sur le point d'expirer.
+
+.Actions recommandées
+Reportez-vous aux instructions relatives à la rotation link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"]des certificats de connexion dans .
+
+
+
+=== Erreur lors de la modification d'une connexion de fédération de grille
+
+.Problème
+Lors de la modification d'une connexion de fédération de grille, le message d'avertissement suivant s'affiche lorsque vous sélectionnez *Enregistrer et tester* : "Echec de la création d'un fichier de configuration de candidat sur un ou plusieurs nœuds."
+
+.Détails
+Lorsque vous modifiez une connexion de fédération de grille, StorageGRID tente d'enregistrer un fichier de configuration de candidat sur tous les nœuds d'administration de la première grille. Un message d'avertissement s'affiche si ce fichier ne peut pas être enregistré sur tous les nœuds d'administration, par exemple, parce qu'un nœud d'administration est hors ligne.
+
+.Actions recommandées
+. Dans la grille que vous utilisez pour modifier la connexion, sélectionnez *NODES*.
+. Vérifiez que tous les nœuds d'administration de ce grid sont en ligne.
+. Si des nœuds sont hors ligne, remettez-les en ligne et réessayez de modifier la connexion.
+
+
+
+
+== Erreurs de clonage de compte
+
+
+
+=== Impossible de se connecter à un compte de locataire cloné
+
+.Problème
+Vous ne pouvez pas vous connecter à un compte de locataire cloné. Le message d'erreur sur la page de connexion du gestionnaire de locataires est « vos informations d'identification pour ce compte n'étaient pas valides. Veuillez réessayer. »
+
+.Détails
+Pour des raisons de sécurité, lorsqu'un compte de locataire est cloné depuis la grille source du locataire vers la grille de destination du locataire, le mot de passe que vous définissez pour l'utilisateur root local du locataire n'est pas cloné. De même, lorsqu'un locataire crée des utilisateurs locaux dans sa grille source, les mots de passe des utilisateurs locaux ne sont pas clonés dans la grille de destination.
+
+.Actions recommandées
+Pour que l'utilisateur root puisse se connecter à la grille de destination du locataire, l'administrateur de la grille doit d'abord  se connecter link:changing-password-for-tenant-local-root-user.html["modifiez le mot de passe de l'utilisateur root local"]à la grille de destination.
+
+Pour qu'un utilisateur local cloné puisse se connecter à la grille de destination du locataire, l'utilisateur root du locataire cloné doit ajouter un mot de passe pour l'utilisateur sur la grille de destination. Pour obtenir des instructions, reportez-vous à la section link:../tenant/managing-local-users.html["Gérez les utilisateurs locaux"] dans les instructions d'utilisation du Gestionnaire de locataires.
+
+
+
+=== Locataire créé sans clone
+
+.Problème
+Le message "tenant créé sans clone" s'affiche après la création d'un nouveau tenant avec l'autorisation *utiliser la connexion de fédération de grille*.
+
+.Détails
+Ce problème peut se produire si les mises à jour de l'état de la connexion sont retardées, ce qui peut entraîner la liste d'une connexion défectueuse sous le nom *connectée*.
+
+.Actions recommandées
+. Vérifiez la raison indiquée dans le message d'erreur et résolvez tout problème de réseau ou autre qui pourrait empêcher la connexion de fonctionner. Voir <<grid-federation-errors,Alertes et erreurs de connexion de fédération de grille>>.
+. Suivez les instructions pour tester une connexion de fédération de grille dans link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"] pour vérifier que le problème a été résolu.
+. Dans la grille source du locataire, sélectionnez *TENANTS*.
+. Recherchez le compte de locataire qui n'a pas pu être cloné.
+. Sélectionnez le nom du locataire pour afficher la page de détails.
+. Sélectionnez *Réessayer le clone de compte*.
++
+image::../media/grid-federation-retry-account-clone.png[Capture d'écran affichant un message d'erreur et le bouton Réessayer le clone de compte]
+
++
+Si l'erreur a été résolue, le compte locataire sera cloné dans l'autre grille.
+
+
+
+
+
+== Alertes et erreurs de réplication intergrid
+
+
+
+=== Dernière erreur affichée pour la connexion ou le locataire
+
+.Problème
+Quand link:../monitor/grid-federation-monitor-connections.html["affichage d'une connexion de fédération de grille"] (ou quand link:grid-federation-manage-tenants.html["gestion des locataires autorisés"] pour une connexion), vous remarquez une erreur dans la colonne *dernière erreur* de la page des détails de la connexion. Par exemple :
+
+image::../media/grid-federation-last-error.png[Capture d'écran affichant un message dans la colonne dernière erreur d'une connexion de fédération de grille]
+
+.Détails
+Pour chaque connexion de fédération de grille, la colonne *dernière erreur* indique l'erreur la plus récente à se produire, le cas échéant, lors de la réplication des données d'un locataire vers l'autre grille. Cette colonne affiche uniquement la dernière erreur de réplication inter-grille à se produire ; les erreurs précédentes qui se sont peut-être produites ne seront pas affichées. Une erreur dans cette colonne peut se produire pour l'une des raisons suivantes :
+
+* La version de l'objet source est introuvable.
+* Le compartiment source est introuvable.
+* Le compartiment de destination a été supprimé.
+* Le compartiment de destination a été recréé par un autre compte.
+* La gestion des versions du compartiment de destination est suspendue.
+* Le compartiment de destination a été recréé par le même compte, mais il n'est plus versionné.
+
+
+.Actions recommandées
+Si un message d'erreur apparaît dans la colonne *dernière erreur*, procédez comme suit :
+
+. Vérifiez le texte du message.
+. Effectuez toutes les actions recommandées. Par exemple, si la gestion des versions a été suspendue dans le compartiment de destination pour la réplication inter-grid, réactivez la gestion des versions pour ce compartiment.
+. Sélectionnez le compte de connexion ou de locataire dans le tableau.
+. Sélectionnez *Effacer erreur*.
+. Sélectionnez *Oui* pour effacer le message et mettre à jour l'état du système.
+. Patientez 5-6 minutes, puis ingérer un nouvel objet dans le compartiment. Vérifiez que le message d'erreur ne réapparaît pas.
++
+
+NOTE: Pour vous assurer que le message d'erreur est effacé, attendez au moins 5 minutes après l'horodatage dans le message avant d'ingérer un nouvel objet.
+
++
+
+TIP: Après avoir dégagé l'erreur, une nouvelle *dernière erreur* peut apparaître si des objets sont ingérés dans un autre compartiment qui présente également une erreur.
+
+. Pour déterminer si des objets n'ont pas pu être répliqués en raison de l'erreur de compartiment, reportez-vous à la section link:../admin/grid-federation-retry-failed-replication.html["Identifier et réessayer les opérations de réplication ayant échoué"].
+
+
+
+
+=== Alerte de défaillance permanente de la réplication multi-grid
+
+.Problème
+L'alerte *échec permanent de la réplication Cross-grid* a été déclenchée.
+
+.Détails
+Cette alerte indique que les objets tenant ne peuvent pas être répliqués entre les compartiments de deux grilles pour une raison qui nécessite une intervention de l'utilisateur. Cette alerte est généralement causée par une modification du compartiment source ou de destination.
+
+.Actions recommandées
+. Connectez-vous à la grille dans laquelle l'alerte a été déclenchée.
+. Accédez à *CONFIGURATION* > *système* > *fédération de grille* et localisez le nom de connexion indiqué dans l'alerte.
+. Dans l'onglet locataires autorisés, consultez la colonne *dernière erreur* pour déterminer quels comptes de locataires ont des erreurs.
+. Pour en savoir plus sur l'échec, reportez-vous aux instructions de la section link:../monitor/grid-federation-monitor-connections.html["Surveiller les connexions de fédération de grille"] pour consulter les mesures de réplication entre les grilles.
+. Pour chaque compte de locataire concerné :
++
+.. Reportez-vous aux instructions de la link:../monitor/monitoring-tenant-activity.html["Surveillez l'activité des locataires"] pour vérifier que le locataire n'a pas dépassé son quota sur la grille de destination pour la réplication inter-grid.
+.. Si nécessaire, augmentez le quota du locataire sur la grille de destination pour permettre l'enregistrement de nouveaux objets.
+
+
+. Pour chaque locataire concerné, connectez-vous au Gestionnaire de locataires sur les deux grilles afin de comparer la liste des compartiments.
+. Pour chaque compartiment pour lequel la réplication inter-grid est activée, vérifiez les points suivants :
++
+** Il existe un compartiment correspondant pour le même locataire sur l'autre grille (doit utiliser le nom exact).
+** La gestion des versions des objets est activée dans les deux compartiments (la gestion des versions ne peut pas être suspendue sur les deux grilles).
+** Le verrouillage d'objet S3 est désactivé dans les deux compartiments.
+** Aucun compartiment n'est à l'état *Suppression d'objets : lecture seule*.
+
+
+. Pour vérifier que le problème a été résolu, reportez-vous aux instructions de la section link:../monitor/grid-federation-monitor-connections.html["Surveiller les connexions de fédération de grille"] pour vérifier les mesures de réplication inter-grille ou effectuez les opérations suivantes :
++
+.. Retournez à la page Grid federation.
+.. Sélectionnez le locataire affecté et sélectionnez *Effacer erreur* dans la colonne *dernière erreur*.
+.. Sélectionnez *Oui* pour effacer le message et mettre à jour l'état du système.
+.. Patientez 5-6 minutes, puis ingérer un nouvel objet dans le compartiment. Vérifiez que le message d'erreur ne réapparaît pas.
++
+
+NOTE: Pour vous assurer que le message d'erreur est effacé, attendez au moins 5 minutes après l'horodatage dans le message avant d'ingérer un nouvel objet.
+
++
+
+NOTE: Une fois l'alerte résolue, il peut s'écouler jusqu'à un jour avant que l'alerte ne s'efface.
+
+.. Accédez à link:grid-federation-retry-failed-replication.html["Identifier et réessayer les opérations de réplication ayant échoué"] pour identifier les objets ou supprimer les marqueurs qui n'ont pas pu être répliqués sur l'autre grille et pour réessayer la réplication si nécessaire.
+
+
+
+
+
+
+=== Alerte de ressource de réplication inter-grid indisponible
+
+.Problème
+L'alerte *ressource de réplication multigrille indisponible* a été déclenchée.
+
+.Détails
+Cette alerte indique que les demandes de réplication inter-grid sont en attente car une ressource n'est pas disponible. Par exemple, une erreur réseau peut se produire.
+
+.Actions recommandées
+. Surveillez l'alerte pour voir si le problème se résout de lui-même.
+. Si le problème persiste, déterminez si l'une des grilles a une alerte *échec de la connexion de fédération de grille* pour la même connexion ou une alerte *Impossible de communiquer avec le nœud* pour un nœud. Cette alerte peut être résolue lorsque vous résolvez ces alertes.
+. Pour en savoir plus sur l'échec, reportez-vous aux instructions de la section link:../monitor/grid-federation-monitor-connections.html["Surveiller les connexions de fédération de grille"] pour consulter les mesures de réplication entre les grilles.
+. Si vous ne parvenez pas à résoudre l'alerte, contactez le support technique.
+
+
+La réplication inter-grid se poursuivra normalement une fois le problème résolu.

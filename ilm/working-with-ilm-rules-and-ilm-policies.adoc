@@ -1,0 +1,182 @@
+---
+permalink: ilm/working-with-ilm-rules-and-ilm-policies.html 
+sidebar: sidebar 
+keywords: remove ilm rule, edit ilm rule, clone ilm rule, ilm queue 
+summary: À mesure que vos besoins en stockage évoluent, vous devrez peut-être mettre en place une autre règle ou modifier les règles ILM associées à la règle. Vous pouvez consulter les metrics ILM pour déterminer les performances du système. 
+---
+= Utilisation des règles ILM et ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+À mesure que vos exigences de stockage évoluent, vous devrez peut-être mettre en place d'autres règles ou modifier les règles ILM associées à une règle. Vous pouvez consulter les metrics ILM pour déterminer les performances du système.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+
+
+== Afficher les règles ILM
+
+Pour afficher les règles ILM actives et inactives et l'historique d'activation des règles :
+
+. Sélectionnez *ILM* > *stratégies*.
+. Sélectionnez *stratégies* pour afficher la liste des stratégies actives et inactives. Le tableau répertorie le nom de chaque stratégie, les balises auxquelles la stratégie est affectée et indique si la stratégie est active ou inactive.
+. Sélectionnez *Historique d'activation* pour afficher la liste des dates de début et de fin d'activation des polices.
+. Sélectionnez un nom de stratégie pour afficher les détails de la stratégie.
++
+
+NOTE: Si vous affichez les détails d'une police dont le statut est modifié ou supprimé, un message s'affiche pour vous expliquer que vous affichez la version de la stratégie qui était active pendant la période spécifiée et qui a depuis été modifiée ou supprimée.
+
+
+
+
+
+== Modification d'une règle ILM
+
+Vous pouvez uniquement modifier une stratégie inactive. Si vous souhaitez modifier une règle active, désactivez-la ou créez un clone, puis modifiez le clone.
+
+Pour modifier une stratégie :
+
+. Sélectionnez *ILM* > *stratégies*.
+. Cochez la case correspondant à la stratégie à modifier, puis sélectionnez *Modifier*.
+. Modifiez la stratégie en suivant les instructions de link:creating-ilm-policy.html["Création de règles ILM"]la section .
+. Simulez la stratégie avant de la réactiver.
+
+
+
+CAUTION: Une règle ILM mal configurée peut entraîner une perte de données irrécupérable. Avant d'activer une politique ILM, examinez attentivement la politique ILM et ses règles ILM, puis simulez la politique ILM. Vérifiez toujours que la politique ILM fonctionne comme prévu.
+
+
+
+== Cloner une règle ILM
+
+Pour cloner une règle ILM :
+
+. Sélectionnez *ILM* > *stratégies*.
+. Cochez la case correspondant à la stratégie à cloner, puis sélectionnez *Clone*.
+. Créez une nouvelle stratégie en commençant par la stratégie que vous avez clonée en suivant les instructions de la section link:creating-ilm-policy.html["Création de règles ILM"].
+
+
+
+CAUTION: Une règle ILM mal configurée peut entraîner une perte de données irrécupérable. Avant d'activer une politique ILM, examinez attentivement la politique ILM et ses règles ILM, puis simulez la politique ILM. Vérifiez toujours que la politique ILM fonctionne comme prévu.
+
+
+
+== Suppression d'une règle ILM
+
+La suppression d'une règle ILM est uniquement possible si elle est inactive. Pour supprimer une stratégie :
+
+. Sélectionnez *ILM* > *stratégies*.
+. Cochez la case correspondant à la stratégie inactive à supprimer.
+. Sélectionnez *Supprimer*.
+
+
+
+
+== Afficher le détail des règles ILM
+
+Pour afficher les détails d'une règle ILM, y compris le diagramme de conservation et les instructions de placement de la règle :
+
+. Sélectionnez *ILM* > *règles*.
+. Sélectionnez le nom de la règle dont vous souhaitez afficher les détails. Exemple :
++
+image::../media/ilm_rule_details_page.png[Page de détails des règles ILM]
+
+
+
+En outre, vous pouvez utiliser la page de détails pour cloner, modifier ou supprimer une règle. Vous ne pouvez pas modifier ou supprimer une règle si elle est utilisée dans une stratégie.
+
+
+
+== Cloner une règle ILM
+
+Vous pouvez cloner une règle existante si vous souhaitez créer une nouvelle règle qui utilise certains des paramètres de la règle existante. Si vous devez modifier une règle utilisée dans une règle, vous devez la cloner à la place et modifier le clone. Après avoir modifié le clone, vous pouvez supprimer la règle d'origine de la règle et la remplacer par la version modifiée si nécessaire.
+
+
+NOTE: Une règle ILM ne peut pas être clonée si elle a été créée à l'aide de StorageGRID version 10.2 ou antérieure.
+
+.Étapes
+. Sélectionnez *ILM* > *règles*.
+. Cochez la case correspondant à la règle à cloner, puis sélectionnez *Clone*. Vous pouvez également sélectionner le nom de la règle, puis sélectionner *Clone* dans la page des détails de la règle.
+. Mettez à jour la règle clonée en suivant les étapes pour <<Modifiez une règle ILM,Modification d'une règle ILM>> et link:create-ilm-rule-enter-details.html#use-advanced-filters-in-ilm-rules["Utilisation de filtres avancés dans les règles ILM"].
++
+Lors du clonage d'une règle ILM, vous devez entrer un nouveau nom.
+
+
+
+
+
+== Modifiez une règle ILM
+
+Vous devrez peut-être modifier une règle ILM pour modifier une instruction de filtre ou de placement.
+
+Vous ne pouvez pas modifier une règle si elle est utilisée dans une règle ILM. Vous pouvez <<clone-ilm-rule,cloner la règle>>modifier la copie clonée et y apporter toutes les modifications nécessaires.
+
+
+CAUTION: Une règle ILM mal configurée peut entraîner une perte de données irrécupérable. Avant d'activer une politique ILM, examinez attentivement la politique ILM et ses règles ILM, puis simulez la politique ILM. Vérifiez toujours que la politique ILM fonctionne comme prévu.
+
+.Étapes
+. Sélectionnez *ILM* > *règles*.
+. Vérifiez que la règle à modifier n'est utilisée dans aucune règle ILM.
+. Si la règle que vous souhaitez modifier n'est pas utilisée, cochez la case correspondant à la règle et sélectionnez *actions* > *Modifier*. Vous pouvez également sélectionner le nom de la règle, puis sélectionner *Modifier* sur la page de détails de la règle.
+. Suivez les étapes de l'assistant Modifier une règle ILM. Si nécessaire, suivez les étapes pour link:create-ilm-rule-enter-details.html["Création d'une règle ILM"] et link:create-ilm-rule-enter-details.html#use-advanced-filters-in-ilm-rules["Utilisation de filtres avancés dans les règles ILM"].
++
+Lors de la modification d'une règle ILM, vous ne pouvez pas en modifier le nom.
+
+
+
+
+
+== Suppression d'une règle ILM
+
+Pour gérer la liste des règles ILM actuelles, supprimez toutes les règles ILM que vous ne serez pas susceptible d'utiliser.
+
+.Étapes
+Pour supprimer une règle ILM actuellement utilisée dans une policy active :
+
+. Cloner la règle.
+. Supprime la règle ILM du clone de règle.
+. Enregistrez, simulez et activez la nouvelle stratégie pour vous assurer que les objets sont protégés comme prévu.
+. Accédez à la procédure de suppression d'une règle ILM actuellement utilisée dans une stratégie inactive.
+
+
+Pour supprimer une règle ILM actuellement utilisée dans une politique inactive :
+
+. Sélectionnez la stratégie inactive.
+. Supprimez la règle ILM de la règle ou <<remove-ilm-policy,supprimez la stratégie>>.
+. Accédez à la procédure de suppression d'une règle ILM non utilisée actuellement.
+
+
+Pour supprimer une règle ILM non utilisée actuellement :
+
+. Sélectionnez *ILM* > *règles*.
+. Confirmez que la règle que vous souhaitez supprimer n'est utilisée dans aucune stratégie.
+. Si la règle que vous souhaitez supprimer n'est pas utilisée, sélectionnez-la et sélectionnez *actions* > *Supprimer*. Vous pouvez sélectionner plusieurs règles et les supprimer toutes en même temps.
+. Sélectionnez *Oui* pour confirmer que vous souhaitez supprimer la règle ILM.
+
+
+
+
+== Afficher les metrics ILM
+
+Vous pouvez afficher les mesures de la règle ILM, telles que le nombre d'objets dans la file d'attente et la fréquence d'évaluation. Vous pouvez surveiller ces mesures afin de déterminer les performances du système. Une file d'attente ou un taux d'évaluation important peut indiquer que le système ne peut pas suivre le taux d'entrée, que la charge des applications clientes est excessive ou qu'il existe une condition anormale.
+
+.Étapes
+. Sélectionnez *Tableau de bord* > *ILM*.
++
+
+NOTE: Le tableau de bord pouvant être personnalisé, l'onglet ILM peut ne pas être disponible.
+
+. Surveillez les mesures dans l'onglet ILM.
++
+Vous pouvez sélectionner le point d'interrogation image:../media/icon_nms_question.png["icône point d'interrogation"]pour afficher une description des éléments de l'onglet ILM.
+
++
+image::../media/ilm_metrics_on_dashboard.png[Metrics ILM sur le tableau de bord Grid Manager]
+
+

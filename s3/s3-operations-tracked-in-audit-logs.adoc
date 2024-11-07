@@ -1,0 +1,53 @@
+---
+permalink: s3/s3-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: audit log, auditing bucket and object operations, S3 audit messages 
+summary: 'Les messages d"audit sont générés par les services StorageGRID et stockés dans des fichiers journaux texte. Vous pouvez consulter les messages d"audit spécifiques à S3 dans le journal d"audit pour obtenir des informations détaillées sur les opérations relatives aux compartiments et aux objets.' 
+---
+= Opérations S3 suivies dans les journaux d'audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit sont générés par les services StorageGRID et stockés dans des fichiers journaux texte. Vous pouvez consulter les messages d'audit spécifiques à S3 dans le journal d'audit pour obtenir des informations détaillées sur les opérations relatives aux compartiments et aux objets.
+
+
+
+== Les opérations des compartiments sont suivies dans les journaux d'audit
+
+* CreateBucket
+* DeleteBucket
+* DeleteBucketTagging
+* DeleteObjects
+* GetBucketTagging
+* Godet principal
+* ListObjects
+* ListObjectVersions
+* METTEZ le godet en conformité
+* Étiquetage PutBucketTagging
+* PutBuckeVersioning
+
+
+
+
+== Opérations d'objet suivies dans les journaux d'audit
+
+* CompleteMultipartUpload
+* Objet de copie
+* DeleteObject
+* GetObject
+* Objet principal
+* PutObject
+* Objet de restauration
+* SelectObject
+* UploadPart (lorsqu'une règle ILM utilise un ingestion équilibrée ou stricte)
+* UploadPartCopy (lorsqu'une règle ILM utilise un ingestion équilibrée ou stricte)
+
+
+.Informations associées
+* link:../audit/accessing-audit-log-file.html["Accéder au fichier journal d'audit"]
+* link:../audit/client-write-audit-messages.html["Écrire des messages d'audit client"]
+* link:../audit/client-read-audit-messages.html["Messages d'audit de lecture du client"]
+

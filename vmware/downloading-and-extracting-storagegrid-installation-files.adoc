@@ -1,0 +1,141 @@
+---
+permalink: vmware/downloading-and-extracting-storagegrid-installation-files.html 
+sidebar: sidebar 
+keywords: how to download vmware installation files 
+summary: 'Vous devez télécharger les archives d"installation de StorageGRID et extraire les fichiers. Vous pouvez également vérifier manuellement les fichiers du package d"installation.' 
+---
+= Téléchargez et extrayez les fichiers d'installation de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez télécharger les archives d'installation de StorageGRID et extraire les fichiers. Vous pouvez également vérifier manuellement les fichiers du package d'installation.
+
+.Étapes
+. Accédez à la https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Page de téléchargements NetApp pour StorageGRID"^].
+. Sélectionnez le bouton pour télécharger la dernière version ou sélectionnez une autre version dans le menu déroulant et sélectionnez *Go*.
+. Connectez-vous avec le nom d'utilisateur et le mot de passe de votre compte NetApp.
+. Si une instruction attention/MustRead apparaît, lisez-la et cochez la case.
++
+
+CAUTION: Après l'installation de la version StorageGRID, vous devez appliquer les correctifs requis. Pour plus d'informations, reportez-vous à la section link:../maintain/storagegrid-hotfix-procedure.html["procédure de correctif dans les instructions de récupération et de maintenance"]
+
+. Lisez le contrat de licence de l'utilisateur final, cochez la case, puis sélectionnez *accepter et continuer*.
+. Dans la colonne *Install StorageGRID*, sélectionnez l'archive d'installation .tgz ou .zip pour VMware.
++
+
+NOTE: Utilisez le `.zip` fichier si vous exécutez Windows sur l'ordinateur portable de service.
+
+. Enregistrez l'archive d'installation.
+. [[vmware-download-verification-package]]si vous devez vérifier l'archive d'installation :
++
+.. Téléchargez le package de vérification de signature de code StorageGRID. Le nom de fichier de ce module utilise le format `StorageGRID_<version-number>_Code_Signature_Verification_Package.tar.gz`, où `<version-number>` est la version du logiciel StorageGRID.
+.. Suivez les étapes à link:../vmware/download-files-verify.html["vérifiez manuellement les fichiers d'installation"].
+
+
+. Extrayez les fichiers de l'archive d'installation.
+. Choisissez les fichiers dont vous avez besoin.
++
+Les fichiers dont vous avez besoin dépendent de votre topologie de grille planifiée et de la manière dont vous allez déployer votre système StorageGRID.
+
+
+
+
+NOTE: Les chemins répertoriés dans la table sont relatifs au répertoire de niveau supérieur installé par l'archive d'installation extraite.
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./vsphere/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./vsphere/NLF000000.txt  a| 
+Licence gratuite qui ne fournit aucun droit d'assistance pour le produit.
+
+
+
+| ./vsphere/NetApp-SG-version-SHA.vmdk  a| 
+Fichier de disque de machine virtuelle utilisé comme modèle pour créer des machines virtuelles de nœud de grille.
+
+
+
+| ./vsphere/vsphere-primary-admin.ovf ./vsphere/vsphere-primary-admin.mf  a| 
+Le fichier modèle Open Virtualization format (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement du nœud d'administration principal.
+
+
+
+| ./vsphere/vsphere-non-primary-admin.ovf ./vsphere/vsphere-non-primary-admin.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement de nœuds Admin non primaires.
+
+
+
+| ./vsphere/vsphere-gateway.ovf ./vsphere/vsphere-gateway.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement des nœuds de passerelle.
+
+
+
+| ./vsphere/vsphere-storage.ovf ./vsphere/vsphere-storage.mf  a| 
+Le fichier modèle (`.ovf`) et le fichier manifeste (`.mf`) pour le déploiement des nœuds de stockage basés sur des machines virtuelles.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
+Script de shell de Bash utilisé pour automatiser le déploiement de nœuds de grille virtuels.
+
+
+
+| ./vsphere/deploy-vsphere-ovftool-sample.ini  a| 
+Exemple de fichier de configuration à utiliser avec le `deploy-vsphere-ovftool.sh` script.
+
+
+
+| ./vsphere/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./vsphere/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./vsphere/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée. Vous pouvez également utiliser ce script pour l'intégration de Ping Federate.
+
+
+
+| ./vsphere/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./vsphere/configure-storagegrid.blank.json  a| 
+Fichier de configuration vide à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le script Python associé `storagegrid-ssoauth-azure.py` pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./vsphere/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===

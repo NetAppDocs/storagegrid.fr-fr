@@ -1,0 +1,161 @@
+---
+permalink: troubleshoot/troubleshoot-low-watermark-alert.html 
+sidebar: sidebar 
+keywords: troubleshoot low soft read-only watermark override alert, optimized watermarks 
+summary: 'Si vous utilisez des valeurs personnalisées pour les filigranes de volume de stockage, vous devrez peut-être résoudre l"alerte de remplacement du filigrane en lecture seule faible. Si possible, vous devez mettre à jour votre système pour commencer à utiliser les valeurs optimisées.' 
+---
+= Dépanner les alertes de remplacement de filigrane en lecture seule faible
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez des valeurs personnalisées pour les filigranes de volume de stockage, vous devrez peut-être résoudre l'alerte *dépassement de filigrane en lecture seule faible*. Si possible, vous devez mettre à jour votre système pour commencer à utiliser les valeurs optimisées.
+
+Dans les versions précédentes, les trois link:../admin/what-storage-volume-watermarks-are.html["filigranes de volume de stockage"]paramètres étaient globaux et la référence 8212 ; les mêmes valeurs étaient appliquées à chaque volume de stockage sur chaque nœud de stockage. À partir de StorageGRID 11.6, le logiciel peut optimiser ces filigranes pour chaque volume de stockage, en fonction de la taille du nœud de stockage et de la capacité relative du volume.
+
+Lorsque vous effectuez une mise à niveau vers StorageGRID 11.6 ou une version ultérieure, des filigranes optimisés en lecture seule et en lecture-écriture sont automatiquement appliqués à tous les volumes de stockage, sauf si l'une des conditions suivantes est vraie :
+
+* Votre système est proche de sa capacité et ne pourra pas accepter de nouvelles données si des filigranes optimisés ont été appliqués. Dans ce cas, StorageGRID ne modifie pas les paramètres du filigrane.
+* Vous avez précédemment défini n'importe laquelle des filigranes du volume de stockage sur une valeur personnalisée. StorageGRID ne remplacera pas les paramètres de filigrane personnalisés avec des valeurs optimisées. Cependant, StorageGRID peut déclencher l'alerte *Low read-only filigrane override* si votre valeur personnalisée pour le filigrane soft read-only du volume de stockage est trop petite.
+
+
+
+
+== Description de l'alerte
+
+Si vous utilisez des valeurs personnalisées pour les filigranes du volume de stockage, l'alerte *valeur de remplacement du filigrane en lecture seule faible* peut être déclenchée pour un ou plusieurs nœuds de stockage.
+
+Chaque instance de l'alerte indique que la valeur personnalisée du filigrane en lecture seule souple du volume de stockage est inférieure à la valeur minimale optimisée pour ce nœud de stockage. Si vous continuez à utiliser le paramètre personnalisé, le nœud de stockage risque d'être extrêmement faible sur l'espace avant qu'il ne puisse passer en mode lecture seule en toute sécurité. Certains volumes de stockage peuvent devenir inaccessibles (lorsqu'ils sont démontés automatiquement) lorsqu'ils atteignent la capacité.
+
+Par exemple, supposons que vous avez défini précédemment le filigrane en lecture seule souple du volume de stockage sur 5 Go. Supposons maintenant que StorageGRID a calculé les valeurs optimisées suivantes pour les quatre volumes de stockage du nœud A :
+
+[cols="2a,2a"]
+|===
+
+
+ a| 
+Volume 0
+ a| 
+12 GO
+
+
+
+ a| 
+Volume 1
+ a| 
+12 GO
+
+
+
+ a| 
+Volume 2
+ a| 
+11 GO
+
+
+
+ a| 
+Volume 3
+ a| 
+15 GO
+
+|===
+L'alerte *dépassement de seuil en lecture seule faible* est déclenchée pour le nœud de stockage A car votre filigrane personnalisé (5 Go) est inférieur à la valeur minimale optimisée pour tous les volumes de ce nœud (11 Go). Si vous continuez à utiliser le paramètre personnalisé, le nœud risque d'avoir un espace insuffisant avant de passer en mode lecture seule en toute sécurité.
+
+
+
+== Résolution de l'alerte
+
+Suivez ces étapes si une ou plusieurs alertes *prioritaire de filigrane en lecture seule basse* ont été déclenchées. Vous pouvez également utiliser ces instructions si vous utilisez actuellement des paramètres de filigrane personnalisés et souhaitez commencer à utiliser des paramètres optimisés, même si aucune alerte n'a été déclenchée.
+
+.Avant de commencer
+* Vous avez terminé la mise à niveau vers StorageGRID 11.6 ou une version ultérieure.
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Description de la tâche
+Vous pouvez résoudre l'alerte *dépassement de filigrane en lecture seule* en mettant à jour les paramètres de filigrane personnalisés vers les nouveaux remplacements de filigrane. Toutefois, si un ou plusieurs nœuds de stockage sont proches de leur emplacement complet ou si vous avez des exigences ILM spécifiques, vous devez d'abord consulter les filigranes de stockage optimisés et déterminer s'il est sûr de les utiliser.
+
+
+
+=== Évaluer l'utilisation des données d'objet pour l'ensemble de la grille
+
+.Étapes
+. Sélectionnez *NOEUDS*.
+. Pour chaque site de la grille, développez la liste des nœuds.
+. Examinez les valeurs de pourcentage affichées dans la colonne *données objet utilisées* pour chaque nœud de stockage de chaque site.
++
+image::../media/nodes_page_object_data_used_with_alert.png[Page nœuds affichant les données d'objet utilisées pour 3 SNS]
+
+. Suivez l'étape appropriée :
++
+.. Si aucun des nœuds de stockage n'est presque plein (par exemple, toutes les valeurs *données objet utilisées* sont inférieures à 80 %), vous pouvez commencer à utiliser les paramètres de remplacement. Allez à <<use-optimized-watermarks,Utilisez des filigranes optimisés>>.
+.. Si les règles ILM utilisent un comportement d'ingestion strict ou si des pools de stockage spécifiques sont proches de leur saturation, effectuez les étapes décrites dans <<view-optimized-watermarks,Afficher des filigranes de stockage optimisés>> et <<determine-optimized-watermarks,Déterminez si vous pouvez utiliser des filigranes optimisés>>.
+
+
+
+
+
+
+=== [[filigranes-optimisés-vue]]Afficher les filigranes de stockage optimisés
+
+StorageGRID utilise deux metrics Prometheus pour afficher les valeurs optimisées qu'il a calculées pour le seuil en lecture seule souple du volume de stockage. Vous pouvez afficher les valeurs minimale et maximale optimisées pour chaque nœud de stockage de la grille.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *métriques*.
+. Dans la section Prometheus, sélectionnez le lien permettant d'accéder à l'interface utilisateur Prometheus.
+. Pour afficher le filigrane minimum en lecture seule programmable recommandé, entrez la mesure Prometheus suivante et sélectionnez *Execute* :
++
+`storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
+
++
+La dernière colonne affiche la valeur minimale optimisée du filigrane en lecture seule pour tous les volumes de stockage de chaque nœud de stockage. Si cette valeur est supérieure au paramètre personnalisé du filigrane en lecture seule du volume de stockage, l'alerte *Low read-only filigrane override* est déclenchée pour le nœud de stockage.
+
+. Pour afficher le filigrane maximal en lecture seule programmable recommandé, entrez la mesure Prometheus suivante et sélectionnez *Execute* :
++
+`storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
+
++
+La dernière colonne affiche la valeur maximale optimisée du filigrane en lecture seule pour tous les volumes de stockage de chaque nœud de stockage.
+
+. [[maximal_Optimized_value]]Notez la valeur maximale optimisée pour chaque nœud de stockage.
+
+
+
+
+=== [[Déterminez-filigranes-optimisés]]Déterminez si vous pouvez utiliser des filigranes optimisés
+
+.Étapes
+. Sélectionnez *NOEUDS*.
+. Répétez la procédure suivante pour chaque nœud de stockage en ligne :
++
+.. Sélectionnez *_Storage Node_* > *Storage*.
+.. Faites défiler jusqu'au tableau magasins d'objets.
+.. Comparez la valeur *disponible* pour chaque magasin d'objets (volume) au filigrane optimisé maximum que vous avez indiqué pour ce noeud de stockage.
+
+
+. Si au moins un volume sur chaque nœud de stockage en ligne dispose de plus d'espace disponible que le filigrane maximum optimisé pour ce nœud, reportez-vous à  la section <<use-optimized-watermarks,Utilisez des filigranes optimisés>> pour commencer à utiliser les filigranes optimisés.
++
+Sinon, développez la grille dès que possible. link:../expand/adding-storage-volumes-to-storage-nodes.html["ajout de volumes de stockage"]Vers un nœud existant ou link:../expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html["Ajout de nœuds de stockage"]. Ensuite, accédez à <<use-optimized-watermarks,Utilisez des filigranes optimisés>> pour mettre à jour les paramètres du filigrane.
+
+. Si vous devez continuer à utiliser des valeurs personnalisées pour les filigranes du volume de stockage link:../monitor/silencing-alert-notifications.html["silence"]ou link:../monitor/disabling-alert-rules.html["désactiver"] l'alerte *Low read-only filigrane override*.
++
+
+NOTE: Les mêmes valeurs de filigrane personnalisées sont appliquées à chaque volume de stockage sur chaque nœud de stockage. L'utilisation de valeurs inférieures aux valeurs recommandées pour les filigranes du volume de stockage peut rendre certains volumes de stockage inaccessibles (démontés automatiquement) lorsque le nœud atteint sa capacité.
+
+
+
+
+
+=== [[utiliser-filigranes-optimisés]]utiliser des filigranes optimisés
+
+.Étapes
+. Accédez à *SUPPORT* > *autre* > *filigranes de stockage*.
+. Cochez la case *utiliser les valeurs optimisées*.
+. Sélectionnez *Enregistrer*.
+
+
+Les paramètres de filigrane du volume de stockage optimisé sont désormais en vigueur pour chaque volume de stockage, en fonction de la taille du nœud de stockage et de la capacité relative du volume.

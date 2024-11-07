@@ -1,0 +1,48 @@
+---
+permalink: maintain/downloading-hotfix-file.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix, download 
+summary: Vous devez télécharger le fichier de correctif avant de pouvoir appliquer le correctif. 
+---
+= Téléchargez le fichier de correctif
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez télécharger le fichier de correctif avant de pouvoir appliquer le correctif.
+
+.Étapes
+. Allez à https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Téléchargement NetApp : StorageGRID"^].
+. Sélectionnez la flèche vers le bas sous *logiciel disponible* pour afficher la liste des correctifs disponibles au téléchargement.
++
+
+NOTE: Les versions de fichier correctif ont le format suivant : 11.4__.x.y__.
+
+. Vérifiez les modifications qui sont incluses dans la mise à jour.
++
+
+NOTE: Si vous avez juste link:configuring-replacement-primary-admin-node.html["Restauration du nœud d'administration principal - effectué"] et que vous devez appliquer un correctif, sélectionnez la même version de correctif installée sur les autres nœuds de grille.
+
++
+.. Sélectionnez la version du correctif que vous souhaitez télécharger et sélectionnez *Go*.
+.. Connectez-vous en utilisant le nom d'utilisateur et le mot de passe de votre compte NetApp.
+.. Lisez et acceptez le contrat de licence de l'utilisateur final.
++
+La page de téléchargement de la version sélectionnée s'affiche.
+
+.. Téléchargez le fichier correctif `readme.txt` pour afficher un résumé des modifications incluses dans le correctif.
+
+
+. Sélectionnez le bouton de téléchargement du correctif et enregistrez le fichier.
++
+
+NOTE: Ne modifiez pas le nom de ce fichier.
+
++
+
+NOTE: Si vous utilisez un périphérique MacOS, il est possible que le fichier correctif soit automatiquement enregistré en tant que `.txt` fichier. Si c'est le cas, vous devez renommer le fichier sans l' `.txt`extension.
+
+. Sélectionnez un emplacement pour le téléchargement et sélectionnez *Enregistrer*.
+

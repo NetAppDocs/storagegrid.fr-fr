@@ -1,0 +1,80 @@
+---
+permalink: s3/put-bucket-consistency-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, PUT bucket consistency request 
+summary: 'La demande de cohérence PUT Bucket vous permet d"indiquer la cohérence à appliquer aux opérations effectuées sur un compartiment.' 
+---
+= PRÉSERVER la cohérence du godet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La demande de cohérence PUT Bucket vous permet d'indiquer la cohérence à appliquer aux opérations effectuées sur un compartiment.
+
+La cohérence par défaut est définie pour garantir la lecture après écriture des objets nouvellement créés.
+
+.Avant de commencer
+Pour effectuer cette opération, vous devez disposer de l'autorisation s3:PutBuckeConsistency, ou être root de compte.
+
+
+
+== Demande
+
+Le `x-ntap-sg-consistency` paramètre doit contenir l'une des valeurs suivantes :
+
+[cols="1a,2a"]
+|===
+| La cohérence | Description 
+
+
+ a| 
+tous
+ a| 
+Tous les nœuds reçoivent les données immédiatement, sinon la requête échoue.
+
+
+
+ a| 
+forte croissance mondiale
+ a| 
+Garantit une cohérence de lecture après écriture pour toutes les demandes client sur tous les sites.
+
+
+
+ a| 
+site fort
+ a| 
+Garantit la cohérence de lecture après écriture pour toutes les demandes client dans un site.
+
+
+
+ a| 
+lecture-après-nouvelle-écriture
+ a| 
+(Valeur par défaut) assure la cohérence en lecture après écriture des nouveaux objets et la cohérence des mises à jour des objets. Offre une haute disponibilité et une protection des données garanties. Recommandé dans la plupart des cas.
+
+
+
+ a| 
+disponibilité
+ a| 
+Assure la cohérence pour les nouveaux objets et les mises à jour d'objets. Pour les compartiments S3, utilisez uniquement si nécessaire (par exemple, pour un compartiment qui contient des valeurs de journal rarement lues ou pour les opérations HEAD ou GET sur des clés qui n'existent pas). Non pris en charge pour les compartiments FabricPool S3.
+
+|===
+*Note:* en général, vous devez utiliser la cohérence "lecture-après-nouvelle-écriture". Si les demandes ne fonctionnent pas correctement, modifiez le comportement du client d'application si possible. Ou configurez le client de manière à spécifier la cohérence pour chaque requête d'API. Réglez la cohérence au niveau du godet uniquement en dernier recours.
+
+
+
+== Exemple de demande
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-consistency=strong-global HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+.Informations associées
+link:consistency-controls.html["Valeurs de cohérence"]

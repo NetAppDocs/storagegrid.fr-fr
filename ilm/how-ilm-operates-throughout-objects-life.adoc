@@ -1,0 +1,32 @@
+---
+permalink: ilm/how-ilm-operates-throughout-objects-life.html 
+sidebar: sidebar 
+keywords: ilm lifecycle, object lifecycle and ILM 
+summary: La compréhension de la façon dont StorageGRID utilise les règles ILM pour gérer les objets à chaque étape de leur vie peut vous aider à concevoir des règles plus efficaces. 
+---
+= Fonctionnement de ILM tout au long de la vie d'un objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La compréhension de la façon dont StorageGRID utilise les règles ILM pour gérer les objets à chaque étape de leur vie peut vous aider à concevoir des règles plus efficaces.
+
+* *Ingest* : l'acquisition commence lorsqu'une application client S3 établit une connexion pour enregistrer un objet dans le système StorageGRID, et est terminée lorsque StorageGRID renvoie un message « acquisition réussie » au client. Les données d'objet sont protégées pendant l'ingestion, soit par application immédiate d'instructions ILM (placement synchrone), soit par création de copies intermédiaires et application de la règle ILM (double allocation), en fonction de la spécification des exigences ILM.
+* *Gestion des copies* : après la création du nombre et du type de copies d'objets spécifiés dans les instructions de placement de l'ILM, StorageGRID gère les emplacements des objets et protège les objets contre les pertes.
++
+** *Analyse et évaluation ILM* : StorageGRID analyse en continu la liste des objets stockés dans la grille et vérifie si les copies actuelles répondent aux exigences ILM. Lorsque différents types, nombres ou emplacements de copies d'objets sont requis, StorageGRID crée, supprime ou déplace des copies selon les besoins.
+** *Vérification de l'arrière-plan* : StorageGRID effectue en permanence une vérification de l'arrière-plan pour vérifier l'intégrité des données de l'objet. En cas de problème, StorageGRID crée automatiquement une nouvelle copie objet ou un fragment d'objet de code d'effacement de remplacement à un emplacement conforme aux exigences ILM actuelles. Voir link:../troubleshoot/verifying-object-integrity.html["Vérifiez l'intégrité de l'objet"].
+
+
+* *Suppression d'objet* : la gestion d'un objet se termine lorsque toutes les copies sont supprimées du système StorageGRID. La suppression d'objets peut être due à une demande de suppression d'un client, ou à la suppression d'un ILM ou d'un programme de suppression provoqué par l'expiration du cycle de vie d'un compartiment S3.
++
+
+NOTE: Les objets d'un compartiment pour lequel le verrouillage objet S3 est activé ne peuvent pas être supprimés s'ils sont soumis à une conservation légale ou si une date de conservation jusqu'à a été spécifiée, mais pas encore remplie.
+
+
+
+Le diagramme résume le fonctionnement de ILM tout au long du cycle de vie d'un objet.
+
+image::../media/overview_of_object_lifecycle.png[Présentation du cycle de vie des objets]

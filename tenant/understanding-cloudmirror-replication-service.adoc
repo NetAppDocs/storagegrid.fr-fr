@@ -1,0 +1,63 @@
+---
+permalink: tenant/understanding-cloudmirror-replication-service.html 
+sidebar: sidebar 
+keywords: cloudmirror replication 
+summary: Vous pouvez activer la réplication CloudMirror pour un compartiment S3 si vous souhaitez que StorageGRID réplique des objets spécifiés ajoutés au compartiment dans un ou plusieurs compartiments de destination. 
+---
+= Présentation du service de réplication CloudMirror
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez activer la réplication CloudMirror pour un compartiment S3 si vous souhaitez que StorageGRID réplique les objets spécifiés ajoutés au compartiment vers un ou plusieurs compartiments de destination externes.
+
+Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en miroir des enregistrements client spécifiques dans Amazon S3, puis exploiter les services AWS pour analyser vos données.
+
+
+NOTE: La réplication CloudMirror n'est pas prise en charge si le compartiment source est activé pour le verrouillage objet S3.
+
+
+
+== CloudMirror et ILM
+
+La réplication CloudMirror fonctionne indépendamment des règles ILM actives de la grille. Le service CloudMirror réplique les objets au fur et à mesure qu'ils sont stockés dans le compartiment source et les fournit au compartiment de destination dès que possible. La livraison des objets répliqués est déclenchée lors de la réussite de l'acquisition de l'objet.
+
+
+
+== CloudMirror et réplication intergrille
+
+La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Reportez-vous à la link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
+
+
+
+== Compartiments CloudMirror et S3
+
+La réplication CloudMirror est généralement configurée pour utiliser un compartiment S3 externe comme destination. Vous pouvez cependant également configurer la réplication afin d'utiliser un autre déploiement StorageGRID ou tout service compatible S3.
+
+Compartiments existants:: Lorsque vous activez la réplication CloudMirror pour un compartiment existant, seuls les nouveaux objets ajoutés à ce compartiment sont répliqués. Les objets existants dans le compartiment ne sont pas répliqués. Pour forcer la réplication d'objets existants, vous pouvez mettre à jour les métadonnées de l'objet existant en effectuant une copie d'objet.
++
+--
+
+NOTE: Si vous utilisez la réplication CloudMirror pour copier des objets vers une destination Amazon S3, sachez qu'Amazon S3 limite la taille des métadonnées définies par l'utilisateur dans chaque en-tête de la requête PUT à 2 Ko. Si un objet possède des métadonnées définies par l'utilisateur supérieures à 2 Ko, cet objet ne sera pas répliqué.
+
+--
+Compartiments de destination multiples:: Pour répliquer des objets d'un compartiment unique vers plusieurs compartiments de destination, spécifiez la destination de chaque règle dans le XML de configuration de réplication. Vous ne pouvez pas répliquer un objet dans plusieurs compartiments en même temps.
+Compartiments avec ou sans version:: Vous pouvez configurer la réplication CloudMirror sur des compartiments avec ou sans version. Les compartiments de destination peuvent être avec ou sans version. Vous pouvez utiliser n'importe quelle combinaison de compartiments avec version et sans version. Par exemple, vous pouvez spécifier un compartiment avec version comme destination pour un compartiment source sans version, ou vice-versa. Vous pouvez également répliquer les compartiments sans version.
+
+
+
+
+== Suppression, boucles de réplication et événements
+
+Comportement de suppression:: Est identique au comportement de suppression du service Amazon S3, réplication interrégionale (CRR). La suppression d'un objet dans un compartiment source ne supprime jamais un objet répliqué dans la destination. Si le compartiment source et le compartiment de destination sont multiversion, le marqueur de suppression est répliqué. Si le compartiment de destination n'est pas versionné, la suppression d'un objet dans le compartiment source ne réplique pas le marqueur de suppression dans le compartiment de destination ni ne supprime l'objet de destination.
+Protection contre les boucles de réplication:: Comme les objets sont répliqués dans le compartiment de destination, StorageGRID les marque comme « réplicas ». Un compartiment StorageGRID de destination ne réplique pas les objets marqués comme répliques, ce qui vous protège contre les boucles de réplication accidentelles. Ce marquage de réplica est interne à StorageGRID et ne vous empêche pas d'utiliser AWS CRR lors de l'utilisation d'un compartiment Amazon S3 comme destination.
++
+--
+
+NOTE: L'en-tête personnalisé utilisé pour marquer une réplique est `x-ntap-sg-replica`. Ce marquage empêche un miroir en cascade. StorageGRID prend en charge un CloudMirror bidirectionnel entre deux grilles.
+
+--
+Événements dans le compartiment de destination:: L'unicité et l'ordre des événements dans le compartiment de destination ne sont pas garantis. Plusieurs copies identiques d'un objet source peuvent être livrées à la destination du fait des opérations effectuées pour garantir le succès de la livraison. Dans de rares cas, lorsque le même objet est mis à jour simultanément depuis deux sites StorageGRID ou plus, il peut ne pas correspondre au ordre d'événements du compartiment source.
+

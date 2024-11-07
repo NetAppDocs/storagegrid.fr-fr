@@ -1,0 +1,156 @@
+---
+permalink: audit/s3-select-request.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, S3SL, S3 Select request 
+summary: 'Ce message indique qu"un utilisateur a lancé une tâche de sélection S3.' 
+---
+= S3SL: Demande S3 Select
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message consigne une fin d'étude après le renvoi d'une demande S3 Select au client. Le message S3SL peut inclure des détails de message d'erreur et de code d'erreur. La demande n'a peut-être pas abouti.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+BYSC
+ a| 
+Octets analysés
+ a| 
+Nombre d'octets analysés (reçus) à partir des nœuds de stockage.
+
+BYSC et BYPR sont susceptibles d'être différents si l'objet est compressé. Si l'objet est compressé, BYSC aura le nombre d'octets compressés et BYPR les octets après décompression.
+
+
+
+ a| 
+MODÈLE BYPR
+ a| 
+Octets traités
+ a| 
+Nombre d'octets traités. Indique le nombre d'octets analysés ou traités par un travail S3 Select.
+
+
+
+ a| 
+MODÈLE BYRT
+ a| 
+Octets renvoyés
+ a| 
+Nombre d'octets renvoyés par une tâche S3 Select au client.
+
+
+
+ a| 
+RÉFÉRENTIEL
+ a| 
+Enregistrements traités
+ a| 
+Nombre d'enregistrements ou de lignes qu'un travail S3 Select a reçus des nœuds de stockage.
+
+
+
+ a| 
+REIU
+ a| 
+Documents renvoyés
+ a| 
+Nombre d'enregistrements ou de lignes qu'un travail S3 Select a renvoyé au client.
+
+
+
+ a| 
+JOFI
+ a| 
+Travail terminé
+ a| 
+Indique si le traitement du travail S3 Select est terminé ou non. Si cette valeur est faux, le travail n'a pas pu se terminer et les champs d'erreur contiennent probablement des données. Le client a peut-être reçu des résultats partiels ou aucun résultat.
+
+
+
+ a| 
+REID
+ a| 
+ID de la demande
+ a| 
+Identifiant de la demande S3 Select.
+
+
+
+ a| 
+EXTM
+ a| 
+Heure d'exécution
+ a| 
+Temps, en secondes, nécessaire à la réalisation de S3 Select Job.
+
+
+
+ a| 
+GROUPE DE GESTION
+ a| 
+Message d'erreur
+ a| 
+Message d'erreur généré par le travail S3 Select.
+
+
+
+ a| 
+QTÉ
+ a| 
+Type d'erreur
+ a| 
+Type d'erreur généré par le travail S3 Select.
+
+
+
+ a| 
+ERST
+ a| 
+Erreur Stacktrace
+ a| 
+Erreur Stacktrace générée par le travail S3 Select.
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+
+
+ a| 
+S3AK
+ a| 
+ID de clé d'accès S3 (expéditeur de la demande)
+ a| 
+ID de clé d'accès S3 pour l'utilisateur qui a envoyé la demande.
+
+
+
+ a| 
+S3AI
+ a| 
+ID de compte de locataire S3 (expéditeur de la demande)
+ a| 
+ID de compte de locataire de l'utilisateur qui a envoyé la demande.
+
+
+
+ a| 
+S3KY
+ a| 
+Clé S3
+ a| 
+Le nom de la clé S3 n'inclut pas le nom du compartiment.
+
+|===

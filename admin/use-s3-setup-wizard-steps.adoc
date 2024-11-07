@@ -1,0 +1,448 @@
+---
+permalink: admin/use-s3-setup-wizard-steps.html 
+sidebar: sidebar 
+keywords: FabricPool and S3 setup wizard, object storage system, S3 application 
+summary: 'À l"aide de l"assistant d"installation S3, vous pouvez configurer StorageGRID en tant que système de stockage objet d"une application S3.' 
+---
+= Assistant d'installation de S3 et opérations à effectuer
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'assistant d'installation de S3 vous permet de configurer StorageGRID pour une utilisation avec une application S3. L'assistant d'installation fournit les valeurs dont l'application a besoin pour accéder à un compartiment StorageGRID et pour enregistrer des objets.
+
+.Avant de commencer
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous avez examiné le link:use-s3-setup-wizard.html["considérations et exigences"] pour à l'aide de l'assistant.
+
+
+
+
+== Accéder à l'assistant
+
+.Étapes
+. Connectez-vous au Gestionnaire de grille à l'aide d'un link:web-browser-requirements.html["navigateur web pris en charge"].
+. Si la bannière *FabricPool and S3 setup Wizard* apparaît sur le tableau de bord, sélectionnez le lien dans la bannière. Si la bannière ne s'affiche plus, sélectionnez l'icône d'aide dans la barre d'en-tête du Gestionnaire de grille et sélectionnez *Assistant d'installation FabricPool et S3*.
++
+image::../media/help_menu.png[menu aide]
+
+. Dans la section application S3 de la page de l'assistant d'installation FabricPool et S3, sélectionnez *configurer maintenant*.
+
+
+
+
+== Étape 1 sur 6 : configuration du groupe haute disponibilité
+
+Un groupe haute disponibilité est un ensemble de nœuds qui contiennent chacun le service StorageGRID Load Balancer. Un groupe haute disponibilité peut contenir des nœuds de passerelle, des nœuds d'administration, ou les deux.
+
+Vous pouvez utiliser un groupe haute disponibilité pour maintenir les connexions de données S3 disponibles. En cas de défaillance de l'interface active du groupe haute disponibilité, une interface de sauvegarde peut gérer la charge de travail avec peu d'impact sur les opérations S3.
+
+Pour plus de détails sur cette tâche, reportez-vous link:managing-high-availability-groups.html["Gérez les groupes haute disponibilité"]à la section .
+
+.Étapes
+. Si vous prévoyez d'utiliser un équilibreur de charge externe, il n'est pas nécessaire de créer un groupe haute disponibilité. Sélectionnez *Ignorer cette étape* et passez à <<Étape 2 sur 6 : configuration du terminal de l'équilibreur de charge>>.
+. Pour utiliser l'équilibreur de charge StorageGRID, vous pouvez créer un nouveau groupe haute disponibilité ou utiliser un groupe haute disponibilité existant.
++
+[role="tabbed-block"]
+====
+.Création du groupe haute disponibilité
+--
+.. Pour créer un nouveau groupe HA, sélectionnez *Create HA group*.
+.. Pour l'étape *entrer les détails*, remplissez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom du groupe HAUTE DISPONIBILITÉ
+ a| 
+Un nom d'affichage unique pour ce groupe haute disponibilité.
+
+
+
+ a| 
+Description (facultatif)
+ a| 
+La description de ce groupe HA.
+
+|===
+.. Pour l'étape *Ajouter des interfaces*, sélectionnez les interfaces de nœud que vous souhaitez utiliser dans ce groupe haute disponibilité.
++
+Utilisez les en-têtes de colonne pour trier les lignes ou entrez un terme de recherche pour localiser les interfaces plus rapidement.
+
++
+Vous pouvez sélectionner un ou plusieurs nœuds, mais vous ne pouvez sélectionner qu'une seule interface pour chaque nœud.
+
+.. Pour l'étape *hiérarchiser les interfaces*, déterminez l'interface principale et les interfaces de sauvegarde pour ce groupe haute disponibilité.
++
+Faites glisser des lignes pour modifier les valeurs de la colonne *ordre de priorité*.
+
++
+La première interface de la liste est l'interface principale. L'interface principale est l'interface active, sauf en cas de défaillance.
+
++
+Si le groupe haute disponibilité comprend plusieurs interfaces et que l'interface active est défaillante, les adresses IP virtuelles (VIP) sont déplacées vers la première interface de sauvegarde, dans l'ordre de priorité. Si cette interface échoue, les adresses VIP passent à l'interface de sauvegarde suivante, etc. Lorsque les pannes sont résolues, les adresses VIP reviennent à l'interface de priorité la plus élevée disponible.
+
+.. Pour l'étape *entrer les adresses IP*, renseignez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Sous-réseau CIDR
+ a| 
+Adresse du sous-réseau VIP en notation CIDR &#8212 ; adresse IPv4 suivie d'une barre oblique et de la longueur de sous-réseau (0-32).
+
+Aucun bit d'hôte ne doit être défini pour l'adresse réseau. Par exemple `192.16.0.0/22`, .
+
+
+
+ a| 
+Adresse IP de la passerelle (facultative)
+ a| 
+Si les adresses IP S3 utilisées pour accéder à StorageGRID ne se trouvent pas sur le même sous-réseau que les adresses VIP StorageGRID, entrez l'adresse IP de la passerelle locale VIP StorageGRID. L'adresse IP de la passerelle locale doit se trouver dans le sous-réseau VIP.
+
+
+
+ a| 
+Adresse IP virtuelle
+ a| 
+Entrez au moins une et dix adresses VIP pour l'interface active du groupe HA. Toutes les adresses VIP doivent se trouver dans le sous-réseau VIP.
+
+Au moins une adresse doit être IPv4. Vous pouvez éventuellement spécifier des adresses IPv4 et IPv6 supplémentaires.
+
+|===
+.. Sélectionnez *Create HA group*, puis *Finish* pour revenir à l'assistant d'installation S3.
+.. Sélectionnez *Continuer* pour passer à l'étape d'équilibrage de charge.
+
+
+--
+.Utilisez un groupe haute disponibilité existant
+--
+.. Pour utiliser un groupe HA existant, sélectionnez le nom du groupe HA dans le *Sélectionner un groupe HA*.
+.. Sélectionnez *Continuer* pour passer à l'étape d'équilibrage de charge.
+
+
+--
+====
+
+
+
+
+== Étape 2 sur 6 : configuration du terminal de l'équilibreur de charge
+
+StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir des applications client. L'équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.
+
+Vous pouvez utiliser le service StorageGRID Load Balancer, qui existe sur tous les nœuds de passerelle et d'administration, ou vous pouvez vous connecter à un équilibreur de charge externe (tiers). L'utilisation de l'équilibreur de charge StorageGRID est recommandée.
+
+Pour plus de détails sur cette tâche, reportez-vous link:managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"]à la section .
+
+Pour utiliser le service StorageGRID Load Balancer, sélectionnez l'onglet *StorageGRID load balancer*, puis créez ou sélectionnez le noeud final de l'équilibreur de charge que vous souhaitez utiliser. Pour utiliser un équilibreur de charge externe, sélectionnez l'onglet *équilibreur de charge externe* et fournissez des détails sur le système que vous avez déjà configuré.
+
+[role="tabbed-block"]
+====
+.Créer un point final
+--
+.Étapes
+. Pour créer un noeud final d'équilibrage de charge, sélectionnez *Créer un noeud final*.
+. Pour l'étape *entrer les détails du noeud final*, renseignez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom descriptif du noeud final.
+
+
+
+ a| 
+Port
+ a| 
+Port StorageGRID que vous souhaitez utiliser pour l'équilibrage de charge. Ce champ est défini par défaut sur 10433 pour le premier noeud final que vous créez, mais vous pouvez entrer n'importe quel port externe inutilisé. Si vous entrez 80 ou 443, le noeud final est configuré uniquement sur les noeuds de passerelle, car ces ports sont réservés sur les noeuds d'administration.
+
+*Remarque :* les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir la link:../network/network-port-reference.html["Référence du port réseau"].
+
+
+
+ a| 
+Type de client
+ a| 
+Doit être *S3*.
+
+
+
+ a| 
+Protocole réseau
+ a| 
+Sélectionnez *HTTPS*.
+
+*Remarque* : la communication avec StorageGRID sans chiffrement TLS est prise en charge, mais elle n'est pas recommandée.
+
+|===
+. Pour l'étape *Sélectionner le mode de liaison*, spécifiez le mode de liaison. Le mode de liaison contrôle la façon dont le noeud final est accessible à l'aide d'une adresse IP ou à l'aide d'adresses IP et d'interfaces réseau spécifiques.
++
+[cols="1a,3a"]
+|===
+| Mode | Description 
+
+
+ a| 
+Global (par défaut)
+ a| 
+Les clients peuvent accéder au point final en utilisant l'adresse IP de n'importe quel nœud de passerelle ou nœud d'administration, l'adresse IP virtuelle (VIP) de n'importe quel groupe haute disponibilité sur n'importe quel réseau, ou un FQDN correspondant.
+
+Utilisez le paramètre *Global* (valeur par défaut) sauf si vous devez restreindre l'accessibilité de ce point final.
+
+
+
+ a| 
+Adresses IP virtuelles de groupes haute disponibilité
+ a| 
+Les clients doivent utiliser une adresse IP virtuelle (ou le nom de domaine complet correspondant) d'un groupe haute disponibilité pour accéder à ce point final.
+
+Les terminaux associés à ce mode de liaison peuvent tous utiliser le même numéro de port, tant que les groupes haute disponibilité que vous sélectionnez pour les terminaux ne se chevauchent pas.
+
+
+
+ a| 
+Interfaces de nœuds
+ a| 
+Les clients doivent utiliser les adresses IP (ou les FQDN correspondants) des interfaces de nœud sélectionnées pour accéder à ce noeud final.
+
+
+
+ a| 
+Type de nœud
+ a| 
+En fonction du type de nœud que vous sélectionnez, les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration ou l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud de passerelle pour accéder à ce point final.
+
+|===
+. Pour l'étape d'accès locataire, sélectionnez l'une des options suivantes :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Autoriser tous les locataires (par défaut)
+ a| 
+Tous les comptes de locataires peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+
+
+ a| 
+Autoriser les locataires sélectionnés
+ a| 
+Seuls les comptes de locataire sélectionnés peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+
+
+ a| 
+Bloquez les locataires sélectionnés
+ a| 
+Les comptes de locataire sélectionnés ne peuvent pas utiliser ce terminal pour accéder à leurs compartiments. Tous les autres locataires peuvent utiliser ce noeud final.
+
+|===
+. Pour l'étape *joindre un certificat*, sélectionnez l'une des options suivantes :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Télécharger le certificat (recommandé)
+ a| 
+Utilisez cette option pour télécharger un certificat de serveur signé par une autorité de certification, une clé privée de certificat et un ensemble d'autorité de certification facultatif.
+
+
+
+ a| 
+Générez un certificat
+ a| 
+Utilisez cette option pour générer un certificat auto-signé. Voir link:configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"] pour plus de détails sur ce que vous devez saisir.
+
+
+
+ a| 
+Utiliser le certificat StorageGRID S3
+ a| 
+Utilisez cette option uniquement si vous avez déjà téléchargé ou généré une version personnalisée du certificat global StorageGRID. Voir link:configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"] pour plus de détails.
+
+|===
+. Sélectionnez *Terminer* pour revenir à l'assistant d'installation S3.
+. Sélectionnez *Continuer* pour accéder à l'étape tenant et bucket.
+
+
+
+NOTE: Les modifications apportées à un certificat de point final peuvent prendre jusqu'à 15 minutes pour être appliquées à tous les nœuds.
+
+--
+.Utilisez le terminal d'équilibrage de charge existant
+--
+.Étapes
+. Pour utiliser un noeud final existant, sélectionnez son nom dans le *sélectionnez un noeud final d'équilibrage de charge*.
+. Sélectionnez *Continuer* pour accéder à l'étape tenant et bucket.
+
+
+--
+.Utiliser un équilibreur de charge externe
+--
+.Étapes
+. Pour utiliser un équilibreur de charge externe, renseignez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+FQDN
+ a| 
+Nom de domaine complet (FQDN) de l'équilibreur de charge externe.
+
+
+
+ a| 
+Port
+ a| 
+Numéro de port que l'application S3 utilisera pour se connecter à l'équilibreur de charge externe.
+
+
+
+ a| 
+Certificat
+ a| 
+Copiez le certificat du serveur pour l'équilibreur de charge externe et collez-le dans ce champ.
+
+|===
+. Sélectionnez *Continuer* pour accéder à l'étape tenant et bucket.
+
+
+--
+====
+
+
+== Étape 3 sur 6 : création d'un locataire et d'un compartiment
+
+Un locataire est une entité qui peut utiliser les applications S3 pour stocker et récupérer des objets dans StorageGRID. Chaque locataire dispose de ses propres utilisateurs, clés d'accès, compartiments, objets et un ensemble spécifique de fonctionnalités.
+
+Un compartiment est un conteneur utilisé pour stocker les objets d'un locataire et ses métadonnées d'objet. Même si les locataires peuvent disposer de plusieurs compartiments, l'assistant vous aide à créer un locataire et un compartiment de la manière la plus rapide et la plus simple. Si vous avez besoin d'ajouter des compartiments ou de définir des options ultérieurement, vous pouvez utiliser le Gestionnaire de locataires.
+
+Pour plus d'informations sur cette tâche, reportez-vous aux sections link:creating-tenant-account.html["Créer un compte de locataire"] et link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"].
+
+.Étapes
+. Entrez un nom pour le compte de locataire.
++
+Les noms de locataires n'ont pas besoin d'être uniques. Lors de la création du compte locataire, il reçoit un ID de compte numérique unique.
+
+. Définissez l'accès racine du compte de tenant, selon que votre système StorageGRID utilise link:using-identity-federation.html["fédération des identités"] link:configuring-sso.html["Authentification unique (SSO)"]ou les deux.
++
+[cols="1a,2a"]
+|===
+| Option | Faites ça 
+
+
+ a| 
+Si la fédération des identités n'est pas activée
+ a| 
+Spécifiez le mot de passe à utiliser lors de la connexion au tenant en tant qu'utilisateur root local.
+
+
+
+ a| 
+Si la fédération des identités est activée
+ a| 
+.. Sélectionnez un groupe fédéré existant link:../tenant/tenant-management-permissions.html["Autorisation d'accès racine"]pour le tenant.
+.. Vous pouvez également spécifier le mot de passe à utiliser lors de la connexion au tenant en tant qu'utilisateur root local.
+
+
+
+
+ a| 
+Si la fédération des identités et l'authentification unique (SSO) sont toutes deux activées
+ a| 
+Sélectionnez un groupe fédéré existant link:../tenant/tenant-management-permissions.html["Autorisation d'accès racine"]pour le tenant. Aucun utilisateur local ne peut se connecter.
+
+|===
+. Si vous souhaitez que l'assistant crée l'ID de clé d'accès et la clé d'accès secrète pour l'utilisateur root, sélectionnez *Créer automatiquement la clé d'accès S3 de l'utilisateur root*.
++
+Sélectionnez cette option si le seul utilisateur du tenant sera l'utilisateur root. Si d'autres utilisateurs utilisent ce locataire, link:../tenant/index.html["Utilisez le gestionnaire de locataires"] pour configurer les clés et les autorisations.
+
+. Si vous voulez créer un compartiment pour ce tenant maintenant, sélectionnez *Créer un compartiment pour ce tenant*.
++
+
+TIP: Si le verrouillage d'objet S3 est activé pour la grille, le verrouillage d'objet S3 n'est pas activé pour le compartiment créé à cette étape. Si vous avez besoin d'utiliser un compartiment S3 Object Lock pour cette application S3, ne créez pas de compartiment maintenant. Utilisez plutôt le gestionnaire de locataires link:../tenant/creating-s3-bucket.html["créer le godet"]plus tard.
+
++
+.. Entrez le nom du compartiment que l'application S3 utilisera. Par exemple `s3-bucket`, .
++
+Vous ne pouvez pas modifier le nom du compartiment après la création du compartiment.
+
+.. Sélectionnez la *région* pour ce compartiment.
++
+Utilisez la région par défaut (`us-east-1`) à moins d'utiliser ILM à l'avenir pour filtrer des objets en fonction de la région du compartiment.
+
+
+
+. Sélectionnez *Créer et continuer*.
+
+
+
+
+== [[download-data]]étape 4 sur 6 : télécharger les données
+
+Dans l'étape de téléchargement des données, vous pouvez télécharger un ou deux fichiers pour enregistrer les détails de ce que vous venez de configurer.
+
+.Étapes
+. Si vous avez sélectionné *Créer la clé d'accès S3 de l'utilisateur root automatiquement*, effectuez l'une des opérations suivantes ou les deux :
++
+** Sélectionnez *Télécharger les clés d'accès* pour télécharger un `.csv` fichier contenant le nom du compte du locataire, l'ID de la clé d'accès et la clé d'accès secrète.
+** Sélectionnez l'icône de copie (image:../media/icon_tenant_copy_url.png["icône copier"]) pour copier l'ID de la clé d'accès et la clé d'accès secrète dans le presse-papiers.
+
+
+. Sélectionnez *Télécharger les valeurs de configuration* pour télécharger un `.txt` fichier contenant les paramètres du noeud final de l'équilibreur de charge, du locataire, du compartiment et de l'utilisateur root.
+. Enregistrez ces informations dans un emplacement sécurisé.
++
+
+CAUTION: Ne fermez pas cette page tant que vous n'avez pas copié les deux clés d'accès. Les touches ne seront pas disponibles après la fermeture de cette page. Veillez à enregistrer ces informations dans un emplacement sécurisé car elles peuvent être utilisées pour obtenir des données de votre système StorageGRID.
+
+. Si vous y êtes invité, cochez la case pour confirmer que vous avez téléchargé ou copié les clés.
+. Sélectionnez *Continuer* pour accéder à la règle ILM et à l'étape de stratégie.
+
+
+
+
+== Étape 5 sur 6 : examen de la règle ILM et de la règle ILM pour S3
+
+Les règles de gestion du cycle de vie des informations (ILM) contrôlent le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID. La règle ILM incluse à StorageGRID effectue deux copies répliquées de tous les objets. Cette stratégie est en vigueur jusqu'à ce que vous activiez au moins une nouvelle police.
+
+.Étapes
+. Passez en revue les informations fournies sur la page.
+. Si vous souhaitez ajouter des instructions spécifiques pour les objets appartenant au nouveau locataire ou compartiment, créez une règle et une nouvelle règle. Voir link:../ilm/access-create-ilm-rule-wizard.html["Création d'une règle ILM"] et link:../ilm/ilm-policy-overview.html["Règles ILM"].
+. Sélectionnez *J'ai passé en revue ces étapes et je comprends ce que je dois faire*.
+. Cochez la case pour indiquer que vous comprenez ce qu'il faut faire ensuite.
+. Sélectionnez *Continuer* pour accéder à *Résumé*.
+
+
+
+
+== Étape 6 sur 6 : passez en revue le résumé
+
+.Étapes
+. Passez en revue le résumé.
+. Notez les détails des étapes suivantes, qui décrivent la configuration supplémentaire qui peut être nécessaire avant de vous connecter au client S3. Par exemple, la sélection de *se connecter en tant que root* vous amène au gestionnaire de locataires, où vous pouvez ajouter des utilisateurs de tenant, créer des compartiments supplémentaires et mettre à jour les paramètres de compartiment.
+. Sélectionnez *Terminer*.
+. Configurez l'application à l'aide du fichier téléchargé à partir de StorageGRID ou des valeurs obtenues manuellement.
+

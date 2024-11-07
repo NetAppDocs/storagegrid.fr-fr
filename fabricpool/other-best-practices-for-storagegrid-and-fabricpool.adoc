@@ -1,0 +1,51 @@
+---
+permalink: fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, best practices, audit log, encryption, compressions, tiering, ontap, consistency 
+summary: 'Lors de la configuration d"un système StorageGRID pour une utilisation avec FabricPool, vous devrez peut-être modifier d"autres options StorageGRID. Avant de modifier un paramètre global, réfléchissez à l"impact de cette modification sur les autres applications S3.' 
+---
+= Autres meilleures pratiques pour StorageGRID et FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lors de la configuration d'un système StorageGRID pour une utilisation avec FabricPool, vous devrez peut-être modifier d'autres options StorageGRID. Avant de modifier un paramètre global, réfléchissez à l'impact de cette modification sur les autres applications S3.
+
+
+
+== Vérifiez les destinations des messages et des journaux
+
+Les charges de travail FabricPool disposent souvent d'un taux élevé d'opérations de lecture, ce qui peut générer un grand nombre de messages d'audit.
+
+* Si vous n'avez pas besoin d'enregistrer les opérations de lecture du client pour FabricPool ou toute autre application S3, vous pouvez également accéder à *CONFIGURATION* > *surveillance* > *serveur d'audit et syslog*. Définissez le paramètre *lecture client* sur *erreur* pour diminuer le nombre de messages d'audit enregistrés dans le journal d'audit. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"] pour plus de détails.
+* Si vous disposez d'une grande grille, utilisez plusieurs types d'applications S3 ou souhaitez conserver toutes les données d'audit, configurez un serveur syslog externe et enregistrez les informations d'audit à distance. L'utilisation d'un serveur externe réduit l'impact sur les performances de la journalisation des messages d'audit sans réduire l'exhaustivité des données d'audit. Voir link:../monitor/considerations-for-external-syslog-server.html["Considérations relatives au serveur syslog externe"] pour plus de détails.
+
+
+
+
+== Chiffrement d'objet
+
+Lors de la configuration de StorageGRID, vous pouvez éventuellement activer le link:../admin/changing-network-options-object-encryption.html["option globale de chiffrement des objets stockés"] si le chiffrement des données est requis pour d'autres clients StorageGRID. Les données envoyées depuis FabricPool vers StorageGRID sont déjà chiffrées, ce qui signifie qu'il n'est pas nécessaire d'activer le paramètre StorageGRID. Les clés de chiffrement côté client sont la propriété de ONTAP.
+
+
+
+== Compression d'objet
+
+Lors de la configuration de StorageGRID, n'activez pas link:../admin/configuring-stored-object-compression.html["option globale pour compresser les objets stockés"]. Les données envoyées depuis FabricPool vers StorageGRID sont déjà compressées. L'utilisation de l'option StorageGRID ne réduira pas davantage la taille d'un objet.
+
+
+
+== Cohérence du compartiment
+
+Pour les compartiments FabricPool, la cohérence de compartiment recommandée est *Read-After-New-write*, ce qui correspond à la cohérence par défaut d'un nouveau compartiment. Ne modifiez pas les compartiments FabricPool pour utiliser *disponible* ou *site fort*.
+
+
+
+== Hiérarchisation FabricPool
+
+Si un nœud StorageGRID utilise du stockage attribué à un système NetApp ONTAP, vérifiez qu'aucune règle de hiérarchisation FabricPool n'est activée sur le volume. Par exemple, si un nœud StorageGRID s'exécute sur un hôte VMware, assurez-vous que la règle de hiérarchisation FabricPool n'est pas activée sur le volume qui sauvegarde le datastore pour le nœud StorageGRID. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
+
+
+CAUTION: N'utilisez jamais FabricPool pour transférer automatiquement toutes les données liées à StorageGRID vers StorageGRID. Le Tiering des données StorageGRID vers StorageGRID augmente la complexité opérationnelle et la résolution des problèmes.

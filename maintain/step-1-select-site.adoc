@@ -1,0 +1,107 @@
+---
+permalink: maintain/step-1-select-site.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, select site 
+summary: 'Pour déterminer si un site peut être déclassé, commencez par accéder à l"assistant Decommission site.' 
+---
+= Étape 1 : sélectionnez site
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour déterminer si un site peut être déclassé, commencez par accéder à l'assistant Decommission site.
+
+.Avant de commencer
+* Vous avez obtenu tous les matériaux requis.
+* Vous avez examiné les considérations relatives à la suppression d'un site.
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["L'autorisation d'accès racine ou les autorisations Maintenance et ILM"].
+
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.
+. Sélectionnez *site de désaffection*.
++
+L'étape 1 (Sélectionner le site) de l'assistant de site de désaffection s'affiche. Cette étape contient une liste alphabétique des sites de votre système StorageGRID.
+
++
+image::../media/decommission_site_step_select_site.png[Désaffectez le site étape 1 sélectionnez site]
+
+. Affichez les valeurs de la colonne capacité de stockage * utilisée pour déterminer la quantité de stockage actuellement utilisée pour les données d'objet de chaque site.
++
+La capacité de stockage utilisée est une estimation. Si les nœuds sont hors ligne, la capacité de stockage utilisée est la dernière valeur connue du site.
+
++
+** Dans le cas d'une désaffectation d'un site connecté, cette valeur représente la quantité de données d'objet à déplacer vers d'autres sites ou à supprimer via ILM avant de désaffecter ce site en toute sécurité.
+** Dans le cas d'une désaffectation de site déconnectée, cette valeur représente la proportion de stockage de données de votre système qui deviendra inaccessible lorsque vous désaffectez ce site.
++
+
+NOTE: Si votre politique ILM a été conçue pour vous protéger contre la perte d'un seul site, des copies de vos données d'objet doivent toujours exister sur les sites restants.
+
+
+
+. Consultez les raisons de la colonne *Decommission possible* pour déterminer quels sites peuvent être désaffectés actuellement.
++
+
+NOTE: S'il y a plusieurs raisons pour lesquelles un site ne peut pas être désaffecté, la raison la plus critique est indiquée.
+
++
+[cols="1a,1a,1a"]
+|===
+| Motif de mise hors service possible | Description | Étape suivante 
+
+
+ a| 
+Coche verte (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"])
+ a| 
+Vous pouvez désaffecter ce site.
+ a| 
+Allez à <<decommission_possible,l'étape suivante>>.
+
+
+
+ a| 
+Non. Ce site contient le nœud d'administration principal.
+ a| 
+Vous ne pouvez pas désaffecter un site contenant le nœud d'administration principal.
+ a| 
+Aucune. Vous ne pouvez pas effectuer cette procédure.
+
+
+
+ a| 
+Non. Ce site contient un ou plusieurs nœuds d'archivage.
+ a| 
+Vous ne pouvez pas désaffecter un site contenant un nœud d'archivage.
+ a| 
+Aucune. Vous ne pouvez pas effectuer cette procédure.
+
+
+
+ a| 
+Non. Tous les nœuds de ce site sont déconnectés. Contactez votre ingénieur commercial NetApp.
+ a| 
+Vous ne pouvez pas procéder à une désaffectation de site connecté à moins que chaque nœud du site ne soit connecté (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]).
+ a| 
+Si vous souhaitez effectuer une mise hors service hors site déconnectée, vous devez contacter votre ingénieur commercial NetApp, qui examinera vos besoins et active le reste de l'assistant de mise hors service.
+
+*IMPORTANT*: Ne mettez jamais les noeuds en ligne hors ligne pour que vous puissiez supprimer un site. Vous allez perdre des données.
+
+|===
++
+L'exemple montre un système StorageGRID avec trois sites. La coche verte (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) pour les sites de Raleigh et de Sunnyvale indique que vous pouvez désaffecter ces sites. Cependant, vous ne pouvez pas désaffecter le site de Vancouver car il contient le nœud d'administration principal.
+
+
+
+[[decommission_possible]]
+. Si une mise hors service est possible, sélectionnez le bouton radio du site.
++
+Le bouton *Suivant* est activé.
+
+. Sélectionnez *Suivant*.
++
+L'étape 2 (Détails de la vue) s'affiche.
+
+

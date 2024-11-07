@@ -1,0 +1,62 @@
+---
+permalink: monitor/viewing-overview-tab.html 
+sidebar: sidebar 
+keywords: overview tab 
+summary: 'L"onglet Présentation fournit des informations de base sur chaque nœud. Il affiche également toutes les alertes qui affectent actuellement le nœud.' 
+---
+= Afficher l'onglet vue d'ensemble
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'onglet Présentation fournit des informations de base sur chaque nœud. Il affiche également toutes les alertes qui affectent actuellement le nœud.
+
+L'onglet vue d'ensemble s'affiche pour tous les nœuds.
+
+
+
+== Informations sur le nœud
+
+La section informations sur les nœuds de l'onglet vue d'ensemble répertorie les informations de base sur le nœud.
+
+image::../media/nodes_page_overview_tab.png[Onglet vue d'ensemble de la page noeuds]
+
+Les informations de présentation d'un nœud incluent les éléments suivants :
+
+* *Nom d'affichage* (affiché uniquement si le noeud a été renommé) : le nom d'affichage actuel du noeud. Utilisez la link:../maintain/rename-grid-site-node-overview.html["Renommez la grille, les sites et les nœuds"] procédure pour mettre à jour cette valeur.
+* *Nom du système* : le nom que vous avez saisi pour le nœud lors de l'installation. Les noms de système sont utilisés pour les opérations StorageGRID internes et ne peuvent pas être modifiés.
+* *Type* : le type de noeud -- noeud Admin, noeud Admin principal, noeud de stockage ou noeud passerelle.
+* *ID* : identificateur unique du noeud, qui est également appelé UUID.
+* *Etat de connexion* : l'un des trois États. L'icône de l'état le plus grave est affichée.
++
+** *Inconnu* image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"]: pour une raison inconnue, le nœud n'est pas connecté à la grille ou un ou plusieurs services sont arrêtés de façon inattendue. Par exemple, la connexion réseau entre les nœuds a été perdue, l'alimentation est en panne ou un service est en panne. L'alerte *Impossible de communiquer avec le noeud* peut également être déclenchée. D'autres alertes peuvent également être actives. Cette situation exige une attention immédiate.
++
+
+NOTE: Un nœud peut apparaître comme inconnu lors des opérations d'arrêt géré. Dans ces cas, vous pouvez ignorer l'état Inconnu.
+
+** *Administrativement arrêté* image:../media/icon_alarm_gray_administratively_down.png["icône questionmark grise"]: le nœud n'est pas connecté à la grille pour une raison prévue. Par exemple, le nœud ou les services du nœud ont été normalement arrêtés, le nœud est en cours de redémarrage ou le logiciel est mis à niveau. Une ou plusieurs alertes peuvent également être actives.
+** *Connecté* image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]: le nœud est connecté à la grille.
+
+
+* *Stockage utilisé* : pour les nœuds de stockage uniquement.
++
+** *Données d'objet* : pourcentage de l'espace total utilisable pour les données d'objet qui ont été utilisées sur le nœud de stockage.
+** *Métadonnées d'objet* : pourcentage de l'espace total autorisé pour les métadonnées d'objet qui ont été utilisées sur le nœud de stockage.
+
+
+* *Version du logiciel* : la version de StorageGRID installée sur le nœud.
+* *Groupes HA* : pour les nœuds d'administration et de passerelle uniquement. Indique si une interface réseau sur le nœud est incluse dans un groupe haute disponibilité et si cette interface est l'interface principale.
+* *Adresses IP* : adresses IP du nœud. Cliquez sur *Afficher des adresses IP supplémentaires* pour afficher les adresses IPv4 et IPv6 du nœud ainsi que les mappages d'interface.
+
+
+
+
+== Alertes
+
+La section alertes de l'onglet vue d'ensemble répertorie tous les link:monitoring-system-health.html#view-current-and-resolved-alerts["alertes affectant actuellement ce nœud qui n'ont pas été neutralisées"]. Sélectionnez le nom de l'alerte pour afficher des détails supplémentaires et les actions recommandées.
+
+image::../media/nodes_page_alerts_table.png[Tableau des alertes de la page nœuds]
+
+Des alertes sont également incluses pour link:monitoring-system-health.html#monitor-node-connection-states["états de connexion de nœud"].

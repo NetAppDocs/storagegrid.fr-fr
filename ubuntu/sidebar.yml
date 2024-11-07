@@ -1,0 +1,86 @@
+---
+section: ubuntu
+title: Installez StorageGRID sur Ubuntu ou Debian
+entries:
+- title: Démarrage rapide
+  pdf-filename: Installez StorageGRID sur Ubuntu ou Debian
+  url: "/ubuntu/index.html"
+- title: Planifiez et préparez l'installation sur Ubuntu ou Debian
+  entries:
+  - title: Informations et documents requis
+    url: "/ubuntu/required-materials.html"
+  - title: Téléchargez et extrayez les fichiers d'installation StorageGRID
+    url: "/ubuntu/downloading-and-extracting-storagegrid-installation-files.html"
+  - title: Vérifiez manuellement les fichiers d'installation
+    url: "/ubuntu/download-files-verify.html"
+  - title: Configuration logicielle requise
+    url: "/ubuntu/software-requirements.html"
+  - title: Configuration requise pour le processeur et la RAM
+    url: "/ubuntu/cpu-and-ram-requirements.html"
+  - title: Les besoins en matière de stockage et de performances
+    url: "/ubuntu/storage-and-performance-requirements.html"
+  - title: Exigences de migration des conteneurs de nœuds
+    url: "/ubuntu/node-container-migration-requirements.html"
+  - title: Préparer les hôtes (Ubuntu ou Debian)
+    entries:
+    - title: Modification des paramètres à l'échelle de l'hôte
+      url: "/ubuntu/how-host-wide-settings-change.html"
+    - title: Installez Linux
+      url: "/ubuntu/installing-linux.html"
+    - title: Installation du profil AppArmor
+      url: "/ubuntu/understanding-apparmor-profile-installation.html"
+    - title: Configurer le réseau hôte (Ubuntu ou Debian)
+      url: "/ubuntu/configuring-host-network.html"
+    - title: Configurer le stockage de l'hôte
+      url: "/ubuntu/configuring-host-storage.html"
+    - title: Configurer le volume de stockage Docker
+      url: "/ubuntu/configuring-docker-storage-volume.html"
+    - title: Installez Docker
+      url: "/ubuntu/installing-docker.html"
+    - title: Installez les services d'hôte StorageGRID
+      url: "/ubuntu/installing-storagegrid-webscale-host-services.html"
+- title: Automatisation de l'installation (Ubuntu ou Debian)
+  url: "/ubuntu/automating-installation.html"
+- title: Déploiement de nœuds de grid virtuel (Ubuntu ou Debian)
+  entries:
+  - title: Créez des fichiers de configuration de nœuds pour les déploiements Ubuntu
+      ou Debian
+    url: "/ubuntu/creating-node-configuration-files.html"
+  - title: Mode de détection des nœuds du grid sur le nœud d'administration principal
+    url: "/ubuntu/how-grid-nodes-discover-primary-admin-node.html"
+  - title: Exemple de fichiers de configuration de nœud
+    url: "/ubuntu/example-node-configuration-files.html"
+  - title: Validation de la configuration StorageGRID
+    url: "/ubuntu/validating-storagegrid-configuration.html"
+  - title: Démarrez le service d'hôte StorageGRID
+    url: "/ubuntu/starting-storagegrid-host-service.html"
+- title: Configurer la grille et l'installation complète (Ubuntu ou Debian)
+  entries:
+  - title: Accédez au Grid Manager
+    url: "/ubuntu/navigating-to-grid-manager.html"
+  - title: Spécifiez les informations de licence
+    url: "/ubuntu/specifying-storagegrid-license-information.html"
+  - title: Ajouter des sites
+    url: "/ubuntu/adding-sites.html"
+  - title: Spécifiez les sous-réseaux du réseau de la grille
+    url: "/ubuntu/specifying-grid-network-subnets.html"
+  - title: Approuver les nœuds de la grille en attente
+    url: "/ubuntu/approving-pending-grid-nodes.html"
+  - title: Spécifiez les informations du serveur NTP
+    url: "/ubuntu/specifying-network-time-protocol-server-information.html"
+  - title: Spécifiez les informations du serveur DNS
+    url: "/ubuntu/specifying-domain-name-system-server-information.html"
+  - title: Spécifiez les mots de passe système
+    url: "/ubuntu/specifying-storagegrid-system-passwords.html"
+  - title: Vérifiez la configuration et terminez l'installation
+    url: "/ubuntu/reviewing-your-configuration-and-completing-installation.html"
+  - title: Instructions de post-installation
+    url: "/ubuntu/post-installation-guidelines.html"
+- title: Installation de l'API REST
+  url: "/ubuntu/overview-of-installation-rest-api.html"
+- title: Par où aller plus loin
+  url: "/ubuntu/where-to-go-next.html"
+- title: Résoudre les problèmes d'installation
+  url: "/ubuntu/troubleshooting-installation-issues.html"
+- title: Exemple /etc/network/interfaces
+  url: "/ubuntu/example-etc-network-interfaces.html"

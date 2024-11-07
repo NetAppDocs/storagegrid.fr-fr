@@ -1,0 +1,79 @@
+---
+permalink: maintain/linux-adding-trunk-or-access-interfaces-to-node.html 
+sidebar: sidebar 
+keywords: add extra interface to node, trunk interface, access interface 
+summary: 'Vous pouvez ajouter une jonction ou des interfaces d"accès supplémentaires à un nœud Linux après l"avoir installé. Les interfaces que vous ajoutez s"affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.' 
+---
+= Linux : ajoutez une jonction ou des interfaces d'accès à un nœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ajouter une jonction ou des interfaces d'accès supplémentaires à un nœud Linux après l'avoir installé. Les interfaces que vous ajoutez s'affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.
+
+.Avant de commencer
+* Vous avez accès aux instructions d'installation de StorageGRID sur votre plate-forme Linux.
++
+** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+
+
+* Vous avez le `Passwords.txt` fichier.
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+
+CAUTION: N'essayez pas d'ajouter des interfaces à un nœud pendant qu'une mise à niveau logicielle, une procédure de restauration ou une procédure d'extension est active.
+
+.Description de la tâche
+Procédez comme suit pour ajouter une ou plusieurs interfaces supplémentaires à un nœud Linux après l'installation du nœud. Par exemple, vous pouvez ajouter une interface de jonction à un noeud d'administration ou de passerelle, de sorte que vous pouvez utiliser des interfaces VLAN pour isoler le trafic appartenant à différentes applications ou locataires. Vous pouvez également ajouter une interface d'accès à utiliser au sein d'un groupe de haute disponibilité (HA).
+
+Si vous ajoutez une interface de jonction, vous devez configurer une interface VLAN dans StorageGRID. Si vous ajoutez une interface d'accès, vous pouvez l'ajouter directement à un groupe haute disponibilité ; il n'est pas nécessaire de configurer une interface VLAN.
+
+Le nœud est indisponible durant une brève ajout d'interfaces. Vous devez effectuer cette procédure sur un nœud à la fois.
+
+.Étapes
+. Connectez-vous au serveur Linux hébergeant le nœud.
+. À l'aide d'un éditeur de texte tel que vim ou pico, modifiez le fichier de configuration du nœud :
++
+`/etc/storagegrid/nodes/_node-name_.conf`
+
+. Ajoutez une entrée au fichier pour spécifier le nom et, éventuellement, la description de chaque interface supplémentaire que vous souhaitez ajouter au nœud. Utilisez ce format.
++
+`INTERFACE_TARGET_nnnn=_value_`
+
++
+Pour _nnnn_, spécifiez un numéro unique pour chaque `INTERFACE_TARGET` entrée que vous ajoutez.
+
++
+Pour _value_, spécifiez le nom de l'interface physique sur l'hôte bare-Metal. Ensuite, si vous le souhaitez, ajoutez une virgule et fournissez une description de l'interface, qui s'affiche sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.
+
++
+Par exemple :
+
++
+`INTERFACE_TARGET_0001=ens256, Trunk`
+
++
+
+NOTE: Ne spécifiez aucun autre paramètre réseau, sinon une erreur de validation se produit.
+
+. Exécutez la commande suivante pour valider vos modifications dans le fichier de configuration du nœud :
++
+`sudo storagegrid node validate _node-name_`
+
++
+Traitez les erreurs ou les avertissements avant de passer à l'étape suivante.
+
+. Exécutez la commande suivante pour mettre à jour la configuration du nœud :
++
+`sudo storagegrid node reload _node-name_`
+
+
+
+.Une fois que vous avez terminé
+* Si vous avez ajouté une ou plusieurs interfaces de jonction, reportez-vous à link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"] pour configurer une ou plusieurs interfaces VLAN pour chaque nouvelle interface parent.
+* Si vous avez ajouté une ou plusieurs interfaces d'accès, accédez à link:../admin/configure-high-availability-group.html["configurez les groupes haute disponibilité"] pour ajouter les nouvelles interfaces directement aux groupes haute disponibilité.
+

@@ -1,0 +1,24 @@
+---
+permalink: maintain/decommission-procedure.html 
+sidebar: sidebar 
+keywords: how to decommission 
+summary: Vous pouvez effectuer une procédure de mise hors service pour supprimer définitivement les nœuds grid ou un site entier du système StorageGRID. 
+---
+= Désaffectez le nœud ou le site
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez effectuer une procédure de mise hors service pour supprimer définitivement les nœuds grid ou un site entier du système StorageGRID.
+
+Pour supprimer un nœud de grille ou un site, effectuez l'une des procédures de mise hors service suivantes :
+
+* Effectuez une  pour supprimer un link:grid-node-decommissioning.html["désaffectation du nœud grid"]ou plusieurs nœuds, qui peuvent se trouver sur un ou plusieurs sites. Les nœuds que vous supprimez peuvent être en ligne et connectés au système StorageGRID, ou encore hors ligne et déconnectés.
+* Effectuez une  pour supprimer un link:considerations-for-removing-site.html["désaffectation du site"]site. Vous effectuez une *Désaffected site* si tous les nœuds sont connectés à StorageGRID. Vous effectuez une *Désaffected site* si tous les nœuds sont déconnectés de StorageGRID. Si le site contient une combinaison de nœuds connectés et déconnectés, vous devez remettre tous les nœuds hors ligne en ligne.
++
+
+CAUTION: Avant de procéder à la désaffectation d'un site déconnecté, contactez votre ingénieur commercial NetApp. NetApp évaluera vos besoins avant d'activer toutes les étapes de l'assistant Decommission site. N'essayez pas de désaffecter le site si vous pensez qu'il est possible de récupérer le site ou de récupérer les données d'objet à partir du site.
+
+

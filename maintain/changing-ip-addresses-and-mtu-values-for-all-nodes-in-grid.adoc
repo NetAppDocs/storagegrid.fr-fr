@@ -1,0 +1,144 @@
+---
+permalink: maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html 
+sidebar: sidebar 
+keywords: storagegrid, node ip address, change node ip, change node ip address, changing node ip, changing node ip address 
+summary: 'Si vous devez modifier l"adresse IP du réseau Grid pour tous les nœuds de la grille, vous devez suivre cette procédure spéciale. Vous ne pouvez pas modifier l"IP du réseau Grid à l"échelle de la grille en utilisant la procédure pour changer les nœuds individuels.' 
+---
+= Modifiez les adresses IP de tous les nœuds de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous devez modifier l'adresse IP du réseau Grid pour tous les nœuds de la grille, vous devez suivre cette procédure spéciale. Vous ne pouvez pas modifier l'adresse IP d'un réseau Grid Network à l'échelle de la grille en utilisant la procédure de modification de nœuds individuels.
+
+.Avant de commencer
+* Vous avez le `Passwords.txt` fichier.
+
+
+Pour vous assurer que la grille démarre correctement, vous devez effectuer toutes les modifications en même temps.
+
+
+NOTE: Cette procédure s'applique uniquement au réseau Grid. Vous ne pouvez pas utiliser cette procédure pour modifier les adresses IP sur les réseaux Admin ou client.
+
+Si vous souhaitez modifier les adresses IP et la MTU des nœuds sur un seul site, suivez les link:changing-nodes-network-configuration.html["Modifier la configuration réseau du nœud"] instructions.
+
+.Étapes
+. Planifiez les modifications que vous devez apporter en dehors de l'outil Modifier l'IP, telles que les modifications apportées à DNS ou NTP, et les modifications apportées à la configuration SSO (Single Sign-On), si utilisée.
++
+
+NOTE: Si les serveurs NTP existants ne seront pas accessibles à la grille sur les nouvelles adresses IP, ajoutez les nouveaux serveurs NTP avant d'effectuer la procédure de modification ip.
+
++
+
+NOTE: Si les serveurs DNS existants ne seront pas accessibles à la grille sur les nouvelles adresses IP, ajoutez les nouveaux serveurs DNS avant d'effectuer la procédure de modification ip.
+
++
+
+NOTE: Si l'authentification SSO est activée pour votre système StorageGRID et que les approbations des parties utilisatrices ont été configurées à l'aide d'adresses IP de nœud d'administration (au lieu de noms de domaine entièrement qualifiés, selon les recommandations), soyez prêt à mettre à jour ou à reconfigurer ces approbations des parties utilisatrices dans Active Directory Federation Services (AD FS). Immédiatement après la modification des adresses IP. Voir link:../admin/configuring-sso.html["Configurer l'authentification unique"].
+
++
+
+NOTE: Si nécessaire, ajoutez le nouveau sous-réseau pour les nouvelles adresses IP.
+
+. Connectez-vous au nœud d'administration principal :
++
+.. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Démarrez l'outil Modifier IP en entrant la commande suivante : `change-ip`
+. Saisissez la phrase de passe de provisionnement à l'invite.
++
+Le menu principal s'affiche. Par défaut, le `Selected nodes` champ est défini sur `all`.
+
++
+image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+
+. Dans le menu principal, sélectionnez *2* pour modifier les informations IP/masque de sous-réseau, passerelle et MTU pour tous les nœuds.
++
+.. Sélectionnez *1* pour modifier le réseau de grille.
++
+Une fois votre sélection effectuée, l'invite affiche les noms des nœuds, le nom du réseau Grid, le type de données (IP/masque, passerelle ou MTU), et valeurs actuelles.
+
++
+La modification de l'adresse IP, de la longueur du préfixe, de la passerelle ou de la MTU d'une interface configurée par DHCP changera l'interface en mode statique. Un avertissement s'affiche avant chaque interface configurée par DHCP.
+
++
+Les interfaces configurées comme `fixed` ne peuvent pas être modifiées.
+
+.. Pour définir une nouvelle valeur, saisissez-la dans le format indiqué pour la valeur actuelle.
+.. Après avoir modifié tous les noeuds que vous souhaitez modifier, entrez *q* pour revenir au menu principal.
++
+Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
+
+
+
+. Vérifiez vos modifications en sélectionnant l'une des options suivantes :
++
+** *5* : affiche les modifications dans la sortie isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en évidence en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple de sortie :
++
+image::../media/change_ip_tool_edit_ip_mask_sample_output.png[capture d'écran décrite par le texte environnant]
+
+** *6* : affiche les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions).
++
+
+NOTE: Certaines interfaces de ligne de commande peuvent afficher des ajouts et des suppressions en utilisant le formatage barré. L'affichage correct dépend de votre client terminal prenant en charge les séquences d'échappement VT100 nécessaires.
+
+
+
+. Sélectionnez l'option *7* pour valider toutes les modifications.
++
+Cette validation garantit que les règles du réseau Grid, telles que l'absence de sous-réseaux se chevauchant, ne sont pas violées.
+
++
+Dans cet exemple, la validation a renvoyé des erreurs.
+
++
+image::../media/change_ip_tool_validate_sample_error_messages.gif[capture d'écran décrite par le texte environnant]
+
++
+Dans cet exemple, la validation a réussi.
+
++
+image::../media/change_ip_tool_validate_sample_passed_messages.gif[capture d'écran décrite par le texte environnant]
+
+. Une fois la validation terminée, sélectionnez *10* pour appliquer la nouvelle configuration réseau.
+. Sélectionnez *stage* pour appliquer les modifications lors du prochain redémarrage des nœuds.
++
+
+NOTE: Vous devez sélectionner *étape*. N'effectuez pas de redémarrage en roulant, soit manuellement, soit en sélectionnant *Apply* au lieu de *stage* ; la grille ne démarrera pas correctement.
+
+. Une fois vos modifications terminées, sélectionnez *0* pour quitter l'outil Modifier IP.
+. Arrêtez tous les nœuds simultanément.
++
+
+NOTE: L'ensemble de la grille doit être arrêté, de sorte que tous les nœuds soient arrêtés en même temps.
+
+. Apportez les modifications nécessaires au réseau physique ou virtuel.
+. Vérifiez que tous les nœuds de la grille ne fonctionnent pas.
+. Mettez tous les nœuds sous tension.
+. Une fois la grille correctement mise en route :
++
+.. Si vous avez ajouté des serveurs NTP, supprimez les anciennes valeurs du serveur NTP.
+.. Si vous avez ajouté des serveurs DNS, supprimez les anciennes valeurs du serveur DNS.
+
+
+. Téléchargez le nouveau package de récupération depuis Grid Manager.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase secrète pour le provisionnement.
+
+
+
+
+.Informations associées
+* link:adding-to-or-changing-subnet-lists-on-grid-network.html["Ajouter ou modifier des listes de sous-réseaux sur le réseau Grid"]
+* link:shutting-down-grid-node.html["Arrêter le nœud de la grille"]
+

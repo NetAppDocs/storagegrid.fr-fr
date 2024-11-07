@@ -1,0 +1,135 @@
+---
+permalink: admin/manage-tls-ssh-policy.html 
+sidebar: sidebar 
+keywords: TLS and SSH policy, secure connection, FIPS, Common Criteria 
+summary: La règle TLS et SSH détermine les protocoles et les chiffrements utilisés pour établir des connexions TLS sécurisées avec les applications client et des connexions SSH sécurisées avec les services StorageGRID internes. 
+---
+= Gestion des règles TLS et SSH
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La règle TLS et SSH détermine les protocoles et les chiffrements utilisés pour établir des connexions TLS sécurisées avec les applications client et des connexions SSH sécurisées avec les services StorageGRID internes.
+
+La règle de sécurité contrôle la façon dont TLS et SSH chiffrent les données en mouvement. En général, utilisez la règle de compatibilité moderne (par défaut), sauf si votre système doit être conforme aux critères communs ou si vous devez utiliser d'autres chiffrements.
+
+
+NOTE: Certains services StorageGRID n'ont pas été mis à jour pour utiliser le chiffrement inclus dans ces règles.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+
+
+== Sélectionnez une stratégie de sécurité
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres de sécurité*.
++
+L'onglet *TLS et SSH policies* affiche les stratégies disponibles. La règle actuellement active est indiquée par une coche verte sur la vignette de la police.
+
++
+image::../media/securitysettings_tls_ssh_policies_current.png[Règles TLS et SSH]
+
+. Consultez les vignettes pour en savoir plus sur les stratégies disponibles.
++
+[cols="1a,2a"]
+|===
+| Politique | Description 
+
+
+ a| 
+Compatibilité moderne (par défaut)
+ a| 
+Utilisez la stratégie par défaut si vous avez besoin d'un cryptage fort et si vous ne disposez pas d'exigences particulières. Cette règle est compatible avec la plupart des clients TLS et SSH.
+
+
+
+ a| 
+Compatibilité avec les systèmes existants
+ a| 
+Utilisez cette stratégie si vous avez besoin d'options de compatibilité supplémentaires pour les anciens clients. Les options supplémentaires de cette politique pourraient la rendre moins sécurisée que la politique de compatibilité moderne.
+
+
+
+ a| 
+Critères communs
+ a| 
+Utilisez cette règle si vous avez besoin de la certification critères communs.
+
+
+
+ a| 
+Norme FIPS stricte
+ a| 
+Utilisez cette règle si vous avez besoin de la certification critères communs et que vous devez utiliser le module de sécurité cryptographique NetApp 3.0.8 pour les connexions de clients externes aux terminaux d'équilibrage de charge, au gestionnaire de locataires et au gestionnaire de grille. L'utilisation de cette règle peut réduire les performances.
+
+*Remarque* : après avoir sélectionné cette stratégie, tous les nœuds doivent être link:../maintain/rolling-reboot-procedure.html["redémarrés de manière mobile"] pour activer le module de sécurité cryptographique NetApp. Utilisez *Maintenance* > *redémarrage en roulant* pour lancer et surveiller les redémarrages.
+
+
+
+ a| 
+Personnalisées
+ a| 
+Créez une stratégie personnalisée si vous devez appliquer vos propres chiffrements.
+
+|===
+. Pour afficher des détails sur les chiffrements, les protocoles et les algorithmes de chaque stratégie, sélectionnez *Afficher les détails*.
+. Pour modifier la stratégie actuelle, sélectionnez *utiliser la stratégie*.
++
+Une coche verte apparaît en regard de *police actuelle* sur la mosaïque de police.
+
+
+
+
+
+== Créez une stratégie de sécurité personnalisée
+
+Vous pouvez créer une stratégie personnalisée si vous devez appliquer vos propres chiffrements.
+
+.Étapes
+. Dans la mosaïque de la stratégie la plus similaire à la stratégie personnalisée que vous souhaitez créer, sélectionnez *Afficher les détails*.
+. Sélectionnez *Copier dans le presse-papiers*, puis sélectionnez *Annuler*.
++
+image::../media/securitysettings-custom-security-policy-copy.png[copie d'une stratégie existante pour créer une stratégie personnalisée]
+
+. Dans la mosaïque *Personnaliser la stratégie*, sélectionnez *configurer et utiliser*.
+. Collez le fichier JSON que vous avez copié et apportez les modifications nécessaires.
+. Sélectionnez *utiliser la stratégie*.
++
+Une coche verte apparaît en regard de *politique actuelle* sur la mosaïque de stratégie personnalisée.
+
+. Si vous le souhaitez, sélectionnez *Modifier la configuration* pour apporter d'autres modifications à la nouvelle stratégie personnalisée.
+
+
+
+
+== Rétablir temporairement la stratégie de sécurité par défaut
+
+Si vous avez configuré une stratégie de sécurité personnalisée, il se peut que vous ne puissiez pas vous connecter à Grid Manager si la stratégie TLS configurée est incompatible avec link:global-certificate-types.html["certificat de serveur configuré"].
+
+Vous pouvez rétablir temporairement la stratégie de sécurité par défaut.
+
+.Étapes
+. Connectez-vous à un nœud d'administration :
++
+.. Entrez la commande suivante : `ssh admin@_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. Exécutez la commande suivante :
++
+`restore-default-cipher-configurations`
+
+. À partir d'un navigateur Web, accédez à Grid Manager sur le même nœud d'administration.
+. Suivez les étapes de la section <<select-a-security-policy,Sélectionnez une stratégie de sécurité>> pour reconfigurer la stratégie.
+

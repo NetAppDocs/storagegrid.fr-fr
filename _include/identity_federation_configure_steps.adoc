@@ -1,0 +1,126 @@
+= Testez la connexion et enregistrez la configuration
+:allow-uri-read: 
+
+
+. Sélectionnez *Activer la fédération d'identités*.
+. Dans la section Type de service LDAP, sélectionnez le type de service LDAP que vous souhaitez configurer.
++
+image::../media/ldap_service_type.png[Page Fédération des identités affichant les options de type de service LDAP]
+
++
+Sélectionnez *autre* pour configurer les valeurs d'un serveur LDAP qui utilise Oracle Directory Server.
+
+. Si vous avez sélectionné *autre*, renseignez les champs de la section attributs LDAP. Dans le cas contraire, passez à l'étape suivante.
++
+** *Nom unique utilisateur* : nom de l'attribut qui contient l'identifiant unique d'un utilisateur LDAP. Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `uid` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `uid`.
+** *UUID d'utilisateur* : nom de l'attribut qui contient l'identifiant unique permanent d'un utilisateur LDAP. Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `nsuniqueid`. La valeur de chaque utilisateur pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
+** *Nom unique de groupe* : nom de l'attribut qui contient l'identifiant unique d'un groupe LDAP. Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `cn` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `cn`.
+** *UUID de groupe* : nom de l'attribut qui contient l'identificateur unique permanent d'un groupe LDAP. Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `nsuniqueid`. La valeur de chaque groupe pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
+
+
+. Pour tous les types de services LDAP, entrez les informations de connexion réseau et de serveur LDAP requises dans la section configurer le serveur LDAP.
++
+** *Nom d'hôte* : le nom de domaine complet (FQDN) ou l'adresse IP du serveur LDAP.
+** *Port* : port utilisé pour se connecter au serveur LDAP.
++
+
+NOTE: Le port par défaut de STARTTLS est 389 et le port par défaut de LDAPS est 636. Cependant, vous pouvez utiliser n'importe quel port tant que votre pare-feu est configuré correctement.
+
+** *Nom d'utilisateur* : chemin complet du nom distinctif (DN) de l'utilisateur qui se connectera au serveur LDAP.
++
+Pour Active Directory, vous pouvez également spécifier le nom de connexion bas niveau ou le nom principal d'utilisateur.
+
++
+L'utilisateur spécifié doit être autorisé à répertorier les groupes et les utilisateurs et à accéder aux attributs suivants :
+
++
+*** `sAMAccountName` ou `uid`
+*** `objectGUID`, `entryUUID` ou `nsuniqueid`
+*** `cn`
+*** `memberOf` ou `isMemberOf`
+*** *Active Directory* : `objectSid`, `primaryGroupID`, `userAccountControl` et `userPrincipalName`
+*** *Azure*: `accountEnabled` Et `userPrincipalName`
+
+
+** *Mot de passe* : mot de passe associé au nom d'utilisateur.
++
+
+NOTE: Si vous modifiez le mot de passe à l'avenir, vous devez le mettre à jour sur cette page.
+
+** *DN de base de groupe* : chemin complet du nom distinctif (DN) pour une sous-arborescence LDAP que vous voulez rechercher des groupes. Dans l'exemple Active Directory (ci-dessous), tous les groupes dont le nom unique est relatif au DN de base (DC=storagegrid,DC=exemple,DC=com) peuvent être utilisés comme groupes fédérés.
++
+
+NOTE: Les valeurs *Nom unique de groupe* doivent être uniques dans le *DN de base de groupe* auquel elles appartiennent.
+
+** *DN de base d'utilisateurs* : le chemin complet du nom distinctif (DN) d'une sous-arborescence LDAP que vous voulez rechercher des utilisateurs.
++
+
+NOTE: Les valeurs *Nom unique utilisateur* doivent être uniques dans le *DN de base utilisateur* auquel elles appartiennent.
+
+** *Bind username format* (facultatif) : le nom d'utilisateur par défaut StorageGRID devrait utiliser si le modèle ne peut pas être déterminé automatiquement.
++
+Il est recommandé de fournir le format *Bind username* car il peut permettre aux utilisateurs de se connecter si StorageGRID ne parvient pas à se lier avec le compte de service.
+
++
+Entrez l'un des motifs suivants :
+
++
+*** *Pattern UserPrincipalName (Active Directory et Azure)* : `[USERNAME]@_example_.com`
+*** *Modèle de nom de connexion de niveau inférieur (Active Directory et Azure)* : `_example_\[USERNAME]`
+*** *Motif de nom distinctif* : `CN=[USERNAME],CN=Users,DC=_example_,DC=com`
++
+Inclure *[NOM D'UTILISATEUR]* exactement comme écrit.
+
+
+
+
+
+. Dans la section transport Layer Security (TLS), sélectionnez un paramètre de sécurité.
++
+** *Utilisez STARTTLS* : utilisez STARTTLS pour sécuriser les communications avec le serveur LDAP. Il s'agit de l'option recommandée pour Active Directory, OpenLDAP ou autre, mais cette option n'est pas prise en charge pour Azure.
+** *Utilisez LDAPS* : l'option LDAPS (LDAP sur SSL) utilise TLS pour établir une connexion au serveur LDAP. Vous devez sélectionner cette option pour Azure.
+** *N'utilisez pas TLS* : le trafic réseau entre le système StorageGRID et le serveur LDAP ne sera pas sécurisé. Cette option n'est pas prise en charge pour Azure.
++
+
+NOTE: L'utilisation de l'option *ne pas utiliser TLS* n'est pas prise en charge si votre serveur Active Directory applique la signature LDAP. Vous devez utiliser STARTTLS ou LDAPS.
+
+
+
+. Si vous avez sélectionné STARTTLS ou LDAPS, choisissez le certificat utilisé pour sécuriser la connexion.
++
+** *Utilisez le certificat CA du système d'exploitation* : utilisez le certificat CA de la grille par défaut installé sur le système d'exploitation pour sécuriser les connexions.
+** *Utilisez un certificat d'autorité de certification personnalisé* : utilisez un certificat de sécurité personnalisé.
++
+Si vous sélectionnez ce paramètre, copiez et collez le certificat de sécurité personnalisé dans la zone de texte certificat de l'autorité de certification.
+
+
+
+
+
+
+
+=== Testez la connexion et enregistrez la configuration
+
+Après avoir saisi toutes les valeurs, vous devez tester la connexion avant de pouvoir enregistrer la configuration. StorageGRID vérifie les paramètres de connexion pour le serveur LDAP et le format de nom d'utilisateur BIND, si vous en avez fourni un.
+
+.Étapes
+. Sélectionnez *Tester la connexion*.
+. Si vous n'avez pas fourni de format de nom d'utilisateur de liaison :
++
+** Si les paramètres de connexion sont valides, le message « Test de connexion réussi » s'affiche. Sélectionnez *Enregistrer* pour enregistrer la configuration.
+** Si les paramètres de connexion ne sont pas valides, le message « Impossible d'établir la connexion de test » s'affiche. Sélectionnez *Fermer*. Ensuite, résolvez tout problème et testez à nouveau la connexion.
+
+
+. Si vous avez fourni un format de nom d'utilisateur BIND, entrez le nom d'utilisateur et le mot de passe d'un utilisateur fédéré valide.
++
+Par exemple, entrez votre nom d'utilisateur et votre mot de passe. N'incluez pas de caractères spéciaux dans le nom d'utilisateur, tels que @ ou /.
+
++
+image::../media/identity_federation_test_connection.png[Invite de fédération des identités pour valider le format du nom d'utilisateur de liaison]
+
++
+** Si les paramètres de connexion sont valides, le message « Test de connexion réussi » s'affiche. Sélectionnez *Enregistrer* pour enregistrer la configuration.
+** Un message d'erreur s'affiche si les paramètres de connexion, le format du nom d'utilisateur de liaison ou le nom d'utilisateur et le mot de passe du test sont incorrects. Résolvez tout problème et testez à nouveau la connexion.
+
+
+

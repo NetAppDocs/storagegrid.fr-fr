@@ -1,0 +1,95 @@
+---
+permalink: admin/requirements-for-sso.html 
+sidebar: sidebar 
+keywords: sso requirements, single sign on requirements, identity federation requirements for sso, pingfederate, azure ad, ad fs 
+summary: 'Avant d"activer l"authentification unique pour un système StorageGRID, vérifiez les conditions requises et les points à prendre en compte.' 
+---
+= Configuration requise et considérations pour l'authentification unique
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'activer la signature unique (SSO) pour un système StorageGRID, consultez les conditions requises et les considérations à prendre en compte.
+
+
+
+== Exigences du fournisseur d'identités
+
+StorageGRID prend en charge les fournisseurs d'identités SSO suivants :
+
+* Service de fédération Active Directory (AD FS)
+* Azure Active Directory (Azure AD)
+* PingFederate
+
+
+Vous devez configurer la fédération des identités de votre système StorageGRID avant de pouvoir configurer un fournisseur d'identités SSO. Le type de service LDAP que vous utilisez pour la fédération des identités contrôle le type de SSO que vous pouvez implémenter.
+
+[cols="1a,1a"]
+|===
+| Type de service LDAP configuré | Options pour le fournisseur d'identité SSO 
+
+
+ a| 
+Active Directory
+ a| 
+* Active Directory
+* Azure
+* PingFederate
+
+
+
+
+ a| 
+Azure
+ a| 
+Azure
+
+|===
+
+
+=== Exigences AD FS
+
+Vous pouvez utiliser l'une des versions suivantes d'AD FS :
+
+* Système de fichiers AD Windows Server 2022
+* Système de fichiers AD Windows Server 2019
+* Système de fichiers AD Windows Server 2016
+
+
+
+NOTE: Windows Server 2016 doit utiliser le https://support.microsoft.com/en-us/help/3201845/cumulative-update-for-windows-10-version-1607-and-windows-server-2016["Mise à jour KB3201845"^] ou une version ultérieure.
+
+
+
+=== Supplémentaires requise
+
+* TLS (transport Layer Security) 1.2 ou 1.3
+* Microsoft .NET Framework, version 3.5.1 ou supérieure
+
+
+
+
+=== Avantages d'Azure
+
+Si vous utilisez Azure comme type SSO et que les utilisateurs ont des noms d'utilisateur principaux qui n'utilisent pas le préfixe sAMAccountName, des problèmes de connexion peuvent se produire si StorageGRID perd sa connexion avec le serveur LDAP. Pour autoriser les utilisateurs à se connecter, vous devez restaurer la connexion au serveur LDAP.
+
+
+
+== Configuration requise pour le certificat de serveur
+
+Par défaut, StorageGRID utilise un certificat d'interface de gestion sur chaque nœud d'administration pour sécuriser l'accès au Grid Manager, au tenant Manager, à l'API de gestion du grid et à l'API de gestion des locataires. Lorsque vous configurez des approbations de tiers de confiance (AD FS), des applications d'entreprise (Azure) ou des connexions de fournisseur de services (PingFederate) pour StorageGRID, vous utilisez le certificat de serveur comme certificat de signature pour les requêtes StorageGRID.
+
+Si vous ne l'avez pas déjà link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["configuré un certificat personnalisé pour l'interface de gestion"]fait, vous devriez le faire maintenant. Lorsque vous installez un certificat de serveur personnalisé, il est utilisé pour tous les nœuds d'administration et vous pouvez l'utiliser dans toutes les approbations de tiers StorageGRID, les applications d'entreprise ou les connexions SP.
+
+
+NOTE: Il n'est pas recommandé d'utiliser le certificat de serveur par défaut d'un nœud d'administration dans une connexion de confiance, d'une application d'entreprise ou d'un SP. Si le nœud échoue et que vous le récupérez, un nouveau certificat de serveur par défaut est généré. Avant de pouvoir vous connecter au nœud restauré, vous devez mettre à jour la confiance de la partie utilisatrices, l'application d'entreprise ou la connexion SP avec le nouveau certificat.
+
+Vous pouvez accéder au certificat de serveur d'un nœud d'administration en vous connectant au shell de commande du nœud et en allant dans le `/var/local/mgmt-api` répertoire. Un certificat de serveur personnalisé est nommé `custom-server.crt`. Le certificat de serveur par défaut du nœud est nommé `server.crt`.
+
+
+
+== Configuration requise pour les ports
+
+L'authentification unique (SSO) n'est pas disponible sur les ports du gestionnaire de grille restreinte ou du gestionnaire de locataires. Vous devez utiliser le port HTTPS par défaut (443) si vous souhaitez que les utilisateurs s'authentifient avec une connexion unique. Voir link:controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].

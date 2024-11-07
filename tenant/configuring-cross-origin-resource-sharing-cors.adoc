@@ -1,0 +1,87 @@
+---
+permalink: tenant/configuring-cross-origin-resource-sharing-cors.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors 
+summary: 'Vous pouvez configurer le partage de ressources d"origine croisée \(CORS\) pour un compartiment S3 si vous souhaitez que ce compartiment et les objets de ce compartiment soient accessibles aux applications Web d"autres domaines.' 
+---
+= Configurer le partage de ressources inter-sources (CORS)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer le partage de ressources entre sources (CORS) pour un compartiment S3 si vous souhaitez que ce compartiment et ces objets soient accessibles aux applications web d'autres domaines.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Pour les demandes de configuration GET CORS, vous appartenez à un groupe d'utilisateurs qui a le link:tenant-management-permissions.html["Autorisation gérer tous les compartiments ou Afficher tous les compartiments"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+* Pour les demandes de configuration PUT CORS, vous appartenez à un groupe d'utilisateurs qui a le link:tenant-management-permissions.html["Autorisations de gestion de tous les compartiments"]. Cette autorisation remplace les paramètres d'autorisations dans les stratégies de groupe ou de compartiment.
+* Le link:tenant-management-permissions.html["Autorisation d'accès racine"] permet d'accéder à toutes les demandes de configuration CORS.
+
+
+.Description de la tâche
+Le partage de ressources d'origine croisée (CORS) est un mécanisme de sécurité qui permet aux applications Web clientes d'un domaine d'accéder aux ressources d'un domaine différent. Supposons, par exemple, que vous utilisez un compartiment S3 nommé `Images` pour stocker des graphiques. En configurant CORS pour le `Images` compartiment, vous pouvez autoriser l'affichage des images de ce compartiment sur le site Web `+http://www.example.com+`.
+
+
+
+== Activer le CORS pour un godet
+
+.Étapes
+. Utilisez un éditeur de texte pour créer le fichier XML requis. Cet exemple montre le code XML utilisé pour activer le code commande pour un compartiment S3. Détails :
++
+** Permet à n'importe quel domaine d'envoyer des requêtes GET au compartiment
+** Autorise uniquement le `+http://www.example.com+` domaine à envoyer des requêtes GET, POST et DELETE
+** Tous les en-têtes de demande sont autorisés
++
+[listing]
+----
+<CORSConfiguration
+    xmlns="http://s3.amazonaws.com/doc/2020-10-22/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+    <CORSRule>
+        <AllowedOrigin>http://www.example.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+----
++
+Pour plus d'informations sur le XML de configuration CORS, reportez-vous àla section http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Documentation Amazon Web Services (AWS) : guide de l'utilisateur d'Amazon simple Storage Service"^].
+
+
+
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans la table.
++
+La page des détails du compartiment s'affiche.
+
+. Dans l'onglet *Bucket Access*, sélectionnez l'accordéon *Cross-Origin Resource Sharing (CORS)*.
+. Cochez la case *Activer CORS*.
+. Collez le fichier XML de configuration CORS dans la zone de texte.
+. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+== Modifier le paramètre CORS
+
+.Étapes
+. Mettez à jour le XML de configuration CORS dans la zone de texte ou sélectionnez *Effacer* pour recommencer.
+. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+== Désactiver le paramètre CORS
+
+.Étapes
+. Décochez la case *Activer CORS*.
+. Sélectionnez *Enregistrer les modifications*.
+

@@ -1,0 +1,36 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, decommission gateway node 
+summary: 'Consultez les considérations relatives à la désaffectation d"un nœud d"administration ou d"un nœud de passerelle.' 
+---
+= Considérations relatives à la désaffectation des nœuds d'administration ou de passerelle
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Consultez les considérations relatives à la désaffectation d'un nœud d'administration ou d'un nœud de passerelle.
+
+
+
+== Considérations relatives au nœud d'administration
+
+* Vous ne pouvez pas désaffecter le nœud d'administration principal.
+* Vous ne pouvez pas désaffecter un nœud d'administration si l'une de ses interfaces réseau fait partie d'un groupe haute disponibilité (HA). Vous devez d'abord supprimer les interfaces réseau du groupe haute disponibilité. Voir les instructions pour link:../admin/managing-high-availability-groups.html["La gestion des groupes de haute disponibilité"].
+* Si nécessaire, vous pouvez modifier les règles ILM en toute sécurité lors de la désaffectation d'un nœud d'administration.
+* Si vous désaffectez un nœud d'administration et que l'authentification unique (SSO) est activée pour votre système StorageGRID, n'oubliez pas de supprimer la confiance de l'interlocuteur du nœud de Active Directory Federation Services (AD FS).
+* Si vous utilisez link:../admin/grid-federation-overview.html["fédération des grilles"], assurez-vous que l'adresse IP du nœud que vous désaffecterez n'a pas été spécifiée pour une connexion de fédération de grille.
+* Lorsque vous désaffectez un nœud d'administration déconnecté, vous perdrez les journaux d'audit de ce nœud. Cependant, ces journaux doivent également exister sur le nœud d'administration principal.
+
+
+
+
+== Considérations relatives au nœud de passerelle
+
+* Vous ne pouvez pas désaffecter un nœud de passerelle si l'une de ses interfaces réseau fait partie d'un groupe haute disponibilité (HA). Vous devez d'abord supprimer les interfaces réseau du groupe haute disponibilité. Voir les instructions pour link:../admin/managing-high-availability-groups.html["La gestion des groupes de haute disponibilité"].
+* Vous pouvez modifier les règles ILM en toute sécurité lors de la désaffectation d'un nœud de passerelle.
+* Si vous utilisez link:../admin/grid-federation-overview.html["fédération des grilles"], assurez-vous que l'adresse IP du nœud que vous désaffecterez n'a pas été spécifiée pour une connexion de fédération de grille.
+* Vous pouvez désactiver un nœud de passerelle en toute sécurité lorsqu'il est déconnecté.
+

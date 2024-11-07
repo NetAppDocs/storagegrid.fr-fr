@@ -1,0 +1,158 @@
+---
+permalink: monitor/commonly-used-prometheus-metrics.html 
+sidebar: sidebar 
+keywords: prometheus, Prometheus metrics, metrics 
+summary: 'Consultez cette liste de metrics Prometheus les plus utilisés pour mieux comprendre les conditions des règles d"alerte par défaut ou pour construire les conditions des règles d"alerte personnalisées.' 
+---
+= Metrics Prometheus couramment utilisés
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Consultez cette liste de metrics Prometheus les plus utilisés pour mieux comprendre les conditions des règles d'alerte par défaut ou pour construire les conditions des règles d'alerte personnalisées.
+
+Vous pouvez également <<obtain-all-metrics,obtenez une liste complète de toutes les mesures>>.
+
+Pour plus de détails sur la syntaxe des requêtes Prometheus, voir https://prometheus.io/docs/prometheus/latest/querying/basics/["Interrogation de Prometheus"^].
+
+
+
+== Quels sont les metrics Prometheus ?
+
+Les metrics Prometheus sont des mesures de séries chronologiques. Le service Prometheus sur les nœuds d'administration collecte ces metrics à partir des services sur tous les nœuds. Des metrics sont stockés sur chaque nœud d'administration jusqu'à ce que l'espace réservé aux données Prometheus soit plein. Lorsque le `/var/local/mysql_ibdata/` volume atteint sa capacité, les mesures les plus anciennes sont supprimées en premier.
+
+
+
+== Où sont utilisés les metrics Prometheus ?
+
+Les metrics collectées par Prometheus sont utilisés à plusieurs endroits dans Grid Manager :
+
+* *Page noeuds* : les graphiques et graphiques des onglets disponibles sur la page noeuds utilisent l'outil de visualisation Grafana pour afficher les metrics de séries chronologiques recueillies par Prometheus. Grafana affiche les données de séries chronologiques aux formats graphique et graphique, tandis que Prometheus sert de source de données back-end.
++
+image::../media/nodes_page_network_traffic_graph.png[Graphique Prometheus]
+
+* *Alertes* : les alertes sont déclenchées à des niveaux de gravité spécifiques lorsque les conditions de règle d'alerte qui utilisent des metrics Prometheus sont définies comme vraies.
+* *Grid Management API* : vous pouvez utiliser des metrics Prometheus dans des règles d'alerte personnalisées ou avec des outils d'automatisation externes pour surveiller votre système StorageGRID. La liste complète des metrics de Prometheus est disponible via l'API Grid Management. (En haut de Grid Manager, sélectionnez l'icône d'aide et sélectionnez *documentation API* > *metrics*.) Bien que plus d'un millier de mesures soient disponibles, seul un nombre relativement faible est requis pour surveiller les opérations StorageGRID les plus stratégiques.
++
+
+NOTE: Les indicateurs qui incluent _private_ dans leurs noms sont destinés à un usage interne uniquement et peuvent être modifiés sans préavis entre les versions de StorageGRID.
+
+* La page *SUPPORT* > *Tools* > *Diagnostics* et la page *SUPPORT* > *Tools* > *Metrics* : ces pages, qui sont principalement destinées au support technique, fournissent plusieurs outils et graphiques qui utilisent les valeurs des mesures Prometheus.
++
+
+NOTE: Certaines fonctions et options de menu de la page métriques sont intentionnellement non fonctionnelles et peuvent faire l'objet de modifications.
+
+
+
+
+
+== Liste des mesures les plus courantes
+
+La liste suivante répertorie les metrics Prometheus les plus utilisés.
+
+
+NOTE: Les indicateurs incluant _private_ dans leur nom sont destinés à un usage interne uniquement et sont susceptibles d'être modifiés sans préavis entre les versions de StorageGRID.
+
+alertmanager_notifications_failed_total:: Nombre total de notifications d'alerte ayant échoué.
+node_filesystem_dispo_octets:: Espace système de fichiers disponible pour les utilisateurs non root en octets.
+Node_Memory_MemAvailable_Bytes:: Champ informations mémoire MemAvailable_Bytes.
+node_network_carrier:: Valeur porteuse de `/sys/class/net/_iface_`.
+node_network_recy_errs_total:: Statistiques du périphérique réseau `receive_errs` .
+node_network_transmit_errs_total:: Statistiques du périphérique réseau `transmit_errs` .
+storagegrid_panne_administrative:: Le nœud n'est pas connecté à la grille pour une raison attendue. Par exemple, le nœud ou les services du nœud ont été normalement arrêtés, le nœud est en cours de redémarrage ou le logiciel est mis à niveau.
+storagegrid_appliance_compute_controller_status:: L'état du matériel du contrôleur de calcul d'une appliance.
+disques_défaillants_appliance_storagegrid:: Pour le contrôleur de stockage d'une appliance, le nombre de disques qui ne sont pas optimaux.
+état_matériel_contrôleur_stockage_appliance_storagegrid:: État global du matériel du contrôleur de stockage d'une appliance.
+conteneurs_contenu_seaux_et_conteneurs_storagegrid:: Le nombre total de compartiments S3 et de conteneurs Swift connus par ce nœud de stockage.
+objets_contenu_storagegrid:: Le nombre total d'objets de données S3 et Swift connus de ce nœud de stockage. Count est valide uniquement pour les objets de données créés par des applications client qui communiquent avec le système via S3.
+objet_contenu_storagegrid_perdu:: Le nombre total d'objets détectés par ce service est manquant dans le système StorageGRID. Des mesures doivent être prises pour déterminer la cause de la perte et si la récupération est possible.
++
+--
+link:../troubleshoot/troubleshooting-lost-and-missing-object-data.html["Dépanner les données d'objet perdues ou manquantes"]
+
+--
+storagegrid_http_sessions_entrant_tenté:: Nombre total de sessions HTTP ayant été tentées vers un noeud de stockage.
+storagegrid_http_sessions_entrant_actuellement_établi:: Nombre de sessions HTTP actuellement actives (ouvertes) sur le nœud de stockage.
+storagegrid_http_sessions_incoming_failed:: Nombre total de sessions HTTP qui n'ont pas réussi à se terminer correctement, soit en raison d'une requête HTTP mal formée, soit en cas d'échec du traitement d'une opération.
+storagegrid_http_sessions_entrant_réussi:: Nombre total de sessions HTTP terminées avec succès.
+objets_ilm_en_attente_arrière-plan:: Le nombre total d'objets sur ce nœud en attente d'évaluation ILM à partir de l'analyse.
+storagegrid_ilm_en_attente_client_évaluation_objets_par_seconde:: Vitesse actuelle d'évaluation des objets par rapport à la règle ILM de ce nœud.
+objet_client_attente_ilm_en_attente:: Le nombre total d'objets de ce nœud attend l'évaluation ILM des opérations client (par exemple, ingestion).
+objets_ilm_en_attente_total_storagegrid:: Le nombre total d'objets en attente d'évaluation ILM.
+ilm_scan_objets_par_seconde:: Vitesse à laquelle les objets appartenant à ce nœud sont analysés et mis en file d'attente d'ILM.
+storagegrid_ilm_scan_perce_estimé_minutes:: Durée estimée d'une analyse ILM complète sur ce nœud.
++
+--
+*Remarque :* Une analyse complète ne garantit pas que ILM a été appliquée à tous les objets appartenant à ce nœud.
+
+--
+storagegrid_load_balancer_cert_exexpiration_time:: Le temps d'expiration du certificat de noeud final de l'équilibreur de charge en secondes depuis l'époque.
+storagegrid_metadata_requêtes_moyenne_latence_millisecondes:: Temps moyen requis pour exécuter une requête sur le magasin de métadonnées via ce service.
+storagegrid_réseau_reçu_octets:: Quantité totale de données reçues depuis l'installation.
+octets_réseau_transmis_storagegrid:: Quantité totale de données envoyées depuis l'installation.
+pourcentage_utilisation_cpu_storagegrid_nœud_nœud:: Pourcentage de temps CPU disponible actuellement utilisé par ce service. Indique le niveau d'occupation du service. Le temps CPU disponible dépend du nombre de CPU du serveur.
+storagegrid_ntp_choisi_source_temps_offset_millisecondes:: Décalage systématique du temps fourni par une source de temps choisie. Le décalage est introduit lorsque le délai d'accès à une source de temps n'est pas égal au temps requis pour que la source de temps atteigne le client NTP.
+storagegrid_ntp_verrouillé:: Le nœud n'est pas verrouillé sur un serveur NTP (Network Time Protocol).
+storagegrid_s3_data_transfers_bytes_ingested:: Quantité totale de données ingérées à partir des clients S3 pour ce nœud de stockage, depuis la dernière réinitialisation de l'attribut.
+storagegrid_s3_data_transfers_bytes_retrieved:: Quantité totale de données récupérées par les clients S3 à partir de ce noeud de stockage depuis la dernière réinitialisation de l'attribut.
+storagegrid_s3_operations_failed:: Le nombre total d'opérations S3 ayant échoué (codes d'état HTTP 4xx et 5xx), à l'exclusion des opérations causées par l'échec d'autorisation S3.
+storagegrid_s3_operations_successful:: Nombre total d'opérations S3 réussies (code d'état HTTP 2xx).
+storagegrid_s3_operations_unauthorized:: Nombre total d'opérations S3 ayant échoué à la suite d'une échec d'autorisation.
+storagegrid_servercertificate_management_interface_cert_expiration_days:: Nombre de jours avant l'expiration du certificat de l'interface de gestion.
+storagegrid_servercertificate_storage_api_endpoints_cert_expiration_days:: Nombre de jours avant l'expiration du certificat de l'API de stockage objet.
+storagegrid_service_cpu_secondes:: Durée cumulée pendant laquelle le CPU a été utilisé par ce service depuis l'installation.
+octets_usage_mémoire_service_storagegrid:: La quantité de mémoire (RAM) actuellement utilisée par ce service. Cette valeur est identique à celle affichée par l'utilitaire Linux TOP sous RES.
+octets_réseau_service_storagegrid_reçus_netapp:: Quantité totale de données reçues par ce service depuis l'installation.
+octets_réseau_service_storagegrid_transmis_netapp:: Quantité totale de données envoyées par ce service.
+redémarrages_service_storagegrid:: Nombre total de fois où le service a été redémarré.
+storagegrid_service_runtime_seconds:: Durée totale d'exécution du service depuis l'installation.
+temps_disponibilité_service_storagegrid_secondes:: Durée totale d'exécution du service depuis son dernier redémarrage.
+storage_state_current_storagegrid:: État actuel des services de stockage. Les valeurs d'attribut sont :
++
+--
+* 10 = hors ligne
+* 15 = entretien
+* 20 = lecture seule
+* 30 = en ligne
+
+
+--
+état_stockage_storage_storagegrid:: État actuel des services de stockage. Les valeurs d'attribut sont :
++
+--
+* 0 = aucune erreur
+* 10 = en transition
+* 20 = espace libre insuffisant
+* 30 = Volume(s) indisponible
+* 40 = erreur
+
+
+--
+storagegrid_utilisation_données_octets:: Estimation de la taille totale des données d'objet répliquées et codées d'effacement sur le nœud de stockage.
+storage_utilisation_métadonnées_autorisés_storagegrid_octets:: Espace total sur le volume 0 de chaque nœud de stockage autorisé pour les métadonnées d'objet. Cette valeur est toujours inférieure à l'espace réel réservé aux métadonnées sur un nœud, car une partie de l'espace réservé est requise pour les opérations essentielles de base de données (telles que la compaction et la réparation) et les futures mises à niveau matérielles et logicielles.l'espace autorisé pour les métadonnées de l'objet contrôle la capacité globale des objets.
+octets_métadonnées_utilisation_stockage_storagegrid:: Volume des métadonnées d'objet sur le volume de stockage 0, en octets.
+storage_usage_total_octets_espace_stockage_storagegrid:: Quantité totale d'espace de stockage alloué à tous les magasins d'objets.
+octets_stockage_utilisation_de_stockage_utilisables_storagegrid:: Quantité totale d'espace de stockage objet restant. Calculé en ajoutant ensemble la quantité d'espace disponible pour tous les magasins d'objets du nœud de stockage.
+storagegrid_swift_data_transfère_octets_ingérés:: Quantité totale de données ingérées à partir des clients Swift vers ce nœud de stockage depuis la dernière réinitialisation de l'attribut.
+storagegrid_swift_data_transferts_octets_récupéré:: Quantité totale de données récupérées par les clients Swift à partir de ce noeud de stockage depuis la dernière réinitialisation de l'attribut.
+storagegrid_swift_operations_failed:: Nombre total d'opérations Swift ayant échoué (codes d'état HTTP 4xx et 5xx), à l'exclusion des opérations causées par l'échec de l'autorisation Swift.
+storagegrid_swift_operations_successful:: Nombre total d'opérations Swift réussies (code d'état HTTP 2xx).
+storagegrid_swift_operations_non autorisé:: Nombre total d'opérations Swift ayant échoué à la suite d'une erreur d'autorisation (codes d'état HTTP 401, 403, 405).
+octets_données_utilisation_storagegrid_tenant:: Taille logique de tous les objets pour le locataire.
+nombre_d'objets_usage_storagegrid_tenant_storagegrid:: Le nombre d'objets pour le locataire.
+octets_quota_utilisation_storagegrid_tenant_octets:: Quantité maximale d'espace logique disponible pour les objets du locataire. Si aucune mesure de quota n'est fournie, une quantité illimitée d'espace est disponible.
+
+
+
+
+== Obtenez une liste de toutes les mesures
+
+[[obtenir-toutes-mesures]]pour obtenir la liste complète des mesures, utilisez l'API de gestion de grille.
+
+. En haut du Gestionnaire de grille, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
+. Localisez les opérations *métriques*.
+. Exécutez `GET /grid/metric-names` l'opération.
+. Téléchargez les résultats.
+

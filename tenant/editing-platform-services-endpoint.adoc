@@ -1,0 +1,58 @@
+---
+permalink: tenant/editing-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to edit platform services endpoint 
+summary: 'Vous pouvez modifier la configuration d"un point de terminaison de services de plate-forme pour modifier son nom, son URI ou d"autres détails. Par exemple, vous devrez peut-être mettre à jour les informations d"identification expirées ou modifier l"URI pour qu"il pointe vers un index Elasticsearch de sauvegarde pour le basculement. Vous ne pouvez pas modifier l"URN d"un terminal de services de plateforme.' 
+---
+= Modifier le point final des services de plate-forme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez modifier la configuration d'un point de terminaison de services de plate-forme pour modifier son nom, son URI ou d'autres détails. Par exemple, vous devrez peut-être mettre à jour les informations d'identification expirées ou modifier l'URI pour qu'il pointe vers un index Elasticsearch de sauvegarde pour le basculement. Vous ne pouvez pas modifier l'URN d'un terminal de services de plate-forme.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gestion des noeuds finaux ou des autorisations d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Platform services Endpoints*.
++
+La page noeuds finaux des services de plate-forme s'affiche et affiche la liste des noeuds finaux des services de plate-forme déjà configurés.
+
+. Sélectionnez le point final que vous souhaitez modifier.
++
+La page des détails du point final s'affiche.
+
+. Sélectionnez *Configuration*.
+. Modifiez la configuration du noeud final selon les besoins.
++
+
+NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
+
++
+.. Pour modifier le nom d'affichage du noeud final, sélectionnez l'icône de modification image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Modifiez l'URI si nécessaire.
+.. Si nécessaire, modifiez le type d'authentification.
++
+*** Pour l'authentification par clé d'accès, modifiez la clé selon vos besoins en sélectionnant *Modifier la clé S3* et en collant une nouvelle ID de clé d'accès et une nouvelle clé d'accès secrète. Si vous devez annuler vos modifications, sélectionnez *Revert S3 key edit*.
+*** Pour l'authentification CAP (C2S Access Portal), modifiez l'URL des informations d'identification temporaires ou la phrase de passe de la clé privée du client facultative et téléchargez de nouveaux certificats et fichiers de clés selon les besoins.
++
+
+NOTE: La clé privée du client doit être au format crypté OpenSSL ou au format de clé privée non crypté.
+
+
+
+.. Si nécessaire, modifiez la méthode de vérification du serveur.
+
+
+. Sélectionnez *Tester et enregistrer les modifications*.
++
+** Un message de réussite s'affiche si le noeud final peut être atteint à l'aide des informations d'identification spécifiées. La connexion au noeud final est vérifiée à partir d'un noeud sur chaque site.
+** Un message d'erreur s'affiche si la validation du noeud final échoue. Modifiez le noeud final pour corriger l'erreur, puis sélectionnez *Test et enregistrer les modifications*.
+
+
+

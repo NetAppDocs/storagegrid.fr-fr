@@ -1,0 +1,282 @@
+---
+permalink: ilm/creating-ilm-policy.html 
+sidebar: sidebar 
+keywords: how to create ILM policy 
+summary: Créez une ou plusieurs règles ILM pour répondre à vos exigences en matière de qualité de service. 
+---
+= Création de règles ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Créez une ou plusieurs règles ILM pour répondre à vos exigences en matière de qualité de service.
+
+Une règle ILM active vous permet d'appliquer les mêmes règles ILM à tous les locataires et compartiments.
+
+L'utilisation de plusieurs règles ILM actives vous permet d'appliquer les règles ILM à des locataires et des compartiments spécifiques pour satisfaire à plusieurs exigences de qualité de service.
+
+
+
+== Créer une règle ILM
+
+.Description de la tâche
+Avant de créer votre propre stratégie, vérifiez que le link:ilm-policy-overview.html#default-ilm-policy["Règle ILM par défaut"]ne répond pas à vos besoins en stockage.
+
+
+NOTE: Utilisez uniquement les stratégies fournies par le système, la règle de 2 copies (pour les grilles à un site) ou une copie par site (pour les grilles à plusieurs sites), dans les systèmes de test. Pour StorageGRID 11.6 et les versions antérieures, la règle par défaut de cette règle utilise le pool de stockage tous les nœuds de stockage, qui contient tous les sites. Si votre système StorageGRID dispose de plusieurs sites, il est possible de placer deux copies d'un objet sur le même site.
+
+
+NOTE: Si l' link:enabling-s3-object-lock-globally.html["Le paramètre de verrouillage d'objet S3 global a été activé"], vous devez vous assurer que la stratégie ILM est conforme aux exigences des compartiments pour lesquels le verrouillage d'objet S3 est activé. Dans cette section, suivez les instructions qui mentionnent que le verrouillage d'objet S3 est activé.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["autorisations d'accès requises"].
+* Vous avez link:access-create-ilm-rule-wizard.html["Création de règles ILM"]déterminé si le verrouillage objet S3 est activé ou non.
++
+[role="tabbed-block"]
+====
+.Verrouillage objet S3 non activé
+--
+** Vous link:what-ilm-rule-is.html["Création des règles ILM"]souhaitez ajouter à la stratégie. Si nécessaire, vous pouvez enregistrer une stratégie, créer des règles supplémentaires, puis modifier la stratégie pour ajouter les nouvelles règles.
+** Vous avez link:creating-default-ilm-rule.html["Une règle ILM par défaut a été créée"] qui ne contient aucun filtre.
+
+
+--
+.Verrouillage objet S3 activé
+--
+** link:enabling-s3-object-lock-globally.html["Le paramètre de verrouillage d'objet S3 global est déjà activé"]Pour le système StorageGRID.
+** Vous link:what-ilm-rule-is.html["Vous avez créé des règles ILM conformes et non conformes"]souhaitez ajouter à la stratégie. Si nécessaire, vous pouvez enregistrer une stratégie, créer des règles supplémentaires, puis modifier la stratégie pour ajouter les nouvelles règles.
+** Vous avez link:creating-default-ilm-rule.html["Une règle ILM par défaut a été créée"] pour la politique qui est conforme.
+
+
+--
+====
+* Vous avez éventuellement regardé la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10["Vidéo : présentation des règles ILM"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10]
+image::../media/video-screenshot-ilm-policies-118.png[Vidéo : présentation des règles ILM]
+
+
+
+Voir aussi link:ilm-policy-overview.html["Règles ILM"].
+
+.Étapes
+. Sélectionnez *ILM* > *stratégies*.
++
+Si le paramètre global S3 Object Lock est activé, la page des règles ILM indique les règles ILM compatibles.
+
+. Détermination de la méthode de création de la règle ILM
++
+[role="tabbed-block"]
+====
+.Création de la règle
+--
+.. Sélectionnez *Créer une stratégie*.
+
+
+--
+.Cloner la règle existante
+--
+.. Cochez la case correspondant à la stratégie que vous souhaitez utiliser, puis sélectionnez *Clone*.
+
+
+--
+.Modifier une stratégie existante
+.. Si une stratégie est inactive, vous pouvez la modifier. Cochez la case correspondant à la stratégie inactive que vous souhaitez utiliser, puis sélectionnez *Modifier*.
+
+
+====
+
+
+. Dans le champ *Policy name*, entrez un nom unique pour la stratégie.
+. Si vous le souhaitez, dans le champ *motif du changement*, entrez la raison pour laquelle vous créez une nouvelle stratégie.
+. Pour ajouter des règles à la stratégie, sélectionnez *Sélectionner des règles*. Sélectionnez un nom de règle pour afficher les paramètres de cette règle.
++
+--
+Si vous clonez une règle :
+
+** Vous sélectionnez les règles utilisées par la règle de clonage.
+** Si la stratégie que vous utilisez est une règle sans filtre qui n'était pas la règle par défaut, vous êtes invité à supprimer toutes ces règles, sauf une.
+** Si la règle par défaut utilise un filtre, vous êtes invité à sélectionner une nouvelle règle par défaut.
+** Si la règle par défaut n'était pas la dernière, vous pouvez la déplacer vers la fin de la nouvelle règle.
+
+
+--
++
+[role="tabbed-block"]
+====
+.Verrouillage objet S3 non activé
+--
+.. Sélectionnez une règle par défaut pour la stratégie. Pour créer une nouvelle règle par défaut, sélectionnez *page règles ILM*.
++
+La règle par défaut s'applique aux objets qui ne correspondent pas à une autre règle de la stratégie. La règle par défaut ne peut pas utiliser de filtres et est toujours évaluée en dernier.
+
++
+
+NOTE: N'utilisez pas la règle Make 2 copies comme règle par défaut pour une stratégie. La règle Make 2 copies utilise un pool de stockage unique, tous les nœuds de stockage, qui contient tous les sites. Si votre système StorageGRID dispose de plusieurs sites, il est possible de placer deux copies d'un objet sur le même site.
+
+
+
+--
+.Verrouillage objet S3 activé
+--
+.. Sélectionnez une règle par défaut pour la stratégie. Pour créer une nouvelle règle par défaut, sélectionnez *page règles ILM*.
++
+La liste des règles contient uniquement les règles qui sont conformes et n'utilisent aucun filtre.
+
++
+
+NOTE: N'utilisez pas la règle Make 2 copies comme règle par défaut pour une stratégie. La règle Make 2 copies utilise un pool de stockage unique, tous les nœuds de stockage, qui contient tous les sites. Si vous utilisez cette règle, plusieurs copies d'un objet peuvent être placées sur le même site.
+
+.. Si vous avez besoin d'une règle « par défaut » différente pour les objets dans des compartiments S3 non conformes, sélectionnez *inclure une règle sans filtres pour les compartiments S3 non conformes*, et sélectionnez une règle non conforme qui n'utilise pas de filtre.
++
+Par exemple, vous pouvez utiliser un pool de stockage cloud pour stocker des objets dans des compartiments pour lesquels le verrouillage d'objet S3 n'est pas activé.
+
++
+
+NOTE: Vous ne pouvez sélectionner qu'une règle non conforme qui n'utilise pas de filtre.
+
+
+
+Voir aussi link:example-7-compliant-ilm-policy-for-s3-object-lock.html["Exemple 7 : règle ILM conforme pour le verrouillage d'objet S3"].
+
+--
+====
+
+
+. Lorsque vous avez terminé de sélectionner la règle par défaut, sélectionnez *Continuer*.
+. Pour l'étape autres règles, sélectionnez toutes les autres règles que vous souhaitez ajouter à la stratégie. Ces règles utilisent au moins un filtre (compte de locataire, nom de compartiment, filtre avancé ou heure de référence non courante). Sélectionnez ensuite *Sélectionner*.
++
+La fenêtre Créer une stratégie répertorie à présent les règles que vous avez sélectionnées. La règle par défaut est à la fin, avec les autres règles au-dessus.
+
++
+Si le verrouillage d'objet S3 est activé et que vous avez également sélectionné une règle « par défaut » non conforme, cette règle est ajoutée en tant que règle de second à dernier dans la stratégie.
+
++
+
+NOTE: Un avertissement s'affiche si une règle ne conserve pas les objets indéfiniment. Lorsque vous activez cette règle, vous devez confirmer que vous souhaitez que StorageGRID supprime des objets lorsque les instructions de placement pour la règle par défaut s'affichent (à moins qu'un cycle de vie de compartiment ne conserve les objets pendant une période plus longue).
+
+. Faites glisser les lignes des règles non par défaut pour déterminer l'ordre dans lequel ces règles seront évaluées.
++
+Vous ne pouvez pas déplacer la règle par défaut. Si le verrouillage d'objet S3 est activé, vous ne pouvez pas non plus déplacer la règle « par défaut » non conforme si une règle a été sélectionnée.
+
++
+
+NOTE: Vous devez confirmer que les règles ILM sont dans l'ordre correct. Lorsque la stratégie est activée, les objets nouveaux et existants sont évalués par les règles dans l'ordre indiqué, à partir du haut.
+
+. Si nécessaire, sélectionnez *Sélectionner des règles* pour ajouter ou supprimer des règles.
+. Lorsque vous avez terminé, sélectionnez *Enregistrer*.
+. Répétez ces étapes pour créer des règles ILM supplémentaires.
+. <<simulate-ilm-policy,Simulation d'une règle ILM>>. Vous devez toujours simuler une stratégie avant de l'activer pour vous assurer qu'elle fonctionne comme prévu.
+
+
+
+
+== Simuler une règle
+
+Simulez une stratégie sur des objets test avant d'activer la stratégie et de l'appliquer à vos données de production.
+
+.Avant de commencer
+* Vous connaissez le compartiment S3/clé-objet pour chaque objet à tester.
+
+
+.Étapes
+. À l'aide d'un client S3 ou du link:../tenant/use-s3-console.html["Console S3"], ingérer les objets requis pour tester chaque règle.
+. Sur la page règles ILM, cochez la case correspondant à la règle, puis sélectionnez *Simulate*.
+. Dans le champ *Object*, entrez S3 `bucket/object-key` pour un objet test. Par exemple `bucket-01/filename.png`, .
+. Si la gestion des versions S3 est activée, entrez éventuellement un ID de version pour l'objet dans le champ *ID de version*.
+. Sélectionnez *simuler*.
+. Dans la section Résultats de simulation, vérifiez que chaque objet a été mis en correspondance avec la règle correcte.
+. Pour déterminer quel pool de stockage ou profil de code d'effacement est en vigueur, sélectionnez le nom de la règle correspondante pour accéder à la page de détails de la règle.
+
+
+
+CAUTION: Vérifiez toutes les modifications apportées au placement des objets répliqués et soumis au code d'effacement. La modification de l'emplacement d'un objet existant peut entraîner des problèmes de ressources temporaires lorsque les nouveaux placements sont évalués et implémentés.
+
+.Résultats
+Toute modification des règles de la règle sera reflétée dans les résultats de Simulation et affichera la nouvelle correspondance et la comparaison précédente. La fenêtre simuler la règle conserve les objets que vous avez testés jusqu'à ce que vous sélectionniez *Effacer tout* ou l'icône Supprimer image:../media/icon-x-to-remove.png["Supprimer l'icône"]pour chaque objet dans la liste des résultats de Simulation.
+
+.Informations associées
+link:simulating-ilm-policy-examples.html["Exemples de simulations de règles ILM"]
+
+
+
+== Activer une stratégie
+
+Lorsque vous activez une seule nouvelle règle ILM, les objets existants et les nouveaux objets ingérés sont gérés par cette règle. Lorsque vous activez plusieurs règles, les balises de règles ILM attribuées aux compartiments déterminent les objets à gérer.
+
+Avant d'activer une nouvelle stratégie :
+
+. Simulez la règle pour confirmer qu'elle se comporte comme vous l'attendez.
+. Vérifiez toutes les modifications apportées au placement des objets répliqués et soumis au code d'effacement. La modification de l'emplacement d'un objet existant peut entraîner des problèmes de ressources temporaires lorsque les nouveaux placements sont évalués et implémentés.
+
+
+
+CAUTION: Les erreurs de la règle ILM peuvent entraîner des pertes de données irrécupérables.
+
+.Description de la tâche
+Lorsque vous activez une règle ILM, le système distribue la nouvelle règle à tous les nœuds. Cependant, la nouvelle règle active peut ne pas être appliquée tant que tous les nœuds du grid ne sont pas disponibles pour recevoir la nouvelle règle. Dans certains cas, le système attend d'implémenter une nouvelle stratégie active pour s'assurer que les objets de grille ne sont pas accidentellement supprimés. Détails :
+
+* Si vous apportez des modifications de stratégie qui *augmentent la redondance ou la durabilité des données*, ces modifications sont mises en œuvre immédiatement. Par exemple, si vous activez une nouvelle règle incluant une règle à trois copies au lieu d'une règle à deux copies, cette règle sera immédiatement implémentée car elle accroît la redondance des données.
+* Si vous apportez des modifications de stratégie qui *pourraient réduire la redondance ou la durabilité des données*, ces modifications ne seront pas implémentées tant que tous les nœuds de grille ne seront pas disponibles. Par exemple, si vous activez une nouvelle stratégie qui utilise une règle à deux copies au lieu d'une règle à trois copies, la nouvelle stratégie s'affiche dans l'onglet Stratégie active, mais elle ne prend effet que lorsque tous les nœuds sont en ligne et disponibles.
+
+
+.Étapes
+Pour activer une ou plusieurs stratégies, procédez comme suit :
+
+[role="tabbed-block"]
+====
+.Activez une stratégie
+--
+Procédez comme suit si vous n'avez qu'une seule stratégie active. Si vous avez déjà une ou plusieurs stratégies actives et que vous activez d'autres stratégies, suivez les étapes d'activation de plusieurs stratégies.
+
+. Lorsque vous êtes prêt à activer une stratégie, sélectionnez *ILM* > *Policies*.
++
+Vous pouvez également activer une seule stratégie à partir de la page *ILM* > *balises de stratégie*.
+
+. Dans l'onglet stratégies, cochez la case correspondant à la stratégie que vous souhaitez activer, puis sélectionnez *Activer*.
+. Suivez l'étape appropriée :
++
+** Si un message d'avertissement vous invite à confirmer l'activation de la stratégie, sélectionnez *OK*.
+** Si un message d'avertissement contenant des détails sur la police s'affiche :
++
+... Examinez les détails pour vous assurer que la règle gérerait les données comme prévu.
+... Si la règle par défaut stocke des objets pendant un nombre limité de jours, examinez le diagramme de rétention, puis saisissez ce nombre de jours dans la zone de texte.
+... Si la règle par défaut stocke les objets indéfiniment, mais qu'une ou plusieurs autres règles ont une rétention limitée, tapez *yes* dans la zone de texte.
+... Sélectionnez *Activer la stratégie*.
+
+
+
+
+
+
+--
+.Activez plusieurs règles
+--
+Pour activer plusieurs stratégies, vous devez créer des balises et affecter une stratégie à chaque balise.
+
+
+TIP: Lorsque plusieurs balises sont utilisées, si les locataires réattribuent fréquemment des balises de règles à des compartiments, les performances du grid peuvent être affectées. Si vous avez des locataires non approuvés, pensez à utiliser uniquement la balise par défaut.
+
+. Sélectionnez *ILM* > *balises de stratégie*.
+. Sélectionnez *Créer*.
+. Dans la boîte de dialogue Créer une balise de stratégie, saisissez un nom de balise et, éventuellement, une description de la balise.
++
+
+NOTE: Les noms et les descriptions des étiquettes sont visibles pour les locataires. Choisissez des valeurs qui aideront les locataires à prendre une décision éclairée lors de la sélection des balises de règles à affecter à leurs compartiments. Par exemple, si la règle attribuée supprime des objets après un certain temps, vous pouvez l'indiquer dans la description. N'incluez pas d'informations sensibles dans ces champs.
+
+. Sélectionnez *Créer une balise*.
+. Dans le tableau des balises de règles ILM, utilisez la liste déroulante pour sélectionner une règle à attribuer à la balise.
+. Si des avertissements apparaissent dans la colonne restrictions de la stratégie, sélectionnez *Afficher les détails de la stratégie* pour examiner la stratégie.
+. Assurez-vous que chaque règle gérerait les données comme prévu.
+. Sélectionnez *Activer les stratégies attribuées*. Vous pouvez également sélectionner *Effacer les modifications* pour supprimer l'affectation de police.
+. Dans la boîte de dialogue Activer les stratégies avec de nouvelles balises, consultez les descriptions de la façon dont chaque balise, règle et règle gérera les objets. Apportez les modifications nécessaires pour vous assurer que les règles géreront les objets comme prévu.
+. Lorsque vous êtes sûr de vouloir activer les stratégies, tapez *oui* dans la zone de texte, puis sélectionnez *Activer les stratégies*.
+
+
+--
+====
+.Informations associées
+link:example-6-changing-ilm-policy.html["Exemple 6 : modification d'une règle ILM"]

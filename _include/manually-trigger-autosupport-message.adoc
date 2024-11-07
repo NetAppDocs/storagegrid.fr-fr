@@ -1,0 +1,20 @@
+= 
+:allow-uri-read: 
+
+
+.Avant de commencer
+* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous devez disposer de l'accès racine ou d'une autre autorisation de configuration de grille.
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *AutoSupport*.
+. Dans l'onglet *actions*, sélectionnez *Envoyer AutoSupport déclenché par l'utilisateur*.
++
+StorageGRID tente d'envoyer un pack AutoSupport sur le site de support NetApp. Si la tentative réussit, les valeurs *résultat le plus récent* et *dernier temps* réussi dans l'onglet *Résultats* sont mises à jour. En cas de problème, la valeur *résultat le plus récent* est mise à jour sur « échec » et StorageGRID n'essaie pas d'envoyer à nouveau le paquet AutoSupport.
+
++
+
+TIP: Après avoir envoyé un pack AutoSupport déclenché par l'utilisateur, actualisez la page AutoSupport de votre navigateur au bout d'une minute pour accéder aux résultats les plus récents.
+
+

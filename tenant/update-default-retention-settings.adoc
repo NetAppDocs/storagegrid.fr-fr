@@ -1,0 +1,69 @@
+---
+permalink: tenant/update-default-retention-settings.html 
+sidebar: sidebar 
+keywords: update default retention for s3 object lock bucket, default retention mode, default retention period, compliance, governance 
+summary: 'Si vous avez activé le verrouillage objet S3 lors de la création du compartiment, vous pouvez modifier ce dernier pour modifier les paramètres de conservation par défaut. Vous pouvez activer (ou désactiver) la rétention par défaut et définir un mode de rétention et une période de rétention par défaut.' 
+---
+= Mettre à jour la conservation par défaut du verrouillage d'objet S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous avez activé le verrouillage objet S3 lors de la création du compartiment, vous pouvez modifier ce dernier pour modifier les paramètres de conservation par défaut. Vous pouvez activer (ou désactiver) la rétention par défaut et définir un mode de rétention et une période de rétention par défaut.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gérez tous les compartiments ou l'autorisation d'accès racine"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
+* Le verrouillage des objets S3 est activé globalement pour votre système StorageGRID et vous avez activé le verrouillage des objets S3 lorsque vous avez créé le compartiment. Voir link:using-s3-object-lock.html["Utilisez le verrouillage d'objet S3 pour conserver les objets"].
+
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le nom du compartiment dans la table.
++
+La page des détails du compartiment s'affiche.
+
+. Dans l'onglet *Bucket options*, sélectionnez l'accordéon *S3 Object Lock*.
+. En option, activez ou désactivez *rétention par défaut* pour ce compartiment.
++
+Les modifications de ce paramètre ne s'appliquent pas aux objets qui se trouvent déjà dans le compartiment ni aux objets qui peuvent avoir leurs propres périodes de conservation.
+
+. Si *Default Retention* est activé, spécifiez un *mode de rétention par défaut* pour le compartiment.
++
+[cols="1a,2a"]
+|===
+| Mode de rétention par défaut | Description 
+
+
+ a| 
+La gouvernance
+ a| 
+** Les utilisateurs disposant de l' `s3:BypassGovernanceRetention`autorisation peuvent utiliser l' `x-amz-bypass-governance-retention: true`en-tête de la demande pour contourner les paramètres de rétention.
+** Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+** Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+
+
+ a| 
+La conformité
+ a| 
+** L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+** La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+** La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+*Remarque* : votre administrateur de grille doit vous permettre d'utiliser le mode de conformité.
+
+|===
+. Si *Default Retention* est activé, spécifiez la *période de rétention par défaut* pour le compartiment.
++
+La *période de conservation par défaut* indique la durée pendant laquelle les nouveaux objets ajoutés à ce compartiment doivent être conservés, à partir du moment où ils sont ingérés. Spécifiez une valeur inférieure ou égale à la période de rétention maximale pour le tenant, telle que définie par l'administrateur de la grille.
+
++
+Une période de rétention _maximum_, qui peut être de 1 jour à 100 ans, est définie lorsque l'administrateur de la grille crée le locataire. Lorsque vous définissez une période de rétention _default_, elle ne peut pas dépasser la valeur définie pour la période de rétention maximale. Si nécessaire, demandez à votre administrateur de grille d'augmenter ou de réduire la période de rétention maximale.
+
+. Sélectionnez *Enregistrer les modifications*.
+

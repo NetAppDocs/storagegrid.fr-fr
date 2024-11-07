@@ -1,0 +1,75 @@
+---
+permalink: admin/grid-management-api-operations.html 
+sidebar: sidebar 
+keywords: Grid Management API,  API operations 
+summary: 'L"API Grid Management organise les opérations d"API disponibles dans les sections suivantes.' 
+---
+= Opérations de l'API de gestion du grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'API Grid Management organise les opérations disponibles dans les sections suivantes.
+
+
+NOTE: Cette liste inclut uniquement les opérations disponibles dans l'API publique.
+
+* *Comptes* : opérations de gestion des comptes de locataires de stockage, y compris la création de nouveaux comptes et la récupération de l'utilisation du stockage pour un compte donné.
+* *Alert-history* : opérations sur les alertes résolues.
+* *Alerteurs* : opérations sur les récepteurs de notification d'alerte (e-mail).
+* *Alert-rules* : opérations sur les règles d'alerte.
+* *Silences d'alerte* : opérations sur les silences d'alerte.
+* *Alertes* : opérations sur les alertes.
+* *Audit* : opérations pour répertorier et mettre à jour la configuration de l'audit.
+* *Auth* : opérations pour effectuer l'authentification de session utilisateur.
++
+L'API Grid Management prend en charge le schéma d'authentification par jeton Bearer. Pour vous connecter, vous devez fournir un nom d'utilisateur et un mot de passe dans le corps JSON de la demande d'authentification (c'est-à-dire, `POST /api/v3/authorize`). Si l'utilisateur est authentifié, un jeton de sécurité est renvoyé. Ce token doit être fourni dans l'en-tête des requêtes API suivantes (« autorisation : porteur _token_ »). Le jeton expire au bout de 16 heures.
+
++
+
+NOTE: Si l'authentification unique est activée pour le système StorageGRID, vous devez effectuer différentes étapes pour l'authentification. Reportez-vous à la section « authentification dans l'API si l'authentification unique est activée ».
+
++
+Pour plus d'informations sur l'amélioration de la sécurité de l'authentification, reportez-vous à la section « protection contre la falsification de demandes intersites ».
+
+* *Certificats-client* : opérations permettant de configurer les certificats client afin que StorageGRID soit accessible en toute sécurité à l'aide d'outils de surveillance externes.
+* *Config* : opérations liées à la version du produit et aux versions de l'API Grid Management. Vous pouvez répertorier la version du produit et les principales versions de l'API Grid Management prises en charge par cette version, et désactiver les versions obsolètes de l'API.
+* *Désactivé-features* : opérations permettant d'afficher les fonctions qui auraient pu être désactivées.
+* *dns-servers* : opérations permettant de répertorier et de modifier les serveurs DNS externes configurés.
+* *Drive-details*: Opérations sur les lecteurs pour des modèles de dispositifs de stockage spécifiques.
+* *Endpoint-domain-names* : opérations permettant de répertorier et de modifier les noms de domaine des noeuds finaux S3.
+* *Code d'effacement* : opérations sur les profils de code d'effacement.
+* *Expansion* : opérations d'expansion (au niveau de la procédure).
+* *Noeuds-expansion*: Opérations sur expansion (niveau noeud).
+* *Sites d'expansion* : opérations d'expansion (au niveau du site).
+* *GRID-Networks* : opérations permettant de répertorier et de modifier la liste des réseaux de la grille.
+* *GRID-mots de passe* : opérations pour la gestion des mots de passe de la grille.
+* *Groupes* : opérations permettant de gérer les groupes d'administrateurs de grille locaux et de récupérer les groupes d'administrateurs de grille fédérés à partir d'un serveur LDAP externe.
+* *Identity-source* : opérations permettant de configurer un référentiel d'identité externe et de synchroniser manuellement les informations relatives au groupe fédéré et à l'utilisateur.
+* *ilm* : opérations sur la gestion du cycle de vie de l'information (ILM).
+* *Procédures en cours* : récupère les procédures de maintenance en cours.
+* *License* : opérations de récupération et de mise à jour de la licence StorageGRID.
+* *Logs* : opérations de collecte et de téléchargement des fichiers journaux.v
+* *Metrics* : opérations sur les métriques StorageGRID, y compris les requêtes métriques instantanées à un point dans le temps et les requêtes métriques de plage sur une plage de temps. L'API de gestion du grid utilise l'outil de contrôle des systèmes Prometheus comme source de données back-end. Pour plus d'informations sur la création de requêtes Prometheus, consultez le site Web Prometheus.
++
+
+NOTE: Les mesures qui incluent ``_private_`` dans leur nom sont destinées à un usage interne uniquement. Ces metrics sont susceptibles d'être modifiés sans préavis entre les versions d'StorageGRID.
+
+* *Node-details* : opérations sur les détails de noeud.
+* *Node-Health* : opérations sur l'état d'intégrité du nœud.
+* *État-stockage-noeud* : opérations sur l'état de stockage du noeud.
+* *ntp-servers* : opérations de liste ou de mise à jour des serveurs NTP (Network Time Protocol) externes.
+* *Objets* : opérations sur les objets et les métadonnées des objets.
+* *Récupération* : opérations pour la procédure de récupération.
+* *Recovery-package*: Opérations pour télécharger le progiciel de récupération.
+* *Régions* : opérations pour afficher et créer des régions.
+* *s3-object-lock* : opérations sur les paramètres globaux de verrouillage d'objet S3.
+* *Server-certificate* : opérations pour afficher et mettre à jour les certificats de serveur Grid Manager.
+* *snmp* : opérations sur la configuration SNMP actuelle.
+* *Filigranes de stockage* : filigranes de nœuds de stockage.
+* *Classes de trafic* : opérations pour les politiques de classification du trafic.
+* *Ingest-client-network* : opérations sur la configuration réseau client non fiable.
+* *Utilisateurs* : opérations permettant d'afficher et de gérer les utilisateurs de Grid Manager.
+

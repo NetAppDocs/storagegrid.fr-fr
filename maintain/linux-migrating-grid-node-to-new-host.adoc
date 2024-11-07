@@ -1,0 +1,167 @@
+---
+permalink: maintain/linux-migrating-grid-node-to-new-host.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, linux, migrate node, migrating node, new host for node 
+summary: 'Vous pouvez migrer un ou plusieurs nœuds StorageGRID d"un hôte Linux vers un autre hôte Linux pour effectuer la maintenance de l"hôte sans affecter les fonctionnalités ou la disponibilité de votre réseau.' 
+---
+= Linux : migration du nœud grid vers le nouvel hôte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez migrer un ou plusieurs nœuds StorageGRID d'un hôte Linux (l' _hôte source_) vers un autre hôte Linux (l' _hôte cible_) pour effectuer la maintenance de l'hôte sans affecter les fonctionnalités ou la disponibilité de votre grille.
+
+Par exemple, vous pouvez souhaiter migrer un nœud pour effectuer l'application de correctifs et le redémarrage du système d'exploitation.
+
+.Avant de commencer
+* Vous avez planifié votre déploiement StorageGRID pour inclure une prise en charge de la migration.
++
+** link:../rhel/node-container-migration-requirements.html["Exigences de migration de conteneurs de nœuds pour Red Hat Enterprise Linux"]
+** link:../ubuntu/node-container-migration-requirements.html["Configuration requise pour la migration des conteneurs de nœuds pour Ubuntu ou Debian"]
+
+
+* L'hôte cible est déjà prêt pour l'utilisation de StorageGRID.
+* Le stockage partagé est utilisé pour tous les volumes de stockage par nœud
+* Les interfaces réseau portent des noms cohérents sur tous les hôtes.
+
+
+[NOTE]
+====
+Dans un déploiement de production, n'exécutez pas plus d'un nœud de stockage sur un seul hôte. L'utilisation d'un hôte dédié pour chaque nœud de stockage fournit un domaine de défaillance isolé.
+
+D'autres types de nœuds, tels que les nœuds d'administration ou les nœuds de passerelle, peuvent être déployés sur le même hôte. Toutefois, si vous avez plusieurs nœuds du même type (deux nœuds de passerelle, par exemple), n'installez pas toutes les instances sur le même hôte.
+
+====
+
+
+== Nœud d'exportation à partir de l'hôte source
+
+Dans un premier temps, arrêtez le nœud grid et exportez-le depuis l'hôte Linux source.
+
+Exécutez les commandes suivantes sur l'hôte _source_.
+
+.Étapes
+. Obtenez l'état de tous les nœuds en cours d'exécution sur l'hôte source.
++
+`sudo storagegrid node status all`
+
++
+Exemple de résultat :
+
++
+[listing]
+----
+Name Config-State Run-State
+DC1-ADM1 Configured Running
+DC1-ARC1 Configured Running
+DC1-GW1 Configured Running
+DC1-S1 Configured Running
+DC1-S2 Configured Running
+DC1-S3 Configured Running
+----
+. Identifiez le nom du nœud que vous souhaitez migrer et arrêtez-le si son état d'exécution est en cours d'exécution.
++
+`sudo storagegrid node stop DC1-S3`
+
++
+Exemple de résultat :
+
++
+[listing]
+----
+Stopping node DC1-S3
+Waiting up to 630 seconds for node shutdown
+----
+. Exportez le nœud depuis l'hôte source.
++
+`sudo storagegrid node export DC1-S3`
+
++
+Exemple de résultat :
+
++
+[listing]
+----
+Finished exporting node DC1-S3 to /dev/mapper/sgws-dc1-s3-var-local.
+Use 'storagegrid node import /dev/mapper/sgws-dc1-s3-var-local' if you
+want to import it again.
+----
+. Notez la `import` commande suggérée dans le résultat.
++
+Vous allez exécuter cette commande sur l'hôte cible à l'étape suivante.
+
+
+
+
+
+== Importer le nœud sur l'hôte cible
+
+Après avoir exporté le nœud à partir de l'hôte source, vous importez et validez le nœud sur l'hôte cible. La validation confirme que le nœud a accès aux mêmes périphériques d'interface réseau et de stockage bloc que sur l'hôte source.
+
+Exécutez les commandes suivantes sur l'hôte _cible_.
+
+.Étapes
+. Importez le nœud sur l'hôte cible.
++
+`sudo storagegrid node import /dev/mapper/sgws-dc1-s3-var-local`
+
++
+Exemple de résultat :
+
++
+[listing]
+----
+Finished importing node DC1-S3 from /dev/mapper/sgws-dc1-s3-var-local.
+You should run 'storagegrid node validate DC1-S3'
+----
+. Valider la configuration de nœud sur le nouvel hôte.
++
+`sudo storagegrid node validate DC1-S3`
+
++
+Exemple de résultat :
+
++
+[listing]
+----
+Confirming existence of node DC1-S3... PASSED
+Checking configuration file /etc/storagegrid/nodes/DC1-S3.conf for node DC1-S3... PASSED
+Checking for duplication of unique values... PASSED
+----
+. Si des erreurs de validation se produisent, traitez-les avant de démarrer le nœud migré.
++
+Pour plus d'informations sur le dépannage, reportez-vous aux instructions d'installation de StorageGRID pour votre système d'exploitation Linux.
+
++
+** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
+** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
+
+
+
+
+
+
+== Démarrer le nœud migré
+
+Après avoir validé le nœud migré, vous démarrez le nœud en exécutant une commande sur l'hôte _cible_.
+
+.Étapes
+. Démarrez le nœud sur le nouvel hôte.
++
+`sudo storagegrid node start DC1-S3`
+
+. Connectez-vous au Gestionnaire de grille et vérifiez que l'état du nœud est vert sans alerte.
++
+
+CAUTION: La vérification de l'état du nœud est verte garantit que le nœud migré a redémarré et rejoint la grille. Si l'état n'est pas vert, ne migrez pas les nœuds supplémentaires pour que vous n'ayez plus d'un nœud hors service.
+
+. Si vous ne parvenez pas à accéder au Grid Manager, attendez 10 minutes, puis exécutez la commande suivante :
++
+`sudo storagegrid node status _node-name`
+
++
+Vérifiez que l'état d'exécution du nœud migré est défini sur en cours d'exécution.
+
+

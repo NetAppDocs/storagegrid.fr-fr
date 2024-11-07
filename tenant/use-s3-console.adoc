@@ -1,0 +1,57 @@
+---
+permalink: tenant/use-s3-console.html 
+sidebar: sidebar 
+keywords: how to use s3 console 
+summary: 'Vous pouvez utiliser la console S3 pour afficher et gérer les objets d"un compartiment S3.' 
+---
+= Utiliser la console S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser la console S3 pour afficher et gérer les objets d'un compartiment S3.
+
+Avec la console S3, vous pouvez :
+
+* Télécharger, télécharger, renommer, copier, déplacer, et supprimer des objets
+* Affichez, restaurez, téléchargez et supprimez des versions d'objet
+* Recherche d'objets par préfixe
+* Gérer les balises d'objet
+* Afficher les métadonnées d'objet
+* Afficher, créer, renommer, copier, déplacer, et supprimez des dossiers
+
+
+[NOTE]
+====
+La console S3 améliore l'expérience utilisateur dans les cas les plus courants. Elle n'a pas été conçue pour remplacer les opérations de l'interface de ligne de commande ou de l'API dans tous les cas.
+
+Si les opérations sont trop longues avec la console S3 (en minutes ou en heures, par exemple), tenez compte des points suivants :
+
+* Réduction du nombre d'objets sélectionnés
+* Accédez à vos données à l'aide de méthodes non graphiques (API ou interface de ligne de commande)
+
+
+====
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Si vous souhaitez gérer des objets, vous appartenez à un groupe d'utilisateurs disposant de l'autorisation d'accès racine. Vous pouvez également appartenir à un groupe d'utilisateurs disposant de l'autorisation utiliser l'onglet de la console S3 et de l'autorisation Afficher tous les compartiments ou gérer tous les compartiments. Voir link:tenant-management-permissions.html["Autorisations de gestion des locataires"].
+* Une règle de groupe S3 ou de compartiment a été configurée pour l'utilisateur. Voir link:../s3/bucket-and-group-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"].
+* Vous connaissez l'ID de clé d'accès de l'utilisateur et la clé d'accès secrète. Vous disposez éventuellement d'un `.csv` fichier contenant ces informations. Voir la link:creating-your-own-s3-access-keys.html["instructions pour la création de clés d'accès"].
+
+
+.Étapes
+. Sélectionnez *STORAGE* > *Buckets* > *_bucket name_*.
+. Sélectionnez l'onglet S3 Console.
+. Collez l'ID de clé d'accès et la clé d'accès secrète dans les champs. Sinon, sélectionnez *Télécharger les clés d'accès* et sélectionnez votre `.csv` fichier.
+. Sélectionnez *connexion*.
+. Le tableau des objets de compartiment s'affiche. Vous pouvez gérer les objets selon vos besoins.
+
+
+.Informations supplémentaires
+* *Recherche par préfixe* : la fonction de recherche par préfixe recherche uniquement les objets commençant par un mot spécifique par rapport au dossier en cours. La recherche n'inclut pas les objets qui contiennent le mot ailleurs. Cette règle s'applique également aux objets dans les dossiers. Par exemple, une recherche de `folder1/folder2/somefile-` renvoie des objets se trouvant dans le `folder1/folder2/` dossier et commence par le mot `somefile-`.
+* *Glisser-déposer* : vous pouvez faire glisser et déposer des fichiers du gestionnaire de fichiers de votre ordinateur vers la console S3. Cependant, vous ne pouvez pas télécharger de dossiers.
+* *Opérations sur les dossiers* : lorsque vous déplacez, copiez ou renommez un dossier, tous les objets du dossier sont mis à jour un par un, ce qui peut prendre du temps.
+* *Suppression permanente lorsque la gestion des versions de compartiment est désactivée* : lorsque vous écrasez ou supprimez un objet dans un compartiment avec la gestion des versions désactivée, l'opération est permanente. Voir link:changing-bucket-versioning.html["Modifiez le contrôle de version d'objet pour un compartiment"].
+

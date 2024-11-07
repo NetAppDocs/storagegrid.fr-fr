@@ -1,0 +1,71 @@
+---
+permalink: maintain/restoring-admin-node-database-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, restore admin node database, restore database, primary admin node 
+summary: 'Si vous souhaitez conserver les informations historiques relatives aux attributs et aux alertes sur un nœud d"administration principal qui a échoué, vous pouvez restaurer la base de données du nœud d"administration. Vous ne pouvez restaurer cette base de données que si votre système StorageGRID inclut un autre noeud d"administration.' 
+---
+= Restaurez la base de données du nœud d'administration lors de la récupération du nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous souhaitez conserver les informations historiques relatives aux attributs et aux alertes sur un nœud d'administration principal qui a échoué, vous pouvez restaurer la base de données du nœud d'administration. Vous ne pouvez restaurer cette base de données que si votre système StorageGRID inclut un autre noeud d'administration.
+
+.Avant de commencer
+* Le nœud d'administration récupéré est installé et en cours d'exécution.
+* Le système StorageGRID comprend au moins deux nœuds d'administration.
+* Vous avez le `Passwords.txt` fichier.
+* Vous avez la phrase secrète pour le provisionnement.
+
+
+.Description de la tâche
+En cas de défaillance d'un nœud d'administration, les informations historiques stockées dans sa base de données de nœud d'administration sont perdues. Cette base de données contient les informations suivantes :
+
+* Historique des alertes
+* Données d'attributs historiques, utilisées dans les graphiques de style hérité de la page nœuds
+
+
+Lorsque vous restaurez un noeud d'administration, le processus d'installation du logiciel crée une base de données de noeud d'administration vide sur le noeud récupéré. Toutefois, la nouvelle base de données comprend uniquement les informations pour les serveurs et services qui font actuellement partie du système ou qui sont ajoutés ultérieurement.
+
+Si vous avez restauré un noeud d'administration principal et que votre système StorageGRID dispose d'un autre noeud d'administration, vous pouvez restaurer les informations historiques en copiant la base de données du noeud d'administration d'un noeud d'administration non primaire (le _source Admin Node_) vers le noeud d'administration principal récupéré. Si votre système ne dispose que d'un nœud d'administration principal, vous ne pouvez pas restaurer la base de données du nœud d'administration.
+
+
+NOTE: La copie de la base de données du nœud d'administration peut prendre plusieurs heures. Certaines fonctionnalités de Grid Manager ne seront pas disponibles lorsque les services sont arrêtés sur le nœud d'administration source.
+
+.Étapes
+. Connectez-vous au nœud d'administration source :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+. Depuis le nœud d'administration source, arrêtez le service MI : `service mi stop`
+. Depuis le nœud d'administration source, arrêter le service Management application Program interface (mgmt-api) : `service mgmt-api stop`
+. Effectuez les étapes suivantes sur le nœud d'administration restauré :
++
+.. Connectez-vous au nœud d'administration restauré :
++
+... Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+... Entrez la commande suivante pour basculer en root : `su -`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+.. Arrêtez le service MI : `service mi stop`
+.. Arrêtez le service mgmt-api : `service mgmt-api stop`
+.. Ajoutez la clé privée SSH à l'agent SSH. Entrer :``ssh-add``
+.. Entrez le mot de passe d'accès SSH indiqué dans le `Passwords.txt` fichier.
+.. Copiez la base de données du nœud d'administration source vers le nœud d'administration récupéré : `/usr/local/mi/bin/mi-clone-db.sh Source_Admin_Node_IP`
+.. Lorsque vous y êtes invité, confirmez que vous souhaitez remplacer la base DE données MI sur le nœud d'administration restauré.
++
+La base de données et ses données historiques sont copiées dans le nœud d'administration restauré. Une fois l'opération de copie effectuée, le script démarre le nœud d'administration restauré.
+
+.. Lorsque vous n'avez plus besoin d'un accès sans mot de passe à d'autres serveurs, supprimez la clé privée de l'agent SSH. Entrer :``ssh-add -D``
+
+
+. Redémarrez les services sur le nœud d'administration source : `service servermanager start`
+

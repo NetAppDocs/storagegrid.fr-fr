@@ -1,0 +1,55 @@
+= 
+:allow-uri-read: 
+
+
+. Extraire les artefacts du progiciel de vérification :
++
+`tar -xf StorageGRID_11.9.0_Code_Signature_Verification_Package.tar.gz`
+
+. Assurez-vous que ces artefacts ont été extraits :
++
+** Certificat LEAF : `Leaf-Cert.pem`
+** Chaîne de certificats : `CA-Int-Cert.pem`
+** Chaîne de réponse avec horodatage : `TS-Cert.pem`
+** Fichier checksum : `sha256sum`
+** Signature du checksum : `sha256sum.sig`
+** Fichier de réponse d'horodatage : `sha256sum.sig.tsr`
+
+
+. Utilisez la chaîne pour vérifier que le certificat de lame est valide.
++
+*Exemple* : `openssl verify -CAfile CA-Int-Cert.pem Leaf-Cert.pem`
+
++
+*Sortie attendue* : `Leaf-Cert.pem: OK`
+
+. Si l'étape _2_ a échoué en raison d'un certificat feuille expiré, utilisez le `tsr` fichier pour vérifier.
++
+*Exemple* : `openssl ts -CAfile CA-Int-Cert.pem -untrusted TS-Cert.pem -verify -data sha256sum.sig -in sha256sum.sig.tsr`
+
++
+*La sortie attendue comprend* : `Verification: OK`
+
+. Créez un fichier de clé publique à partir du certificat LEAF.
++
+*Exemple* : `openssl x509 -pubkey -noout -in Leaf-Cert.pem > Leaf-Cert.pub`
+
++
+*Sortie attendue*: _None_
+
+. Utilisez la clé publique pour vérifier le `sha256sum` fichier par rapport à `sha256sum.sig`.
++
+*Exemple* : `openssl dgst -sha256 -verify Leaf-Cert.pub -signature sha256sum.sig sha256sum`
+
++
+*Sortie attendue* : `Verified OK`
+
+. Vérifiez `sha256sum` le contenu du fichier par rapport aux nouveaux checksums.
++
+*Exemple* : `sha256sum -c sha256sum`
+
++
+*Sortie attendue*: `_<filename>_: OK` +
+`_<filename>_` est le nom du fichier d'archive que vous avez téléchargé.
+
+

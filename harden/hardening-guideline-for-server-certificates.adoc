@@ -1,0 +1,53 @@
+---
+permalink: harden/hardening-guideline-for-server-certificates.html 
+sidebar: sidebar 
+keywords: Hardening guidelines, certificates 
+summary: 'Vous devez remplacer les certificats par défaut créés lors de l"installation et sélectionner la stratégie de sécurité appropriée pour les connexions TLS et SSH.' 
+---
+= Instructions de renforcement pour TLS et SSH
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez remplacer les certificats par défaut créés lors de l'installation et sélectionner la stratégie de sécurité appropriée pour les connexions TLS et SSH.
+
+
+
+== Directives de renforcement des certificats
+
+Vous devez remplacer les certificats par défaut créés lors de l'installation par vos propres certificats personnalisés.
+
+Pour de nombreuses organisations, le certificat numérique auto-signé pour l'accès au Web StorageGRID n'est pas conforme à leurs politiques de sécurité de l'information. Sur les systèmes de production, vous devez installer un certificat numérique signé par une autorité de certification pour l'authentification de StorageGRID.
+
+Plus précisément, vous devez utiliser des certificats de serveur personnalisés au lieu de ces certificats par défaut :
+
+* *Certificat d'interface de gestion* : utilisé pour sécuriser l'accès au Grid Manager, au tenant Manager, à l'API Grid Management et à l'API tenant Management.
+* *Certificat API S3* : utilisé pour sécuriser l'accès aux nœuds de stockage et aux nœuds de passerelle, que les applications clientes S3 utilisent pour télécharger et télécharger des données d'objet.
+
+
+Voir link:../admin/using-storagegrid-security-certificates.html["Gérer les certificats de sécurité"] pour plus de détails et d'instructions.
+
+
+NOTE: StorageGRID gère séparément les certificats utilisés pour les terminaux de l'équilibreur de charge. Pour configurer les certificats d'équilibreur de charge, reportez-vous à link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"]la section .
+
+Lorsque vous utilisez des certificats de serveur personnalisés, suivez les instructions suivantes :
+
+* Les certificats doivent avoir un `_subjectAltName_` qui correspond aux entrées DNS pour StorageGRID. Pour plus de détails, reportez-vous à la section 4.2.1.6, « Nom alternatif du sujet », dans https://tools.ietf.org/html/rfc5280#section-4.2.1.6["RFC 5280 : certificat PKIX et profil CRL"^].
+* Si possible, évitez d'utiliser des certificats génériques. À l'exception de cette règle, le certificat d'un terminal de type hébergement virtuel S3 nécessite l'utilisation d'un caractère générique si les noms de compartiment ne sont pas connus à l'avance.
+* Lorsque vous devez utiliser des caractères génériques dans les certificats, vous devez prendre des mesures supplémentaires pour réduire les risques. Utilisez un modèle générique tel que `*.s3.example.com`, et n'utilisez pas le `s3.example.com` suffixe pour d'autres applications. Ce schéma fonctionne également avec l'accès S3 de style chemin d'accès, tel que `dc1-s1.s3.example.com/mybucket`.
+* Définissez les délais d'expiration du certificat sur court (par exemple, 2 mois) et utilisez l'API Grid Management pour automatiser la rotation des certificats. Ceci est particulièrement important pour les certificats génériques.
+
+
+En outre, les clients doivent utiliser un contrôle strict du nom d'hôte lors de la communication avec StorageGRID.
+
+
+
+== Directives de renforcement pour les règles TLS et SSH
+
+Vous pouvez sélectionner une stratégie de sécurité pour déterminer quels protocoles et chiffrements sont utilisés pour établir des connexions TLS sécurisées avec les applications client et des connexions SSH sécurisées avec les services StorageGRID internes.
+
+La règle de sécurité contrôle la façon dont TLS et SSH chiffrent les données en mouvement. Il est recommandé de désactiver les options de cryptage qui ne sont pas nécessaires pour assurer la compatibilité des applications. Utilisez la stratégie moderne par défaut, sauf si votre système doit être conforme aux critères communs ou si vous devez utiliser d'autres chiffrements.
+
+Voir link:../admin/manage-tls-ssh-policy.html["Gestion des règles TLS et SSH"] pour plus de détails et d'instructions.

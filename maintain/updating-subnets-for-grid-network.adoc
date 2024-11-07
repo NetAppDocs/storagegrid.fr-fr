@@ -1,0 +1,83 @@
+---
+permalink: maintain/updating-subnets-for-grid-network.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, subnet, grid network, update subnets 
+summary: 'StorageGRID conserve une liste des sous-réseaux réseau utilisés pour communiquer entre les nœuds de la grille sur le réseau \(eth0\). Ces entrées incluent les sous-réseaux utilisés pour le réseau Grid par chaque site du système StorageGRID, ainsi que tous les sous-réseaux utilisés pour les serveurs NTP, DNS, LDAP ou autres serveurs externes accessibles via la passerelle réseau Grid. Lorsque vous ajoutez des nœuds de grille ou un nouveau site dans une extension, vous devrez peut-être mettre à jour ou ajouter des sous-réseaux au réseau Grid.' 
+---
+= Mise à jour des sous-réseaux pour le réseau Grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID conserve une liste des sous-réseaux réseau utilisés pour communiquer entre les nœuds de la grille sur le réseau Grid (eth0). Ces entrées incluent les sous-réseaux utilisés pour le réseau Grid par chaque site du système StorageGRID, ainsi que tous les sous-réseaux utilisés pour les serveurs NTP, DNS, LDAP ou autres serveurs externes accessibles via la passerelle réseau Grid. Lorsque vous ajoutez des nœuds de grille ou un nouveau site dans une extension, vous devrez peut-être mettre à jour ou ajouter des sous-réseaux au réseau Grid.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Les adresses réseau des sous-réseaux que vous souhaitez configurer sont définies, en notation CIDR.
+
+
+.Description de la tâche
+Si vous effectuez une activité d'extension incluant l'ajout d'un nouveau sous-réseau, vous devez ajouter un nouveau sous-réseau à la liste de sous-réseaux réseau de la grille avant de démarrer la procédure d'extension. Sinon, vous devrez annuler l'extension, ajouter le nouveau sous-réseau et relancer l'extension.
+
+
+
+== Ajoutez un sous-réseau
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *réseau* > *réseau Grid*.
+. Sélectionnez *Ajouter un autre sous-réseau* pour ajouter un nouveau sous-réseau en notation CIDR.
++
+Par exemple, entrez `10.96.104.0/22`.
+
+. Saisissez le mot de passe de provisionnement et sélectionnez *Enregistrer*.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase de passe de provisionnement *.
++
+
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID. Elle permet également de restaurer le nœud d'administration principal.
+
+
+
+
+
+Les sous-réseaux que vous avez spécifiés sont automatiquement configurés pour votre système StorageGRID.
+
+
+
+== Modifier un sous-réseau
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *réseau* > *réseau Grid*.
+. Sélectionnez le sous-réseau à modifier et apportez les modifications nécessaires.
+. Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
+. Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase de passe de provisionnement *.
+
+
+
+
+
+
+== Supprimez un sous-réseau
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *réseau* > *réseau Grid*.
+. Sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"]en regard du sous-réseau.
+. Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
+. Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
++
+.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Saisissez la phrase de passe de provisionnement *.
+
+
+

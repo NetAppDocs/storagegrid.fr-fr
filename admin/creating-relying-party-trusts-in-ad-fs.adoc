@@ -1,0 +1,237 @@
+---
+permalink: admin/creating-relying-party-trusts-in-ad-fs.html 
+sidebar: sidebar 
+keywords: relying party trust, active directory, ad fs, single sign on, sso 
+summary: 'Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une confiance de partie de confiance pour chaque nœud d"administration de votre système. Vous pouvez créer des approbations tierces via les commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant manuellement les données.' 
+---
+= Créer des fiducies de tiers de confiance dans AD FS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une confiance de partie de confiance pour chaque nœud d'administration de votre système. Vous pouvez créer des approbations tierces via les commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant manuellement les données.
+
+.Avant de commencer
+* Vous avez configuré l'authentification unique pour StorageGRID et sélectionné *AD FS* comme type SSO.
+* *Sandbox mode* est sélectionné sur la page Single Sign-on dans Grid Manager. Voir link:../admin/using-sandbox-mode.html["Utiliser le mode sandbox"].
+* Vous connaissez le nom de domaine complet (ou l'adresse IP) et l'identifiant de partie comptant pour chaque nœud d'administration de votre système. Ces valeurs sont disponibles dans le tableau des détails des nœuds d'administration de la page d'ouverture de session unique StorageGRID.
++
+
+NOTE: Vous devez créer une confiance en tiers pour chaque nœud d'administration de votre système StorageGRID. Le fait d'avoir une confiance de partie de confiance pour chaque nœud d'administration permet aux utilisateurs de se connecter et de se déconnecter en toute sécurité à n'importe quel nœud d'administration.
+
+* Vous avez l'expérience de créer des approbations de tiers de confiance dans AD FS, ou vous avez accès à la documentation Microsoft AD FS.
+* Vous utilisez le composant logiciel enfichable AD FS Management et vous appartenez au groupe administrateurs.
+* Si vous créez manuellement la confiance de la partie utilisatrices, vous disposez du certificat personnalisé chargé pour l'interface de gestion StorageGRID, ou vous savez comment vous connecter à un nœud d'administration à partir du shell de commande.
+
+
+.Description de la tâche
+Ces instructions s'appliquent à Windows Server 2016 AD FS. Si vous utilisez une version différente d'AD FS, vous remarquerez de légères différences dans la procédure. Pour toute question, consultez la documentation Microsoft AD FS.
+
+
+
+== Créez une confiance en vous appuyant sur Windows PowerShell
+
+Vous pouvez utiliser Windows PowerShell pour créer rapidement une ou plusieurs approbations de parties qui font confiance.
+
+.Étapes
+. Dans le menu Démarrer de Windows, sélectionnez l'icône PowerShell avec le bouton droit de la souris et sélectionnez *Exécuter en tant qu'administrateur*.
+. À l'invite de commande PowerShell, saisissez la commande suivante :
++
+`Add-AdfsRelyingPartyTrust -Name "_Admin_Node_Identifer_" -MetadataURL "https://_Admin_Node_FQDN_/api/saml-metadata"`
+
++
+** Pour `_Admin_Node_Identifier_`, entrez l'identificateur de partie utilisatrice pour le noeud Admin, exactement comme il apparaît sur la page Single Sign-On. Par exemple `SG-DC1-ADM1`, .
+** Pour `_Admin_Node_FQDN_`, entrez le nom de domaine complet pour le même noeud d'administration. (Si nécessaire, vous pouvez utiliser l'adresse IP du nœud à la place. Toutefois, si vous saisissez une adresse IP ici, sachez que vous devez mettre à jour ou recréer cette confiance de partie de confiance si cette adresse IP change.)
+
+
+. Dans le Gestionnaire de serveur Windows, sélectionnez *Outils* > *AD FS Management*.
++
+L'outil de gestion AD FS s'affiche.
+
+. Sélectionnez *AD FS* > *confiance de la partie de confiance*.
++
+La liste des fiducies de tiers de confiance s'affiche.
+
+. Ajouter une stratégie de contrôle d'accès à la confiance de la partie qui vient d'être créée :
++
+.. Recherchez la confiance de la partie de confiance que vous venez de créer.
+.. Cliquez avec le bouton droit de la souris sur la confiance et sélectionnez *Modifier la stratégie de contrôle d'accès*.
+.. Sélectionnez une stratégie de contrôle d'accès.
+.. Sélectionnez *appliquer*, puis *OK*
+
+
+. Ajouter une politique d'émission de demandes de remboursement à la nouvelle fiducie de compte comptant :
++
+.. Recherchez la confiance de la partie de confiance que vous venez de créer.
+.. Cliquez avec le bouton droit de la souris sur la fiducie et sélectionnez *Modifier la politique d'émission des sinistres*.
+.. Sélectionnez *Ajouter règle*.
+.. Sur la page Sélectionner un modèle de règle, sélectionnez *Envoyer attributs LDAP en tant que revendications* dans la liste et sélectionnez *Suivant*.
+.. Sur la page configurer la règle, entrez un nom d'affichage pour cette règle.
++
+Par exemple, *objectGUID à ID de nom* ou *UPN à ID de nom*.
+
+.. Pour le magasin d'attributs, sélectionnez *Active Directory*.
+.. Dans la colonne attribut LDAP de la table mappage, tapez *objectGUID* ou sélectionnez *User-principal-Name*.
+.. Dans la colonne Type de demande sortante de la table mappage, sélectionnez *Nom ID* dans la liste déroulante.
+.. Sélectionnez *Terminer* et sélectionnez *OK*.
+
+
+. Confirmez que les métadonnées ont été importées avec succès.
++
+.. Cliquez avec le bouton droit de la souris sur la confiance de la partie utilisatrices pour ouvrir ses propriétés.
+.. Vérifiez que les champs des onglets *Endpoints*, *identificateurs* et *Signature* sont renseignés.
++
+Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées de fédération est correcte ou entrez les valeurs manuellement.
+
+
+
+. Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
+. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode Sandbox"] pour obtenir des instructions.
+
+
+
+
+== Créez une confiance de partie de confiance en vous important des métadonnées de fédération
+
+Vous pouvez importer les valeurs de chaque confiance de fournisseur en accédant aux métadonnées SAML de chaque nœud d'administration.
+
+.Étapes
+. Dans le Gestionnaire de serveur Windows, sélectionnez *Outils*, puis *AD FS Management*.
+. Sous actions, sélectionnez *Ajouter la confiance de la partie de confiance*.
+. Sur la page de bienvenue, choisissez *revendications Aware* et sélectionnez *Démarrer*.
+. Sélectionnez *Importer les données concernant la partie de confiance publiée en ligne ou sur un réseau local*.
+. Dans *adresse de métadonnées de fédération (nom d'hôte ou URL)*, saisissez l'emplacement des métadonnées SAML pour ce noeud d'administration :
++
+`https://_Admin_Node_FQDN_/api/saml-metadata`
+
++
+Pour `_Admin_Node_FQDN_`, entrez le nom de domaine complet pour le même noeud d'administration. (Si nécessaire, vous pouvez utiliser l'adresse IP du nœud à la place. Toutefois, si vous saisissez une adresse IP ici, sachez que vous devez mettre à jour ou recréer cette confiance de partie de confiance si cette adresse IP change.)
+
+. Terminez l'assistant confiance de la partie de confiance, enregistrez la confiance de la partie de confiance et fermez l'assistant.
++
+
+NOTE: Lors de la saisie du nom d'affichage, utilisez l'identificateur de partie comptant pour le noeud d'administration, exactement comme il apparaît sur la page d'ouverture de session unique dans le Gestionnaire de grille. Par exemple `SG-DC1-ADM1`, .
+
+. Ajouter une règle de sinistre :
++
+.. Cliquez avec le bouton droit de la souris sur la fiducie et sélectionnez *Modifier la politique d'émission des sinistres*.
+.. Sélectionnez *Ajouter règle* :
+.. Sur la page Sélectionner un modèle de règle, sélectionnez *Envoyer attributs LDAP en tant que revendications* dans la liste et sélectionnez *Suivant*.
+.. Sur la page configurer la règle, entrez un nom d'affichage pour cette règle.
++
+Par exemple, *objectGUID à ID de nom* ou *UPN à ID de nom*.
+
+.. Pour le magasin d'attributs, sélectionnez *Active Directory*.
+.. Dans la colonne attribut LDAP de la table mappage, tapez *objectGUID* ou sélectionnez *User-principal-Name*.
+.. Dans la colonne Type de demande sortante de la table mappage, sélectionnez *Nom ID* dans la liste déroulante.
+.. Sélectionnez *Terminer* et sélectionnez *OK*.
+
+
+. Confirmez que les métadonnées ont été importées avec succès.
++
+.. Cliquez avec le bouton droit de la souris sur la confiance de la partie utilisatrices pour ouvrir ses propriétés.
+.. Vérifiez que les champs des onglets *Endpoints*, *identificateurs* et *Signature* sont renseignés.
++
+Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées de fédération est correcte ou entrez les valeurs manuellement.
+
+
+
+. Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
+. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode Sandbox"] pour obtenir des instructions.
+
+
+
+
+== Créer une confiance de partie de confiance manuellement
+
+Si vous choisissez de ne pas importer les données pour les approbations de pièces de confiance, vous pouvez entrer les valeurs manuellement.
+
+.Étapes
+. Dans le Gestionnaire de serveur Windows, sélectionnez *Outils*, puis *AD FS Management*.
+. Sous actions, sélectionnez *Ajouter la confiance de la partie de confiance*.
+. Sur la page de bienvenue, choisissez *revendications Aware* et sélectionnez *Démarrer*.
+. Sélectionnez *Entrez les données relatives à la partie de confiance manuellement* et sélectionnez *Suivant*.
+. Suivez l'assistant confiance de la partie de confiance :
++
+.. Entrez un nom d'affichage pour ce nœud d'administration.
++
+Pour plus de cohérence, utilisez l'identifiant de partie utilisatrices du nœud d'administration, exactement comme il apparaît sur la page Single Sign-On du Grid Manager. Par exemple `SG-DC1-ADM1`, .
+
+.. Ignorez l'étape pour configurer un certificat de chiffrement de jeton facultatif.
+.. Sur la page configurer l'URL, cochez la case *Activer la prise en charge du protocole SAML 2.0 WebSSO*.
+.. Saisissez l'URL du noeud final du service SAML pour le noeud d'administration :
++
+`https://_Admin_Node_FQDN_/api/saml-response`
+
++
+Pour `_Admin_Node_FQDN_`, entrez le nom de domaine complet du nœud d'administration. (Si nécessaire, vous pouvez utiliser l'adresse IP du nœud à la place. Toutefois, si vous saisissez une adresse IP ici, sachez que vous devez mettre à jour ou recréer cette confiance de partie de confiance si cette adresse IP change.)
+
+.. Sur la page configurer les identificateurs, spécifiez l'identificateur de partie de confiance pour le même noeud d'administration :
++
+`_Admin_Node_Identifier_`
+
++
+Pour `_Admin_Node_Identifier_`, entrez l'identificateur de partie utilisatrice pour le noeud Admin, exactement comme il apparaît sur la page Single Sign-On. Par exemple `SG-DC1-ADM1`, .
+
+.. Vérifiez les paramètres, enregistrez la confiance de la partie utilisatrices et fermez l'assistant.
++
+La boîte de dialogue Modifier la politique d'émission des demandes de remboursement s'affiche.
+
++
+
+NOTE: Si la boîte de dialogue ne s'affiche pas, cliquez avec le bouton droit de la souris sur la fiducie et sélectionnez *Modifier la politique d'émission des sinistres*.
+
+
+
+. Pour démarrer l'assistant règle de sinistre, sélectionnez *Ajouter règle* :
++
+.. Sur la page Sélectionner un modèle de règle, sélectionnez *Envoyer attributs LDAP en tant que revendications* dans la liste et sélectionnez *Suivant*.
+.. Sur la page configurer la règle, entrez un nom d'affichage pour cette règle.
++
+Par exemple, *objectGUID à ID de nom* ou *UPN à ID de nom*.
+
+.. Pour le magasin d'attributs, sélectionnez *Active Directory*.
+.. Dans la colonne attribut LDAP de la table mappage, tapez *objectGUID* ou sélectionnez *User-principal-Name*.
+.. Dans la colonne Type de demande sortante de la table mappage, sélectionnez *Nom ID* dans la liste déroulante.
+.. Sélectionnez *Terminer* et sélectionnez *OK*.
+
+
+. Cliquez avec le bouton droit de la souris sur la confiance de la partie utilisatrices pour ouvrir ses propriétés.
+. Dans l'onglet *Endpoints*, configurez le noeud final pour une déconnexion unique (SLO) :
++
+.. Sélectionnez *Ajouter SAML*.
+.. Sélectionnez *Endpoint Type* > *SAML Logout*.
+.. Sélectionnez *Redirect* > *Redirect*.
+.. Dans le champ *URL de confiance*, entrez l'URL utilisée pour la déconnexion unique (SLO) à partir de ce noeud d'administration :
++
+`https://_Admin_Node_FQDN_/api/saml-logout`
+
++
+Pour `_Admin_Node_FQDN_`, entrez le nom de domaine complet du nœud d'administration. (Si nécessaire, vous pouvez utiliser l'adresse IP du nœud à la place. Toutefois, si vous saisissez une adresse IP ici, sachez que vous devez mettre à jour ou recréer cette confiance de partie de confiance si cette adresse IP change.)
+
+.. Sélectionnez *OK*.
+
+
+. Dans l'onglet *Signature*, spécifiez le certificat de signature pour la fiducie de cette partie de confiance :
++
+.. Ajouter le certificat personnalisé :
++
+*** Si vous disposez du certificat de gestion personnalisé que vous avez téléchargé vers StorageGRID, sélectionnez ce certificat.
+*** Si vous ne disposez pas du certificat personnalisé, connectez-vous au nœud d'administration, accédez au `/var/local/mgmt-api` répertoire du nœud d'administration et ajoutez le `custom-server.crt` fichier de certificat.
++
+
+NOTE: L'utilisation du certificat par défaut du nœud d'administration (`server.crt`) n'est pas recommandée. Si le nœud d'administration échoue, le certificat par défaut sera régénéré lorsque vous restaurez le nœud et vous devrez mettre à jour la confiance de l'organisme de confiance.
+
+
+
+.. Sélectionnez *appliquer*, puis *OK*.
++
+Les propriétés de la partie de confiance sont enregistrées et fermées.
+
+
+
+. Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
+. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode sandbox"] pour obtenir des instructions.
+

@@ -1,0 +1,52 @@
+---
+permalink: ilm/workflow-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: object lock workflow 
+summary: 'En tant qu"administrateur du grid, vous devez coordonner étroitement avec les utilisateurs des locataires pour assurer la protection des objets conformément aux exigences de conservation.' 
+---
+= Tâches de verrouillage d'objet S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur du grid, vous devez coordonner étroitement avec les utilisateurs des locataires pour assurer la protection des objets conformément aux exigences de conservation.
+
+
+NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut prendre 15 minutes ou plus en fonction de la connectivité réseau, de l'état du nœud et des opérations Cassandra.
+
+Les listes suivantes destinées aux administrateurs du grid et aux utilisateurs de locataires contiennent des tâches de haut niveau relatives à l'utilisation de la fonction S3 Object Lock.
+
+Administrateur du grid::
++
+--
+* Activez le paramètre de verrouillage d'objet S3 global pour l'ensemble du système StorageGRID.
+* Assurez-vous que les politiques de gestion du cycle de vie des informations (ILM) sont _conformes_; c'est-àlink:../ilm/managing-objects-with-s3-object-lock.html["Exigences des compartiments avec le verrouillage objet S3 activé"]-dire qu'elles respectent le .
+* Si nécessaire, autorisez un locataire à utiliser le mode de conservation Compliance. Sinon, seul le mode gouvernance est autorisé.
+* Si nécessaire, définissez une période de conservation maximale pour un locataire.
+
+
+--
+Utilisateur locataire::
++
+--
+* Considérations relatives aux compartiments et aux objets avec le verrouillage d'objet S3
+* Si nécessaire, contactez l'administrateur de la grille pour activer le paramètre global S3 Object Lock et définir les autorisations.
+* Créez des compartiments avec le verrouillage d'objet S3 activé.
+* Vous pouvez également configurer les paramètres de conservation par défaut d'un compartiment :
++
+** Mode de conservation par défaut : gouvernance ou conformité, si l'administrateur du grid l'autorise.
+** Période de conservation par défaut : doit être inférieure ou égale à la période de conservation maximale définie par l'administrateur du grid.
+
+
+* Utilisez l'application client S3 pour ajouter des objets et définir éventuellement la conservation propre à l'objet :
++
+** Mode de rétention. Gouvernance ou conformité, si l'administrateur du grid l'autorise.
+** Conserver la date de fin : doit être inférieur ou égal à ce qui est autorisé par la période de conservation maximale définie par l'administrateur de la grille.
+
+
+
+
+--
+

@@ -1,0 +1,156 @@
+---
+section: audit
+title: Examiner les journaux d'audit
+entries:
+- title: Journaux et messages d'audit
+  pdf-filename: Examiner les journaux d'audit StorageGRID
+  url: "/audit/index.html"
+- title: Flux et conservation des messages d'audit
+  url: "/audit/audit-message-flow-and-retention.html"
+- title: Accéder au fichier journal d'audit
+  url: "/audit/accessing-audit-log-file.html"
+- title: Rotation du fichier journal d'audit
+  url: "/audit/audit-log-file-rotation.html"
+- title: Format du fichier journal d'audit
+  entries:
+  - title: Exemple de format de journal d'audit
+    pdf-filename: Format du fichier journal d'audit
+    url: "/audit/audit-log-file-format.html"
+  - title: Utiliser l'outil d'explication d'audit
+    url: "/audit/using-audit-explain-tool.html"
+  - title: Utiliser l'outil audit-sum
+    url: "/audit/using-audit-sum-tool.html"
+- title: Format du message d'audit
+  entries:
+  - title: Exemple de message d'audit
+    pdf-filename: Format du message d'audit
+    url: "/audit/audit-message-format.html"
+  - title: Types de données
+    url: "/audit/data-types.html"
+  - title: Données spécifiques à un événement
+    url: "/audit/event-specific-data.html"
+  - title: Éléments communs dans les messages d'audit
+    url: "/audit/common-elements-in-audit-messages.html"
+  - title: Exemples de messages d'audit
+    url: "/audit/audit-message-examples.html"
+- title: Messages d'audit et cycle de vie de l'objet
+  entries:
+  - title: Quand un message d'audit est-il généré ?
+    url: "/audit/audit-messages-and-object-lifecycle.html"
+  - title: Transactions d'ingestion d'objets
+    url: "/audit/object-ingest-transactions.html"
+  - title: Transactions de suppression d'objet
+    url: "/audit/object-delete-transactions.html"
+  - title: Transactions de récupération d'objet
+    url: "/audit/object-retrieve-transactions.html"
+  - title: Messages de mise à jour des métadonnées
+    url: "/audit/metadata-update-messages.html"
+- title: Messages d'audit
+  entries:
+  - title: Descriptions des messages
+    pdf-filename: Messages d'audit
+    url: "/audit/audit-messages-main.html"
+  - title: Catégories de messages d'audit
+    entries:
+    - title: Messages d'audit système
+      url: "/audit/system-audit-messages.html"
+    - title: Messages d'audit du stockage objet
+      url: "/audit/object-storage-audit-messages.html"
+    - title: Messages d'audit de lecture du client
+      url: "/audit/client-read-audit-messages.html"
+    - title: Écrire des messages d'audit client
+      url: "/audit/client-write-audit-messages.html"
+    - title: Message d'audit de gestion
+      url: "/audit/management-audit-message.html"
+    - title: Messages d'audit ILM
+      url: "/audit/ilm-audit-messages.html"
+  - title: Référence du message d'audit
+    entries:
+    - title: 'BROR : demande en lecture seule du compartiment'
+      url: "/audit/bror-bucket-read-only-request.html"
+    - title: 'CBRB : début de la réception de l''objet'
+      url: "/audit/cbrb-object-receive-begin.html"
+    - title: 'CBRE : fin de la réception de l''objet'
+      url: "/audit/cbre-object-receive-end.html"
+    - title: 'CBSB : début de l''envoi de l''objet'
+      url: "/audit/cbsb-object-send-begin.html"
+    - title: 'CBSE : fin de l''envoi de l''objet'
+      url: "/audit/cbse-object-send-end.html"
+    - title: 'CGRR : demande de réplication croisée'
+      url: "/audit/cgrr-cross-grid-replication-request.html"
+    - title: 'EBDL : suppression du compartiment vide'
+      url: "/audit/ebdl-empty-bucket-delete.html"
+    - title: 'EBKR : demande de godet vide'
+      url: "/audit/ebkr-empty-bucket-request.html"
+    - title: 'ECMC : fragment de données avec code d''effacement manquant'
+      url: "/audit/ecmc-missing-erasure-coded-data-fragment.html"
+    - title: 'ECOC : fragment de données avec code d''effacement corrompu'
+      url: "/audit/ecoc-corrupt-erasure-coded-data-fragment.html"
+    - title: 'ETAF : échec de l''authentification de sécurité'
+      url: "/audit/etaf-security-authentication-failed.html"
+    - title: 'GNRG : enregistrement GNDS'
+      url: "/audit/gnrg-gnds-registration.html"
+    - title: 'GNUR : non-inscription du GNDS'
+      url: "/audit/gnur-gnds-unregistration.html"
+    - title: 'GTED : tâche de grille terminée'
+      url: "/audit/gted-grid-task-ended.html"
+    - title: 'GTST : tâche de grille démarrée'
+      url: "/audit/gtst-grid-task-started.html"
+    - title: 'GTSU : tâche de grille soumise'
+      url: "/audit/gtsu-grid-task-submitted.html"
+    - title: 'IDEL : suppression initiée ILM'
+      url: "/audit/idel-ilm-initiated-delete.html"
+    - title: 'LKCU : nettoyage d''objet écrasé'
+      url: "/audit/lkcu-overwritten-object-cleanup.html"
+    - title: 'LKDM : nettoyage d''objets fuyée'
+      url: "/audit/lkdm-leaked-object-cleanup.html"
+    - title: 'LLST : emplacement perdu'
+      url: "/audit/llst-location-lost.html"
+    - title: 'MGAU : message d''audit de gestion'
+      url: "/audit/mgau-management-audit-message.html"
+    - title: 'OLST : le système a détecté un objet perdu'
+      url: "/audit/olst-system-detected-lost-object.html"
+    - title: 'ORLM : règles d''objet respectées'
+      url: "/audit/orlm-object-rules-met.html"
+    - title: 'OVWR : remplacement d''objet'
+      url: "/audit/ovwr-object-overwrite.html"
+    - title: 'S3SL: Demande S3 Select'
+      url: "/audit/s3-select-request.html"
+    - title: 'SADD : désactivation de l''audit de sécurité'
+      url: "/audit/sadd-security-audit-disable.html"
+    - title: 'SADE : activation de l''audit de sécurité'
+      url: "/audit/sade-security-audit-enable.html"
+    - title: 'SCMT : validation du magasin d''objets'
+      url: "/audit/scmt-object-store-commit.html"
+    - title: 'SDEL : SUPPRESSION S3'
+      url: "/audit/sdel-s3-delete.html"
+    - title: 'SGET : OBTENEZ S3'
+      url: "/audit/sget-s3-get.html"
+    - title: 'SHEA : TÊTE S3'
+      url: "/audit/shea-s3-head.html"
+    - title: 'SPO : BORNE S3'
+      url: "/audit/spos-s3-post.html"
+    - title: 'SPUT : PUT S3'
+      url: "/audit/sput-s3-put.html"
+    - title: 'SREM : Suppression du magasin d''objets'
+      url: "/audit/srem-object-store-remove.html"
+    - title: 'SUPD : métadonnées S3 mises à jour'
+      url: "/audit/supd-s3-metadata-updated.html"
+    - title: 'SVRF : échec de la vérification du magasin d''objets'
+      url: "/audit/svrf-object-store-verify-fail.html"
+    - title: 'SVRU : Vérification du magasin d''objets inconnue'
+      url: "/audit/svru-object-store-verify-unknown.html"
+    - title: 'SYSD : arrêt du nœud'
+      url: "/audit/sysd-node-stop.html"
+    - title: 'SYST : arrêt du nœud'
+      url: "/audit/syst-node-stopping.html"
+    - title: 'SYSU : démarrage du nœud'
+      url: "/audit/sysu-node-start.html"
+    - title: 'WDEL : SUPPRESSION rapide'
+      url: "/audit/wdel-swift-delete.html"
+    - title: 'WGET: SWIFT GET'
+      url: "/audit/wget-swift-get.html"
+    - title: 'WHEA: TÊTE SWIFT'
+      url: "/audit/whea-swift-head.html"
+    - title: 'WPUT : PUT SWIFT'
+      url: "/audit/wput-swift-put.html"

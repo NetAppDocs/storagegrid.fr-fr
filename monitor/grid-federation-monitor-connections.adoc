@@ -1,0 +1,120 @@
+---
+permalink: monitor/grid-federation-monitor-connections.html 
+sidebar: sidebar 
+keywords: grid federation, monitor connection, cross grid replication metrics 
+summary: 'Vous pouvez contrôler les informations de base sur toutes les connexions de fédération de grille, des informations détaillées sur une connexion spécifique ou des metrics Prometheus sur les opérations de réplication entre les grilles. Vous pouvez surveiller une connexion à partir de l"une ou l"autre des grilles.' 
+---
+= Surveiller les connexions de fédération de grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez surveiller des informations de base sur tous link:../admin/grid-federation-overview.html["connexions de fédération de grille"], des informations détaillées sur une connexion spécifique ou des metrics Prometheus sur les opérations de réplication entre les grilles. Vous pouvez surveiller une connexion à partir de l'une ou l'autre des grilles.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille sur l'une des grilles à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"] pour la grille à laquelle vous êtes connecté.
+
+
+
+
+== Afficher toutes les connexions
+
+La page Grid federation affiche des informations de base sur toutes les connexions de fédération de grille et sur tous les comptes de locataire autorisés à utiliser les connexions de fédération de grille.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
++
+La page grid federation s'affiche.
+
+. Pour afficher des informations de base sur toutes les connexions de cette grille, sélectionnez l'onglet *connexions*.
++
+À partir de cet onglet, vous pouvez :
+
++
+** link:../admin/grid-federation-create-connection.html["Créer une nouvelle connexion"].
+** Sélectionnez une connexion existante à link:../admin/grid-federation-manage-connection.html["modifier ou tester"].
+
+
++
+image::../media/grid-federation-connections-tab.png[Onglet Grid federation Connections]
+
+. Pour afficher les informations de base de tous les comptes de locataires de cette grille disposant de l'autorisation *utiliser la connexion de fédération de grille*, sélectionnez l'onglet *locataires autorisés*.
++
+À partir de cet onglet, vous pouvez :
+
++
+** link:../monitor/monitoring-tenant-activity.html["Afficher la page de détails pour chaque locataire autorisé"].
+** Afficher la page de détails de chaque connexion. Voir <<view-specific-connection,Afficher une connexion spécifique>>.
+** Sélectionnez un locataire autorisé et link:../admin/grid-federation-manage-tenants.html["supprimez l'autorisation"].
+** Vérifiez la présence d'erreurs de réplication inter-grille et effacez la dernière erreur, le cas échéant. Voir link:../admin/grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
++
+image::../media/grid-federation-permitted-tenants-tab.png[Onglet Grid federation permis tenants]
+
+
+
+
+
+
+
+== [[View-specific-connection]]permet d'afficher une connexion spécifique
+
+Vous pouvez afficher les détails d'une connexion de fédération de grille spécifique.
+
+.Étapes
+. Sélectionnez l'un des onglets de la page fédération de grille, puis sélectionnez le nom de la connexion dans le tableau.
++
+Dans la page de détails de la connexion, vous pouvez :
+
++
+** Consultez les informations d'état de base sur la connexion, y compris les noms d'hôtes locaux et distants, le port et l'état de la connexion.
+** Sélectionnez une connexion à link:../admin/grid-federation-manage-connection.html["modifier, tester ou supprimer"].
+
+
+. Lors de l'affichage d'une connexion spécifique, sélectionnez l'onglet *locataires autorisés* pour afficher des détails sur les locataires autorisés pour la connexion.
++
+À partir de cet onglet, vous pouvez :
+
++
+** link:../monitor/monitoring-tenant-activity.html["Afficher la page de détails pour chaque locataire autorisé"].
+** link:../admin/grid-federation-manage-tenants.html["Supprimer l'autorisation d'un locataire"] pour utiliser la connexion.
+** Recherchez les erreurs de réplication inter-grille et effacez la dernière erreur. Voir link:../admin/grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
++
+image::../media/grid-federation-permitted-tenants-tab-for-connection.png[grid-federation-permit-tenants-tab-for-connection]
+
+
+
+. Lors de l'affichage d'une connexion spécifique, sélectionnez l'onglet *certificats* pour afficher les certificats de serveur et de client générés par le système pour cette connexion.
++
+À partir de cet onglet, vous pouvez :
+
++
+** link:../admin/grid-federation-manage-connection.html["Faire pivoter les certificats de connexion"].
+** Sélectionnez *Server* ou *client* pour afficher ou télécharger le certificat associé ou copier le certificat PEM.
++
+image::../media/grid-federation-certificates-tab.png[onglet-certificats-fédération-grid]
+
+
+
+
+
+
+
+== Examinez les metrics de réplication entre les grilles
+
+Vous pouvez utiliser le tableau de bord de réplication Cross-Grid de Grafana pour afficher les metrics Prometheus sur les opérations de réplication cross-grid sur votre grille.
+
+.Étapes
+. Dans le Gestionnaire de grille, sélectionnez *SUPPORT* > *Outils* > *métriques*.
++
+
+NOTE: Les outils disponibles sur la page métriques sont destinés au support technique. Certaines fonctions et options de menu de ces outils sont intentionnellement non fonctionnelles et peuvent faire l'objet de modifications. Voir la liste de link:../monitor/commonly-used-prometheus-metrics.html["Metrics Prometheus couramment utilisés"].
+
+. Dans la section Grafana de la page, sélectionnez *Cross Grid Replication*.
++
+Pour des instructions détaillées, voir link:../monitor/reviewing-support-metrics.html["Examinez les metrics de support"].
+
+. Pour réessayer la réplication d'objets qui n'ont pas pu être répliqués, reportez-vous à la section link:../admin/grid-federation-retry-failed-replication.html["Identifier et réessayer les opérations de réplication ayant échoué"].
+

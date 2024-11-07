@@ -1,0 +1,30 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,2a"]
+|===
+| Mode de rétention par défaut | Description 
+
+
+ a| 
+La gouvernance
+ a| 
+* Les utilisateurs disposant de l' `s3:BypassGovernanceRetention`autorisation peuvent utiliser l' `x-amz-bypass-governance-retention: true`en-tête de la demande pour contourner les paramètres de rétention.
+* Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+* Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+
+
+ a| 
+La conformité
+ a| 
+* L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+* La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+* La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+*Remarque* : votre administrateur de grille doit vous permettre d'utiliser le mode de conformité.
+
+|===

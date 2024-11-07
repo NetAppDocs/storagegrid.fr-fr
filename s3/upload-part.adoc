@@ -1,0 +1,60 @@
+---
+permalink: s3/upload-part.html 
+sidebar: sidebar 
+keywords: s3 UploadPart operation 
+summary: 'L"opération UploadPart télécharge une pièce dans un téléchargement partitionné pour un objet.' 
+---
+= UploadPart
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'opération UploadPart télécharge une pièce dans un téléchargement partitionné pour un objet.
+
+
+
+== En-têtes de demande pris en charge
+
+Les en-têtes de requête suivants sont pris en charge :
+
+* `x-amz-checksum-sha256`
+* `Content-Length`
+* `Content-MD5`
+
+
+
+
+== Demander des en-têtes pour le cryptage côté serveur
+
+Si vous avez spécifié le cryptage SSE-C pour la demande CreateMultipartUpload, vous devez également inclure les en-têtes de requête suivants dans chaque demande UploadPart :
+
+* `x-amz-server-side-encryption-customer-algorithm`: Spécifiez `AES256`.
+* `x-amz-server-side-encryption-customer-key`: Spécifiez la même clé de cryptage que celle que vous avez fournie dans la demande CreateMultipartUpload.
+* `x-amz-server-side-encryption-customer-key-MD5`: Spécifiez le même résumé MD5 que celui que vous avez fourni dans la demande CreateMultipartUpload.
+
+
+
+CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. Si vous perdez une clé de chiffrement, vous perdez l'objet correspondant. Avant d'utiliser des clés fournies par le client pour sécuriser les données d'objet, consultez les considérations de la section link:using-server-side-encryption.html["Utilisez le cryptage côté serveur"].
+
+Si vous avez spécifié une somme de contrôle SHA-256 lors de la demande CreateMultipartUpload, vous devez également inclure l'en-tête de requête suivant dans chaque demande UploadPart :
+
+* `x-amz-checksum-sha256`: Spécifiez la somme de contrôle SHA-256 pour cette partie.
+
+
+
+
+== En-têtes de requête non pris en charge
+
+Les en-têtes de demande suivants ne sont pas pris en charge :
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+== Gestion des versions
+
+Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.

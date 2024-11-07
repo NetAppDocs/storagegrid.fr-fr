@@ -1,0 +1,56 @@
+---
+permalink: maintain/rebooting-grid-node-from-grid-manager.html 
+sidebar: sidebar 
+keywords: reboot grid node, tasks tab 
+summary: 'Vous pouvez redémarrer un nœud de grid individuel à partir de l"onglet tâches de la page nœuds.' 
+---
+= Redémarrez le nœud de la grille à partir de l'onglet tâches
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez redémarrer un nœud de grid individuel à partir de l'onglet tâches de la page nœuds.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Si vous redémarrez le nœud d'administration principal ou tout nœud de stockage, vous avez examiné les points suivants :
++
+** Lorsque vous redémarrez le nœud d'administration principal, votre navigateur perd temporairement l'accès au gestionnaire de grille.
+** Si vous redémarrez au moins deux nœuds de stockage sur un site donné, il se peut que vous ne puissiez pas accéder à certains objets pendant la durée du redémarrage. Ce problème peut se produire si une règle ILM utilise l'option d'acquisition *Dual Commit* (ou si une règle indique *Balanced* et qu'il n'est pas possible de créer immédiatement toutes les copies requises). Dans ce cas, StorageGRID engagera des objets récemment ingérés dans deux nœuds de stockage sur le même site et évaluera ILM plus tard.
+** Pour vous assurer que vous pouvez accéder à tous les objets lors du redémarrage d'un nœud de stockage, arrêtez de les ingérer sur un site pendant environ une heure avant de redémarrer le nœud.
+
+
+
+
+.Description de la tâche
+Lorsque StorageGRID redémarre un nœud grid, elle émet la `reboot` commande sur le nœud, ce qui provoque l'arrêt et le redémarrage du nœud. Tous les services sont redémarrés automatiquement.
+
+* Le redémarrage d'un nœud VMware redémarre la machine virtuelle.
+* Le redémarrage d'un nœud Linux redémarre le conteneur.
+* Le redémarrage d'un nœud d'appliance StorageGRID redémarre le contrôleur de calcul.
+
+
+
+TIP: Si vous devez redémarrer plusieurs nœuds, vous pouvez utiliser le link:../maintain/rolling-reboot-procedure.html["procédure de redémarrage en roulant"].
+
+.Étapes
+. Sélectionnez *NOEUDS*.
+. Sélectionnez le nœud de grille que vous souhaitez redémarrer.
+. Sélectionnez l'onglet *tâches*.
+. Sélectionnez *Reboot*.
++
+Une boîte de dialogue de confirmation s'affiche. Si vous redémarrez le nœud d'administration principal, la boîte de dialogue de confirmation vous rappelle que la connexion de votre navigateur au Grid Manager sera interrompue temporairement lorsque les services sont arrêtés.
+
+. Entrez la phrase de passe de provisionnement et sélectionnez *OK*.
+. Attendez que le nœud redémarre.
++
+La fermeture des services peut prendre un certain temps.
+
++
+Lorsque le nœud redémarre, l'icône grise (arrêt administratif) s'affiche pour le nœud sur la page nœuds. Lorsque tous les services ont redémarré et que le nœud est correctement connecté à la grille, la page nœuds doit afficher l'état normal (aucune icône à gauche du nom du nœud), ce qui indique qu'aucune alerte n'est active et que le nœud est connecté à la grille.
+
+

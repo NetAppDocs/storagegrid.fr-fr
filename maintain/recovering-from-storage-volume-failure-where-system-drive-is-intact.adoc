@@ -1,0 +1,26 @@
+---
+permalink: maintain/recovering-from-storage-volume-failure-where-system-drive-is-intact.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage volume failure, volume failure, system drive intact 
+summary: Vous devez effectuer une série de tâches pour restaurer un nœud de stockage logiciel dans lequel un ou plusieurs volumes de stockage du nœud de stockage sont défaillants, mais le lecteur système est intact. Si seuls les volumes de stockage ont échoué, le nœud de stockage est toujours disponible pour le système StorageGRID. 
+---
+= Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez effectuer une série de tâches pour restaurer un nœud de stockage logiciel dans lequel un ou plusieurs volumes de stockage du nœud de stockage sont défaillants, mais le lecteur système est intact. Si seuls les volumes de stockage ont échoué, le nœud de stockage est toujours disponible pour le système StorageGRID.
+
+
+NOTE: Cette procédure de restauration s'applique uniquement aux nœuds de stockage basés sur logiciel. Si les volumes de stockage ont échoué sur un nœud de stockage de l'appliance, utilisez la procédure de l'appliance : link:recovering-storagegrid-appliance-storage-node.html["Restaurez le nœud de stockage de l'appliance"].
+
+Cette procédure de restauration comprend les tâches suivantes :
+
+* link:reviewing-warnings-about-storage-volume-recovery.html["Passez en revue les avertissements relatifs à la récupération du volume de stockage"]
+* link:identifying-and-unmounting-failed-storage-volumes.html["Identifiez et démontez les volumes de stockage défectueux"]
+* link:recovering-failed-storage-volumes-and-rebuilding-cassandra-database.html["Récupérez les volumes et reconstruisez la base de données Cassandra"]
+* link:restoring-object-data-to-storage-volume-where-system-drive-is-intact.html["Restaurez les données d'objet"]
+* link:checking-storage-state-after-recovering-storage-volumes.html["Vérifiez l'état de stockage"]
+

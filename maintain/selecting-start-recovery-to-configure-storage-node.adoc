@@ -1,0 +1,63 @@
+---
+permalink: maintain/selecting-start-recovery-to-configure-storage-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage node 
+summary: Après avoir remplacé un noeud de stockage, vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer le nouveau noeud en remplacement du noeud défaillant. 
+---
+= Sélectionnez Démarrer la restauration pour configurer le nœud de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir remplacé un noeud de stockage, vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer le nouveau noeud en remplacement du noeud défaillant.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Vous avez déployé et configuré le nœud de remplacement.
+* Vous disposez de la date de début des travaux de réparation pour les données avec code d'effacement.
+* Vous avez vérifié que le nœud de stockage n'a pas été reconstruit au cours des 15 derniers jours.
+
+
+.Description de la tâche
+Si le nœud de stockage est installé en tant que conteneur sur un hôte Linux, vous devez effectuer cette étape uniquement si l'un d'entre eux est vrai :
+
+* Vous deviez utiliser l' `--force`indicateur pour importer le nœud, ou vous avez émis `storagegrid node force-recovery _node-name_`
+* Vous deviez réinstaller un nœud complet ou restaurer /var/local.
+
+
+.Étapes
+. Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *récupération*.
+. Sélectionnez le nœud de grille à récupérer dans la liste nœuds en attente.
++
+Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pas sélectionner un nœud tant qu'il n'a pas été réinstallé et qu'il est prêt pour la restauration.
+
+. Saisissez la phrase de passe de provisionnement *.
+. Cliquez sur *Démarrer la récupération*.
++
+image::../media/4b_select_recovery_node.png[Capture d'écran affichant la page Maintenance > récupération]
+
+. Surveiller la progression de la récupération dans le tableau de noeuds de grille de récupération.
++
+
+NOTE: Pendant l'exécution de la procédure de récupération, vous pouvez cliquer sur *Réinitialiser* pour lancer une nouvelle restauration. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
+
++
+image::../media/recovery_reset_warning.gif[capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration]
+
++
+Si vous souhaitez relancer la restauration après avoir réinitialisé la procédure, vous devez restaurer l'état pré-installé du nœud, comme suit :
+
++
+** *VMware* : supprimez le nœud de grille virtuelle déployé. Ensuite, lorsque vous êtes prêt à redémarrer la restauration, redéployez le nœud.
+** *Linux* : redémarrez le nœud en exécutant cette commande sur l'hôte Linux : `storagegrid node force-recovery _node-name_`
+
+
+. Lorsque le nœud de stockage atteint l'étape « en attente des étapes manuelles », passez à link:remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]l' .
++
+image::../media/recovery_reset_button.gif[capture d'écran indiquant l'étape « attente des étapes manuelles »]
+
+

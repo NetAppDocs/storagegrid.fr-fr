@@ -1,0 +1,100 @@
+---
+permalink: maintain/step-3-revise-ilm-policy.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, revise ilm policies 
+summary: 'A partir de l"étape 3 \(réviser les règles ILM\) de l"assistant site de désaffectation, vous pouvez déterminer si le site est référencé par une stratégie ILM.' 
+---
+= Étape 3 : révision des règles ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A partir de l'étape 3 (réviser les règles ILM) de l'assistant site de désaffectation, vous pouvez déterminer si le site est référencé par une stratégie ILM.
+
+.Avant de commencer
+Vous avez une bonne compréhension de link:../ilm/index.html["Gestion des objets avec la solution ILM"]la façon de . Vous connaissez déjà la création de pools de stockage et de règles ILM, ainsi que la simulation et l'activation d'une stratégie ILM.
+
+.Description de la tâche
+StorageGRID ne peut pas désaffecter un site si une règle ILM dans n'importe quelle règle (active ou inactive) fait référence à ce site.
+
+Si une règle ILM fait référence au site que vous souhaitez désaffecter, vous devez supprimer ces règles ou les modifier pour qu'elles répondent aux exigences suivantes :
+
+* Protégez intégralement toutes les données d'objet.
+* Ne faites pas référence au site que vous êtes en train de désaffecter.
+* N'utilisez pas de pools de stockage faisant référence au site ou l'option tous les sites.
+* N'utilisez pas les profils de code d'effacement qui font référence au site.
+* N'utilisez pas la règle Make 2 copies à partir d'installations StorageGRID 11.6 ou antérieures.
+
+
+
+CAUTION: Ne créez jamais de règle ILM à copie unique pour la suppression d'un site. La règle ILM de création d'une seule copie répliquée pendant toute période met les données à risque de perte permanente. Si une seule copie répliquée d'un objet existe, cet objet est perdu en cas de défaillance ou d'erreur importante d'un noeud de stockage. De plus, lors des procédures de maintenance telles que les mises à niveau, l'accès à l'objet est temporairement perdu.
+
+
+TIP: Si vous effectuez une _désaffectation de site connecté_, vous devez tenir compte de la manière dont StorageGRID doit gérer les données d'objet actuellement sur le site que vous souhaitez supprimer. Selon vos exigences en matière de protection des données, de nouvelles règles peuvent déplacer les données d'objet existantes vers d'autres sites ou supprimer toute copie d'objet supplémentaire qui n'est plus nécessaire.
+
+Contactez le support technique si vous avez besoin d'aide pour concevoir une nouvelle politique.
+
+.Étapes
+. À partir de l'étape 3 (réviser les règles ILM), déterminez si des règles ILM font référence au site que vous avez choisi de désaffecter.
+. Si aucune stratégie n'est répertoriée, sélectionnez *Suivant* pour accéder à link:step-4-remove-ilm-references.html["Étape 4 : supprimer les références ILM"].
+. Si une ou plusieurs règles ILM _active_ sont répertoriées, clonez chaque règle existante ou créez de nouvelles règles qui ne référencent pas le site mis hors service :
++
+.. Sélectionnez le lien de la règle dans la colonne Nom de la règle.
++
+La page de détails de la politique ILM s'affiche dans un nouvel onglet de navigateur. La page site de désaffection reste ouverte dans l'onglet autre.
+
+.. Suivez les directives et instructions suivantes si nécessaire :
++
+*** Utilisation des règles ILM :
++
+**** link:../ilm/creating-storage-pool.html["Créez un ou plusieurs pools de stockage"] qui ne font pas référence au site.
+**** link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Modifier ou remplacer des règles"] qui se rapportent au site.
++
+
+NOTE: Ne sélectionnez pas la règle *make 2 copies* car cette règle utilise le pool de stockage *All Storage Nodes*, qui n'est pas autorisé.
+
+
+
+*** Utilisation des règles ILM :
++
+**** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#clone-ilm-policy["Cloner une règle ILM existante"] ou link:../ilm/creating-ilm-policy.html["Création d'une règle ILM"].
+**** Assurez-vous que la règle par défaut et les autres règles ne font pas référence au site.
++
+
+CAUTION: Vous devez confirmer que les règles ILM sont dans l'ordre correct. Lorsque la stratégie est activée, les objets nouveaux et existants sont évalués par les règles dans l'ordre indiqué, à partir du haut.
+
+
+
+
+
+.. Ingérer des objets de test et simuler la règle pour s'assurer que les règles correctes sont appliquées.
++
+
+CAUTION: Les erreurs de la règle ILM peuvent entraîner des pertes de données irrécupérables. Examinez attentivement et simulez la stratégie avant de l'activer pour confirmer qu'elle fonctionnera comme prévu.
+
++
+
+CAUTION: Lorsque vous activez une nouvelle règle ILM, StorageGRID l'utilise pour gérer tous les objets, y compris les objets existants et les objets récemment ingérées. Avant d'activer une nouvelle règle ILM, vérifiez toutes les modifications du placement des objets répliqués et soumis au code d'effacement. La modification de l'emplacement d'un objet existant peut entraîner des problèmes de ressources temporaires lorsque les nouveaux placements sont évalués et implémentés.
+
+.. Activez les nouvelles stratégies et assurez-vous que les anciennes sont inactives.
++
+Si vous souhaitez activer plusieurs stratégies, link:../ilm/creating-ilm-policy.html#activate-ilm-policy["Suivez la procédure de création des balises de règles ILM"].
+
++
+Si vous effectuez une mise hors service du site connecté, StorageGRID commence à supprimer les données d'objet du site sélectionné dès que vous activez la nouvelle règle ILM. Le déplacement ou la suppression de toutes les copies d'objet peut prendre plusieurs semaines. Vous pouvez démarrer en toute sécurité une mise hors service d'un site alors que les données d'objet existent toujours sur le site. Toutefois, la procédure de mise hors service est plus rapide et avec moins de perturbations et d'impacts sur les performances si vous permet de déplacer les données depuis le site avant de démarrer la procédure de mise hors service (En sélectionnant *Start Decommission* à l'étape 5 de l'assistant).
+
+
+
+. Pour chaque règle _inactive_, modifiez-la ou supprimez-la en sélectionnant d'abord le lien de chaque règle comme décrit dans les étapes précédentes.
++
+** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#edit-ilm-policy["Modifiez la stratégie"] il ne fait donc pas référence au site à mettre hors service.
+** link:../ilm/working-with-ilm-rules-and-ilm-policies.html#remove-ilm-policy["Supprimer une stratégie"].
+
+
+. Lorsque vous avez terminé d'apporter des modifications aux règles et règles ILM, plus aucune règle ne doit être répertoriée à l'étape 3 (réviser les règles ILM). Sélectionnez *Suivant*.
++
+L'étape 4 (Supprimer les références ILM) s'affiche.
+
+

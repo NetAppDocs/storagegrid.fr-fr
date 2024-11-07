@@ -1,0 +1,41 @@
+---
+permalink: rhel/overview-of-installation-rest-api.html 
+sidebar: sidebar 
+keywords: installation overview red hat linux 
+summary: 'StorageGRID fournit l"API d"installation StorageGRID pour effectuer des tâches d"installation.' 
+---
+= Installation de l'API REST
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID fournit l'API d'installation StorageGRID pour effectuer des tâches d'installation.
+
+L'API utilise la plate-forme swagger open source API pour fournir la documentation de l'API. Swagger permet aux développeurs et aux non-développeurs d'interagir avec l'API dans une interface utilisateur qui illustre la façon dont l'API répond aux paramètres et aux options. Cette documentation suppose que vous êtes familiarisé avec les technologies Web standard et le format de données JSON.
+
+
+CAUTION: Toutes les opérations d'API que vous effectuez à l'aide de la page Web Documentation de l'API sont des opérations en direct. Veillez à ne pas créer, mettre à jour ou supprimer des données de configuration ou d'autres données par erreur.
+
+Chaque commande de l'API REST inclut l'URL de l'API, une action HTTP, tous les paramètres d'URL requis ou facultatifs et une réponse de l'API attendue.
+
+
+
+== API d'installation de StorageGRID
+
+L'API d'installation de StorageGRID n'est disponible que lors de la configuration initiale du système StorageGRID et si vous devez effectuer une restauration du nœud d'administration principal. L'API d'installation est accessible via HTTPS depuis le Grid Manager.
+
+Pour accéder à la documentation de l'API, accédez à la page Web d'installation sur le nœud d'administration principal et sélectionnez *aide* > *documentation de l'API* dans la barre de menus.
+
+L'API d'installation de StorageGRID comprend les sections suivantes :
+
+* *Config* -- opérations liées à la version du produit et aux versions de l'API. Vous pouvez lister la version du produit ainsi que les versions principales de l'API prises en charge par cette version.
+* *Grid* -- opérations de configuration au niveau de la grille. Vous pouvez obtenir et mettre à jour les paramètres de la grille, y compris les détails de la grille, les sous-réseaux de la grille, les mots de passe de la grille et les adresses IP des serveurs NTP et DNS.
+* *Noeuds* -- opérations de configuration au niveau des noeuds. Vous pouvez récupérer une liste de nœuds de la grille, supprimer un nœud de la grille, configurer un nœud de la grille, afficher un nœud de la grille et réinitialiser la configuration d'un nœud de la grille.
+* *Provision* -- opérations de provisionnement. Vous pouvez démarrer l'opération de provisionnement et afficher l'état de cette opération.
+* *Recovery* -- opérations de restauration du noeud d'administration principal. Vous pouvez réinitialiser les informations, télécharger le progiciel de restauration, démarrer la récupération et afficher l'état de l'opération de récupération.
+* *Progiciel de récupération* -- opérations pour télécharger le progiciel de récupération.
+* *Sites* -- opérations de configuration au niveau du site. Vous pouvez créer, afficher, supprimer et modifier un site.
+* *Mot de passe temporaire* -- opérations sur le mot de passe temporaire pour sécuriser l'api de gestion pendant l'installation.
+

@@ -1,0 +1,66 @@
+---
+permalink: admin/controlling-access-through-firewalls.html 
+sidebar: sidebar 
+keywords: firewall access, firewall ports, external firewall 
+summary: Vous pouvez ouvrir ou fermer des ports spécifiques au niveau du pare-feu externe. 
+---
+= Contrôler l'accès au niveau du pare-feu externe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ouvrir ou fermer des ports spécifiques au niveau du pare-feu externe.
+
+Vous pouvez contrôler l'accès aux interfaces utilisateur et aux API des nœuds d'administration StorageGRID en ouvrant ou en fermant des ports spécifiques au pare-feu externe. Par exemple, vous pouvez empêcher les locataires de se connecter à Grid Manager au niveau du pare-feu, en plus d'utiliser d'autres méthodes pour contrôler l'accès au système.
+
+Si vous souhaitez configurer le pare-feu interne StorageGRID, reportez-vous à la section link:../admin/configure-firewall-controls.html["Configurer le pare-feu interne"].
+
+[cols="1a,1a,2a"]
+|===
+| Port | Description | Si le port est ouvert... 
+
+
+ a| 
+443
+ a| 
+Port HTTPS par défaut pour les nœuds d'administration
+ a| 
+Les navigateurs Web et les clients d'API de gestion peuvent accéder à Grid Manager, à l'API de gestion du grid, au gestionnaire des locataires et à l'API de gestion des locataires.
+
+*Remarque :* le port 443 est également utilisé pour un trafic interne.
+
+
+
+ a| 
+8443
+ a| 
+Port restreint de Grid Manager sur les nœuds d'administration
+ a| 
+* Les navigateurs Web et les clients d'API de gestion peuvent accéder à Grid Manager et à l'API de gestion Grid via HTTPS.
+* Les navigateurs Web et les clients de l'API de gestion ne peuvent pas accéder au gestionnaire de locataires ou à l'API de gestion des locataires.
+* Les demandes de contenu interne seront rejetées.
+
+
+
+
+ a| 
+9443
+ a| 
+Port de gestionnaire de locataires restreint sur les nœuds d'administration
+ a| 
+* Les navigateurs Web et les clients d'API de gestion peuvent accéder au Gestionnaire de locataires et à l'API de gestion des locataires via HTTPS.
+* Les navigateurs Web et les clients API de gestion ne peuvent pas accéder à Grid Manager ou à l'API Grid Management.
+* Les demandes de contenu interne seront rejetées.
+
+
+|===
+
+TIP: L'authentification unique (SSO) n'est pas disponible sur les ports du gestionnaire de grille restreinte ou du gestionnaire de locataires. Vous devez utiliser le port HTTPS par défaut (443) si vous souhaitez que les utilisateurs s'authentifient avec une connexion unique.
+
+.Informations associées
+* link:signing-in-to-grid-manager.html["Connectez-vous au Grid Manager"]
+* link:creating-tenant-account.html["Créer un compte de locataire"]
+* link:../network/external-communications.html["Communications externes"]
+

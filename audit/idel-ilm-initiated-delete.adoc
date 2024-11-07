@@ -1,0 +1,161 @@
+---
+permalink: audit/idel-ilm-initiated-delete.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, IDEL, ILM Initiated Delete 
+summary: 'Ce message est généré lorsque ILM démarre le processus de suppression d"un objet.' 
+---
+= IDEL : suppression initiée ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque ILM démarre le processus de suppression d'un objet.
+
+Le message IDEL est généré dans l'une ou l'autre des situations suivantes :
+
+* *Pour les objets dans des compartiments S3 conformes* : ce message est généré lorsque ILM démarre le processus de suppression automatique d'un objet parce que sa période de conservation a expiré (en supposant que le paramètre de suppression automatique est activé et que la conservation légale est désactivée).
+* *Pour les objets dans les compartiments S3 non conformes*. Ce message est généré lorsque ILM démarre le processus de suppression d'un objet, car aucune instruction de placement dans les règles ILM actives ne s'applique actuellement à cet objet.
+
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+CBID de l'objet.
+
+
+
+ a| 
+CMPA
+ a| 
+Conformité : suppression automatique
+ a| 
+Pour les objets des compartiments S3 uniquement. 0 (false) ou 1 (true), indiquant si un objet conforme doit être supprimé automatiquement à la fin de sa période de conservation, à moins que le compartiment ne soit soumis à une conservation légale.
+
+
+
+ a| 
+CMPL
+ a| 
+Conformité : obligation légale
+ a| 
+Pour les objets des compartiments S3 uniquement. 0 (faux) ou 1 (vrai), indiquant si le godet est actuellement en attente légale.
+
+
+
+ a| 
+CMPR
+ a| 
+Conformité : période de conservation
+ a| 
+Pour les objets des compartiments S3 uniquement. Durée de conservation de l'objet en minutes.
+
+
+
+ a| 
+CTME
+ a| 
+Conformité : temps d'entrée
+ a| 
+Pour les objets des compartiments S3 uniquement. Temps d'ingestion de l'objet. Vous pouvez ajouter la période de conservation en minutes à cette valeur pour déterminer quand l'objet peut être supprimé du compartiment.
+
+
+
+ a| 
+DMRM
+ a| 
+Supprimer l'ID de version de marqueur
+ a| 
+ID de version du marqueur de suppression créé lors de la suppression d'un objet d'un compartiment multiversion. Les opérations sur les compartiments n'incluent pas ce champ.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet en octets.
+
+
+
+ a| 
+EMPLACEMENTS
+ a| 
+Emplacements
+ a| 
+L'emplacement de stockage des données d'objet dans le système StorageGRID. La valeur des EMPLACEMENTS est "" si l'objet n'a pas d'emplacement (par exemple, il a été supprimé).
+
+CLEC : pour les objets avec code d'effacement, l'ID de profil de code d'effacement et l'ID de groupe de codes d'effacement appliqués aux données de l'objet.
+
+CLDI : pour les objets répliqués, l'ID de nœud LDR et l'ID de volume de l'emplacement de l'objet.
+
+CLNL : ID de nœud D'ARC de l'emplacement de l'objet si les données de l'objet sont archivées.
+
+
+
+ a| 
+CHEMIN
+ a| 
+Compartiment/clé S3
+ a| 
+Nom du compartiment S3 et nom de la clé S3.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Résultat de l'opération ILM.
+
+SUC : l'opération ILM a réussi.
+
+
+
+ a| 
+RÈGLE
+ a| 
+Libellé de règles
+ a| 
+* Si un objet d'un compartiment S3 conforme est supprimé automatiquement car sa période de conservation a expiré, ce champ est vide.
+* Si l'objet est supprimé car il n'y a plus d'instructions de placement qui s'appliquent actuellement à l'objet, ce champ affiche l'étiquette lisible par l'homme de la dernière règle ILM appliquée à l'objet.
+
+
+
+
+ a| 
+SGRP
+ a| 
+Site (groupe)
+ a| 
+S'il est présent, l'objet a été supprimé sur le site spécifié, ce qui n'est pas le site où l'objet a été ingéré.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet dans le système StorageGRID.
+
+
+
+ a| 
+VSID
+ a| 
+ID de version
+ a| 
+ID de version de la version spécifique d'un objet qui a été supprimé. Les opérations sur les compartiments et les objets dans les compartiments non versionnés n'incluent pas ce champ.
+
+|===

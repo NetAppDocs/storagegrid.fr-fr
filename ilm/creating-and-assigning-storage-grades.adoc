@@ -1,0 +1,65 @@
+---
+permalink: ilm/creating-and-assigning-storage-grades.html 
+sidebar: sidebar 
+keywords: what is a storage grade, create storage grade 
+summary: Les niveaux de stockage identifient le type de stockage utilisé par un nœud de stockage. Vous pouvez créer des classes de stockage si vous souhaitez que les règles ILM placent certains objets sur certains nœuds de stockage. 
+---
+= Créer et attribuer des notes de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les niveaux de stockage identifient le type de stockage utilisé par un nœud de stockage. Vous pouvez créer des classes de stockage si vous souhaitez que les règles ILM placent certains objets sur certains nœuds de stockage.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Lorsque vous installez StorageGRID pour la première fois, le niveau de stockage *par défaut* est automatiquement attribué à chaque nœud de stockage de votre système. Si nécessaire, vous pouvez définir des niveaux de stockage personnalisés et les attribuer à différents nœuds de stockage.
+
+L'utilisation de niveaux de stockage personnalisés vous permet de créer des pools de stockage ILM qui ne contiennent qu'un type spécifique de nœud de stockage. Vous pouvez, par exemple, stocker certains objets sur les nœuds de stockage les plus rapides, comme les appliances de stockage 100 % Flash StorageGRID.
+
+
+NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir uniquement les métadonnées d'objet, pas les données d'objet. Un niveau de stockage ne peut pas être attribué aux nœuds de stockage de métadonnées uniquement. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
+Si le niveau de stockage n'est pas un problème (par exemple, tous les nœuds de stockage sont identiques), vous pouvez ignorer cette procédure et utiliser la sélection *inclut tous les niveaux de stockage* pour le niveau de stockage lorsque vous link:creating-storage-pool.html["créer des pools de stockage"]. Cette sélection permet de s'assurer que le pool de stockage inclura chaque nœud de stockage sur le site, quel que soit son niveau de stockage.
+
+
+NOTE: Ne créez pas plus de niveaux de stockage que nécessaire. Par exemple, ne créez pas de niveau de stockage pour chaque nœud de stockage. Attribuez plutôt chaque catégorie de stockage à deux nœuds ou plus. Des types de stockage attribués à un seul nœud peuvent entraîner des backlog ILM si ce nœud est indisponible.
+
+.Étapes
+. Sélectionnez *ILM* > *grades de stockage*.
+. Définissez des niveaux de stockage personnalisés :
++
+.. Pour chaque classe de stockage personnalisée que vous souhaitez ajouter, sélectionnez *Insérer* image:../media/icon_nms_insert.gif["insérer l'icône"] pour ajouter une ligne.
+.. Saisissez un libellé descriptif.
++
+image::../media/editing_storage_grades.gif[Notes de stockage]
+
+.. Sélectionnez *appliquer les modifications*.
+.. Si vous avez besoin de modifier une étiquette enregistrée, sélectionnez *Modifier* image:../media/icon_nms_edit.gif["icône modifier"] et sélectionnez *appliquer les modifications*.
++
+
+NOTE: Vous ne pouvez pas supprimer des niveaux de stockage.
+
+
+
+. Attribuez de nouveaux niveaux de stockage aux nœuds de stockage :
++
+.. Localisez le noeud de stockage dans la liste LDR et sélectionnez son icône *Edit* image:../media/icon_nms_edit.gif["icône modifier"].
+.. Sélectionnez le niveau de stockage approprié dans la liste.
++
+image::../media/assigning_storage_grades_to_storage_nodes.gif[Notes de stockage]
+
++
+
+NOTE: Attribuez une note de stockage à un nœud de stockage donné une seule fois. La récupération d'un nœud de stockage suite à une défaillance permet de conserver la qualité de stockage précédemment attribuée. Ne modifiez pas cette affectation une fois la politique ILM activée. Si l'affectation est modifiée, les données sont stockées selon le nouveau niveau de stockage.
+
+.. Sélectionnez *appliquer les modifications*.
+
+
+

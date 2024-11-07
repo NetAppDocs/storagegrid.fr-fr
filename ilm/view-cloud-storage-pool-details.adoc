@@ -1,0 +1,43 @@
+---
+permalink: ilm/view-cloud-storage-pool-details.html 
+sidebar: sidebar 
+keywords: view cloud storage pool 
+summary: 'Vous pouvez afficher les détails d"un pool de stockage cloud pour déterminer où il est utilisé et voir quels nœuds et niveaux de stockage sont inclus.' 
+---
+= Afficher les détails du pool de stockage cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez afficher les détails d'un pool de stockage cloud pour déterminer où il est utilisé et voir quels nœuds et niveaux de stockage sont inclus.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *ILM* > *Storage pools* > *Cloud Storage pools*.
++
+Le tableau pools de stockage cloud inclut les informations suivantes pour chaque pool de stockage cloud, y compris les nœuds de stockage :
+
++
+** *Nom* : le nom d'affichage unique du pool.
+** *URI* : l'identificateur de ressource uniforme du pool de stockage cloud.
+** *Type de fournisseur* : quel fournisseur de cloud est utilisé pour ce pool de stockage cloud.
+** *Container* : nom du compartiment utilisé pour le pool de stockage cloud.
+** *Utilisation ILM*: Comment le pool est actuellement utilisé. Un pool de stockage cloud peut être inutilisé ou être utilisé dans une ou plusieurs règles ILM, profils de code d'effacement, ou les deux.
+** *Dernière erreur* : dernière erreur détectée lors d'une vérification de l'intégrité de ce pool de stockage cloud.
+
+
+. Pour afficher les détails d'un pool de stockage cloud spécifique, sélectionnez son nom.
++
+La page de détails du pool s'affiche.
+
+. Consultez l'onglet *Authentication* pour en savoir plus sur le type d'authentification pour ce pool de stockage cloud et pour modifier les détails de l'authentification.
+. Consultez l'onglet *Vérification du serveur* pour en savoir plus sur les détails de la vérification, modifier la vérification, télécharger un nouveau certificat ou copier le certificat PEM.
+. Consultez l'onglet *ILM usage* pour déterminer si le pool de stockage cloud est actuellement utilisé dans des règles ILM ou des profils de code d'effacement.
+. Vous pouvez également accéder à la page *ILM rules* link:working-with-ilm-rules-and-ilm-policies.html["découvrez et gérez toutes les règles"]qui utilise le pool de stockage cloud.
+

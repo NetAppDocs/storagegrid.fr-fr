@@ -1,0 +1,43 @@
+---
+permalink: s3/deprecated-bucket-requests-for-legacy-compliance.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, deprecated bucket requests 
+summary: 'Vous devrez peut-être utiliser l"API REST StorageGRID S3 pour gérer les compartiments qui ont été créés à l"aide de la fonctionnalité de conformité héritée.' 
+---
+= Demandes de compartiment obsolètes pour la conformité des anciennes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être utiliser l'API REST StorageGRID S3 pour gérer les compartiments qui ont été créés à l'aide de la fonctionnalité de conformité héritée.
+
+
+
+== Fonction de conformité obsolète
+
+La fonctionnalité de conformité StorageGRID disponible dans les versions précédentes d'StorageGRID est obsolète et a été remplacée par le verrouillage d'objet S3.
+
+Si vous avez précédemment activé le paramètre de conformité globale, le paramètre de verrouillage d'objet S3 global est activé dans StorageGRID 11.6. Vous ne pouvez plus créer de compartiments avec la conformité activée. Toutefois, si nécessaire, vous pouvez utiliser l'API REST StorageGRID S3 pour gérer tous les compartiments conformes existants.
+
+* link:use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
+* link:../ilm/index.html["Gestion des objets avec ILM"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^]
+
+
+Demandes de conformité obsolètes :
+
+* link:../s3/deprecated-put-bucket-request-modifications-for-compliance.html["Obsolète - METTRE les modifications de la demande de godet à des fins de conformité"]
++
+L'élément XML SGCompliance est obsolète. Auparavant, vous pouviez inclure cet élément personnalisé StorageGRID dans le corps de demande XML facultatif de requêtes Put Bucket pour créer un compartiment conforme.
+
+* link:../s3/deprecated-get-bucket-compliance-request.html["Obsolète : OBTENEZ la conformité des compartiments"]
++
+La demande DE conformité DE GET Bucket est obsolète. Cependant, vous pouvez continuer à utiliser cette demande pour déterminer les paramètres de conformité actuellement en vigueur pour un compartiment compatible existant.
+
+* link:../s3/deprecated-put-bucket-compliance-request.html["Obsolète : conformité DES compartiments PUT"]
++
+La demande DE conformité DE PUT Bucket est obsolète. Cependant, vous pouvez continuer à utiliser cette demande pour modifier les paramètres de conformité d'un compartiment conforme existant. Par exemple, vous pouvez placer un compartiment existant en attente légale ou augmenter sa période de conservation.
+
+

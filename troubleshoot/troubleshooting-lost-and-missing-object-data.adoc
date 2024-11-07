@@ -1,0 +1,26 @@
+---
+permalink: troubleshoot/troubleshooting-lost-and-missing-object-data.html 
+sidebar: sidebar 
+keywords: how to troubleshoot lost object data, how to troubleshoot missing object data 
+summary: 'Les objets peuvent être récupérés pour plusieurs raisons, y compris les demandes de lecture provenant d"une application client, les vérifications en arrière-plan des données d"objet répliquées, les réévaluations ILM et la restauration des données d"objet lors de la restauration d"un nœud de stockage.' 
+---
+= Dépanner les données d'objet perdues ou manquantes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les objets peuvent être récupérés pour plusieurs raisons, y compris les demandes de lecture provenant d'une application client, les vérifications en arrière-plan des données d'objet répliquées, les réévaluations ILM et la restauration des données d'objet lors de la restauration d'un nœud de stockage.
+
+Le système StorageGRID utilise les informations d'emplacement dans les métadonnées d'un objet pour déterminer l'emplacement à partir duquel vous souhaitez récupérer l'objet. Si une copie de l'objet n'est pas trouvée à l'emplacement prévu, le système tente de récupérer une autre copie de l'objet à partir d'un autre emplacement du système, en supposant que la règle ILM contient une règle permettant de créer au moins deux copies de l'objet.
+
+Si cette récupération réussit, le système StorageGRID remplace la copie manquante de l'objet. Sinon, l'alerte *objets perdus* est déclenchée comme suit :
+
+* Pour les copies répliquées, si une autre copie ne peut pas être récupérée, l'objet est considéré comme perdu et l'alerte est déclenchée.
+* Pour les copies avec code d'effacement, si une copie ne peut pas être récupérée à partir de l'emplacement attendu, l'attribut copies corrompues détectées (ECOR) est incrémenté d'une copie avant qu'une tentative de récupération d'une copie ne soit effectuée à partir d'un autre emplacement. Si aucune autre copie n'est trouvée, l'alerte est déclenchée.
+
+
+Vous devez examiner immédiatement toutes les alertes *objets perdus* pour déterminer la cause première de la perte et déterminer si l'objet peut encore exister dans un noeud de stockage hors ligne ou actuellement indisponible. Voir link:../troubleshoot/investigating-lost-objects.html["Rechercher les objets perdus"].
+
+Dans le cas où les données d'objet sans copie sont perdues, il n'y a pas de solution de récupération. Cependant, vous devez réinitialiser le compteur d'objets perdus pour empêcher les objets perdus connus de masquer les nouveaux objets perdus. Voir link:resetting-lost-and-missing-object-counts.html["Réinitialiser le nombre d'objets perdus et manquants"].

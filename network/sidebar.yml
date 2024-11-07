@@ -1,0 +1,42 @@
+---
+section: network
+title: Instructions de mise en réseau
+entries:
+- title: La mise en réseau StorageGRID
+  pdf-filename: Instructions de mise en réseau d'StorageGRID
+  url: "/network/index.html"
+- title: Types de réseau StorageGRID
+  url: "/network/storagegrid-network-types.html"
+- title: Exemples de topologie réseau
+  entries:
+  - title: Topologie du réseau grid
+    url: "/network/grid-network-topology.html"
+  - title: Topologie du réseau d'administration
+    url: "/network/admin-network-topology.html"
+  - title: Topologie du réseau client
+    url: "/network/client-network-topology.html"
+  - title: Topologie des trois réseaux
+    url: "/network/topology-for-all-three-networks.html"
+- title: Configuration réseau requise
+  url: "/network/networking-requirements-and-guidelines.html"
+- title: Exigences spécifiques au réseau
+  url: "/network/network-specific-requirements.html"
+- title: Considérations relatives au réseau propres au déploiement
+  entries:
+  - title: Déploiements Linux
+    url: "/network/linux-deployments.html"
+  - title: Mise en réseau et ports pour les services de plateforme et les pools de
+      stockage cloud
+    url: "/network/networking-and-ports-for-platform-services-and-cloud-storage-pools.html"
+  - title: Nœuds d'appliance
+    url: "/network/appliance-nodes.html"
+- title: Installation et provisionnement réseau
+  url: "/network/network-installation-and-provisioning.html"
+- title: Instructions de post-installation
+  url: "/network/post-installation-guidelines.html"
+- title: Référence du port réseau
+  entries:
+  - title: Communications internes sur les nœuds de la grille
+    url: "/network/internal-grid-node-communications.html"
+  - title: Communications externes
+    url: "/network/external-communications.html"

@@ -1,0 +1,57 @@
+---
+permalink: maintain/warnings-and-considerations-for-grid-node-recovery.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, warning 
+summary: 'En cas de défaillance d"un nœud de la grille, vous devez le restaurer dès que possible. Avant de commencer, vous devez examiner tous les avertissements et considérations relatifs à la restauration du nœud.' 
+---
+= Avertissements et considérations relatives à la restauration des nœuds de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En cas de défaillance d'un nœud de la grille, vous devez le restaurer dès que possible. Avant de commencer, vous devez examiner tous les avertissements et considérations relatifs à la restauration du nœud.
+
+
+CAUTION: StorageGRID est un système distribué composé de plusieurs nœuds qui travaillent les uns avec les autres. N'utilisez pas de snapshots de disque pour restaurer des nœuds de grille. Reportez-vous plutôt aux procédures de restauration et de maintenance pour chaque type de nœud.
+
+
+NOTE: En cas de défaillance de l'ensemble du site StorageGRID, contactez le support technique. Le support technique travaillera avec vous pour développer et exécuter un plan de reprise sur site qui optimise la quantité de données récupérées et qui répond aux objectifs de votre entreprise. Voir link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].
+
+Voici quelques-unes des raisons pour lesquelles une restauration d'un nœud de grid a échoué dès que possible :
+
+* Un nœud de grille défaillant peut réduire la redondance des données système et objet, ce qui vous rend vulnérable au risque de perte permanente de données en cas de défaillance d'un autre nœud.
+* La défaillance d'un nœud de grid peut affecter l'efficacité des opérations quotidiennes.
+* Un nœud de grid en panne peut vous permettre de surveiller les opérations système.
+* Un nœud grid en panne peut entraîner une erreur de serveur interne 500 si des règles ILM strictes sont en place.
+* Si un nœud de la grille n'est pas restauré rapidement, le temps de restauration peut augmenter. Par exemple, des files d'attente peuvent se développer et doivent être effacées avant la fin de la restauration.
+
+
+Suivez toujours la procédure de restauration pour le type spécifique de nœud de grille que vous restaurez. Les procédures de restauration varient en fonction des nœuds d'administration primaires ou non primaires, des nœuds de passerelle, des nœuds d'appliance et des nœuds de stockage.
+
+
+
+== Conditions préalables à la récupération des nœuds de la grille
+
+Les conditions suivantes sont réunies lors de la récupération des nœuds de la grille :
+
+* Le matériel physique ou virtuel en panne a été remplacé et configuré.
+* La version du programme d'installation de l'appliance StorageGRID installée sur l'appliance de remplacement correspond à la version logicielle de votre système StorageGRID, comme décrit à la section https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["Vérifiez et mettez à niveau la version du programme d'installation de l'appliance StorageGRID"^].
+* Si vous récupérez un nœud de grille autre que le nœud d'administration principal, il existe une connectivité entre le nœud de grille en cours de restauration et le nœud d'administration principal.
+* Si vous récupérez un nœud de stockage de l'appliance, vous devez spécifier le même type de stockage que l'appliance d'origine (combinée, métadonnées uniquement ou données uniquement) lors de l'installation de l'appliance. Si vous spécifiez un autre type de stockage, la récupération échouera et nécessitera la réinstallation de l'appareil avec le type de stockage correct spécifié.
+
+
+
+
+== Ordre de restauration de nœud en cas de défaillance d'un serveur hébergeant plusieurs nœuds de la grille
+
+Si un serveur hébergeant plusieurs nœuds de la grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Toutefois, si le serveur en panne héberge le nœud d'administration principal, vous devez d'abord restaurer ce nœud. La récupération du nœud d'administration principal empêche les autres restaurations de nœud d'arrêter lorsqu'elles attendent de contacter le nœud d'administration principal.
+
+
+
+== Adresses IP des nœuds restaurés
+
+N'essayez pas de restaurer un nœud à l'aide d'une adresse IP actuellement attribuée à un autre nœud. Lorsque vous déployez le nouveau nœud, utilisez l'adresse IP actuelle du nœud défaillant ou une adresse IP non utilisée.
+
+Si vous utilisez une nouvelle adresse IP pour déployer le nouveau nœud puis restaurer le nœud, la nouvelle adresse IP continuera à être utilisée pour le nœud restauré. Si vous souhaitez revenir à l'adresse IP d'origine, utilisez l'outil Modifier l'adresse IP une fois la restauration terminée.

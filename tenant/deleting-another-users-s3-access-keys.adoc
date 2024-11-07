@@ -1,0 +1,33 @@
+---
+permalink: tenant/deleting-another-users-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to delete access key for other user 
+summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez supprimer les clés d"accès S3 d"un autre utilisateur. Une fois la clé d"accès supprimée, elle ne peut plus être utilisée pour accéder aux objets et aux compartiments du compte du locataire.' 
+---
+= Supprimez les clés d'accès S3 d'un autre utilisateur
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez supprimer les clés d'accès S3 d'un autre utilisateur. Une fois la clé d'accès supprimée, elle ne peut plus être utilisée pour accéder aux objets et aux compartiments du compte du locataire.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+
+
+
+CAUTION: Les compartiments S3 et les objets appartenant à un utilisateur sont accessibles à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour cet utilisateur dans le Gestionnaire de locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées du compte et ne les partagez jamais avec d'autres utilisateurs.
+
+.Étapes
+. Sélectionnez *ACCESS MANAGEMENT* > *Users*.
+. Sur la page utilisateurs, sélectionnez l'utilisateur dont vous souhaitez gérer les clés d'accès S3.
+. Sur la page Détails de l'utilisateur, sélectionnez *touches d'accès*, puis cochez la case correspondant à chaque clé d'accès que vous souhaitez supprimer.
+. Sélectionnez *actions* > *Supprimer la touche sélectionnée*.
+. Dans la boîte de dialogue de confirmation, sélectionnez *touche Suppr*.
++
+Un message de confirmation s'affiche dans le coin supérieur droit de la page.
+
+

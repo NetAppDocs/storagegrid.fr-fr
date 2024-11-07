@@ -1,0 +1,75 @@
+---
+permalink: monitor/deployment-and-maintenance-logs.html 
+sidebar: sidebar 
+keywords: deployment, logs, Maintenance 
+summary: Vous pouvez utiliser les journaux de déploiement et de maintenance pour résoudre les problèmes. 
+---
+= Journaux de déploiement et de maintenance
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser les journaux de déploiement et de maintenance pour résoudre les problèmes.
+
+[cols="1a,3a,1a"]
+|===
+| Nom du fichier | Remarques | Ci-après 
+
+
+| /var/local/log/install.log  a| 
+Créé lors de l'installation du logiciel. Contient un enregistrement des événements d'installation.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/expansion-progress.log  a| 
+Créé pendant les opérations d'extension. Contient un enregistrement des événements d'extension.
+ a| 
+Nœuds de stockage
+
+
+
+| /var/local/log/pa-move.log  a| 
+Créé lors de l'exécution `pa-move.sh` du script.
+ a| 
+Nœud d'administration principal
+
+
+
+| /var/local/log/pa-move-new_pa.log  a| 
+Créé lors de l'exécution `pa-move.sh` du script.
+ a| 
+Nœud d'administration principal
+
+
+
+| /var/local/log/pa-move-old_pa.log  a| 
+Créé lors de l'exécution `pa-move.sh` du script.
+ a| 
+Nœud d'administration principal
+
+
+
+| /var/local/log/gdu-server.log  a| 
+Créé par le service GDU. Contient les événements liés aux procédures d'approvisionnement et de maintenance gérées par le nœud d'administration principal.
+ a| 
+Nœud d'administration principal
+
+
+
+| /var/local/log/send_admin_hw.log  a| 
+Créé lors de l'installation. Contient des informations de débogage liées aux communications d'un nœud avec le nœud d'administration principal.
+ a| 
+Tous les nœuds
+
+
+
+| /var/local/log/upgrade.log  a| 
+Créé lors de la mise à niveau logicielle. Contient un enregistrement des événements de mise à jour du logiciel.
+ a| 
+Tous les nœuds
+
+|===

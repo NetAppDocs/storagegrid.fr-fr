@@ -1,0 +1,134 @@
+---
+permalink: maintain/rolling-reboot-procedure.html 
+sidebar: sidebar 
+keywords: reboot nodes, rolling reboot procedure 
+summary: Vous pouvez effectuer un redémarrage en continu pour redémarrer plusieurs nœuds grid sans interrompre le service. 
+---
+= Effectuer un redémarrage en continu
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez effectuer un redémarrage en continu pour redémarrer plusieurs nœuds grid sans interrompre le service.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de grille sur le nœud d'administration principal et vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
++
+
+NOTE: Vous devez être connecté au nœud d'administration principal pour effectuer cette procédure.
+
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+
+
+.Description de la tâche
+Utilisez cette procédure si vous devez redémarrer plusieurs nœuds en même temps. Par exemple, vous pouvez utiliser cette procédure après avoir modifié le mode FIPS de la grille link:../admin/manage-tls-ssh-policy.html["Règles de sécurité TLS et SSH"]. Lorsque le mode FIPS est modifié, vous devez redémarrer tous les nœuds pour appliquer la modification.
+
+
+TIP: Si vous n'avez besoin de redémarrer qu'un seul nœud, vous pouvez link:../maintain/rebooting-grid-node-from-grid-manager.html["Redémarrez le nœud à partir de l'onglet tâches"].
+
+Lorsque StorageGRID redémarre des nœuds de la grille, il exécute la `reboot` commande sur chaque nœud, ce qui provoque l'arrêt et le redémarrage du nœud. Tous les services sont redémarrés automatiquement.
+
+* Le redémarrage d'un nœud VMware redémarre la machine virtuelle.
+* Le redémarrage d'un nœud Linux redémarre le conteneur.
+* Le redémarrage d'un nœud d'appliance StorageGRID redémarre le contrôleur de calcul.
+
+
+La procédure de redémarrage en continu peut redémarrer plusieurs nœuds en même temps, à l'exception des cas suivants :
+
+* Deux nœuds du même type ne seront pas redémarrés en même temps.
+* Les nœuds de passerelle et les nœuds d'administration ne seront pas redémarrés en même temps.
+
+
+Ces nœuds sont redémarrés séquentiellement afin de s'assurer que les groupes haute disponibilité, les données d'objet et les services de nœuds critiques restent toujours disponibles.
+
+Lorsque vous redémarrez le nœud d'administration principal, votre navigateur perd temporairement l'accès au gestionnaire de grille, vous ne pouvez donc plus surveiller la procédure. C'est pourquoi le nœud d'administration principal est redémarré en dernier.
+
+
+
+== Effectuer un redémarrage en continu
+
+Sélectionnez les nœuds que vous souhaitez redémarrer, vérifiez vos sélections, démarrez la procédure de redémarrage et surveillez leur progression.
+
+
+
+=== Sélectionnez les nœuds
+
+Dans un premier temps, accédez à la page de redémarrage en roulant et sélectionnez les nœuds que vous souhaitez redémarrer.
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *redémarrage en roulant*.
+. Consultez l'état de la connexion et les icônes d'alerte dans la colonne *Nom du nœud*.
++
+
+TIP: Vous ne pouvez pas redémarrer un nœud s'il est déconnecté de la grille. Les cases à cocher sont désactivées pour les nœuds avec les icônes suivantes : image:../media/icon_alarm_gray_administratively_down.png["icône de point d'interrogation grise"] ou image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"].
+
+. Si des nœuds ont des alertes actives, consultez la liste des alertes dans la colonne *Alert summary*.
++
+
+TIP: Pour afficher toutes les alertes actuelles d'un nœud, vous pouvez également sélectionner le link:../monitor/viewing-overview-tab.html["Nœuds > onglet vue d'ensemble"].
+
+. Vous pouvez également effectuer les actions recommandées pour résoudre les alertes en cours.
+. Si tous les nœuds sont connectés et que vous souhaitez les redémarrer tous, cochez la case dans l'en-tête de la table et sélectionnez *Sélectionner tout*. Sinon, sélectionnez chaque nœud que vous souhaitez redémarrer.
++
+Vous pouvez utiliser les options de filtre de la table pour afficher les sous-ensembles de nœuds. Par exemple, vous pouvez afficher et sélectionner uniquement les nœuds de stockage ou tous les nœuds d'un site donné.
+
+. Sélectionnez *sélection de revue*.
+
+
+
+
+=== Revoir la sélection
+
+Cette étape vous permet de déterminer le temps nécessaire à la procédure de redémarrage total et de confirmer que vous avez sélectionné les nœuds appropriés.
+
+. Sur la page de sélection vérifier, consultez le récapitulatif qui indique le nombre de nœuds qui seront redémarrés et la durée totale estimée pour tous les nœuds.
+. Si vous le souhaitez, pour supprimer un nœud spécifique de la liste de redémarrage, sélectionnez *Supprimer*.
+. Pour ajouter d'autres nœuds, sélectionnez *étape précédente*, sélectionnez les nœuds supplémentaires et sélectionnez *sélection de révision*.
+. Lorsque vous êtes prêt à démarrer la procédure de redémarrage en continu pour tous les nœuds sélectionnés, sélectionnez *redémarrer les nœuds*.
+. Si vous avez choisi de redémarrer le nœud d'administration principal, lisez le message d'information et sélectionnez *Oui*.
++
+
+NOTE: Le nœud d'administration principal sera le dernier nœud à redémarrer. Pendant le redémarrage de ce nœud, la connexion de votre navigateur sera perdue. Lorsque le nœud d'administration principal est de nouveau disponible, vous devez recharger la page de redémarrage en roulant.
+
+
+
+
+
+=== Surveiller un redémarrage en continu
+
+Pendant l'exécution de la procédure de redémarrage en continu, vous pouvez le surveiller depuis le nœud d'administration principal.
+
+.Étapes
+. Examinez la progression globale de l'opération, qui comprend les informations suivantes :
++
+** Nombre de nœuds redémarrés
+** Nombre de nœuds en cours de redémarrage
+** Nombre de nœuds qui restent à redémarrer
+
+
+. Consultez le tableau pour chaque type de nœud.
++
+Les tableaux fournissent une barre de progression de l'opération sur chaque nœud et indiquent l'étape de redémarrage pour ce nœud, qui peut être l'une des suivantes :
+
++
+** En attente de redémarrage
+** Arrêt des services
+** Redémarrage du système
+** Démarrage des services
+** Redémarrage terminé
+
+
+
+
+
+
+== Arrêter la procédure de redémarrage en roulant
+
+Vous pouvez arrêter la procédure de redémarrage en continu à partir du nœud d'administration principal. Lorsque vous arrêtez la procédure, tous les nœuds dont l'état est « Arrêt des services », « redémarrage du système » ou « démarrage des services » complètent l'opération de redémarrage. Cependant, ces nœuds ne seront plus suivis dans le cadre de la procédure.
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *redémarrage en roulant*.
+. A partir de l'étape *redémarrage du moniteur*, sélectionnez *Arrêter la procédure de redémarrage*.
+

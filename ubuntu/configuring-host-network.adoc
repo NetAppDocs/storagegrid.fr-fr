@@ -1,0 +1,142 @@
+---
+permalink: ubuntu/configuring-host-network.html 
+sidebar: sidebar 
+keywords: how to configure ubuntu or debian host network 
+summary: 'Une fois l"installation de Linux terminée sur vos hôtes, vous devrez peut-être procéder à une configuration supplémentaire pour préparer un ensemble d"interfaces réseau sur chaque hôte, adapté au mappage vers les nœuds StorageGRID que vous pourrez déployer ultérieurement.' 
+---
+= Configurer le réseau hôte (Ubuntu ou Debian)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois l'installation de Linux terminée sur vos hôtes, vous devrez peut-être procéder à une configuration supplémentaire pour préparer un ensemble d'interfaces réseau sur chaque hôte, adapté au mappage vers les nœuds StorageGRID que vous pourrez déployer ultérieurement.
+
+.Avant de commencer
+* Vous avez examiné le link:../network/index.html["Instructions de mise en réseau d'StorageGRID"].
+* Vous avez examiné les informations sur link:node-container-migration-requirements.html["exigences de migration des conteneurs de nœuds"].
+* Si vous utilisez des hôtes virtuels, vous avez lu avant de configurer le <<mac_address_cloning_ubuntu,Considérations et recommandations relatives au clonage d'adresses MAC>>réseau hôte.
+
+
+
+NOTE: Si vous utilisez des machines virtuelles en tant qu'hôtes, vous devez sélectionner VMXNET 3 comme carte réseau virtuelle. La carte réseau VMware E1000 a provoqué des problèmes de connectivité avec les conteneurs StorageGRID déployés sur certaines distributions de Linux.
+
+.Description de la tâche
+Les nœuds du grid doivent être capables d'accéder au réseau Grid et, éventuellement, aux réseaux client et Admin. Vous fournissez cet accès en créant des mappages qui associent l'interface physique de l'hôte aux interfaces virtuelles de chaque nœud de la grille. Lors de la création d'interfaces hôtes, utilisez des noms conviviaux pour faciliter le déploiement sur tous les hôtes et pour activer la migration.
+
+Une même interface peut être partagée entre l'hôte et un ou plusieurs nœuds. Par exemple, vous pouvez utiliser la même interface pour l'accès aux hôtes et l'accès au réseau d'administration de nœud afin de faciliter la maintenance des hôtes et des nœuds. Même si une même interface peut être partagée entre l'hôte et les nœuds individuels, toutes doivent avoir des adresses IP différentes. Les adresses IP ne peuvent pas être partagées entre les nœuds ou entre l'hôte et un nœud.
+
+Vous pouvez utiliser la même interface réseau hôte pour fournir l'interface réseau Grid de tous les nœuds StorageGRID de l'hôte ; vous pouvez utiliser une interface réseau hôte différente pour chaque nœud ; ou effectuer un travail entre les deux. Cependant, vous ne fournissez généralement pas la même interface réseau hôte que les interfaces réseau Grid et Admin pour un seul nœud, ou l'interface réseau Grid pour un nœud et l'interface réseau client pour un autre.
+
+Vous pouvez effectuer cette tâche de plusieurs manières. Par exemple, si vos hôtes sont des machines virtuelles et que vous déployez un ou deux nœuds StorageGRID pour chaque hôte, vous pouvez créer le nombre correct d'interfaces réseau dans l'hyperviseur et utiliser un mappage 1-to-1. Si vous déployez plusieurs nœuds sur des hôtes bare Metal pour la production, vous pouvez bénéficier de la prise en charge du VLAN et du LACP de la pile réseau Linux pour la tolérance aux pannes et le partage de bande passante. Les sections suivantes présentent des approches détaillées pour ces deux exemples. Vous n'avez pas besoin d'utiliser l'un ou l'autre de ces exemples ; vous pouvez utiliser n'importe quelle approche qui répond à vos besoins.
+
+
+NOTE: N'utilisez pas de périphérique de liaison ou de pont directement comme interface réseau du conteneur. Cela pourrait empêcher le démarrage de nœud causé par un problème de noyau avec l'utilisation de MACVLAN avec des périphériques de liaison et de pont dans l'espace de noms de conteneur. Utilisez plutôt un périphérique sans lien, tel qu'un VLAN ou une paire Ethernet virtuelle (Veth). Spécifiez ce périphérique comme interface réseau dans le fichier de configuration de nœud.
+
+
+
+== Considérations et recommandations relatives au clonage d'adresses MAC
+
+.[[adresse_mac_clonage_ubuntu]]
+Le clonage d'adresses MAC fait en sorte que le conteneur utilise l'adresse MAC de l'hôte et que l'hôte utilise l'adresse MAC d'une adresse que vous spécifiez ou d'une adresse générée de manière aléatoire. Vous devez utiliser le clonage d'adresses MAC pour éviter l'utilisation de configurations réseau en mode promiscuous.
+
+
+
+=== Activation du clonage MAC
+
+Dans certains environnements, la sécurité peut être améliorée grâce au clonage d'adresses MAC car il vous permet d'utiliser une carte réseau virtuelle dédiée pour le réseau d'administration, le réseau Grid et le réseau client. Le fait d'utiliser le conteneur l'adresse MAC du NIC dédié sur l'hôte vous permet d'éviter d'utiliser des configurations réseau en mode promiscuous.
+
+
+NOTE: Le clonage d'adresses MAC est conçu pour être utilisé avec des installations de serveurs virtuels et peut ne pas fonctionner correctement avec toutes les configurations d'appliances physiques.
+
+
+NOTE: Si un nœud ne démarre pas en raison d'une interface ciblée de clonage MAC occupée, il peut être nécessaire de définir le lien sur « down » avant de démarrer le nœud. En outre, il est possible que l'environnement virtuel puisse empêcher le clonage MAC sur une interface réseau pendant que la liaison est active. Si un nœud ne parvient pas à définir l'adresse MAC et démarre en raison d'une interface en cours d'activité, il est possible que le problème soit résolu en définissant le lien sur « arrêté » avant de démarrer le nœud.
+
+Le clonage d'adresses MAC est désactivé par défaut et doit être défini par des clés de configuration de nœud. Vous devez l'activer lors de l'installation de StorageGRID.
+
+Il existe une clé pour chaque réseau :
+
+* `ADMIN_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC`
+* `GRID_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC`
+* `CLIENT_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC`
+
+
+Le fait de définir la clé sur « true » fait que le conteneur utilise l'adresse MAC de la carte réseau de l'hôte. En outre, l'hôte utilisera ensuite l'adresse MAC du réseau de conteneurs spécifié. Par défaut, l'adresse du conteneur est une adresse générée de manière aléatoire, mais si vous en avez défini une à l'aide de la `_NETWORK_MAC` clé de configuration du nœud, cette adresse est utilisée à la place. L'hôte et le conteneur auront toujours des adresses MAC différentes.
+
+
+NOTE: L'activation du clonage MAC sur un hôte virtuel sans activer également le mode promiscuous sur l'hyperviseur peut entraîner la mise en réseau des hôtes Linux à l'aide de l'interface de l'hôte à cesser de fonctionner.
+
+
+
+=== Cas d'utilisation du clonage MAC
+
+Il existe deux cas d'utilisation à prendre en compte pour le clonage MAC :
+
+* Clonage MAC non activé : lorsque la `_CLONE_MAC` clé du fichier de configuration de nœud n'est pas définie ou définie sur « FALSE », l'hôte utilise le MAC de la carte réseau hôte et le conteneur possède un MAC généré par StorageGRID, sauf si un MAC est spécifié dans la `_NETWORK_MAC` clé. Si une adresse est définie dans la `_NETWORK_MAC` clé, le conteneur aura l'adresse spécifiée dans la `_NETWORK_MAC` clé. Cette configuration de clés nécessite l'utilisation du mode promiscuous.
+* Clonage MAC activé : lorsque la `_CLONE_MAC` clé du fichier de configuration de nœud est définie sur « true », le conteneur utilise le MAC de la carte réseau hôte et l'hôte utilise un MAC généré par StorageGRID, sauf si un MAC est spécifié dans la `_NETWORK_MAC` clé. Si une adresse est définie dans la `_NETWORK_MAC` clé, l'hôte utilise l'adresse spécifiée au lieu d'une adresse générée. Dans cette configuration de clés, vous ne devez pas utiliser le mode promiscuous.
+
+
+
+NOTE: Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et que vous préférez autoriser toutes les interfaces à recevoir et transmettre des données pour les adresses MAC autres que celles attribuées par l'hyperviseur, Assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accept* pour le mode promiscuous, les modifications d'adresse MAC et les transmissions forgées. Les valeurs définies sur le commutateur virtuel peuvent être remplacées par les valeurs au niveau du groupe de ports, de sorte que les paramètres soient les mêmes aux deux endroits.
+
+Pour activer le clonage MAC, reportez-vous au link:creating-node-configuration-files.html["instructions pour la création de fichiers de configuration de nœud"].
+
+
+
+=== Exemple de clonage MAC
+
+Exemple de clonage MAC activé avec un hôte dont l'adresse MAC est 11:22:33:44:55:66 pour le groupe d'interface 256 et les clés suivantes dans le fichier de configuration de nœud :
+
+* `ADMIN_NETWORK_TARGET = ens256`
+* `ADMIN_NETWORK_MAC = b2:9c:02:c2:27:10`
+* `ADMIN_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC = true`
+
+
+Résultat : le MAC hôte pour en256 est b2:9c:02:c2:27:10 et le MAC réseau Admin est 11:22:33:44:55:66
+
+
+
+== Exemple 1 : mappage 1-à-1 sur des cartes réseau physiques ou virtuelles
+
+L'exemple 1 décrit un mappage d'interface physique simple qui nécessite peu ou pas de configuration côté hôte.
+
+image::../media/rhel_install_vlan_diag_1.gif[Diagramme VLAN]
+
+Le système d'exploitation Linux crée automatiquement les interfaces enXYZ lors de l'installation ou du démarrage, ou lorsque les interfaces sont ajoutées à chaud. Aucune configuration n'est nécessaire autre que de s'assurer que les interfaces sont configurées pour s'activer automatiquement après le démarrage. Vous devez déterminer quel enXYZ correspond au réseau StorageGRID (grille, administrateur ou client) afin que vous puissiez fournir les mappages corrects plus tard dans le processus de configuration.
+
+Notez que la figure présente plusieurs nœuds StorageGRID. Toutefois, vous utilisez généralement cette configuration pour les machines virtuelles à un seul nœud.
+
+Si le commutateur 1 est un commutateur physique, vous devez configurer les ports connectés aux interfaces 10G~1~ à 10G~3~ pour le mode d'accès, et les placer sur les VLAN appropriés.
+
+
+
+== Exemple 2 : liaison LACP avec les VLAN
+
+L'exemple 2 suppose que vous êtes familier avec les interfaces réseau de liaison et avec la création d'interfaces VLAN sur la distribution Linux que vous utilisez.
+
+.Description de la tâche
+L'exemple 2 décrit un schéma générique, flexible et basé sur VLAN qui facilite le partage de toute la bande passante réseau disponible sur tous les nœuds d'un même hôte. Cet exemple s'applique tout particulièrement aux hôtes bare Metal.
+
+Pour comprendre cet exemple, supposons que vous ayez trois sous-réseaux distincts pour les réseaux Grid, Admin et client dans chaque centre de données. Les sous-réseaux se trouvent sur des VLAN distincts (1001, 1002 et 1003) et sont présentés à l'hôte sur un port de jonction lié à LACP (bond0). Vous devez configurer trois interfaces VLAN sur la liaison : bond0.1001, bond0.1002 et bond0.1003.
+
+Si vous avez besoin de VLAN et de sous-réseaux distincts pour les réseaux de nœuds sur le même hôte, vous pouvez ajouter des interfaces VLAN sur la liaison et les mapper sur l'hôte (voir bond0,1004 dans l'illustration).
+
+image::../media/rhel_install_vlan_diag_2.gif[Cette image est expliquée par le texte qui l'entoure.]
+
+.Étapes
+. Agréger toutes les interfaces réseau physiques qui seront utilisées pour la connectivité réseau StorageGRID en une seule liaison LACP.
++
+Utilisez le même nom pour le lien sur chaque hôte, par exemple bond0.
+
+. Créez des interfaces VLAN qui utilisent cette liaison comme « périphérique physique » associé, en utilisant la convention de dénomination d'interface VLAN standard `physdev-name.VLAN ID` .
++
+Notez que les étapes 1 et 2 nécessitent une configuration appropriée sur les commutateurs de périphérie qui terminent les autres extrémités des liaisons réseau. Les ports de switch de périphérie doivent également être agrégés dans un canal de port LACP, configuré en tant que jonction et autorisé à passer tous les VLAN requis.
+
++
+Des exemples de fichiers de configuration d'interface sont fournis pour ce schéma de configuration de réseau par hôte.
+
+
+
+.Informations associées
+link:example-etc-network-interfaces.html["Exemple /etc/network/interfaces"]

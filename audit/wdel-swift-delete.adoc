@@ -1,0 +1,149 @@
+---
+permalink: audit/wdel-swift-delete.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, WDEL, Swift DELETE 
+summary: 'Lorsqu"un client Swift émet une transaction DE SUPPRESSION, une demande est faite pour supprimer l"objet ou le conteneur spécifié. Ce message est émis par le serveur si la transaction a réussi.' 
+---
+= WDEL : SUPPRESSION rapide
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsqu'un client Swift émet une transaction DE SUPPRESSION, une demande est faite pour supprimer l'objet ou le conteneur spécifié. Ce message est émis par le serveur si la transaction a réussi.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu demandé. Si le CBID est inconnu, ce champ est défini sur 0. Les opérations sur les conteneurs n'incluent pas ce champ.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet supprimé en octets. Les opérations sur les conteneurs n'incluent pas ce champ.
+
+
+
+ a| 
+HTRH
+ a| 
+En-tête de requête HTTP
+ a| 
+Liste des noms et valeurs d'en-tête de requête HTTP consignés sélectionnés lors de la configuration.
+
+ `X-Forwarded-For` Est automatiquement inclus s'il est présent dans la demande et si la `X-Forwarded-For` valeur est différente de l'adresse IP de l'expéditeur de la demande (champ d'audit SAIP).
+
+
+
+ a| 
+MTME
+ a| 
+Heure de la dernière modification
+ a| 
+Horodatage Unix, en microsecondes, indiquant quand l'objet a été modifié pour la dernière fois.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Résultat de la transaction DE SUPPRESSION. Le résultat est toujours :
+
+CMC : réussi
+
+
+
+ a| 
+SAIP
+ a| 
+Adresse IP du client requérant
+ a| 
+Adresse IP de l'application client qui a fait la demande.
+
+
+
+ a| 
+SGRP
+ a| 
+Site (groupe)
+ a| 
+S'il est présent, l'objet a été supprimé sur le site spécifié, ce qui n'est pas le site où l'objet a été ingéré.
+
+
+
+ a| 
+TEMPS
+ a| 
+Heure
+ a| 
+Temps de traitement total de la demande en microsecondes.
+
+
+
+ a| 
+TIP
+ a| 
+Adresse IP de l'équilibreur de charge approuvée
+ a| 
+Si la demande a été routée par un équilibreur de charge de couche 7 approuvé, l'adresse IP de l'équilibreur de charge.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet dans le système StorageGRID.
+
+
+
+ a| 
+WACC
+ a| 
+ID de compte Swift
+ a| 
+ID de compte unique tel que spécifié par le système StorageGRID.
+
+
+
+ a| 
+CONEM
+ a| 
+Conteneur Swift
+ a| 
+Nom du conteneur Swift.
+
+
+
+ a| 
+WOBJ
+ a| 
+Objet Swift
+ a| 
+Identifiant de l'objet Swift. Les opérations sur les conteneurs n'incluent pas ce champ.
+
+
+
+ a| 
+WUSR
+ a| 
+Utilisateur du compte Swift
+ a| 
+Nom d'utilisateur du compte Swift qui identifie de manière unique le client effectuant la transaction.
+
+|===

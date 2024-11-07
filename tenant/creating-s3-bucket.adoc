@@ -1,0 +1,161 @@
+---
+permalink: tenant/creating-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to create S3 bucket 
+summary: 'Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiments S3 pour les données d"objet.' 
+---
+= Créer un compartiment S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiments S3 pour les données d'objet.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs disposant de l'accès racine ou de la fonction gérer tous les compartiments link:tenant-management-permissions.html["permission"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
++
+
+NOTE: Les autorisations permettant de définir ou de modifier les propriétés S3 Object Lock des compartiments ou des objets peuvent être accordées par link:../s3/bucket-and-group-access-policies.html["politique de compartiment ou règle de groupe"].
+
+* Si vous prévoyez d'activer le verrouillage objet S3 pour un compartiment, un administrateur du grid a activé le paramètre de verrouillage objet S3 global pour le système StorageGRID. Vous avez également passé en revue les exigences relatives aux compartiments et aux objets S3 Object Lock.
+* Si chaque locataire dispose de 5,000 compartiments, chaque nœud de stockage de la grille dispose d'au moins 64 Go de RAM.
++
+
+NOTE: Chaque grille peut contenir un maximum de 100,000 compartiments.
+
+
+
+
+
+== Accéder à l'assistant
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez *Créer un compartiment*.
+
+
+
+
+== Entrez les détails
+
+.Étapes
+. Entrez les détails du compartiment.
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom du compartiment
+ a| 
+Nom du compartiment conforme aux règles suivantes :
+
+** Il doit être unique sur chaque système StorageGRID (et pas seulement au sein du compte du locataire).
+** Doit être conforme DNS.
+** Doit contenir au moins 3 et 63 caractères.
+** Chaque étiquette doit commencer et se terminer par une lettre ou un chiffre en minuscules et ne peut utiliser que des lettres minuscules, des chiffres et des tirets.
+** Ne doit pas contenir de périodes dans les demandes de type hébergement virtuel. Les périodes provoquera des problèmes avec la vérification du certificat générique du serveur.
+
+
+Pour plus d'informations, voir https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentation Amazon Web Services (AWS) sur les règles d'attribution de nom de compartiment"^].
+
+*Remarque* : vous ne pouvez pas modifier le nom du compartiment après avoir créé le compartiment.
+
+
+
+ a| 
+Région
+ a| 
+La région du godet.
+
+L'administrateur StorageGRID gère les régions disponibles. Ce compartiment peut affecter la règle de protection des données appliquée aux objets. Par défaut, tous les compartiments sont créés dans la `us-east-1` région.
+
+*Remarque* : vous ne pouvez pas modifier la région après avoir créé le compartiment.
+
+|===
+. Sélectionnez *Continuer*.
+
+
+
+
+== Gérer les paramètres
+
+.Étapes
+. Activez éventuellement le contrôle de version d'objet pour le compartiment.
++
+Activez la gestion des versions d'objet si vous souhaitez stocker chaque version de chaque objet dans ce compartiment. Vous pouvez ensuite récupérer les versions précédentes d'un objet si nécessaire. Vous devez activer la gestion des versions d'objet si le compartiment est utilisé pour la réplication entre plusieurs grilles.
+
+. Si le paramètre global S3 Object Lock est activé, activez éventuellement S3 Object Lock pour que le compartiment stocke des objets à l'aide d'un modèle WORM (Write-once-read-many).
++
+Activez le verrouillage des objets S3 pour un compartiment uniquement si vous devez conserver les objets pendant une durée fixe, par exemple, pour répondre à certaines exigences réglementaires. Le verrouillage objet S3 est un paramètre permanent qui vous permet d'empêcher la suppression ou l'écrasement d'objets pendant une durée fixe ou indéfiniment.
+
++
+
+CAUTION: Une fois le paramètre S3 Object Lock activé pour un compartiment, il ne peut pas être désactivé. Toute personne disposant des autorisations appropriées peut ajouter à ce compartiment des objets qui ne peuvent pas être modifiés. Il se peut que vous ne puissiez pas supprimer ces objets ou le compartiment lui-même.
+
++
+Si vous activez le verrouillage des objets S3 pour un compartiment, le contrôle de version des compartiments est automatiquement activé.
+
+. Si vous avez sélectionné *Activer le verrouillage d'objet S3*, vous pouvez activer *rétention par défaut* pour ce compartiment.
++
+
+NOTE: Votre administrateur de grille doit vous donner l'autorisation de link:../tenant/using-s3-object-lock.html["Utiliser les fonctionnalités spécifiques du verrouillage objet S3"].
+
++
+Lorsque *Default Retention* est activé, les nouveaux objets ajoutés au compartiment sont automatiquement protégés contre la suppression ou l'écrasement. Le paramètre *rétention par défaut* ne s'applique pas aux objets qui ont leurs propres périodes de rétention.
+
++
+.. Si *Default Retention* est activé, spécifiez un *mode de rétention par défaut* pour le compartiment.
++
+[cols="1a,2a"]
+|===
+| Mode de rétention par défaut | Description 
+
+
+ a| 
+La gouvernance
+ a| 
+*** Les utilisateurs disposant de l' `s3:BypassGovernanceRetention`autorisation peuvent utiliser l' `x-amz-bypass-governance-retention: true`en-tête de la demande pour contourner les paramètres de rétention.
+*** Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+*** Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+
+
+ a| 
+La conformité
+ a| 
+*** L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+*** La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+*** La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+*Remarque* : votre administrateur de grille doit vous permettre d'utiliser le mode de conformité.
+
+|===
+.. Si *Default Retention* est activé, spécifiez la *période de rétention par défaut* pour le compartiment.
++
+La *période de conservation par défaut* indique la durée pendant laquelle les nouveaux objets ajoutés à ce compartiment doivent être conservés, à partir du moment où ils sont ingérés. Spécifiez une valeur inférieure ou égale à la période de rétention maximale pour le tenant, telle que définie par l'administrateur de la grille.
+
++
+Une période de rétention _maximum_, qui peut être de 1 jour à 100 ans, est définie lorsque l'administrateur de la grille crée le locataire. Lorsque vous définissez une période de rétention _default_, elle ne peut pas dépasser la valeur définie pour la période de rétention maximale. Si nécessaire, demandez à votre administrateur de grille d'augmenter ou de réduire la période de rétention maximale.
+
+
+
+. [[Capacity-limit]]en option, sélectionnez *Enable Capacity limit*.
++
+La limite de capacité est la capacité maximale disponible pour les objets de ce compartiment. Cette valeur représente une quantité logique (taille de l'objet), et non une quantité physique (taille sur le disque).
+
++
+Si aucune limite n'est définie, la capacité de ce godet est illimitée. Pour plus d'informations, reportez-vous à la section link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["Utilisation limitée de la capacité"] .
+
+. Sélectionnez *Créer un compartiment*.
++
+Le godet est créé et ajouté au tableau sur la page godets.
+
+. Si vous le souhaitez, sélectionnez *aller à la page des détails du compartiment* pour link:viewing-s3-bucket-details.html["afficher les détails du compartiment"]effectuer une configuration supplémentaire.
+

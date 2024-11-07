@@ -1,0 +1,94 @@
+---
+permalink: admin/increasing-metadata-reserved-space-setting.html 
+sidebar: sidebar 
+keywords: increase metadata reserved space setting 
+summary: 'Vous pouvez augmenter le paramètre système Metadata Reserved Space si vos nœuds de stockage répondent aux exigences spécifiques en matière de RAM et d"espace disponible.' 
+---
+= Augmenter le paramètre espace réservé des métadonnées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez augmenter le paramètre système Metadata Reserved Space si vos nœuds de stockage répondent aux exigences spécifiques en matière de RAM et d'espace disponible.
+
+.Ce dont vous avez besoin
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Droits d'accès racine ou Configuration de la page topologie de la grille et autres autorisations de configuration de la grille"].
+
+
+
+NOTE: La page de topologie de la grille est obsolète et sera supprimée dans une version ultérieure.
+
+.Description de la tâche
+Vous pouvez augmenter manuellement l'espace réservé aux métadonnées à l'échelle du système jusqu'à 8 To.
+
+Vous ne pouvez augmenter la valeur du paramètre espace réservé aux métadonnées pour l'ensemble du système que si ces deux instructions sont vraies :
+
+* Les nœuds de stockage de n'importe quel site de votre système disposent chacun d'au moins 128 Go de RAM.
+* L'espace disponible des nœuds de stockage de n'importe quel site du système est suffisant pour le volume de stockage 0.
+
+
+Notez que si vous augmentez ce paramètre, vous réduisez simultanément l'espace disponible pour le stockage objet sur le volume de stockage 0 de tous les nœuds de stockage. C'est pour cette raison que vous préférez définir l'espace réservé aux métadonnées sur une valeur inférieure à 8 To, en fonction des exigences de métadonnées de l'objet que vous prévoyez.
+
+
+NOTE: En général, il est préférable d'utiliser une valeur plus élevée au lieu d'une valeur plus faible. Si le paramètre espace réservé aux métadonnées est trop grand, vous pouvez le réduire ultérieurement. Par opposition, si vous augmentez la valeur par la suite, le système peut avoir besoin de déplacer les données d'objet afin de libérer de l'espace.
+
+Pour une explication détaillée de la façon dont le paramètre espace réservé des métadonnées affecte l'espace autorisé pour le stockage des métadonnées d'objet sur un nœud de stockage particulier, reportez-vous à la section link:managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"].
+
+.Étapes
+. Déterminez le paramètre actuel espace réservé aux métadonnées.
++
+.. Sélectionnez *CONFIGURATION* > *système* > *Options de stockage*.
+.. Dans la section filigranes de stockage, notez la valeur de *espace réservé aux métadonnées*.
+
+
+. Assurez-vous d'avoir suffisamment d'espace disponible sur le volume de stockage 0 de chaque nœud de stockage pour augmenter cette valeur.
++
+.. Sélectionnez *NOEUDS*.
+.. Sélectionnez le premier nœud de stockage dans la grille.
+.. Cliquez sur l'onglet stockage.
+.. Dans la section volumes, recherchez l'entrée */var/local/rangedb/0*.
+.. Vérifiez que la valeur disponible est égale ou supérieure à la différence entre la nouvelle valeur que vous souhaitez utiliser et la valeur actuelle de l'espace réservé aux métadonnées.
++
+Par exemple, si le paramètre espace réservé aux métadonnées est actuellement de 4 To et que vous souhaitez l'augmenter à 6 To, la valeur disponible doit être de 2 To ou plus.
+
+.. Répétez cette procédure pour tous les nœuds de stockage.
++
+*** Si un ou plusieurs nœuds de stockage ne disposent pas d'espace disponible suffisant, la valeur espace réservé aux métadonnées ne peut pas être augmentée. Ne pas poursuivre cette procédure.
+*** Si chaque nœud de stockage dispose de suffisamment d'espace disponible sur le volume 0, passez à l'étape suivante.
+
+
+
+
+. Vérifiez que vous disposez d'au moins 128 Go de RAM sur chaque nœud de stockage.
++
+.. Sélectionnez *NOEUDS*.
+.. Sélectionnez le premier nœud de stockage dans la grille.
+.. Sélectionnez l'onglet *matériel*.
+.. Placez le curseur sur le graphique utilisation de la mémoire. Vérifiez que *mémoire totale* est d'au moins 128 Go.
+.. Répétez cette procédure pour tous les nœuds de stockage.
++
+*** Si un ou plusieurs nœuds de stockage ne disposent pas de suffisamment de mémoire totale disponible, la valeur de l'espace réservé aux métadonnées ne peut pas être augmentée. Ne pas poursuivre cette procédure.
+*** Si chaque nœud de stockage dispose d'au moins 128 Go de mémoire totale, passez à l'étape suivante.
+
+
+
+
+. Mettez à jour le paramètre Metadata Reserved Space.
++
+.. Sélectionnez *CONFIGURATION* > *système* > *Options de stockage*.
+.. Sélectionnez l'onglet Configuration.
+.. Dans la section filigranes de stockage, sélectionnez *espace réservé aux métadonnées*.
+.. Entrez la nouvelle valeur.
++
+Par exemple, pour saisir 8 To, qui est la valeur maximale prise en charge, entrez *8000000000000* (8, suivi de 12 zéros).
+
++
+image::../media/metadata_reserved_space.png[Espace réservé des métadonnées]
+
+.. Sélectionnez *appliquer les modifications*.
+
+
+

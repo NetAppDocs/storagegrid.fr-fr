@@ -1,0 +1,49 @@
+---
+permalink: monitor/disabling-alert-rules.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: 'Vous pouvez modifier l"état activé/désactivé pour une règle d"alerte par défaut ou personnalisée.' 
+---
+= Désactiver les règles d'alerte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez modifier l'état activé/désactivé pour une règle d'alerte par défaut ou personnalisée.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Description de la tâche
+Lorsqu'une règle d'alerte est désactivée, ses expressions ne sont pas évaluées et aucune alerte n'est déclenchée.
+
+
+CAUTION: En général, la désactivation d'une règle d'alerte par défaut n'est pas recommandée. Si une règle d'alerte est désactivée, vous risquez de ne pas détecter un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
+
+.Étapes
+. Sélectionnez *ALERTES* > *règles*.
++
+La page règles d'alerte s'affiche.
+
+. Sélectionnez le bouton radio de la règle d'alerte que vous souhaitez désactiver ou activer.
+. Sélectionnez *Modifier la règle*.
++
+La boîte de dialogue Modifier la règle s'affiche.
+
+. Cochez ou décochez la case *activé* pour déterminer si cette règle d'alerte est actuellement activée.
++
+Si une règle d'alerte est désactivée, ses expressions ne sont pas évaluées et aucune alerte n'est déclenchée.
+
++
+
+NOTE: Si vous désactivez la règle d'alerte pour une alerte en cours, vous devez attendre quelques minutes que l'alerte ne s'affiche plus comme alerte active.
+
+. Sélectionnez *Enregistrer*.
++
+*Disabled* apparaît dans la colonne *Status*.
+
+

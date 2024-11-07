@@ -1,0 +1,94 @@
+---
+permalink: primer/exploring-tenant-manager.html 
+sidebar: sidebar 
+keywords: what is the tenant manager, tenant manager dashboard 
+summary: 'Le gestionnaire de locataires est une interface graphique basée sur un navigateur qui permet aux utilisateurs locataires d"accéder pour configurer, gérer et surveiller leurs comptes de stockage.' 
+---
+= Explorez le Gestionnaire de locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le link:../tenant/index.html["Gestionnaire de locataires"] est une interface graphique accessible via un navigateur qui permet aux utilisateurs locataires d'accéder à pour configurer, gérer et contrôler leurs comptes de stockage.
+
+
+NOTE: Le Gestionnaire de locataires est mis à jour avec chaque version et peut ne pas correspondre aux captures d'écran d'exemple de cette page.
+
+Lorsque les utilisateurs locataires se connectent au Gestionnaire de locataires, ils se connectent à un noeud d'administration.
+
+
+
+== Tableau de bord du gestionnaire des locataires
+
+Une fois qu'un administrateur du grid a créé un compte de locataire à l'aide de Grid Manager ou de l'API Grid Management, les locataires peuvent se connecter au Gestionnaire de locataires.
+
+Le tableau de bord du gestionnaire de locataires permet aux utilisateurs locataires de surveiller l'utilisation du stockage en un coup d'œil. Le panneau Storage usage contient la liste des compartiments (S3) ou conteneurs (Swift) les plus grands du locataire. La valeur espace utilisé correspond à la quantité totale de données d'objet dans le compartiment ou le conteneur. Le graphique à barres représente les tailles relatives de ces compartiments ou conteneurs.
+
+La valeur affichée au-dessus du graphique à barres est une somme de l'espace utilisé pour tous les compartiments ou conteneurs du locataire. Si le nombre maximal de gigaoctets, de téraoctets ou de pétaoctets disponibles pour le locataire a été spécifié lors de la création du compte, le volume de quota utilisé et restant est également affiché.
+
+image::../media/tenant_dashboard_with_buckets.png[Tableau de bord du gestionnaire des locataires]
+
+
+
+== Menu stockage (S3)
+
+Le menu stockage est disponible uniquement pour les comptes de tenant S3. Ce menu permet aux utilisateurs de S3 de gérer les clés d'accès, de créer, de gérer et de supprimer des compartiments, de gérer les terminaux des services de plateforme et d'afficher toutes les connexions de fédération de grille qu'ils sont autorisés à utiliser.
+
+
+
+=== Mes clés d'accès
+
+Les locataires S3 peuvent gérer les clés d'accès comme suit :
+
+* Les utilisateurs disposant de l'autorisation gérer vos propres identifiants S3 peuvent créer ou supprimer leurs propres clés d'accès S3.
+* Les utilisateurs disposant de l'autorisation d'accès racine peuvent gérer les clés d'accès du compte racine S3, de leur propre compte et de tous les autres utilisateurs. Les clés d'accès racine offrent également un accès complet aux compartiments et objets du locataire, sauf si une règle de compartiment est explicitement désactivée.
++
+
+NOTE: La gestion des clés d'accès pour les autres utilisateurs s'effectue à partir du menu gestion des accès.
+
+
+
+
+
+=== Seaux
+
+Les utilisateurs de locataires S3 disposant des autorisations appropriées peuvent effectuer les tâches suivantes pour leurs compartiments :
+
+* Créer des compartiments
+* Activer le verrouillage des objets S3 pour un nouveau compartiment (le verrouillage des objets S3 est activé pour le système StorageGRID)
+* Mettez à jour les valeurs de cohérence
+* Activer et désactiver les mises à jour de l'heure du dernier accès
+* Activer ou suspendre la gestion des versions d'objets
+* Mettre à jour la conservation par défaut du verrouillage d'objet S3
+* Configurer le partage de ressources inter-sources (CORS)
+* Supprime tous les objets d'un compartiment
+* Supprimer les compartiments vides
+* Utilisez link:../tenant/use-s3-console.html["Console S3"]pour gérer les objets de compartiment
+
+
+Si un administrateur du grid a activé l'utilisation de services de plateforme pour le compte du locataire, un utilisateur locataire S3 avec les autorisations appropriées peut également effectuer les tâches suivantes :
+
+* Configurez les notifications d'événements S3, qui peuvent être envoyées à un service de destination qui prend en charge Amazon simple notification Service.
+* Configurez la réplication CloudMirror, qui permet au locataire de répliquer automatiquement les objets dans un compartiment S3 externe.
+* Configurer l'intégration de la recherche, qui envoie des métadonnées d'objet à un index de recherche de destination lors de la création ou de la suppression d'un objet ou de ses métadonnées ou balises.
+
+
+
+
+=== Terminaux des services de plateforme
+
+Si un administrateur du grid a activé l'utilisation des services de plateforme pour le compte de locataire, un utilisateur locataire S3 disposant de l'autorisation gérer les terminaux peut configurer un terminal de destination pour chaque service de plateforme.
+
+
+
+=== Connexions de fédération de grille
+
+Si un administrateur du grid a activé l'utilisation d'une connexion de fédération grid pour le compte de locataire, un utilisateur de locataire S3 disposant de l'autorisation d'accès racine peut afficher le nom de la connexion et accéder à la page d'informations sur le compartiment pour chaque compartiment pour lequel la réplication inter-grid est activée, et afficher l'erreur la plus récente à se produire lorsque les données de compartiment étaient répliquées sur l'autre grille de la connexion. Voir link:../tenant/grid-federation-view-connections-tenant.html["Afficher les connexions de fédération de grille"].
+
+
+
+== Accès au menu gestion
+
+Le menu gestion des accès permet aux locataires StorageGRID d'importer des groupes d'utilisateurs à partir d'un référentiel d'identité fédéré et d'attribuer des autorisations de gestion. Les locataires peuvent également gérer des groupes et des utilisateurs de locataires locaux, sauf si la connexion unique (SSO) est appliquée à l'ensemble du système StorageGRID.

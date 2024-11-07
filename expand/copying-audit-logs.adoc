@@ -1,0 +1,98 @@
+---
+permalink: expand/copying-audit-logs.html 
+sidebar: sidebar 
+keywords: copy audit log, Admin Node expansion, 
+summary: 'Lorsque vous ajoutez un nouveau nœud d"administration par le biais d"une procédure d"extension, son service AMS consigne uniquement les événements et actions qui se produisent une fois qu"il rejoint le système. Si nécessaire, vous pouvez copier les journaux d"audit à partir d"un nœud d"administration déjà installé vers le nouveau nœud d"administration d"extension afin qu"il soit synchronisé avec le reste du système StorageGRID.' 
+---
+= Copie des journaux d'audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous ajoutez un nouveau nœud d'administration par le biais d'une procédure d'extension, son service AMS consigne uniquement les événements et actions qui se produisent une fois qu'il rejoint le système. Si nécessaire, vous pouvez copier les journaux d'audit à partir d'un nœud d'administration déjà installé vers le nouveau nœud d'administration d'extension afin qu'il soit synchronisé avec le reste du système StorageGRID.
+
+.Avant de commencer
+* Vous avez terminé les étapes d'extension requises pour ajouter un nœud d'administration.
+* Vous avez le `Passwords.txt` fichier.
+
+
+.Description de la tâche
+Pour rendre disponibles les messages d'audit historiques sur un nouveau nœud d'administration, vous devez copier manuellement les fichiers journaux d'audit d'un nœud d'administration existant vers le nœud d'administration d'extension.
+
+[NOTE]
+====
+Par défaut, les informations d'audit sont envoyées au journal d'audit des nœuds d'administration. Vous pouvez ignorer ces étapes si l'une des conditions suivantes s'applique :
+
+* Un serveur syslog externe et des journaux d'audit sont maintenant envoyés au serveur syslog au lieu de vers les nœuds d'administration.
+* Vous avez explicitement indiqué que les messages d'audit doivent être enregistrés uniquement sur les nœuds locaux qui les ont générés.
+
+
+Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"] pour plus de détails.
+
+====
+.Étapes
+. Connectez-vous au nœud d'administration principal :
++
+.. Entrez la commande suivante : `ssh _admin@_primary_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. Arrêtez le service AMS pour l'empêcher de créer un nouveau fichier : `service ams stop`
+. Accédez au répertoire d'exportation d'audit :
++
+`cd /var/local/log`
+
+. Renommez le fichier source `audit.log` pour vous assurer qu'il n'écrase pas le fichier sur le noeud d'administration d'extension dans lequel vous le copiez :
++
+[listing]
+----
+ls -l
+mv audit.log _new_name_.txt
+----
+. Copiez tous les fichiers journaux d'audit vers l'emplacement de destination du nœud d'administration d'extension :
++
+`scp -p * _IP_address_:/var/local/log`
+
+. Si vous êtes invité à saisir la phrase de passe pour `/root/.ssh/id_rsa`, entrez le mot de passe d'accès SSH du nœud d'administration principal répertorié dans `Passwords.txt` le fichier.
+. Restaurez le fichier d'origine `audit.log` :
++
+`mv _new_name_.txt audit.log`
+
+. Démarrez le service AMS :
++
+`service ams start`
+
+. Déconnexion du serveur :
++
+`exit`
+
+. Connectez-vous au nœud d'administration d'extension :
++
+.. Entrez la commande suivante : `ssh admin@_expansion_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. Mettez à jour les paramètres utilisateur et groupe des fichiers journaux d'audit :
++
+`cd /var/local/log`
+
++
+`chown ams-user:bycast *`
+
+. Déconnexion du serveur :
++
+`exit`
+
+

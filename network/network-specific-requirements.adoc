@@ -1,0 +1,82 @@
+---
+permalink: network/network-specific-requirements.html 
+sidebar: sidebar 
+keywords: network-specific requirements, network specific requirements, network requirements 
+summary: Respectez les exigences spécifiques à chaque type de réseau StorageGRID. 
+---
+= Exigences spécifiques au réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Respectez les exigences spécifiques à chaque type de réseau StorageGRID.
+
+
+
+== Passerelles et routeurs réseau
+
+* Si elle est définie, la passerelle d'un réseau donné doit se trouver dans le sous-réseau du réseau spécifique.
+* Si vous configurez une interface à l'aide d'un adressage statique, vous devez spécifier une adresse de passerelle autre que 0.0.0.0.
+* Si vous ne disposez pas d'une passerelle, il est recommandé de définir l'adresse de la passerelle comme adresse IP de l'interface réseau.
+
+
+
+
+== Sous-réseaux
+
+
+NOTE: Chaque réseau doit être connecté à son propre sous-réseau qui ne se chevauchent pas avec un autre réseau du nœud.
+
+Les restrictions suivantes sont appliquées par le Grid Manager pendant le déploiement. Ils sont fournis ici pour vous aider dans la planification du réseau de pré-déploiement.
+
+* Le masque de sous-réseau d'une adresse IP réseau ne peut pas être 255.255.255.254 ou 255.255.255.255 (/31 ou /32 en notation CIDR).
+* Le sous-réseau défini par une adresse IP d'interface réseau et un masque de sous-réseau (CIDR) ne peut pas chevaucher le sous-réseau d'une autre interface configurée sur le même nœud.
+* Le sous-réseau du réseau Grid pour chaque nœud doit être inclus dans le GNSL.
+* Le sous-réseau Admin Network ne peut pas chevaucher le sous-réseau Grid Network, le sous-réseau client Network ou tout sous-réseau dans le GNSL.
+* Les sous-réseaux de l'AESL ne peuvent pas se chevaucher avec les sous-réseaux de la GNSL.
+* Le sous-réseau du réseau client ne peut pas chevaucher le sous-réseau du réseau Grid, le sous-réseau du réseau Admin, tout sous-réseau du réseau GNSL ou tout sous-réseau de l'AESL.
+
+
+
+
+== Réseau Grid
+
+* Au moment du déploiement, chaque nœud de la grille doit être relié au réseau de la grille et doit pouvoir communiquer avec le nœud d'administration principal à l'aide de la configuration réseau que vous spécifiez lors du déploiement du nœud.
+* Au cours des opérations normales de la grille, chaque nœud de la grille doit pouvoir communiquer avec tous les autres nœuds de la grille sur le réseau.
++
+
+NOTE: Le réseau Grid doit être routable directement entre chaque nœud. La traduction d'adresses réseau (NAT) entre nœuds n'est pas prise en charge.
+
+* Si le réseau Grid est composé de plusieurs sous-réseaux, ajoutez-les à la liste de sous-réseaux du réseau Grid (GNSL). Des routes statiques sont créées sur tous les nœuds pour chaque sous-réseau du GNSL.
+* Si l'interface réseau Grid est configurée comme une jonction pour prendre en charge les interfaces VLAN, le VLAN natif de la jonction doit être le VLAN utilisé pour le trafic réseau Grid. Tous les nœuds grid doivent être accessibles via le VLAN natif du trunk.
+
+
+
+
+== Réseau d'administration
+
+Le réseau d'administration est facultatif. Si vous envisagez de configurer un réseau d'administration, suivez les exigences et les instructions ci-dessous.
+
+Les utilisations typiques du réseau d'administration incluent les connexions de gestion, AutoSupport, KMS et les connexions aux serveurs critiques tels que NTP, DNS et LDAP si ces connexions ne sont pas fournies via le réseau Grid ou le réseau client.
+
+
+NOTE: Le réseau Admin et l'AESL peuvent être uniques à chaque nœud, tant que les services réseau et les clients souhaités sont accessibles.
+
+
+NOTE: Vous devez définir au moins un sous-réseau sur le réseau d'administration pour activer les connexions entrantes à partir de sous-réseaux externes. Des routes statiques sont générées automatiquement sur chaque nœud pour chaque sous-réseau de l'AESL.
+
+
+
+== Réseau client
+
+Le réseau client est facultatif. Si vous avez l'intention de configurer un réseau client, prenez en compte les considérations suivantes.
+
+* Le réseau client est conçu pour prendre en charge le trafic à partir des clients S3. S'il est configuré, la passerelle réseau client devient la passerelle par défaut du nœud.
+* Si vous utilisez un réseau client, vous pouvez protéger StorageGRID des attaques hostiles en acceptant le trafic client entrant uniquement sur les noeuds finaux de l'équilibreur de charge configurés explicitement. Voir link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"].
+* Si l'interface réseau client est configurée comme une jonction pour prendre en charge les interfaces VLAN, déterminez si la configuration de l'interface réseau client (eth2) est nécessaire. S'il est configuré, le trafic réseau client transite par le VLAN natif du trunk, tel qu'il est configuré dans le commutateur.
+
+
+.Informations associées
+link:../maintain/changing-nodes-network-configuration.html["Modifier la configuration réseau du nœud"]

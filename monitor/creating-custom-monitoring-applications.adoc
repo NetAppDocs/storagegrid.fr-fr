@@ -1,0 +1,22 @@
+---
+permalink: monitor/creating-custom-monitoring-applications.html 
+sidebar: sidebar 
+keywords: custom monitoring, monitoring, dashboard 
+summary: 'Vous pouvez créer des applications et des tableaux de bord de surveillance personnalisés à l"aide des metrics StorageGRID disponibles dans l"API de gestion du grid.' 
+---
+= Créer des applications de surveillance personnalisées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez créer des applications et des tableaux de bord de surveillance personnalisés à l'aide des metrics StorageGRID disponibles dans l'API de gestion du grid.
+
+Si vous souhaitez surveiller des mesures qui ne s'affichent pas sur une page existante du Gestionnaire de grille ou si vous souhaitez créer des tableaux de bord personnalisés pour StorageGRID, vous pouvez utiliser l'API de gestion de grille pour interroger les mesures StorageGRID.
+
+Vous pouvez également accéder directement à des metrics Prometheus à l'aide d'un outil de surveillance externe tel que Grafana. Pour utiliser un outil externe, vous devez télécharger ou générer un certificat de client d'administration afin de permettre à StorageGRID d'authentifier l'outil pour la sécurité. Voir la link:../admin/index.html["Instructions d'administration de StorageGRID"].
+
+Pour afficher les opérations de l'API de metrics, y compris la liste complète des metrics disponibles, rendez-vous sur Grid Manager. En haut de la page, sélectionnez l'icône d'aide et sélectionnez *documentation API* > *metrics*. image:../media/help_api_docs_metrics.png["Aide de la section métriques de la documentation de l'API"]
+
+Les détails de la mise en œuvre d'une application de surveillance personnalisée dépassent le champ d'application de cette documentation.

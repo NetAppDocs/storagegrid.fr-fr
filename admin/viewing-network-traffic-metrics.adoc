@@ -1,0 +1,69 @@
+---
+permalink: admin/viewing-network-traffic-metrics.html 
+sidebar: sidebar 
+keywords: network traffic, traffic classification policy, monitor traffic 
+summary: Vous pouvez surveiller le trafic réseau en affichant les graphiques disponibles à partir de la page stratégies de classification du trafic. 
+---
+= Afficher les données de trafic réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez surveiller le trafic réseau en affichant les graphiques disponibles à partir de la page stratégies de classification du trafic.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine ou de comptes de locataires"].
+
+
+.Description de la tâche
+Pour toute règle de classification de trafic existante, vous pouvez afficher les mesures du service d'équilibrage de charge pour déterminer si la règle limite avec succès le trafic sur le réseau. Les données des graphiques peuvent vous aider à déterminer si vous devez ajuster la règle.
+
+Même si aucune limite n'est définie pour une stratégie de classification du trafic, des mesures sont recueillies et les graphiques fournissent des informations utiles pour comprendre les tendances du trafic.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
++
+La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
+
+. Sélectionnez le nom de la stratégie de classification de trafic pour laquelle vous souhaitez afficher les mesures.
+. Sélectionnez l'onglet *Metrics*.
++
+Les graphiques de stratégie de classification du trafic s'affichent. Les graphiques affichent des mesures uniquement pour le trafic correspondant à la stratégie sélectionnée.
+
++
+Les graphiques suivants sont inclus sur la page.
+
++
+** Taux de demande : ce graphique indique la quantité de bande passante correspondant à cette règle gérée par tous les équilibreurs de charge. Les données reçues incluent les en-têtes de demande pour toutes les demandes et la taille des données de corps pour les réponses qui ont des données de corps. Envoyé inclut les en-têtes de réponse pour toutes les demandes et la taille des données du corps de réponse pour les demandes qui incluent des données du corps dans la réponse.
++
+
+NOTE: Lorsque les demandes sont terminées, ce graphique indique uniquement l'utilisation de la bande passante. Pour les demandes d'objets lents ou volumineux, la bande passante instantanée réelle peut différer des valeurs indiquées dans ce graphique.
+
+** Taux de réponse aux erreurs : ce graphique fournit une fréquence approximative à laquelle les demandes correspondant à cette stratégie renvoient des erreurs (code d'état HTTP >= 400) aux clients.
+** Durée moyenne des demandes (sans erreur) : ce graphique fournit une durée moyenne des demandes réussies correspondant à cette stratégie.
+** Utilisation de la bande passante de la règle : ce graphique indique la quantité de bande passante correspondant à cette règle gérée par tous les équilibreurs de charge. Les données reçues incluent les en-têtes de demande pour toutes les demandes et la taille des données de corps pour les réponses qui ont des données de corps. Envoyé inclut les en-têtes de réponse pour toutes les demandes et la taille des données du corps de réponse pour les demandes qui incluent des données du corps dans la réponse.
+
+
+. Placez le curseur sur un graphique linéaire pour afficher une fenêtre contextuelle de valeurs sur une partie spécifique du graphique.
+. Sélectionnez *Grasana Dashboard* juste en dessous du titre Metrics pour afficher tous les graphiques d'une police. En plus des quatre graphiques de l'onglet *Metrics*, vous pouvez afficher deux autres graphiques :
++
+** Taux de demande d'écriture par taille d'objet : taux pour les demandes PUT/POST/DELETE correspondant à cette règle. Le positionnement sur une cellule individuelle affiche des débits par seconde. Les taux affichés dans la vue de survol sont tronqués aux nombres entiers et peuvent indiquer 0 lorsqu'il y a des demandes non nulles dans le compartiment.
+** Taux de demande de lecture par taille d'objet : taux des demandes GET/HEAD correspondant à cette règle. Le positionnement sur une cellule individuelle affiche des débits par seconde. Les taux affichés dans la vue de survol sont tronqués aux nombres entiers et peuvent indiquer 0 lorsqu'il y a des demandes non nulles dans le compartiment.
+
+
+. Vous pouvez également accéder aux graphiques à partir du menu *SUPPORT*.
++
+.. Sélectionnez *SUPPORT* > *Outils* > *métriques*.
+.. Sélectionnez *politique de classification du trafic* dans la section *Grafana*.
+.. Sélectionnez la stratégie dans le menu en haut à gauche de la page.
+.. Placez le curseur sur un graphique pour afficher une fenêtre contextuelle indiquant la date et l'heure de l'échantillon, les tailles d'objet agrégées dans le nombre et le nombre de demandes par seconde pendant cette période.
++
+Les politiques de classification du trafic sont identifiées par leur ID. Les ID de stratégie sont répertoriés sur la page règles de classification de trafic.
+
+
+
+. Analysez les graphiques pour déterminer à quelle fréquence la stratégie limite le trafic et si vous devez ajuster la stratégie.
+

@@ -1,0 +1,44 @@
+---
+permalink: maintain/step-4-remove-ilm-references.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, remove ilm reference 
+summary: 'À partir de l"étape 4 \(Supprimer les références ILM\) de l"assistant site de désaffectation, vous devez supprimer ou modifier toutes les règles ILM inutilisées qui font référence au site, même si ces règles ne sont pas utilisées dans une stratégie ILM.' 
+---
+= Étape 4 : supprimer les références ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+À partir de l'étape 4 (Supprimer les références ILM) de l'assistant site de désaffectation, vous devez supprimer ou modifier toutes les règles ILM inutilisées qui font référence au site, même si ces règles ne sont pas utilisées dans une stratégie ILM.
+
+.Étapes
+. Déterminez si des règles ILM inutilisées font référence au site.
++
+Si des règles ILM sont répertoriées, elles font toujours référence au site, mais ne sont utilisées dans aucune règle.
+
++
+
+NOTE: Lorsque StorageGRID décompresse le site, il désactive automatiquement les profils de code d'effacement inutilisés qui font référence au site et supprime automatiquement les pools de stockage inutilisés qui font référence au site. Le pool de stockage tous les nœuds de stockage (StorageGRID 11.6 et versions antérieures) est supprimé car il utilise le site tous les sites.
+
+. Modifier ou supprimer chaque règle inutilisée :
++
+** Pour modifier une règle, accédez à la page de règles ILM et mettez à jour tous les placements qui utilisent un profil de code d'effacement ou un pool de stockage faisant référence au site. Ensuite, revenez à *étape 4 (Supprimer les références ILM)*.
+** Pour supprimer une règle, sélectionnez l'icône de la corbeille image:../media/icon_trash_can.png["Corbeille des icônes"]et sélectionnez *OK*.
++
+
+NOTE: Vous devez supprimer la règle *make 2 copies* avant de pouvoir désaffecter un site.
+
+
+
+. Vérifiez qu'aucune règle ILM inutilisée ne fait référence au site et que le bouton *Suivant* est activé.
+. Sélectionnez *Suivant*.
++
+
+NOTE: Les pools de stockage et les profils de code d'effacement qui font référence au site ne seront plus valides après la suppression du site. Lorsque StorageGRID décompresse le site, il désactive automatiquement les profils de code d'effacement inutilisés qui font référence au site et supprime automatiquement les pools de stockage inutilisés qui font référence au site. Le pool de stockage tous les nœuds de stockage (StorageGRID 11.6 et versions antérieures) est supprimé car il utilise le site tous les sites.
+
++
+L'étape 5 (résoudre les conflits de nœuds) s'affiche.
+
+

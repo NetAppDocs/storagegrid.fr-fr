@@ -1,0 +1,94 @@
+---
+permalink: maintain/using-donotstart-file.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, donotstart, do not start, donotstart file, do not start file 
+summary: Si vous effectuez diverses procédures de maintenance ou de configuration sous la direction du support technique, il se peut que vous soyez invité à utiliser un fichier DoNotStart pour empêcher les services de démarrer lorsque Server Manager est démarré ou redémarré. 
+---
+= Utilisez un fichier DoNotStart
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous effectuez diverses procédures de maintenance ou de configuration sous la direction du support technique, il se peut que vous soyez invité à utiliser un fichier DoNotStart pour empêcher les services de démarrer lorsque Server Manager est démarré ou redémarré.
+
+
+CAUTION: Vous ne devez ajouter ou supprimer un fichier DoNotStart que si le support technique vous a demandé de le faire.
+
+Pour empêcher le démarrage d'un service, placez un fichier DoNotStart dans le répertoire du service que vous souhaitez empêcher de démarrer. Au démarrage, Server Manager recherche le fichier DoNotStart. Si le fichier est présent, le service (et les services qui en dépendent) ne peut pas démarrer. Lorsque le fichier DoNotStart est supprimé, le service précédemment arrêté démarre au prochain démarrage ou redémarrage de Server Manager. Les services ne sont pas automatiquement démarrés lorsque le fichier DoNotStart est supprimé.
+
+Le moyen le plus efficace d'empêcher le redémarrage de tous les services est d'empêcher le démarrage du service NTP. Tous les services dépendent du service NTP et ne peuvent pas s'exécuter si le service NTP n'est pas en cours d'exécution.
+
+
+
+== Ajouter le fichier DoNotStart pour le service
+
+Vous pouvez empêcher le démarrage d'un service individuel en ajoutant un fichier DoNotStart au répertoire de ce service sur un nœud de grille.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Ajouter un fichier DoNotStart : `touch /etc/sv/_service_/DoNotStart`
++
+où `service` est le nom du service à empêcher de démarrer. Par exemple :
+
++
+[listing]
+----
+touch /etc/sv/ldr/DoNotStart
+----
++
+Un fichier DoNotStart est créé. Aucun contenu de fichier n'est nécessaire.
+
++
+Lorsque Server Manager ou le nœud de la grille est redémarré, Server Manager redémarre, mais le service ne le fait pas.
+
+. Déconnectez-vous du shell de commande : `exit`
+
+
+
+
+== Supprimez le fichier DoNotStart pour le service
+
+Lorsque vous supprimez un fichier DoNotStart qui empêche le démarrage d'un service, vous devez démarrer ce service.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Supprimez le fichier DoNotStart du répertoire de service : `rm /etc/sv/_service_/DoNotStart`
++
+où `service` est le nom du service. Par exemple :
+
++
+[listing]
+----
+rm /etc/sv/ldr/DoNotStart
+----
+. Démarrez le service : `service _servicename_ start`
+. Déconnectez-vous du shell de commande : `exit`
+

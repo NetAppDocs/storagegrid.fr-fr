@@ -1,0 +1,169 @@
+---
+permalink: fabricpool/creating-load-balancer-endpoint-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, load balancer, endpoint, load balancing, create, creating, certificate 
+summary: 'StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir d"applications client, telles qu"FabricPool. L"équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.' 
+---
+= Créez un noeud final d'équilibrage de charge pour FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir d'applications client, telles qu'FabricPool. L'équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.
+
+Lors de la configuration de StorageGRID pour une utilisation avec FabricPool, vous devez configurer un point d'extrémité d'équilibreur de charge et télécharger ou générer un certificat de point d'extrémité d'équilibreur de charge, utilisé pour sécuriser la connexion entre ONTAP et StorageGRID.
+
+Pour exécuter cette tâche à l'aide de l'assistant de configuration FabricPool, accédez à link:use-fabricpool-setup-wizard-steps.html["Accédez à l'assistant d'installation FabricPool et terminez-le"].
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous avez examiné le général link:../admin/managing-load-balancing.html["considérations relatives à l'équilibrage de charge"]ainsi que le link:best-practices-for-load-balancing.html["Bonnes pratiques en matière d'équilibrage de charge pour FabricPool"].
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+. Sélectionnez *Créer*.
+. Pour l'étape *entrer les détails du noeud final*, renseignez les champs suivants.
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom
+ a| 
+Nom descriptif du noeud final.
+
+
+
+ a| 
+Port
+ a| 
+Port StorageGRID que vous souhaitez utiliser pour l'équilibrage de charge. Ce champ est défini par défaut sur 10433 pour le premier noeud final que vous créez, mais vous pouvez entrer n'importe quel port externe inutilisé. Si vous entrez 80 ou 443, le noeud final est configuré uniquement sur les noeuds de passerelle. Ces ports sont réservés sur des nœuds d'administration.
+
+*Remarque :* les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir la link:../network/internal-grid-node-communications.html["Référence du port réseau"].
+
+Vous fournissez ce numéro à ONTAP lorsque vous associez StorageGRID à un niveau cloud FabricPool.
+
+
+
+ a| 
+Type de client
+ a| 
+Sélectionnez *S3*.
+
+
+
+ a| 
+Protocole réseau
+ a| 
+Sélectionnez *HTTPS*.
+
+*Remarque* : la communication avec StorageGRID sans chiffrement TLS est prise en charge, mais elle n'est pas recommandée.
+
+|===
+. Pour l'étape *Sélectionner le mode de liaison*, spécifiez le mode de liaison. Le mode de liaison contrôle la façon dont le noeud final est accessible à l'aide d'une adresse IP ou à l'aide d'adresses IP et d'interfaces réseau spécifiques.
++
+[cols="1a,3a"]
+|===
+| Mode | Description 
+
+
+ a| 
+Global (par défaut)
+ a| 
+Les clients peuvent accéder au point final en utilisant l'adresse IP de n'importe quel nœud de passerelle ou nœud d'administration, l'adresse IP virtuelle (VIP) de n'importe quel groupe haute disponibilité sur n'importe quel réseau, ou un FQDN correspondant.
+
+Utilisez le paramètre *Global* (valeur par défaut) sauf si vous devez restreindre l'accessibilité de ce point final.
+
+
+
+ a| 
+Adresses IP virtuelles de groupes haute disponibilité
+ a| 
+Les clients doivent utiliser une adresse IP virtuelle (ou le nom de domaine complet correspondant) d'un groupe haute disponibilité pour accéder à ce point final.
+
+Les terminaux associés à ce mode de liaison peuvent tous utiliser le même numéro de port, tant que les groupes haute disponibilité que vous sélectionnez pour les terminaux ne se chevauchent pas.
+
+
+
+ a| 
+Interfaces de nœuds
+ a| 
+Les clients doivent utiliser les adresses IP (ou les FQDN correspondants) des interfaces de nœud sélectionnées pour accéder à ce noeud final.
+
+
+
+ a| 
+Type de nœud
+ a| 
+En fonction du type de nœud que vous sélectionnez, les clients doivent utiliser l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud d'administration ou l'adresse IP (ou le nom de domaine complet correspondant) de tout nœud de passerelle pour accéder à ce point final.
+
+|===
+. Pour l'étape *tenant Access*, sélectionnez l'une des options suivantes :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Autoriser tous les locataires (par défaut)
+ a| 
+Tous les comptes de locataires peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+*Autoriser tous les locataires* est presque toujours l'option appropriée pour le noeud final de l'équilibreur de charge utilisé pour FabricPool.
+
+Vous devez sélectionner cette option si vous n'avez pas encore créé de compte de locataire.
+
+
+
+ a| 
+Autoriser les locataires sélectionnés
+ a| 
+Seuls les comptes de locataire sélectionnés peuvent utiliser ce terminal pour accéder à leurs compartiments.
+
+
+
+ a| 
+Bloquez les locataires sélectionnés
+ a| 
+Les comptes de locataire sélectionnés ne peuvent pas utiliser ce terminal pour accéder à leurs compartiments. Tous les autres locataires peuvent utiliser ce noeud final.
+
+|===
+. Pour l'étape *joindre un certificat*, sélectionnez l'une des options suivantes :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Télécharger le certificat (recommandé)
+ a| 
+Utilisez cette option pour télécharger un certificat de serveur signé par une autorité de certification, une clé privée de certificat et un ensemble d'autorité de certification facultatif.
+
+
+
+ a| 
+Générez un certificat
+ a| 
+Utilisez cette option pour générer un certificat auto-signé. Voir link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"] pour plus de détails sur ce que vous devez saisir.
+
+
+
+ a| 
+Utiliser le certificat StorageGRID S3
+ a| 
+Cette option n'est disponible que si vous avez déjà téléchargé ou généré une version personnalisée du certificat global StorageGRID. Voir link:../admin/configuring-custom-server-certificate-for-storage-node.html["Configurer les certificats d'API S3"] pour plus de détails.
+
+|===
+. Sélectionnez *Créer*.
+
+
+
+NOTE: Les modifications apportées à un certificat de point final peuvent prendre jusqu'à 15 minutes pour être appliquées à tous les nœuds.

@@ -1,0 +1,106 @@
+---
+permalink: audit/cbse-object-send-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, CBSE, Object Send End 
+summary: 'Lorsque le transfert d"un bloc de contenu d"un nœud à un autre est terminé, ce message est émis par l"entité source.' 
+---
+= CBSE : fin de l'envoi de l'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque le transfert d'un bloc de contenu d'un nœud à un autre est terminé, ce message est émis par l'entité source.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CNID
+ a| 
+Identificateur de connexion
+ a| 
+Identifiant unique de la session/connexion nœud à nœud.
+
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu en cours de transfert.
+
+
+
+ a| 
+CTDR
+ a| 
+Direction de transfert
+ a| 
+Indique si le transfert CBID a été initié par Push ou par Pull :
+
+PUSH : l'opération de transfert a été demandée par l'entité émettrice.
+
+EXTRACTION : l'opération de transfert a été demandée par l'entité destinataire.
+
+
+
+ a| 
+CTSR
+ a| 
+Entité source
+ a| 
+ID de nœud de la source (expéditeur) du transfert CBID.
+
+
+
+ a| 
+CTD
+ a| 
+Entité de destination
+ a| 
+ID de nœud de la destination (récepteur) du transfert CBID.
+
+
+
+ a| 
+CTSS
+ a| 
+Nombre de séquences de début
+ a| 
+Indique le nombre de séquences sur lesquelles le transfert a démarré.
+
+
+
+ a| 
+CTAS
+ a| 
+Nombre de séquences de fin réelles
+ a| 
+Indique que le dernier nombre de séquences a été transféré avec succès. Si le nombre de séquences de fin réelles est le même que le nombre de séquences de début et que le résultat du transfert n'a pas réussi, aucune donnée n'a été échangée.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat du transfert
+ a| 
+Résultat de l'opération de transfert (du point de vue de l'entité émettrice) :
+
+SUC : transfert terminé avec succès ; tous les comptes de séquence demandés ont été envoyés.
+
+CONL : connexion perdue pendant le transfert
+
+CTMO : expiration de la connexion pendant l'établissement ou le transfert
+
+UNRE : ID de nœud de destination inaccessible
+
+CRPT : transfert terminé en raison de la réception de données corrompues ou non valides
+
+|===
+Ce message d'audit signifie qu'une opération de transfert des données nœud à nœud est terminée. Si le résultat du transfert a réussi, l'opération a transféré les données de « nombre de séquences de début » à « nombre de séquences de fin réelles ». Les nœuds d'envoi et de réception sont identifiés par leurs ID de nœud. Ces informations peuvent être utilisées pour suivre le flux de données système et pour localiser, tabuler et analyser les erreurs. Lorsqu'il est associé à des messages d'audit du stockage, il peut également être utilisé pour vérifier le nombre de répliques.

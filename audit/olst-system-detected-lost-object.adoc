@@ -1,0 +1,73 @@
+---
+permalink: audit/olst-system-detected-lost-object.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, OLST, System Detected Lost Object 
+summary: 'Ce message est généré lorsque le service DDS ne parvient pas à localiser une copie d"un objet dans le système StorageGRID.' 
+---
+= OLST : le système a détecté un objet perdu
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque le service DDS ne trouve aucune copie d'un objet dans le système StorageGRID.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+CBID de l'objet perdu.
+
+
+
+ a| 
+NON
+ a| 
+ID du nœud
+ a| 
+S'il est disponible, dernier emplacement direct ou proche de la ligne connue de l'objet perdu. Il est possible d'avoir uniquement l'ID de nœud sans ID de volume si les informations sur le volume ne sont pas disponibles.
+
+
+
+ a| 
+CHEMIN
+ a| 
+Compartiment/clé S3
+ a| 
+S'il est disponible, le nom du compartiment S3 et le nom de la clé S3.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Ce champ a la valeur AUCUNE. RSLT est un champ de message obligatoire, mais n'est pas pertinent pour ce message. AUCUN n'est utilisé plutôt que LES CMC pour que ce message ne soit pas filtré.
+
+
+
+ a| 
+UUID
+ a| 
+ID universel unique
+ a| 
+Identificateur de l'objet perdu dans le système StorageGRID.
+
+
+
+ a| 
+VOLI
+ a| 
+ID du volume
+ a| 
+S'il est disponible, l'ID de volume du nœud de stockage pour le dernier emplacement connu de l'objet perdu.
+
+|===

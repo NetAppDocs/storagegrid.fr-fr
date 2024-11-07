@@ -1,0 +1,166 @@
+---
+permalink: tenant/specifying-urn-for-platform-services-endpoint.html 
+sidebar: sidebar 
+keywords: how to specify platform services urn 
+summary: 'Lorsque vous créez un noeud final de services de plate-forme, vous devez spécifier un Nom de ressource unique (URN). Vous utiliserez l"URN pour référencer le noeud final lorsque vous créerez un XML de configuration pour le service de plate-forme. L"URN de chaque terminal doit être unique.' 
+---
+= Spécifiez l'URN du terminal des services de plateforme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous créez un noeud final de services de plate-forme, vous devez spécifier un Nom de ressource unique (URN). Vous utiliserez l'URN pour référencer le noeud final lorsque vous créerez un XML de configuration pour le service de plate-forme. L'URN de chaque terminal doit être unique.
+
+StorageGRID valide les terminaux de services de plateforme lors de leur création. Avant de créer un noeud final de services de plate-forme, vérifiez que la ressource spécifiée dans le noeud final existe et qu'elle peut être atteinte.
+
+
+
+== Éléments DE RETOUR
+
+L'URN d'un noeud final de services de plate-forme doit commencer par ou `urn:mysite` par `arn:aws` , comme suit :
+
+* Si le service est hébergé sur Amazon Web Services (AWS), utilisez `arn:aws`
+* Si le service est hébergé sur Google Cloud Platform (GCP), utilisez `arn:aws`
+* Si le service est hébergé localement, utilisez `urn:mysite`
+
+
+Par exemple, si vous spécifiez l'URN d'un noeud final CloudMirror hébergé sur StorageGRID, l'URN peut commencer par `urn:sgws`.
+
+L'élément suivant de l'URN spécifie le type de service de plateforme, comme suit :
+
+[cols="2a,1a"]
+|===
+| Service | Type 
+
+
+ a| 
+Réplication CloudMirror
+ a| 
+`s3`
+
+
+
+ a| 
+Notifications
+ a| 
+`sns` ou `kafka`
+
+
+
+ a| 
+Intégration de la recherche
+ a| 
+`es`
+
+|===
+Par exemple, pour continuer à spécifier l'URN d'un noeud final CloudMirror hébergé sur StorageGRID, vous devez ajouter `s3` à obtenir `urn:sgws:s3`.
+
+L'élément final de l'URN identifie la ressource cible spécifique au niveau de l'URI de destination.
+
+[cols="1a,2a"]
+|===
+| Service | Ressource spécifique 
+
+
+ a| 
+Réplication CloudMirror
+ a| 
+`bucket-name`
+
+
+
+ a| 
+Notifications
+ a| 
+`sns-topic-name` ou `kafka-topic-name`
+
+
+
+ a| 
+Intégration de la recherche
+ a| 
+`domain-name/index-name/type-name`
+
+*Remarque :* si le cluster Elasticsearch est *NOT* configuré pour créer automatiquement des index, vous devez créer l'index manuellement avant de créer le noeud final.
+
+|===
+
+
+== Urns pour les services hébergés sur AWS et GCP
+
+Pour les entités AWS et GCP, l'URN complet est un ARN AWS valide. Par exemple :
+
+* Réplication CloudMirror :
++
+[listing]
+----
+arn:aws:s3:::bucket-name
+----
+* Notifications :
++
+[listing]
+----
+arn:aws:sns:region:account-id:topic-name
+----
+* Intégration de la recherche :
++
+[listing]
+----
+arn:aws:es:region:account-id:domain/domain-name/index-name/type-name
+----
++
+
+NOTE: Pour un terminal d'intégration de recherche AWS, le `domain-name` doit inclure la chaîne littérale , `domain/`comme illustré ici.
+
+
+
+
+
+== Urnes pour des services hébergés localement
+
+Lors de l'utilisation de services hébergés localement au lieu de services cloud, vous pouvez spécifier l'URN de toute façon qui crée un URN valide et unique, tant que l'URN inclut les éléments requis dans les troisième et dernière positions. Vous pouvez laisser les éléments indiqués en blanc facultatif, ou vous pouvez les spécifier de quelque manière que ce soit pour vous aider à identifier la ressource et à rendre l'URN unique. Par exemple :
+
+* Réplication CloudMirror :
++
+[listing]
+----
+urn:mysite:s3:optional:optional:bucket-name
+----
++
+Pour un noeud final CloudMirror hébergé sur StorageGRID, vous pouvez spécifier un URN valide commençant par `urn:sgws`:
+
++
+[listing]
+----
+urn:sgws:s3:optional:optional:bucket-name
+----
+* Notifications :
++
+Spécifiez un point de terminaison Amazon simple notification Service :
+
++
+[listing]
+----
+urn:mysite:sns:optional:optional:sns-topic-name
+----
++
+Spécifiez un terminal Kafka :
+
++
+[listing]
+----
+urn:mysite:kafka:optional:optional:kafka-topic-name
+----
+* Intégration de la recherche :
++
+[listing]
+----
+urn:mysite:es:optional:optional:domain-name/index-name/type-name
+----
++
+
+NOTE: Pour les noeuds finaux d'intégration de recherche hébergés localement, l' `domain-name`élément peut être n'importe quelle chaîne tant que l'URN du noeud final est unique.
+
+

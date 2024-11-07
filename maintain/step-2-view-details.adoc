@@ -1,0 +1,85 @@
+---
+permalink: maintain/step-2-view-details.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, view details 
+summary: 'À partir de l"étape 2 \(Afficher les détails\) de l"assistant dédié au site de mise hors service, vous pouvez vérifier quels nœuds sont inclus sur le site, voir la quantité d"espace utilisée sur chaque nœud de stockage et évaluer la quantité d"espace disponible sur les autres sites de votre grille.' 
+---
+= Étape 2 : Détails de la vue
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+À partir de l'étape 2 (Afficher les détails) de l'assistant Decommission site, vous pouvez vérifier quels nœuds sont inclus sur le site, voir combien d'espace a été utilisé sur chaque noeud de stockage et évaluer la quantité d'espace disponible sur les autres sites de votre grille.
+
+.Avant de commencer
+Avant de désaffecter un site, vous devez vérifier la quantité de données d'objet présentes sur le site.
+
+* Si vous effectuez une mise hors service d'un site connecté, vous devez connaître la quantité de données d'objet présentes sur le site avant de mettre à jour le ILM. En fonction des capacités de votre site et de vos besoins en termes de protection des données, vous pouvez créer de nouvelles règles ILM pour déplacer des données vers d'autres sites ou supprimer les données d'objet du site.
+* Exécutez les extensions du nœud de stockage requises avant de démarrer la procédure de mise hors service si possible.
+* Si vous effectuez une mise hors service de site déconnecté, vous devez comprendre combien de données d'objet deviennent définitivement inaccessibles lorsque vous supprimez le site.
+
+
+
+CAUTION: Si vous désaffectez un site, la règle ILM ne permet pas de déplacer ou de supprimer des données d'objet. Toutes les données conservées sur le site seront perdues. Toutefois, si votre politique ILM a été conçue pour protéger contre la perte d'un seul site, des copies de vos données d'objet existent toujours sur les sites restants. Voir link:../ilm/using-multiple-storage-pools-for-cross-site-replication.html["Activer la protection contre la perte de site"].
+
+.Étapes
+. À partir de l'étape 2 (Afficher les détails), passez en revue tous les avertissements relatifs au site que vous avez sélectionné pour le supprimer.
++
+image::../media/decommission_site_step_2_site_warnings.png[Mise hors service du site étape 2 Avertissements du site]
+
++
+Un avertissement apparaît dans ces cas :
+
++
+** Le site inclut un nœud de passerelle. Si les clients S3 se connectent actuellement à ce nœud, vous devez configurer un nœud équivalent sur un autre site. Assurez-vous que les clients peuvent se connecter au nœud de remplacement avant de poursuivre la procédure de mise hors service.
+** Le site contient un mélange de nœuds connectés (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) et déconnectés (image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] ou image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]). Avant de pouvoir supprimer ce site, vous devez remettre tous les nœuds hors ligne en ligne.
+
+
+. Examinez les détails du site que vous avez sélectionné pour le supprimer.
++
+image::../media/decommission_site_step_2_view_details.png[Désaffectez le site étape 2 Afficher les détails]
+
++
+Les informations suivantes sont incluses pour le site sélectionné :
+
++
+** Nombre de nœuds
+** Espace utilisé total, espace libre et capacité de tous les nœuds de stockage du site.
++
+*** Pour une mise hors service de site connecté, la valeur *espace utilisé* représente la quantité de données d'objet à déplacer vers d'autres sites ou à supprimer avec ILM.
+*** Pour une mise hors service du site déconnecté, la valeur *espace utilisé* indique la quantité de données d'objet qui deviennent inaccessibles lorsque vous supprimez le site.
+
+
+** Noms, types et États de connexion des nœuds :
++
+*** image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"] (Connecté)
+*** image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] (Arrêt administratif)
+*** image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] (Inconnu)
+
+
+** Détails sur chaque nœud :
++
+*** Pour chaque nœud de stockage, quantité d'espace utilisée pour les données d'objet.
+*** Pour les nœuds d'administration et les nœuds de passerelle, que le nœud soit actuellement utilisé dans un groupe haute disponibilité (HA). Vous ne pouvez pas désaffecter un nœud d'administration ou un nœud de passerelle utilisé dans un groupe haute disponibilité. Avant de commencer la désaffectation, éditez les groupes haute disponibilité pour supprimer tous les nœuds du site ou supprimez le groupe haute disponibilité si seuls les nœuds sont inclus dans ce site. Pour obtenir des instructions, reportez-vous à la section link:../admin/managing-high-availability-groups.html["Gestion des groupes haute disponibilité"].
+
+
+
+
+. Dans la section Détails des autres sites de la page, évaluez la quantité d'espace disponible sur les autres sites de votre grille.
++
+image::../media/decommission_site_step_2_view_details_for_other_sites.png[Désaffectez le site étape 2 Afficher les détails pour les autres sites]
+
++
+Si vous désaffectez un site connecté et que vous prévoyez d'utiliser ILM pour déplacer les données d'objet depuis le site sélectionné (au lieu de simplement les supprimer), vous devez vous assurer que les autres sites disposent de la capacité suffisante pour prendre en charge les données déplacées et que la capacité adéquate reste adaptée à la croissance future.
+
++
+
+NOTE: Un avertissement s'affiche si l'espace *utilisé* pour le site que vous souhaitez supprimer est supérieur à *l'espace libre total pour les autres sites*. Pour garantir que la capacité de stockage adéquate est disponible après le retrait du site, vous devrez peut-être procéder à une extension avant d'effectuer cette procédure.
+
+. Sélectionnez *Suivant*.
++
+L'étape 3 (réviser la politique ILM) s'affiche.
+
+

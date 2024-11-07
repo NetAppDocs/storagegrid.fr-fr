@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Découvrez les destinations des informations d'audit"].

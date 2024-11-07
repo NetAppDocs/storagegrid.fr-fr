@@ -1,0 +1,129 @@
+---
+permalink: harden/hardening-guidelines-for-storagegrid-nodes.html 
+sidebar: sidebar 
+keywords: hardening guidelines, nodes, security 
+summary: 'Les nœuds StorageGRID peuvent être déployés sur des machines virtuelles VMware, au sein d"un moteur de conteneurs sur des hôtes Linux, ou en tant qu"appliances matérielles dédiées. Chaque type de plateforme et chaque type de nœud dispose de ses propres pratiques de renforcement.' 
+---
+= Instructions de renforcement pour les nœuds StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les nœuds StorageGRID peuvent être déployés sur des machines virtuelles VMware, au sein d'un moteur de conteneurs sur des hôtes Linux, ou en tant qu'appliances matérielles dédiées. Chaque type de plateforme et chaque type de nœud dispose de ses propres pratiques de renforcement.
+
+
+
+== Contrôlez l'accès IPMI à distance au contrôleur BMC
+
+Vous pouvez activer ou désactiver l'accès IPMI à distance pour tous les dispositifs contenant un contrôleur BMC. L'interface IPMI distante permet à toute personne disposant d'un compte BMC et d'un mot de passe d'accéder à votre matériel de bas niveau à vos appliances StorageGRID. Si vous n'avez pas besoin d'un accès IPMI à distance au contrôleur BMC, désactivez cette option.
+
+* Pour contrôler l'accès IPMI distant au contrôleur BMC dans Grid Manager, accédez à *CONFIGURATION* > *sécurité* > *Paramètres de sécurité* > *appareils* :
++
+** Décochez la case *Activer l'accès IPMI distant* pour désactiver l'accès IPMI au contrôleur BMC.
+** Cochez la case *Activer l'accès IPMI distant* pour activer l'accès IPMI au contrôleur BMC.
+
+
+
+
+
+
+== Configuration du pare-feu
+
+Dans le cadre du processus de renforcement du système, vous devez examiner les configurations de pare-feu externes et les modifier afin que le trafic soit accepté uniquement à partir des adresses IP et sur les ports à partir desquels il est strictement nécessaire.
+
+StorageGRID comprend un pare-feu interne sur chaque nœud qui améliore la sécurité de votre grille en vous permettant de contrôler l'accès réseau au nœud. Vous devez link:../admin/manage-firewall-controls.html["gérer les contrôles de pare-feu internes"]empêcher l'accès au réseau sur tous les ports, à l'exception de ceux nécessaires à votre déploiement de grid spécifique. Les modifications de configuration effectuées sur la page de contrôle du pare-feu sont déployées sur chaque nœud.
+
+Plus précisément, vous pouvez gérer les domaines suivants :
+
+* *Adresses privilégiées* : vous pouvez autoriser certaines adresses IP ou sous-réseaux à accéder aux ports fermés par les paramètres de l'onglet gérer l'accès externe.
+* *Gérer l'accès externe* : vous pouvez fermer les ports ouverts par défaut ou rouvrir les ports précédemment fermés.
+* *Réseau client non approuvé* : vous pouvez spécifier si un nœud approuve le trafic entrant provenant du réseau client ainsi que les ports supplémentaires que vous souhaitez ouvrir lorsque le réseau client non approuvé est configuré.
+
+
+Bien que ce pare-feu interne offre une couche supplémentaire de protection contre certaines menaces courantes, il ne supprime pas la nécessité d'un pare-feu externe.
+
+Pour obtenir la liste de tous les ports internes et externes utilisés par StorageGRID, reportez-vous à la section link:../network/network-port-reference.html["Référence du port réseau"].
+
+
+
+== Désactiver les services inutilisés
+
+Pour tous les nœuds StorageGRID, désactivez ou bloquez l'accès aux services non utilisés. Par exemple, si vous n'avez pas l'intention d'utiliser DHCP, utilisez Grid Manager pour fermer le port 68. Sélectionnez *CONFIGURATION* > *contrôle du pare-feu* > *gérer l'accès externe*. Modifiez ensuite la bascule d'état du port 68 de *Open* à *Closed*.
+
+
+
+== Virtualisation, conteneurs et matériel partagé
+
+Pour tous les nœuds StorageGRID, évitez d'exécuter StorageGRID sur le même matériel physique que les logiciels non fiables. Ne supposez pas que les protections de l'hyperviseur empêchent les logiciels malveillants d'accéder aux données protégées par StorageGRID si StorageGRID et le logiciel malveillant existent sur le même matériel physique. Par exemple, les attaques Meltdown et Specter exploitent des vulnérabilités critiques dans les processeurs modernes et permettent aux programmes de voler des données en mémoire sur le même ordinateur.
+
+
+
+== Protéger les nœuds pendant l'installation
+
+N'autorisez pas les utilisateurs non approuvés à accéder aux nœuds StorageGRID sur le réseau lors de l'installation des nœuds. Les nœuds ne sont pas entièrement sécurisés tant qu'ils n'ont pas rejoint la grille.
+
+
+
+== Instructions pour les nœuds d'administration
+
+Des nœuds d'administration qui assurent les services de gestion tels que la configuration du système, la surveillance et la journalisation. Lorsque vous vous connectez à Grid Manager ou au Gestionnaire de locataires, vous vous connectez à un noeud d'administration.
+
+Suivez les instructions suivantes pour sécuriser les nœuds d'administration dans votre système StorageGRID :
+
+* Sécurisez tous les nœuds d'administration des clients non fiables, tels que ceux qui sont sur Internet ouvert. Assurez-vous qu'aucun client non approuvé ne peut accéder à un nœud d'administration sur le réseau Grid, le réseau d'administration ou le réseau client.
+* Les groupes StorageGRID contrôlent l'accès aux fonctionnalités de Grid Manager et de tenant Manager. Accordez à chaque groupe d'utilisateurs les autorisations minimales requises pour leur rôle et utilisez le mode d'accès en lecture seule pour empêcher les utilisateurs de modifier la configuration.
+* Lorsque vous utilisez des terminaux d'équilibrage de charge StorageGRID, utilisez des nœuds de passerelle au lieu des nœuds d'administration pour le trafic client non fiable.
+* Si vous avez des locataires non approuvés, ne les autorisez pas à avoir un accès direct au gestionnaire de locataires ou à l'API de gestion des locataires. Certains locataires non fiables utilisent un portail de locataires ou un système de gestion externe des locataires qui interagit avec l'API de gestion des locataires.
+* Vous pouvez également utiliser un proxy d'administration pour davantage de contrôle sur la communication AutoSupport entre les nœuds d'administration et le support NetApp. Voir les étapes pour link:../admin/configuring-admin-proxy-settings.html["création d'un proxy d'administration"].
+* Utilisez éventuellement les ports 8443 et 9443 restreints pour séparer les communications Grid Manager et tenant Manager. Bloquez le port partagé 443 et limitez les demandes des locataires au port 9443 pour une protection supplémentaire.
+* La possibilité d'utiliser des nœuds d'administration distincts pour les administrateurs du grid et les utilisateurs des locataires.
+
+
+Pour plus d'informations, reportez-vous aux instructions link:../admin/index.html["Administration d'StorageGRID"]de .
+
+
+
+== Consignes relatives aux nœuds de stockage
+
+Des nœuds de stockage gèrent et stockent les données et les métadonnées d'objets. Suivez ces instructions pour sécuriser les nœuds de stockage dans votre système StorageGRID.
+
+* Ne permettez pas aux clients non approuvés de se connecter directement aux nœuds de stockage. Utilisez un terminal d'équilibrage de charge desservi par un nœud de passerelle ou un équilibreur de charge tiers.
+* N'activez pas les services sortants pour les locataires non approuvés. Par exemple, lors de la création du compte pour un locataire non approuvé, n'autorisez pas le locataire à utiliser son propre référentiel d'identité et n'autorisez pas l'utilisation des services de plate-forme. Voir les étapes pour link:../admin/creating-tenant-account.html["création d'un compte de locataire"].
+* Utilisez un équilibreur de charge tiers pour le trafic client non fiable. L'équilibrage de la charge fourni par des tiers offre un meilleur contrôle et des couches de protection supplémentaires contre les attaques.
+* Vous pouvez également utiliser un proxy de stockage pour davantage de contrôle sur les pools de stockage cloud et la communication des services de plateforme depuis les nœuds de stockage vers les services externes. Voir les étapes pour link:../admin/configuring-storage-proxy-settings.html["création d'un proxy de stockage"].
+* Vous pouvez également vous connecter à des services externes à l'aide du réseau client. Sélectionnez ensuite *CONFIGURATION* > *sécurité* > *contrôle du pare-feu* > *réseaux clients non approuvés* et indiquez que le réseau client sur le noeud de stockage n'est pas fiable. Le nœud de stockage n'accepte plus de trafic entrant sur le réseau client, mais il continue à autoriser les requêtes sortantes pour les services de plate-forme.
+
+
+
+
+== Instructions pour les nœuds de passerelle
+
+Les nœuds de passerelle fournissent une interface d'équilibrage de la charge facultative que les applications client peuvent utiliser pour se connecter à StorageGRID. Pour sécuriser tous les nœuds de passerelle de votre système StorageGRID, procédez comme suit :
+
+* Configurez et utilisez des terminaux d'équilibrage de charge. Voir link:../admin/managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"].
+* Utilisez un équilibreur de charge tiers entre le client et le nœud de passerelle ou les nœuds de stockage pour le trafic client non fiable. L'équilibrage de la charge fourni par des tiers offre un meilleur contrôle et des couches de protection supplémentaires contre les attaques. Si vous utilisez un équilibreur de charge tiers, le trafic réseau peut, éventuellement, être configuré de manière à passer par un terminal interne d'équilibrage de la charge ou être directement envoyé aux nœuds de stockage.
+* Si vous utilisez des points de terminaison d'équilibrage de charge, les clients peuvent éventuellement se connecter via le réseau client. Sélectionnez ensuite *CONFIGURATION* > *sécurité* > *contrôle du pare-feu* > *réseaux clients non approuvés* et indiquez que le réseau client sur le nœud passerelle n'est pas fiable. Le nœud passerelle accepte uniquement le trafic entrant sur les ports explicitement configurés en tant que points finaux d'équilibreur de charge.
+
+
+
+
+== Consignes pour les nœuds d'appliances matérielles
+
+Les appliances matérielles StorageGRID sont spécialement conçues pour une utilisation dans un système StorageGRID. Certaines appliances peuvent être utilisées comme nœuds de stockage. Les autres appliances peuvent être utilisées comme nœuds d'administration ou nœuds de passerelle. Vous pouvez associer des nœuds d'appliance à des nœuds basés sur logiciel ou déployer des grilles 100 % appliance entièrement conçues.
+
+Pour sécuriser les nœuds d'appliance matérielle de votre système StorageGRID, procédez comme suit :
+
+* Si l'appliance utilise SANtricity System Manager pour la gestion du contrôleur de stockage, empêchez les clients non fiables d'accéder à SANtricity System Manager sur le réseau.
+* Si l'appliance est équipée d'un contrôleur de gestion de la carte mère (BMC), notez que le port de gestion du BMC permet un accès matériel de faible niveau. Connectez le port de gestion BMC uniquement à un réseau de gestion interne sécurisé, fiable et. Si aucun réseau de ce type n'est disponible, laissez le port de gestion BMC déconnecté ou bloqué, à moins qu'une connexion BMC ne soit demandée par le support technique.
+* Si l'appliance prend en charge la gestion à distance du matériel du contrôleur via Ethernet à l'aide de la norme IPMI (Intelligent Platform Management interface), bloquez le trafic non fiable sur le port 623.
+
+
+
+NOTE: Vous pouvez activer ou désactiver l'accès IPMI à distance pour tous les dispositifs contenant un contrôleur BMC. L'interface IPMI distante permet à toute personne disposant d'un compte BMC et d'un mot de passe d'accéder à votre matériel de bas niveau à vos appliances StorageGRID. Si vous n'avez pas besoin d'un accès IPMI à distance à BMC, désactivez cette option à l'aide de l'une des méthodes suivantes : + dans le Gestionnaire de grille, accédez à *CONFIGURATION* > *sécurité* > *Paramètres de sécurité* > *appareils* et décochez la case *Activer l'accès IPMI à distance*. + dans l'API de gestion de grille, utilisez le noeud final privé : `PUT /private/bmc`.
+
+* Pour les modèles d'appliance contenant des disques SED, FDE ou NL-SAS FIPS que vous gérez avec SANtricity System Manager https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["Activez et configurez la sécurité des lecteurs SANtricity"^].
+* Pour les modèles d'appliance contenant des SSD NVMe autochiffrés SED ou FIPS que vous gérez à l'aide du programme d'installation de l'appliance StorageGRID et de Grid Manager, https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["Activez et configurez le chiffrement de lecteur StorageGRID"^].
+* Pour les appliances sans disques autochiffrés, FDE ou FIPS, activez et configurez le chiffrement des nœuds logiciels StorageGRID https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html#enable-node-encryption["Utilisation d'un serveur de gestion des clés (KMS)"^] .
+

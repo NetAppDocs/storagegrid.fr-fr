@@ -1,0 +1,73 @@
+---
+permalink: audit/lkcu-overwritten-object-cleanup.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LKCU, Overwritten Object Cleanup 
+summary: 'Ce message est généré lorsque StorageGRID supprime un objet écrasé qui auparavant requiert un nettoyage pour libérer de l"espace de stockage. Un objet est écrasé lorsqu"un client S3 écrit un objet dans un chemin qui contient déjà un objet. Le processus de suppression se produit automatiquement et en arrière-plan.' 
+---
+= LKCU : nettoyage d'objet écrasé
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque StorageGRID supprime un objet écrasé qui auparavant requiert un nettoyage pour libérer de l'espace de stockage. Un objet est écrasé lorsqu'un client S3 écrit un objet dans un chemin qui contient déjà un objet. Le processus de suppression se produit automatiquement et en arrière-plan.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet en octets.
+
+
+
+ a| 
+LTYP
+ a| 
+Type de nettoyage
+ a| 
+_Usage interne uniquement._
+
+
+
+ a| 
+LUID
+ a| 
+UUID d'objet supprimé
+ a| 
+Identifiant de l'objet qui a été supprimé.
+
+
+
+ a| 
+CHEMIN
+ a| 
+Compartiment/clé S3
+ a| 
+Nom du compartiment S3 et nom de la clé S3.
+
+
+
+ a| 
+SEGC
+ a| 
+UUID du conteneur
+ a| 
+UUID du conteneur pour l'objet segmenté. Cette valeur n'est disponible que si l'objet est segmenté.
+
+
+
+ a| 
+UUID
+ a| 
+Identifiant unique universel
+ a| 
+Identifiant de l'objet qui existe toujours. Cette valeur est disponible uniquement si l'objet n'a pas été supprimé.
+
+|===

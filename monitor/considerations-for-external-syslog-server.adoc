@@ -1,0 +1,270 @@
+---
+permalink: monitor/considerations-for-external-syslog-server.html 
+sidebar: sidebar 
+keywords: syslog server, external syslog server, sizing, sizing syslog server, audit messages 
+summary: 'Un serveur syslog externe est un serveur hors de StorageGRID que vous pouvez utiliser pour collecter les informations d"audit système sur un emplacement unique. L"utilisation d"un serveur syslog externe vous permet de réduire le trafic réseau sur vos nœuds d"administration et de gérer les informations d"audit plus efficacement.' 
+---
+= Considérations relatives à l'utilisation d'un serveur syslog externe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un serveur syslog externe est un serveur hors de StorageGRID que vous pouvez utiliser pour collecter les informations d'audit système sur un emplacement unique. L'utilisation d'un serveur syslog externe vous permet de réduire le trafic réseau sur vos nœuds d'administration et de gérer les informations plus efficacement. Pour StorageGRID, le format de paquet de messages syslog sortants est conforme à la norme RFC 3164.
+
+Les types d'informations d'audit que vous pouvez envoyer au serveur syslog externe sont les suivants :
+
+* Journaux d'audit contenant les messages d'audit générés pendant le fonctionnement normal du système
+* Événements liés à la sécurité tels que les connexions et la remontée à la racine
+* Fichiers journaux d'application pouvant être demandés s'il est nécessaire d'ouvrir un dossier d'assistance pour résoudre un problème rencontré
+
+
+
+
+== Quand utiliser un serveur syslog externe
+
+Un serveur syslog externe est particulièrement utile si vous disposez d'une grande grille, utilisez plusieurs types d'applications S3 ou souhaitez conserver toutes les données d'audit. L'envoi d'informations d'audit à un serveur syslog externe vous permet de :
+
+* Collectez et gérez plus efficacement les informations d'audit telles que les messages d'audit, les journaux d'applications et les événements de sécurité.
+* Réduisez le trafic réseau sur vos nœuds d'administration, car les informations d'audit sont transférées directement depuis les différents nœuds de stockage vers le serveur syslog externe, sans devoir passer par un nœud d'administration.
++
+
+CAUTION: Lorsque les journaux sont envoyés à un serveur syslog externe, les journaux uniques supérieurs à 8,192 octets sont tronqués à la fin du message pour se conformer aux limitations communes des implémentations de serveur syslog externe.
+
++
+
+NOTE: Pour optimiser les options de restauration complète des données en cas de défaillance du serveur syslog externe, jusqu'à 20 Go de journaux locaux d'enregistrements d'audit (`localaudit.log`) sont conservés sur chaque nœud.
+
+
+
+
+
+== Comment configurer un serveur syslog externe
+
+Pour savoir comment configurer un serveur syslog externe, reportez-vous à la section link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
+
+Si vous prévoyez de configurer l'utilisation du protocole TLS ou RELP/TLS, vous devez disposer des certificats suivants :
+
+* *Certificats d'autorité de certification du serveur* : un ou plusieurs certificats d'autorité de certification de confiance pour vérifier le serveur syslog externe dans le codage PEM. Si omis, le certificat d'autorité de certification de la grille par défaut sera utilisé.
+* *Certificat client* : certificat client pour l'authentification au serveur syslog externe dans le codage PEM.
+* *Clé privée client* : clé privée pour le certificat client dans le codage PEM.
++
+
+NOTE: Si vous utilisez un certificat client, vous devez également utiliser une clé privée client. Si vous fournissez une clé privée chiffrée, vous devez également fournir la phrase de passe. L'utilisation d'une clé privée chiffrée n'est pas un avantage majeur en matière de sécurité, car la clé et la phrase de passe doivent être stockées. Si elles sont disponibles, il est recommandé de recourir à une clé privée non chiffrée pour plus de simplicité.
+
+
+
+
+
+== Comment estimer la taille du serveur syslog externe
+
+En principe, la taille de la grille est adaptée au débit requis, défini en termes d'opérations S3 par seconde ou d'octets par seconde. Par exemple, votre grid peut être capable de gérer 1,000 opérations S3 par seconde ou 2,000 Mo par seconde, d'ingales et de récupérations d'objets. Il est conseillé de dimensionner votre serveur syslog externe en fonction des besoins de votre grid.
+
+Cette section fournit des formules heuristiques qui vous aident à estimer le taux et la taille moyenne des messages de journal de différents types requis par votre serveur syslog externe en termes de caractéristiques de performance connues ou souhaitées de la grille (opérations S3 par seconde).
+
+
+
+=== Utilisez des opérations S3 par seconde dans les formules d'estimation
+
+Si votre grille a été dimensionnée pour un débit exprimé en octets par seconde, vous devez convertir ce dimensionnement en opérations S3 par seconde afin d'utiliser les formules d'estimation. Pour convertir le débit du grid, vous devez d'abord déterminer la taille d'objet moyenne que vous pouvez utiliser les informations des journaux d'audit et des mesures existants (le cas échéant), ou en utilisant vos connaissances des applications qui utilisent StorageGRID. Par exemple, si la taille du grid a été dimensionnée pour atteindre un débit de 2,000 Mo/seconde, et que la taille d'objet moyenne est de 2 Mo, votre grille a été dimensionnée pour traiter 1,000 opérations S3 par seconde (2,000 Mo/2 Mo).
+
+
+NOTE: Les formules de dimensionnement externe du serveur syslog présentées dans les sections suivantes fournissent des estimations communes (plutôt que des estimations de cas les plus défavorables). Selon votre configuration et votre charge de travail, un taux plus élevé ou moins élevé de messages syslog ou de données syslog peut être constaté que les formules le prévoient. Les formules sont destinées à être utilisées uniquement comme directives.
+
+
+
+=== Formules d'estimation pour les journaux d'audit
+
+Si vous ne disposez d'aucune information concernant votre charge de travail S3 autre que le nombre d'opérations S3 par seconde que votre grille doit prendre en charge, vous pouvez estimer le volume des journaux d'audit que votre serveur syslog externe devra gérer à l'aide des formules suivantes : Dans l'hypothèse où vous laissez les niveaux d'audit définis sur les valeurs par défaut (toutes les catégories sont définies sur Normal, sauf Storage, qui est défini sur erreur) :
+
+[listing]
+----
+Audit Log Rate = 2 x S3 Operations Rate
+Audit Log Average Size = 800 bytes
+----
+Par exemple, si le grid est dimensionné pour 1,000 opérations S3 par seconde, votre serveur syslog externe doit être dimensionné pour prendre en charge 2,000 messages syslog par seconde et doit être capable de recevoir (et généralement stocker) les données du journal d'audit à un taux de 1.6 Mo par seconde.
+
+Si vous en savez plus sur votre charge de travail, des estimations plus précises sont possibles. Pour les journaux d'audit, les variables supplémentaires les plus importantes sont le pourcentage d'opérations S3 PUT (vs. Gets) et la taille moyenne, en octets, des champs S3 suivants (les abréviations de 4 caractères utilisées dans le tableau sont des noms de champs de journal d'audit) :
+
+[cols="1a,1a,1a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CCUA
+ a| 
+Nom du compte de locataire S3 (expéditeur de la demande)
+ a| 
+Nom du compte de tenant pour l'utilisateur qui a envoyé la demande. Vide pour les demandes anonymes.
+
+
+
+ a| 
+SBAC
+ a| 
+Nom de compte de locataire S3 (propriétaire du compartiment)
+ a| 
+Nom du compte du locataire pour le propriétaire du compartiment. Permet d'identifier les accès inter-comptes ou anonymes.
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Touche S3
+ a| 
+Le nom de la clé S3 n'inclut pas le nom du compartiment. Les opérations sur les compartiments n'incluent pas ce champ.
+
+|===
+Nous allons utiliser P pour représenter le pourcentage d'opérations S3 qui sont PUT, où 0 ≤ P ≤ 1 (pour une charge de travail PUT de 100 %, P = 1, et pour une charge DE travail GET de 100 %, P = 0).
+
+Utilisons K pour représenter la taille moyenne de la somme des noms des comptes S3, du compartiment S3 et de la clé S3. Supposons que le nom de compte S3 soit toujours mon compte s3 (13 octets), que les compartiments ont des noms de longueur fixe comme /my/application/catg-12345 (28 octets) et que les objets ont des clés à longueur fixe comme 5733a5d7-f069-41ef-8fbd-132449c69c (36 octets). La valeur de K est alors de 90 (13+13+28+36).
+
+Si vous pouvez déterminer les valeurs P et K, vous pouvez estimer le volume des journaux d'audit que votre serveur syslog externe doit traiter à l'aide des formules suivantes, en supposant que vous laissez les niveaux d'audit par défaut (toutes les catégories définies sur Normal, sauf Storage, Qui est défini sur erreur) :
+
+[listing]
+----
+Audit Log Rate = ((2 x P) + (1 - P)) x S3 Operations Rate
+Audit Log Average Size = (570 + K) bytes
+----
+Par exemple, si le grid est dimensionné pour 1,000 opérations S3 par seconde, le workload est PUT à 50 %, et les noms de compte S3, les noms de compartiment, Et les noms d'objet utilisent une moyenne de 90 octets. Votre serveur syslog externe doit être dimensionné pour prendre en charge 1,500 messages syslog par seconde et doit être capable de recevoir (et généralement stocker) les données du journal d'audit à un taux d'environ 1 Mo par seconde.
+
+
+
+=== Formules d'estimation pour les niveaux d'audit non par défaut
+
+Les formules fournies pour les journaux d'audit supposent l'utilisation des paramètres par défaut du niveau d'audit (toutes les catégories sont définies sur Normal, sauf Storage, qui est défini sur erreur). Les formules détaillées d'estimation du taux et de la taille moyenne des messages d'audit pour les paramètres de niveau d'audit non par défaut ne sont pas disponibles. Toutefois, le tableau suivant peut être utilisé pour faire une estimation approximative du taux; vous pouvez utiliser la formule de taille moyenne fournie pour les journaux d'audit, mais sachez qu'elle risque de générer une surestimation car les messages d'audit « supplémentaires » sont, en moyenne, inférieurs aux messages d'audit par défaut.
+
+[cols="1a,1a"]
+|===
+| Condition | Formule 
+
+
+ a| 
+Réplication : niveaux d'audit tous définis sur débogage ou Normal
+ a| 
+Débit du journal d'audit = 8 x taux d'opérations S3
+
+
+
+ a| 
+Codage d'effacement : les niveaux d'audit sont tous définis sur débogage ou Normal
+ a| 
+Utiliser la même formule que pour les paramètres par défaut
+
+|===
+
+
+=== Formules d'estimation pour les événements de sécurité
+
+Les événements de sécurité ne sont pas corrélés avec les opérations S3 et produisent généralement un volume négligeable de journaux et de données. Pour ces raisons, aucune formule d'estimation n'est fournie.
+
+
+
+=== Formules d'estimation pour les journaux d'application
+
+Si vous ne disposez d'aucune information concernant votre charge de travail S3 autre que le nombre d'opérations S3 par seconde que que votre grid est censé prendre en charge, vous pouvez estimer le volume des journaux d'applications que votre serveur syslog externe devra gérer à l'aide des formules suivantes :
+
+[listing]
+----
+Application Log Rate = 3.3 x S3 Operations Rate
+Application Log Average Size = 350 bytes
+----
+Par exemple, si le grid est dimensionné pour 1,000 opérations S3 par seconde, votre serveur syslog externe doit être dimensionné pour prendre en charge 3,300 journaux d'application par seconde et être capable de recevoir (et de stocker) les données de journaux d'application à un taux de 1.2 Mo par seconde environ.
+
+Si vous en savez plus sur votre charge de travail, des estimations plus précises sont possibles. Pour les journaux d'applications, les variables supplémentaires les plus importantes sont la stratégie de protection des données (réplication vs code d'effacement), le pourcentage d'opérations S3 PUT (vs. Gets/autre) et la taille moyenne, en octets, des champs S3 suivants (les abréviations de 4 caractères utilisées dans le tableau sont des noms de champs de journal d'audit) :
+
+[cols="1a,1a,1a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CCUA
+ a| 
+Nom du compte de locataire S3 (expéditeur de la demande)
+ a| 
+Nom du compte de tenant pour l'utilisateur qui a envoyé la demande. Vide pour les demandes anonymes.
+
+
+
+ a| 
+SBAC
+ a| 
+Nom de compte de locataire S3 (propriétaire du compartiment)
+ a| 
+Nom du compte du locataire pour le propriétaire du compartiment. Permet d'identifier les accès inter-comptes ou anonymes.
+
+
+
+ a| 
+S3BK
+ a| 
+Compartiment S3
+ a| 
+Nom du compartiment S3.
+
+
+
+ a| 
+S3KY
+ a| 
+Touche S3
+ a| 
+Le nom de la clé S3 n'inclut pas le nom du compartiment. Les opérations sur les compartiments n'incluent pas ce champ.
+
+|===
+
+
+== Exemples d'estimations de dimensionnement
+
+Cette section explique des exemples d'utilisation des formules d'estimation pour les grilles avec les méthodes de protection des données suivantes :
+
+* La réplication
+* Le code d'effacement
+
+
+
+
+=== Si vous utilisez la réplication pour la protection des données
+
+La p représente le pourcentage d'opérations S3 qui sont PUT, 0 ≤ P ≤ 1 (pour une charge de travail PUT de 100 %, P = 1 et POUR une charge DE travail GET de 100 %, P = 0).
+
+K représente la taille moyenne de la somme des noms de compte S3, du compartiment S3 et de la clé S3. Supposons que le nom de compte S3 soit toujours mon compte s3 (13 octets), que les compartiments ont des noms de longueur fixe comme /my/application/catg-12345 (28 octets) et que les objets ont des clés à longueur fixe comme 5733a5d7-f069-41ef-8fbd-132449c69c (36 octets). Ensuite K a une valeur de 90 (13+13+28+36).
+
+Si vous pouvez déterminer des valeurs pour P et K, vous pouvez estimer le volume des journaux d'application que votre serveur syslog externe devra traiter à l'aide des formules suivantes.
+
+[listing]
+----
+Application Log Rate = ((1.1 x P) + (2.5 x (1 - P))) x S3 Operations Rate
+Application Log Average Size = (P x (220 + K)) + ((1 - P) x (240 + (0.2 x K))) Bytes
+----
+Par exemple, si le grid est dimensionné pour 1,000 opérations S3 par seconde, le workload est utilisé à 50 % et les noms de comptes S3, de compartiments et de noms d'objet moyenne à 90 octets, votre serveur syslog externe doit être dimensionné pour prendre en charge 1800 journaux d'applications par seconde. Et sera en mesure de recevoir (et de stocker en général) des données d'application à un taux de 0.5 Mo par seconde.
+
+
+
+=== Si vous utilisez le code d'effacement pour la protection des données
+
+La p représente le pourcentage d'opérations S3 qui sont PUT, 0 ≤ P ≤ 1 (pour une charge de travail PUT de 100 %, P = 1 et POUR une charge DE travail GET de 100 %, P = 0).
+
+K représente la taille moyenne de la somme des noms de compte S3, du compartiment S3 et de la clé S3. Supposons que le nom de compte S3 soit toujours mon compte s3 (13 octets), que les compartiments ont des noms de longueur fixe comme /my/application/catg-12345 (28 octets) et que les objets ont des clés à longueur fixe comme 5733a5d7-f069-41ef-8fbd-132449c69c (36 octets). Ensuite K a une valeur de 90 (13+13+28+36).
+
+Si vous pouvez déterminer des valeurs pour P et K, vous pouvez estimer le volume des journaux d'application que votre serveur syslog externe devra traiter à l'aide des formules suivantes.
+
+[listing]
+----
+Application Log Rate = ((3.2 x P) + (1.3 x (1 - P))) x S3 Operations Rate
+Application Log Average Size = (P x (240 + (0.4 x K))) + ((1 - P) x (185 + (0.9 x K))) Bytes
+----
+Par exemple, si votre grid est dimensionné pour 1,000 opérations S3 par seconde, votre workload pèse 50 % du volume et vos noms de compte S3, noms de compartiment, les noms d'objets sont en moyenne de 90 octets. votre serveur syslog externe doit être dimensionné pour prendre en charge 2,250 journaux d'applications par seconde et être capable de recevoir (et généralement de stocker) des données d'application à un taux de 0.6 Mo par seconde.

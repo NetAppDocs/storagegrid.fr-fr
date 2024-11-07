@@ -1,0 +1,83 @@
+---
+permalink: monitor/information-you-should-monitor-regularly.html 
+sidebar: sidebar 
+keywords: when to monitor, what to monitor 
+summary: 'Même si le système StorageGRID peut continuer à fonctionner lorsque des erreurs se produisent ou que des parties de la grille sont indisponibles, vous devez surveiller et résoudre les problèmes potentiels avant qu"ils n"affectent l"efficacité ou la disponibilité de la grille.' 
+---
+= Quoi et quand surveiller
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Même si le système StorageGRID peut continuer à fonctionner lorsque des erreurs se produisent ou que des parties de la grille sont indisponibles, vous devez surveiller et résoudre les problèmes potentiels avant qu'ils n'affectent l'efficacité ou la disponibilité de la grille.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.A propos des tâches de surveillance
+Un système occupé génère de grandes quantités d'informations. La liste suivante fournit des conseils sur les informations les plus importantes à surveiller en permanence.
+
+[cols="1a,1a"]
+|===
+| Quoi surveiller | Fréquence 
+
+
+ a| 
+link:monitoring-system-health.html["État de santé du système"]
+ a| 
+Tous les jours
+
+
+
+ a| 
+Taux de link:monitoring-storage-capacity.html["Capacité des objets et des métadonnées du nœud de stockage"]consommation
+ a| 
+Hebdomadaire
+
+
+
+ a| 
+link:monitoring-information-lifecycle-management.html["Opérations de gestion du cycle de vie des informations"]
+ a| 
+Hebdomadaire
+
+
+
+ a| 
+link:monitoring-network-connections-and-performance.html["Ressources réseau et système"]
+ a| 
+Hebdomadaire
+
+
+
+ a| 
+link:monitoring-tenant-activity.html["Activité des locataires"]
+ a| 
+Hebdomadaire
+
+
+
+ a| 
+link:monitoring-object-ingest-and-retrieval-rates.html["Opérations client S3"]
+ a| 
+Hebdomadaire
+
+
+
+ a| 
+link:monitoring-load-balancing-operations.html["Opérations d'équilibrage de la charge"]
+ a| 
+Après la configuration initiale et après toute modification de la configuration
+
+
+
+ a| 
+link:grid-federation-monitor-connections.html["Connexions de fédération de grille"]
+ a| 
+Hebdomadaire
+
+|===

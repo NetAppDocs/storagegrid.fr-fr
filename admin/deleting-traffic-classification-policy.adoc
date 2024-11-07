@@ -1,0 +1,49 @@
+---
+permalink: admin/deleting-traffic-classification-policy.html 
+sidebar: sidebar 
+keywords: delete traffic classification policy 
+summary: 'Si vous n"avez plus besoin d"une règle de classification du trafic, vous pouvez la supprimer.' 
+---
+= Supprimer une règle de classification du trafic
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez supprimer une stratégie de classification du trafic si vous n'en avez plus besoin. Assurez-vous de supprimer la stratégie appropriée car une stratégie ne peut pas être récupérée lorsqu'elle est supprimée.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
++
+La page stratégies de classification du trafic s'affiche avec les stratégies existantes répertoriées dans un tableau.
+
+. Supprimez la stratégie à l'aide du menu actions ou de la page de détails.
++
+[role="tabbed-block"]
+====
+.Menu actions
+--
+.. Cochez la case correspondant à la règle.
+.. Sélectionnez *actions* > *Supprimer*.
+
+
+--
+.Page de détails de la police
+--
+.. Sélectionnez le nom de la stratégie.
+.. Sélectionnez le bouton *Supprimer* en regard du nom de la stratégie.
+
+
+--
+====
+. Sélectionnez *Oui* pour confirmer que vous souhaitez supprimer la stratégie.
++
+La stratégie est supprimée.
+
+

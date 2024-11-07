@@ -1,0 +1,108 @@
+---
+permalink: s3/example-group-policies.html 
+sidebar: sidebar 
+keywords: group policy examples 
+summary: 'Utilisez les exemples de cette section pour créer des stratégies d"accès StorageGRID pour les groupes.' 
+---
+= Exemples de stratégies de groupe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez les exemples de cette section pour créer des stratégies d'accès StorageGRID pour les groupes.
+
+Les stratégies de groupe spécifient les autorisations d'accès pour le groupe auquel la stratégie est associée. Il n'y a pas d' `Principal`élément dans la règle car elle est implicite. Les règles de groupe sont configurées à l'aide du Gestionnaire de locataires ou de l'API.
+
+
+
+== Exemple : définissez la stratégie de groupe à l'aide du Gestionnaire de locataires
+
+Lorsque vous ajoutez ou modifiez un groupe dans le Gestionnaire de locataires, vous pouvez sélectionner une stratégie de groupe pour déterminer les autorisations d'accès S3 dont les membres de ce groupe auront accès. Voir link:../tenant/creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"].
+
+* *Pas d'accès S3* : option par défaut. Les utilisateurs de ce groupe n'ont pas accès aux ressources S3, sauf si l'accès est accordé avec une règle de compartiment. Si vous sélectionnez cette option, seul l'utilisateur root peut accéder aux ressources S3 par défaut.
+* *Accès en lecture seule* : les utilisateurs de ce groupe ont accès en lecture seule aux ressources S3. Par exemple, les utilisateurs de ce groupe peuvent afficher la liste des objets et lire les données d'objet, les métadonnées et les balises. Lorsque vous sélectionnez cette option, la chaîne JSON pour une stratégie de groupe en lecture seule s'affiche dans la zone de texte. Vous ne pouvez pas modifier cette chaîne.
+* *Accès complet* : les utilisateurs de ce groupe ont accès aux ressources S3, y compris aux compartiments. Lorsque vous sélectionnez cette option, la chaîne JSON pour une stratégie de groupe à accès complet s'affiche dans la zone de texte. Vous ne pouvez pas modifier cette chaîne.
+* *Atténuation des ransomware* : cet exemple de politique s'applique à tous les compartiments pour ce locataire. Les utilisateurs de ce groupe peuvent effectuer des actions courantes, mais ne peuvent pas supprimer définitivement des objets des compartiments pour lesquels la gestion des versions d'objet est activée.
++
+Les utilisateurs du Gestionnaire de locataires disposant de l'autorisation gérer tous les compartiments peuvent remplacer cette stratégie de groupe. Limitez l'autorisation gérer tous les compartiments aux utilisateurs de confiance et utilisez l'authentification multifacteur (MFA), le cas échéant.
+
+* *Custom* : les utilisateurs du groupe disposent des autorisations que vous spécifiez dans la zone de texte.
+
+
+
+
+== Exemple : autoriser l'accès complet du groupe à toutes les rubriques
+
+Dans cet exemple, tous les membres du groupe sont autorisés à accéder à tous les compartiments appartenant au compte du locataire, sauf s'ils sont explicitement refusés par la politique de compartiment.
+
+[listing]
+----
+{
+  "Statement": [
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    }
+  ]
+}
+----
+
+
+== Exemple : autoriser l'accès en lecture seule du groupe à tous les compartiments
+
+Dans cet exemple, tous les membres du groupe ont un accès en lecture seule aux ressources S3, à moins qu'ils ne soient explicitement refusés par la règle de compartiment. Par exemple, les utilisateurs de ce groupe peuvent afficher la liste des objets et lire les données d'objet, les métadonnées et les balises.
+
+[listing]
+----
+{
+  "Statement": [
+    {
+      "Sid": "AllowGroupReadOnlyAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:ListBucket",
+        "s3:ListBucketVersions",
+        "s3:GetObject",
+        "s3:GetObjectTagging",
+        "s3:GetObjectVersion",
+        "s3:GetObjectVersionTagging"
+      ],
+      "Resource": "arn:aws:s3:::*"
+    }
+  ]
+}
+----
+
+
+== Exemple : autorisez les membres du groupe à accéder entièrement à leur « dossier » uniquement dans un compartiment
+
+Dans cet exemple, les membres du groupe ne sont autorisés qu'à répertorier et accéder à leur dossier spécifique (préfixe de clé) dans le compartiment spécifié. Notez que les autorisations d'accès à partir d'autres stratégies de groupes et de la règle de compartiment doivent être prises en compte lors de la détermination de la confidentialité de ces dossiers.
+
+[listing]
+----
+{
+  "Statement": [
+    {
+      "Sid": "AllowListBucketOfASpecificUserPrefix",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::department-bucket",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "${aws:username}/*"
+        }
+      }
+    },
+    {
+      "Sid": "AllowUserSpecificActionsOnlyInTheSpecificUserPrefix",
+      "Effect": "Allow",
+      "Action": "s3:*Object",
+      "Resource": "arn:aws:s3:::department-bucket/${aws:username}/*"
+    }
+  ]
+}
+----

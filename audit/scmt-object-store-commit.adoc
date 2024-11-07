@@ -1,0 +1,40 @@
+---
+permalink: audit/scmt-object-store-commit.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SCMT, Object Store Commit 
+summary: 'Le contenu de la grille n"est pas disponible ou reconnu comme stocké tant qu"il n"a pas été commis \(c"est-à-dire qu"il a été stocké de manière persistante\). Le contenu stocké de manière persistante a été entièrement écrit sur le disque et a transmis des contrôles d"intégrité liés. Ce message est émis lorsqu"un bloc de contenu est attribué au stockage.' 
+---
+= SCMT : validation du magasin d'objets
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le contenu de la grille n'est pas disponible ou reconnu comme stocké tant qu'il n'a pas été engagé (c'est-à-dire qu'il a été stocké de manière persistante). Le contenu stocké de manière persistante a été entièrement écrit sur le disque et a transmis des contrôles d'intégrité liés. Ce message est émis lorsqu'un bloc de contenu est attribué au stockage.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu engagé dans le stockage permanent.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Statut au moment où l'objet était stocké sur le disque :
+
+SUCS : objet enregistré avec succès.
+
+|===
+Ce message signifie qu'un bloc de contenu donné a été complètement stocké et vérifié, et qu'il peut maintenant être demandé. Il peut être utilisé pour suivre le flux de données dans le système.

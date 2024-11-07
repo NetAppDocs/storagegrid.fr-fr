@@ -1,0 +1,21 @@
+---
+permalink: maintain/decommissioning-multiple-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission nodes, storage node, multiple storage nodes 
+summary: Si vous devez supprimer plusieurs nœuds de stockage, vous pouvez les désaffecter de manière séquentielle ou parallèle. 
+---
+= Désaffectation de plusieurs nœuds de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous devez supprimer plusieurs nœuds de stockage, vous pouvez les désaffecter de manière séquentielle ou parallèle.
+
+
+CAUTION: Soyez prudent lorsque vous désaffectez des nœuds de stockage dans un grid contenant des nœuds de métadonnées uniquement basés sur des logiciels. Si vous désaffectez tous les nœuds configurés pour stocker _les deux_ objets et les métadonnées, la capacité de stockage des objets est supprimée de la grille. Pour plus d'informations sur les nœuds de stockage des métadonnées uniquement, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+
+* Si vous mettez hors service les nœuds de stockage de façon séquentielle, vous devez attendre la fin du déclassement du premier nœud de stockage avant de procéder à la mise hors service du prochain nœud de stockage.
+* Si vous mettez hors service les nœuds de stockage en parallèle, les nœuds de stockage traitent simultanément les tâches de désaffectation de tous les nœuds de stockage qui sont désaffectés. Cela peut entraîner une situation dans laquelle toutes les copies permanentes d'un fichier sont marquées comme « en lecture seule », désactivant temporairement la suppression dans les grilles où cette fonctionnalité est activée.
+

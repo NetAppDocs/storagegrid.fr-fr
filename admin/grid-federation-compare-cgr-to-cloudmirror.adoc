@@ -1,0 +1,140 @@
+---
+permalink: admin/grid-federation-compare-cgr-to-cloudmirror.html 
+sidebar: sidebar 
+keywords: cross-grid replication, cloudmirror replication 
+summary: Lorsque vous commencez à utiliser la fédération GRID, examinez les similarités et les différences entre la réplication cross-grid et le service de réplication StorageGRID CloudMirror. 
+---
+= Comparez la réplication entre les grilles et la réplication CloudMirror
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous commencez à utiliser la fédération de grille, examinez les similarités et les différences entre link:grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"] et link:../tenant/understanding-cloudmirror-replication-service.html["Service de réplication StorageGRID CloudMirror"].
+
+[cols="1a,3a,3a"]
+|===
+|  | Réplication entre plusieurs grilles | Service de réplication CloudMirror 
+
+
+ a| 
+Quel est l'objectif principal ?
+ a| 
+Un système StorageGRID agit comme un système de reprise après incident. Les objets d'un compartiment peuvent être répliqués entre les grilles dans une ou les deux directions.
+ a| 
+Permet à un locataire de répliquer automatiquement les objets à partir d'un compartiment dans StorageGRID (source) vers un compartiment S3 externe (destination).
+
+La réplication CloudMirror crée une copie indépendante d'un objet dans une infrastructure S3 indépendante. Cette copie indépendante n'est pas utilisée comme sauvegarde, mais elle est souvent traitée dans le cloud.
+
+
+
+ a| 
+Comment est-il configuré ?
+ a| 
+. Configurer une connexion de fédération de grille entre deux grilles.
+. Ajoutez de nouveaux comptes de locataires, qui sont automatiquement clonés dans l'autre grid.
+. Ajoutez de nouveaux groupes de locataires et utilisateurs qui sont également clonés.
+. Créez les compartiments correspondants sur chaque grille et activez la réplication inter-grille dans une ou les deux directions.
+
+ a| 
+. Un utilisateur de locataire configure la réplication CloudMirror en définissant un terminal CloudMirror (adresse IP, identifiants, etc.) à l'aide du Gestionnaire des locataires ou de l'API S3.
+. Tout compartiment appartenant à ce compte de locataire peut être configuré de manière à pointer vers le terminal CloudMirror.
+
+
+
+
+ a| 
+Qui est responsable de sa configuration ?
+ a| 
+* Un administrateur du grid configure la connexion et les locataires.
+* Les utilisateurs locataires configurent les groupes, les utilisateurs, les clés et les compartiments.
+
+ a| 
+Généralement, un utilisateur locataire.
+
+
+
+ a| 
+Quelle est la destination ?
+ a| 
+Un compartiment S3 correspondant et identique sur l'autre système StorageGRID dans la connexion de fédération du grid.
+ a| 
+* Toute infrastructure S3 compatible (y compris Amazon S3)
+* Google Cloud Platform (GCP)
+
+
+
+
+ a| 
+La gestion des versions d'objets est-elle requise ?
+ a| 
+Oui, la gestion des versions d'objet doit être activée dans les compartiments source et de destination.
+ a| 
+Non, la réplication CloudMirror prend en charge toute combinaison de compartiments sans version et avec version sur la source et la destination.
+
+
+
+ a| 
+Pourquoi déplacer des objets vers la destination ?
+ a| 
+Les objets sont automatiquement répliqués lorsque ceux-ci sont ajoutés à un compartiment sur lequel la réplication inter-grid est activée.
+ a| 
+Les objets sont automatiquement répliqués lorsqu'ils sont ajoutés à un compartiment qui a été configuré avec un terminal CloudMirror. Les objets qui existaient dans le compartiment source avant la configuration du compartiment avec le point de terminaison CloudMirror ne sont pas répliqués, sauf s'ils ont été modifiés.
+
+
+
+ a| 
+Comment les objets sont-ils répliqués ?
+ a| 
+La réplication inter-grid crée des objets versionnés et réplique l'ID de version du compartiment source vers le compartiment de destination. Cela permet de maintenir l'ordre des versions sur les deux grilles.
+ a| 
+La réplication CloudMirror ne nécessite pas de compartiments prenant en charge la gestion des versions. CloudMirror peut donc uniquement gérer les commandes d'une clé au sein d'un site. Il n'y a aucune garantie que la commande sera maintenue pour les demandes à un objet sur un site différent.
+
+
+
+ a| 
+Que se passe-t-il si un objet ne peut pas être répliqué ?
+ a| 
+L'objet est placé dans la file d'attente de réplication, en fonction des limites de stockage des métadonnées.
+ a| 
+L'objet est mis en file d'attente pour la réplication, sous réserve des limites des services de platelink:manage-platform-services-for-tenants.html["Recommandations relatives à l'utilisation des services de plate-forme"]-forme (voir ).
+
+
+
+ a| 
+Les métadonnées système de l'objet sont-elles répliquées ?
+ a| 
+Oui, lorsqu'un objet est répliqué sur l'autre grille, les métadonnées de son système sont également répliquées. Les métadonnées seront identiques sur les deux grilles.
+ a| 
+Non. Lorsqu'un objet est répliqué vers un compartiment externe, les métadonnées de son système sont mises à jour. Les métadonnées diffèrent d'un emplacement à l'autre, selon le moment de l'ingestion et le comportement de l'infrastructure S3 indépendante.
+
+
+
+ a| 
+Comment les objets sont-ils récupérés ?
+ a| 
+Les applications peuvent récupérer ou lire les objets en faisant une demande au compartiment sur les deux grilles.
+ a| 
+Les applications peuvent récupérer ou lire les objets en faisant une requête vers StorageGRID ou vers la destination S3. Supposons, par exemple, que vous utilisiez la réplication CloudMirror pour mettre en miroir les objets dans une organisation partenaire. Le partenaire peut utiliser ses propres applications pour lire ou mettre à jour les objets directement à partir de la destination S3. Utiliser StorageGRID n'est pas nécessaire.
+
+
+
+ a| 
+Que se passe-t-il si un objet est supprimé ?
+ a| 
+* Les demandes de suppression comprenant un ID de version ne sont jamais répliquées dans la grille de destination.
+* Les demandes de suppression qui n'incluent pas d'ID de version ajoutent un marqueur de suppression au compartiment source, qui peut éventuellement être répliqué vers la grille de destination.
+* Si la réplication inter-grid est configurée pour une seule direction, les objets du compartiment de destination peuvent être supprimés sans affecter la source.
+
+ a| 
+Les résultats varient en fonction de l'état de gestion des versions des compartiments source et destination (qui ne doivent pas nécessairement être identiques) :
+
+* Si les deux compartiments sont versionnés, une demande de suppression ajoute un marqueur de suppression aux deux emplacements.
+* Si seul le compartiment source est versionné, une demande de suppression ajoute un marqueur de suppression à la source, mais pas à la destination.
+* Si aucun compartiment n'est versionné, une demande de suppression supprime l'objet de la source mais pas de la destination.
+
+
+De même, les objets du compartiment de destination peuvent être supprimés sans affecter la source.
+
+|===

@@ -1,0 +1,166 @@
+---
+permalink: upgrade/troubleshooting-upgrade-issues.html 
+sidebar: sidebar 
+keywords: upgrade, troubleshoot, troubleshooting, errors, upgrade precheck 
+summary: 'Si un problème se produit lors de la mise à niveau, vous pouvez résoudre le problème vous-même. Si vous ne parvenez pas à résoudre un problème, collectez autant d"informations que possible, puis contactez le support technique.' 
+---
+= Résoudre les problèmes de mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un problème se produit lors de la mise à niveau, vous pouvez résoudre le problème vous-même. Si vous ne parvenez pas à résoudre un problème, collectez autant d'informations que possible, puis contactez le support technique.
+
+
+
+== La mise à niveau n'est pas terminée
+
+Les sections suivantes décrivent comment effectuer une restauration à partir de situations où la mise à niveau a partiellement échoué.
+
+
+
+=== Erreurs de contrôle préalable de mise à niveau
+
+Pour détecter et résoudre les problèmes, vous pouvez exécuter manuellement les contrôles préalables à la mise à niveau avant de démarrer la mise à niveau réelle. La plupart des erreurs de précontrôle fournissent des informations sur la façon de résoudre le problème.
+
+
+
+=== Défaillances de provisionnement
+
+Si le processus de provisionnement automatique échoue, contactez le support technique.
+
+
+
+=== Le nœud de la grille tombe en panne ou ne parvient pas à démarrer
+
+Si un nœud de la grille tombe en panne lors du processus de mise à niveau ou ne parvient pas à démarrer avec succès une fois la mise à niveau terminée, contactez le support technique pour rechercher et corriger les problèmes sous-jacents.
+
+
+
+=== L'ingestion ou la récupération des données est interrompue
+
+Si l'ingestion ou la récupération des données est interrompue de manière inattendue alors que vous ne mettez pas à niveau un nœud de grid, contactez le support technique.
+
+
+
+=== Erreurs de mise à niveau de base de données
+
+Si la mise à niveau de la base de données échoue avec une erreur, essayez à nouveau la mise à niveau. En cas d'échec à nouveau, contactez le support technique.
+
+.Informations associées
+link:checking-systems-condition-before-upgrading-software.html["Vérification de l'état du système avant la mise à niveau du logiciel"]
+
+
+
+== Problèmes liés à l'interface utilisateur
+
+Vous pourriez rencontrer des problèmes avec le gestionnaire de grille ou le gestionnaire de locataires pendant ou après la mise à niveau.
+
+
+
+=== Grid Manager affiche plusieurs messages d'erreur lors de la mise à niveau
+
+Si vous actualisez votre navigateur ou accédez à une autre page Grid Manager pendant la mise à niveau du nœud d'administration principal, vous pouvez voir plusieurs messages « 503 : service indisponible » et « problème de connexion au serveur ». Vous pouvez ignorer ces messages en toute sécurité ; ils ne s'affichent plus dès que le nœud est mis à niveau.
+
+Si ces messages s'affichent pendant plus d'une heure après le démarrage de la mise à niveau, il se peut que quelque chose ait empêché la mise à niveau du nœud d'administration principal. Si vous ne parvenez pas à résoudre le problème par vous-même, contactez le support technique.
+
+
+
+=== L'interface Web ne répond pas comme prévu
+
+Le gestionnaire de grid ou le gestionnaire de locataires peut ne pas répondre comme prévu après la mise à niveau du logiciel StorageGRID.
+
+Si vous rencontrez des problèmes avec l'interface Web :
+
+* Assurez-vous que vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
++
+
+NOTE: La prise en charge des navigateurs a généralement été modifiée pour chaque version de StorageGRID.
+
+* Effacez le cache de votre navigateur Web.
++
+L'effacement du cache supprime les ressources obsolètes utilisées par la version précédente du logiciel StorageGRID et permet à l'interface utilisateur de fonctionner de nouveau correctement. Pour obtenir des instructions, reportez-vous à la documentation de votre navigateur Web.
+
+
+
+
+
+== Messages d'erreur « Docker image Availability check »
+
+Lorsque vous tentez de démarrer le processus de mise à niveau, vous pouvez recevoir un message d'erreur indiquant que « les problèmes suivants ont été identifiés par la suite de validation de vérification de disponibilité d'image Docker ». Tous les problèmes doivent être résolus avant que vous puissiez terminer la mise à niveau.
+
+Contactez le support technique si vous n'êtes pas certain des modifications requises pour résoudre les problèmes identifiés.
+
+[cols="1a,1a,1a"]
+|===
+| Messagerie | Cause | Solution 
+
+
+ a| 
+Impossible de déterminer la version de la mise à niveau. Le fichier d'informations sur la version de mise à niveau `{file_path}` ne correspond pas au format attendu.
+ a| 
+Le package de mise à niveau est corrompu.
+ a| 
+Téléchargez à nouveau le package de mise à niveau, puis réessayez. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+Le fichier d'informations sur la version de mise à niveau `{file_path}` est introuvable. Impossible de déterminer la version de la mise à niveau.
+ a| 
+Le package de mise à niveau est corrompu.
+ a| 
+Téléchargez à nouveau le package de mise à niveau, puis réessayez. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+Impossible de déterminer la version de la version actuellement installée sur `{node_name}`.
+ a| 
+Un fichier critique du nœud est corrompu.
+ a| 
+Contactez l'assistance technique.
+
+
+
+ a| 
+Erreur de connexion lors de la tentative de liste des versions sur `{node_name}`
+ a| 
+Le nœud est hors ligne ou la connexion a été interrompue.
+ a| 
+Vérifiez que tous les nœuds sont en ligne et accessibles depuis le nœud d'administration principal, puis réessayez.
+
+
+
+ a| 
+L'image StorageGRID n'est pas `{upgrade_version}` chargée sur l'hôte du nœud `{node_name}`. Les images et les services doivent être installés sur l'hôte avant que la mise à niveau ne puisse se poursuivre.
+ a| 
+Les packages RPM ou DEB pour la mise à niveau n'ont pas été installés sur l'hôte sur lequel le nœud est en cours d'exécution, ou les images sont toujours en cours d'importation.
+
+*Remarque :* cette erreur s'applique uniquement aux nœuds qui s'exécutent en tant que conteneurs sous Linux.
+ a| 
+Assurez-vous que les packages RPM ou DEB ont été installés sur tous les hôtes Linux sur lesquels des nœuds sont exécutés. Assurez-vous que la version est correcte pour le service et le fichier d'images. Attendez quelques minutes, puis réessayez.
+
+Voir link:../upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html["Linux : installez le package RPM ou DEB sur tous les hôtes"].
+
+
+
+ a| 
+Erreur lors de la vérification du nœud `{node_name}`
+ a| 
+Une erreur inattendue s'est produite.
+ a| 
+Attendez quelques minutes, puis réessayez.
+
+
+
+ a| 
+Erreur non détectée lors de l'exécution des contrôles préalables. `{error_string}`
+ a| 
+Une erreur inattendue s'est produite.
+ a| 
+Attendez quelques minutes, puis réessayez.
+
+|===

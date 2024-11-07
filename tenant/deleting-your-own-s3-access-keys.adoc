@@ -1,0 +1,32 @@
+---
+permalink: tenant/deleting-your-own-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to delete S3 access key 
+summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez supprimer vos propres clés d"accès S3. Une fois la clé d"accès supprimée, elle ne peut plus être utilisée pour accéder aux objets et aux compartiments du compte du locataire.' 
+---
+= Supprimez vos propres clés d'accès S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez supprimer vos propres clés d'accès S3. Une fois la clé d'accès supprimée, elle ne peut plus être utilisée pour accéder aux objets et aux compartiments du compte du locataire.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:tenant-management-permissions.html["Gérez vos propres identifiants S3"].
+
+
+
+CAUTION: Vous pouvez accéder aux compartiments S3 et aux objets appartenant à votre compte à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour votre compte dans le Gestionnaire des locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées de votre compte et ne les partagez jamais avec d'autres utilisateurs.
+
+.Étapes
+. Sélectionnez *STORAGE (S3)* > *Mes clés d'accès*.
+. Sur la page Mes clés d'accès, cochez la case correspondant à chaque clé d'accès que vous souhaitez supprimer.
+. Sélectionnez *Supprimer la touche*.
+. Dans la boîte de dialogue de confirmation, sélectionnez *touche Suppr*.
++
+Un message de confirmation s'affiche dans le coin supérieur droit de la page.
+
+

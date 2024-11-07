@@ -1,0 +1,98 @@
+---
+permalink: monitor/viewing-nodes-page.html 
+sidebar: sidebar 
+keywords: nodes page 
+summary: 'Si vous avez besoin d"informations plus détaillées sur votre système StorageGRID que le tableau de bord ne l"indique, vous pouvez utiliser la page nœuds pour afficher les mesures de la grille dans son intégralité, de chaque site de la grille et de chaque nœud d"un site.' 
+---
+= Afficher la page nœuds
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous avez besoin d'informations plus détaillées sur votre système StorageGRID que le tableau de bord ne l'indique, vous pouvez utiliser la page nœuds pour afficher les mesures de la grille dans son intégralité, de chaque site de la grille et de chaque nœud d'un site.
+
+Le tableau nœuds répertorie les informations récapitulatives pour l'ensemble de la grille, chaque site et chaque nœud. Si un nœud est déconnecté ou dispose d'une alerte active, une icône s'affiche en regard du nom du nœud. Si le nœud est connecté et ne dispose d'aucune alerte active, aucune icône n'est affichée.
+
+
+NOTE: Lorsqu'un nœud n'est pas connecté à la grille, comme lors de la mise à niveau ou lorsqu'il est déconnecté, certains metrics peuvent être indisponibles ou exclus des totaux site et grid. Après qu'un nœud se reconnecte à la grille, attendez plusieurs minutes que les valeurs se stabilisent.
+
+
+NOTE: Pour modifier les unités des valeurs de stockage affichées dans le Gestionnaire de grille, sélectionnez la liste déroulante utilisateur dans le coin supérieur droit du Gestionnaire de grille, puis sélectionnez *Préférences utilisateur*.
+
+
+NOTE: Les captures d'écran illustrées sont des exemples. Vos résultats peuvent varier en fonction de votre version de StorageGRID.
+
+image::../media/nodes_table.png[Menu noeuds]
+
+
+
+== Icônes d'état de connexion
+
+Si un nœud est déconnecté de la grille, l'une des icônes suivantes s'affiche en regard du nom du nœud.
+
+[cols="1a,3a,3a"]
+|===
+| Icône | Description | Action requise 
+
+
+ a| 
+image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"]
+ a| 
+*Non connecté - Inconnu*
+
+Pour une raison inconnue, un nœud est déconnecté ou les services du nœud sont arrêtés de manière inattendue. Par exemple, un service du nœud peut être arrêté, ou le nœud a perdu sa connexion réseau en raison d'une panne de courant ou d'une panne imprévue.
+
+L'alerte *Impossible de communiquer avec le noeud* peut également être déclenchée. D'autres alertes peuvent également être actives.
+ a| 
+Nécessite une attention immédiate. link:monitoring-system-health.html#view-current-and-resolved-alerts["Sélectionnez chaque alerte"] et suivre les actions recommandées.
+
+Par exemple, vous devrez peut-être redémarrer un service qui a arrêté ou redémarré l'hôte du nœud.
+
+*Remarque* : un nœud peut apparaître comme inconnu pendant les opérations d'arrêt gérées. Dans ces cas, vous pouvez ignorer l'état Inconnu.
+
+
+
+ a| 
+image:../media/icon_alarm_gray_administratively_down.png["icône questionmark grise"]
+ a| 
+*Non connecté - Arrêt administratif*
+
+Pour une raison prévue, le nœud n'est pas connecté au grid.
+
+Par exemple, le nœud ou les services du nœud ont été normalement arrêtés, le nœud est en cours de redémarrage ou le logiciel est mis à niveau. Une ou plusieurs alertes peuvent également être actives.
+
+En fonction du problème sous-jacent, ces nœuds sont souvent remis en ligne sans intervention.
+ a| 
+Déterminez si des alertes affectent ce nœud.
+
+Si une ou plusieurs alertes sont actives link:monitoring-system-health.html#view-current-and-resolved-alerts["Sélectionnez chaque alerte"]et suivez les actions recommandées.
+
+|===
+Si un nœud est déconnecté de la grille, une alerte sous-jacente peut apparaître, mais seule l'icône « non connecté » s'affiche. Pour afficher les alertes actives d'un nœud, sélectionnez le nœud.
+
+
+
+== Icônes d'alerte
+
+Si une alerte est active pour un nœud, l'une des icônes suivantes s'affiche à côté du nom du nœud :
+
+image:../media/icon_alert_red_critical.png["Icône alerte rouge critique"] *Critique* : il existe une condition anormale qui a arrêté les opérations normales d'un noeud ou d'un service StorageGRID. Vous devez immédiatement résoudre le problème sous-jacent. Une interruption du service et une perte de données peuvent se produire si le problème n'est pas résolu.
+
+image:../media/icon_alert_orange_major.png["Icône alerte Orange majeur"] *Majeur* : il existe une condition anormale qui affecte les opérations en cours ou qui approche du seuil pour une alerte critique. Vous devez examiner les alertes majeures et résoudre tous les problèmes sous-jacents pour vérifier que leur condition anormale n'arrête pas le fonctionnement normal d'un nœud ou d'un service StorageGRID.
+
+image:../media/icon_alert_yellow_minor.png["Icône alerte jaune mineure"] *Mineur* : le système fonctionne normalement, mais il existe une condition anormale qui pourrait affecter la capacité de fonctionnement du système s'il continue. Vous devez surveiller et résoudre les alertes mineures qui ne sont pas claires par elles-mêmes pour vous assurer qu'elles n'entraînent pas de problème plus grave.
+
+
+
+== Afficher les détails d'un système, d'un site ou d'un nœud
+
+Pour filtrer les informations affichées dans la table noeuds, entrez une chaîne de recherche dans le champ *Search*. Vous pouvez effectuer une recherche par nom de système, nom d'affichage ou type (par exemple, entrez *gat* pour localiser rapidement tous les nœuds de passerelle).
+
+Pour afficher les informations de la grille, du site ou du nœud :
+
+* Sélectionnez le nom de la grille pour afficher un récapitulatif des agrégats des statistiques de l'ensemble du système StorageGRID.
+* Sélectionnez un site de data Center spécifique pour afficher un résumé global des statistiques pour tous les nœuds de ce site.
+* Sélectionnez un nœud spécifique pour afficher des informations détaillées sur ce nœud.
+

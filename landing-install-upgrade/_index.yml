@@ -1,0 +1,67 @@
+---
+indexpage:
+  title: Installez, mettez à niveau et correctif StorageGRID
+  summary: Un système StorageGRID se compose de nœuds matériels et logiciels individuels.
+    Vous devez d'abord installer le matériel pour chaque nœud d'appliance et configurer
+    chaque hôte Linux ou VMware. Vous installez ensuite le logiciel StorageGRID sur
+    chaque appliance ou hôte logiciel et connectez les nœuds à un grid.
+  keywords: install, upgrade, hotfix
+  lead: Un système StorageGRID se compose de nœuds matériels et logiciels individuels.
+    Vous devez d'abord installer le matériel pour chaque nœud d'appliance et configurer
+    chaque hôte Linux ou VMware. Vous installez ensuite le logiciel StorageGRID sur
+    chaque appliance ou hôte logiciel et connectez les nœuds à un grid.
+  tiles:
+  - title: Démarrage rapide
+    links:
+    - title: Matériel de l'appliance
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html
+    - title: Red Hat Enterprise Linux
+      url: "../rhel/index.html"
+    - title: Ubuntu ou Debian
+      url: "../ubuntu/index.html"
+    - title: VMware
+      url: "../vmware/index.html"
+  - title: Préparer les matériaux
+    links:
+    - title: Red Hat Enterprise Linux
+      url: "../rhel/required-materials.html"
+    - title: Ubuntu ou Debian
+      url: "../ubuntu/required-materials.html"
+    - title: VMware
+      url: "../vmware/required-materials.html"
+  - title: Automatisez l'installation
+    links:
+    - title: Red Hat Enterprise Linux
+      url: "../rhel/automating-installation.html"
+    - title: Ubuntu ou Debian
+      url: "../ubuntu/automating-installation.html"
+    - title: VMware
+      url: "../vmware/automating-grid-node-deployment-in-vmware-vsphere.html"
+  - title: Déploiement des nœuds
+    links:
+    - title: Red Hat Enterprise Linux
+      url: "../rhel/creating-node-configuration-files.html"
+    - title: Ubuntu ou Debian
+      url: "../ubuntu/creating-node-configuration-files.html"
+    - title: VMware
+      url: "../vmware/collecting-information-about-your-deployment-environment.html"
+  - title: Installation du nœud terminée
+    links:
+    - title: Red Hat Enterprise Linux
+      url: "../rhel/navigating-to-grid-manager.html"
+    - title: Ubuntu ou Debian
+      url: "../ubuntu/navigating-to-grid-manager.html"
+    - title: VMware
+      url: "../vmware/navigating-to-grid-manager.html"
+  - title: Mise à niveau ou correctif
+    links:
+    - title: Quoi de neuf
+      url: "../upgrade/whats-new.html"
+    - title: Estimer le temps de réalisation
+      url: "../upgrade/estimating-time-to-complete-upgrade.html"
+    - title: Quel est l'impact sur votre système lors de la mise à niveau
+      url: "../upgrade/how-your-system-is-affected-during-upgrade.html"
+    - title: Démarrage rapide de la mise à niveau
+      url: "../upgrade/upgrade-workflow.html"
+    - title: Appliquez un correctif
+      url: "../maintain/storagegrid-hotfix-procedure.html"

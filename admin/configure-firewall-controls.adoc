@@ -1,0 +1,150 @@
+---
+permalink: admin/configure-firewall-controls.html 
+sidebar: sidebar 
+keywords: firewall, privileged IP address, untrusted client network, configure firewall controls, monitor 
+summary: 'Vous pouvez configurer l"accès au réseau pour des ports StorageGRID internes spécifiques.' 
+---
+= Configurer le pare-feu interne
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer le pare-feu StorageGRID pour contrôler l'accès réseau à des ports spécifiques sur vos nœuds StorageGRID.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez examiné les informations dans link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"] et link:../network/index.html["Instructions de mise en réseau"].
+* Si vous souhaitez qu'un nœud d'administration ou un nœud de passerelle accepte le trafic entrant uniquement sur des noeuds finaux configurés explicitement, vous avez défini les noeuds finaux de l'équilibreur de charge.
++
+
+NOTE: Lors de la modification de la configuration du réseau client, les connexions client existantes peuvent échouer si les noeuds finaux de l'équilibreur de charge n'ont pas été configurés.
+
+
+
+.Description de la tâche
+StorageGRID comprend un pare-feu interne sur chaque nœud qui vous permet d'ouvrir ou de fermer certains ports sur les nœuds de votre grille. Vous pouvez utiliser les onglets de contrôle du pare-feu pour ouvrir ou fermer des ports ouverts par défaut sur le réseau Grid, le réseau Admin et le réseau client. Vous pouvez également créer une liste d'adresses IP privilégiées pouvant accéder aux ports de la grille fermés. Si vous utilisez un réseau client, vous pouvez spécifier si un nœud approuve le trafic entrant à partir du réseau client et configurer l'accès à des ports spécifiques sur le réseau client.
+
+Limiter le nombre de ports ouverts aux adresses IP en dehors de votre grille à ceux qui sont absolument nécessaires améliore la sécurité de votre grille. Vous utilisez les paramètres de chacun des trois onglets de contrôle du pare-feu pour vous assurer que seuls les ports nécessaires sont ouverts.
+
+Pour plus d'informations sur l'utilisation des contrôles de pare-feu, notamment des exemples, reportez-vous à la section link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
+
+Pour plus d'informations sur les pare-feu externes et la sécurité réseau, reportez-vous à la section link:../admin/controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].
+
+
+
+== Accès aux contrôles de pare-feu
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *contrôle du pare-feu*.
++
+Les trois onglets de cette page sont décrits dans link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
+
+. Sélectionnez n'importe quel onglet pour configurer les contrôles du pare-feu.
++
+Vous pouvez utiliser ces onglets dans n'importe quel ordre. Les configurations que vous définissez sur un onglet ne limitent pas ce que vous pouvez faire sur les autres onglets. Cependant, les modifications de configuration effectuées sur un onglet peuvent modifier le comportement des ports configurés sur d'autres onglets.
+
+
+
+
+
+== Liste d'adresses privilégiées
+
+Vous utilisez l'onglet liste d'adresses privilégiées pour accorder aux hôtes l'accès aux ports fermés par défaut ou fermés par des paramètres de l'onglet gérer l'accès externe.
+
+Par défaut, les adresses IP privilégiées et les sous-réseaux ne disposent pas d'un accès au grid interne. En outre, les noeuds finaux d'équilibrage de charge et les ports supplémentaires ouverts dans l'onglet liste d'adresses privilégiées sont accessibles même si bloqués dans l'onglet gérer l'accès externe.
+
+
+NOTE: Les paramètres de l'onglet liste d'adresses privilégiées ne peuvent pas remplacer les paramètres de l'onglet réseau client non approuvé.
+
+.Étapes
+. Dans l'onglet liste d'adresses privilégiées, entrez l'adresse ou le sous-réseau IP que vous souhaitez accorder à l'accès aux ports fermés.
+. Si vous le souhaitez, sélectionnez *Ajouter une autre adresse IP ou un autre sous-réseau en notation CIDR* pour ajouter des clients privilégiés supplémentaires.
++
+
+TIP: Ajoutez autant d'adresses que possible à la liste privilégiée.
+
+. Vous pouvez également sélectionner *Autoriser les adresses IP privilégiées à accéder aux ports internes StorageGRID*. Voir link:../network/internal-grid-node-communications.html["Ports internes StorageGRID"].
++
+
+TIP: Cette option supprime certaines protections pour les services internes. Laissez-le désactivé si possible.
+
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Gérer l'accès externe
+
+Lorsqu'un port est fermé dans l'onglet gérer l'accès externe, il est impossible d'accéder au port par une adresse IP non grille à moins que vous n'ajoutiez l'adresse IP à la liste d'adresses privilégiées. Vous ne pouvez fermer que les ports ouverts par défaut et vous ne pouvez ouvrir que les ports que vous avez fermés.
+
+
+NOTE: Les paramètres de l'onglet gérer l'accès externe ne peuvent pas remplacer les paramètres de l'onglet réseau client non approuvé. Par exemple, si un nœud n'est pas approuvé, le port SSH/22 est bloqué sur le réseau client même s'il est ouvert dans l'onglet gérer l'accès externe. Les paramètres de l'onglet réseau client non approuvé remplacent les ports fermés (tels que 443, 8443, 9443) sur le réseau client.
+
+.Étapes
+. Sélectionnez *gérer l'accès externe*. L'onglet affiche un tableau contenant tous les ports externes (ports accessibles par défaut par les nœuds non GRID) pour les nœuds de votre grille.
+. Configurez les ports que vous souhaitez ouvrir et fermer à l'aide des options suivantes :
++
+** Utilisez la bascule située en regard de chaque port pour ouvrir ou fermer le port sélectionné.
+** Sélectionnez *Ouvrir tous les ports affichés* pour ouvrir tous les ports répertoriés dans le tableau.
+** Sélectionnez *Fermer tous les ports affichés* pour fermer tous les ports répertoriés dans le tableau.
++
+
+CAUTION: Si vous fermez les ports Grid Manager 443 ou 8443, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager, sauf si leur adresse IP a été ajoutée à la liste d'adresses privilégiées.
+
++
+
+NOTE: Utilisez la barre de défilement située à droite du tableau pour vous assurer que vous avez affiché tous les ports disponibles. Utilisez le champ de recherche pour trouver les paramètres de n'importe quel port externe en entrant un numéro de port. Vous pouvez entrer un numéro de port partiel. Par exemple, si vous entrez un *2*, tous les ports dont le nom contient la chaîne "2" s'affichent.
+
+
+
+. Sélectionnez *Enregistrer*
+
+
+
+
+== Réseau client non fiable
+
+Si le réseau client d'un nœud n'est pas approuvé, le nœud accepte uniquement le trafic entrant sur les ports configurés comme points finaux de l'équilibreur de charge et, éventuellement, les ports supplémentaires que vous sélectionnez dans cet onglet. Vous pouvez également utiliser cet onglet pour spécifier le paramètre par défaut pour les nouveaux nœuds ajoutés dans une extension.
+
+
+CAUTION: Les connexions client existantes peuvent échouer si les points de terminaison de l'équilibreur de charge n'ont pas été configurés.
+
+Les modifications de configuration effectuées dans l'onglet *réseau client non approuvé* remplacent les paramètres de l'onglet *gérer l'accès externe*.
+
+.Étapes
+. Sélectionnez *réseau client non approuvé*.
+. Dans la section définir les nouveaux nœuds par défaut, spécifiez le paramètre par défaut lorsque de nouveaux nœuds sont ajoutés à la grille dans une procédure d'extension.
++
+** *Approuvé* (par défaut) : lorsqu'un nœud est ajouté dans une extension, son réseau client est approuvé.
+** *Non fiable* : lorsqu'un nœud est ajouté dans une extension, son réseau client n'est pas fiable.
++
+Si nécessaire, vous pouvez revenir à cet onglet pour modifier le paramètre d'un nouveau nœud spécifique.
+
++
+
+NOTE: Ce paramètre n'affecte pas les nœuds existants du système StorageGRID.
+
+
+
+. Utilisez les options suivantes pour sélectionner les nœuds qui doivent autoriser les connexions client uniquement sur les terminaux d'équilibrage de charge configurés explicitement ou sur les ports sélectionnés supplémentaires :
++
+** Sélectionnez *ne pas faire confiance aux nœuds affichés* pour ajouter tous les nœuds affichés dans le tableau à la liste réseau client non approuvé.
+** Sélectionnez *confiance sur les nœuds affichés* pour supprimer tous les nœuds affichés dans le tableau de la liste réseau client non approuvé.
+** Utilisez la bascule en regard de chaque nœud pour définir le réseau client comme approuvé ou non fiable pour le nœud sélectionné.
++
+Par exemple, vous pouvez sélectionner *ne plus faire confiance aux nœuds affichés* pour ajouter tous les nœuds à la liste réseau client non approuvé, puis utiliser la bascule à côté d'un nœud individuel pour ajouter ce nœud à la liste réseau client approuvé.
+
++
+
+NOTE: Utilisez la barre de défilement située à droite du tableau pour vous assurer que vous avez affiché tous les nœuds disponibles. Utilisez le champ de recherche pour rechercher les paramètres d'un nœud en saisissant son nom. Vous pouvez entrer un nom partiel. Par exemple, si vous entrez un *GW*, tous les nœuds qui ont la chaîne "GW" comme partie de leur nom sont affichés.
+
+
+
+. Sélectionnez *Enregistrer*.
++
+Les nouveaux paramètres de pare-feu sont immédiatement appliqués et appliqués. Les connexions client existantes peuvent échouer si les points de terminaison de l'équilibreur de charge n'ont pas été configurés.
+
+

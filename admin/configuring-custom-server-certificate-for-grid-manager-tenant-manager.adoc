@@ -1,0 +1,284 @@
+---
+permalink: admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html 
+sidebar: sidebar 
+keywords: custom certificates, grid manager, tenant manager, management interface certificate 
+summary: 'Vous pouvez remplacer le certificat de serveur StorageGRID par défaut par un seul certificat de serveur personnalisé qui permet aux utilisateurs d"accéder au Gestionnaire de grille et au Gestionnaire de locataires sans rencontrer d"avertissements de sécurité. Vous pouvez également revenir au certificat d"interface de gestion par défaut ou en générer un nouveau.' 
+---
+= Configurer les certificats d'interface de gestion
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez remplacer le certificat de l'interface de gestion par défaut par un certificat personnalisé unique qui permet aux utilisateurs d'accéder à Grid Manager et au Gestionnaire de locataires sans rencontrer d'avertissement de sécurité. Vous pouvez également revenir au certificat d'interface de gestion par défaut ou en générer un nouveau.
+
+.Description de la tâche
+Par défaut, chaque nœud d'administration est doté d'un certificat signé par l'autorité de certification de la grille. Ces certificats signés par l'autorité de certification peuvent être remplacés par un seul certificat d'interface de gestion personnalisée commun et une clé privée correspondante.
+
+Étant donné qu'un seul certificat d'interface de gestion personnalisée est utilisé pour tous les nœuds d'administration, vous devez spécifier le certificat en tant que certificat générique ou multidomaine si les clients doivent vérifier le nom d'hôte lors de la connexion à Grid Manager et au tenant Manager. Définissez le certificat personnalisé de sorte qu'il corresponde à tous les nœuds d'administration de la grille.
+
+Vous devez terminer la configuration sur le serveur et, en fonction de l'autorité de certification racine (AC) que vous utilisez, les utilisateurs peuvent également avoir besoin d'installer le certificat d'autorité de certification Grid dans le navigateur Web qu'ils utiliseront pour accéder au Grid Manager et au Gestionnaire de locataires.
+
+
+NOTE: Pour garantir que les opérations ne sont pas interrompues par un certificat de serveur défaillant, l'alerte *expiration du certificat de serveur pour l'interface de gestion* est déclenchée lorsque ce certificat de serveur est sur le point d'expirer. Si nécessaire, vous pouvez afficher le moment où le certificat en cours expire en sélectionnant *CONFIGURATION* > *sécurité* > *certificats* et en consultant la date d'expiration du certificat de l'interface de gestion dans l'onglet Global.
+
+[NOTE]
+====
+Si vous accédez à Grid Manager ou au Gestionnaire de locataires à l'aide d'un nom de domaine au lieu d'une adresse IP, le navigateur affiche une erreur de certificat sans option de contournement si l'un des cas suivants se produit :
+
+* Votre certificat d'interface de gestion personnalisée expire.
+* Vous <<Restaurez le certificat de l'interface de gestion par défaut,restaurez le certificat de serveur par défaut à partir d'un certificat d'interface de gestion personnalisée>>.
+
+
+====
+
+
+== Ajoutez un certificat d'interface de gestion personnalisée
+
+Pour ajouter un certificat d'interface de gestion personnalisée, vous pouvez fournir votre propre certificat ou en générer un à l'aide de Grid Manager.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
+. Sélectionnez *utiliser le certificat personnalisé*.
+. Chargez ou générez le certificat.
++
+[role="tabbed-block"]
+====
+.Télécharger le certificat
+--
+Téléchargez les fichiers de certificat de serveur requis.
+
+.. Sélectionnez *Télécharger le certificat*.
+.. Téléchargez les fichiers de certificat de serveur requis :
++
+*** *Certificat de serveur* : fichier de certificat de serveur personnalisé (codé PEM).
+*** *Clé privée de certificat* : fichier de clé privée de certificat de serveur personnalisé (`.key`).
++
+
+NOTE: Les clés privées EC doivent être de 224 bits ou plus. Les clés privées RSA doivent être de 2048 bits ou plus.
+
+*** *Paquet CA* : un fichier facultatif unique contenant les certificats de chaque autorité de certification intermédiaire (AC). Le fichier doit contenir chacun des fichiers de certificat d'autorité de certification codés au PEM, concaténés dans l'ordre de la chaîne de certificats.
+
+
+.. Développez *Détails du certificat* pour afficher les métadonnées de chaque certificat que vous avez téléchargé. Si vous avez téléchargé un bundle CA facultatif, chaque certificat s'affiche sur son propre onglet.
++
+*** Sélectionnez *Télécharger le certificat* pour enregistrer le fichier de certificat ou sélectionnez *Télécharger le paquet CA* pour enregistrer le lot de certificats.
++
+Spécifiez le nom du fichier de certificat et l'emplacement de téléchargement. Enregistrez le fichier avec l'extension `.pem`.
+
++
+Par exemple : `storagegrid_certificate.pem`
+
+*** Sélectionnez *Copy certificate PEM* ou *Copy CA bundle PEM* pour copier le contenu du certificat pour le coller ailleurs.
+
+
+.. Sélectionnez *Enregistrer*. + le certificat d'interface de gestion personnalisée est utilisé pour toutes les nouvelles connexions ultérieures à Grid Manager, tenant Manager, l'API Grid Manager ou l'API tenant Manager.
+
+
+--
+.Générez un certificat
+--
+Générez les fichiers de certificat du serveur.
+
+
+NOTE: La meilleure pratique pour un environnement de production consiste à utiliser un certificat d'interface de gestion personnalisée signé par une autorité de certification externe.
+
+.. Sélectionnez *générer certificat*.
+.. Spécifiez les informations de certificat :
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom de domaine
+ a| 
+Un ou plusieurs noms de domaine complets à inclure dans le certificat. Utilisez un * comme caractère générique pour représenter plusieurs noms de domaine.
+
+
+
+ a| 
+IP
+ a| 
+Une ou plusieurs adresses IP à inclure dans le certificat.
+
+
+
+ a| 
+Objet (facultatif)
+ a| 
+Objet X.509 ou nom distinctif (DN) du propriétaire du certificat.
+
+Si aucune valeur n'est saisie dans ce champ, le certificat généré utilise le premier nom de domaine ou l'adresse IP comme nom commun de l'objet (CN).
+
+
+
+ a| 
+Jours valides
+ a| 
+Nombre de jours après la création, pendant lesquels le certificat expire.
+
+
+
+ a| 
+Ajouter des extensions d'utilisation de clé
+ a| 
+Si cette option est sélectionnée (par défaut et recommandée), l'utilisation des clés et les extensions d'utilisation des clés étendues sont ajoutées au certificat généré.
+
+Ces extensions définissent l'objectif de la clé contenue dans le certificat.
+
+*Remarque* : ne cochez pas cette case si vous rencontrez des problèmes de connexion avec des clients plus anciens lorsque les certificats incluent ces extensions.
+
+|===
+.. Sélectionnez *generate*.
+.. Sélectionnez *Détails du certificat* pour afficher les métadonnées du certificat généré.
++
+*** Sélectionnez *Télécharger le certificat* pour enregistrer le fichier de certificat.
++
+Spécifiez le nom du fichier de certificat et l'emplacement de téléchargement. Enregistrez le fichier avec l'extension `.pem`.
+
++
+Par exemple : `storagegrid_certificate.pem`
+
+*** Sélectionnez *Copier le certificat PEM* pour copier le contenu du certificat pour le coller ailleurs.
+
+
+.. Sélectionnez *Enregistrer*. + le certificat d'interface de gestion personnalisée est utilisé pour toutes les nouvelles connexions ultérieures à Grid Manager, tenant Manager, l'API Grid Manager ou l'API tenant Manager.
+
+
+--
+====
+. Actualisez la page pour vous assurer que le navigateur Web est mis à jour.
++
+
+NOTE: Après avoir téléchargé ou généré un nouveau certificat, autorisez jusqu'à un jour l'effacement des alertes d'expiration de certificat associées.
+
+. Une fois que vous avez ajouté un certificat d'interface de gestion personnalisé, la page de certificat de l'interface de gestion affiche des informations détaillées sur le certificat pour les certificats en cours d'utilisation. + vous pouvez télécharger ou copier le certificat PEM selon vos besoins.
+
+
+
+
+== Restaurez le certificat de l'interface de gestion par défaut
+
+Vous pouvez revenir à l'utilisation du certificat d'interface de gestion par défaut pour les connexions Grid Manager et tenant Manager.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
+. Sélectionnez *utiliser le certificat par défaut*.
++
+Lorsque vous restaurez le certificat d'interface de gestion par défaut, les fichiers de certificat de serveur personnalisés que vous avez configurés sont supprimés et ne peuvent pas être récupérés du système. Le certificat d'interface de gestion par défaut est utilisé pour toutes les nouvelles connexions client suivantes.
+
+. Actualisez la page pour vous assurer que le navigateur Web est mis à jour.
+
+
+
+
+== Utilisez un script pour générer un nouveau certificat d'interface de gestion auto-signé
+
+Si une validation stricte du nom d'hôte est requise, vous pouvez utiliser un script pour générer le certificat de l'interface de gestion.
+
+.Avant de commencer
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez le `Passwords.txt` fichier.
+
+
+.Description de la tâche
+La meilleure pratique pour un environnement de production consiste à utiliser un certificat signé par une autorité de certification externe.
+
+.Étapes
+. Obtenez le nom de domaine complet (FQDN) de chaque nœud d'administration.
+. Connectez-vous au nœud d'administration principal :
++
+.. Entrez la commande suivante : `ssh admin@primary_Admin_Node_IP`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. Configurez StorageGRID avec un nouveau certificat auto-signé.
++
+`$ sudo make-certificate --domains _wildcard-admin-node-fqdn_ --type management`
+
++
+** Pour `--domains`, utilisez des caractères génériques pour représenter les noms de domaine complets de tous les nœuds d'administration. Par exemple, `*.ui.storagegrid.example.com` utilise le caractère générique * pour représenter `admin1.ui.storagegrid.example.com` et `admin2.ui.storagegrid.example.com`.
+** Définissez `--type` sur `management` pour configurer le certificat de l'interface de gestion, utilisé par Grid Manager et tenant Manager.
+** Par défaut, les certificats générés sont valables pendant un an (365 jours) et doivent être recréés avant leur expiration. Vous pouvez utiliser l' `--days`argument pour remplacer la période de validité par défaut.
++
+
+NOTE: La période de validité d'un certificat commence lorsque `make-certificate` est exécuté. Vous devez vous assurer que le client de gestion est synchronisé avec la même source horaire que StorageGRID ; sinon, le client peut rejeter le certificat.
+
++
+ $ sudo make-certificate --domains *.ui.storagegrid.example.com --type management --days 720
++
+Le résultat contient le certificat public requis par votre client de l'API de gestion.
+
+
+
+. Sélectionnez et copiez le certificat.
++
+Incluez les étiquettes DE DÉBUT et DE FIN dans votre sélection.
+
+. Déconnectez-vous du shell de commande. `$ exit`
+. Vérifiez que le certificat a été configuré :
++
+.. Accédez au Grid Manager.
+.. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*
+.. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
+
+
+. Configurez votre client de gestion pour utiliser le certificat public que vous avez copié. Incluez les balises DE DÉBUT et DE FIN.
+
+
+
+
+== Téléchargez ou copiez le certificat de l'interface de gestion
+
+Vous pouvez enregistrer ou copier le contenu du certificat de l'interface de gestion pour l'utiliser ailleurs.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
+. Sélectionnez l'onglet *Server* ou *CA bundle*, puis téléchargez ou copiez le certificat.
++
+[role="tabbed-block"]
+====
+.Téléchargez le fichier de certificat ou le bundle CA
+--
+Téléchargez le fichier de certificat ou de bundle CA `.pem`. Si vous utilisez un bundle CA facultatif, chaque certificat du bundle s'affiche dans son propre sous-onglet.
+
+.. Sélectionnez *Télécharger le certificat* ou *Télécharger le paquet CA*.
++
+Si vous téléchargez un bundle CA, tous les certificats des onglets secondaires de l'offre CA sont téléchargés en un seul fichier.
+
+.. Spécifiez le nom du fichier de certificat et l'emplacement de téléchargement. Enregistrez le fichier avec l'extension `.pem`.
++
+Par exemple : `storagegrid_certificate.pem`
+
+
+
+--
+.Copie du certificat ou pack CA PEM
+--
+Copiez le texte du certificat pour le coller ailleurs. Si vous utilisez un bundle CA facultatif, chaque certificat du bundle s'affiche dans son propre sous-onglet.
+
+.. Sélectionnez *Copy Certificate PEM* ou *Copy CA bundle PEM*.
++
+Si vous copiez un bundle CA, tous les certificats des onglets secondaires de l'offre CA sont copiés ensemble.
+
+.. Collez le certificat copié dans un éditeur de texte.
+.. Enregistrez le fichier texte avec l'extension `.pem`.
++
+Par exemple : `storagegrid_certificate.pem`
+
+
+
+--
+====
+

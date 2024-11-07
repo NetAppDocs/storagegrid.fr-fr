@@ -1,0 +1,107 @@
+---
+permalink: troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html 
+sidebar: sidebar 
+keywords: how to troubleshoot S3 PUT Object size too large alert, S3 PutObject size 
+summary: 'L"alerte S3 PUT Object size too large est déclenchée si un locataire tente une opération PutObject non parties qui dépasse la taille limite S3 de 5 Gio.' 
+---
+= Dépannez l'alerte de taille d'objet PUT S3 trop grande
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'alerte S3 PUT Object size too large est déclenchée si un locataire tente une opération PutObject non parties qui dépasse la taille limite S3 de 5 Gio.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+Déterminez les locataires qui utilisent des objets supérieurs à 5 Gio. Vous pouvez donc les informer.
+
+.Étapes
+. Accédez à *CONFIGURATION* > *surveillance* > *Audit et serveur syslog*.
+. Si les écritures client sont normales, accédez au journal d'audit :
++
+.. Entrée `ssh admin@_primary_Admin_Node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+.. Entrée `cd /var/local/log`
++
+[NOTE]
+====
+link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Découvrez les destinations des informations d'audit"].
+
+====
+.. Identifiez les locataires qui utilisent des objets de plus de 5 Gio.
++
+... Entrée `zgrep SPUT * | egrep "CSIZ\(UI64\):([5-9]|[1-9][0-9]+)[0-9]{9}"`
+... Pour chaque message d'audit dans les résultats, consultez le `S3AI` champ pour déterminer l'ID de compte de locataire. Utilisez les autres champs du message pour déterminer l'adresse IP utilisée par le client, le compartiment et l'objet :
++
+[cols="1a,2a"]
+|===
+| Code | Description 
+
+
+| SAIP  a| 
+Adresse IP source
+
+
+
+| S3AI  a| 
+ID locataire
+
+
+
+| S3BK  a| 
+Godet
+
+
+
+| S3KY  a| 
+Objet
+
+
+
+| CSIZ  a| 
+Taille (octets)
+
+|===
++
+*Exemple de résultats du journal d'audit*
+
++
+[listing]
+----
+audit.log:2023-01-05T18:47:05.525999 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):1672943621106262][TIME(UI64):804317333][SAIP(IPAD):"10.96.99.127"][S3AI(CSTR):"93390849266154004343"][SACC(CSTR):"bhavna"][S3AK(CSTR):"06OX85M40Q90Y280B7YT"][SUSR(CSTR):"urn:sgws:identity::93390849266154004343:root"][SBAI(CSTR):"93390849266154004343"][SBAC(CSTR):"bhavna"][S3BK(CSTR):"test"][S3KY(CSTR):"large-object"][CBID(UI64):0x077EA25F3B36C69A][UUID(CSTR):"A80219A2-CD1E-466F-9094-B9C0FDE2FFA3"][CSIZ(UI64):6040000000][MTME(UI64):1672943621338958][AVER(UI32):10][ATIM(UI64):1672944425525999][ATYP(FC32):SPUT][ANID(UI32):12220829][AMID(FC32):S3RQ][ATID(UI64):4333283179807659119]]
+----
+
+
+
+
+. Si les écritures du client ne sont pas normales, utilisez l'ID de locataire de l'alerte pour identifier le locataire :
++
+.. Accédez à *SUPPORT* > *Outils* > *journaux*. Collectez les journaux d'application du nœud de stockage dans l'alerte. Spécifiez 15 minutes avant et après l'alerte.
+.. Extraire le fichier et aller à `bycast.log`:
++
+`/GID<grid_id>_<time_stamp>/<site_node>/<time_stamp>/grid/bycast.log`
+
+.. Recherchez le journal `method=PUT` et identifiez le client dans le `clientIP` champ.
++
+*Exemple bycast.log*
+
++
+[listing]
+----
+Jan  5 18:33:41 BHAVNAJ-DC1-S1-2-65 ADE: |12220829 1870864574 S3RQ %CEA 2023-01-05T18:33:41.208790| NOTICE   1404 af23cb66b7e3efa5 S3RQ: EVENT_PROCESS_CREATE - connection=1672943621106262 method=PUT name=</test/4MiB-0> auth=<V4> clientIP=<10.96.99.127>
+----
+
+
+. Indiquez aux locataires que la taille maximale de PutObject est de 5 Gio et que vous devez utiliser des téléchargements partitionnés pour les objets supérieurs à 5 Gio.
+. Ignorez l'alerte pendant une semaine si l'application a été modifiée.
+

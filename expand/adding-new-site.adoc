@@ -1,0 +1,46 @@
+---
+permalink: expand/adding-new-site.html 
+sidebar: sidebar 
+keywords: expand, expansion, new site, add site, guidelines 
+summary: Vous pouvez étendre votre système StorageGRID en ajoutant un nouveau site. 
+---
+= Ajouter un site
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez étendre votre système StorageGRID en ajoutant un nouveau site.
+
+
+
+== Instructions pour l'ajout d'un site
+
+Avant d'ajouter un site, vérifiez les exigences et limites suivantes :
+
+* Vous ne pouvez ajouter qu'un site par opération d'extension.
+* Vous ne pouvez pas ajouter de nœuds grid à un site existant dans le cadre d'une même extension.
+* Tous les sites doivent inclure au moins trois nœuds de stockage.
+* L'ajout d'un nouveau site n'augmente pas automatiquement le nombre d'objets que vous pouvez stocker. La capacité totale d'objet d'un grid dépend de la quantité de stockage disponible, de la règle ILM et de la capacité des métadonnées sur chaque site.
+* Lors du dimensionnement d'un nouveau site, vous devez vous assurer qu'il inclut suffisamment de capacité de métadonnées.
++
+StorageGRID conserve une copie de toutes les métadonnées d'objet sur chaque site. Lorsque vous ajoutez un nouveau site, vous devez vous assurer qu'il inclut une capacité de métadonnées suffisante pour les métadonnées d'objet existantes et une capacité de métadonnées suffisante pour croître.
+
++
+Pour plus d'informations, reportez-vous aux sections suivantes :
+
++
+** link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"]
+** link:../monitor/monitoring-storage-capacity.html#monitor-object-metadata-capacity-for-each-storage-node["Surveillez la capacité des métadonnées d'objet pour chaque nœud de stockage"]
+
+
+* Vous devez tenir compte de la bande passante réseau disponible entre les sites et du niveau de latence du réseau. Les mises à jour des métadonnées sont continuellement répliquées entre les sites, même si tous les objets sont stockés uniquement sur le site où ils sont ingéré.
+* Votre système StorageGRID reste opérationnel pendant son développement. Vous devez donc revoir les règles ILM avant de démarrer la procédure d'extension. Vous devez vous assurer que les copies d'objet ne sont pas stockées sur le nouveau site tant que la procédure d'extension n'est pas terminée.
++
+Par exemple, avant de commencer l'extension, déterminez si des règles utilisent le pool de stockage par défaut (tous les nœuds de stockage). Le cas échéant, vous devez créer un nouveau pool de stockage contenant les nœuds de stockage existants et mettre à jour les règles ILM pour utiliser le nouveau pool de stockage. Sinon, les objets seront copiés sur le nouveau site dès que le premier nœud de ce site devient actif.
+
++
+Pour plus d'informations sur la modification d'ILM lors de l'ajout d'un nouveau site, reportez-vous au link:../ilm/example-6-changing-ilm-policy.html["Exemple de modification d'une règle ILM"].
+
+

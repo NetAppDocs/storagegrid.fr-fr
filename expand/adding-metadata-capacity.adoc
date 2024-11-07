@@ -1,0 +1,55 @@
+---
+permalink: expand/adding-metadata-capacity.html 
+sidebar: sidebar 
+keywords: metadata capacity, add, adding, expand, expansion, guidelines, Storage Nodes, metadata storage 
+summary: 'Pour assurer la disponibilité de l"espace adéquat pour les métadonnées des objets, vous devez effectuer une procédure d"extension afin d"ajouter de nouveaux nœuds de stockage sur chaque site.' 
+---
+= Ajoutez de la capacité des métadonnées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour assurer la disponibilité de l'espace adéquat pour les métadonnées des objets, vous devez effectuer une procédure d'extension afin d'ajouter de nouveaux nœuds de stockage sur chaque site.
+
+StorageGRID réserve de l'espace pour les métadonnées d'objet sur le volume 0 de chaque nœud de stockage. Trois copies de toutes les métadonnées d'objet sont conservées sur chaque site, réparties de manière homogène entre tous les nœuds de stockage.
+
+Vous pouvez utiliser Grid Manager pour surveiller la capacité des métadonnées des nœuds de stockage et estimer la vitesse de consommation de la capacité des métadonnées. En outre, l'alerte *stockage de métadonnées faible* est déclenchée pour un nœud de stockage lorsque l'espace de métadonnées utilisé atteint certains seuils.
+
+La capacité des métadonnées d'objet d'une grille peut être consommée plus rapidement que la capacité de stockage objet, selon l'utilisation de la grille. Par exemple, si vous ingérer d'importants volumes d'objets de petite taille ou si vous ajoutez de grandes quantités de métadonnées ou de balises utilisateur aux objets, vous devrez ajouter des nœuds de stockage pour augmenter la capacité des métadonnées, même si la capacité de stockage objet reste suffisante.
+
+Pour plus d'informations, reportez-vous aux sections suivantes :
+
+* link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"]
+* link:../monitor/monitoring-storage-capacity.html#monitor-object-metadata-capacity-for-each-storage-node["Surveillez la capacité des métadonnées d'objet pour chaque nœud de stockage"]
+
+
+
+
+== Instructions d'augmentation de la capacité des métadonnées
+
+Avant d'ajouter des nœuds de stockage pour augmenter la capacité des métadonnées, consultez les directives et les limites suivantes :
+
+* En supposant une capacité de stockage objet suffisante, l'augmentation de l'espace disponible pour les métadonnées d'objet augmente le nombre d'objets que vous pouvez stocker dans votre système StorageGRID.
+* Vous pouvez augmenter la capacité des métadonnées d'une grille en ajoutant un ou plusieurs nœuds de stockage à chaque site.
+* L'espace réel réservé pour les métadonnées d'objet sur un nœud de stockage donné dépend de l'option de stockage de l'espace réservé aux métadonnées (paramètre pour tout le système), de la quantité de RAM allouée au nœud et de la taille du volume 0 du nœud.
+* Il est impossible d'augmenter la capacité des métadonnées en ajoutant des volumes de stockage aux nœuds de stockage existants, car les métadonnées ne sont stockées que sur le volume 0.
+* L'ajout d'un nouveau site ne permet pas d'augmenter la capacité des métadonnées.
+* StorageGRID conserve trois copies de toutes les métadonnées d'objets sur chaque site. C'est pourquoi la capacité de métadonnées de votre système est limitée par la capacité de métadonnées de votre plus petit site.
+* Lorsque vous ajoutez de la capacité des métadonnées, vous devez ajouter le même nombre de nœuds de stockage à chaque site.
+
+
+Voir la link:../admin/managing-object-metadata-storage.html["Description de l'espace réservé aux métadonnées"].
+
+
+
+== Comment les métadonnées sont redistribuées lorsque vous ajoutez des nœuds de stockage
+
+Lorsque vous ajoutez des nœuds de stockage dans une extension, StorageGRID redistribue les métadonnées de l'objet vers les nouveaux nœuds de chaque site, ce qui augmente la capacité globale des métadonnées de la grille. Aucune action de l'utilisateur n'est requise.
+
+La figure suivante montre comment StorageGRID redistribue les métadonnées d'objet lorsque vous ajoutez des nœuds de stockage dans une extension. La partie gauche de la figure représente le volume 0 de trois nœuds de stockage avant toute extension. Les métadonnées consomment une portion relativement importante de l'espace disponible de métadonnées de chaque nœud et l'alerte *stockage de métadonnées faible* a été déclenchée.
+
+La partie droite de la figure montre comment les métadonnées existantes sont redistribuées après deux nœuds de stockage ajoutés au site. La quantité de métadonnées sur chaque nœud a diminué, l'alerte *stockage de métadonnées faible* n'est plus déclenchée et l'espace disponible pour les métadonnées a augmenté.
+
+image::../media/metadata_space_after_expansion.png[Diagramme des métadonnées redistribuées après l'ajout de deux nœuds de stockage]

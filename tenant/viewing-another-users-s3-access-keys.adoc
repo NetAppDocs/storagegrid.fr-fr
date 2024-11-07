@@ -1,0 +1,41 @@
+---
+permalink: tenant/viewing-another-users-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to view other user access key 
+summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez afficher les clés d"accès S3 d"un autre utilisateur. Vous pouvez trier la liste par heure d"expiration pour déterminer quelles clés vont bientôt expirer. Au besoin, vous pouvez créer de nouvelles clés et supprimer des clés qui ne sont plus utilisées.' 
+---
+= Afficher les clés d'accès S3 d'un autre utilisateur
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez afficher les clés d'accès S3 d'un autre utilisateur. Vous pouvez trier la liste par heure d'expiration pour déterminer quelles clés vont bientôt expirer. Au besoin, vous pouvez créer de nouvelles clés et supprimer des clés qui ne sont plus utilisées.
+
+.Avant de commencer
+* Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:tenant-management-permissions.html["Autorisation d'accès racine"].
+
+
+
+CAUTION: Les compartiments S3 et les objets appartenant à un utilisateur sont accessibles à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour cet utilisateur dans le Gestionnaire de locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées du compte et ne les partagez jamais avec d'autres utilisateurs.
+
+.Étapes
+. Sélectionnez *ACCESS MANAGEMENT* > *Users*.
+. Sur la page utilisateurs, sélectionnez l'utilisateur dont vous souhaitez afficher les clés d'accès S3.
+. Dans la page Détails de l'utilisateur, sélectionnez *touches d'accès*.
+. Trier les clés par *heure d'expiration* ou *ID de clé d'accès*.
+. Si nécessaire, créez de nouvelles clés et supprimez manuellement les clés que le n'est plus utilisé.
++
+Si vous créez de nouvelles clés avant l'expiration des clés existantes, l'utilisateur peut commencer à utiliser les nouvelles clés sans perdre temporairement l'accès aux objets du compte.
+
++
+Les clés expirées sont supprimées automatiquement.
+
+
+
+.Informations associées
+* link:creating-another-users-s3-access-keys.html["Créez les clés d'accès S3 d'un autre utilisateur"]
+* link:deleting-another-users-s3-access-keys.html["Supprimez les clés d'accès S3 d'un autre utilisateur"]
+

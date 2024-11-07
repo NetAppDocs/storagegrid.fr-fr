@@ -1,0 +1,102 @@
+---
+permalink: monitor/updating-snmp-agent.html 
+sidebar: sidebar 
+keywords: how to update the SNMP agent 
+summary: 'Vous pouvez désactiver les notifications SNMP, mettre à jour les chaînes de communauté ou ajouter ou supprimer des adresses d"agent, des utilisateurs USM et des destinations d"interruption.' 
+---
+= Mettez à jour l'agent SNMP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez désactiver les notifications SNMP, mettre à jour les chaînes de communauté ou ajouter ou supprimer des adresses d'agent, des utilisateurs USM et des destinations d'interruption.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Description de la tâche
+Pour plus de détails sur chaque champ de la page agent SNMP, reportez-vous à la sectionlink:configuring-snmp-agent.html["Configurez l'agent SNMP"]. Vous devez sélectionner *Enregistrer* au bas de la page pour valider les modifications que vous apportez à chaque onglet.
+
+.Étapes
+. Sélectionnez *CONFIGURATION* > *surveillance* > *agent SNMP*.
++
+La page agent SNMP s'affiche.
+
+. Pour désactiver l'agent SNMP sur tous les nœuds de la grille, décochez la case *Activer SNMP* et sélectionnez *Enregistrer*.
++
+Si vous réactivez l'agent SNMP, tous les paramètres de configuration SNMP précédents sont conservés.
+
+. Si vous le souhaitez, mettez à jour les informations de la section Configuration de base :
++
+.. Si nécessaire, mettez à jour le *contact système* et *emplacement système*.
+.. Vous pouvez également cocher ou décocher la case *Activer les notifications d'agent SNMP* pour contrôler si l'agent SNMP StorageGRID envoie des notifications d'interruption et d'information.
++
+Lorsque cette case est décochée, l'agent SNMP prend en charge l'accès MIB en lecture seule, mais n'envoie pas de notifications SNMP.
+
+.. Si vous le souhaitez, cochez ou décochez la case *Activer les interruptions d'authentification* pour contrôler si l'agent SNMP StorageGRID envoie des interruptions d'authentification lorsqu'il reçoit des messages de protocole incorrectement authentifiés.
+
+
+. Si vous utilisez SNMPv1 ou SNMPv2c, vous pouvez éventuellement mettre à jour ou ajouter une communauté *en lecture seule* dans la section chaînes de communauté.
+. Pour mettre à jour les destinations des interruptions, sélectionnez l'onglet destinations des interruptions dans la section autres configurations.
++
+Utilisez cet onglet pour définir une ou plusieurs destinations pour les notifications d'interruption StorageGRID ou d'information. Lorsque vous activez l'agent SNMP et sélectionnez *Enregistrer*, StorageGRID envoie des notifications à chaque destination définie lorsque des alertes sont déclenchées. Les notifications standard sont également envoyées pour les entités MIB-II prises en charge (par exemple, ifdown et coldStart).
+
++
+Pour plus de détails sur ce que vous devez saisir, reportez-vous à link:../monitor/configuring-snmp-agent.html#create-trap-destinations["Créer des destinations de recouvrement"]la section .
+
++
+** Vous pouvez également mettre à jour ou supprimer la communauté de déroutements par défaut.
++
+Si vous supprimez la communauté d'interruptions par défaut, vous devez d'abord vous assurer que toutes les destinations d'interruptions existantes utilisent une chaîne de communauté personnalisée.
+
+** Pour ajouter une destination d'interruption, sélectionnez *Créer*.
+** Pour modifier une destination d'interruption, sélectionnez le bouton radio et sélectionnez *Modifier*.
+** Pour supprimer une destination d'interruption, sélectionnez le bouton radio et sélectionnez *Supprimer*.
+** Pour valider vos modifications, sélectionnez *Enregistrer* en bas de la page.
+
+
+. Pour mettre à jour les adresses des agents, sélectionnez l'onglet adresses des agents dans la section autres configurations.
++
+Utilisez cet onglet pour spécifier une ou plusieurs « adresses d'écoute ». Il s'agit des adresses StorageGRID sur lesquelles l'agent SNMP peut recevoir des requêtes.
+
++
+Pour plus de détails sur ce que vous devez saisir, reportez-vous à link:../monitor/configuring-snmp-agent.html#create-agent-addresses["Créez des adresses d'agent"]la section .
+
++
+** Pour ajouter une adresse d'agent, sélectionnez *Créer*.
+** Pour modifier une adresse d'agent, sélectionnez le bouton radio et sélectionnez *Modifier*.
+** Pour supprimer une adresse d'agent, sélectionnez le bouton radio et sélectionnez *Supprimer*.
+** Pour valider vos modifications, sélectionnez *Enregistrer* en bas de la page.
+
+
+. Pour mettre à jour les utilisateurs USM, sélectionnez l'onglet utilisateurs USM dans la section autres configurations.
++
+Utilisez cet onglet pour définir les utilisateurs USM autorisés à interroger la MIB ou à recevoir des interruptions et des informations.
+
++
+Pour plus de détails sur ce que vous devez saisir, reportez-vous à link:../monitor/configuring-snmp-agent.html#create-usm-users["Créez des utilisateurs USM"]la section .
+
++
+** Pour ajouter un utilisateur USM, sélectionnez *Create*.
+** Pour modifier un utilisateur USM, sélectionnez le bouton radio et sélectionnez *Modifier*.
++
+Le nom d'utilisateur d'un utilisateur USM existant ne peut pas être modifié. Si vous devez modifier un nom d'utilisateur, vous devez le supprimer et en créer un nouveau.
+
++
+
+NOTE: Si vous ajoutez ou supprimez l'ID de moteur d'un utilisateur faisant autorité et que cet utilisateur est actuellement sélectionné pour une destination, vous devez modifier ou supprimer la destination. Sinon, une erreur de validation se produit lorsque vous enregistrez la configuration de l'agent SNMP.
+
+** Pour supprimer un utilisateur USM, sélectionnez le bouton radio et sélectionnez *Supprimer*.
++
+
+NOTE: Si l'utilisateur que vous avez supprimé est actuellement sélectionné pour une destination d'interruption, vous devez modifier ou supprimer la destination. Sinon, une erreur de validation se produit lorsque vous enregistrez la configuration de l'agent SNMP.
+
+** Pour valider vos modifications, sélectionnez *Enregistrer* en bas de la page.
+
+
+. Lorsque vous avez mis à jour la configuration de l'agent SNMP, sélectionnez *Enregistrer*.
+

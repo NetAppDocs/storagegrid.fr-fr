@@ -1,0 +1,225 @@
+---
+permalink: expand/performing-expansion.html 
+sidebar: sidebar 
+keywords: expand, expansion procedure 
+summary: 'Lorsque vous effectuez l"extension, des nœuds grid sont ajoutés à votre déploiement StorageGRID existant.' 
+---
+= Réaliser une extension
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous effectuez l'extension, des nœuds grid sont ajoutés à votre déploiement StorageGRID existant.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Vous avez déployé tous les nœuds grid qui sont ajoutés dans cette extension.
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Si vous ajoutez des nœuds de stockage, vous avez confirmé que toutes les opérations de réparation de données réalisées dans le cadre d'une restauration sont terminées. Voir link:../maintain/checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"].
+* Si vous ajoutez des nœuds de stockage et que vous souhaitez attribuer un niveau de stockage personnalisé à ces nœuds, vous avez déjà link:../ilm/creating-and-assigning-storage-grades.html["création du niveau de stockage personnalisé"]. Vous disposez également de l'autorisation d'accès racine ou des autorisations Maintenance et ILM.
+* Si vous ajoutez un nouveau site, vous avez examiné et mis à jour les règles ILM. Vous devez vous assurer que les copies d'objet ne sont pas stockées sur le nouveau site tant que l'extension n'est pas terminée. Par exemple, si une règle utilise le pool de stockage par défaut (*tous les nœuds de stockage*), vous devez link:../ilm/creating-storage-pool.html["créez un nouveau pool de stockage"] qui contient uniquement les nœuds de stockage existants et link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Mise à jour des règles ILM"]la stratégie ILM pour utiliser ce nouveau pool de stockage. Sinon, les objets seront copiés sur le nouveau site dès que le premier nœud de ce site devient actif.
+
+
+.Description de la tâche
+L'exécution de l'extension inclut les tâches utilisateur principales suivantes :
+
+. Configurer l'extension.
+. Démarrez l'extension.
+. Téléchargez un nouveau fichier de package de récupération.
+. Surveillez les étapes et étapes d'extension jusqu'à ce que tous les nouveaux nœuds soient installés et configurés et que tous les services aient démarré.
++
+
+CAUTION: L'exécution de certaines étapes et étapes d'extension sur un grand grid peut prendre beaucoup de temps. Par exemple, si la base de données Cassandra est vide, vous pouvez streaming Cassandra vers un nouveau nœud de stockage. Cependant, si la base de données Cassandra inclut un volume important de métadonnées d'objet, cette étape peut prendre plusieurs heures, voire plus. Ne redémarrez aucun nœud de stockage pendant les étapes « extension du cluster Cassandra » ou « démarrage de Cassandra et des données de streaming ».
+
+
+
+.Étapes
+. Sélectionnez *MAINTENANCE* > *tâches* > *expansion*.
++
+La page d'extension de la grille s'affiche. La section nœuds en attente répertorie les nœuds prêts à être ajoutés.
+
++
+image::../media/grid_expansion_page.png[Capture d'écran affichant la page d'extension de la grille]
+
+. Sélectionnez *configurer l'extension*.
++
+La boîte de dialogue sélection du site s'affiche.
+
+. Sélectionnez le type d'expansion que vous commencez :
++
+** Si vous ajoutez un nouveau site, sélectionnez *Nouveau* et entrez le nom du nouveau site.
+** Si vous ajoutez un ou plusieurs nœuds à un site existant, sélectionnez *existant*.
+
+
+. Sélectionnez *Enregistrer*.
+. Consultez la liste *nœuds en attente* et vérifiez qu'elle affiche tous les nœuds de la grille que vous avez déployés.
++
+Si nécessaire, vous pouvez placer votre curseur sur l'adresse *Grid Network MAC Address* d'un nœud pour afficher les détails sur ce nœud.
+
++
+image::../media/grid_node_details.png[Capture d'écran des détails du nœud de grille]
+
++
+
+NOTE: Si un nœud est manquant, vérifiez qu'il a été déployé avec succès.
+
+. Dans la liste des nœuds en attente, approuvez les nœuds que vous souhaitez ajouter à cette extension.
++
+.. Sélectionnez le bouton radio à côté du premier nœud de grille en attente que vous souhaitez approuver.
+.. Sélectionnez *approuver*.
++
+Le formulaire de configuration des nœuds de la grille s'affiche.
+
+.. Si nécessaire, modifiez les paramètres généraux :
++
+[cols="1a,2a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Le site
+ a| 
+Nom du site auquel le nœud de grille sera associé. Si vous ajoutez plusieurs nœuds, veillez à sélectionner le site approprié pour chaque nœud. Si vous ajoutez un site, tous les nœuds sont ajoutés au nouveau site.
+
+
+
+ a| 
+Nom
+ a| 
+Nom du système du nœud. Les noms de système sont requis pour les opérations StorageGRID internes et ne peuvent pas être modifiés.
+
+
+
+ a| 
+Type de stockage (nœuds de stockage uniquement)
+ a| 
+*** *Données et métadonnées* (« combinées ») : noeud de stockage des métadonnées et des données d'objet
+*** *Données uniquement* : nœud de stockage contenant uniquement des données d'objet (pas de métadonnées)
+*** *Métadonnées uniquement* : nœud de stockage contenant uniquement des métadonnées (pas de données d'objet)
+
+
+
+
+ a| 
+Rôle NTP
+ a| 
+Le rôle NTP (Network Time Protocol) du nœud de grille :
+
+*** Sélectionnez *automatique* (par défaut) pour attribuer automatiquement le rôle NTP au nœud. Le rôle principal sera attribué aux nœuds d'administration, aux nœuds de stockage avec services ADC, aux nœuds de passerelle et à tous les nœuds de grille ayant des adresses IP non statiques. Le rôle client sera attribué à tous les autres nœuds de la grille.
+*** Sélectionnez *principal* pour attribuer manuellement le rôle NTP principal au nœud. Au moins deux nœuds sur chaque site doivent avoir le rôle principal pour fournir un accès système redondant aux sources de synchronisation externes.
+*** Sélectionnez *client* pour attribuer manuellement le rôle NTP du client au nœud.
+
+
+
+
+ a| 
+Service ADC (nœuds de stockage combinés ou métadonnées uniquement)
+ a| 
+Si ce nœud de stockage exécute le service contrôleur de domaine administratif (ADC). Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau. Au moins trois nœuds de stockage de chaque site doivent inclure le service ADC. Vous ne pouvez pas ajouter le service ADC à un nœud après son déploiement.
+
+*** Sélectionnez *Oui* si le nœud de stockage que vous remplacez inclut le service ADC. Comme vous ne pouvez pas désaffecter un nœud de stockage si trop peu de services ADC sont conservés, cela garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
+*** Sélectionnez *automatique* pour permettre au système de déterminer si ce nœud nécessite le service ADC.
+
+
+En savoir plus sur link:../maintain/understanding-adc-service-quorum.html["Quorum ADC"]le .
+
+
+
+ a| 
+Niveau de stockage (nœuds de stockage combinés ou uniquement des données)
+ a| 
+Utilisez le niveau de stockage *par défaut* ou sélectionnez le niveau de stockage personnalisé que vous souhaitez affecter à ce nouveau nœud.
+
+Les niveaux de stockage sont utilisés par les pools de stockage ILM. Ainsi, votre sélection peut affecter les objets qui seront placés sur le nœud de stockage.
+
+|===
+.. Si nécessaire, modifiez les paramètres du réseau Grid, du réseau Admin et du réseau client.
++
+*** *Adresse IPv4 (CIDR)* : adresse réseau CIDR pour l'interface réseau. Par exemple : 172.16.10.100/24
++
+
+NOTE: Si vous découvrez que les nœuds ont des adresses IP dupliquées sur le réseau Grid alors que vous approuvez des nœuds, vous devez annuler l'extension, redéployer les machines virtuelles ou les appliances avec une adresse IP non dupliquée, puis redémarrer l'extension.
+
+*** *Gateway* : passerelle par défaut du noeud de la grille. Par exemple : 172.16.10.1
+*** *Sous-réseaux (CIDR)* : un ou plusieurs sous-réseaux pour le réseau Admin.
+
+
+.. Sélectionnez *Enregistrer*.
++
+Le nœud de grille approuvé passe à la liste nœuds approuvés.
+
++
+*** Pour modifier les propriétés d'un nœud de grille approuvé, sélectionnez son bouton radio et sélectionnez *Modifier*.
+*** Pour déplacer un nœud de grille approuvé vers la liste nœuds en attente, sélectionnez son bouton d'option et sélectionnez *Réinitialiser*.
+*** Pour supprimer définitivement un nœud de grille approuvé, mettez le nœud hors tension. Ensuite, sélectionnez son bouton radio et sélectionnez *Supprimer*.
+
+
+.. Répétez ces étapes pour chaque nœud de grille en attente à approuver.
++
+
+NOTE: Si possible, vous devez approuver toutes les notes de grille en attente et effectuer une extension unique. Plus de temps sera nécessaire si vous réalisez plusieurs petits expansions.
+
+
+
+. Lorsque vous avez approuvé tous les nœuds de la grille, saisissez la phrase de passe de mise en service *, puis sélectionnez *développer*.
++
+Au bout de quelques minutes, cette page se met à jour pour afficher l'état de la procédure d'extension. Lorsque des tâches qui affectent des nœuds de grille individuels sont en cours, la section Etat du nœud de grille répertorie l'état actuel de chaque nœud de grille.
+
++
+
+NOTE: Lors de l'étape « installation de nœuds de grille » pour une nouvelle appliance, le programme d'installation de l'appliance StorageGRID indique que l'installation passe de l'étape 3 à l'étape 4, finalisation de l'installation. Une fois l'étape 4 terminée, le contrôleur est redémarré.
+
++
+image::../media/grid_expansion_progress.png[Cette image est expliquée par le texte qui l'entoure.]
+
++
+
+NOTE: L'extension de site inclut une tâche supplémentaire pour configurer Cassandra pour le nouveau site.
+
+. Dès que le lien *Download Recovery Package* apparaît, téléchargez le fichier Recovery Package.
++
+Vous devez télécharger une copie mise à jour du fichier du pack de récupération dès que possible après avoir apporté des modifications de topologie de grille au système StorageGRID. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
+
++
+.. Sélectionnez le lien de téléchargement.
+.. Saisissez le mot de passe de provisionnement et sélectionnez *Démarrer le téléchargement*.
+.. Une fois le téléchargement terminé, ouvrez `.zip` le fichier et confirmez que vous pouvez accéder au contenu, y compris au `Passwords.txt` fichier.
+.. Copiez le fichier du progiciel de récupération téléchargé (`.zip`) dans deux emplacements sécurisés et séparés.
++
+
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+
+
+
+. Si vous ajoutez des nœuds de stockage à un site existant ou que vous ajoutez un site, surveillez les étapes Cassandra qui se produisent lorsque les services sont démarrés sur les nouveaux nœuds de grille.
++
+
+CAUTION: Ne redémarrez aucun nœud de stockage pendant les étapes « extension du cluster Cassandra » ou « démarrage de Cassandra et des données de streaming ». Ces étapes peuvent prendre plusieurs heures pour chaque nouveau nœud de stockage, en particulier si les nœuds de stockage existants contiennent une quantité importante de métadonnées d'objet.
+
++
+[role="tabbed-block"]
+====
+.Ajout de nœuds de stockage
+--
+Si vous ajoutez des nœuds de stockage à un site existant, consultez le pourcentage affiché dans le message d'état « démarrage de Cassandra et données en streaming ».
+
+image::../media/grid_expansion_starting_cassandra.png[Extension de grille > démarrage de Cassandra et du streaming de données]
+
+Ce pourcentage estime que le streaming Cassandra est complet, en fonction du volume total de données Cassandra disponibles et du volume qui a déjà été écrit sur le nouveau nœud.
+
+--
+.Ajout d'un site
+--
+Si vous ajoutez un nouveau site, utilisez `nodetool status` pour surveiller la progression du streaming Cassandra et pour voir la quantité de métadonnées copiées sur le nouveau site lors de l'étape d'extension du cluster Cassandra. La charge totale des données sur le nouveau site devrait se situer à environ 20 % du total d'un site actuel.
+
+--
+====
+. Continuez à surveiller l'extension jusqu'à ce que toutes les tâches soient terminées et que le bouton *Configure expansion* réapparaît.
+
+
+.Une fois que vous avez terminé
+En fonction des types de nœuds de grille que vous avez ajoutés, effectuez des étapes supplémentaires d'intégration et de configuration. Voir link:configuring-expanded-storagegrid-system.html["Étapes de configuration après l'extension"].

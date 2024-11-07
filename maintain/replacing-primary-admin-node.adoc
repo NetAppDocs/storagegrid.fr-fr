@@ -1,0 +1,51 @@
+---
+permalink: maintain/replacing-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace primary admin node, replacing primary admin node, primary admin node 
+summary: 'Pour restaurer un noeud d"administration principal, vous devez d"abord remplacer le matériel physique ou virtuel.' 
+---
+= Remplacez le nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour restaurer un noeud d'administration principal, vous devez d'abord remplacer le matériel physique ou virtuel.
+
+Vous pouvez remplacer un nœud d'administration principal défectueux par un nœud d'administration principal s'exécutant sur la même plate-forme, ou remplacer un nœud d'administration principal s'exécutant sur VMware ou un hôte Linux par un nœud d'administration principal hébergé sur une appliance de services.
+
+Utilisez la procédure qui correspond à la plate-forme de remplacement que vous sélectionnez pour le nœud. Après avoir effectué la procédure de remplacement des nœuds (adaptée à tous les types de nœuds), cette procédure vous dirige vers l'étape suivante pour la restauration du nœud d'administration principal.
+
+[cols="1a,2a"]
+|===
+| Et de remplacement | Procédure 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["Remplacement d'un noeud VMware"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Remplacer un noeud Linux"]
+
+
+
+ a| 
+Appliances de services
+ a| 
+link:replacing-failed-node-with-services-appliance.html["Remplacer une appliance de services"]
+
+
+
+ a| 
+OpenStack
+ a| 
+Les fichiers et scripts de disques de machine virtuelle fournis par NetApp pour OpenStack ne sont plus pris en charge pour les opérations de restauration. Si vous devez restaurer un nœud exécuté dans un déploiement OpenStack, téléchargez les fichiers du système d'exploitation Linux. Ensuite, suivez la procédure pour link:all-node-types-replacing-linux-node.html["Remplacement d'un nœud Linux"].
+
+|===

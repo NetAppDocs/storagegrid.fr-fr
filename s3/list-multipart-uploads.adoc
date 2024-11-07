@@ -1,0 +1,32 @@
+---
+permalink: s3/list-multipart-uploads.html 
+sidebar: sidebar 
+keywords: ListMultipartUploads, uploads, multipart uploads, bucket 
+summary: 'L"opération ListMultipartUploads répertorie les téléchargements partitionnés en cours pour un compartiment.' 
+---
+= ListMultipartUploads
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'opération ListMultipartUploads répertorie les téléchargements partitionnés en cours pour un compartiment.
+
+Les paramètres de demande suivants sont pris en charge :
+
+* `encoding-type`
+* `key-marker`
+* `max-uploads`
+* `prefix`
+* `upload-id-marker`
+* `Host`
+* `Date`
+* `Authorization`
+
+
+
+
+== Gestion des versions
+
+Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.

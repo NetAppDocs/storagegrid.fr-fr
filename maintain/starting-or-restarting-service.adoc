@@ -1,0 +1,58 @@
+---
+permalink: maintain/starting-or-restarting-service.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, service, start service, restart service 
+summary: Vous devrez peut-être démarrer un service qui a été arrêté, ou vous devrez peut-être arrêter et redémarrer un service. 
+---
+= Démarrez ou redémarrez le service
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devrez peut-être démarrer un service qui a été arrêté, ou vous devrez peut-être arrêter et redémarrer un service.
+
+.Avant de commencer
+Vous avez le `Passwords.txt` fichier.
+
+.Étapes
+. Connectez-vous au nœud grid :
++
+.. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. Choisissez la commande à exécuter, en fonction du type de service en cours d'exécution ou arrêté.
++
+** Si le service est actuellement arrêté, utiliser `start` la commande pour démarrer le service manuellement : `service _servicename_ start`
++
+Par exemple :
+
++
+[listing]
+----
+service ldr start
+----
+** Si le service est en cours d'exécution, utilisez la `restart` commande pour arrêter le service, puis redémarrez-le : `service _servicename_ restart`
++
+Par exemple :
+
++
+[listing]
+----
+service ldr restart
+----
++
+
+NOTE: L'utilisation de la commande est la même que l'utilisation de `restart` la `stop` commande suivie de celle-ci `start`. Vous pouvez émettre un problème `restart` même si le service est actuellement arrêté.
+
+
+
+. Déconnectez-vous du shell de commande : `exit`
+

@@ -1,0 +1,127 @@
+---
+permalink: monitor/silencing-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to disable alert rules, how to remove a custom alert rule 
+summary: 'Si vous le souhaitez, vous pouvez configurer des silences pour supprimer temporairement les notifications d"alerte.' 
+---
+= Notifications d'alerte de silence
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous le souhaitez, vous pouvez configurer des silences pour supprimer temporairement les notifications d'alerte.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Description de la tâche
+Vous pouvez désactiver les règles d'alerte sur toute la grille, sur un seul site ou sur un seul nœud et pour une ou plusieurs niveaux de gravité. Chaque silence supprime toutes les notifications d'une règle d'alerte unique ou de toutes les règles d'alerte.
+
+Si vous avez activé l'agent SNMP, les silences suppriment également les interruptions SNMP et informent.
+
+
+CAUTION: Soyez prudent lorsque vous décidez de désactiver une règle d'alerte. Si vous neutralisez une alerte, il est possible que vous ne détectez pas un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
+
+.Étapes
+. Sélectionnez *ALERTES* > *silences*.
++
+La page silences s'affiche.
+
++
+image::../media/alerts_silences_page.png[Page alertes > silences]
+
+. Sélectionnez *Créer*.
++
+La boîte de dialogue Créer une Silence s'affiche.
+
++
+image::../media/alerts_create_silence.png[Alertes > Créer Silence]
+
+. Sélectionnez ou entrez les informations suivantes :
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Règle d'alerte
+ a| 
+Le nom de la règle d'alerte que vous souhaitez désactiver. Vous pouvez sélectionner n'importe quelle règle d'alerte par défaut ou personnalisée, même si la règle d'alerte est désactivée.
+
+*Remarque :* sélectionnez *toutes les règles* si vous voulez désactiver toutes les règles d'alerte en utilisant les critères spécifiés dans cette boîte de dialogue.
+
+
+
+ a| 
+Description
+ a| 
+Éventuellement, une description du silence. Par exemple, décrivez le but de ce silence.
+
+
+
+ a| 
+Durée
+ a| 
+Combien de temps vous voulez que ce silence reste en vigueur, en minutes, heures ou jours. Un silence peut être en vigueur de 5 minutes à 1,825 jours (5 ans).
+
+*Remarque:* vous ne devez pas désactiver une règle d'alerte pour une durée prolongée. Si une règle d'alerte est mise en mode silencieux, il est possible que vous ne détectiez pas un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique. Cependant, vous devrez peut-être utiliser un silence étendu si une alerte est déclenchée par une configuration intentionnelle spécifique, par exemple pour les alertes *liaison appliance Services Down* et les alertes *liaison appliance Storage Down*.
+
+
+
+ a| 
+Gravité
+ a| 
+Quelle alerte de gravité ou de gravité doit être neutralisée. Si l'alerte est déclenchée à l'un des niveaux de gravité sélectionnés, aucune notification n'est envoyée.
+
+
+
+ a| 
+Nœuds
+ a| 
+À quel nœud ou nœud vous souhaitez que ce silence s'applique. Vous pouvez supprimer une règle d'alerte ou toutes les règles de la grille dans son ensemble, un seul site ou un seul nœud. Si vous sélectionnez l'ensemble de la grille, le silence s'applique à tous les sites et à tous les nœuds. Si vous sélectionnez un site, le silence s'applique uniquement aux nœuds de ce site.
+
+*Note:* vous ne pouvez pas sélectionner plus d'un nœud ou plus d'un site pour chaque silence. Vous devez créer des silences supplémentaires si vous souhaitez supprimer la même règle d'alerte sur plusieurs nœuds ou plusieurs sites à la fois.
+
+|===
+. Sélectionnez *Enregistrer*.
+. Si vous souhaitez modifier ou mettre fin à un silence avant son expiration, vous pouvez le modifier ou le supprimer.
++
+[cols="1a,3a"]
+|===
+| Option | Description 
+
+
+ a| 
+Modifier un silence
+ a| 
+.. Sélectionnez *ALERTES* > *silences*.
+.. Dans le tableau, sélectionnez le bouton radio correspondant au silence que vous souhaitez modifier.
+.. Sélectionnez *Modifier*.
+.. Modifiez la description, le temps restant, les niveaux de gravité sélectionnés ou le nœud affecté.
+.. Sélectionnez *Enregistrer*.
+
+
+
+
+ a| 
+Supprimer un silence
+ a| 
+.. Sélectionnez *ALERTES* > *silences*.
+.. Dans le tableau, sélectionnez le bouton radio correspondant au silence que vous souhaitez supprimer.
+.. Sélectionnez *Supprimer*.
+.. Sélectionnez *OK* pour confirmer que vous souhaitez supprimer ce silence.
++
+*Remarque* : les notifications sont maintenant envoyées lorsque cette alerte est déclenchée (sauf si elle est supprimée par un autre silence). Si cette alerte est déclenchée, l'envoi de notifications par e-mail ou SNMP peut prendre quelques minutes et la mise à jour de la page alertes.
+
+
+
+|===
+
+
+.Informations associées
+link:configuring-snmp-agent.html["Configurez l'agent SNMP"]

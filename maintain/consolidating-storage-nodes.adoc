@@ -1,0 +1,23 @@
+---
+permalink: maintain/consolidating-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage node, consolidate storage node, consolidating storage node 
+summary: Vous pouvez consolider les nœuds de stockage pour réduire le nombre de nœuds de stockage sur un site ou un déploiement, tout en augmentant la capacité de stockage. 
+---
+= Consolidez les nœuds de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez consolider les nœuds de stockage pour réduire le nombre de nœuds de stockage sur un site ou un déploiement, tout en augmentant la capacité de stockage.
+
+Lorsque vous consolidez les nœuds de stockage, vous ajoutez de nouveaux nœuds de stockage de plus grande capacité, puis vous link:../expand/index.html["Développez le système StorageGRID"]désaffectez les anciens nœuds de stockage de plus petite capacité. Pendant la procédure de mise hors service, les objets sont migrés entre les anciens nœuds de stockage et les nouveaux nœuds de stockage.
+
+
+NOTE: Si vous consolidez des appliances plus anciennes ou plus petites avec de nouveaux modèles ou des appliances de plus grande capacité, envisagez d'utiliser (ou le clonage des nœuds de l'appliance et la procédure de désaffectation si vous ne remplacez pas les appliances https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["clonage du nœud d'appliance"^] un-à-un).
+
+Par exemple, vous pouvez ajouter deux nouveaux nœuds de stockage de plus grande capacité pour remplacer trois nœuds de stockage plus anciens. Vous devez d'abord utiliser la procédure d'extension pour ajouter les deux nouveaux nœuds de stockage de plus grande capacité, puis éliminer les trois anciens nœuds de stockage de plus grande capacité.
+
+Lorsque vous ajoutez de la capacité supplémentaire avant de supprimer les nœuds de stockage, vous assurez une distribution plus équilibrée des données sur le système StorageGRID. Vous réduisez également la possibilité qu'un nœud de stockage existant soit repoussé au-delà du niveau du filigrane.

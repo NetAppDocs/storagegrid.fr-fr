@@ -1,0 +1,108 @@
+---
+permalink: ilm/example-2-ilm-rules-and-policy-for-ec-object-size-filtering.html 
+sidebar: sidebar 
+keywords: object size for erasure coding, example ILM rule, information lifecycle rule examples, 1 MB 
+summary: 'Des exemples de règles et de règles ci-dessous vous permettent de définir une règle ILM qui s"applique par taille d"objet afin de répondre aux exigences EC recommandées.' 
+---
+= Exemple 2 : règles et règle ILM pour le filtrage de la taille des objets EC
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Des exemples de règles et de règles ci-dessous vous permettent de définir une règle ILM qui s'applique par taille d'objet afin de répondre aux exigences EC recommandées.
+
+
+CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règles ILM sont nombreuses. Avant d'activer une nouvelle stratégie, simulez-la pour confirmer qu'elle fonctionnera comme prévu pour protéger le contenu contre la perte.
+
+
+
+== Règle ILM 1, par exemple 2 : utilise ce pour les objets de plus de 1 Mo
+
+Cet exemple de règle ILM code des objets dont le nombre est supérieur à 1 Mo.
+
+
+NOTE: Le codage d'effacement convient mieux aux objets de plus de 1 Mo. N'utilisez pas le code d'effacement pour les objets inférieurs à 200 Ko afin d'éviter la surcharge liée à la gestion de très petits fragments de code d'effacement.
+
+[cols="2a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Nom de la règle
+ a| 
+Objets EC uniquement > 1 Mo
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Filtre avancé pour la taille de l'objet
+ a| 
+Taille de l'objet supérieure à 1 Mo
+
+
+
+ a| 
+Placements
+ a| 
+Créez une copie avec code d'effacement 2+1 sur trois sites
+
+|===
+image::../media/policy_2_rule_1_ec_objects_adv_filtering.png[Règle ILM 1, par exemple 2 : utilise ce pour tous les objets de plus de 1 Mo]
+
+
+
+== Règle ILM 2, par exemple 2 : deux copies répliquées
+
+Cet exemple de règle ILM crée deux copies répliquées, sans filtrer par taille d'objet. Cette règle est la règle par défaut de la règle. Étant donné que la première règle filtre tous les objets de plus de 1 Mo, cette règle s'applique uniquement aux objets de 1 Mo ou plus.
+
+[cols="1a,2a"]
+|===
+| Définition de règle | Exemple de valeur 
+
+
+ a| 
+Nom de la règle
+ a| 
+Deux copies répliquées
+
+
+
+ a| 
+Heure de référence
+ a| 
+Temps d'ingestion
+
+
+
+ a| 
+Filtre avancé pour la taille de l'objet
+ a| 
+Aucune
+
+
+
+ a| 
+Placements
+ a| 
+Du jour 0 à l'infini, conservez une copie répliquée sur le site 1 et une copie répliquée sur le site 2.
+
+|===
+
+
+== Règle ILM par exemple 2 : utilisez l'effacement pour des objets supérieurs à 1 Mo
+
+Cet exemple de règle ILM inclut deux règles ILM :
+
+* La première règle code tous les objets supérieurs à 1 Mo.
+* La seconde règle ILM (par défaut) crée deux copies répliquées. Étant donné que les objets de plus de 1 Mo ont été filtrés par la règle 1, la règle 2 ne s'applique qu'aux objets de 1 Mo ou moins.
+

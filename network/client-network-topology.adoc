@@ -1,0 +1,27 @@
+---
+permalink: network/client-network-topology.html 
+sidebar: sidebar 
+keywords: client network topology 
+summary: 'L"utilisation d"un réseau client est facultative. L"utilisation d"un réseau client permet de séparer le trafic réseau client \(par exemple, S3\) du trafic interne du grid, ce qui permet de sécuriser davantage le réseau grid. Le trafic administratif peut être géré par le client ou le réseau de grille lorsque le réseau d"administration n"est pas configuré.' 
+---
+= Topologie du réseau client
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'utilisation d'un réseau client est facultative. L'utilisation d'un réseau client permet de séparer le trafic réseau client (S3, par exemple) du trafic interne du grid, ce qui permet de sécuriser davantage le réseau grid. Le trafic administratif peut être géré par le client ou le réseau de grille lorsque le réseau d'administration n'est pas configuré.
+
+Lorsque vous configurez le réseau client, vous définissez l'adresse IP de l'hôte, le masque de sous-réseau et l'adresse IP de la passerelle pour l'interface eth2 du nœud configuré. Le réseau client de chaque nœud peut être indépendant du réseau client sur n'importe quel autre nœud.
+
+Si vous configurez un réseau client pour un nœud au cours de l'installation, la passerelle par défaut du nœud passe de la passerelle réseau Grid à la passerelle réseau client une fois l'installation terminée. Si un réseau client est ajouté ultérieurement, la passerelle par défaut du nœud change de la même manière.
+
+Dans cet exemple, le réseau client est utilisé pour les requêtes des clients S3 et pour les fonctions administratives, tandis que le réseau Grid est dédié aux opérations de gestion d'objets internes.
+
+image::../media/grid_client_networks.png[Réseaux client Grid]
+
+image::../media/grid_client_networks_ips.png[Adresses IP des réseaux clients du grid]
+
+.Informations associées
+link:../maintain/changing-nodes-network-configuration.html["Modifier la configuration réseau du nœud"]

@@ -1,0 +1,17 @@
+= 
+:allow-uri-read: 
+
+
+Supposons que vous disposez d'un grid à deux sites avec la règle ILM suivante et la cohérence suivante :
+
+* *Règle ILM* : créez deux copies d'objet, une sur le site local et une sur un site distant. Utiliser un comportement d'ingestion strict.
+* *Cohérence* : fort-global (les métadonnées d'objet sont immédiatement distribuées à tous les sites).
+
+
+Lorsqu'un client stocke un objet dans la grille, StorageGRID effectue à la fois des copies d'objet et distribue les métadonnées aux deux sites avant de rétablir la réussite du client.
+
+L'objet est entièrement protégé contre la perte au moment du message d'ingestion. Par exemple, si le site local est perdu peu de temps après l'ingestion, des copies des données de l'objet et des métadonnées de l'objet existent toujours sur le site distant. L'objet est entièrement récupérable.
+
+Si vous avez utilisé la même règle ILM et la même cohérence site forte, le client peut recevoir un message de réussite après la réplication des données de l'objet vers le site distant, mais avant la distribution des métadonnées de l'objet. Dans ce cas, le niveau de protection des métadonnées d'objet ne correspond pas au niveau de protection des données d'objet. Si le site local est perdu peu de temps après l'ingestion, les métadonnées d'objet sont perdues. Impossible de récupérer l'objet.
+
+L'inter-relation entre la cohérence et les règles ILM peut être complexe. Contactez NetApp si vous avez besoin d'aide.

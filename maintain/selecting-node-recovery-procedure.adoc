@@ -1,0 +1,62 @@
+---
+permalink: maintain/selecting-node-recovery-procedure.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, procedure 
+summary: Vous devez sélectionner la procédure de restauration correcte pour le type de nœud qui a échoué. 
+---
+= Sélectionnez la procédure de restauration du noeud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez sélectionner la procédure de restauration correcte pour le type de nœud qui a échoué.
+
+[cols="1a,2a"]
+|===
+| Nœud de grille | Procédure de reprise 
+
+
+ a| 
+Plusieurs nœuds de stockage
+ a| 
+Contactez l'assistance technique. Si plusieurs nœuds de stockage sont en panne, le support technique doit vous aider à effectuer la restauration afin d'éviter les incohérences de base de données pouvant entraîner la perte de données. Une procédure de restauration sur site peut être requise.
+
+link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"]
+
+
+
+ a| 
+Un seul nœud de stockage
+ a| 
+La procédure de restauration du nœud de stockage dépend du type et de la durée de l'échec.
+
+link:recovering-from-storage-node-failures.html["Restaurez les données après une panne de nœud de stockage"]
+
+
+
+ a| 
+Nœud d'administration
+ a| 
+La procédure nœud d'administration varie selon que vous devez restaurer le nœud d'administration principal ou un nœud d'administration non primaire.
+
+link:recovering-from-admin-node-failures.html["Restaurez vos données après une panne de nœud d'administration"]
+
+
+
+ a| 
+Nœud de passerelle
+ a| 
+link:replacing-gateway-node.html["Restaurez les données à partir d'une défaillance de nœud de passerelle"]
+
+
+
+ a| 
+Nœud d'archivage
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/maintain/recovering-from-archive-node-failures.html["Restauration suite aux défaillances de nœud d'archivage (site de documentation StorageGRID 11.8)"^]
+
+|===
+
+NOTE: Si un serveur hébergeant plusieurs nœuds de la grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Toutefois, si le serveur en panne héberge le nœud d'administration principal, vous devez d'abord restaurer ce nœud. La récupération du nœud d'administration principal empêche les autres restaurations de nœud d'arrêter lorsqu'elles attendent de contacter le nœud d'administration principal.
