@@ -179,13 +179,13 @@ Au cours de cette étape, l'un des processus suivants se produit :
 +
 ** Pour une appliance de stockage, le programme d'installation se connecte au contrôleur de stockage, efface toute configuration existante, communique avec SANtricity OS pour configurer les volumes et configure les paramètres de l'hôte.
 ** Pour une appliance de services, le programme d'installation efface toute configuration existante des disques du contrôleur de calcul et configure les paramètres de l'hôte.
-
-
 +
 *2. Installez OS*
 
 +
 Au cours de cette étape, le programme d'installation copie l'image du système d'exploitation de base pour StorageGRID sur l'appliance.
+
+
 
 . Continuez à surveiller la progression de l'installation jusqu'à ce qu'un message s'affiche dans la fenêtre de la console, vous invitant à utiliser le gestionnaire de grille pour approuver le nœud.
 +

@@ -218,11 +218,11 @@ Gardez à l'esprit les points suivants :
 ** N'appuyez pas sur *Ctrl+C* lorsque la session SSH est active.
 ** Le script s'exécute en arrière-plan en cas d'interruption du réseau et met fin à la session SSH, mais vous pouvez afficher la progression à partir de la page récupération.
 ** Si le nœud de stockage utilise le service RSM, le script peut sembler bloqué pendant 5 minutes au redémarrage des services de nœud. Ce délai de 5 minutes est prévu lorsque l'entretien du RSM démarre pour la première fois.
-
-
 +
 
 NOTE: Le service RSM est présent sur les nœuds de stockage qui incluent le service ADC.
+
+
 
 +
 
