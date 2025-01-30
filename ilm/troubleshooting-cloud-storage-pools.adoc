@@ -47,11 +47,16 @@ Cette erreur peut se produire lorsque vous tentez de créer, modifier ou supprim
 
 En général, cette erreur s'affiche uniquement si vous créez un pool de stockage cloud et qu'une autre instance de StorageGRID utilise déjà le même pool de stockage cloud.
 
-Essayez ces étapes pour corriger le problème :
+Essayez l'une des étapes suivantes pour corriger le problème :
 
-* Assurez-vous que personne dans votre entreprise n'utilise également ce Cloud Storage Pool.
-* Supprimez tous les objets existants dans le compartiment cible, y compris `x-ntap-sgws-cloud-pool-uuid` le fichier, puis réessayez de configurer le pool de stockage cloud.
+* Si vous configurez un nouveau pool de stockage cloud et que le compartiment contient le `x-ntap-sgws-cloud-pool-uuid` fichier et les clés d'objet supplémentaires, comme dans l'exemple suivant, créez un nouveau compartiment et utilisez ce nouveau compartiment.
++
+Exemple de clé d'objet supplémentaire : `my-bucket.3E64CF2C-B74D-4B7D-AFE7-AD28BC18B2F6.1727326606730410`
 
+* Si le `x-ntap-sgws-cloud-pool-uuid` fichier est le seul objet du compartiment, supprimez ce fichier.
+
+
+Si ces étapes ne s'appliquent pas à votre scénario, contactez l'assistance.
 
 
 
