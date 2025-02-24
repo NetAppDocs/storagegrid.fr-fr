@@ -40,6 +40,24 @@ Avant d'ajouter des nœuds de stockage pour augmenter la capacité des métadonn
 * Lorsque vous ajoutez de la capacité des métadonnées, vous devez ajouter le même nombre de nœuds de stockage à chaque site.
 
 
+Les nœuds de stockage de métadonnées uniquement présentent des exigences matérielles spécifiques :
+
+* Avec les appliances StorageGRID, les nœuds de métadonnées uniquement peuvent être configurés sur des appliances SGF6112 avec douze disques de 1.9 To ou douze disques de 3.8 To.
+* Lors de l'utilisation de nœuds logiciels, les ressources de nœuds de métadonnées uniquement doivent correspondre aux ressources existantes des nœuds de stockage. Par exemple :
++
+** Si le site StorageGRID existant utilise des appliances SG6000 ou SG6100, les nœuds exclusivement basés sur des métadonnées logicielles doivent respecter la configuration minimale suivante :
++
+*** 128 GO DE RAM
+*** Processeur 8 cœurs
+*** SSD de 8 To ou stockage équivalent pour la base de données Cassandra (rangedb/0)
+
+
+** Si le site StorageGRID existant utilise des nœuds de stockage virtuels avec 24 Go de RAM, 8 cœurs de CPU et 3 To ou 4 To de stockage des métadonnées, les nœuds logiciels uniquement basés sur les métadonnées doivent utiliser des ressources similaires (24 Go de RAM, 8 cœurs de CPU et 4 To de stockage des métadonnées (rangedb/0).
+
+
+* Lors de l'ajout d'un nouveau site StorageGRID, la capacité totale des métadonnées du nouveau site doit, au minimum, correspondre aux sites StorageGRID existants ; les nouvelles ressources du site doivent correspondre aux nœuds de stockage des sites StorageGRID existants.
+
+
 Voir la link:../admin/managing-object-metadata-storage.html["Description de l'espace réservé aux métadonnées"].
 
 

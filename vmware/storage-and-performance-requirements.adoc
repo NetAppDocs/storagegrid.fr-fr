@@ -132,6 +132,21 @@ NOTE: Si vous n'utilisez qu'un seul volume de stockage pour un nœud de stockage
 
 NOTE: Si vous attribuez moins de 500 Go au volume 0 (utilisation hors production uniquement), 10 % de la capacité du volume de stockage est réservée aux métadonnées.
 
+* Les ressources de nœud exclusivement basées sur des métadonnées logicielles doivent correspondre aux ressources de nœuds de stockage existantes. Par exemple :
++
+** Si le site StorageGRID existant utilise des appliances SG6000 ou SG6100, les nœuds exclusivement basés sur des métadonnées logicielles doivent respecter la configuration minimale suivante :
++
+*** 128 GO DE RAM
+*** Processeur 8 cœurs
+*** SSD de 8 To ou stockage équivalent pour la base de données Cassandra (rangedb/0)
+
+
+** Si le site StorageGRID existant utilise des nœuds de stockage virtuels avec 24 Go de RAM, 8 cœurs de CPU et 3 To ou 4 To de stockage des métadonnées, les nœuds logiciels uniquement basés sur les métadonnées doivent utiliser des ressources similaires (24 Go de RAM, 8 cœurs de CPU et 4 To de stockage des métadonnées (rangedb/0).
++
+Lors de l'ajout d'un nouveau site StorageGRID, la capacité totale des métadonnées du nouveau site doit, au minimum, correspondre aux sites StorageGRID existants ; les nouvelles ressources du site doivent correspondre aux nœuds de stockage des sites StorageGRID existants.
+
+
+
 * Si vous installez un nouveau système (StorageGRID 11.6 ou supérieur) et que chaque nœud de stockage dispose de 128 Go ou plus de RAM, attribuez 8 To ou plus au volume 0. L'utilisation d'une valeur plus grande pour le volume 0 peut augmenter l'espace autorisé pour les métadonnées sur chaque nœud de stockage.
 * Lorsque vous configurez différents nœuds de stockage pour un site, utilisez le même paramètre pour le volume 0 si possible. Si un site contient des nœuds de stockage de différentes tailles, le nœud de stockage avec le plus petit volume 0 déterminera la capacité des métadonnées de ce site.
 
