@@ -2,4 +2,35 @@
 :allow-uri-read: 
 
 
-link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Découvrez les destinations des informations d'audit"].
+Le répertoire du journal d'audit et les nœuds applicables dépendent de vos paramètres de destination d'audit.
+
+[cols="1a,2a"]
+|===
+| Option | Destination 
+
+
+ a| 
+Nœuds locaux (par défaut)
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+Nœuds d'administration/nœuds locaux
+ a| 
+* Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+* Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant dans ce mode.
+
+
+
+
+ a| 
+Serveur syslog externe
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+En fonction de vos paramètres de destination d'audit, entrez : `cd /var/local/log` ou `/var/local/audit/export/`
+
+Pour en savoir plus, reportez-vous link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Sélectionnez les destinations des informations d'audit"]à la section .
