@@ -847,6 +847,7 @@ StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes co
 * `Content-Disposition`
 * `Content-Encoding`
 * `Content-Language`
+* `Expires`
 * `x-amz-checksum-sha256`
 * `x-amz-server-side-encryption`
 * `x-amz-storage-class`
