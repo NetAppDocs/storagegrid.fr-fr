@@ -52,11 +52,11 @@ NOTE: Les graphiques de la page *NODES* seront remplacés par les cartes de tabl
 ** *Taux d'évaluation (objets/s)* : taux actuel auquel les objets sont évalués par rapport à la politique ILM de la grille.
 
 
+. Dans la section ILM Queue, observez les attributs suivants.
 +
 
 NOTE: La section de file d'attente ILM est incluse pour la grille uniquement. Ces informations ne s'affichent pas dans l'onglet ILM d'un site ou d'un nœud de stockage.
 
-. Dans la section ILM Queue, observez les attributs suivants.
 +
 ** *Période d'analyse - estimation* : temps estimé pour effectuer une analyse ILM complète de tous les objets.
 +
@@ -65,9 +65,12 @@ NOTE: Une analyse complète ne garantit pas l'application du ILM à tous les obj
 
 ** *Tentatives de réparation* : nombre total d'opérations de réparation d'objets pour les données répliquées qui ont été tentées. Ce nombre est incrémenté chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque. Les réparations ILM à haut risque sont hiérarchisées si le grid est occupé.
 +
-La réparation d'un même objet peut être de nouveau incrémentée si la réplication a échoué après la réparation. + ces attributs peuvent être utiles lorsque vous surveillez la progression de la restauration du volume du nœud de stockage. Si le nombre de réparations tentées a cessé d'augmenter et qu'une analyse complète a été effectuée, la réparation est probablement terminée.
+
+NOTE: La réparation d'un même objet peut être de nouveau incrémentée si la réplication a échoué après la réparation.
 
 
 
-. Vous pouvez également envoyer une requête Prometheus pour `storagegrid_ilm_scan_period_estimated_minutes` et `storagegrid_ilm_repairs_attempted`.
++
+Ces attributs peuvent être utiles lorsque vous surveillez la progression de la récupération de volume du nœud de stockage. Si le nombre de réparations tentées a cessé d'augmenter et qu'une analyse complète a été effectuée, la réparation est probablement terminée.
+
 

@@ -21,7 +21,7 @@ Vous activez les notifications pour un compartiment en créant un XML de configu
 
 
 .Description de la tâche
-Vous configurez les notifications d'événements en associant le XML de configuration de notification à un compartiment source. Le XML de configuration des notifications respecte les conventions S3 pour la configuration des notifications de compartiment. La rubrique Amazon SNS de destination, la rubrique Kafka ou le terminal webhook est spécifié comme URN d'un terminal.
+Vous configurez les notifications d'événements en associant le XML de configuration de notification à un compartiment source. Le XML de configuration des notifications respecte les conventions S3 pour la configuration des notifications de compartiment. La rubrique Kafka ou Amazon SNS de destination est spécifiée comme URN d'un terminal.
 
 Pour obtenir des informations générales sur les notifications d'événements et leur configuration, reportez-vous au https://docs.aws.amazon.com/s3/["Documentation Amazon"^]. Pour plus d'informations sur la manière dont StorageGRID implémente l'API de configuration des notifications de compartiment S3, reportez-vous au link:../s3/index.html["Instructions d'implémentation des applications client S3"].
 
@@ -29,7 +29,7 @@ Notez les exigences et caractéristiques suivantes lors de la configuration des 
 
 * Lorsque vous créez et appliquez un XML de configuration de notification valide, il doit utiliser l'URN d'un noeud final de notification d'événement pour chaque destination.
 * Bien que la notification d'événement puisse être configurée sur un compartiment avec le verrouillage objet S3 activé, les métadonnées de verrouillage objet S3 (y compris la date de conservation jusqu'à et l'état de conservation légale) des objets ne seront pas incluses dans les messages de notification.
-* Après la configuration des notifications d'événements, chaque fois qu'un événement spécifié se produit pour un objet dans le compartiment source, une notification est générée et envoyée à la rubrique Amazon SNS, à la rubrique Kafka ou au terminal Webhook utilisé comme destination.
+* Après la configuration des notifications d'événements, chaque fois qu'un événement spécifié se produit pour un objet dans le compartiment source, une notification est générée et envoyée à la rubrique Amazon SNS ou Kafka utilisée comme terminal de destination.
 * Si vous activez les notifications d'événements pour un compartiment contenant des objets, les notifications sont envoyées uniquement pour les actions qui sont effectuées après l'enregistrement de la configuration de notification.
 
 
@@ -77,7 +77,7 @@ NOTE: Les services de plateforme doivent être activés pour chaque compte de lo
 +
 Dans cet exemple, une notification d'événement est envoyée chaque fois qu'un objet est créé avec le `images/` préfixe.
 
-.. Vérifiez qu'une notification a été envoyée à la rubrique Amazon SNS de destination, à la rubrique Kafka ou au terminal Webhook.
+.. Vérifiez qu'une notification a été envoyée à la rubrique Amazon SNS ou Kafka de destination.
 +
 Par exemple, si votre sujet de destination est hébergé sur Amazon SNS, vous pouvez configurer le service pour qu'il vous envoie un e-mail lorsque la notification est remise.
 
@@ -129,7 +129,8 @@ Si la notification est reçue dans la rubrique de destination, vous avez configu
 
 
 .Informations associées
-* link:understanding-notifications-for-buckets.html["Description des notifications pour les compartiments"]
-* link:../s3/index.html["UTILISEZ L'API REST S3"]
-* link:creating-platform-services-endpoint.html["Créer un terminal de services de plate-forme"]
+link:understanding-notifications-for-buckets.html["Description des notifications pour les compartiments"]
 
+link:../s3/index.html["UTILISEZ L'API REST S3"]
+
+link:creating-platform-services-endpoint.html["Créer un terminal de services de plate-forme"]

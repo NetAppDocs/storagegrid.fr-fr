@@ -19,6 +19,7 @@ Après avoir remplacé un noeud de stockage, vous devez sélectionner Démarrer 
 * Vous avez la phrase secrète pour le provisionnement.
 * Vous avez déployé et configuré le nœud de remplacement.
 * Vous disposez de la date de début des travaux de réparation pour les données avec code d'effacement.
+* Vous avez vérifié que le nœud de stockage n'a pas été reconstruit au cours des 15 derniers jours.
 
 
 .Description de la tâche

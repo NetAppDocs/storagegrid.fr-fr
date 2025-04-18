@@ -19,7 +19,7 @@ Nœuds locaux (par défaut)
  a| 
 Nœuds d'administration/nœuds locaux
  a| 
-* Nœuds d'administration (principal et non primaire) : `/var/local/audit/export/audit.log`
+* Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
 * Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant dans ce mode.
 
 

@@ -38,7 +38,7 @@ Les États de diagnostic sont indépendants des alertes en cours et peuvent ne p
 La page Diagnostics s'affiche et répertorie les résultats de chaque vérification de diagnostic. Les résultats sont triés par gravité (attention, attention, puis normale). Dans chaque gravité, les résultats sont triés par ordre alphabétique.
 
 +
-Dans cet exemple, un diagnostic a un état d'avertissement et trois diagnostics ont un état Normal.
+Dans cet exemple, tous les diagnostics ont un état Normal.
 
 +
 image::../media/support_diagnostics_page.png[Page support Diagnostics]
@@ -55,18 +55,18 @@ Des détails sur le diagnostic et ses résultats actuels s'affichent. Les inform
 
 NOTE: Vous ne pouvez pas modifier ces seuils.
 
-** *Valeurs d'état* : graphique et tableau (tableau non illustré dans la capture d'écran) montrant l'état et la valeur du diagnostic dans l'ensemble du système StorageGRID. Dans cet exemple, l'utilisation actuelle du processeur pour chaque nœud d'un système StorageGRID est indiquée. Toutes les valeurs de nœud sont inférieures aux seuils attention et mise en garde, de sorte que l'état général du diagnostic est Normal.
+** *Valeurs d'état* : tableau indiquant l'état et la valeur du diagnostic dans l'ensemble du système StorageGRID. Dans cet exemple, l'utilisation actuelle du processeur pour chaque nœud d'un système StorageGRID est indiquée. Toutes les valeurs de nœud sont inférieures aux seuils attention et mise en garde, de sorte que l'état général du diagnostic est Normal.
+
+
 +
-image::../media/support_diagnostics_cpu_utilization.png[Exemple de valeurs d'état de diagnostic]
+image::../media/support_diagnostics_cpu_utilization.png[Utilisation de l'UC des diagnostics de support]
 
-
-
-. *Facultatif* : pour afficher les graphiques Grafana liés à ce diagnostic, sélectionnez *Grasana Dashboard*.
+. *Facultatif* : pour afficher les graphiques Grafana relatifs à ce diagnostic, cliquez sur le lien *Dashboard*.
 +
 Ce lien ne s'affiche pas pour tous les diagnostics.
 
 +
-Le tableau de bord associé à Grafana s'affiche. Dans cet exemple, le tableau de bord du nœud affiche l'utilisation du processeur au fil du temps pour ce nœud, ainsi que d'autres graphiques Grafana pour le nœud.
+Le tableau de bord associé à Grafana s'affiche. Dans cet exemple, le tableau de bord des nœuds apparaît et affiche l'utilisation des CPU dans le temps pour ce nœud, ainsi que d'autres graphiques Grafana pour le nœud.
 
 +
 

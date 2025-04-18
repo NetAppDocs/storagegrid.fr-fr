@@ -35,7 +35,7 @@ L'API d'installation de StorageGRID comprend les sections suivantes :
 * *Noeuds* -- opérations de configuration au niveau des noeuds. Vous pouvez récupérer une liste de nœuds de la grille, supprimer un nœud de la grille, configurer un nœud de la grille, afficher un nœud de la grille et réinitialiser la configuration d'un nœud de la grille.
 * *Provision* -- opérations de provisionnement. Vous pouvez démarrer l'opération de provisionnement et afficher l'état de cette opération.
 * *Recovery* -- opérations de restauration du noeud d'administration principal. Vous pouvez réinitialiser les informations, télécharger le progiciel de restauration, démarrer la récupération et afficher l'état de l'opération de récupération.
-* *Recovery-package* -- opérations pour télécharger le paquet de récupération.
+* *Progiciel de récupération* -- opérations pour télécharger le progiciel de récupération.
 * *Sites* -- opérations de configuration au niveau du site. Vous pouvez créer, afficher, supprimer et modifier un site.
 * *Mot de passe temporaire* -- opérations sur le mot de passe temporaire pour sécuriser l'api de gestion pendant l'installation.
 

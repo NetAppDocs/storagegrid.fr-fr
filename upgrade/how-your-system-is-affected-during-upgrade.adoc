@@ -73,6 +73,12 @@ Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes l
 
 
 
+== De nombreuses notifications SNMP sont générées
+
+Notez que de nombreuses notifications SNMP peuvent être générées lorsque les nœuds de la grille sont arrêtés et redémarrés lors de la mise à niveau. Pour éviter les notifications excessives, décochez la case *Activer les notifications d'agent SNMP* (*CONFIGURATION* > *surveillance* > *agent SNMP*) pour désactiver les notifications SNMP avant de démarrer la mise à niveau. Ensuite, réactivez les notifications une fois la mise à niveau terminée.
+
+
+
 == Les modifications de configuration sont restreintes
 
 
@@ -96,4 +102,23 @@ Jusqu'à la fin de la tâche *étapes de mise à niveau finale* :
 
 * N'effectuez pas de procédure d'extension.
 * N'effectuez pas de procédure de mise hors service.
+
+
+
+
+== Vous ne pouvez pas afficher les détails des compartiments ni gérer ces compartiments depuis le gestionnaire de locataires
+
+Lors de la mise à niveau vers StorageGRID 11.9 (c'est-à-dire lorsque le système fonctionne comme un environnement à versions mixtes), vous ne pouvez pas afficher les détails des compartiments ni gérer les compartiments à l'aide du gestionnaire de locataires. L'une des erreurs suivantes apparaît sur la page compartiments du Gestionnaire de locataires :
+
+* Vous ne pouvez pas utiliser cette API pendant la mise à niveau vers 11.9.
+* Vous ne pouvez pas afficher les détails de la gestion des versions du compartiment dans le Gestionnaire de locataires pendant la mise à niveau vers la version 11.9.
+
+
+Cette erreur se résoudra une fois la mise à niveau vers 11.9 terminée.
+
+.Solution de contournement
+Pendant la mise à niveau vers la version 11.9, utilisez les outils suivants pour afficher les détails des compartiments ou gérer les compartiments au lieu d'utiliser le gestionnaire de locataires :
+
+* Pour effectuer des opérations S3 standard sur un compartiment, utilisez le link:../s3/operations-on-buckets.html["L'API REST S3"] ou le link:../tenant/understanding-tenant-management-api.html["API de gestion des locataires"].
+* Pour exécuter des opérations personnalisées StorageGRID sur un compartiment (par exemple, affichage et modification de la cohérence du compartiment, activation ou désactivation des dernières mises à jour des heures d'accès ou configuration de l'intégration des recherches), utilisez l'API de gestion des locataires.
 

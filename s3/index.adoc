@@ -55,13 +55,6 @@ https://datatracker.ietf.org/doc/html/rfc2616["IETF RFC 2616 : Protocole de tran
 
 
  a| 
-12,0
- a| 
-Ajout de la prise en charge du partage de ressources d'origine croisée (CORS) pour une interface de gestion, ce qui permet à un autre domaine d'accéder aux données dans StorageGRID à l'aide d'API de gestion. link:../tenant/enable-cross-origin-resource-sharing-for-management-interface.html["En savoir plus >>"].
-
-
-
- a| 
 11,9
  a| 
 * Ajout de la prise en charge des valeurs de somme de contrôle SHA-256 pré-calculées pour les demandes suivantes et les en-têtes pris en charge. Vous pouvez utiliser cette fonction pour vérifier l'intégrité des objets téléchargés :

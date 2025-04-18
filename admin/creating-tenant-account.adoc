@@ -13,7 +13,7 @@ summary: 'Vous devez créer au moins un compte de locataire pour contrôler l"ac
 [role="lead"]
 Vous devez créer au moins un compte de locataire pour contrôler l'accès au stockage dans votre système StorageGRID.
 
-Les étapes de création d'un compte de locataire varient selon que link:using-identity-federation.html["fédération des identités"] et  sont configurés et link:how-sso-works.html["authentification unique"]si le compte Grid Manager que vous utilisez pour créer le compte de locataire appartient à un groupe d'administration avec l'autorisation d'accès racine.
+Les étapes de création d'un compte de locataire varient selon que link:using-identity-federation.html["fédération des identités"] et  sont configurés et link:configuring-sso.html["authentification unique"]si le compte Grid Manager que vous utilisez pour créer le compte de locataire appartient à un groupe d'administration avec l'autorisation d'accès racine.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -118,7 +118,7 @@ Le locataire peut utiliser des services de plateforme S3 tels que CloudMirror. V
  a| 
 Utiliser son propre référentiel d'identité
  a| 
-Le locataire peut configurer et gérer son propre référentiel d'identité pour les groupes et utilisateurs fédérés. Cette option est désactivée si vous disposez de link:../admin/how-sso-works.html["SSO configuré"] pour votre système StorageGRID.
+Le locataire peut configurer et gérer son propre référentiel d'identité pour les groupes et utilisateurs fédérés. Cette option est désactivée si vous disposez de link:../admin/configuring-sso.html["SSO configuré"] pour votre système StorageGRID.
 
 
 

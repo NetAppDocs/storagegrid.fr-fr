@@ -25,7 +25,7 @@ Pour plus d'informations, reportez-vous aux sections suivantes :
 * link:../admin/configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"]
 
 
-Les opérations ListObjects (GET Bucket) et ListObjectVersions (GET Bucket object versions) prennent en charge StorageGRID link:consistency.html["valeurs de cohérence"].
+Les opérations ListObjects (GET Bucket) et ListObjectVersions (GET Bucket object versions) prennent en charge StorageGRID link:consistency-controls.html["valeurs de cohérence"].
 
 Vous pouvez vérifier si les mises à jour de l'heure du dernier accès sont activées ou désactivées pour les compartiments individuels. Voir link:get-bucket-last-access-time-request.html["HEURE du dernier accès au compartiment"].
 
@@ -290,7 +290,7 @@ PutBucketNotifationConfiguration
  a| 
 Configure les notifications pour le compartiment à l'aide du fichier XML de configuration de notification inclus dans le corps de la demande. Vous devez connaître les détails d'implémentation suivants :
 
-* StorageGRID prend en charge les rubriques Amazon simple notification Service (Amazon SNS), Kafka ou Webhook en tant que destinations. Les terminaux SQS (simple Queue Service) ou Lambda d'AWS ne sont pas pris en charge.
+* StorageGRID prend en charge Amazon simple notification Service (Amazon SNS) ou les rubriques Kafka en tant que destinations. Les points finaux SQS (simple Queue Service) ou Lambda d'Amazon ne sont pas pris en charge.
 * La destination des notifications doit être spécifiée comme URN d'un terminal StorageGRID. Les terminaux peuvent être créés à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires.
 +
 Le noeud final doit exister pour que la configuration des notifications réussisse. Si le noeud final n'existe pas, une `400 Bad Request` erreur est renvoyée avec le code `InvalidArgument`.

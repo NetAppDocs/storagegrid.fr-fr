@@ -5,7 +5,7 @@ entries:
 - title: Avant de commencer
   pdf-filename: Mettez à niveau le logiciel StorageGRID
   url: "/upgrade/index.html"
-- title: Nouveautés de StorageGRID 12.0
+- title: Nouveautés de StorageGRID 11.9
   url: "/upgrade/whats-new.html"
 - title: Fonctions supprimées ou obsolètes
   url: "/upgrade/removed-or-deprecated-features.html"

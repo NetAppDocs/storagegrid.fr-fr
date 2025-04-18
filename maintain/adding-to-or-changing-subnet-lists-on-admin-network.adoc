@@ -131,7 +131,7 @@ Updating grid network configuration on Name
 ----
 
 
-. Téléchargez un nouveau package de récupération à partir de Grid Manager.
+. Téléchargez un nouveau package de récupération depuis Grid Manager.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.

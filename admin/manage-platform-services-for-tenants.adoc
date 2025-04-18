@@ -15,8 +15,6 @@ Les services de plateforme incluent la réplication CloudMirror, les notificatio
 
 Si vous activez des services de plateforme pour les comptes de locataires S3, vous devez configurer votre grid de manière à ce que les locataires puissent accéder aux ressources externes nécessaires à l'utilisation de ces services.
 
-Les services de plate-forme ne sont pas pris en charge pour link:../tenant/manage-branch-buckets.html["compartiments de dérivation"].
-
 
 
 == Réplication CloudMirror
@@ -25,16 +23,17 @@ Le service de réplication StorageGRID CloudMirror est utilisé pour mettre en m
 
 Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en miroir des enregistrements client spécifiques dans Amazon S3, puis exploiter les services AWS pour analyser vos données.
 
-La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Pour en savoir plus, voir link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
+
+NOTE: La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Pour en savoir plus, voir link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
 
 
-NOTE: La réplication CloudMirror n'est pas prise en charge si le verrouillage objet S3 est activé dans le compartiment source.
+NOTE: La réplication CloudMirror n'est pas prise en charge si le compartiment source est activé pour le verrouillage objet S3.
 
 
 
 == Notifications
 
-Les notifications d'événements par compartiment permettent d'envoyer des notifications sur des actions spécifiques réalisées sur des objets à un cluster Kafka externe spécifié, un terminal Webhook ou Amazon simple notification Service.
+Les notifications d'événements par compartiment permettent d'envoyer des notifications sur des actions spécifiques réalisées sur des objets à un cluster Kafka externe spécifié ou à Amazon simple notification Service.
 
 Par exemple, vous pouvez configurer l'envoi d'alertes aux administrateurs pour chaque objet ajouté à un compartiment, où les objets représentent les fichiers de journal associés à un événement système critique.
 

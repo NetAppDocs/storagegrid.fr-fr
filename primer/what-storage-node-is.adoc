@@ -33,16 +33,11 @@ Vous pouvez sélectionner le type de nœud de stockage dans les situations suiva
 
 
 
+NOTE: Vous ne pouvez pas modifier le type une fois l'installation du nœud de stockage terminée.
 
-=== Nœud de stockage des données et des métadonnées (combiné)
+Nœud de stockage des données et des métadonnées (combiné):: Par défaut, tous les nouveaux nœuds de stockage stockent à la fois les données d'objet et les métadonnées. Ce type de noeud de stockage est appelé noeud de stockage _combiné_.
+Nœud de stockage des métadonnées uniquement:: L'utilisation d'un nœud de stockage exclusivement pour les métadonnées peut être logique si votre grille stocke un très grand nombre de petits objets. L'installation d'une capacité de métadonnées dédiée assure un meilleur équilibre entre l'espace nécessaire pour un très grand nombre d'objets de petite taille et l'espace requis pour les métadonnées de ces objets. Par ailleurs, les nœuds de stockage de métadonnées uniquement hébergés sur des appliances haute performance peuvent améliorer les performances.
 
-Par défaut, tous les nouveaux nœuds de stockage stockent à la fois les données d'objet et les métadonnées. Ce type de noeud de stockage est appelé noeud de stockage _combiné_.
-
-
-
-=== Nœud de stockage des métadonnées uniquement
-
-L'utilisation d'un nœud de stockage exclusivement pour les métadonnées peut être logique si votre grille stocke un très grand nombre de petits objets. L'installation d'une capacité de métadonnées dédiée assure un meilleur équilibre entre l'espace nécessaire pour un très grand nombre d'objets de petite taille et l'espace requis pour les métadonnées de ces objets. Par ailleurs, les nœuds de stockage de métadonnées uniquement hébergés sur des appliances haute performance peuvent améliorer les performances.
 
 Les nœuds de stockage de métadonnées uniquement présentent des exigences matérielles spécifiques :
 
@@ -71,22 +66,15 @@ Lors de l'installation de nœuds de métadonnées uniquement, la grille doit ég
 
 NOTE: Bien que les nœuds de stockage de métadonnées uniquement contiennent <<ldr-service,Service LDR>>et peuvent traiter les demandes des clients S3, les performances de StorageGRID peuvent ne pas augmenter.
 
+Nœud de stockage des données uniquement:: Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
 
-
-=== Nœud de stockage des données uniquement
-
-Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
-
-En outre, vous pouvez augmenter la capacité des métadonnées en supprimant les nœuds à faible RAM de Cassandra, ce qui augmente la limite de capacité des métadonnées par nœud. Reportez-vous à la link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"].
 
 Lors de l'installation de nœuds de données uniquement, la grille doit contenir les éléments suivants :
 
-* Au moins deux nœuds de stockage combinés ou uniquement des données par grid
-* Au moins un nœud de stockage combiné ou uniquement des données par site
-* Au moins trois nœuds de stockage combinés ou métadonnées uniquement par site
+* Au moins deux nœuds de stockage combinés ou uniquement des données _par grid_
+* Au moins un nœud de stockage combiné ou uniquement des données _par site_
+* Au moins trois nœuds de stockage combinés ou métadonnées uniquement _par site_
 
-
-Vous pouvez convertir un nœud de stockage qui ne contient pas le <<adc-service,Service ADC>> en nœud de stockage de données uniquement. Reportez-vous à la link:../maintain/convert-to-data-only-node.html["Convertir un nœud de stockage en nœud de données uniquement"].
 
 
 
@@ -110,7 +98,7 @@ Gestion des comptes de locataire.
 
 
  a| 
-[[adc-service]]contrôleur de domaine administratif (ADC)
+Contrôleur de domaine administratif (ADC)
  a| 
 Maintien de la topologie et de la configuration dans l'ensemble du grid.
 

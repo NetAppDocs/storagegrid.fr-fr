@@ -2,7 +2,7 @@
 permalink: audit/whea-swift-head.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, WHEA, Swift HEAD 
-summary: 'Lorsqu"un client Swift émet une opération HEAD, une demande est formulée pour vérifier l"existence d"un compte, d"un conteneur ou d"un objet et pour extraire toutes les métadonnées pertinentes. Ce message est émis par le serveur si l"opération a réussi.' 
+summary: 'Lorsqu"un client Swift émet une transaction DE TÊTE, une demande est faite pour vérifier l"existence d"un compte, d"un conteneur ou d"un objet, et pour récupérer toutes les métadonnées pertinentes. Ce message est émis par le serveur si la transaction a réussi.' 
 ---
 = WHEA: TÊTE SWIFT
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Lorsqu"un client Swift émet une opération HEAD, une demande est form
 
 
 [role="lead"]
-Lorsqu'un client Swift émet une opération HEAD, une demande est formulée pour vérifier l'existence d'un compte, d'un conteneur ou d'un objet et pour extraire toutes les métadonnées pertinentes. Ce message est émis par le serveur si l'opération a réussi.
+Lorsqu'un client Swift émet une transaction DE TÊTE, une demande est faite pour vérifier l'existence d'un compte, d'un conteneur ou d'un objet, et pour récupérer toutes les métadonnées pertinentes. Ce message est émis par le serveur si la transaction a réussi.
 
 [cols="1a,1a,4a"]
 |===
@@ -52,7 +52,7 @@ RSLT
  a| 
 Code de résultat
  a| 
-Résultat du fonctionnement de la TÊTE. Le résultat est toujours :
+Résultat de la transaction HEAD. Le résultat est toujours :
 
 CMC : réussi
 

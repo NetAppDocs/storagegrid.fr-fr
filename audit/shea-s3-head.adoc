@@ -2,7 +2,7 @@
 permalink: audit/shea-s3-head.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, SHEA, S3 HEAD 
-summary: 'Lorsqu"un client S3 émet une opération HEAD, une demande est formulée pour vérifier l"existence d"un objet ou d"un compartiment et extraire les métadonnées sur un objet. Ce message est émis par le serveur si l"opération a réussi.' 
+summary: 'Lorsqu"un client S3 émet une transaction DE TÊTE, une requête est effectuée afin de vérifier l"existence d"un objet ou d"un compartiment et de récupérer les métadonnées relatives à un objet. Ce message est émis par le serveur si la transaction a réussi.' 
 ---
 = SHEA : TÊTE S3
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Lorsqu"un client S3 émet une opération HEAD, une demande est formul�
 
 
 [role="lead"]
-Lorsqu'un client S3 émet une opération HEAD, une demande est formulée pour vérifier l'existence d'un objet ou d'un compartiment et extraire les métadonnées sur un objet. Ce message est émis par le serveur si l'opération a réussi.
+Lorsqu'un client S3 émet une transaction DE TÊTE, une requête est effectuée afin de vérifier l'existence d'un objet ou d'un compartiment et de récupérer les métadonnées relatives à un objet. Ce message est émis par le serveur si la transaction a réussi.
 
 [cols="1a,1a,4a"]
 |===

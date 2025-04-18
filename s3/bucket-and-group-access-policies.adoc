@@ -996,13 +996,6 @@ Nul
  a| 
 Vérifie si une clé condition est présente dans le contexte de demande actuel.
 
-
-
- a| 
-IfExists
- a| 
-Ajouté à tout opérateur de condition, à l'exception de la condition NULL, pour vérifier l'absence de cette clé de condition. Renvoie TRUE si la clé de condition n'est pas présente.
-
 |===
 
 
@@ -1089,24 +1082,6 @@ Compare avec le paramètre max-keys spécifié dans une requête ListObjects ou 
 
 
  a| 
-s3:mode-verrouillage-objet
- a| 
-s3:PutObject
- a| 
-Compare avec l' `object-lock-mode`en-tête de requête développé dans la requête PutObject, CopyObject et CreateMultipartUpload.
-
-
-
- a| 
-s3:mode-verrouillage-objet
- a| 
-s3:PutObjectRetention
- a| 
-Compare au `object-lock-mode` corps XML développé dans la requête PutObjectRetention.
-
-
-
- a| 
 s3 :conservation des jours restants avec un verrouillage objet
  a| 
 s3:PutObject
@@ -1150,15 +1125,6 @@ s3:PutObjectTagging
 s3:PutObjectVersionTagging
  a| 
 Nécessitera une clé de balise et une valeur spécifiques lorsque la demande d'objet inclut le balisage.
-
-
-
- a| 
-s3:x-amz-algorithme-client-cryptage côté serveur
- a| 
-s3:PutObject
- a| 
-Compare au `sse-customer-algorithm` ou au étendu à `copy-source-sse-customer-algorithm` partir de l'en-tête de requête dans les requêtes PutObject, CopyObject, CreateMultipartUpload, UploadPart, UploadPartCopy et CompleteMultipartUpload.
 
 |===
 

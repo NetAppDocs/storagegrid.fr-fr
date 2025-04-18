@@ -125,7 +125,7 @@ Quand link:../monitor/grid-federation-monitor-connections.html["affichage d'une 
 image::../media/grid-federation-last-error.png[Capture d'écran affichant un message dans la colonne dernière erreur d'une connexion de fédération de grille]
 
 .Détails
-Pour chaque connexion de fédération de grille, la colonne *dernière erreur* indique l'erreur la plus récente à se produire, le cas échéant, lors de la réplication des données d'un locataire vers l'autre grille. Cette colonne affiche uniquement la dernière erreur de réplication inter-grille à se produire ; les erreurs précédentes qui se sont peut-être produites ne sont pas affichées. Une erreur dans cette colonne peut se produire pour l'une des raisons suivantes :
+Pour chaque connexion de fédération de grille, la colonne *dernière erreur* indique l'erreur la plus récente à se produire, le cas échéant, lors de la réplication des données d'un locataire vers l'autre grille. Cette colonne affiche uniquement la dernière erreur de réplication inter-grille à se produire ; les erreurs précédentes qui se sont peut-être produites ne seront pas affichées. Une erreur dans cette colonne peut se produire pour l'une des raisons suivantes :
 
 * La version de l'objet source est introuvable.
 * Le compartiment source est introuvable.
@@ -133,8 +133,6 @@ Pour chaque connexion de fédération de grille, la colonne *dernière erreur* i
 * Le compartiment de destination a été recréé par un autre compte.
 * La gestion des versions du compartiment de destination est suspendue.
 * Le compartiment de destination a été recréé par le même compte, mais il n'est plus versionné.
-* Les paramètres de verrouillage d'objet S3 de l'objet source ne sont pas conformes aux paramètres de conservation au niveau du locataire de la grille de destination.
-* L'objet source possède des paramètres de verrouillage d'objet S3 et le verrouillage d'objet S3 est désactivé sur le compartiment de destination.
 
 
 .Actions recommandées
@@ -183,6 +181,7 @@ Cette alerte indique que les objets tenant ne peuvent pas être répliqués entr
 +
 ** Il existe un compartiment correspondant pour le même locataire sur l'autre grille (doit utiliser le nom exact).
 ** La gestion des versions des objets est activée dans les deux compartiments (la gestion des versions ne peut pas être suspendue sur les deux grilles).
+** Le verrouillage d'objet S3 est désactivé dans les deux compartiments.
 ** Aucun compartiment n'est à l'état *Suppression d'objets : lecture seule*.
 
 

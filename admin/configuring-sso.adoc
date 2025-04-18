@@ -1,0 +1,139 @@
+---
+permalink: admin/configuring-sso.html 
+sidebar: sidebar 
+keywords: configure single sign on, sso, SAML 
+summary: 'Lorsque l"authentification unique \(SSO\) est activée, les utilisateurs peuvent uniquement accéder au Grid Manager, au tenant Manager, à l"API de gestion de grille ou à l"API de gestion des locataires si leurs identifiants sont autorisés à l"aide du processus de connexion SSO mis en œuvre par votre entreprise. Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.' 
+---
+= Configurer l'authentification unique
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque l'authentification unique (SSO) est activée, les utilisateurs n'ont accès qu'au Grid Manager, au tenant Manager, à l'API Grid Management ou à l'API de gestion des locataires si leurs identifiants sont autorisés à l'aide du processus de connexion SSO mis en œuvre par votre entreprise. Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.
+
+
+
+== Fonctionnement de l'authentification unique
+
+Le système StorageGRID prend en charge la fonctionnalité SSO (Single Sign-on) en utilisant la 2.0 norme SAML 2.0 (Security assertion Markup Language).
+
+Avant d'activer l'authentification unique (SSO), vérifiez comment les processus de connexion et de déconnexion StorageGRID sont affectés lorsque l'authentification SSO est activée.
+
+
+
+=== Connectez-vous lorsque SSO est activé
+
+Lorsque l'authentification SSO est activée et que vous vous connectez à StorageGRID, vous êtes redirigé vers la page SSO de votre entreprise afin de valider vos identifiants.
+
+.Étapes
+. Entrez le nom de domaine complet ou l'adresse IP d'un nœud d'administration StorageGRID dans un navigateur Web.
++
+La page de connexion StorageGRID s'affiche.
+
++
+** S'il s'agit de la première fois que vous accédez à l'URL sur ce navigateur, vous êtes invité à entrer un ID de compte :
++
+image::../media/sso_sign_in_first_time.png[Connectez-vous avec SSO activé pour le premier accès]
+
+** Si vous avez déjà accédé au Grid Manager ou au tenant Manager, vous êtes invité à sélectionner un compte récent ou à saisir un ID de compte :
++
+image::../media/sign_in_sso.png[StorageGRID page de connexion si SSO est activé]
+
+
+
++
+
+NOTE: La page de connexion StorageGRID n'apparaît pas lorsque vous entrez l'URL complète d'un compte de locataire (c'est-à-dire un nom de domaine complet ou une adresse IP suivie de `/?accountId=_20-digit-account-id_` ). Au lieu de cela, vous êtes immédiatement redirigé vers la page de connexion SSO de votre organisation, où vous pouvez <<signin_sso,Connectez-vous à l'aide de vos identifiants SSO>>.
+
+. Indiquez si vous souhaitez accéder au Grid Manager ou au tenant Manager :
++
+** Pour accéder au Gestionnaire de grille, laissez le champ *ID de compte* vide, saisissez *0* comme ID de compte ou sélectionnez *Grid Manager* si celui-ci apparaît dans la liste des comptes récents.
+** Pour accéder au Gestionnaire de locataires, entrez l'ID de compte de tenant à 20 chiffres ou sélectionnez un locataire par nom s'il apparaît dans la liste des comptes récents.
+
+
+. Sélectionnez *connexion*
++
+StorageGRID vous redirige vers la page de connexion SSO de votre entreprise. Par exemple :
+
++
+image::../media/sso_organization_page.gif[Exemple de page de connexion de l'organisation pour SSO]
+
+. [[Sign_sso]]Connectez-vous à l'aide de vos identifiants SSO.
++
+Si vos informations d'identification SSO sont correctes :
+
++
+.. Le fournisseur d'identités fournit une réponse d'authentification à StorageGRID.
+.. StorageGRID valide la réponse d'authentification.
+.. Si la réponse est valide et que vous appartenez à un groupe fédéré avec des autorisations d'accès StorageGRID, vous êtes connecté au Gestionnaire de grille ou au Gestionnaire des locataires, selon le compte que vous avez sélectionné.
++
+
+NOTE: Si le compte de service est inaccessible, vous pouvez toujours vous connecter tant que vous êtes un utilisateur existant appartenant à un groupe fédéré avec des autorisations d'accès StorageGRID.
+
+
+
+. Accédez éventuellement à d'autres nœuds d'administration ou à Grid Manager ou au tenant Manager, si vous disposez des autorisations adéquates.
++
+Il n'est pas nécessaire de saisir à nouveau vos informations d'identification SSO.
+
+
+
+
+
+=== Déconnectez-vous lorsque SSO est activé
+
+Lorsque l'authentification SSO est activée pour StorageGRID, le processus de déconnexion dépend de ce que vous êtes connecté et de l'endroit où vous vous déconnectez.
+
+.Étapes
+. Localisez le lien *Déconnexion* dans le coin supérieur droit de l'interface utilisateur.
+. Sélectionnez *Déconnexion*.
++
+La page de connexion StorageGRID s'affiche. La liste déroulante *comptes récents* est mise à jour pour inclure *Grid Manager* ou le nom du locataire, afin que vous puissiez accéder plus rapidement à ces interfaces utilisateur à l'avenir.
+
++
+[cols="1a,1a,1a"]
+|===
+| Si vous êtes connecté à... | Et vous vous déconnectez de... | Vous êtes déconnecté de... 
+
+
+ a| 
+Grid Manager sur un ou plusieurs nœuds d'administration
+ a| 
+Grid Manager sur n'importe quel nœud d'administration
+ a| 
+Grid Manager sur tous les nœuds d'administration
+
+*Remarque :* si vous utilisez Azure pour SSO, la session de tous les nœuds d'administration peut prendre quelques minutes.
+
+
+
+ a| 
+Gestionnaire de locataires sur un ou plusieurs nœuds d'administration
+ a| 
+Gestionnaire de locataires sur n'importe quel nœud d'administration
+ a| 
+Gestionnaire de locataires sur tous les nœuds d'administration
+
+
+
+ a| 
+Grid Manager et tenant Manager
+ a| 
+Gestionnaire de grille
+ a| 
+Le Grid Manager uniquement. Vous devez également vous déconnecter du tenant Manager pour vous déconnecter de SSO.
+
+
+
+ a| 
+Gestionnaire de locataires
+ a| 
+Le Gestionnaire de locataires uniquement. Vous devez également vous déconnecter de Grid Manager pour vous déconnecter de SSO.
+
+|===
+
+
+
+NOTE: Le tableau résume ce qui se passe lorsque vous vous déconnectez si vous utilisez une seule session de navigateur. Si vous êtes connecté à StorageGRID à travers plusieurs sessions de navigateur, vous devez vous déconnecter de toutes les sessions de navigateur séparément.

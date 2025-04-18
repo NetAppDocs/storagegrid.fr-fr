@@ -14,7 +14,7 @@ summary: Les journaux StorageGRID vous permettent de résoudre les problèmes.
 Les journaux StorageGRID vous permettent de résoudre les problèmes.
 
 
-NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou modifier la destination des informations d'audit telles que `bycast.log` et `nms.log`, reportez-vous à la section link:../monitor/configure-audit-messages.html#["Configurer les messages d'audit et le serveur syslog externe"].
+NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou modifier la destination des informations d'audit telles que `bycast.log` et `nms.log`, reportez-vous à la section link:../monitor/configure-audit-messages.html#["Configurez les messages d'audit et les destinations des journaux"].
 
 
 

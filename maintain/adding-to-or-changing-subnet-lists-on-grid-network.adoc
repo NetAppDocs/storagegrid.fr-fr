@@ -142,7 +142,7 @@ L'opération échouée peut être relancée ultérieurement en sélectionnant l'
 ** Si vous avez dû intervenir manuellement (pour redémarrer un nœud, par exemple) et que l'action que l'outil pense avoir échoué a été réellement terminée, entrez *f* pour la marquer comme réussie et passer à l'opération suivante.
 
 
-. Téléchargez un nouveau package de récupération à partir de Grid Manager.
+. Téléchargez un nouveau package de récupération depuis Grid Manager.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.
@@ -150,6 +150,6 @@ L'opération échouée peut être relancée ultérieurement en sélectionnant l'
 
 +
 
-CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
 
 

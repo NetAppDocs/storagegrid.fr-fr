@@ -65,13 +65,13 @@ L'exécution de contrôles préalables vous permet de détecter et de résoudre 
 . Pour l'étape *Exécuter les précontrôles*, commencez par saisir la phrase de passe de provisionnement pour votre grille.
 . Sélectionnez *Télécharger le paquet de récupération*.
 +
-Vous devez télécharger la copie actuelle du fichier de package de récupération avant de mettre à niveau le nœud d'administration principal. Le fichier de package de récupération vous permet de restaurer le système en cas de défaillance.
+Vous devez télécharger la copie actuelle du fichier du package de récupération avant de mettre à niveau le nœud d'administration principal. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
 
 . Une fois le fichier téléchargé, vérifiez que vous pouvez y accéder, y compris le `Passwords.txt` fichier.
 . Copiez le fichier téléchargé (`.zip`) dans deux emplacements sécurisés et séparés.
 +
 
-CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
 
 . Sélectionnez *Exécuter les précontrôles* et attendez que les précontrôles soient terminés.
 . Passez en revue les détails de chaque vérification préalable signalée et résolvez les erreurs signalées. Voir https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version StorageGRID 11.9.
@@ -129,13 +129,13 @@ NOTE: Lorsque la mise à niveau démarre sur un nœud de la grille, les services
 . Pour l'étape *mettre à niveau d'autres nœuds*, consultez le résumé, qui fournit l'heure de début de la mise à niveau dans son ensemble et l'état de chaque tâche de mise à niveau majeure.
 +
 ** *Démarrer le service de mise à niveau* est la première tâche de mise à niveau. Au cours de cette tâche, le fichier logiciel est distribué aux nœuds de grille et le service de mise à niveau est lancé sur chaque nœud.
-** Lorsque la tâche *Démarrer le service de mise à niveau* est terminée, la tâche *mettre à niveau les autres nœuds de grille* démarre et vous êtes invité à télécharger une nouvelle copie du package de récupération.
+** Lorsque la tâche *Démarrer le service de mise à niveau* est terminée, la tâche *mettre à niveau d'autres nœuds de grille* démarre et vous êtes invité à télécharger une nouvelle copie du progiciel de récupération.
 
 
-. Lorsque vous y êtes invité, saisissez votre phrase secrète pour le provisionnement et téléchargez une nouvelle copie du pack de récupération.
+. Lorsque vous y êtes invité, saisissez votre phrase de passe de provisionnement et téléchargez une nouvelle copie du pack de récupération.
 +
 
-CAUTION: Vous devez télécharger une nouvelle copie du fichier de package de récupération après la mise à niveau du nœud d'administration principal. Le fichier de package de récupération vous permet de restaurer le système en cas de défaillance.
+CAUTION: Vous devez télécharger une nouvelle copie du fichier du package de récupération après la mise à niveau du nœud d'administration principal. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
 
 . Consultez les tableaux d'état pour chaque type de nœud. Il existe des tableaux pour les nœuds d'administration non primaires, les nœuds de passerelle et les nœuds de stockage.
 +

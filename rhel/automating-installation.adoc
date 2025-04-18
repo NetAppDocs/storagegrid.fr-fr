@@ -87,9 +87,6 @@ Fichier de configuration vierge à utiliser avec le script
 * Vous avez créé un `configure-storagegrid.json` fichier de configuration. Pour créer ce fichier, vous pouvez modifier l'exemple de fichier de configuration (`configure-storagegrid.sample.json`) ou le fichier de configuration vide (`configure-storagegrid.blank.json`).
 
 
-
-CAUTION: Stockez le mot de passe de gestion et le mot de passe de provisionnement dans la section mots de passe du fichier de configuration modifié `configure-storagegrid.json`, dans un emplacement sécurisé. Ces mots de passe sont requis pour les procédures d'installation, d'extension et de maintenance. Vous devez également sauvegarder le fichier de configuration modifié `configure-storagegrid.json` et le stocker dans un emplacement sécurisé.
-
 .Description de la tâche
 Vous pouvez utiliser `configure-storagegrid.py` le script Python et le `configure-storagegrid.json` fichier de configuration pour automatiser la configuration de votre système StorageGRID.
 
@@ -122,10 +119,10 @@ Par exemple :
 
 
 .Résultat
-Un fichier de package de récupération `.zip` est généré pendant le processus de configuration et est téléchargé dans le répertoire où vous exécutez le processus d'installation et de configuration. Vous devez sauvegarder le fichier du package de restauration afin de pouvoir restaurer le système StorageGRID en cas de défaillance d'un ou plusieurs nœuds de grid. Par exemple, copiez-le dans un emplacement sécurisé, sauvegardé sur le réseau et dans un emplacement de stockage cloud sécurisé.
+Un fichier de module de récupération `.zip` est généré pendant le processus de configuration et est téléchargé dans le répertoire où vous exécutez le processus d'installation et de configuration. Vous devez sauvegarder le fichier de package de restauration afin de pouvoir restaurer le système StorageGRID en cas de défaillance d'un ou plusieurs nœuds de la grille. Par exemple, copiez-le dans un emplacement sécurisé, sauvegardé sur le réseau et dans un emplacement de stockage cloud sécurisé.
 
 
-CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
 
 Si vous avez indiqué que des mots de passe aléatoires doivent être générés, ouvrez le `Passwords.txt` fichier et recherchez les mots de passe requis pour accéder à votre système StorageGRID.
 

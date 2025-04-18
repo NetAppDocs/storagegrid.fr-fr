@@ -13,7 +13,7 @@ summary: 'La fonctionnalité AutoSupport permet à StorageGRID d"envoyer des pac
 [role="lead"]
 La fonctionnalité AutoSupport permet à StorageGRID d'envoyer des packages d'état et d'intégrité au support technique NetApp.
 
-L'utilisation de AutoSupport permet de résoudre les problèmes plus rapidement. Le support technique peut surveiller les besoins en stockage de votre système et vous aider à déterminer si vous devez ajouter de nouveaux nœuds ou sites. AutoSupport peut éventuellement envoyer des paquets vers une destination supplémentaire.
+L'utilisation de AutoSupport permet d'accélérer considérablement la détermination et la résolution des problèmes. Le support technique peut également surveiller les besoins en stockage de votre système et vous aider à déterminer si vous devez ajouter de nouveaux nœuds ou sites. Vous pouvez également configurer l'envoi des packages AutoSupport vers une destination supplémentaire.
 
 StorageGRID propose deux types de AutoSupport :
 

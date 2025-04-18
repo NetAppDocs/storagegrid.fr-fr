@@ -30,7 +30,6 @@ Vous pouvez utiliser n'importe quelle combinaison des options suivantes pour env
 * *Déclenché par un événement* : envoie automatiquement des paquets AutoSupport toutes les heures ou lorsque des événements système importants se produisent. Paramètre par défaut : activé.
 * *À la demande* : permet au support technique de demander à votre système StorageGRID d'envoyer automatiquement des paquets AutoSupport, ce qui est utile lorsqu'ils travaillent activement à un problème (nécessite le protocole de transmission AutoSupport HTTPS). Paramètre par défaut : Désactivé.
 * *Déclenché par l'utilisateur* : envoyez manuellement des paquets AutoSupport à tout moment.
-* *Collecte du journal*: link:../monitor/collecting-log-files-and-system-data.html["Collecter manuellement les fichiers journaux et les données système et envoyer un package AutoSupport"].
 
 
 

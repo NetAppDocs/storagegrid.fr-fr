@@ -1,0 +1,124 @@
+---
+permalink: s3/consistency-controls.html 
+sidebar: sidebar 
+keywords: consistency, consistency control, consistency values 
+summary: La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier la cohérence selon les besoins de votre application. 
+---
+= Valeurs de cohérence
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier la cohérence selon les besoins de votre application.
+
+Par défaut, StorageGRID garantit la cohérence de lecture après écriture pour les nouveaux objets. Tout GET suivant un PUT réussi sera en mesure de lire les données nouvellement écrites. Les écrasements d'objets existants, les mises à jour de métadonnées et les suppressions sont cohérents. La propagation des écrasements ne prend généralement que quelques secondes ou minutes, mais peut prendre jusqu'à 15 jours.
+
+Si vous souhaitez effectuer des opérations d'objet de manière différente, vous pouvez :
+
+* Spécifiez une cohérence pour <<bucket-consistency-control,chaque godet>>.
+* Spécifiez une cohérence pour <<api-operation-consistency-control,Chaque opération d'API>>.
+* Modifiez la cohérence par défaut à l'échelle de la grille en effectuant l'une des tâches suivantes :
++
+** Dans le Gestionnaire de grille, accédez à *CONFIGURATION* > *système* > *Paramètres de stockage* > *cohérence par défaut*.
+** .
++
+
+NOTE: Une modification de la cohérence à l'échelle de la grille s'applique uniquement aux compartiments créés après la modification du paramètre. Pour déterminer les détails d'une modification, consultez le journal d'audit situé à l'adresse `/var/local/log` (recherchez *constencyLevel*).
+
+
+
+
+
+
+
+== Valeurs de cohérence
+
+La cohérence affecte la façon dont les métadonnées utilisées par StorageGRID pour suivre les objets sont réparties entre les nœuds, et donc la disponibilité des objets pour les requêtes client.
+
+Vous pouvez définir la cohérence d'une opération de compartiment ou d'API sur l'une des valeurs suivantes :
+
+* *All* : tous les nœuds reçoivent immédiatement les données, sinon la demande échouera.
+* *Strong-global* : garantit la cohérence lecture après écriture pour toutes les demandes client sur tous les sites.
+* *Strong-site* : garantit la cohérence lecture après écriture pour toutes les demandes client au sein d'un site.
+* *Read-After-New-write*: (Par défaut) fournit une cohérence lecture-après-écriture pour les nouveaux objets et une cohérence éventuelle pour les mises à jour d'objets. Offre une haute disponibilité et une protection des données garanties. Recommandé dans la plupart des cas.
+* *Disponible* : assure la cohérence finale pour les nouveaux objets et les mises à jour d'objets. Pour les compartiments S3, utilisez uniquement si nécessaire (par exemple, pour un compartiment qui contient des valeurs de journal rarement lues ou pour les opérations HEAD ou GET sur des clés qui n'existent pas). Non pris en charge pour les compartiments FabricPool S3.
+
+
+
+
+== Utilisez la cohérence « lecture après nouvelle écriture » et « disponible »
+
+Lorsqu'une opération HEAD ou GET utilise la cohérence « Read-after-New-write », StorageGRID effectue la recherche en plusieurs étapes, comme suit :
+
+* Il recherche tout d'abord l'objet à partir d'une faible cohérence.
+* Si cette recherche échoue, elle répète la recherche à la valeur de cohérence suivante jusqu'à ce qu'elle atteigne une cohérence équivalente au comportement de Strong-global.
+
+
+Si une opération HEAD ou GET utilise la cohérence « Read-after-New-write » mais que l'objet n'existe pas, la recherche d'objet atteint toujours une cohérence équivalente au comportement pour les opérations de type Strong-global. Cette cohérence exigeant la disponibilité de plusieurs copies des métadonnées d'objet sur chaque site, vous pouvez recevoir un nombre élevé d'erreurs de serveur interne 500 si deux nœuds de stockage ou plus sur le même site sont indisponibles.
+
+À moins que vous ayez besoin de garanties de cohérence similaires à Amazon S3, vous pouvez empêcher ces erreurs pour les opérations HEAD et GET en définissant la cohérence sur « disponible ». Lorsqu'une opération HEAD ou GET utilise la cohérence « disponible », StorageGRID fournit uniquement la cohérence finale. Cette opération n'a pas abouti pour accroître la cohérence. Il n'est donc pas nécessaire que plusieurs copies des métadonnées de l'objet soient disponibles.
+
+
+
+== [[api-operation-Consistency-control]]Indiquez la cohérence du fonctionnement de l'API
+
+Pour définir la cohérence d'une opération d'API individuelle, les valeurs de cohérence doivent être prises en charge pour l'opération et vous devez spécifier la cohérence dans l'en-tête de la demande. Cet exemple définit la cohérence sur « site fort » pour une opération GetObject.
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket/object HTTP/1.1
+Date: date
+Authorization: _authorization name_
+Host: _host_
+Consistency-Control: strong-site
+----
+
+NOTE: Vous devez utiliser la même cohérence pour les opérations PutObject et GetObject.
+
+
+
+== [[bucket-Consistency-control]]Spécifie la cohérence du compartiment
+
+Pour définir la cohérence du compartiment, vous pouvez utiliser la requête StorageGRIDlink:put-bucket-consistency-request.html["PRÉSERVER la cohérence du godet"]. Vous pouvez également link:../tenant/manage-bucket-consistency.html#change-bucket-consistency["modifier la cohérence d'un compartiment"]utiliser le Gestionnaire de locataires.
+
+Lorsque vous définissez la cohérence d'un godet, tenez compte des points suivants :
+
+* La cohérence d'un compartiment détermine la cohérence utilisée pour les opérations S3 exécutées sur les objets du compartiment ou sur la configuration du compartiment. Cela n'affecte pas les opérations du compartiment lui-même.
+* La cohérence d'une opération d'API individuelle remplace la cohérence du compartiment.
+* En général, les compartiments doivent utiliser la cohérence par défaut, « Read-after-New-write ». Si les demandes ne fonctionnent pas correctement, modifiez le comportement du client d'application si possible. Ou configurez le client de manière à spécifier la cohérence pour chaque requête d'API. Réglez la cohérence au niveau du godet uniquement en dernier recours.
+
+
+
+
+== [[comment les contrôles-cohérence-et-règles-ILM-interagissent]]Comment la cohérence et les règles ILM interagissent pour protéger les données
+
+La cohérence et les règles ILM de votre choix affectent la protection des objets. Ces paramètres peuvent interagir.
+
+Par exemple, la cohérence utilisée lorsqu'un objet est stocké affecte le placement initial des métadonnées d'objet, tandis que le comportement d'ingestion sélectionné pour la règle ILM affecte le placement initial des copies d'objet. Comme StorageGRID requiert l'accès aux métadonnées et aux données d'un objet pour répondre aux demandes des clients, le choix de niveaux de protection correspondants pour la cohérence et le comportement d'ingestion permet une meilleure protection initiale des données et des réponses système plus prévisibles.
+
+Les éléments suivants link:../ilm/data-protection-options-for-ingest.html["options d'ingestion"] sont disponibles pour les règles ILM :
+
+Double allocation:: StorageGRID effectue immédiatement des copies intermédiaires de l'objet et renvoie la réussite au client. Les copies spécifiées dans la règle ILM sont effectuées lorsque cela est possible.
+Stricte:: Toutes les copies spécifiées dans la règle ILM doivent être effectuées avant que la réussite ne soit renvoyée au client.
+Équilibré:: StorageGRID tente de faire toutes les copies spécifiées dans la règle ILM à l'entrée ; si cela n'est pas possible, des copies intermédiaires sont effectuées et le client est renvoyé avec succès. Les copies spécifiées dans la règle ILM sont effectuées lorsque cela est possible.
+
+
+
+
+== Exemple d'interaction entre la règle de cohérence et la règle ILM
+
+Supposons que vous disposez d'un grid à deux sites avec la règle ILM suivante et la cohérence suivante :
+
+* *Règle ILM* : créez deux copies d'objet, une sur le site local et une sur un site distant. Utiliser un comportement d'ingestion strict.
+* *Cohérence* : fort-global (les métadonnées d'objet sont immédiatement distribuées à tous les sites).
+
+
+Lorsqu'un client stocke un objet dans la grille, StorageGRID effectue à la fois des copies d'objet et distribue les métadonnées aux deux sites avant de rétablir la réussite du client.
+
+L'objet est entièrement protégé contre la perte au moment du message d'ingestion. Par exemple, si le site local est perdu peu de temps après l'ingestion, des copies des données de l'objet et des métadonnées de l'objet existent toujours sur le site distant. L'objet est entièrement récupérable.
+
+Si vous avez utilisé la même règle ILM et la même cohérence site forte, le client peut recevoir un message de réussite après la réplication des données de l'objet vers le site distant, mais avant la distribution des métadonnées de l'objet. Dans ce cas, le niveau de protection des métadonnées d'objet ne correspond pas au niveau de protection des données d'objet. Si le site local est perdu peu de temps après l'ingestion, les métadonnées d'objet sont perdues. Impossible de récupérer l'objet.
+
+L'inter-relation entre la cohérence et les règles ILM peut être complexe. Contactez NetApp si vous avez besoin d'aide.

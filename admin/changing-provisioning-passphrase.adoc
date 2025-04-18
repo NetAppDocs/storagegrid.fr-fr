@@ -2,7 +2,7 @@
 permalink: admin/changing-provisioning-passphrase.html 
 sidebar: sidebar 
 keywords: provisioning passphrase, change passphrase 
-summary: 'Utilisez cette procédure pour modifier la phrase secrète du provisionnement StorageGRID. La phrase secrète est nécessaire pour les procédures de restauration, d"extension et de maintenance. Une phrase secrète est également requise pour télécharger des sauvegardes de package de restauration qui incluent les informations de topologie du grid, les mots de passe de la console du nœud grid et les clés de chiffrement pour le système StorageGRID.' 
+summary: 'Utilisez cette procédure pour modifier la phrase secrète du provisionnement StorageGRID. La phrase secrète est nécessaire pour les procédures de restauration, d"extension et de maintenance. La phrase de passe est également requise pour télécharger les sauvegardes du pack de récupération qui incluent les informations de topologie de la grille, les mots de passe de la console des nœuds grid et les clés de chiffrement pour le système StorageGRID.' 
 ---
 = Modifiez la phrase secrète de provisionnement
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Utilisez cette procédure pour modifier la phrase secrète du provisio
 
 
 [role="lead"]
-Utilisez cette procédure pour modifier la phrase secrète du provisionnement StorageGRID. La phrase de passe est requise pour les procédures de restauration, d'extension et de maintenance. Une phrase secrète est également requise pour télécharger des sauvegardes de package de restauration qui incluent les informations de topologie du grid, les mots de passe de la console du nœud grid et les clés de chiffrement pour le système StorageGRID.
+Utilisez cette procédure pour modifier la phrase secrète du provisionnement StorageGRID. La phrase de passe est requise pour les procédures de restauration, d'extension et de maintenance. La phrase de passe est également requise pour télécharger les sauvegardes du pack de récupération qui incluent les informations de topologie de la grille, les mots de passe de la console des nœuds grid et les clés de chiffrement pour le système StorageGRID.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -20,17 +20,14 @@ Utilisez cette procédure pour modifier la phrase secrète du provisionnement St
 
 
 .Description de la tâche
-La phrase secrète de provisionnement est requise pour de nombreuses procédures d'installation et de maintenance, et pour link:../maintain/downloading-recovery-package.html["téléchargement du package de récupération"]. La phrase de passe de provisionnement n'est pas répertoriée dans le `Passwords.txt` fichier. Veillez à documenter la phrase de passe de provisionnement et à la conserver dans un emplacement sûr et sécurisé.
+La phrase secrète de provisionnement est requise pour de nombreuses procédures d'installation et de maintenance, et pour link:../maintain/downloading-recovery-package.html["Téléchargement du progiciel de restauration"]. La phrase de passe de provisionnement n'est pas répertoriée dans le `Passwords.txt` fichier. Veillez à documenter la phrase de passe de provisionnement et à la conserver dans un emplacement sûr et sécurisé.
 
 .Étapes
 . Sélectionnez *CONFIGURATION* > *contrôle d'accès*> *mots de passe de grille*.
 . Sous *Modifier la phrase de passe de provisionnement*, sélectionnez *faire une modification*
 . Saisissez votre phrase secrète pour le provisionnement.
 . Saisissez la nouvelle phrase de passe. La phrase de passe doit contenir au moins 8 caractères et pas plus de 32 caractères. Les phrases passe sont sensibles à la casse.
-+
-
-CAUTION: Stockez la phrase de passe de provisionnement dans un emplacement sécurisé. Elle est requise pour les procédures d'installation, d'extension et de maintenance.
-
+. Stocker la nouvelle phrase secrète pour le provisionnement dans un emplacement sécurisé Elle est requise pour les procédures d'installation, d'extension et de maintenance.
 . Saisissez à nouveau la nouvelle phrase de passe et sélectionnez *Enregistrer*.
 +
 Le système affiche une bannière verte de réussite lorsque la modification de la phrase de passe de provisionnement est terminée.
@@ -39,9 +36,9 @@ Le système affiche une bannière verte de réussite lorsque la modification de 
 image::../media/change_provisioning_passphrase_success.png[Message de réussite pour la phrase de passe de provisionnement modifié]
 
 . Sélectionnez *progiciel de récupération*.
-. Entrez la nouvelle phrase secrète de provisionnement pour télécharger le nouveau package de récupération.
+. Entrez la nouvelle phrase de passe de provisionnement pour télécharger le nouveau progiciel de restauration.
 +
 
-CAUTION: Après avoir modifié le mot de passe de provisionnement, vous devez immédiatement télécharger un nouveau package de récupération. Le fichier de package de récupération vous permet de restaurer le système en cas de défaillance.
+CAUTION: Après avoir modifié la phrase de passe de provisionnement, vous devez télécharger immédiatement un nouveau progiciel de restauration. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
 
 

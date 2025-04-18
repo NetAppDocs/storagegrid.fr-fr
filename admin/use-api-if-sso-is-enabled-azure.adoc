@@ -11,7 +11,7 @@ summary: 'Si vous avez configuré et activé la connexion unique (SSO) et que vo
 
 
 [role="lead"]
-Si vous link:../admin/how-sso-works.html["Authentification unique (SSO) configurée et activée"]utilisez et que vous utilisez Azure en tant que fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d'authentification valide pour l'API de gestion du grid ou l'API de gestion des locataires.
+Si vous link:../admin/configuring-sso.html["Authentification unique (SSO) configurée et activée"]utilisez et que vous utilisez Azure en tant que fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d'authentification valide pour l'API de gestion du grid ou l'API de gestion des locataires.
 
 
 

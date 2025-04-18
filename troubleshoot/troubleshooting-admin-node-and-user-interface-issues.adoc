@@ -46,7 +46,7 @@ Si l'erreur n'est pas résolue automatiquement, passez à l'étape suivante.
 
 
 . Déterminez si le matériel du nœud est hors ligne.
-. Si l'authentification unique (SSO) est activée pour votre système StorageGRID, reportez-vous aux étapes pour link:../admin/configure-sso.html["configuration de l'authentification unique"].
+. Si l'authentification unique (SSO) est activée pour votre système StorageGRID, reportez-vous aux étapes pour link:../admin/configuring-sso.html["configuration de l'authentification unique"].
 +
 Pour résoudre ces problèmes, il peut être nécessaire de désactiver et de réactiver temporairement l'authentification SSO pour un nœud d'administration unique.
 

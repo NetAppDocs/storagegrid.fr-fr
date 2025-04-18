@@ -74,7 +74,7 @@ Voici un bref récapitulatif des valeurs de cohérence disponibles dans StorageG
 
 
 
-NOTE: Avant de sélectionner une valeur de cohérence, link:../s3/consistency.html["lisez la description complète de la cohérence"]. Vous devez comprendre les avantages et les limites avant de modifier la valeur par défaut.
+NOTE: Avant de sélectionner une valeur de cohérence, link:../s3/consistency-controls.html["lisez la description complète de la cohérence"]. Vous devez comprendre les avantages et les limites avant de modifier la valeur par défaut.
 
 
 

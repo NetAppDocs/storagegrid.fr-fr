@@ -37,7 +37,7 @@ Si l'un des systèmes StorageGRID de la connexion de fédération de grille util
 
 .Étapes
 . Configurez le même référentiel d'identité pour les deux grilles. Voir link:using-identity-federation.html["Utiliser la fédération des identités"].
-. Configurez le même fournisseur d'identité SSO pour les deux grilles. Voir link:how-sso-works.html["Configurer l'authentification unique"].
+. Configurez le même fournisseur d'identité SSO pour les deux grilles. Voir link:configuring-sso.html["Configurer l'authentification unique"].
 . link:managing-admin-groups.html["Créez le même groupe d'administration"] sur les deux grilles en important le même groupe fédéré.
 +
 Lorsque vous créez le tenant, vous sélectionnez ce groupe pour obtenir l'autorisation d'accès racine initiale pour les comptes de tenant source et de destination.

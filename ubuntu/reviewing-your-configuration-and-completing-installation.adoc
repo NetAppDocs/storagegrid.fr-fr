@@ -24,16 +24,16 @@ image::../media/11_gmi_installer_summary_page.gif[Cette image est expliquée par
 
 NOTE: Si un nœud est configuré pour utiliser le réseau client, la passerelle par défaut de ce nœud passe du réseau Grid au réseau client lorsque vous cliquez sur *installer*. Si vous perdez la connectivité, vous devez vous assurer que vous accédez au nœud d'administration principal via un sous-réseau accessible. Voir link:../network/index.html["Instructions de mise en réseau"] pour plus de détails.
 
-. Cliquez sur *Télécharger le paquet de récupération*.
+. Cliquez sur *Télécharger le progiciel de récupération*.
 +
-Lorsque l'installation progresse jusqu'au point où la topologie de la grille est définie, vous êtes invité à télécharger le fichier de package de récupération (`.zip`) et à confirmer que vous pouvez accéder au contenu de ce fichier. Vous devez télécharger le fichier du pack de restauration afin de pouvoir récupérer le système StorageGRID en cas de panne d'un ou de plusieurs nœuds de grid. L'installation se poursuit en arrière-plan, mais vous ne pouvez pas terminer l'installation et accéder au système StorageGRID tant que vous n'avez pas téléchargé et vérifié ce fichier.
+Lorsque l'installation progresse jusqu'au point où la topologie de la grille est définie, vous êtes invité à télécharger le fichier du progiciel de récupération (`.zip`) et à confirmer que vous pouvez accéder au contenu de ce fichier. Vous devez télécharger le fichier Recovery Package afin de pouvoir restaurer le système StorageGRID en cas de défaillance d'un ou de plusieurs nœuds de la grille. L'installation se poursuit en arrière-plan, mais vous ne pouvez pas terminer l'installation et accéder au système StorageGRID tant que vous n'avez pas téléchargé et vérifié ce fichier.
 
 . Vérifiez que vous pouvez extraire le contenu du `.zip` fichier, puis l'enregistrer dans deux emplacements sûrs, sécurisés et séparés.
 +
 
-CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
 
-. Cochez la case *J'ai téléchargé et vérifié le fichier de package de récupération*, puis cliquez sur *Suivant*.
+. Cochez la case *J'ai téléchargé et vérifié le fichier du progiciel de récupération*, puis cliquez sur *Suivant*.
 +
 Si l'installation est toujours en cours, la page d'état s'affiche. Cette page indique la progression de l'installation pour chaque nœud de la grille.
 

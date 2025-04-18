@@ -13,7 +13,7 @@ indexpage:
     links:
     - title: Maintenance de la grille
       url: "../maintain/index.html"
-    - title: Télécharger le package de récupération
+    - title: Téléchargez le progiciel de restauration
       url: "../maintain/downloading-recovery-package.html"
   - title: Désaffectation des nœuds ou des sites
     links:

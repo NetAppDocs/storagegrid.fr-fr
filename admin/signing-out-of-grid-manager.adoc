@@ -41,7 +41,7 @@ SSO activé
  a| 
 Vous êtes déconnecté de tous les nœuds d'administration auxquels vous accédiez. La page de connexion StorageGRID s'affiche. *Grid Manager* est répertorié comme valeur par défaut dans la liste déroulante *comptes récents* et le champ *ID compte* affiche 0.
 
-*Remarque :* si SSO est activé et que vous êtes également connecté au gestionnaire de locataires, vous devez également vous link:../tenant/signing-out-of-tenant-manager.html["déconnectez-vous du compte du locataire"]rendre à link:how-sso-works.html["Déconnectez-vous de SSO"].
+*Remarque :* si SSO est activé et que vous êtes également connecté au gestionnaire de locataires, vous devez également vous link:../tenant/signing-out-of-tenant-manager.html["déconnectez-vous du compte du locataire"]rendre à link:configuring-sso.html["Déconnectez-vous de SSO"].
 
 |===
 

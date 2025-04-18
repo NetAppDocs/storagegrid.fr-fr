@@ -19,9 +19,9 @@ Lorsque vous effectuez la mise à niveau, tous les nœuds de votre système Stor
 
 == Avant de commencer
 
-Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et les améliorations de StorageGRID 12.0, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID.
+Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et les améliorations de StorageGRID 11.9, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID.
 
-* link:whats-new.html["Nouveautés de StorageGRID 12.0"]
+* link:whats-new.html["Nouveautés de StorageGRID 11.9"]
 * link:removed-or-deprecated-features.html["Fonctions supprimées ou obsolètes"]
 * link:changes-to-grid-management-api.html["Modifications apportées à l'API de gestion du grid"]
 * link:changes-to-tenant-management-api.html["Modifications apportées à l'API de gestion des locataires"]

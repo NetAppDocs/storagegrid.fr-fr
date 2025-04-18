@@ -40,8 +40,8 @@ Pour une explication détaillée de la façon dont le paramètre espace réserv�
 .Étapes
 . Déterminez le paramètre actuel espace réservé aux métadonnées.
 +
-.. Sélectionnez *CONFIGURATION* > *système* > *Paramètres de stockage*.
-.. Notez la valeur de *espace réservé aux métadonnées*.
+.. Sélectionnez *CONFIGURATION* > *système* > *Options de stockage*.
+.. Dans la section filigranes de stockage, notez la valeur de *espace réservé aux métadonnées*.
 
 
 . Assurez-vous d'avoir suffisamment d'espace disponible sur le volume de stockage 0 de chaque nœud de stockage pour augmenter cette valeur.
@@ -78,13 +78,17 @@ Par exemple, si le paramètre espace réservé aux métadonnées est actuellemen
 
 . Mettez à jour le paramètre Metadata Reserved Space.
 +
-.. Sélectionnez *CONFIGURATION* > *système* > *Paramètres de stockage*.
-.. Sélectionnez *espace réservé aux métadonnées*.
+.. Sélectionnez *CONFIGURATION* > *système* > *Options de stockage*.
+.. Sélectionnez l'onglet Configuration.
+.. Dans la section filigranes de stockage, sélectionnez *espace réservé aux métadonnées*.
 .. Entrez la nouvelle valeur.
 +
 Par exemple, pour saisir 8 To, qui est la valeur maximale prise en charge, entrez *8000000000000* (8, suivi de 12 zéros).
 
-.. Sélectionnez *Enregistrer*.
++
+image::../media/metadata_reserved_space.png[Espace réservé des métadonnées]
+
+.. Sélectionnez *appliquer les modifications*.
 
 
 

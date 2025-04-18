@@ -16,7 +16,7 @@ Un pool de stockage est un regroupement logique de nœuds de stockage.
 Lorsque vous installez StorageGRID, un pool de stockage par site est automatiquement créé. Vous pouvez configurer des pools de stockage supplémentaires selon vos besoins en stockage.
 
 
-NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir les données et les métadonnées d'objet (« nœud de stockage combiné »), uniquement les métadonnées d'objet ou uniquement les données d'objet. Les nœuds de stockage de métadonnées uniquement ne peuvent pas être utilisés dans les pools de stockage. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir les données d'objet et les métadonnées d'objet, ou uniquement les métadonnées d'objet. Les nœuds de stockage de métadonnées uniquement ne peuvent pas être utilisés dans les pools de stockage. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
 
 Les pools de stockage ont deux attributs :
 

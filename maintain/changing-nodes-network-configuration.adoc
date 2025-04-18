@@ -42,7 +42,7 @@ Impossible de supprimer des nœuds du réseau Grid.
 NOTE: Les échanges d'adresses IP ne sont pas autorisés. Si vous devez échanger des adresses IP entre des noeuds de grille, vous devez utiliser une adresse IP intermédiaire temporaire.
 
 
-NOTE: Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que vous modifiez l'adresse IP d'un nœud d'administration, sachez que toute confiance de tiers qui a été configurée à l'aide de l'adresse IP du nœud d'administration (au lieu de son nom de domaine complet, comme recommandé) deviendra non valide. Vous ne pourrez plus vous connecter au nœud. Immédiatement après avoir modifié l'adresse IP, vous devez mettre à jour ou reconfigurer la confiance de l'organisme de confiance du nœud dans Active Directory Federation Services (AD FS) avec la nouvelle adresse IP. Voir les instructions pour link:../admin/configure-sso.html["Configuration de SSO"].
+NOTE: Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que vous modifiez l'adresse IP d'un nœud d'administration, sachez que toute confiance de tiers qui a été configurée à l'aide de l'adresse IP du nœud d'administration (au lieu de son nom de domaine complet, comme recommandé) deviendra non valide. Vous ne pourrez plus vous connecter au nœud. Immédiatement après avoir modifié l'adresse IP, vous devez mettre à jour ou reconfigurer la confiance de l'organisme de confiance du nœud dans Active Directory Federation Services (AD FS) avec la nouvelle adresse IP. Voir les instructions pour link:../admin/configuring-sso.html["Configuration de SSO"].
 
 
 NOTE: Toutes les modifications que vous apportez au réseau à l'aide de l'outil Modifier IP sont propagées au micrologiciel du programme d'installation des appliances StorageGRID. Ainsi, si le logiciel StorageGRID est réinstallé sur une appliance ou si une appliance est placée en mode de maintenance, la configuration réseau est correcte.
@@ -201,51 +201,10 @@ Une fois que vous avez appliqué ou échelé les modifications, un nouveau packa
 
 
 . Sélectionnez *0* pour quitter l'outil Modifier l'IP une fois les modifications effectuées.
-. Téléchargez un nouveau package de récupération à partir de Grid Manager.
+. Téléchargez un nouveau package de récupération depuis Grid Manager.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.
 
 
 
-
-
-
-== Modification temporaire du débit PDU LACP
-
-Pour effectuer des opérations de maintenance sur les composants réseau installés sur votre appliance, tels que la mise à niveau du micrologiciel de la carte réseau, vous pouvez vérifier le paramètre de débit de la PDU LACP actuel. Si nécessaire, vous pouvez également basculer de manière non persistante le débit PDU LACP entre rapide et lent.
-
-
-NOTE: Pour apporter des modifications permanentes au débit PDU LACP, voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-network-links.html["Configurer les liaisons réseau"^].
-
-.Avant de commencer
-* Le nœud d'administration est installé et en cours d'exécution.
-* Vous avez le `Passwords.txt` fichier.
-
-
-.Étapes
-. Connectez-vous au nœud d'administration principal :
-+
-.. Entrez la commande suivante : `ssh admin@primary_Admin_Node_IP`
-.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
-.. Entrez la commande suivante pour basculer en root : `su -`
-.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
-+
-Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
-
-
-
-. Pour vérifier le réglage actuel du débit LACP PDU, entrez la commande suivante :
-+
-`run-each-node --parallel --port 8022 '/usr/sbin/set-lacp-rate.sh --lacprate'`
-
-. Pour modifier temporairement le débit PDU LACP, entrez la commande suivante :
-+
-`run-each-node --parallel --port 8022 '/usr/sbin/set-lacp-rate.sh --lacprate _<speed>_'`
-
-+
-où `_<version-number>_` est `fast` ou `slow`.
-
-
-
-Le débit PDU LACP reviendra à son paramètre précédent au prochain redémarrage de l'appliance.

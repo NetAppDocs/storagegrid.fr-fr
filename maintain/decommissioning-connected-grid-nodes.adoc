@@ -99,13 +99,13 @@ La procédure de mise hors service du nœud démarre et la progression est affic
 
 CAUTION: Ne mettez pas un nœud de stockage hors ligne après le démarrage de la procédure de mise hors service. La modification de l'état peut entraîner l'absence de copie de contenu vers d'autres emplacements.
 
-. Dès que le nouveau package de récupération est disponible, sélectionnez le lien du package de récupération dans la bannière ou sélectionnez *MAINTENANCE* > *système* > *paquet de récupération* pour accéder à la page du package de récupération. Téléchargez ensuite le `.zip` fichier.
+. Dès que le nouveau progiciel de récupération est disponible, sélectionnez le lien Package de récupération dans la bannière ou sélectionnez *MAINTENANCE* > *système* > *paquet de récupération* pour accéder à la page du progiciel de récupération. Téléchargez ensuite le `.zip` fichier.
 +
-Voir link:downloading-recovery-package.html["téléchargement du package de récupération"].
+Voir link:downloading-recovery-package.html["Téléchargement du progiciel de restauration"].
 
 +
 
-NOTE: Téléchargez le pack de récupération dès que possible pour vous assurer de pouvoir récupérer votre grille en cas de problème lors de la procédure de mise hors service.
+NOTE: Téléchargez le progiciel de récupération dès que possible pour vous assurer que vous pouvez récupérer votre grille si un problème survient pendant la procédure de mise hors service.
 
 . Surveillez régulièrement la page nœuds de mise hors service pour vous assurer que tous les nœuds sélectionnés sont correctement mis hors service.
 +

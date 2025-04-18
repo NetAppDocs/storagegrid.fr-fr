@@ -30,7 +30,7 @@ Pour installer StorageGRID sur un nœud de stockage d'appliance :
 * Vous démarrez l'installation et attendez que les volumes soient configurés et que le logiciel soit installé.
 +
 
-NOTE: Lors de la restauration d'un nœud de stockage d'appliance, réinstallez-le avec le même type de stockage que l'appliance d'origine (combiné, métadonnées uniquement ou données uniquement). Si vous spécifiez un autre type de stockage, la récupération échouera et nécessitera la réinstallation de l'appareil avec le type de stockage correct spécifié.
+NOTE: Lors de la récupération d'un nœud de stockage de l'appliance, réinstallez-le avec le même type de stockage que l'appliance d'origine (combiné, métadonnées uniquement ou données uniquement). Si vous spécifiez un autre type de stockage, la récupération échouera et nécessitera la réinstallation de l'appareil avec le type de stockage correct spécifié.
 
 * Partway tout au long du processus, l'installation se met en pause. Pour reprendre l'installation, vous devez vous connecter à Grid Manager et configurer le nœud de stockage en attente en remplacement du nœud défaillant.
 * Une fois le nœud configuré, le processus d'installation de l'appliance est terminé et l'appliance est redémarrée.
@@ -82,6 +82,9 @@ Détection automatique de tous les nœuds d'administration principaux connectés
 Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres de port. Pour obtenir des instructions, reportez-vous aux instructions d'entretien de votre appareil.
 
 . Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, cliquez sur *Démarrer l'installation*.
++
+image::../media/appliance_installer_home_start_installation_enabled.gif[Cette figure est décrite par le texte environnant.]
+
 +
 L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
 

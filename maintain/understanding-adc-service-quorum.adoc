@@ -26,4 +26,4 @@ Supposons par exemple qu'un site comprend actuellement six nœuds de stockage av
 * Dans la deuxième procédure de mise hors service, vous pouvez supprimer le troisième nœud de stockage car le quorum ADC ne nécessite désormais que trois services ADC pour rester disponibles : `((0.5 * 4) + 1)`.
 
 
-Si vous devez désaffecter un nœud de stockage, vous pouvez continuer à répondre aux exigences de quorum ADC en ajoutant ou en link:../upgrade/changes-to-grid-management-api.html#new-private-endpoints-for-move-adc["Déplacement du service ADC vers un autre nœud de stockage sur le même site"]ajoutant un nouveau nœud de stockage dans un link:../expand/index.html["extension"] et en spécifiant qu'il doit disposer d'un service ADC. Vous pouvez ensuite désaffecter le nœud de stockage existant sans affecter le quorum.
+Si vous devez désaffecter un nœud de stockage mais que vous ne pouvez pas le faire en raison de l'exigence de quorum ADC, ajoutez un nouveau nœud de stockage dans un link:../expand/index.html["extension"] et spécifiez qu'il doit disposer d'un service ADC. Ensuite, désaffectez le nœud de stockage existant.

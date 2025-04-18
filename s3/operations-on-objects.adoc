@@ -15,7 +15,7 @@ Cette section décrit la manière dont le système StorageGRID implémente les o
 
 Les conditions suivantes s'appliquent à toutes les opérations d'objet :
 
-* StorageGRID link:consistency.html["valeurs de cohérence"]sont pris en charge par toutes les opérations sur les objets, à l'exception des opérations suivantes :
+* StorageGRID link:consistency-controls.html["valeurs de cohérence"]sont pris en charge par toutes les opérations sur les objets, à l'exception des opérations suivantes :
 +
 ** GetObjectAcl
 ** `OPTIONS /`

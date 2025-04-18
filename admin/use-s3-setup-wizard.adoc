@@ -33,7 +33,7 @@ Obtenir des adresses IP et configurer des interfaces VLAN:: Si vous configurez u
 Si vous prévoyez d'utiliser un réseau local virtuel pour isoler le trafic de l'application S3, vous avez déjà configuré l'interface VLAN. Voir link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"].
 
 --
-Configurer la fédération des identités et SSO:: Si vous prévoyez d'utiliser la fédération des identités ou l'authentification unique (SSO) pour votre système StorageGRID, vous avez activé ces fonctionnalités. Vous savez également quel groupe fédéré doit disposer d'un accès racine pour le compte locataire utilisé par l'application S3. Voir link:../admin/using-identity-federation.html["Utiliser la fédération des identités"] et link:../admin/how-sso-works.html["Configurer l'authentification unique"].
+Configurer la fédération des identités et SSO:: Si vous prévoyez d'utiliser la fédération des identités ou l'authentification unique (SSO) pour votre système StorageGRID, vous avez activé ces fonctionnalités. Vous savez également quel groupe fédéré doit disposer d'un accès racine pour le compte locataire utilisé par l'application S3. Voir link:../admin/using-identity-federation.html["Utiliser la fédération des identités"] et link:../admin/configuring-sso.html["Configurer l'authentification unique"].
 Obtenir et configurer des noms de domaine:: Vous savez quel nom de domaine complet (FQDN) utiliser pour StorageGRID. Les entrées de serveur de noms de domaine (DNS) mapperont ce FQDN aux adresses IP virtuelles (VIP) du groupe haute disponibilité que vous créez à l'aide de l'assistant.
 +
 --

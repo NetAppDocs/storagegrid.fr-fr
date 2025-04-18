@@ -51,6 +51,6 @@ Si vous souhaitez relancer la restauration après avoir réinitialisé la procé
 . Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que l'approbation du composant de confiance pour le nœud d'administration que vous avez récupéré a été configurée pour utiliser le certificat d'interface de gestion par défaut, mettre à jour (ou supprimer et recréer) l'approbation du nœud dans Active Directory Federation Services (AD FS). Utilisez le nouveau certificat de serveur par défaut qui a été généré pendant le processus de restauration du noeud d'administration.
 +
 
-NOTE: Pour configurer une confiance de partie utilisatrice, voir link:../admin/configure-sso.html["Configurer l'authentification unique"]. Pour accéder au certificat de serveur par défaut, connectez-vous au shell de commande du noeud d'administration. Accédez au `/var/local/mgmt-api` répertoire et sélectionnez le `server.crt` fichier.
+NOTE: Pour configurer une confiance de partie utilisatrice, voir link:../admin/configuring-sso.html["Configurer l'authentification unique"]. Pour accéder au certificat de serveur par défaut, connectez-vous au shell de commande du noeud d'administration. Accédez au `/var/local/mgmt-api` répertoire et sélectionnez le `server.crt` fichier.
 
 

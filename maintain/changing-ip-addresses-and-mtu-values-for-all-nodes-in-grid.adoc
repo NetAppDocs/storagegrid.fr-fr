@@ -36,7 +36,7 @@ NOTE: Si les serveurs DNS existants ne seront pas accessibles à la grille sur l
 
 +
 
-NOTE: Si l'authentification SSO est activée pour votre système StorageGRID et que les approbations des parties utilisatrices ont été configurées à l'aide d'adresses IP de nœud d'administration (au lieu de noms de domaine entièrement qualifiés, selon les recommandations), soyez prêt à mettre à jour ou à reconfigurer ces approbations des parties utilisatrices dans Active Directory Federation Services (AD FS). Immédiatement après la modification des adresses IP. Voir link:../admin/configure-sso.html["Configurer l'authentification unique"].
+NOTE: Si l'authentification SSO est activée pour votre système StorageGRID et que les approbations des parties utilisatrices ont été configurées à l'aide d'adresses IP de nœud d'administration (au lieu de noms de domaine entièrement qualifiés, selon les recommandations), soyez prêt à mettre à jour ou à reconfigurer ces approbations des parties utilisatrices dans Active Directory Federation Services (AD FS). Immédiatement après la modification des adresses IP. Voir link:../admin/configuring-sso.html["Configurer l'authentification unique"].
 
 +
 
@@ -130,7 +130,7 @@ NOTE: L'ensemble de la grille doit être arrêté, de sorte que tous les nœuds 
 .. Si vous avez ajouté des serveurs DNS, supprimez les anciennes valeurs du serveur DNS.
 
 
-. Téléchargez le nouveau package de récupération à partir de Grid Manager.
+. Téléchargez le nouveau package de récupération depuis Grid Manager.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.

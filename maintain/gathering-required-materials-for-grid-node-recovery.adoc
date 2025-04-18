@@ -42,21 +42,21 @@ L'ordinateur portable de service doit être équipé des éléments suivants :
  a| 
 Fichier de package de récupération `.zip`
  a| 
-Obtenez une copie du fichier de package de récupération le plus récent `.zip` :
+Obtenez une copie du fichier de progiciel de récupération le plus récent `.zip` :
 `sgws-recovery-package-_id-revision_.zip`
 
-Le contenu du `.zip` fichier est mis à jour chaque fois que le système est modifié. Vous êtes invité à stocker la version la plus récente du package de récupération dans un emplacement sécurisé après avoir effectué de telles modifications. Utilisez la copie la plus récente pour récupérer des données suite à des défaillances du grid.
+Le contenu du `.zip` fichier est mis à jour chaque fois que le système est modifié. Vous êtes invité à stocker la version la plus récente du progiciel de restauration dans un emplacement sécurisé après avoir effectué de telles modifications. Utilisez la copie la plus récente pour récupérer des données suite à des défaillances du grid.
 
-Si le nœud d'administration principal fonctionne normalement, vous pouvez télécharger le pack de restauration à partir de Grid Manager. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+Si le nœud d'administration principal fonctionne normalement, vous pouvez télécharger le progiciel de restauration à partir de Grid Manager. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 
-Si vous ne pouvez pas accéder à Grid Manager, vous pouvez trouver des copies chiffrées du package de récupération sur certains nœuds de stockage qui contiennent le service ADC. Sur chaque nœud de stockage, examinez cet emplacement pour le package de récupération : `/var/local/install/sgws-recovery-package-_grid-id_-_revision_.zip.gpg` utilisez le package de récupération avec le numéro de révision le plus élevé.
+Si vous ne parvenez pas à accéder à Grid Manager, vous pouvez trouver des copies chiffrées du progiciel de récupération sur certains nœuds de stockage qui contiennent le service ADC. Sur chaque nœud de stockage, examinez cet emplacement pour le package de récupération : `/var/local/install/sgws-recovery-package-_grid-id_-_revision_.zip.gpg` utilisez le package de récupération avec le numéro de révision le plus élevé.
 
 
 
  a| 
 `Passwords.txt` fichier
  a| 
-Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de récupération.
+Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de restauration.
 
 
 

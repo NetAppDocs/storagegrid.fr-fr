@@ -1,10 +1,10 @@
 ---
 permalink: upgrade/whats-new.html 
 sidebar: sidebar 
-keywords: what is new in StorageGRID 12.0 
-summary: Cette version de StorageGRID présente les fonctionnalités et modifications fonctionnelles suivantes. 
+keywords: what is new in StorageGRID 11.9 
+summary: Cette version de StorageGRID présente les fonctions suivantes. 
 ---
-= Nouveautés d'StorageGRID 12.0
+= Nouveautés d'StorageGRID 11.9
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -15,11 +15,131 @@ Cette version de StorageGRID présente les fonctionnalités et modifications fon
 
 
 
-== Réplication entre les grid avec S3 Object Lock
+== Évolutivité
 
-Vous pouvez configurer la réplication entre les compartiments avec S3 Object Lock activé. Reportez-vous à la link:../admin/grid-federation-what-is-cross-grid-replication.html#cgr-with-ol["Réplication entre les grid avec S3 Object Lock"].
 
-NetApp recommande d'utiliser cette fonctionnalité uniquement entre les compartiments source et de destination StorageGRID 12.0. Cependant, cette fonctionnalité est prise en charge entre les compartiments source StorageGRID 11.9 avec verrouillage d'objet S3 désactivé et les compartiments de destination StorageGRID 12.0 avec verrouillage d'objet S3 activé.
+
+=== Nœuds de stockage des données uniquement
+
+Pour permettre une mise à l'échelle plus granulaire, vous pouvez maintenant installer link:../primer/what-storage-node-is.html#types-of-storage-nodes["Nœuds de stockage des données uniquement"]. Là où le traitement des métadonnées n'est pas essentiel, vous pouvez optimiser votre infrastructure de manière économique. Cette flexibilité permet de s'adapter à des charges de travail et des modèles de croissance variables.
+
+
+
+== Améliorations de pool de stockage cloud
+
+
+
+=== Rôles IAM n'importe où
+
+StorageGRID prend désormais en charge les informations d'identification à court terme à l'aide de link:../ilm/creating-cloud-storage-pool.html["Rôles IAM n'importe où dans Amazon S3 pour les pools de stockage cloud"].
+
+L'utilisation d'identifiants à long terme pour accéder aux compartiments S3 pose des risques de sécurité si ces informations d'identification sont compromises. Les identifiants à court terme ont une durée de vie limitée, ce qui réduit le risque d'accès non autorisé.
+
+
+
+=== Compartiments de verrouillage d'objet S3
+
+Vous pouvez maintenant link:../ilm/creating-cloud-storage-pool.html["Configurez un pool de stockage cloud à l'aide d'un terminal Amazon S3"]. Le verrouillage des objets S3 empêche la suppression accidentelle ou malveillante d'objets. Si vous procédez au Tiering des données d'StorageGRID vers Amazon S3, le verrouillage des objets activé sur les deux systèmes améliore la protection des données tout au long de leur cycle de vie.
+
+
+
+== Colocation
+
+
+
+=== Limites du godet
+
+Par link:../tenant/creating-s3-bucket.html["Définition de limites pour les compartiments S3"], vous pouvez empêcher les locataires de monopoliser la capacité. En outre, une croissance non contrôlée peut entraîner des coûts inattendus. Si vous définissez des limites, vous pouvez mieux estimer les dépenses de stockage des locataires.
+
+
+
+=== 5,000 compartiments par locataire
+
+Pour améliorer l'évolutivité, StorageGRID prend désormais en charge jusqu'à link:../s3/operations-on-buckets.html["5,000 compartiments S3 par locataire"]. Chaque grille peut contenir un maximum de 100,000 compartiments.
+
+Pour prendre en charge 5,000 compartiments, chaque nœud de stockage de la grille doit disposer d'au moins 64 Go de RAM.
+
+
+
+== Améliorations du verrouillage objet S3
+
+Les fonctionnalités de configuration par locataire procurent un équilibre approprié entre flexibilité et sécurité des données. Vous pouvez désormais configurer les paramètres de conservation par locataire pour :
+
+* Autoriser ou interdire le mode de conformité
+* Définissez une période de rétention maximale
+
+
+Se reporter à :
+
+* link:../ilm/managing-objects-with-s3-object-lock.html["Gestion des objets avec le verrouillage d'objets S3"]
+* link:../ilm/how-object-retention-is-determined.html#how-grid-administrators-control-object-retention["Comment les administrateurs du grid contrôlent-ils la conservation des objets"]
+* link:../admin/creating-tenant-account.html["Créer un compte de locataire"]
+
+
+
+
+== Compatibilité S3
+
+
+
+=== checksum x-amz-sha256
+
+* L'API REST S3 prend désormais en charge le checksum link:../s3/operations-on-objects.html[`x-amz-checksum-sha256`].
+* StorageGRID fournit désormais la prise en charge du checksum SHA-256 pour les opérations de PUT, GET et HEAD. Ces checksums améliorent l'intégrité des données.
+
+
+
+
+=== Modifications de la prise en charge du protocole S3
+
+* Ajout de la prise en charge de Mountpoint pour Amazon S3, qui permet aux applications de se connecter directement aux compartiments S3 comme s'il s'agissait de systèmes de fichiers locaux. Vous pouvez désormais utiliser StorageGRID avec davantage d'applications et davantage d'utilisations.
+* Dans le cadre de l'ajout de la prise en charge de Mountpoint, StorageGRID 11.9 contient link:../s3/index.html#updates-to-rest-api-support["Modifications supplémentaires de la prise en charge du protocole S3"].
+
+
+
+
+== Maintenance et prise en charge
+
+
+
+=== AutoSupport
+
+link:../admin/what-is-autosupport.html["AutoSupport"] crée désormais automatiquement des dossiers de défaillance matérielle pour les appliances existantes.
+
+
+
+=== Opérations de clonage de nœuds étendues
+
+L'utilisation des clones de nœuds a été étendue pour prendre en charge des nœuds de stockage de plus grande taille.
+
+
+
+=== Meilleure gestion des règles ILM des marqueurs de suppression expirés
+
+Les règles de temps d'entrée ILM, qui appliquent un délai de plusieurs jours, suppriment également les marqueurs de suppression d'objets expirés. Les marqueurs de suppression ne sont supprimés que lorsqu'une période de jours s'est écoulée et que le créateur de suppression actuel a expiré (il n'y a pas de versions non actuelles).
+
+Reportez-vous à link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"]et link:../ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html#example-of-bucket-lifecycle-taking-priority-over-ilm-policy["Exemple de cycle de vie du compartiment qui est prioritaire sur la règle ILM"].
+
+
+
+=== Mise hors service des nœuds améliorée
+
+Pour assurer une transition efficace et en douceur vers le matériel de nouvelle génération StorageGRID, link:../maintain/grid-node-decommissioning.html["désaffectation des nœuds"] a été amélioré.
+
+
+
+=== Syslog pour les terminaux d'équilibrage de charge
+
+Les journaux d'accès aux terminaux de l'équilibreur de charge contiennent des informations de dépannage, telles que les codes d'état HTTP. StorageGRID prend désormais en charge link:../monitor/configure-audit-messages.html["exportation de ces journaux vers un serveur syslog externe"]. Cette amélioration permet une gestion plus efficace des journaux et une intégration plus efficace avec les systèmes existants de surveillance et d'alerte.
+
+
+
+=== Améliorations supplémentaires en termes de maintenance et de prise en charge
+
+* Mise à jour de l'interface des metrics
+* Nouvelles qualifications du système d'exploitation
+* Prise en charge des nouveaux composants tiers
+
 
 
 
@@ -27,29 +147,15 @@ NetApp recommande d'utiliser cette fonctionnalité uniquement entre les comparti
 
 
 
-=== Amélioration de la sécurité des mots de passe cryptés sur disque
+=== Rotation des clés d'accès SSH
 
-Amélioration de la sécurité des mots de passe, y compris un nombre de hachage très élevé pour les hachages de mots de passe SHA512.
-
-
-
-== Compartiments S3
+Les administrateurs du grid peuvent maintenant link:../admin/change-ssh-access-passwords.html["Mettez à jour et faites pivoter les clés SSH"]. La possibilité de faire pivoter les clés SSH est une bonne pratique en matière de sécurité et un mécanisme de défense proactif.
 
 
 
-=== Compartiments de dérivation
+=== Alertes pour les connexions racine
 
-Vous pouvez maintenant link:../tenant/manage-branch-bucket-html["créer des compartiments de branchement"] accéder à un compartiment S3. Un compartiment de succursale permet d'accéder aux objets du compartiment S3 tels qu'ils existaient à un moment donné. Un compartiment de succursale n'est pas identique à une sauvegarde.
-
-
-
-== Interface utilisateur
-
-
-
-=== Thème sombre
-
-Les paramètres de thème sombre et de thème système sont disponibles dans le menu utilisateur du Gestionnaire de grille et du Gestionnaire de locataires.
+Lorsqu'une entité inconnue se connecte au Gestionnaire de grille en tant que racine, link:../monitor/alerts-reference.html["une alerte est déclenchée"]. La surveillance des connexions SSH racines est une étape proactive pour protéger votre infrastructure.
 
 
 
@@ -57,6 +163,12 @@ Les paramètres de thème sombre et de thème système sont disponibles dans le 
 
 
 
-=== Configurer l'amélioration des régions
+=== Page profils de code d'effacement déplacée
 
-La page régions du Gestionnaire de grille comprend désormais un onglet *région par défaut*. Vous pouvez utiliser cet onglet pour modifier la région par défaut définie pour les compartiments S3. link:../ilm/configuring-regions-optional-and-s3-only.html["En savoir plus >>"].
+La page des profils de codage d'effacement se trouve maintenant sous *CONFIGURATION* > *système* > *codage d'effacement*. Auparavant, il était dans le menu ILM.
+
+
+
+=== Améliorations de la recherche
+
+Le système link:../primer/exploring-grid-manager.html#search-field["Champ de recherche dans le Gestionnaire de grille"]offre désormais une meilleure logique de correspondance, ce qui vous permet de trouver des pages en recherchant des abréviations courantes et des noms de certains paramètres dans une page. Vous pouvez également rechercher d'autres types d'éléments, tels que les nœuds, les utilisateurs et les comptes de locataires.

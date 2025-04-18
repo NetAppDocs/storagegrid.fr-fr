@@ -20,7 +20,7 @@ Vous devez créer au moins un noeud final du type correct avant d'activer un ser
 * La ressource référencée par le noeud final des services de plate-forme a été créée :
 +
 ** Réplication CloudMirror : compartiment S3
-** Notification d'événements : rubrique Amazon simple notification Service (Amazon SNS), rubrique Kafka ou terminal webhook
+** Notification d'événements : Amazon simple notification Service (Amazon SNS) ou rubrique Kafka
 ** Notification de recherche : index Elasticsearch, si le cluster de destination n'est pas configuré pour créer automatiquement des index.
 
 
@@ -76,7 +76,7 @@ Pour les terminaux Kafka, vous pouvez utiliser les identifiants suivants :
 
 --
 ====
-** Certificat de sécurité (si la vérification du certificat est requise)
+** Certificat de sécurité (en cas d'utilisation d'un certificat d'autorité de certification personnalisé)
 
 
 * Si les fonctions de sécurité de Elasticsearch sont activées, vous disposez du privilège Monitor cluster pour les tests de connectivité et du privilège write index ou des privilèges index and delete index pour les mises à jour de documents.
@@ -87,7 +87,7 @@ Pour les terminaux Kafka, vous pouvez utiliser les identifiants suivants :
 . Sélectionnez *Créer un noeud final*.
 . Entrez un nom d'affichage pour décrire brièvement le point final et son objectif.
 +
-Le type de service de plate-forme pris en charge par le noeud final est affiché à côté du nom du noeud final lorsqu'il est répertorié sur la page noeuds finaux. Vous n'avez donc pas besoin d'inclure ces informations dans le nom.
+Le type de service de plate-forme pris en charge par le noeud final est affiché à côté du nom du noeud final lorsqu'il est répertorié sur la page noeuds finaux, de sorte que vous n'avez pas besoin d'inclure ces informations dans le nom.
 
 . Dans le champ *URI*, spécifiez l'identificateur de ressource unique (URI) du noeud final.
 +
@@ -140,10 +140,6 @@ NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
 
 . Sélectionnez *Continuer*.
 . Sélectionnez une valeur pour *Type d'authentification*.
-+
-
-NOTE: Si vous souhaitez l'authentification pour les noeuds finaux Webhook, configurez le protocole TLS (Mutual transport Layer Security) dans <<verify-certs,Étape 9>>.
-
 +
 [role="tabbed-block"]
 ====
@@ -322,37 +318,17 @@ Sélectionnez *utiliser la délégation prise de l'authentification* si le nom d
 --
 ====
 . Sélectionnez *Continuer*.
-. [[verify-certs]]sélectionnez un bouton radio pour *vérifier les certificats* pour choisir la façon dont la connexion TLS au noeud final est vérifiée.
+. Sélectionnez un bouton radio pour *Verify Server* pour choisir la manière dont la connexion TLS au noeud final est vérifiée.
 +
-[role="tabbed-block"]
-====
-.La plupart des terminaux
---
-Vérifiez la connexion TLS pour l'intégration de la recherche, la réplication CloudMirror, Amazon SNS ou les terminaux Kafka.
-
 [cols="1a,2a"]
 |===
 | Type de vérification du certificat | Description 
 
 
  a| 
-TLS
- a| 
-Valide le certificat du serveur pour les connexions TLS à la ressource de noeud final.
-
-
-
- a| 
-Désactivé
- a| 
-La vérification du certificat est désactivée. Cette option n'est pas sécurisée.
-
-
-
- a| 
 Utiliser un certificat d'autorité de certification personnalisé
  a| 
-Le certificat d'autorité de certification personnalisée est utilisé pour vérifier l'identité du serveur lors de la connexion au noeud final.
+Utilisez un certificat de sécurité personnalisé. Si vous sélectionnez ce paramètre, copiez et collez le certificat de sécurité personnalisé dans la zone de texte *certificat CA*.
 
 
 
@@ -361,80 +337,14 @@ Utiliser le certificat CA du système d'exploitation
  a| 
 Utilisez le certificat d'autorité de certification Grid par défaut installé sur le système d'exploitation pour sécuriser les connexions.
 
-|===
---
-.Noeuds finaux Webhook uniquement
---
-Vérifiez la connexion TLS pour les noeuds finaux Webhook.
-
-[cols="1a,2a"]
-|===
-| Type de vérification du certificat | Description 
 
 
  a| 
-TLS
+Ne vérifiez pas le certificat
  a| 
-Valide le certificat du serveur pour les connexions TLS à la ressource de noeud final.
-
-
-
- a| 
-MTLS
- a| 
-Valide les certificats client et serveur pour les connexions TLS mutuelles à la ressource de noeud final.
-
-
-
- a| 
-Désactivé
- a| 
-La vérification du certificat est désactivée. Cette option n'est pas sécurisée.
-
-
-
- a| 
-Utiliser un certificat d'autorité de certification personnalisé
- a| 
-Le certificat d'autorité de certification personnalisée est utilisé pour vérifier l'identité du serveur lors de la connexion au noeud final.
+Le certificat utilisé pour la connexion TLS n'est pas vérifié. Cette option n'est pas sécurisée.
 
 |===
-Lorsque vous sélectionnez *MTLS*, ces options deviennent disponibles.
-
-[cols="1a,2a"]
-|===
-| Type de vérification du certificat | Description 
-
-
- a| 
-Ne vérifiez pas le certificat du serveur
- a| 
-Désactive la vérification du certificat du serveur, ce qui signifie que l'identité du serveur n'est pas vérifiée. Cette option n'est pas sécurisée.
-
-
-
- a| 
-Certificat client
- a| 
-Le certificat client est utilisé pour vérifier l'identité du client lors de la connexion au noeud final.
-
-
-
- a| 
-Clé privée du client
- a| 
-Clé privée du certificat client. S'il est crypté, il doit utiliser le format traditionnel PKCS #1 (le format PKCS #8 n'est pas pris en charge).
-
-
-
- a| 
-Phrase de passe de clé privée du client
- a| 
-Phrase de passe pour le décryptage de la clé privée du client. Si la clé privée n'est pas chiffrée, laissez ce champ vide.
-
-|===
---
-====
 . Sélectionnez *Test et Créer un noeud final*.
 +
 ** Un message de réussite s'affiche si le noeud final peut être atteint à l'aide des informations d'identification spécifiées. La connexion au noeud final est validée à partir d'un nœud sur chaque site.

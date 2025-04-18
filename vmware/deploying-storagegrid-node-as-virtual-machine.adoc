@@ -160,7 +160,7 @@ NOTE: Si vous récupérez un nœud de la grille, vous devez entrer le nom du nœ
 .. Utilisez la liste déroulante *Mot de passe d'installation temporaire* pour spécifier un mot de passe d'installation temporaire, afin que vous puissiez accéder à la console VM ou à l'API d'installation StorageGRID, ou utiliser SSH, avant que le nouveau nœud ne rejoigne la grille.
 +
 
-NOTE: Le mot de passe d'installation temporaire n'est utilisé que lors de l'installation du nœud. Une fois qu'un nœud a été ajouté à la grille, vous pouvez y accéder à l'aide du link:../admin/change-node-console-password.html["mot de passe de la console du nœud"], qui est répertorié dans `Passwords.txt` le fichier du package de récupération.
+NOTE: Le mot de passe d'installation temporaire n'est utilisé que lors de l'installation du nœud. Une fois qu'un nœud a été ajouté à la grille, vous pouvez y accéder à l'aide du link:../admin/change-node-console-password.html["mot de passe de la console du nœud"], qui est répertorié dans `Passwords.txt` le fichier du progiciel de récupération.
 
 +
 *** *Utiliser le nom de noeud* : la valeur que vous avez fournie pour le champ *Nom de noeud* est utilisée comme mot de passe d'installation temporaire.

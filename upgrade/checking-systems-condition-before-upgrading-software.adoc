@@ -33,6 +33,28 @@ NOTE: Contactez le support technique si une tâche ne se termine pas ou ne relâ
 . Reportez-vous aux sections link:../network/internal-grid-node-communications.html["Communications internes sur les nœuds de la grille"] et link:../network/external-communications.html["Communications externes"] pour vous assurer que tous les ports requis pour StorageGRID 11.9 sont ouverts avant la mise à niveau.
 +
 
-NOTE: Aucun port supplémentaire n'est requis lors de la mise à niveau vers StorageGRID 12.0.
+NOTE: Aucun port supplémentaire n'est requis lors de la mise à niveau vers StorageGRID 11.9.
+
++
+Le port requis suivant a été ajouté dans StorageGRID 11.7. Assurez-vous qu'il est disponible avant de passer à StorageGRID 11.9.
+
++
+[cols="1a,2a"]
+|===
+| Port | Description 
 
 
+ a| 
+18086
+ a| 
+Port TCP utilisé pour les requêtes S3 de l'équilibreur de charge StorageGRID vers LDR et le nouveau service LDR.
+
+Avant de procéder à la mise à niveau, vérifiez que ce port est ouvert de tous les nœuds de grid à tous les nœuds de stockage.
+
+Le blocage de ce port provoque des interruptions du service S3 après la mise à niveau vers StorageGRID 11.9.
+
+|===
+
+
+
+CAUTION: Si vous avez ouvert des ports de pare-feu personnalisés, vous êtes averti au cours de la vérification préalable de la mise à niveau. Vous devez contacter le support technique avant de procéder à la mise à niveau.

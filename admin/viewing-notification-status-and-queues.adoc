@@ -2,7 +2,7 @@
 permalink: admin/viewing-notification-status-and-queues.html 
 sidebar: sidebar 
 keywords: NMS service, network management system, interface engine 
-summary: 'Le service Network Management System (NMS) sur les nœuds Admin envoie des notifications au serveur de messagerie. Vous pouvez afficher l"état du service NMS et la taille de sa file d"attente de notifications sur la page interface Engine.' 
+summary: 'Le service Network Management System (NMS) sur les nœuds Admin envoie des notifications au serveur de messagerie. Vous pouvez afficher l"état actuel du service NMS ainsi que la taille de sa file d"attente de notifications sur la page moteur d"interface.' 
 ---
 = Afficher l'état des notifications et les files d'attente
 :allow-uri-read: 
@@ -11,12 +11,10 @@ summary: 'Le service Network Management System (NMS) sur les nœuds Admin envoie
 
 
 [role="lead"]
-Le service Network Management System (NMS) sur les nœuds Admin envoie des notifications au serveur de messagerie. Vous pouvez afficher l'état du service NMS et la taille de sa file d'attente de notifications sur la page interface Engine.
+Le service Network Management System (NMS) sur les nœuds Admin envoie des notifications au serveur de messagerie. Vous pouvez afficher l'état actuel du service NMS ainsi que la taille de sa file d'attente de notifications sur la page moteur d'interface.
 
 Pour accéder à la page moteur d'interface, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_Admin Node_* > *NMS* > *interface Engine*.
 
 image::../media/email_notification_status_and_queues.gif[Interface Engine, page]
 
-Le système envoie des notifications les unes après les autres dans l'ordre dans lequel elles sont déclenchées.
-
-En cas de problème, tel qu'une erreur de connexion réseau, et si le serveur de messagerie n'est pas disponible, le système tente d'envoyer une notification pendant 60 secondes. Si la notification n'est pas envoyée au bout de 60 secondes, le système supprime la notification de la file d'attente et tente d'envoyer la notification suivante.
+Les notifications sont traitées via la file d'attente de notifications par e-mail et sont envoyées au serveur de messagerie l'une après l'autre dans l'ordre dans lequel elles sont déclenchées. En cas de problème (par exemple, une erreur de connexion réseau) et si le serveur de messagerie n'est pas disponible lors de la tentative d'envoi de la notification, une tentative de renvoi de la notification au serveur de messagerie se poursuit pendant une période de 60 secondes. Si la notification n'est pas envoyée au serveur de messagerie après 60 secondes, elle est supprimée de la file d'attente de notifications et une tentative d'envoi de la notification suivante dans la file d'attente est effectuée.

@@ -11,7 +11,7 @@ summary: 'Si vous avez configuré et activé la connexion unique (SSO) et que vo
 
 
 [role="lead"]
-Si vous avez link:../admin/how-sso-works.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez PingFederate comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API de gestion de grille ou l'API de gestion de tenant.
+Si vous avez link:../admin/configuring-sso.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez PingFederate comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API de gestion de grille ou l'API de gestion de tenant.
 
 
 

@@ -24,7 +24,7 @@ Si vous envisagez d'utiliser un pool de stockage cloud pour déplacer les objets
 * Les combinaisons de plateforme, d'authentification et de protocoles suivantes avec le verrouillage objet S3 ne sont pas prises en charge pour les pools de stockage cloud :
 +
 ** *Plateformes* : Google Cloud Platform et Azure
-** *Types d'authentification* : accès anonyme
+** *Types d'authentification* : rôles IAM partout et accès anonyme
 ** *Protocole* : HTTP
 
 

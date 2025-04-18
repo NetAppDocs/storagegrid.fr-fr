@@ -46,12 +46,12 @@ TIP: Lorsque vous activez SSO, un référentiel d'identité configuré dans le G
 .. Sélectionnez le compte locataire, puis sélectionnez *actions* > *Modifier*.
 .. Dans l'onglet entrer les détails, sélectionnez *Continuer*.
 .. Si la case *utiliser le propre référentiel d'identité* est cochée, décochez la case et sélectionnez *Enregistrer*.
-
++
+image::../media/sso_uses_own_identity_source_for_tenant.png[Case à cocher Modifier le compte de locataire > utiliser le propre référentiel d'identité non sélectionnée]
 
 +
 La page tenant s'affiche.
 
-+
 .. Sélectionnez le compte de tenant, sélectionnez *connexion* et connectez-vous au compte de tenant en tant qu'utilisateur racine local.
 .. Dans le Gestionnaire de locataires, sélectionnez *ACCESS MANAGEMENT* > *Groups*.
 .. Assurez-vous qu'au moins un groupe fédéré du Grid Manager a reçu l'autorisation d'accès racine pour ce locataire.

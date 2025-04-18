@@ -180,6 +180,25 @@ Les demandes de pools de stockage cloud sont envoyées aux cibles AWS qui utilis
 
 
  a| 
+111
+ a| 
+TCP/UDP
+ a| 
+Rpcbind
+ a| 
+Client NFS
+ a| 
+Nœuds d'administration
+ a| 
+Utilisé par l'export d'audit basé sur NFS (portmap).
+
+*Remarque :* ce port n'est requis que si l'exportation d'audit NFS est activée.
+
+*Remarque :* la prise en charge de NFS a été obsolète et sera supprimée dans une future version.
+
+
+
+ a| 
 123
  a| 
 UDP
@@ -310,6 +329,25 @@ Les demandes de pools de stockage cloud sont envoyées aux cibles AWS qui utilis
 
 
  a| 
+903
+ a| 
+TCP
+ a| 
+NFS
+ a| 
+Client NFS
+ a| 
+Nœuds d'administration
+ a| 
+Utilisé par l'exportation d'audit basée sur NFS (`rpc.mountd`).
+
+*Remarque :* ce port n'est requis que si l'exportation d'audit NFS est activée.
+
+*Remarque :* la prise en charge de NFS a été obsolète et sera supprimée dans une future version.
+
+
+
+ a| 
 2022
  a| 
 TCP
@@ -321,6 +359,25 @@ L'ordinateur portable de service
 Tous les nœuds
  a| 
 Un accès SSH ou via la console est requis pour les procédures liées aux étapes de la console. Vous pouvez également utiliser le port 22 au lieu de 2022.
+
+
+
+ a| 
+2049
+ a| 
+TCP
+ a| 
+NFS
+ a| 
+Client NFS
+ a| 
+Nœuds d'administration
+ a| 
+Utilisé par l'export d'audit basé sur NFS (nfs).
+
+*Remarque :* ce port n'est requis que si l'exportation d'audit NFS est activée.
+
+*Remarque :* la prise en charge de NFS a été obsolète et sera supprimée dans une future version.
 
 
 

@@ -73,7 +73,7 @@ Les locataires FabricPool n'ont généralement pas besoin d'utiliser S3 Select.
 .. Vous pouvez également sélectionner *utiliser la connexion de fédération de grille* pour permettre au locataire d'utiliser un link:../admin/grid-federation-overview.html["connexion de fédération de grille"] pour le clone de compte et la réplication de grille croisée. Sélectionnez ensuite la connexion de fédération de grille à utiliser.
 
 
-. Pour l'étape définir l'accès racine, spécifiez l'utilisateur qui aura l'autorisation d'accès racine initiale pour le compte de locataire, selon que votre système StorageGRID utilise link:../admin/using-identity-federation.html["fédération des identités"] link:../admin/how-sso-works.html["Authentification unique (SSO)"]ou les deux.
+. Pour l'étape définir l'accès racine, spécifiez l'utilisateur qui aura l'autorisation d'accès racine initiale pour le compte de locataire, selon que votre système StorageGRID utilise link:../admin/using-identity-federation.html["fédération des identités"] link:../admin/configuring-sso.html["Authentification unique (SSO)"]ou les deux.
 +
 [cols="1a,2a"]
 |===

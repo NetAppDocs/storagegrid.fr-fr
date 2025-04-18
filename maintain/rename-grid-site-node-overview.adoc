@@ -99,7 +99,7 @@ Affiché comme nom principal lorsque l'élément est renommé :
 
 
  a| 
-`Passwords.txt` dans le package de récupération
+`Passwords.txt` Dans le progiciel de récupération
  a| 
 Comme illustré `Server Name`
  a| 

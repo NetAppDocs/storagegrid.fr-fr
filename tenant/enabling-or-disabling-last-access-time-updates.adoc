@@ -53,19 +53,6 @@ Le tableau récapitule le comportement appliqué à tous les objets du compartim
 
 
  a| 
-Demande de récupération des métadonnées d'un objet lorsqu'une opération HEAD est lancée
- a| 
-Non
- a| 
-Non
- a| 
-Non
- a| 
-Non
-
-
-
- a| 
 Demande de récupération d'un objet, de sa liste de contrôle d'accès ou de ses métadonnées
  a| 
 Non

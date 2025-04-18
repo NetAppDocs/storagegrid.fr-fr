@@ -19,6 +19,7 @@ Vous devez sélectionner Démarrer la restauration dans Grid Manager pour config
 * Vous avez la phrase secrète pour le provisionnement.
 * Vous avez déployé un nœud de stockage d'appliance de restauration.
 * Vous disposez de la date de début des travaux de réparation pour les données avec code d'effacement.
+* Vous avez vérifié que le nœud de stockage n'a pas été reconstruit au cours des 15 derniers jours.
 
 
 .Étapes
