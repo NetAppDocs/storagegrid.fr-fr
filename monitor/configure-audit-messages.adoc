@@ -122,7 +122,7 @@ Aucun message d'audit de la catégorie n'est enregistré.
  a| 
 Erreur
  a| 
-Seuls les messages d'erreur sont consignés--les messages d'audit pour lesquels le code de résultat n'a pas été « réussi » (CMC).
+Seuls les messages d'erreur sont consignés, c'est-à-dire les messages d'audit pour lesquels le code de résultat n'a pas été « réussi » (SUCS).
 
 
 
@@ -169,7 +169,7 @@ Lorsque des en-têtes HTTP sont trouvés dans une requête, ils sont inclus dans
 
 +
 
-NOTE: Les en-têtes de requête de protocole d'audit ne sont consignés que si le niveau d'audit pour *lecture client* ou *écriture client* n'est pas *off*.
+NOTE: Les en-têtes de requête de protocole d'audit ne sont consignés que si le niveau d'audit pour *client Reads* ou *client Writes* n'est pas *Off*.
 
 . Sélectionnez *Enregistrer*
 +
@@ -619,7 +619,7 @@ Nœuds d'administration/nœuds locaux
  a| 
 Les messages d'audit sont envoyés au journal d'audit sur les nœuds d'administration, et les journaux d'événements de sécurité et d'applications sont stockés sur les nœuds qui les ont générés. Les informations d'audit sont stockées dans les fichiers suivants :
 
-** Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+** Nœuds d'administration (principal et non primaire) : `/var/local/audit/export/audit.log`
 ** Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant. Il peut contenir des informations secondaires, telles qu'une copie supplémentaire de certains messages.
 
 

@@ -76,7 +76,7 @@ NOTE: La valeur de cohérence pour la gestion des versions des compartiments, le
 Les paramètres de compartiment suivants n'utilisent pas une cohérence élevée et offrent une plus grande disponibilité en cas de modification. Les modifications apportées à ces paramètres peuvent prendre un certain temps avant d'avoir un effet.
 
 * link:considerations-for-platform-services.html["Configuration des services de plate-forme : intégration de notification, réplication ou recherche"]
-* link:configuring-cross-origin-resource-sharing-cors.html["Configuration DE L'INFRASTRUCTURE CORS"]
+* link:configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["Configurer StorageGRID CORS pour les compartiments et les objets"]
 * <<change-bucket-consistency,Modifier la cohérence du compartiment>>
 
 

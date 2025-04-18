@@ -365,7 +365,7 @@ Créez un locataire et un compartiment ou sélectionnez un locataire existant.
 .Nouveaux locataires et compartiments
 --
 . Pour créer un nouveau tenant et un compartiment, entrez un *tenant name*. Par exemple `FabricPool tenant`, .
-. Définissez l'accès racine du compte de tenant, selon que votre système StorageGRID utilise link:../admin/using-identity-federation.html["fédération des identités"] link:../admin/configuring-sso.html["Authentification unique (SSO)"]ou les deux.
+. Définissez l'accès racine du compte de tenant, selon que votre système StorageGRID utilise link:../admin/using-identity-federation.html["fédération des identités"] link:../admin/how-sso-works.html["Authentification unique (SSO)"]ou les deux.
 +
 [cols="1a,3a"]
 |===

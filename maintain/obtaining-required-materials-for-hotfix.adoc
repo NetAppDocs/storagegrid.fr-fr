@@ -35,14 +35,14 @@ Vous devez télécharger le fichier de correctif StorageGRID.
 
 
  a| 
-Package de récupération (`.zip`)
+package de récupération (`.zip`)
  a| 
-Avant d'appliquer un correctif, link:downloading-recovery-package.html["Téléchargez le dernier fichier de progiciel de récupération"] en cas de problème pendant le correctif. Ensuite, une fois le correctif appliqué, téléchargez une nouvelle copie du fichier du progiciel de récupération et enregistrez-le dans un emplacement sûr. Le fichier du progiciel de récupération mis à jour vous permet de restaurer le système en cas de défaillance.
+Avant d'appliquer un correctif, link:downloading-recovery-package.html["téléchargez le fichier de package de récupération le plus récent"] en cas de problème pendant le correctif. Ensuite, une fois le correctif appliqué, téléchargez une nouvelle copie du fichier de package de récupération et enregistrez-le dans un emplacement sûr. Le fichier de package de récupération mis à jour vous permet de restaurer le système en cas de défaillance.
 
 
 
 | Fichier Passwords.txt  a| 
-Facultatif et utilisé uniquement si vous appliquez un correctif manuellement à l'aide du client SSH. Le `Passwords.txt` fichier fait partie du fichier du progiciel de récupération `.zip`.
+Facultatif et utilisé uniquement si vous appliquez un correctif manuellement à l'aide du client SSH. Le `Passwords.txt` fichier fait partie du fichier de package de récupération `.zip`.
 
 
 

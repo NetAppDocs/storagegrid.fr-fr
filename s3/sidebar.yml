@@ -13,8 +13,8 @@ entries:
   entries:
   - title: Requêtes des clients en conflit
     url: "/s3/conflicting-client-requests.html"
-  - title: Valeurs de cohérence
-    url: "/s3/consistency-controls.html"
+  - title: La cohérence
+    url: "/s3/consistency.html"
   - title: Gestion des versions d'objet
     url: "/s3/object-versioning.html"
   - title: Utilisez l'API REST S3 pour configurer le verrouillage objet S3

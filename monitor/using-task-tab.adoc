@@ -1,0 +1,22 @@
+---
+permalink: monitor/using-task-tab.html 
+sidebar: sidebar 
+keywords: Tasks tab, rename node, reboot node, storage state, maintenance mode 
+summary: 'L"onglet tâches s"affiche pour tous les nœuds. Vous pouvez utiliser cet onglet pour renommer ou redémarrer un nœud ou pour mettre un nœud d"appliance en mode maintenance. Pour les nœuds de stockage, vous pouvez définir l"état du stockage.' 
+---
+= Utilisez l'onglet tâches
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'onglet tâches s'affiche pour tous les nœuds. Vous pouvez utiliser cet onglet pour renommer ou redémarrer un nœud ou pour mettre un nœud d'appliance en mode maintenance. Pour les nœuds de stockage, vous pouvez définir l'état du stockage.
+
+Pour connaître l'ensemble des exigences et des instructions relatives à chaque option de cet onglet, reportez-vous aux sections suivantes :
+
+* link:../maintain/rename-grid-site-node-overview.html["Renommez la grille, les sites et les nœuds"]
+* link:../maintain/rebooting-grid-node-from-grid-manager.html["Redémarrez le nœud de la grille"]
+* https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/placing-appliance-into-maintenance-mode.html["Mettez l'appareil en mode maintenance"^]
+* Vous vérifiez ou définissez l'état de stockage d'un nœud de stockage après avoir ajouté des volumes à connexion directe ou SAN à un nœud de stockage, ou après la restauration d'un nœud de stockage. Ces instructions sont disponibles dans les rubriques qui décrivent ces tâches.
+

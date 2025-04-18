@@ -15,12 +15,12 @@ Vous utilisez PingFederate pour créer une connexion de fournisseur de services 
 
 .Avant de commencer
 * Vous avez configuré l'authentification unique pour StorageGRID et sélectionné *Ping Federate* comme type SSO.
-* *Sandbox mode* est sélectionné sur la page Single Sign-on dans Grid Manager. Voir link:../admin/using-sandbox-mode.html["Utiliser le mode sandbox"].
-* Vous disposez de l'ID de connexion * SP* pour chaque noeud d'administration de votre système. Ces valeurs sont disponibles dans le tableau des détails des nœuds d'administration de la page d'ouverture de session unique StorageGRID.
+* Vous avez link:../admin/configure-sso.html#enter-sandbox-mode["entrée en mode sandbox"] dans le Gestionnaire de grille.
+* Vous disposez de l'ID de connexion * SP* pour chaque noeud d'administration de votre système. Vous trouverez ces valeurs dans le tableau détaillé Admin Nodes de la page Configure SSO.
 * Vous avez téléchargé les métadonnées *SAML* pour chaque noeud d'administration de votre système.
 * Vous avez l'expérience de la création de connexions SP dans PingFederate Server.
 * Vous avez le https://docs.pingidentity.com/pingfederate/latest/administrators_reference_guide/pf_administrators_reference_guide.html["Guide de référence de l'administrateur"^]serveur for PingFederate. La documentation PingFederate fournit des instructions détaillées étape par étape et des explications.
-* Vous avez le link:admin-group-permissions.html["Autorisation d'administrateur"]serveur for PingFederate.
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'administrateur"]serveur for PingFederate.
 
 
 .Description de la tâche
@@ -109,7 +109,7 @@ TIP: Vous devez créer une connexion SP pour chaque nœud d'administration de vo
 
 .Étapes
 . Dans l'onglet Importer les métadonnées, sélectionnez *fichier*.
-. Choisissez le fichier de métadonnées SAML que vous avez téléchargé à partir de la page d'authentification unique StorageGRID pour le nœud d'administration.
+. Choisissez le fichier de métadonnées SAML que vous avez téléchargé à partir de la page configurer SSO pour le nœud d'administration.
 . Passez en revue le résumé des métadonnées et les informations fournies dans l'onglet Infos générales.
 +
 L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de connexion SP StorageGRID. (Par exemple, 10.96.105.200-DC1-ADM1-105-200). L'URL de base est l'adresse IP du nœud d'administration StorageGRID.

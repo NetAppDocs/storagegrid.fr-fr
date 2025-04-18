@@ -145,9 +145,6 @@ Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modi
 
 . Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, sélectionnez *Démarrer l'installation*.
 +
-image::../media/appliance_installer_home_start_installation_enabled.gif[Cette image est décrite par le texte environnant.]
-
-+
 L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
 
 . Si votre extension inclut plusieurs nœuds d'appliance, répétez les étapes précédentes pour chaque appliance.
@@ -158,9 +155,6 @@ NOTE: Si vous devez déployer plusieurs nœuds de stockage d'appliance à la foi
 . Si vous devez accéder manuellement à la page installation du moniteur, sélectionnez *installation du moniteur* dans la barre de menus.
 +
 La page installation du moniteur affiche la progression de l'installation.
-
-+
-image::../media/monitor_installation_configure_storage.gif[Cette image est expliquée par le texte qui l'entoure.]
 
 +
 La barre d'état bleue indique la tâche en cours. Les barres d'état vertes indiquent que les tâches ont été effectuées avec succès.
@@ -191,8 +185,5 @@ Au cours de cette étape, le programme d'installation copie l'image du système 
 +
 
 NOTE: Attendez que tous les nœuds ajoutés à cette extension soient prêts pour approbation avant de passer à Grid Manager pour approuver les nœuds.
-
-+
-image::../media/monitor_installation_install_sgws.gif[Cette image est expliquée par le texte qui l'entoure.]
 
 

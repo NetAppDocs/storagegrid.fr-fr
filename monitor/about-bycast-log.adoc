@@ -15,7 +15,7 @@ Le fichier est le fichier `/var/local/log/bycast.log` de dépannage principal du
 
 Le fichier `/var/local/log/bycast-err.log` est un sous-ensemble de `bycast.log`. Il contient des messages D'ERREUR de gravité et D'ERREUR CRITIQUE.
 
-Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
 
 
 
@@ -32,7 +32,7 @@ La limite de rotation pour `bycast-err.log` est de sept fichiers.
 
 NOTE: Si un fichier journal a été compressé, vous ne devez pas le décompresser au même emplacement que celui dans lequel il a été écrit. La décompression du fichier au même emplacement peut interférer avec les scripts de rotation du journal.
 
-Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
 
 .Informations associées
 link:collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]

@@ -47,7 +47,7 @@ L'exportation des journaux vers le serveur syslog offre les fonctionnalités sui
 * Meilleure visibilité sur les demandes bloquées par les classificateurs du trafic au niveau de l'équilibreur de charge.
 
 
-Pour exporter les journaux, reportez-vous link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"]à la section .
+Pour exporter les journaux, reportez-vous link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"]à la section .
 
 
 
@@ -227,6 +227,6 @@ Résultat des commandes du conteneur StorageGRID. Contient des informations sur 
 
 
 | synchroniser-package-récupération  a| 
-Lié au maintien de la cohérence du dernier package de récupération sur tous les nœuds d'administration et les nœuds de stockage qui hébergent le service ADC.
+Lié au maintien de la cohérence du dernier package de restauration sur tous les nœuds d'administration et nœuds de stockage qui hébergent le service ADC.
 
 |===

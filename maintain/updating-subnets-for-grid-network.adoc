@@ -34,13 +34,13 @@ Si vous effectuez une activité d'extension incluant l'ajout d'un nouveau sous-r
 Par exemple, entrez `10.96.104.0/22`.
 
 . Saisissez le mot de passe de provisionnement et sélectionnez *Enregistrer*.
-. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase de passe de provisionnement *.
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID. Elle permet également de restaurer le nœud d'administration principal.
+CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID. Elle permet également de restaurer le nœud d'administration principal.
 
 
 
@@ -57,7 +57,7 @@ Les sous-réseaux que vous avez spécifiés sont automatiquement configurés pou
 . Sélectionnez le sous-réseau à modifier et apportez les modifications nécessaires.
 . Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
 . Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
-. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase de passe de provisionnement *.
@@ -74,7 +74,7 @@ Les sous-réseaux que vous avez spécifiés sont automatiquement configurés pou
 . Sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"]en regard du sous-réseau.
 . Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
 . Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
-. Attendez que les modifications soient appliquées, puis téléchargez un nouveau progiciel de récupération.
+. Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
 .. Saisissez la phrase de passe de provisionnement *.

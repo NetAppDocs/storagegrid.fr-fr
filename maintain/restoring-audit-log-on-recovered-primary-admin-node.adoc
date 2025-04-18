@@ -33,7 +33,7 @@ Par défaut, les informations d'audit sont envoyées au journal d'audit des nœu
 * Vous avez explicitement indiqué que les messages d'audit doivent être enregistrés uniquement sur les nœuds locaux qui les ont générés.
 
 
-Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"] pour plus de détails.
+Voir link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"] pour plus de détails.
 
 ====
 .Étapes

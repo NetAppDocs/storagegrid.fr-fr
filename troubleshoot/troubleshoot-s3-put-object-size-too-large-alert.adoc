@@ -51,7 +51,7 @@ Nœuds locaux (par défaut)
  a| 
 Nœuds d'administration/nœuds locaux
  a| 
-*** Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+*** Nœuds d'administration (principal et non primaire) : `/var/local/audit/export/audit.log`
 *** Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant dans ce mode.
 
 
@@ -116,7 +116,7 @@ audit.log:2023-01-05T18:47:05.525999 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):16729436
 
 . Si les écritures du client ne sont pas normales, utilisez l'ID de locataire de l'alerte pour identifier le locataire :
 +
-.. Accédez à *SUPPORT* > *Outils* > *journaux*. Collectez les journaux d'application du nœud de stockage dans l'alerte. Spécifiez 15 minutes avant et après l'alerte.
+.. Accédez à *SUPPORT* > *Outils* > *journaux*. Collectez les journaux d'application du nœud de stockage dans l'alerte. Spécifiez 15 minutes avant et après l'alerte. Reportez-vous à la link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"].
 .. Extraire le fichier et aller à `bycast.log`:
 +
 `/GID<grid_id>_<time_stamp>/<site_node>/<time_stamp>/grid/bycast.log`

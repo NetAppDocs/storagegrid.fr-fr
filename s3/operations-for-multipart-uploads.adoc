@@ -30,9 +30,10 @@ Les conditions et notes suivantes s'appliquent à toutes les opérations de tél
 ** Lors de l'évaluation d'ILM pour une pièce, StorageGRID filtre la taille de la pièce, et non la taille de l'objet. Ainsi, certaines parties d'un objet peuvent être stockées dans des emplacements qui ne respectent pas les exigences de la règle ILM pour l'ensemble de l'objet. Par exemple, si une règle indique que tous les objets de 10 Go ou plus sont stockés sur DC1 alors que tous les objets plus petits sont stockés sur DC2, chaque partie de 1 Go d'un téléchargement partitionné en 10 parties est stockée sur DC2 lors de l'ingestion. Cependant, lorsque ILM est évalué pour l'objet dans son ensemble, toutes les parties de l'objet sont déplacées vers DC1.
 
 
-* Toutes les opérations de téléchargement partitionné prennent en charge StorageGRID link:consistency-controls.html["valeurs de cohérence"].
+* Toutes les opérations de téléchargement partitionné prennent en charge StorageGRID link:consistency.html["valeurs de cohérence"].
 * Lorsqu'un objet est ingéré à l'aide d'un téléchargement partitionné, le link:../admin/what-object-segmentation-is.html["Seuil de segmentation d'objet (1 Gio)"]n'est pas appliqué.
 * Si nécessaire, vous pouvez l'utiliser link:using-server-side-encryption.html["chiffrement côté serveur"] avec les téléchargements partitionnés. Pour utiliser SSE (chiffrement côté serveur avec des clés gérées par StorageGRID), vous incluez l'en- `x-amz-server-side-encryption`tête de requête dans la requête CreateMultipartUpload uniquement. Pour utiliser SSE-C (chiffrement côté serveur avec des clés fournies par le client), vous devez spécifier les trois mêmes en-têtes de requête de clé de chiffrement dans la demande CreateMultipartUpload et dans chaque demande UploadPart suivante.
+* Un objet téléchargé en plusieurs parties est inclus dans un link:../tenant/manage-branch-buckets.html["seau de dérivation"] si l'ingestion a été initiée avant l'horodatage antérieur du compartiment de base, quelle que soit la fin du téléchargement.
 
 
 [cols="2a,3a"]

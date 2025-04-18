@@ -70,6 +70,8 @@ entries:
     url: "/tenant/creating-s3-bucket.html"
   - title: Afficher les détails du compartiment
     url: "/tenant/viewing-s3-bucket-details.html"
+  - title: Gérer les compartiments de branche
+    url: "/tenant/manage-branch-buckets.html"
   - title: Appliquez la balise de règle ILM au compartiment
     url: "/tenant/ilm-policy-tags.html"
   - title: Gestion de la règle de compartiment
@@ -84,8 +86,10 @@ entries:
     url: "/tenant/using-s3-object-lock.html"
   - title: Mettre à jour la conservation par défaut du verrouillage d'objet S3
     url: "/tenant/update-default-retention-settings.html"
-  - title: Configurer le partage de ressources inter-sources (CORS)
-    url: "/tenant/configuring-cross-origin-resource-sharing-cors.html"
+  - title: Configurer les codes de commande pour les compartiments et les objets
+    url: "/tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html"
+  - title: Activez CORS pour une interface de gestion
+    url: "/tenant/enable-cross-origin-resource-sharing-for-management-interface.html"
   - title: Supprime les objets du compartiment
     url: "/tenant/deleting-s3-bucket-objects.html"
   - title: Supprimer le compartiment

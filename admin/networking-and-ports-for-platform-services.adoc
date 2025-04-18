@@ -20,6 +20,10 @@ Par exemple, les locataires peuvent configurer les types de terminaux de destina
 * Un cluster Elasticsearch hébergé localement
 * Application locale qui prend en charge la réception des messages Amazon simple notification Service
 * Cluster Kafka hébergé localement
+* Un noeud final Web externe ou hébergé localement qui prend en charge les requêtes HTTP POST-notification.
++
+Ce noeud final peut être hébergé sur divers serveurs Web, infrastructures ou outils Data Processing tels que Fluentd.
+
 * Un compartiment S3 hébergé localement sur la même instance d'StorageGRID ou sur une autre instance
 * Un terminal externe, tel qu'un terminal sur Amazon Web Services.
 

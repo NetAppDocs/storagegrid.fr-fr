@@ -233,22 +233,22 @@ Vous pouvez également surveiller l'état des travaux de restauration de volume 
 
 * Pour surveiller la réparation plus en détail :
 +
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_GRID_* > *_Storage Node en cours de réparation_* > *LDR* > *Data Store*.
-.. Utilisez une combinaison des attributs suivants pour déterminer, autant que possible, si les réparations répliquées sont terminées.
+.. Sélectionnez *NOEUDS*.
+.. Sélectionnez *_grid name_* > *ILM*.
+.. Placez le curseur sur le graphique de la file d'attente ILM pour voir la valeur de l'attribut *Scan rate (objects/sec)*, qui est la vitesse à laquelle les objets de la grille sont analysés et mis en file d'attente pour ILM.
+.. Dans la section ILM Queue, examinez les attributs suivants :
 +
-
-NOTE: Cassandra présente peut-être des incohérences et les réparations échouées ne sont pas suivies.
-
+*** *Période d'analyse - estimation* : temps estimé pour effectuer une analyse ILM complète de tous les objets.
 +
-*** *Réparations tentées (XRPA)* : utilisez cet attribut pour suivre la progression des réparations répliquées. Cet attribut augmente chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque. Lorsque cet attribut n'augmente pas pendant une période plus longue que la période d'acquisition actuelle (fournie par l'attribut *période d'analyse -- estimation*), cela signifie que l'analyse ILM n'a trouvé aucun objet à haut risque qui doit être réparé sur n'importe quel nœud.
+Une analyse complète ne garantit pas que le ILM a été appliqué à tous les objets.
+
+*** *Tentatives de réparation* : nombre total d'opérations de réparation d'objets pour les données répliquées qui ont été tentées. Ce nombre est incrémenté chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque. Les réparations ILM à haut risque sont hiérarchisées si le grid est occupé.
 +
-
-NOTE: Les objets à haut risque sont des objets qui risquent d'être complètement perdus. Cela n'inclut pas les objets qui ne répondent pas à leur configuration ILM.
-
-*** *Période d'acquisition -- estimée (XSCM)* : utilisez cet attribut pour estimer quand une modification de règle sera appliquée aux objets précédemment ingérés. Si l'attribut *réparations tentées* n'augmente pas pendant une période supérieure à la période d'acquisition actuelle, il est probable que les réparations répliquées soient effectuées. Notez que la période d'acquisition peut changer. L'attribut *période d'acquisition -- estimée (XSCM)* s'applique à la grille entière et est le maximum de toutes les périodes d'acquisition de nœud. Vous pouvez interroger l'historique d'attributs *période de balayage -- estimation* de la grille pour déterminer une période appropriée.
+La réparation d'un même objet peut être de nouveau incrémentée si la réplication a échoué après la réparation. + ces attributs peuvent être utiles lorsque vous surveillez la progression de la restauration du volume du nœud de stockage. Si le nombre de réparations tentées a cessé d'augmenter et qu'une analyse complète a été effectuée, la réparation est probablement terminée.
 
 
+
+.. Vous pouvez également envoyer une requête Prometheus pour `storagegrid_ilm_scan_period_estimated_minutes` et `storagegrid_ilm_repairs_attempted`.
 
 
 

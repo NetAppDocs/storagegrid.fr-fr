@@ -14,7 +14,7 @@ summary: 'Les fichiers journaux d"audit sont enregistrés dans le répertoire /v
 Les fichiers journaux d'audit sont enregistrés dans le répertoire d'un nœud d'administration `/var/local/log`. Les fichiers journaux d'audit actifs sont nommés `audit.log`.
 
 
-NOTE: Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+NOTE: Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
 
 Une fois par jour, le fichier actif `audit.log` est enregistré et un nouveau `audit.log` fichier démarre. Le nom du fichier enregistré indique quand il a été enregistré, au format `_yyyy-mm-dd.txt_`. Si plusieurs journaux d'audit sont créés en une seule journée, les noms de fichier utilisent la date à laquelle le fichier a été enregistré, ajoutée par un nombre, au format `_yyyy-mm-dd.txt.n_`. Par exemple, `2018-04-15.txt` et `2018-04-15.txt.1` sont les premier et deuxième fichiers journaux créés et enregistrés le 15 avril 2018.
 

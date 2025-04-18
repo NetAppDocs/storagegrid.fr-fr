@@ -19,17 +19,7 @@ Après avoir restauré un noeud de stockage d'appliance, vous devez vérifier qu
 
 
 .Étapes
-. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-. Vérifiez les valeurs de *nœud de stockage récupéré* > *LDR* > *Storage* > *Storage State de stockage -- désiré* et *Storage State -- Current*.
-+
-La valeur des deux attributs doit être en ligne.
-
-. Si l'état de stockage -- souhaité est défini sur lecture seule, procédez comme suit :
-+
-.. Cliquez sur l'onglet *Configuration*.
-.. Dans la liste déroulante *État de stockage -- désiré*, sélectionnez *en ligne*.
-.. Cliquez sur *appliquer les modifications*.
-.. Cliquez sur l'onglet *Présentation* et confirmez que les valeurs de *État de stockage -- désiré* et *État de stockage -- actuel* sont mises à jour en ligne.
-
-
+. Sélectionnez *NODES* > *_Storage Node_* > *Tasks*.
+. Si la liste déroulante *État de stockage* est définie sur lecture seule ou hors ligne, sélectionnez *en ligne*.
+. Sélectionnez *Enregistrer*.
 

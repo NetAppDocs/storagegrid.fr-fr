@@ -17,7 +17,7 @@ Suivez ces recommandations lors de l'implémentation de l'API REST S3 pour une u
 
 == Recommandations pour les têtes à des objets inexistants
 
-Si votre application vérifie régulièrement si un objet existe dans un chemin où vous ne vous attendez pas à ce que l'objet existe réellement, vous devez utiliser le "disponible" link:consistency-controls.html["la cohérence"]. Par exemple, vous devez utiliser la cohérence « disponible » si votre application se trouve en tête d'emplacement avant de la METTRE EN PLACE.
+Si votre application vérifie régulièrement si un objet existe dans un chemin où vous ne vous attendez pas à ce que l'objet existe réellement, vous devez utiliser le "disponible" link:consistency.html["la cohérence"]. Par exemple, vous devez utiliser la cohérence « disponible » si votre application se trouve en tête d'emplacement avant de la METTRE EN PLACE.
 
 Sinon, si l'opération HEAD ne trouve pas l'objet, vous risquez de recevoir un nombre élevé d'erreurs de serveur interne 500 si deux nœuds de stockage ou plus sur le même site sont indisponibles ou si un site distant est inaccessible.
 

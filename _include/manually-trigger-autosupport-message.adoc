@@ -3,8 +3,8 @@
 
 
 .Avant de commencer
-* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-* Vous devez disposer de l'accès racine ou d'une autre autorisation de configuration de grille.
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous disposez de l'autorisation d'accès racine ou d'une autre autorisation de configuration de grille.
 
 
 .Étapes
@@ -13,8 +13,8 @@
 +
 StorageGRID tente d'envoyer un pack AutoSupport sur le site de support NetApp. Si la tentative réussit, les valeurs *résultat le plus récent* et *dernier temps* réussi dans l'onglet *Résultats* sont mises à jour. En cas de problème, la valeur *résultat le plus récent* est mise à jour sur « échec » et StorageGRID n'essaie pas d'envoyer à nouveau le paquet AutoSupport.
 
-+
-
-TIP: Après avoir envoyé un pack AutoSupport déclenché par l'utilisateur, actualisez la page AutoSupport de votre navigateur au bout d'une minute pour accéder aux résultats les plus récents.
+. Au bout d'une minute, actualisez la page AutoSupport de votre navigateur pour accéder aux résultats les plus récents.
 
 
+
+TIP: Vous pouvez link:../monitor/collecting-log-files-and-system-data.html["collectez des fichiers journaux et des données système plus complets"] également les envoyer sur le site de support NetApp.

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: disable sso, disable single sign on 
 summary: 'Vous pouvez désactiver l"authentification unique \(SSO\) si vous ne souhaitez plus utiliser cette fonctionnalité. Vous devez désactiver l"authentification unique avant de pouvoir désactiver la fédération des identités.' 
 ---
-= Désactiver l'authentification unique
+= Désactiver SSO
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

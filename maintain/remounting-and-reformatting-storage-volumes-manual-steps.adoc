@@ -23,7 +23,7 @@ L'exécution `sn-remount-volumes` du script peut vous aider à identifier d'autr
 * Vous avez link:reviewing-warnings-for-system-drive-recovery.html["Consultez les avertissements relatifs à la restauration du lecteur du système du nœud de stockage"].
 +
 
-CAUTION: Si plus d'un nœud de stockage est hors ligne ou si un nœud de stockage de cette grille a été reconstruit au cours des 15 derniers jours, contactez le support technique. N'exécutez pas `sn-recovery-postinstall.sh` le script. Reconstruire Cassandra sur deux nœuds de stockage ou plus dans les 15 jours suivant l'arrêt du service peut entraîner une perte de données.
+CAUTION: Si plusieurs nœuds de stockage sont hors ligne, contactez le support technique. N'exécutez pas `sn-recovery-postinstall.sh` le script.
 
 
 

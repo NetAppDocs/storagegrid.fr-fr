@@ -25,7 +25,7 @@ Si des nœuds admin sont inclus dans un groupe haute disponibilité (HA), vous v
 
 === Utiliser SSO
 
-Les étapes de connexion sont légèrement différentes si link:configuring-sso.html["L'authentification unique (SSO) a été configurée"].
+Les étapes de connexion sont légèrement différentes si link:how-sso-works.html["L'authentification unique (SSO) a été configurée"].
 
 
 
@@ -70,9 +70,6 @@ L'écran de connexion qui s'affiche dépend de la configuration de l'authentific
 --
 .. Saisissez votre nom d'utilisateur et votre mot de passe pour le Grid Manager.
 .. Sélectionnez *connexion*.
-+
-image::../media/sign_in_grid_manager_no_sso.png[Page de connexion]
-
 
 
 --
@@ -81,21 +78,12 @@ image::../media/sign_in_grid_manager_no_sso.png[Page de connexion]
 ** Si StorageGRID utilise SSO pour la première fois que vous accédez à l'URL de ce navigateur :
 +
 ... Sélectionnez *connexion*. Vous pouvez laisser le 0 dans le champ compte.
-+
-image::../media/sso_sign_in_first_time.png[Connectez-vous à l'écran si SSO est activé et qu'aucun cookie n'est activé]
-
 ... Saisissez vos identifiants SSO standard sur la page de connexion SSO de votre entreprise. Par exemple :
-+
-image::../media/sso_organization_page.gif[Exemple de page de connexion de l'organisation pour SSO]
-
 
 
 ** Si StorageGRID utilise SSO et que vous avez déjà accédé au Gestionnaire de grille ou à un compte de locataire :
 +
 ... Entrez *0* (l'ID de compte du gestionnaire de grille) ou sélectionnez *Grid Manager* s'il apparaît dans la liste des comptes récents.
-+
-image::../media/sign_in_grid_manager_sso.png[Sélectionnez Grid Manager dans la liste des comptes récents si SSO est activé]
-
 ... Sélectionnez *connexion*.
 ... Connectez-vous à l'aide de vos identifiants SSO standard sur la page de connexion SSO de votre entreprise.
 
@@ -107,8 +95,6 @@ image::../media/sign_in_grid_manager_sso.png[Sélectionnez Grid Manager dans la 
 
 
 Lorsque vous êtes connecté, la page d'accueil du Gestionnaire de grille s'affiche, qui inclut le tableau de bord. Pour savoir quelles informations sont fournies, reportez-vous link:../monitor/viewing-dashboard.html["Affichez et gérez le tableau de bord"]à la section .
-
-image::../media/grid_manager_dashboard.png[tableau de bord]
 
 
 

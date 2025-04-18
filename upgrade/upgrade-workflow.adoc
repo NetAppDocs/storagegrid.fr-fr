@@ -23,7 +23,7 @@ Depuis le nœud d'administration principal, accédez à la page mise à niveau S
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Télécharger le package de récupération
 [role="quick-margin-para"]
-Téléchargez le progiciel de récupération actuel avant de démarrer la mise à niveau.
+Téléchargez le package de récupération actuel avant de démarrer la mise à niveau.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Exécuter des précontrôles de mise à niveau
 [role="quick-margin-para"]
@@ -35,7 +35,7 @@ Lorsque vous démarrez la mise à niveau, les précontrôles sont à nouveau ex�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Six"] Télécharger le package de récupération
 [role="quick-margin-para"]
-Une fois le nœud d'administration principal mis à niveau, téléchargez un nouveau package de récupération.
+Une fois le nœud d'administration principal mis à niveau, téléchargez un nouveau pack de restauration.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sept"] Approuver les nœuds
 [role="quick-margin-para"]

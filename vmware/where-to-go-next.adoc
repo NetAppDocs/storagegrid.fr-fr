@@ -44,7 +44,7 @@ Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configur
 
 == Tâches facultatives
 
-* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Mettre à jour les adresses IP des nœuds de la grille"] S'ils ont changé depuis que vous avez planifié votre déploiement et généré le package de récupération.
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Mettre à jour les adresses IP des nœuds de la grille"] s'ils ont changé depuis que vous avez planifié votre déploiement et généré le package de restauration.
 * link:../admin/changing-network-options-object-encryption.html["Configurer le chiffrement du stockage"], si nécessaire.
 * link:../admin/configuring-stored-object-compression.html["Configurer la compression du stockage"] pour réduire la taille des objets stockés, si nécessaire.
 * link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"] pour isoler et partitionner le trafic réseau, le cas échéant.

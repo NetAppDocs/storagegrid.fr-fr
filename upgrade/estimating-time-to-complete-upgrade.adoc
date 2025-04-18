@@ -51,7 +51,7 @@ Le fichier logiciel est distribué et le service de mise à niveau démarre.
  a| 
 Mettez à niveau les autres nœuds grid
  a| 
-Le logiciel de tous les autres nœuds de la grille est mis à niveau, dans l'ordre dans lequel vous approuvez les nœuds. Chaque nœud de votre système est mis hors service un par un.
+Le logiciel de tous les autres nœuds de la grille est mis à niveau dans l'ordre dans lequel vous approuvez les nœuds. Un nœud d'administration ou de passerelle est mis à niveau en même temps qu'un nœud de stockage.
  a| 
 de 15 minutes à 1 heure par nœud, avec des nœuds d'appliance exigeant le plus de temps
 

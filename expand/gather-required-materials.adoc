@@ -44,7 +44,7 @@ L'ordinateur portable de service présente les caractéristiques suivantes :
  a| 
 `Passwords.txt` fichier
  a| 
-Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de restauration.
+Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de récupération.
 
 
 

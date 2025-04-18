@@ -39,7 +39,7 @@ Ces instructions expliquent comment :
 
 * link:managing-alerts.html["Gérer les alertes"]
 * link:logs-files-reference.html["Afficher les fichiers journaux"]
-* link:configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"]
+* link:configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"]
 * link:considerations-for-external-syslog-server.html["Utiliser un serveur syslog externe"] pour collecter des informations d'audit
 * link:using-snmp-monitoring.html["Utilisez SNMP pour la surveillance"]
 * link:using-charts-and-reports.html["Obtenir des données StorageGRID supplémentaires"], y compris les mesures et les diagnostics

@@ -11,7 +11,7 @@ summary: 'Si vous avez configuré et activé l"authentification unique (SSO) et 
 
 
 [role="lead"]
-Si vous avez link:../admin/configuring-sso.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez Active Directory comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API de gestion de grille ou l'API de gestion des locataires.
+Si vous avez link:../admin/how-sso-works.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez Active Directory comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API de gestion de grille ou l'API de gestion des locataires.
 
 
 

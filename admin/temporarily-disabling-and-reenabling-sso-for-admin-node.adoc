@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: signing in when sso is down, single sign on failure 
 summary: 'Il se peut que vous ne puissiez pas vous connecter à Grid Manager si le système d"authentification unique \(SSO\) tombe en panne. Dans ce cas, vous pouvez temporairement désactiver et réactiver SSO pour un noeud d"administration. Pour désactiver puis réactiver SSO, vous devez accéder au shell de commande du nœud.' 
 ---
-= Désactivez et réactivez temporairement l'authentification unique pour un nœud d'administration
+= Désactivez et réactivez temporairement la connexion SSO pour un nœud d'administration
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

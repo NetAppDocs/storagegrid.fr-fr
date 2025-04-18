@@ -45,7 +45,7 @@ NOTE: Certains messages d'erreur dans la colonne *dernière erreur* peuvent incl
 
 == Problèmes liés aux serveurs proxy
 
-Si vous avez configuré un link:configuring-storage-proxy-settings.html["proxy de stockage"] entre les noeuds de stockage et les noeuds finaux du service de plate-forme, des erreurs peuvent se produire si votre service proxy n'autorise pas les messages de StorageGRID. Pour résoudre ces problèmes, vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages liés au service de plate-forme ne sont pas bloqués.
+Si vous avez configuré un link:configuring-storage-proxy-settings.html["proxy de stockage"] entre les nœuds de stockage et les noeuds finaux du service de plate-forme, des erreurs peuvent se produire si votre service proxy n'autorise pas les messages de StorageGRID. Pour résoudre ces problèmes, vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages liés au service de plate-forme ne sont pas bloqués.
 
 
 
@@ -78,7 +78,11 @@ Une fois les noeuds finaux créés, des erreurs de demande de service de plate-f
 
 Si StorageGRID rencontre une erreur récupérable, la demande de service de plate-forme sera relancée jusqu'à ce qu'elle réussisse.
 
-D'autres erreurs sont irrécupérables. Par exemple, une erreur irrécupérable se produit si le noeud final est supprimé.
+D'autres erreurs sont irrécupérables. Par exemple, des erreurs irrécupérables peuvent se produire pour les raisons suivantes :
+
+* Le noeud final est supprimé.
+* Une destination de noeud final Webhook répond à une demande de notification avec `400 Bad Request` une erreur.
+
 
 Si StorageGRID rencontre une erreur de point final irrécupérable :
 
@@ -91,7 +95,7 @@ Si StorageGRID rencontre une erreur de point final irrécupérable :
 
 == Les messages des services de plateforme ne peuvent pas être transmis
 
-Si la destination rencontre un problème qui l'empêche d'accepter des messages de services de plate-forme, l'opération client sur le compartiment réussit, mais le message des services de plate-forme n'est pas livré. Par exemple, cette erreur peut se produire si les informations d'identification sont mises à jour sur la destination de sorte que StorageGRID ne puisse plus s'authentifier auprès du service de destination.
+Si la destination rencontre un problème qui l'empêche d'accepter des messages de services de plate-forme, l'opération client sur le compartiment réussit, mais le message de services de plate-forme n'est pas livré. Par exemple, cette erreur peut se produire si les informations d'identification sont mises à jour sur la destination de sorte que StorageGRID ne puisse plus s'authentifier auprès du service de destination.
 
 Recherchez les alertes associées.
 

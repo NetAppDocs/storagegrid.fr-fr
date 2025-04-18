@@ -51,7 +51,7 @@ NOTE: Le commentaire d'un volume en échec dans le `/etc/fstab` fichier est insu
 ** Si nécessaire, vous serez invité à reconstruire la base de données Cassandra.
 +
 *** Examinez les avertissements. Si aucune d'entre elles ne s'applique, reconstruisez la base de données Cassandra. Saisissez : *y*
-*** Si plus d'un nœud de stockage est hors ligne ou si un autre nœud de stockage a été reconstruit au cours des 15 derniers jours. Saisissez : *n*
+*** Si plusieurs nœuds de stockage sont hors ligne. Saisissez : *n*
 +
 Le script s'quittera sans reconstruire Cassandra. Contactez l'assistance technique.
 

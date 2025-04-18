@@ -477,9 +477,7 @@ Collecte des fichiers journaux et des données système pour votre système. Sé
 
 Vous pouvez collecter les journaux pour toute la grille ou pour certains nœuds.
 
-Si vous ne recueillez des journaux que pour les nœuds sélectionnés, veillez à inclure au moins un nœud de stockage disposant du service ADC. (Les trois premiers nœuds de stockage d'un site incluent le service ADC.)
-
-link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]
+Si vous ne recueillez des journaux que pour les nœuds sélectionnés, veillez à inclure au moins un nœud de stockage disposant du service ADC. Les trois premiers nœuds de stockage installés sur un site incluent le service ADC.
 
 
 

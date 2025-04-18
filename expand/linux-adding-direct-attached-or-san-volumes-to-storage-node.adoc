@@ -167,19 +167,13 @@ Le `setup_rangedbs.sh` script s'exécute automatiquement.
 . Vérifiez que l'état du stockage du nœud de stockage est en ligne :
 +
 .. Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_site_* > *_Storage Node_* > *LDR* > *Storage*.
-.. Sélectionnez l'onglet *Configuration*, puis l'onglet *main*.
-.. Si la liste déroulante État de stockage - souhaité* est définie sur lecture seule ou hors ligne, sélectionnez *en ligne*.
-.. Cliquez sur *appliquer les modifications*.
+.. Sélectionnez *NODES* > *_Storage Node_* > *Tasks*.
+.. Si la liste déroulante *État de stockage* est définie sur lecture seule ou hors ligne, sélectionnez *en ligne*.
+.. Sélectionnez *Enregistrer*.
 
 
-. Pour afficher les nouveaux magasins d'objets :
-+
-.. Sélectionnez *NODES* > *_site_* > *_Storage Node_* > *Storage*.
-.. Affichez les détails dans le tableau *magasins d'objets*.
-
-
+. Pour afficher les nouveaux magasins d'objets, sélectionnez *Storage*.
+. Afficher les détails dans le tableau *volumes*.
 
 
 .Résultat

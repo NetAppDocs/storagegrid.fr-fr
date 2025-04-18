@@ -1,10 +1,10 @@
 ---
-permalink: s3/consistency-controls.html 
+permalink: s3/consistency.html 
 sidebar: sidebar 
 keywords: consistency, consistency control, consistency values 
 summary: La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier la cohérence selon les besoins de votre application. 
 ---
-= Valeurs de cohérence
+= La cohérence
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,15 +13,15 @@ summary: La cohérence assure un équilibre entre la disponibilité des objets e
 [role="lead"]
 La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier la cohérence selon les besoins de votre application.
 
-Par défaut, StorageGRID garantit la cohérence de lecture après écriture pour les nouveaux objets. Tout GET suivant un PUT réussi sera en mesure de lire les données nouvellement écrites. Les écrasements d'objets existants, les mises à jour de métadonnées et les suppressions sont cohérents. La propagation des écrasements ne prend généralement que quelques secondes ou minutes, mais peut prendre jusqu'à 15 jours.
+Par défaut, StorageGRID garantit la cohérence de lecture après écriture pour les nouveaux objets. Tout GET suivant un PUT réussi sera en mesure de lire les données nouvellement écrites. Les écrasements d'objets existants, les mises à jour de métadonnées et les suppressions sont cohérents.
 
 Si vous souhaitez effectuer des opérations d'objet de manière différente, vous pouvez :
 
-* Spécifiez une cohérence pour <<bucket-consistency-control,chaque godet>>.
+* Spécifiez une cohérence pour <<bucket-consistency,chaque godet>>.
 * Spécifiez une cohérence pour <<api-operation-consistency-control,Chaque opération d'API>>.
 * Modifiez la cohérence par défaut à l'échelle de la grille en effectuant l'une des tâches suivantes :
 +
-** Dans le Gestionnaire de grille, accédez à *CONFIGURATION* > *système* > *Paramètres de stockage* > *cohérence par défaut*.
+** Dans le Gestionnaire de grille, accédez à *CONFIGURATION* > *système* > *Paramètres de stockage* > *cohérence de compartiment par défaut*.
 ** .
 +
 
@@ -79,7 +79,7 @@ NOTE: Vous devez utiliser la même cohérence pour les opérations PutObject et 
 
 
 
-== [[bucket-Consistency-control]]Spécifie la cohérence du compartiment
+== [[bucket-consistance]]spécifiez la cohérence pour le compartiment
 
 Pour définir la cohérence du compartiment, vous pouvez utiliser la requête StorageGRIDlink:put-bucket-consistency-request.html["PRÉSERVER la cohérence du godet"]. Vous pouvez également link:../tenant/manage-bucket-consistency.html#change-bucket-consistency["modifier la cohérence d'un compartiment"]utiliser le Gestionnaire de locataires.
 
@@ -92,7 +92,7 @@ Lorsque vous définissez la cohérence d'un godet, tenez compte des points suiva
 
 
 
-== [[comment les contrôles-cohérence-et-règles-ILM-interagissent]]Comment la cohérence et les règles ILM interagissent pour protéger les données
+== [[comment la cohérence et les règles ILM interagissent]]Comment la cohérence et les règles ILM interagissent pour protéger les données
 
 La cohérence et les règles ILM de votre choix affectent la protection des objets. Ces paramètres peuvent interagir.
 

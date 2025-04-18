@@ -17,7 +17,7 @@ En cas de défaillance d'un nœud de la grille, vous devez le restaurer dès que
 CAUTION: StorageGRID est un système distribué composé de plusieurs nœuds qui travaillent les uns avec les autres. N'utilisez pas de snapshots de disque pour restaurer des nœuds de grille. Reportez-vous plutôt aux procédures de restauration et de maintenance pour chaque type de nœud.
 
 
-NOTE: En cas de défaillance de l'ensemble du site StorageGRID, contactez le support technique. Le support technique travaillera avec vous pour développer et exécuter un plan de reprise sur site qui optimise la quantité de données récupérées et qui répond aux objectifs de votre entreprise. Voir link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].
+NOTE: En cas de défaillance de l'ensemble du site StorageGRID, contactez le support technique. Le support technique travaillera avec vous pour développer et exécuter un plan de reprise sur site qui optimise la quantité de données récupérées et qui répond aux objectifs de votre entreprise. Reportez-vous à la link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].
 
 Voici quelques-unes des raisons pour lesquelles une restauration d'un nœud de grid a échoué dès que possible :
 
@@ -39,7 +39,7 @@ Les conditions suivantes sont réunies lors de la récupération des nœuds de l
 * Le matériel physique ou virtuel en panne a été remplacé et configuré.
 * La version du programme d'installation de l'appliance StorageGRID installée sur l'appliance de remplacement correspond à la version logicielle de votre système StorageGRID, comme décrit à la section https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["Vérifiez et mettez à niveau la version du programme d'installation de l'appliance StorageGRID"^].
 * Si vous récupérez un nœud de grille autre que le nœud d'administration principal, il existe une connectivité entre le nœud de grille en cours de restauration et le nœud d'administration principal.
-* Si vous récupérez un nœud de stockage de l'appliance, vous devez spécifier le même type de stockage que l'appliance d'origine (combinée, métadonnées uniquement ou données uniquement) lors de l'installation de l'appliance. Si vous spécifiez un autre type de stockage, la récupération échouera et nécessitera la réinstallation de l'appareil avec le type de stockage correct spécifié.
+* Si vous récupérez un nœud de stockage de l'appliance, vous devez spécifier le même type de stockage que l'appliance d'origine (combinaison, métadonnées uniquement ou données uniquement) lors de l'installation de l'appliance. Si vous spécifiez un autre type de stockage, la récupération échouera et nécessitera la réinstallation de l'appareil avec le type de stockage correct spécifié.
 
 
 

@@ -37,7 +37,7 @@ StorageGRID prend en charge les terminaux de réplication qui représentent des 
 
 == Terminaux pour les notifications
 
-StorageGRID prend en charge les terminaux Amazon SNS et Kafka. Les terminaux SQS (simple Queue Service) ou Lambda d'AWS ne sont pas pris en charge.
+StorageGRID prend en charge les terminaux Amazon SNS, Kafka et webhook. Les terminaux SQS (simple Queue Service) et Lambda d'AWS ne sont pas pris en charge.
 
 Pour les terminaux Kafka, le protocole TLS mutuel n'est pas pris en charge. Par conséquent, si vous avez `ssl.client.auth` défini sur `required` dans la configuration de votre courtier Kafka, cela peut entraîner des problèmes de configuration du terminal Kafka.
 

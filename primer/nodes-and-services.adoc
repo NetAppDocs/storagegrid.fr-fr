@@ -113,6 +113,42 @@ Nœuds d'administration
 
 
  a| 
+Apache Tomcat
+ a| 
+Serveur Web pour les applications Java.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
+Démon Avahi
+ a| 
+Gère mDNS, qui est utilisé pour la résolution de noms et la découverte de services au sein du réseau local.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Service de cache
+ a| 
+Fonctionne sur les nœuds d'équilibrage de charge (passerelle) et gère un cache local du contenu d'objet.
+ a| 
+Nœuds de passerelle
+
+
+
+ a| 
+Cassandra
+ a| 
+Gère la base de données distribuée pour les métadonnées d'objet.
+ a| 
+Nœuds de stockage (sauf données uniquement)
+
+
+
+ a| 
 Cône Cassandra
  a| 
 Répare automatiquement les métadonnées d'objet.
@@ -187,7 +223,7 @@ Nœuds d'administration et de passerelle
  a| 
 Identité (idnt)
  a| 
-Fédération des identités d'utilisateur à partir de LDAP et d'Active Directory.
+Gère les utilisateurs et les groupes locaux, l'authentification et fédérer les identités d'utilisateurs LDAP et Active Directory.
  a| 
 Nœuds de stockage qui utilisent le service ADC
 
@@ -239,9 +275,9 @@ Tous les nœuds
 
 
  a| 
-nginx-gw
+Équilibreur de la charge nginx-gw
  a| 
-Alimente le service Load Balancer.
+Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage Le service Load Balancer peut être configuré via la page de configuration des noeuds finaux Load Balancer. Ce service est également connu sous le nom de service nginx-gw.
  a| 
 Nœuds d'administration et de passerelle
 
@@ -253,6 +289,24 @@ Système de gestion de réseau (NMS)
 Alimente les options de surveillance, de rapport et de configuration qui sont affichées via le gestionnaire de grille.
  a| 
 Nœuds d'administration
+
+
+
+ a| 
+Outil d'exportation de nœuds (collecte de données Prometheus)
+ a| 
+Publie des statistiques au niveau du système pour la collection de metrics de séries chronologiques Prometheus.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+ntp
+ a| 
+Service NTP (Network Time Protocol).
+ a| 
+Tous les nœuds
 
 
 
@@ -293,7 +347,70 @@ Une instance est présente sur chaque nœud de grille
 
 
  a| 
-Collecteur de traces
+Server Manager
+ a| 
+Gère les services StorageGRID.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Agent SNMP
+ a| 
+Répond aux requêtes SNMP.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
+Service de gestion des ports SNMP
+ a| 
+Gère la gestion dynamique des ports SNMP.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+SSH (Secure Shell)
+ a| 
+Prend en charge l'accès sécurisé et la gestion à distance des systèmes.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+SSM (moniteur d'état du système)
+ a| 
+Surveille l'état du matériel et communique des rapports au service NMS.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Urgence
+ a| 
+Enregistre les metrics supplémentaires liés aux compartiments S3.
+ a| 
+Nœuds de stockage
+
+
+
+ a| 
+Agent de trace (jaeger-agent)
+ a| 
+Reçoit et traite les informations de suivi soumises par le collecteur de traces (jaeger-Collector).
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Collecteur de traces (collecteur jaeger)
  a| 
 Effectue la collecte des traces afin de recueillir des informations à utiliser par le support technique. Le service de collecteur de trace utilise le logiciel Open Source Jaeger.
  a| 

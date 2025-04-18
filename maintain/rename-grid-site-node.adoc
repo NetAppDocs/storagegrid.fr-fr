@@ -17,7 +17,7 @@ Vous pouvez utiliser cette procédure pour ajouter ou mettre à jour les noms d'
 * À partir du *nœud d'administration principal*, vous êtes connecté au gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 +
 
-NOTE: Vous pouvez ajouter ou mettre à jour des noms d'affichage à partir d'un nœud d'administration non principal, mais vous devez être connecté au nœud d'administration principal pour télécharger un package de récupération.
+NOTE: Vous pouvez ajouter ou mettre à jour les noms d'affichage à partir d'un nœud d'administration non principal, mais vous devez être connecté au nœud d'administration principal pour télécharger un pack de récupération.
 
 * Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
 * Vous avez la phrase secrète pour le provisionnement.
@@ -179,7 +179,7 @@ Le téléchargement commence immédiatement.
 . Copiez le `sgws-recovery-package-_id-revision_.zip` fichier dans deux emplacements sécurisés et séparés.
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier de package de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
 
 . Sélectionnez *Terminer* pour revenir à la première étape.
 

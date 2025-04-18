@@ -14,13 +14,7 @@ summary: 'La procédure de restauration d"un nœud de stockage de l"appliance St
 La procédure de restauration d'un nœud de stockage de l'appliance StorageGRID défaillant est identique, que vous soyez en train de récupérer à partir de la perte du disque système ou de la perte de volumes de stockage uniquement.
 
 
-CAUTION: Si plusieurs nœuds de stockage ont échoué (ou sont hors ligne), contactez le support technique. N'effectuez pas la procédure de récupération suivante. Des données peuvent être perdues.
-
-
-CAUTION: S'il s'agit de la défaillance du deuxième nœud de stockage dans les 15 jours qui suivent la défaillance ou la restauration d'un nœud de stockage, contactez le support technique. Reconstruire Cassandra sur deux nœuds de stockage ou plus en un délai de 15 jours peut entraîner une perte de données.
-
-
-NOTE: Si plusieurs nœuds de stockage d'un site ont échoué, une procédure de restauration de site peut être nécessaire. Voir link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].
+CAUTION: Si plusieurs nœuds de stockage ont échoué (ou sont hors ligne), contactez le support technique. Ne pas effectuer la procédure de récupération suivante. Des données peuvent être perdues. Pour plus d'informations, reportez-vous link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"]à .
 
 
 CAUTION: Si les règles ILM sont configurées pour ne stocker qu'une seule copie répliquée, et si cette copie existe sur un volume de stockage défaillant, vous ne pourrez pas restaurer l'objet.

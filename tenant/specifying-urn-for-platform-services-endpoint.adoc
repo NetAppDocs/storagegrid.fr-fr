@@ -45,7 +45,7 @@ Réplication CloudMirror
  a| 
 Notifications
  a| 
-`sns` ou `kafka`
+`sns`, `kafka` ou `webhook`
 
 
 
@@ -57,7 +57,9 @@ Intégration de la recherche
 |===
 Par exemple, pour continuer à spécifier l'URN d'un noeud final CloudMirror hébergé sur StorageGRID, vous devez ajouter `s3` à obtenir `urn:sgws:s3`.
 
-L'élément final de l'URN identifie la ressource cible spécifique au niveau de l'URI de destination.
+Pour la plupart des noeuds finaux, l'élément final de l'URN identifie la ressource cible spécifique à l'URI de destination, par exemple `sns-topic-name` .
+
+Pour les noeuds finaux Webhook, la ressource cible est l'URI de destination lui-même.
 
 [cols="1a,2a"]
 |===
@@ -75,6 +77,8 @@ Réplication CloudMirror
 Notifications
  a| 
 `sns-topic-name` ou `kafka-topic-name`
+
+*Note:* pour les noeuds finaux webhook, l'élément final de l'URN peut être n'importe quelle chaîne, tant que l'URN du noeud final est unique.
 
 
 
@@ -152,6 +156,14 @@ Spécifiez un terminal Kafka :
 [listing]
 ----
 urn:mysite:kafka:optional:optional:kafka-topic-name
+----
++
+Spécifiez un point d'extrémité du crochet :
+
++
+[listing]
+----
+urn:mysite:webhook:optional:optional:webhook-name
 ----
 * Intégration de la recherche :
 +

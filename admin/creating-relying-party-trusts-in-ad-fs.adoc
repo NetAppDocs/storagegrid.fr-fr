@@ -15,8 +15,8 @@ Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une
 
 .Avant de commencer
 * Vous avez configuré l'authentification unique pour StorageGRID et sélectionné *AD FS* comme type SSO.
-* *Sandbox mode* est sélectionné sur la page Single Sign-on dans Grid Manager. Voir link:../admin/using-sandbox-mode.html["Utiliser le mode sandbox"].
-* Vous connaissez le nom de domaine complet (ou l'adresse IP) et l'identifiant de partie comptant pour chaque nœud d'administration de votre système. Ces valeurs sont disponibles dans le tableau des détails des nœuds d'administration de la page d'ouverture de session unique StorageGRID.
+* Vous avez link:../admin/configure-sso.html#enter-sandbox-mode-adfs["entrée en mode sandbox"] dans le Gestionnaire de grille.
+* Vous connaissez le nom de domaine complet (ou l'adresse IP) et l'identifiant de partie comptant pour chaque nœud d'administration de votre système. Vous trouverez ces valeurs dans le tableau détaillé noeuds d'administration de la page configurer SSO StorageGRID.
 +
 
 NOTE: Vous devez créer une confiance en tiers pour chaque nœud d'administration de votre système StorageGRID. Le fait d'avoir une confiance de partie de confiance pour chaque nœud d'administration permet aux utilisateurs de se connecter et de se déconnecter en toute sécurité à n'importe quel nœud d'administration.
@@ -88,7 +88,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode Sandbox"] pour obtenir des instructions.
+. Lorsque vous avez terminé, revenez à StorageGRID et link:../admin/configure-sso.html#test-sso["tester toutes les fiducies de la partie qui repose"]vérifiez qu'ils sont correctement configurés.
 
 
 
@@ -139,7 +139,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode Sandbox"] pour obtenir des instructions.
+. Lorsque vous avez terminé, revenez à StorageGRID et link:../admin/configure-sso.html#test-sso["tester toutes les fiducies de la partie qui repose"]vérifiez qu'ils sont correctement configurés.
 
 
 
@@ -233,5 +233,5 @@ Les propriétés de la partie de confiance sont enregistrées et fermées.
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID et testez toutes les approbations de parties utilisatrices pour confirmer qu'elles sont correctement configurées. Voir link:using-sandbox-mode.html["Utiliser le mode sandbox"] pour obtenir des instructions.
+. Lorsque vous avez terminé, revenez à StorageGRID et link:../admin/configure-sso.html#test-sso["tester toutes les fiducies de la partie qui repose"]vérifiez qu'ils sont correctement configurés.
 

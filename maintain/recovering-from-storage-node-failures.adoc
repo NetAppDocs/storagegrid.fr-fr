@@ -22,15 +22,11 @@ Utilisez ce tableau pour sélectionner la procédure de restauration d'un noeud 
 
  a| 
 * Plusieurs nœuds de stockage ont échoué.
-* Un second nœud de stockage a échoué moins de 15 jours après une défaillance ou une restauration d'un nœud de stockage.
-+
-Cela inclut le cas où un nœud de stockage tombe en panne pendant la restauration d'un autre nœud de stockage.
-
 
  a| 
 Contactez l'assistance technique.
  a| 
-La récupération de plusieurs nœuds de stockage (ou de plusieurs nœuds de stockage dans un délai de 15 jours) peut affecter l'intégrité de la base de données Cassandra, ce qui peut entraîner la perte de données.
+La récupération de plusieurs nœuds de stockage peut affecter l'intégrité de la base de données Cassandra, ce qui peut entraîner une perte de données.
 
 Le support technique peut déterminer quand il est possible de commencer la restauration d'un second nœud de stockage.
 

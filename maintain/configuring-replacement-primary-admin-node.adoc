@@ -16,7 +16,7 @@ Le nœud de remplacement doit être configuré en tant que nœud d'administratio
 .Avant de commencer
 * Pour les nœuds d'administration principaux hébergés sur des machines virtuelles, la machine virtuelle a été déployée, mise sous tension et initialisée.
 * Pour les nœuds d'administration primaires hébergés sur une appliance de services, vous avez remplacé l'appliance et installé le logiciel. Voir la https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["instructions d'installation de votre appareil"^].
-* Vous disposez de la dernière sauvegarde du fichier du progiciel de récupération (`sgws-recovery-package-_id-revision_.zip`).
+* Vous disposez de la dernière sauvegarde du fichier de package de récupération (`sgws-recovery-package-_id-revision_.zip`).
 * Vous avez la phrase secrète pour le provisionnement.
 
 
@@ -38,10 +38,10 @@ Le nœud de remplacement doit être configuré en tant que nœud d'administratio
 +
 image::../media/install_or_recover_primary_admin_node.png[Installez ou récupérez le nœud d'administration principal]
 
-. Téléchargez la sauvegarde la plus récente du progiciel de restauration :
+. Téléchargez la sauvegarde la plus récente du package de récupération :
 +
 .. Cliquez sur *Parcourir*.
-.. Recherchez le fichier de progiciel de récupération le plus récent pour votre système StorageGRID et cliquez sur *Ouvrir*.
+.. Recherchez le fichier de package de récupération le plus récent pour votre système StorageGRID, puis cliquez sur *Ouvrir*.
 
 
 . Saisissez la phrase secrète pour le provisionnement.
@@ -52,7 +52,7 @@ Le processus de récupération commence. Le Grid Manager peut devenir indisponib
 . Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que l'approbation du composant de confiance pour le nœud d'administration que vous avez récupéré a été configurée pour utiliser le certificat d'interface de gestion par défaut, mettre à jour (ou supprimer et recréer) l'approbation du nœud dans Active Directory Federation Services (AD FS). Utilisez le nouveau certificat de serveur par défaut qui a été généré pendant le processus de restauration du noeud d'administration.
 +
 
-NOTE: Pour configurer une confiance de partie utilisatrice, voir link:../admin/configuring-sso.html["Configurer l'authentification unique"]. Pour accéder au certificat de serveur par défaut, connectez-vous au shell de commande du noeud d'administration. Accédez au `/var/local/mgmt-api` répertoire et sélectionnez le `server.crt` fichier.
+NOTE: Pour configurer une confiance de partie utilisatrice, voir link:../admin/configure-sso.html["Configurer l'authentification unique"]. Pour accéder au certificat de serveur par défaut, connectez-vous au shell de commande du noeud d'administration. Accédez au `/var/local/mgmt-api` répertoire et sélectionnez le `server.crt` fichier.
 
 
 

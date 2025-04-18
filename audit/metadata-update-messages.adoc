@@ -44,7 +44,7 @@ L'exemple illustre la réussite d'une transaction permettant de mettre à jour l
 
 === SUPD : mise à jour des métadonnées S3
 
-Le client S3 demande (SUPD) de mettre à jour les métadonnées spécifiées (`x-amz-meta-\*`) pour l'objet S3 (S3KY). Dans cet exemple, les en-têtes de requête sont inclus dans le champ HTRH car ils ont été configurés comme en-tête de protocole d'audit (** CONFIGURATION** > **surveillance** > **Audit et serveur syslog**). Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+Le client S3 demande (SUPD) de mettre à jour les métadonnées spécifiées (`x-amz-meta-\*`) pour l'objet S3 (S3KY). Dans cet exemple, les en-têtes de requête sont inclus dans le champ HTRH car ils ont été configurés comme en-tête de protocole d'audit (** CONFIGURATION** > **surveillance** > **Audit et serveur syslog**). Voir link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
 
 [listing]
 ----

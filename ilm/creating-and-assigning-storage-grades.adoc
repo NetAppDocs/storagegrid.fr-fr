@@ -24,7 +24,7 @@ Lorsque vous installez StorageGRID pour la première fois, le niveau de stockage
 L'utilisation de niveaux de stockage personnalisés vous permet de créer des pools de stockage ILM qui ne contiennent qu'un type spécifique de nœud de stockage. Vous pouvez, par exemple, stocker certains objets sur les nœuds de stockage les plus rapides, comme les appliances de stockage 100 % Flash StorageGRID.
 
 
-NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir uniquement les métadonnées d'objet, pas les données d'objet. Un niveau de stockage ne peut pas être attribué aux nœuds de stockage de métadonnées uniquement. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir les données et les métadonnées d'objet (« nœud de stockage combiné »), uniquement les métadonnées d'objet ou uniquement les données d'objet. Un niveau de stockage ne peut pas être attribué aux nœuds de stockage de métadonnées uniquement. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
 
 Si le niveau de stockage n'est pas un problème (par exemple, tous les nœuds de stockage sont identiques), vous pouvez ignorer cette procédure et utiliser la sélection *inclut tous les niveaux de stockage* pour le niveau de stockage lorsque vous link:creating-storage-pool.html["créer des pools de stockage"]. Cette sélection permet de s'assurer que le pool de stockage inclura chaque nœud de stockage sur le site, quel que soit son niveau de stockage.
 

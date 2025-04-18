@@ -53,7 +53,7 @@ AutoSupport prend en charge les protocoles de transport HTTPS, HTTP et SMTP. En 
 
 Vous pouvez configurer le partage de ressources entre sources (CORS) pour un compartiment S3 si vous souhaitez que ce compartiment et ces objets soient accessibles aux applications web d'autres domaines. En général, n'activez pas les codes de commande à moins qu'ils ne soient requis. Si CORS est requis, limitez-le aux origines de confiance.
 
-Voir les étapes pour link:../tenant/configuring-cross-origin-resource-sharing-cors.html["Configuration du partage des ressources d'origine croisée (CORS)"].
+Voir les étapes pour link:../tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["Configuration de CORS pour les compartiments et les objets"].
 
 
 
