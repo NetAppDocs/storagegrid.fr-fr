@@ -68,7 +68,7 @@ LUN DE 100 GO POUR OS
 
 3 LUN pour chaque nœud de stockage sur cet hôte
 
-*Remarque* : un nœud de stockage peut avoir 1 à 16 LUN de stockage ; au moins 3 LUN de stockage sont recommandées.
+*Remarque* : un nœud de stockage peut avoir 1 à 48 LUN de stockage ; au moins 3 LUN de stockage sont recommandées.
 
 Taille minimale par LUN : 4 To
 
@@ -104,10 +104,10 @@ NOTE: Selon le niveau d'audit configuré, la taille des entrées utilisateur tel
 
 == Besoins de stockage des nœuds de stockage
 
-Un nœud de stockage logiciel peut disposer de 1 à 16 volumes de stockage, dont -3 volumes ou plus sont recommandés. Chaque volume de stockage doit être supérieur ou égale à 4 To.
+Un nœud de stockage basé sur un logiciel peut avoir de 1 à 48 volumes de stockage ; 3 volumes de stockage ou plus sont recommandés. Chaque volume de stockage doit être supérieur ou égale à 4 To.
 
 
-NOTE: Un nœud de stockage d'appliance peut disposer d'un maximum de 48 volumes de stockage.
+NOTE: Un nœud de stockage d’appareil peut également avoir jusqu’à 48 volumes de stockage.
 
 Comme illustré dans la figure, StorageGRID réserve l'espace des métadonnées d'objet sur le volume de stockage 0 de chaque nœud de stockage. Tout espace restant sur le volume de stockage 0 et tout autre volume de stockage du nœud de stockage est utilisé exclusivement pour les données d'objet.
 

@@ -2,7 +2,7 @@
 permalink: expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html 
 sidebar: sidebar 
 keywords: expansion, Linux, add storage volumes 
-summary: Si un nœud de stockage contient moins de 16 volumes de stockage, vous pouvez augmenter sa capacité en ajoutant de nouveaux périphériques de stockage en mode bloc, en les rendant visibles pour les hôtes Linux et en ajoutant les nouveaux mappages de périphériques de bloc au fichier de configuration StorageGRID utilisé pour le nœud de stockage. 
+summary: Si un nœud de stockage contient moins de 48 volumes de stockage, vous pouvez augmenter sa capacité en ajoutant de nouveaux périphériques de stockage en mode bloc, en les rendant visibles pour les hôtes Linux et en ajoutant les nouveaux mappages de périphériques de bloc au fichier de configuration StorageGRID utilisé pour le nœud de stockage. 
 ---
 = Linux : ajoutez des volumes SAN ou DAS au nœud de stockage
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Si un nœud de stockage contient moins de 16 volumes de stockage, vous 
 
 
 [role="lead"]
-Si un nœud de stockage contient moins de 16 volumes de stockage, vous pouvez augmenter sa capacité en ajoutant de nouveaux périphériques de stockage en mode bloc, en les rendant visibles pour les hôtes Linux et en ajoutant les nouveaux mappages de périphériques de bloc au fichier de configuration StorageGRID utilisé pour le nœud de stockage.
+Si un nœud de stockage contient moins de 48 volumes de stockage, vous pouvez augmenter sa capacité en ajoutant de nouveaux périphériques de stockage en mode bloc, en les rendant visibles pour les hôtes Linux et en ajoutant les nouveaux mappages de périphériques de bloc au fichier de configuration StorageGRID utilisé pour le nœud de stockage.
 
 .Avant de commencer
 * Vous avez accès aux instructions d'installation de StorageGRID pour votre plate-forme Linux.

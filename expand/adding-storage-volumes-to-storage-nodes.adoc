@@ -2,7 +2,7 @@
 permalink: expand/adding-storage-volumes-to-storage-nodes.html 
 sidebar: sidebar 
 keywords: storage volumes, expand, expansion, add, storage nodes, adding storage capacity 
-summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d"au moins 16 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d"ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d"effacement.' 
+summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d"au moins 48 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d"ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d"effacement.' 
 ---
 = Ajout de volumes de stockage aux nœuds de stockage
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage d
 
 
 [role="lead"]
-Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d'au moins 16 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d'ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d'effacement.
+Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d'au moins 48 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d'ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d'effacement.
 
 .Avant de commencer
 Avant d'ajouter des volumes de stockage, link:guidelines-for-adding-object-capacity.html["instructions d'ajout de capacité d'objet"]vérifiez que vous savez où ajouter des volumes afin de répondre aux exigences de votre règle ILM.
@@ -20,7 +20,7 @@ Avant d'ajouter des volumes de stockage, link:guidelines-for-adding-object-capac
 NOTE: Ces instructions s'appliquent uniquement aux nœuds de stockage basés sur logiciel. Voir https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajout du tiroir d'extension au SG6060 déployé"^] ou https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Ajout du tiroir d'extension au SG6160 déployé"^] pour apprendre à ajouter des volumes de stockage aux SG6060 ou SG6160 en installant des tiroirs d'extension. Les autres nœuds de stockage de l'appliance ne peuvent pas être étendus.
 
 .Description de la tâche
-Le stockage sous-jacent d'un nœud de stockage est divisé en volumes de stockage. Les volumes de stockage sont des périphériques de stockage basés sur des blocs formatés par le système StorageGRID et montés pour stocker des objets. Chaque nœud de stockage peut prendre en charge jusqu'à 16 volumes de stockage, appelés _object stores_ dans Grid Manager.
+Le stockage sous-jacent d'un nœud de stockage est divisé en volumes de stockage. Les volumes de stockage sont des périphériques de stockage basés sur des blocs formatés par le système StorageGRID et montés pour stocker des objets. Chaque nœud de stockage peut prendre en charge jusqu'à 48 volumes de stockage, appelés _object stores_ dans Grid Manager.
 
 
 NOTE: Les métadonnées d'objet sont toujours stockées dans le magasin d'objets 0.
