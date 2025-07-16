@@ -23,6 +23,26 @@ StorageGRID conserve une liste des sous-réseaux réseau utilisés pour communiq
 .Description de la tâche
 Si vous effectuez une activité d'extension incluant l'ajout d'un nouveau sous-réseau, vous devez ajouter un nouveau sous-réseau à la liste de sous-réseaux réseau de la grille avant de démarrer la procédure d'extension. Sinon, vous devrez annuler l'extension, ajouter le nouveau sous-réseau et relancer l'extension.
 
+[NOTE]
+====
+N'utilisez pas de sous-réseaux contenant les adresses IPv4 suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
+
+* 192 168 130 101
+* 192 168 131 101
+* 192 168 130 102
+* 192 168 131 102
+* 198.51.100.2
+* 198.51.100.4
+
+
+Par exemple, n'utilisez pas les plages de sous-réseaux suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
+
+* 192.168.130.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.130.101 et 192.168.130.102
+* 192.168.131.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.131.101 et 192.168.131.102
+* 198.51.100.0/24 car cette plage de sous-réseaux contient les adresses IP 198.51.100.2 et 198.51.100.4
+
+
+====
 
 
 == Ajoutez un sous-réseau

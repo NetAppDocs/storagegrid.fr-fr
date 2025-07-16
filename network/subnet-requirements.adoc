@@ -20,6 +20,25 @@ Les restrictions suivantes sont appliquées par le Grid Manager pendant le dépl
 
 * Le masque de sous-réseau d'une adresse IP réseau ne peut pas être 255.255.255.254 ou 255.255.255.255 (/31 ou /32 en notation CIDR).
 * Le sous-réseau défini par une adresse IP d'interface réseau et un masque de sous-réseau (CIDR) ne peut pas chevaucher le sous-réseau d'une autre interface configurée sur le même nœud.
+* N'utilisez pas de sous-réseaux contenant les adresses IPv4 suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
++
+** 192 168 130 101
+** 192 168 131 101
+** 192 168 130 102
+** 192 168 131 102
+** 198.51.100.2
+** 198.51.100.4
+
+
++
+Par exemple, n'utilisez pas les plages de sous-réseaux suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
+
++
+** 192.168.130.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.130.101 et 192.168.130.102
+** 192.168.131.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.131.101 et 192.168.131.102
+** 198.51.100.0/24 car cette plage de sous-réseaux contient les adresses IP 198.51.100.2 et 198.51.100.4
+
+
 * Le sous-réseau du réseau Grid pour chaque nœud doit être inclus dans le GNSL.
 * Le sous-réseau Admin Network ne peut pas chevaucher le sous-réseau Grid Network, le sous-réseau client Network ou tout sous-réseau dans le GNSL.
 * Les sous-réseaux de l'AESL ne peuvent pas se chevaucher avec les sous-réseaux de la GNSL.

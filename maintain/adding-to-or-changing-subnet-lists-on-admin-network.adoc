@@ -19,6 +19,26 @@ Vous pouvez ajouter, supprimer ou modifier les sous-réseaux dans la liste de so
 
 Vous pouvez ajouter, supprimer ou modifier des sous-réseaux à tous les nœuds de la liste des sous-réseaux du réseau d'administration.
 
+[NOTE]
+====
+N'utilisez pas de sous-réseaux contenant les adresses IPv4 suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
+
+* 192 168 130 101
+* 192 168 131 101
+* 192 168 130 102
+* 192 168 131 102
+* 198.51.100.2
+* 198.51.100.4
+
+
+Par exemple, n'utilisez pas les plages de sous-réseaux suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
+
+* 192.168.130.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.130.101 et 192.168.130.102
+* 192.168.131.0/24 car cette plage de sous-réseaux contient les adresses IP 192.168.131.101 et 192.168.131.102
+* 198.51.100.0/24 car cette plage de sous-réseaux contient les adresses IP 198.51.100.2 et 198.51.100.4
+
+
+====
 .Étapes
 . Connectez-vous au nœud d'administration principal :
 +
