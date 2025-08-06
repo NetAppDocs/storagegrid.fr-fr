@@ -68,7 +68,7 @@ LUN DE 100 GO POUR OS
 
 3 LUN pour chaque nœud de stockage sur cet hôte
 
-*Remarque* : un nœud de stockage peut avoir 1 à 48 LUN de stockage ; au moins 3 LUN de stockage sont recommandées.
+*Remarque* : un nœud de stockage peut avoir de 1 à 16 LUN de stockage ; au moins 3 LUN de stockage sont recommandés.
 
 Taille minimale par LUN : 4 To
 
@@ -85,7 +85,7 @@ LUN DE 100 GO POUR OS
 
 Taille minimale par LUN : 4 To
 
-*Remarque* : il n'y a pas de taille maximale pour le LUN unique. La capacité excédentaire est ainsi économisée en cas d'utilisation future.
+Taille de la LUN testée maximale : 39 To.
 
 *Remarque* : un seul rangedb est requis pour les nœuds de stockage de métadonnées uniquement.
 
@@ -104,7 +104,7 @@ NOTE: Selon le niveau d'audit configuré, la taille des entrées utilisateur tel
 
 == Besoins de stockage des nœuds de stockage
 
-Un nœud de stockage basé sur un logiciel peut avoir de 1 à 48 volumes de stockage ; 3 volumes de stockage ou plus sont recommandés. Chaque volume de stockage doit être supérieur ou égale à 4 To.
+Un nœud de stockage basé sur un logiciel peut avoir de 1 à 16 volumes de stockage ; 3 volumes de stockage ou plus sont recommandés.  Chaque volume de stockage doit être de 4 To ou plus.
 
 
 NOTE: Un nœud de stockage d’appareil peut également avoir jusqu’à 48 volumes de stockage.

@@ -2,7 +2,7 @@
 permalink: expand/adding-storage-volumes-to-storage-nodes.html 
 sidebar: sidebar 
 keywords: storage volumes, expand, expansion, add, storage nodes, adding storage capacity 
-summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d"au moins 48 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d"ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d"effacement.' 
+summary: Vous pouvez étendre la capacité de stockage des nœuds de stockage qui sont inférieurs au nombre maximal de volumes pris en charge.  Vous devrez peut-être ajouter des volumes de stockage à plusieurs nœuds de stockage pour satisfaire aux exigences ILM pour les copies répliquées ou codées par effacement. 
 ---
 = Ajout de volumes de stockage aux nœuds de stockage
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Vous pouvez étendre la capacité de stockage des nœuds de stockage d
 
 
 [role="lead"]
-Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d'au moins 48 volumes de stockage en ajoutant des volumes de stockage supplémentaires. Vous pouvez avoir besoin d'ajouter des volumes de stockage à plusieurs nœuds de stockage pour répondre aux exigences ILM des copies répliquées ou avec code d'effacement.
+Vous pouvez étendre la capacité de stockage des nœuds de stockage qui sont inférieurs au nombre maximal de volumes pris en charge.  Vous devrez peut-être ajouter des volumes de stockage à plusieurs nœuds de stockage pour satisfaire aux exigences ILM pour les copies répliquées ou codées par effacement.
 
 .Avant de commencer
 Avant d'ajouter des volumes de stockage, link:guidelines-for-adding-object-capacity.html["instructions d'ajout de capacité d'objet"]vérifiez que vous savez où ajouter des volumes afin de répondre aux exigences de votre règle ILM.
