@@ -21,7 +21,7 @@ Pour plus d'informations sur les nœuds d'administration, reportez-vous à la se
 
 
 .Étapes
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Entrez *primary* dans la zone de recherche.
 +
 Dans les résultats de la recherche, identifiez le nœud avec le « nœud d'administration principal » affiché dans la colonne Type. Un nœud d'administration principal doit être répertorié.

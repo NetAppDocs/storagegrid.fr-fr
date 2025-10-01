@@ -45,7 +45,7 @@ image::../media/dashboard_storage_over_time.png[Graphique stockage dans le temps
 
 . Pour plus d'informations sur la quantité de stockage utilisée et la quantité de stockage restant disponible dans la grille pour les données d'objet et les métadonnées d'objet, consultez la page nœuds.
 +
-.. Sélectionnez *NOEUDS*.
+.. Sélectionnez *Nœuds*.
 .. Sélectionnez *_GRID_* > *stockage*.
 +
 image::../media/nodes_deployment_storage_tab.png[Onglet stockage de déploiement des nœuds]
@@ -82,7 +82,7 @@ L'espace utilisable correspond à la quantité d'espace de stockage disponible p
 image::../media/calculating_watermarks.gif[Dessin conceptuel de l'espace utilisable total]
 
 .Étapes
-. Sélectionnez *NODES* > *_Storage Node_* > *Storage*.
+. Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*.
 +
 Les graphiques et les tableaux du nœud apparaissent.
 
@@ -140,7 +140,7 @@ Dans certains cas, la capacité des métadonnées d'objet de la grille peut êtr
 L'utilisation des métadonnées peut notamment être augmentée, comme la taille et la quantité des métadonnées et du balisage, le nombre total d'éléments d'un téléchargement partitionné et la fréquence des modifications apportées aux emplacements de stockage ILM.
 
 .Étapes
-. Sélectionnez *NODES* > *_Storage Node_* > *Storage*.
+. Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*.
 . Positionnez le curseur sur le graphique de métadonnées de l'objet stockage utilisé - pour afficher les valeurs d'une heure spécifique.
 +
 image::../media/storage_used_object_metadata.png[Stockage utilisé : métadonnées d'objet]

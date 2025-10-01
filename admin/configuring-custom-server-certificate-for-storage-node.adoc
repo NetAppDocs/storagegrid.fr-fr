@@ -24,7 +24,7 @@ Un seul certificat de serveur personnalisé est utilisé pour tous les nœuds de
 Une fois la configuration terminée sur le serveur, vous devrez peut-être installer le certificat de l'autorité de certification Grid dans le client de l'API S3 que vous utiliserez pour accéder au système, selon l'autorité de certification racine (CA) que vous utilisez.
 
 
-NOTE: Pour garantir que les opérations ne sont pas interrompues par un certificat de serveur défaillant, l'alerte *expiration du certificat de serveur global pour l'API S3* est déclenchée lorsque le certificat de serveur racine est sur le point d'expirer. Si nécessaire, vous pouvez afficher la date d'expiration du certificat en cours en sélectionnant *CONFIGURATION* > *sécurité* > *certificats* et en regardant la date d'expiration du certificat API S3 dans l'onglet Global.
+NOTE: Pour garantir que les opérations ne sont pas perturbées par un certificat de serveur défaillant, l'alerte *Expiration du certificat de serveur global pour l'API S3* est déclenchée lorsque le certificat du serveur racine est sur le point d'expirer.  Si nécessaire, vous pouvez voir quand le certificat actuel expire en sélectionnant *Configuration* > *Sécurité* > *Certificats* et en regardant la date d'expiration du certificat API S3 dans l'onglet Global.
 
 Vous pouvez télécharger ou générer un certificat d'API S3 personnalisé.
 
@@ -33,7 +33,7 @@ Vous pouvez télécharger ou générer un certificat d'API S3 personnalisé.
 == Ajoutez un certificat d'API S3 personnalisé
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *S3 API Certificate*.
 . Sélectionnez *utiliser le certificat personnalisé*.
 . Chargez ou générez le certificat.
@@ -164,7 +164,7 @@ NOTE: Après avoir téléchargé ou généré un nouveau certificat, autorisez j
 Vous pouvez revenir à l'utilisation du certificat d'API S3 par défaut pour les connexions client S3 aux nœuds de stockage. Toutefois, vous ne pouvez pas utiliser le certificat d'API S3 par défaut pour un terminal d'équilibreur de charge.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *S3 API Certificate*.
 . Sélectionnez *utiliser le certificat par défaut*.
 +
@@ -184,7 +184,7 @@ Si vous disposez de l'autorisation d'accès racine et que le certificat d'API S3
 Vous pouvez enregistrer ou copier le contenu du certificat de l'API S3 pour l'utiliser ailleurs.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *S3 API Certificate*.
 . Sélectionnez l'onglet *Server* ou *CA bundle*, puis téléchargez ou copiez le certificat.
 +

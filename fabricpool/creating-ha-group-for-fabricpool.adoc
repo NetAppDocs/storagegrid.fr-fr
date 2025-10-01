@@ -25,7 +25,7 @@ Pour plus de détails sur cette tâche, reportez-vous link:../admin/managing-hig
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+. Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité*.
 . Sélectionnez *Créer*.
 . Pour l'étape *entrer les détails*, remplissez les champs suivants.
 +

@@ -55,7 +55,7 @@ NOTE: Si vous n'ajoutez pas de noms de domaine de terminaux S3 et que la liste e
 == Ajoutez un nom de domaine de terminal S3
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Sélectionnez *Configuration* > *Réseau* > *Noms de domaine de point de terminaison S3*.
 . Entrez le nom de domaine dans le champ *Nom de domaine 1*. Sélectionnez *Ajouter un autre nom de domaine* pour ajouter d'autres noms de domaine.
 . Sélectionnez *Enregistrer*.
 . Assurez-vous que les certificats de serveur utilisés par les clients correspondent aux noms de domaine de noeud final S3 requis.
@@ -77,7 +77,7 @@ Maintenant, lorsque les clients utilisent le noeud final `_bucket.s3.company.com
 Si vous modifiez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échouent.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Sélectionnez *Configuration* > *Réseau* > *Noms de domaine de point de terminaison S3*.
 . Sélectionnez le champ de nom de domaine que vous souhaitez modifier et apportez les modifications nécessaires.
 . Sélectionnez *Enregistrer*.
 . Sélectionnez *Oui* pour confirmer votre modification.
@@ -90,7 +90,7 @@ Si vous modifiez un nom utilisé par les applications S3, les demandes de type h
 Si vous supprimez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échoueront.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *noms de domaine de noeud final S3*.
+. Sélectionnez *Configuration* > *Réseau* > *Noms de domaine de point de terminaison S3*.
 . Sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"]en regard du nom de domaine.
 . Sélectionnez *Oui* pour confirmer la suppression.
 

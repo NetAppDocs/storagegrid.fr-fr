@@ -11,10 +11,12 @@ summary: 'Avant de mettre un nœud de grille hors service, vous devez confirmer 
 
 
 [role="lead"]
-Avant de mettre un nœud de grille hors service, vous devez confirmer qu'aucun travail de réparation de données n'est actif. Si des réparations ont échoué, vous devez les redémarrer et leur permettre d'effectuer la procédure de mise hors service.
+Avant de mettre hors service ou d’étendre un nœud de grille, vous devez confirmer qu’aucune tâche de réparation de données n’est active.  Si des réparations ont échoué, vous devez les redémarrer et les laisser se terminer avant d'effectuer la procédure de mise hors service.
+
+Se référer àlink:../expand/index.html["Types d'extension"] pour plus de détails sur la façon d'étendre un nœud de grille.
 
 .Description de la tâche
-Si vous devez désaffecter un nœud de stockage déconnecté, vous devrez également effectuer ces étapes une fois la procédure de mise hors service terminée pour vous assurer que la réparation des données s'est terminée correctement. Vous devez vous assurer que tous les fragments avec code d'effacement qui se trouvaient sur le nœud supprimé ont été restaurés correctement.
+Si vous devez mettre hors service un nœud de stockage déconnecté, effectuez ces étapes une fois la procédure de mise hors service terminée pour vous assurer que la tâche de réparation des données est terminée.  Vous devez vous assurer que tous les fragments codés par effacement qui se trouvaient sur le nœud supprimé ont été restaurés.
 
 Ces étapes s'appliquent uniquement aux systèmes dotés d'objets avec code d'effacement.
 

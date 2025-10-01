@@ -16,7 +16,7 @@ Le tableau suivant décrit les messages d'erreur pouvant être liés à un serve
 Pour plus d'informations sur l'envoi d'informations d'audit à un serveur syslog externe, reportez-vous à la section :
 
 * link:../monitor/considerations-for-external-syslog-server.html["Considérations relatives à l'utilisation d'un serveur syslog externe"]
-* link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"]
+* link:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"]
 
 
 [cols="1a,3a"]

@@ -53,13 +53,11 @@ NOTE: Si l' link:enabling-s3-object-lock-globally.html["Le paramètre de verroui
 
 --
 ====
-* Vous avez éventuellement regardé la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10["Vidéo : présentation des règles ILM"^]
-+
-[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10]
-image::../media/video-screenshot-ilm-policies-118.png[Vidéo : présentation des règles ILM]
+* En option, vous avez regardé la vidéo :
 
 
-
+.Aperçu des politiques ILM
+video::e768d4da-da88-413c-bbaa-b1ff00874d10[panopto]
 Voir aussi link:ilm-policy-overview.html["Règles ILM"].
 
 .Étapes
@@ -255,10 +253,10 @@ Vous pouvez également activer une seule stratégie à partir de la page *ILM* >
 --
 .Activez plusieurs règles
 --
-Pour activer plusieurs stratégies, vous devez créer des balises et affecter une stratégie à chaque balise.
+Pour activer plusieurs stratégies, vous devez créer des balises de stratégie et attribuer une stratégie à chaque balise.  Vous pouvez créer un maximum de 10 balises de stratégie pour votre grille.
 
 
-TIP: Lorsque plusieurs balises sont utilisées, si les locataires réattribuent fréquemment des balises de règles à des compartiments, les performances du grid peuvent être affectées. Si vous avez des locataires non approuvés, pensez à utiliser uniquement la balise par défaut.
+TIP: Lorsque plusieurs balises de stratégie sont utilisées, si les locataires réaffectent fréquemment les balises de stratégie aux buckets, les performances de la grille peuvent être affectées.  Si vous avez des locataires non approuvés, envisagez d’utiliser uniquement la balise de stratégie par défaut.
 
 . Sélectionnez *ILM* > *balises de stratégie*.
 . Sélectionnez *Créer*.

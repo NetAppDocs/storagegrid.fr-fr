@@ -38,7 +38,7 @@ Dans le cadre des meilleures pratiques générales, chaque site de votre systèm
 
 Un noeud final d'équilibrage de charge définit le port et le protocole réseau (HTTPS ou HTTP) utilisés par les demandes d'applications clientes entrantes et sortantes pour accéder aux noeuds qui contiennent le service d'équilibrage de charge. Le noeud final définit également le type de client (S3), le mode de liaison et éventuellement une liste de locataires autorisés ou bloqués.
 
-Pour créer un noeud final d'équilibrage de charge, sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux d'équilibrage de charge* ou exécutez l'assistant d'installation FabricPool et S3. Pour obtenir des instructions :
+Pour créer un point de terminaison d'équilibrage de charge, utilisez le gestionnaire de grille ou suivez les assistants de configuration S3 et FabricPool :
 
 * link:configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"]
 * link:use-s3-setup-wizard-steps.html["Utilisez l'assistant d'installation S3"]
@@ -47,11 +47,87 @@ Pour créer un noeud final d'équilibrage de charge, sélectionnez *CONFIGURATIO
 
 
 
+=== Considérations relatives à la mise en cache de l'équilibreur de charge
+
+La mise en cache améliore considérablement les performances lorsqu'une charge de travail fonctionne sur un sous-ensemble de données et accède aux objets plusieurs fois.  De plus, la mise en cache fournit un accès à distance au stockage d’objets sans déploiement de grille complet.  La mise en cache de l'équilibreur de charge est disponible uniquement pour les nœuds de passerelle.
+
+Lorsque vous créez des points de terminaison d’équilibrage de charge :
+
+* Activez la mise en cache uniquement pour les charges de travail pouvant être mises en cache.  Les charges de travail qui accèdent aux données non mises en cache plus souvent qu'aux données mises en cache auront des performances inférieures à celles obtenues si elles n'avaient pas été traitées par le cache.  Dans certains cas, les charges de travail avec des taux d'écrasement et d'éviction élevés peuvent également dépasser l'endurance d'écriture garantie du lecteur.
+* Envisagez d’ajouter des points de terminaison ou des nœuds supplémentaires pour la mise en cache des charges de travail individuelles qui sont de bons candidats pour la mise en cache.
+* Utilisez des points de terminaison distincts pour les charges de travail pouvant être mises en cache et non mises en cache.  Cette séparation garantit que les mécanismes de mise en cache sont appliqués de manière appropriée et n'interfèrent pas avec le traitement des données non cachables.
+* Évaluez une charge de travail potentiellement cachable en la dirigeant vers le point de terminaison activé pour le cache.  Surveillez et vérifiez le taux de réussite du cache pour déterminer l’adéquation de la charge de travail à la mise en cache.  Cette évaluation permet d’optimiser les performances et de garantir une utilisation efficace des ressources du cache.
+* link:../audit/index.html["Examiner les journaux d'audit"]pour déterminer si une charge de travail existante serait un bon candidat pour la mise en cache.  Pour une période donnée, déterminez quel pourcentage de GET concerne des objets uniques.  Pour être adaptée à la mise en cache, cette valeur doit être inférieure à 50 %.
+
+
+
+
+==== Exemples de charges de travail qui pourraient être de bons candidats à la mise en cache
+
+* Lacs de données
+* Calcul haute performance (HPC)
+* Formation IA/ML
+* Réseaux de distribution de contenu (CDN)
+* Gestion des ressources multimédias
+* Production vidéo
+
+
+[NOTE]
+====
+* Plusieurs versions d’objets peuvent être mises en cache.
+* Les opérations de lecture de plage sont prises en charge.
+
+
+====
+
+
+==== Exemples de charges de travail qui ne sont pas de bons candidats à la mise en cache
+
+* Piscine en tissu
+* Applications de sauvegarde
+* hiérarchisation du stockage
+
+
+
+CAUTION: Si un contenu à servir par le cache nécessite un chiffrement au repos, https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["activer le chiffrement du nœud ou du lecteur"^] sur le nœud de cache.
+
+
+
+==== Types d'objets et de requêtes qui ne seront pas mis en cache
+
+* Le `response-content-encoding` paramètre de requête
+* Le `partNumber` paramètre de requête
+* En-têtes conditionnels
++
+** `If-Match`
+** `If-Modified-Since`
+** `If-None-Match`
+** `If-Unmodified-Since`
+
+
+* Les requêtes qui ont été chiffrées au repos avec l’un des éléments suivants :
++
+** SSE (chiffrement côté serveur avec clés gérées par StorageGRID)
+** SSE-C (chiffrement côté serveur avec clés fournies par le client)
+** Chiffrement des objets stockés
+
+
+
+
+Toutes les demandes qui ne sont pas mises en cache sont transmises à un LDR en amont comme si le cache n'était pas activé.
+
+.Informations associées
+* link:../troubleshoot/troubleshooting-load-balancer-caching.html["Résoudre les problèmes de mise en cache de l'équilibreur de charge"]
+* Pour plus d'informations sur la mise en cache de l'équilibreur de charge, contactez le support technique.
+
+
+
+
 === Considérations relatives au port
 
 Par défaut, le port d'un noeud final d'équilibrage de charge est 10433 pour le premier noeud final que vous créez, mais vous pouvez spécifier tout port externe inutilisé compris entre 1 et 65535. Si vous utilisez le port 80 ou 443, le noeud final utilisera le service Load Balancer sur les noeuds passerelle uniquement. Ces ports sont réservés sur des nœuds d'administration. Si vous utilisez le même port pour plusieurs noeuds finaux, vous devez spécifier un mode de liaison différent pour chaque noeud final.
 
-Les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir la link:../network/network-port-reference.html["Référence du port réseau"].
+Les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir link:../network/internal-grid-node-communications.html#storagegrid-internal-ports["Ports internes StorageGRID"] .
 
 
 

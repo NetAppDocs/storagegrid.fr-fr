@@ -1,0 +1,162 @@
+---
+permalink: swnodes/installing-linux.html 
+sidebar: sidebar 
+keywords: how to install Linux 
+summary: Vous devez installer StorageGRID sur tous les hôtes de grille Linux.  Pour obtenir la liste des versions prises en charge, utilisez l’outil de matrice d’interopérabilité NetApp . 
+---
+= Installez Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez installer StorageGRID sur tous les hôtes de grille Linux.  Pour obtenir la liste des versions prises en charge, utilisez l’outil de matrice d’interopérabilité NetApp .
+
+.Avant de commencer
+Assurez-vous que votre système d'exploitation répond aux exigences minimales de StorageGRID en matière de version du noyau, comme indiqué ci-dessous. Utilisez la commande `uname -r` pour obtenir la version du noyau de votre système d'exploitation ou consultez votre fournisseur de système d'exploitation.
+
+
+NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
+
+[role="tabbed-block"]
+====
+.RHEL
+--
+[cols="1a,2a,2a"]
+|===
+| Version RHEL | Version minimale du noyau | Nom du package du noyau 
+
+
+ a| 
+8.8 (obsolète)
+ a| 
+4.18.0-477.10.1.el8_8.x86_64
+ a| 
+kernel-4.18.0-477.10.1.el8_8.x86_64
+
+
+
+ a| 
+8.10
+ a| 
+4.18.0-553.el8_10.x86_64
+ a| 
+kernel-4.18.0-553.el8_10.x86_64
+
+
+
+ a| 
+9.0 (obsolète)
+ a| 
+5.14.0-70.22.1.el9_0.x86_64
+ a| 
+kernel-5.14.0-70.22.1.el9_0.x86_64
+
+
+
+ a| 
+9.2 (obsolète)
+ a| 
+5.14.0-284.11.1.el9_2.x86_64
+ a| 
+kernel-5.14.0-284.11.1.el9_2.x86_64
+
+
+
+ a| 
+9,4
+ a| 
+5.14.0-427.18.1.el9_4.x86_64
+ a| 
+kernel-5.14.0-427.18.1.el9_4.x86_64
+
+
+
+ a| 
+9,6
+ a| 
+5.14.0-570.18.1.el9_6.x86_64
+ a| 
+noyau-5.14.0-570.18.1.el9_6.x86_64
+
+|===
+--
+.Ubuntu
+--
+*Note:* le support pour Ubuntu versions 18.04 et 20.04 ont été dépréciés et seront supprimés dans une future version.
+
+[cols="1a,2a,3a"]
+|===
+| Version Ubuntu | Version minimale du noyau | Nom du package du noyau 
+
+
+ a| 
+22.04.1
+ a| 
+5.15.0-47-générique
+ a| 
+linux-image-5.15.0-47-generic/jammy-updates,jammy-security,maintenant 5.15.0-47.51
+
+
+
+ a| 
+24,04
+ a| 
+6.8.0-31-générique
+ a| 
+linux-image-6.8.0-31-generic/noble,maintenant 6.8.0-31.31
+
+|===
+--
+.Debian
+--
+*Note:* le support de Debian version 11 est obsolète et sera supprimé dans une version ultérieure.
+
+[cols="1a,2a,2a"]
+|===
+| Version de Debian | Version minimale du noyau | Nom du package du noyau 
+
+
+ a| 
+11 (obsolète)
+ a| 
+5.10.0-18-amd64
+ a| 
+linux-image-5.10.0-18-amd64/stable, maintenant 5.10.150-1
+
+
+
+ a| 
+12
+ a| 
+6.1.0-9-amd64
+ a| 
+linux-image-6.1.0-9-amd64/stable, maintenant 6.1.27-1
+
+|===
+--
+====
+.Étapes
+. Installez Linux sur tous les hôtes de réseau physiques ou virtuels conformément aux instructions du distributeur ou à la procédure standard.
++
+
+NOTE: N'installez aucun environnement de bureau graphique.
+
++
+** Si vous utilisez le programme d'installation Linux standard lors de l'installation de RHEL, sélectionnez la configuration logicielle « nœud de calcul », si disponible, ou l'environnement de base « installation minimale ».
+** Lors de l'installation d'Ubuntu, vous devez sélectionner les *utilitaires système standard*.  Il est recommandé de sélectionner *Serveur OpenSSH* pour activer l'accès ssh à vos hôtes Ubuntu.  Toutes les autres options peuvent rester désactivées.
+
+
+. Assurez-vous que tous les hôtes ont accès aux référentiels de packages, y compris le canal Extras pour RHEL.
+. Si le swap est activé :
++
+.. Exécutez la commande suivante : `$ sudo swapoff --all`
+.. Supprimez toutes les entrées d'échange de `/etc/fstab` pour conserver les paramètres.
++
+
+NOTE: Si vous ne désactivez pas ces fichiers, les performances peuvent être considérablement réduites.
+
+
+
+

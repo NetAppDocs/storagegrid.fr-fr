@@ -1,0 +1,95 @@
+---
+section: swnodes
+title: Installation des nœuds basés sur logiciel
+entries:
+- title: Démarrage rapide
+  pdf-filename: Installer StorageGRID sur des nœuds logiciels
+  url: "/swnodes/index.html"
+- title: Planifier et préparer l'installation sur des nœuds basés sur des logiciels
+  entries:
+  - title: Informations et documents requis
+    url: "/swnodes/required-materials.html"
+  - title: Téléchargez et extrayez les fichiers d'installation StorageGRID
+    url: "/swnodes/downloading-and-extracting-storagegrid-installation-files.html"
+  - title: Vérifiez manuellement les fichiers d'installation
+    url: "/swnodes/download-files-verify.html"
+  - title: Configuration logicielle requise
+    url: "/swnodes/software-requirements.html"
+  - title: Configuration requise pour le processeur et la RAM
+    url: "/swnodes/cpu-and-ram-requirements.html"
+  - title: Les besoins en matière de stockage et de performances
+    url: "/swnodes/storage-and-performance-requirements.html"
+  - title: Exigences de migration des conteneurs Node (Linux)
+    url: "/swnodes/node-container-migration-requirements.html"
+  - title: Préparer les hôtes (Linux)
+    entries:
+    - title: Modification des paramètres à l'échelle de l'hôte
+      url: "/swnodes/how-host-wide-settings-change.html"
+    - title: Installez Linux
+      url: "/swnodes/installing-linux.html"
+    - title: Installation du profil AppArmor (Ubuntu et Debian uniquement)
+      url: "/swnodes/understanding-apparmor-profile-installation.html"
+    - title: Configurez le réseau hôte
+      url: "/swnodes/configuring-host-network.html"
+    - title: Configurer le stockage de l'hôte
+      url: "/swnodes/configuring-host-storage.html"
+    - title: Configurer le volume de stockage du moteur de conteneur
+      url: "/swnodes/configuring-docker-storage-volume.html"
+    - title: Installez les services d'hôte StorageGRID
+      url: "/swnodes/installing-storagegrid-webscale-host-services.html"
+- title: Automatisez l'installation
+  entries:
+  - title: Automatiser l'installation (Linux)
+    url: "/swnodes/automating-installation-linux.html"
+  - title: Automatiser l'installation (VMware)
+    url: "/swnodes/automating-grid-node-deployment-in-vmware-vsphere.html"
+- title: Déployer des nœuds de grille virtuels
+  entries:
+  - title: Collectez des informations sur votre environnement de déploiement (VMware)
+    url: "/swnodes/collecting-information-about-your-deployment-environment.html"
+  - title: Créer des fichiers de configuration de nœud pour le déploiement (Linux)
+    url: "/swnodes/creating-node-configuration-files.html"
+  - title: Mode de détection des nœuds du grid sur le nœud d'administration principal
+    url: "/swnodes/how-grid-nodes-discover-primary-admin-node.html"
+  - title: Déployer un nœud StorageGRID en tant que machine virtuelle (VMware)
+    url: "/swnodes/deploying-storagegrid-node-as-virtual-machine.html"
+  - title: Exemples de fichiers de configuration de nœud (Linux)
+    url: "/swnodes/example-node-configuration-files.html"
+  - title: Valider la configuration de StorageGRID (Linux)
+    url: "/swnodes/validating-storagegrid-configuration.html"
+  - title: Démarrer le service hôte StorageGRID (Linux)
+    url: "/swnodes/starting-storagegrid-host-service.html"
+- title: Configurer la grille et terminer l'installation
+  entries:
+  - title: Accédez au Grid Manager
+    url: "/swnodes/navigating-to-grid-manager.html"
+  - title: Spécifiez les informations de licence
+    url: "/swnodes/specifying-storagegrid-license-information.html"
+  - title: Ajouter des sites
+    url: "/swnodes/adding-sites.html"
+  - title: Spécifiez les sous-réseaux du réseau de la grille
+    url: "/swnodes/specifying-grid-network-subnets.html"
+  - title: Approuver les nœuds de la grille en attente
+    url: "/swnodes/approving-pending-grid-nodes.html"
+  - title: Spécifiez les informations du serveur NTP
+    url: "/swnodes/specifying-network-time-protocol-server-information.html"
+  - title: Spécifiez les informations du serveur DNS
+    url: "/swnodes/specifying-domain-name-system-server-information.html"
+  - title: Spécifiez les mots de passe système
+    url: "/swnodes/specifying-storagegrid-system-passwords.html"
+  - title: Vérifiez la configuration et terminez l'installation
+    url: "/swnodes/reviewing-your-configuration-and-completing-installation.html"
+  - title: Instructions de post-installation
+    url: "/swnodes/post-installation-guidelines.html"
+- title: Installation de l'API REST
+  url: "/swnodes/overview-of-installation-rest-api.html"
+- title: Par où aller plus loin
+  url: "/swnodes/where-to-go-next.html"
+- title: Résoudre les problèmes d'installation
+  url: "/swnodes/troubleshooting-installation-issues.html"
+- title: Exemples de scripts
+  entries:
+  - title: Exemple de /etc/sysconfig/network-scripts (RHEL)
+    url: "/swnodes/example-etc-sysconfig-network-scripts.html"
+  - title: Exemple /etc/network/interfaces (Ubuntu ou Debian)
+    url: "/swnodes/example-etc-network-interfaces.html"

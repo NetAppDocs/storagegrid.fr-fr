@@ -14,7 +14,12 @@ summary: 'Après avoir activé une règle ILM, vous ingérer des objets de test 
 Après avoir activé une règle ILM, vous ingérer des objets de test représentatifs dans le système StorageGRID, puis effectuer une recherche de métadonnées d'objet pour vérifier que les copies sont effectuées comme prévu et placées dans les emplacements appropriés.
 
 .Avant de commencer
-Vous avez un identificateur d'objet, qui peut être l'un des: * *UUID*: L'identificateur unique universel de l'objet. * *CBID* : identifiant unique de l'objet dans StorageGRID. Vous pouvez obtenir le CBID d'un objet à partir du journal d'audit. Saisissez le CBID en majuscules. * *Compartiment S3 et clé d'objet* : lorsqu'un objet est ingéré via l'interface S3, l'application client utilise une combinaison de clé de compartiment et d'objet pour stocker et identifier l'objet. Si le compartiment S3 est avec version et que vous souhaitez rechercher une version spécifique d'un objet S3 à l'aide du compartiment et de la clé d'objet, vous disposez de l'ID *version*.
+Vous disposez d'un identifiant d'objet, qui peut être l'un des suivants :
+
+* *UUID* : l'identifiant unique universel de l'objet.
+* *CBID* : l'identifiant unique de l'objet dans StorageGRID.  Vous pouvez obtenir le CBID d'un objet à partir du journal d'audit.  Entrez le CBID en majuscules.
+* *Seau S3 et clé d'objet* : lorsqu'un objet est ingéré via l'interface S3, l'application cliente utilise une combinaison de compartiment et de clé d'objet pour stocker et identifier l'objet.  Si le bucket S3 est versionné et que vous souhaitez rechercher une version spécifique d'un objet S3 à l'aide du bucket et de la clé d'objet, vous disposez de l'*ID de version*.
+
 
 .Étapes
 . Ingestion de l'objet.

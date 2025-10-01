@@ -16,7 +16,7 @@ Le système d'alerte offre une interface facile à utiliser pour détecter, éva
 Les alertes sont déclenchées à des niveaux de gravité spécifiques lorsque les conditions des règles d'alerte sont définies comme vrai. Lorsqu'une alerte est déclenchée, les actions suivantes se produisent :
 
 * Une icône de gravité d'alerte s'affiche sur le tableau de bord dans le Gestionnaire de grille et le nombre d'alertes actuelles est incrémenté.
-* L'alerte s'affiche sur la page de résumé *NODES* et sur l'onglet *NODES* > *_node_* > *Overview*.
+* L'alerte s'affiche sur la page de résumé *Nœuds* et sur l'onglet *Nœuds* > *_node_* > *Aperçu*.
 * Une notification par e-mail est envoyée, en supposant que vous avez configuré un serveur SMTP et fourni des adresses e-mail aux destinataires.
 * Une notification SNMP (simple Network Management Protocol) est envoyée, en supposant que vous avez configuré l'agent SNMP StorageGRID.
 
@@ -25,15 +25,12 @@ Vous pouvez créer des alertes personnalisées, modifier ou désactiver des aler
 
 Pour en savoir plus :
 
-* Regardez la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1["Vidéo : présentation des alertes"^]
+* Revoir les vidéos :
 +
-[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1]
-image::../media/video-screenshot-alert-overview-118.png[Vidéo : présentation des alertes]
-
-* Regardez la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=54af90c4-9a38-4136-9621-b1ff008604a3["Vidéo : alertes personnalisées"^]
+.Aperçu des alertes
+video::2eea81c5-8323-417f-b0a0-b1ff008506c1[panopto]
 +
-[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=54af90c4-9a38-4136-9621-b1ff008604a3]
-image::../media/video-screenshot-alert-create-custom-118.png[Vidéo : alertes personnalisées]
-
-* Voir la link:alerts-reference.html["Référence des alertes"].
+.Alertes personnalisées
+video::54af90c4-9a38-4136-9621-b1ff008604a3[panopto]
+* Reportez-vous à lalink:alerts-reference.html["Référence des alertes"] .
 

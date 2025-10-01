@@ -15,7 +15,7 @@ Une fois une opération d'extension qui ajoute de nouveaux nœuds de stockage te
 
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-. Sélectionnez *NODES* > *_expansion Storage Node_* > *Storage*.
+. Sélectionnez *Nœuds* > *_Nœud de stockage d'extension_* > *Stockage*.
 . Placez votre curseur sur le graphique *stockage utilisé - données d'objet* pour afficher la valeur de *utilisé*, qui est la quantité d'espace utilisable total utilisée pour les données d'objet.
 . Vérifiez que la valeur de *utilisé* augmente au fur et à mesure que vous déplacez le curseur vers la droite du graphique.
 

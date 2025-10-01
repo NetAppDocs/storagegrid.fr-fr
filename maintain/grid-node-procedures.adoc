@@ -13,18 +13,17 @@ summary: Vous devrez peut-être effectuer des procédures de maintenance relativ
 [role="lead"]
 Vous devrez peut-être effectuer des procédures de maintenance relatives à des nœuds de grid ou des services de nœud spécifiques.
 
-Procédures de Server Manager:: Server Manager s'exécute sur chaque nœud de la grille pour superviser le démarrage et l'arrêt des services et pour s'assurer que les services rejoignent et quittent aisément le système StorageGRID. Server Manager surveille également les services sur chaque nœud de la grille et tente automatiquement de redémarrer les services qui signalent les pannes.
+Déplacer l'ADC:: Lelink:../maintain/understanding-adc-service-quorum.html["Service ADC"] est situé sur certains nœuds de stockage.  Dans certaines circonstances de mise hors service et de conversion de nœud, vous devez déplacer le service ADC vers un autre nœud de stockage sur le même site.
+Convertir un nœud de stockage en nœud de données uniquement:: Vous pouvez convertir les nœuds de stockage qui ne contiennent pas le service ADC en nœuds de stockage de données uniquement.
+Redémarrage, arrêt et mise sous tension du nœud:: Ces procédures permettent de redémarrer un ou plusieurs nœuds, d'arrêter et de redémarrer des nœuds ou de mettre les nœuds hors tension et de les rallumer.
+Remappage des ports:: Vous pouvez utiliser les procédures de remap des ports pour supprimer les remappés de port d'un nœud, par exemple, si vous souhaitez configurer un point final d'équilibreur de charge à l'aide d'un port qui a été précédemment remmappé.
+Gestionnaire de serveur:: Server Manager s'exécute sur chaque nœud de la grille pour superviser le démarrage et l'arrêt des services et pour s'assurer que les services rejoignent et quittent aisément le système StorageGRID. Server Manager surveille également les services sur chaque nœud de la grille et tente automatiquement de redémarrer les services qui signalent les pannes.
 +
 --
-Pour exécuter les procédures de Server Manager, vous devez généralement accéder à la ligne de commande du nœud.
+Pour exécuter les procédures du Gestionnaire de serveur, vous devez généralement accéder à la ligne de commande du nœud.
 
 
-NOTE: Vous ne devez accéder à Server Manager que si le support technique vous a demandé de le faire.
-
-
-NOTE: Vous devez fermer la session de shell de commande en cours et vous déconnecter une fois que vous avez terminé avec Server Manager. Entrer : `exit`
+CAUTION: Vous ne devez accéder à Server Manager que si le support technique vous a demandé de le faire.
 
 --
-Les procédures de redémarrage, d'arrêt et d'alimentation du nœud:: Ces procédures permettent de redémarrer un ou plusieurs nœuds, d'arrêter et de redémarrer des nœuds ou de mettre les nœuds hors tension et de les rallumer.
-Procédures de remap de port:: Vous pouvez utiliser les procédures de remap des ports pour supprimer les remappés de port d'un nœud, par exemple, si vous souhaitez configurer un point final d'équilibreur de charge à l'aide d'un port qui a été précédemment remmappé.
 

@@ -174,6 +174,13 @@ Un problème a été détecté au niveau d'un disque DAS (Direct-Attached Storag
 
 
  a| 
+Le lecteur DAS de l'appareil se trouve dans le mauvais emplacement ou le mauvais nœud
+ a| 
+Un lecteur de stockage à connexion directe (DAS) se trouve dans le mauvais emplacement ou le mauvais nœud
+
+
+
+ a| 
 Le voyant de localisation du dispositif DAS est allumé
  a| 
 Le voyant de localisation de lecteur d'un ou plusieurs disques DAS (Direct-Attached Storage Node) d'un nœud de stockage d'appliance est allumé.
@@ -240,6 +247,13 @@ Un problème de carte d'interface réseau (NIC) a été détecté sur le serveur
 L'alimentation générale de l'appareil est dégradée
  a| 
 La puissance d'un dispositif StorageGRID s'est déviée de la tension de fonctionnement recommandée.
+
+
+
+ a| 
+Mise à jour du logiciel du système d'exploitation SANtricity requise
+ a| 
+La version du logiciel SANtricity est inférieure au minimum recommandé pour cette version de StorageGRID.
 
 
 
@@ -380,7 +394,7 @@ Le nœud ne peut pas transférer les journaux vers le serveur syslog externe.
  a| 
 Grande file d'attente d'audit
  a| 
-La file d'attente des messages d'audit est pleine. Si cette condition n'est pas résolue, les opérations S3 ou Swift risquent d'échouer.
+La file d'attente du disque pour les messages d'audit est pleine.  Si cette condition n’est pas résolue, les opérations S3 risquent d’échouer.
 
 
 
@@ -609,9 +623,23 @@ Impossible d'envoyer la notification par e-mail pour une alerte.
 
 
  a| 
+Le bucket de destination d'archivage des journaux est introuvable
+ a| 
+Le bucket de destination d'archivage des journaux est manquant, ce qui empêche l'archivage des journaux dans le bucket de destination.
+
+
+
+ a| 
 Erreurs d'information SNMP
  a| 
 Erreurs lors de l'envoi de notifications d'information SNMP à une destination d'interruption.
+
+
+
+ a| 
+Accès externe SSH activé
+ a| 
+L'accès externe SSH est activé depuis plus de 24 heures.
 
 
 
@@ -681,9 +709,9 @@ Un ou plusieurs certificats client sont sur le point d'expirer.
 
 
  a| 
-Expiration du certificat de serveur global pour S3 et Swift
+Expiration du certificat de serveur global pour S3
  a| 
-Le certificat de serveur global pour S3 et Swift est sur le point d'expirer.
+Le certificat de serveur global pour S3 est sur le point d’expirer.
 
 
 
@@ -944,7 +972,7 @@ Le décalage entre l'horloge locale et l'heure NTP (Network Time Protocol) est t
  a| 
 Capacité du disque du journal d'audit faible
  a| 
-L'espace disponible pour les journaux d'audit est faible. Si cette condition n'est pas résolue, les opérations S3 ou Swift risquent d'échouer.
+L'espace disponible pour les journaux d'audit est faible.  Si cette condition n’est pas résolue, les opérations S3 risquent d’échouer.
 
 
 
@@ -1007,7 +1035,7 @@ L'espace disponible sur le disque racine est faible.
  a| 
 Faible capacité des données système
  a| 
-L'espace disponible pour /var/local est faible. Si cette condition n'est pas résolue, les opérations S3 ou Swift risquent d'échouer.
+L'espace disponible pour /var/local est faible.  Si cette condition n’est pas résolue, les opérations S3 risquent d’échouer.
 
 
 
@@ -1024,6 +1052,13 @@ L'espace disponible dans le répertoire /tmp est faible.
 [cols="1a,2a"]
 |===
 | Nom de l'alerte | Description 
+
+
+ a| 
+Le quorum de l'ADC n'est pas atteint
+ a| 
+Le nœud de stockage avec le service ADC est hors ligne.  Les opérations d’extension et de mise hors service sont bloquées jusqu’à ce que le quorum ADC soit rétabli.
+
 
 
  a| 
@@ -1238,9 +1273,16 @@ Le travail de vérification de l'existence de l'objet est bloqué.
 
 
  a| 
-Objets perdus
+Objets potentiellement perdus
  a| 
-Un ou plusieurs objets ont été perdus de la grille.
+Un ou plusieurs objets potentiellement perdus de la grille.
+
+
+
+ a| 
+Objets orphelins détectés
+ a| 
+Des objets orphelins ont été détectés.
 
 
 
@@ -1255,6 +1297,21 @@ Un client tente une opération PUT Object qui dépasse les limites de taille S3.
 Objet corrompu non identifié détecté
  a| 
 Un fichier a été trouvé dans le stockage objet répliqué qui n'a pas pu être identifié en tant qu'objet répliqué.
+
+|===
+
+
+== Alertes de corruption d'objets
+
+[cols="1a,2a"]
+|===
+| Nom de l'alerte | Description 
+
+
+ a| 
+Incompatibilité de taille d'objet
+ a| 
+Taille d'objet inattendue détectée lors de la procédure de vérification de l'existence de l'objet.
 
 |===
 
@@ -1348,14 +1405,14 @@ La configuration du service nginx-gw n'est pas valide. La configuration précéd
  a| 
 Redémarrage requis pour désactiver FIPS
  a| 
-La stratégie de sécurité ne nécessite pas le mode FIPS, mais le module de sécurité cryptographique NetApp est activé.
+La politique de sécurité ne nécessite pas le mode FIPS, mais les modules FIPS sont utilisés.
 
 
 
  a| 
 Redémarrage requis pour activer FIPS
  a| 
-La stratégie de sécurité nécessite le mode FIPS, mais le module de sécurité cryptographique NetApp est désactivé.
+La politique de sécurité nécessite le mode FIPS, mais les modules FIPS ne sont pas utilisés.
 
 
 

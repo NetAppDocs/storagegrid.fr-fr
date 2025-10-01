@@ -1,52 +1,8 @@
 ---
 permalink: ubuntu/cpu-and-ram-requirements.html 
-sidebar: sidebar 
-keywords: cpu, ram, cpu cores 
-summary: 'Avant d"installer le logiciel StorageGRID, vérifiez et configurez le matériel afin qu"il soit prêt à prendre en charge le système StorageGRID.' 
+redirect: storagegrid/swnodes/cpu-and-ram-requirements.html 
 ---
-= Configuration requise pour le processeur et la RAM
+= 
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
 
-[role="lead"]
-Avant d'installer le logiciel StorageGRID, vérifiez et configurez le matériel afin qu'il soit prêt à prendre en charge le système StorageGRID.
-
-Chaque nœud StorageGRID nécessite au moins :
-
-* Cœurs de processeur : 8 par nœud
-* RAM : dépend de la mémoire RAM totale disponible et de la quantité de logiciels non StorageGRID exécutés sur le système
-+
-** Généralement, au moins 24 Go par nœud et 2 à 16 Go de moins que la RAM totale du système
-** Un minimum de 64 Go pour chaque locataire qui aura environ 5,000 compartiments
-
-
-
-
-Les ressources de nœud exclusivement basées sur des métadonnées logicielles doivent correspondre aux ressources de nœuds de stockage existantes. Par exemple :
-
-* Si le site StorageGRID existant utilise des appliances SG6000 ou SG6100, les nœuds exclusivement basés sur des métadonnées logicielles doivent respecter la configuration minimale suivante :
-+
-** 128 GO DE RAM
-** Processeur 8 cœurs
-** SSD de 8 To ou stockage équivalent pour la base de données Cassandra (rangedb/0)
-
-
-* Si le site StorageGRID existant utilise des nœuds de stockage virtuels avec 24 Go de RAM, 8 cœurs de CPU et 3 To ou 4 To de stockage des métadonnées, les nœuds logiciels uniquement basés sur les métadonnées doivent utiliser des ressources similaires (24 Go de RAM, 8 cœurs de CPU et 4 To de stockage des métadonnées (rangedb/0).
-
-
-Lors de l'ajout d'un nouveau site StorageGRID, la capacité totale des métadonnées du nouveau site doit, au minimum, correspondre aux sites StorageGRID existants ; les nouvelles ressources du site doivent correspondre aux nœuds de stockage des sites StorageGRID existants.
-
-Vérifiez que le nombre de nœuds StorageGRID que vous prévoyez d'exécuter sur chaque hôte physique ou virtuel ne dépasse pas le nombre de cœurs de processeur ou la mémoire RAM physique disponible. Si les hôtes ne sont pas dédiés à l'exécution de StorageGRID (non recommandé), veillez à prendre en compte les besoins en ressources des autres applications.
-
-
-CAUTION: Surveillez régulièrement l'utilisation de votre processeur et de votre mémoire pour vous assurer que ces ressources continuent de s'adapter à votre charge de travail. Par exemple, doubler l'allocation de la RAM et du processeur pour les nœuds de stockage virtuels fournira des ressources similaires à celles des nœuds d'appliance StorageGRID. En outre, si la quantité de métadonnées par nœud dépasse 500 Go, envisagez d'augmenter la mémoire RAM par nœud à au moins 48 Go. Pour plus d'informations sur la gestion du stockage des métadonnées d'objet, l'augmentation du paramètre espace réservé aux métadonnées et la surveillance de l'utilisation du processeur et de la mémoire, reportez-vous aux instructions pour link:../admin/index.html["administration"], link:../monitor/index.html["contrôle"]et link:../upgrade/index.html["mise à niveau"]StorageGRID.
-
-Si le hyperthreading est activé sur les hôtes physiques sous-jacents, vous pouvez fournir 8 cœurs virtuels (4 cœurs physiques) par nœud. Si le hyperthreading n'est pas activé sur les hôtes physiques sous-jacents, vous devez fournir 8 cœurs physiques par nœud.
-
-Si vous utilisez des machines virtuelles en tant qu'hôtes et que vous contrôlez la taille et le nombre de machines virtuelles, nous vous recommandons d'utiliser une seule machine virtuelle pour chaque nœud StorageGRID afin de dimensionner celle-ci en conséquence.
-
-Dans le cas de déploiements en production, vous ne devez pas exécuter plusieurs nœuds de stockage sur le même matériel de stockage physique ou sur le même hôte virtuel. Dans un seul déploiement StorageGRID, chaque nœud de stockage doit se trouver dans son propre domaine de défaillances isolé. Vous pouvez optimiser la durabilité et la disponibilité des données d'objet si vous assurez qu'une seule panne matérielle peut avoir un impact sur un seul nœud de stockage.
-
-Voir aussi link:storage-and-performance-requirements.html["Les besoins en matière de stockage et de performances"].

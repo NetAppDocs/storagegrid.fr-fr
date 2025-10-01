@@ -13,19 +13,24 @@ summary: 'Vous pouvez configurer les groupes haute disponibilité \(HA\) pour fo
 [role="lead"]
 Vous pouvez configurer des groupes haute disponibilité pour fournir un accès haute disponibilité aux services sur des nœuds d'administration ou de passerelle.
 
+
+NOTE: Un système StorageGRID peut avoir un maximum de 255 groupes HA.
+
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
 * Si vous prévoyez d'utiliser une interface VLAN dans un groupe haute disponibilité, vous avez créé cette interface. Voir link:../admin/configure-vlan-interfaces.html["Configurez les interfaces VLAN"].
 * Si vous prévoyez d'utiliser une interface d'accès pour un nœud d'un groupe haute disponibilité, vous avez créé l'interface :
 +
-** *Red Hat Enterprise Linux (avant d'installer le nœud)* : link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *Ubuntu ou Debian (avant d'installer le nœud)* : link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *Linux (après l'installation du nœud)* : link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux : ajoutez une jonction ou des interfaces d'accès à un nœud"]
-** *VMware (après l'installation du nœud)* : link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware : ajoutez du jonction ou des interfaces d'accès à un nœud"]
+** *Linux (avant l'installation du nœud)*:link:../swnodes/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *Linux (après l'installation du nœud)*:link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Ajouter des interfaces de jonction ou d'accès à un nœud"]
+** *VMware (après l'installation du nœud)*:link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["Ajouter des interfaces de jonction ou d'accès à un nœud"]
 
 
 
+
+
+NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
 
 
 
@@ -40,7 +45,7 @@ Pour qu'un nœud de passerelle ou un nœud d'administration soit inclus dans un 
 === Accéder à l'assistant
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+. Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité*.
 . Sélectionnez *Créer*.
 
 
@@ -154,7 +159,7 @@ Vous pouvez modifier un groupe haute disponibilité (HA) pour modifier son nom e
 Par exemple, vous devrez peut-être modifier un groupe haute disponibilité si vous souhaitez supprimer le nœud associé à une interface sélectionnée dans la procédure de mise hors service d'un site ou d'un nœud.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+. Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité*.
 +
 La page groupes haute disponibilité affiche tous les groupes haute disponibilité existants.
 
@@ -199,10 +204,10 @@ TIP: Vous ne pouvez pas supprimer un groupe haute disponibilité s'il est lié �
 Pour éviter toute interruption de service, mettez à jour toutes les applications client S3 affectées avant de supprimer un groupe haute disponibilité. Mettre à jour chaque client pour se connecter à l'aide d'une autre adresse IP, par exemple l'adresse IP virtuelle d'un autre groupe haute disponibilité ou l'adresse IP configurée pour une interface lors de l'installation.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+. Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité*.
 . Consultez la colonne *Load Balancer Endpoints* pour chaque groupe HA que vous souhaitez supprimer. Si des terminaux d'équilibrage de charge sont répertoriés :
 +
-.. Accédez à *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+.. Accédez à *Configuration* > *Réseau* > *Points de terminaison de l'équilibreur de charge*.
 .. Cochez la case du point final.
 .. Sélectionnez *actions* > *Modifier le mode de liaison du point final*.
 .. Mettez à jour le mode de liaison pour supprimer le groupe HA.

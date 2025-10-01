@@ -22,7 +22,7 @@ Lorsque vous accédez à la page Decommission Nodes dans Grid Manager, vous pouv
 CAUTION: Soyez prudent lorsque vous désaffectez des nœuds de stockage dans un grid contenant des nœuds de métadonnées uniquement basés sur des logiciels. Si vous désaffectez tous les nœuds configurés pour stocker _les deux_ objets et les métadonnées, la capacité de stockage des objets est supprimée de la grille. Pour plus d'informations sur les nœuds de stockage des métadonnées uniquement, reportez-vous à la sectionlink:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.
+. Sélectionnez *Maintenance* > *Tâches* > *Mise hors service*.
 . Sélectionnez *nœuds de mise hors service*.
 +
 La page nœuds de mise hors service s'affiche. À partir de cette page, vous pouvez :
@@ -62,7 +62,7 @@ Aucune.
  a| 
 Non, au moins un nœud de la grille est déconnecté.
 
-*Remarque :* ce message s'affiche uniquement pour les nœuds de grille connectés.
+*Remarque* : ce message s’affiche uniquement pour les nœuds de réseau connectés.
  a| 
 Vous ne pouvez pas désaffecter un nœud de grid connecté si un nœud de grid est déconnecté.
 
@@ -81,7 +81,7 @@ Vous devez remettre tous les nœuds déconnectés en ligne ou link:decommissioni
  a| 
 Non, un ou plusieurs nœuds requis sont actuellement déconnectés et doivent être restaurés.
 
-*Remarque :* ce message s'affiche uniquement pour les nœuds de grille déconnectés.
+*Remarque* : ce message s’affiche uniquement pour les nœuds de grille déconnectés.
  a| 
 Vous ne pouvez pas désaffecter un nœud de grille déconnecté si un ou plusieurs nœuds requis sont également déconnectés (par exemple, un nœud de stockage requis pour le quorum ADC).
  a| 
@@ -97,7 +97,7 @@ Vous ne pouvez pas désaffecter un nœud de grille déconnecté si un ou plusieu
 
 
  a| 
-Non, membre du(des) groupe(s) HA : _nom du groupe_. Avant de pouvoir désaffecter ce nœud, vous devez le supprimer de tous les groupes haute disponibilité.
+Non, membre du groupe HA : _nom du groupe_.  Avant de pouvoir mettre hors service ce nœud, vous devez le supprimer de tous les groupes HA.
  a| 
 Vous ne pouvez pas désaffecter un nœud d'administration ou un nœud de passerelle si une interface de nœud appartient à un groupe haute disponibilité (HA).
  a| 
@@ -108,16 +108,16 @@ Modifiez le groupe haute disponibilité pour supprimer l'interface du nœud ou s
  a| 
 Non, site _x_ nécessite au moins _n_ nœuds de stockage avec services ADC.
  a| 
-*Nœuds de stockage uniquement.* Vous ne pouvez pas désaffecter un nœud de stockage si le site ne dispose pas de nœuds suffisants pour prendre en charge les exigences de quorum ADC.
+*Nœuds de stockage uniquement* (nœuds de stockage combinés ou de métadonnées uniquement).  Vous ne pouvez pas mettre hors service un nœud de stockage si le nombre de nœuds restant sur le site est insuffisant pour prendre en charge les exigences de quorum ADC.  Cependant, vous pouvez déplacer le service ADC vers un autre nœud de stockage.
  a| 
-Procédez à une extension. Ajoutez un nouveau nœud de stockage au site et spécifiez qu'il doit disposer d'un service ADC. Voir les informations sur le link:understanding-adc-service-quorum.html["Quorum ADC"].
+link:../maintain/move-adc-service.html["Déplacer le service ADC vers un autre nœud de stockage sur le même site"], ou effectuez une extension en ajoutant un nouveau nœud de stockage au site et en spécifiant qu'il doit disposer d'un service ADC. link:understanding-adc-service-quorum.html["Quorum ADC"] .
 
 
 
  a| 
 Non, un ou plusieurs profils de code d'effacement nécessitent au moins _n_ nœuds de stockage. Si le profil n'est pas utilisé dans une règle ILM, vous pouvez le désactiver.
  a| 
-*Nœuds de stockage uniquement.* Vous ne pouvez pas désaffecter un nœud de stockage à moins qu'il ne reste suffisamment de nœuds pour les profils de code d'effacement existants.
+*Nœuds de stockage uniquement*.  Vous ne pouvez pas mettre hors service un nœud de stockage à moins qu'il ne reste suffisamment de nœuds pour les profils de codage d'effacement existants.
 
 Par exemple, si un profil de code d'effacement existe pour un code d'effacement 4+2, au moins 6 nœuds de stockage doivent rester.
  a| 

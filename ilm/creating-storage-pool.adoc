@@ -14,7 +14,7 @@ summary: 'Vous créez des pools de stockage afin de déterminer où le système 
 Vous créez des pools de stockage afin de déterminer où le système StorageGRID stocke les données d'objet et le type de stockage utilisé. Chaque pool de stockage comprend un ou plusieurs sites et une ou plusieurs catégories de stockage.
 
 
-NOTE: Lorsque vous installez StorageGRID 11.9 sur une nouvelle grille, les pools de stockage sont automatiquement créés pour chaque site. Toutefois, si vous avez installé StorageGRID 11.6 ou une version antérieure, les pools de stockage ne sont pas créés automatiquement pour chaque site.
+NOTE: Lorsque vous installez StorageGRID 12.0 sur une nouvelle grille, des pools de stockage sont automatiquement créés pour chaque site.  Cependant, si vous avez initialement installé StorageGRID 11.6 ou une version antérieure, les pools de stockage ne sont pas automatiquement créés pour chaque site.
 
 Si vous souhaitez créer des pools de stockage cloud pour stocker des données d'objet en dehors de votre système StorageGRID, reportez-vous à la section link:what-cloud-storage-pool-is.html["Informations sur l'utilisation des pools de stockage cloud"].
 

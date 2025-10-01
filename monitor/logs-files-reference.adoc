@@ -27,8 +27,9 @@ NOTE: Les détails fournis pour chaque type de journal sont fournis à titre de 
 
 == Accéder aux journaux
 
-Pour accéder aux journaux, vous pouvez link:collecting-log-files-and-system-data.html["collectez les fichiers journaux et les données système"] utiliser un ou plusieurs nœuds en tant qu'archive de fichier journal unique. Si le nœud d'administration principal n'est pas disponible ou ne parvient pas à atteindre un nœud spécifique, vous pouvez accéder à des fichiers journaux individuels pour chaque nœud de la grille comme suit :
+Pour accéder aux journaux, vous pouvezlink:collecting-log-files-and-system-data.html["collectez les fichiers journaux et les données système"] à partir d'un ou plusieurs nœuds sous forme d'archive de fichier journal unique.  Ou, vous pouvez accéder aux fichiers journaux individuels pour chaque nœud de grille comme suit :
 
+.Étapes
 . Entrez la commande suivante : `ssh admin@grid_node_IP`
 . Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
 . Entrez la commande suivante pour basculer en root : `su -`
@@ -41,13 +42,13 @@ Pour accéder aux journaux, vous pouvez link:collecting-log-files-and-system-dat
 
 L'exportation des journaux vers le serveur syslog offre les fonctionnalités suivantes :
 
-* Recevez la liste de toutes les demandes Grid Manager et tenant Manager, en plus des demandes S3 et Swift.
+* Recevez une liste de toutes les demandes Grid Manager et Tenant Manager, en plus des demandes S3.
 * Meilleure visibilité sur les requêtes S3 qui renvoient des erreurs, sans l'impact sur les performances que provoquent les méthodes de journalisation des audits.
 * Accès aux requêtes de couche HTTP et aux codes d'erreur faciles à analyser.
 * Meilleure visibilité sur les demandes bloquées par les classificateurs du trafic au niveau de l'équilibreur de charge.
 
 
-Pour exporter les journaux, reportez-vous link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"]à la section .
+Pour exporter les journaux, reportez-vous àlink:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"] .
 
 
 
@@ -72,6 +73,11 @@ Informations sur le système d'exploitation de base, notamment les versions d'im
 
 | packs  a| 
 Informations de configuration globale (bundles).
+
+
+
+| service de cache  a| 
+Journaux du service de cache (uniquement sur les nœuds de passerelle).
 
 
 
@@ -107,6 +113,11 @@ Metrics et journaux pour les groupes de haute disponibilité.
 
 | Lambda-arbitre  a| 
 Journaux associés à la demande de proxy S3 Select.
+
+
+
+| fuite  a| 
+Journaux du service leakd.
 
 
 
@@ -153,7 +164,7 @@ Fichiers et journaux de configuration de l'équilibreur de charge et de la féd�
 ** Le format de ces messages de journal est `[$time_iso8601] $remote_addr $status $bytes_sent $request_length $request_time "$endpointId" "$upstream_addr" "$request" "$http_host"`
 
 
-* `endpoint-access.log.gz`: Requêtes S3 et Swift pour l'équilibrage de la charge des terminaux.
+* `endpoint-access.log.gz`: S3 demande aux points de terminaison de l'équilibreur de charge.
 +
 ** Ces messages sont préfixés avec lorsqu'ils sont `endpoint:` exportés à l'aide de syslog.
 ** Le format de ces messages de journal est `[$time_iso8601] $remote_addr $status $bytes_sent $request_length $request_time "$endpointId" "$upstream_addr" "$request" "$http_host"`
@@ -227,6 +238,6 @@ Résultat des commandes du conteneur StorageGRID. Contient des informations sur 
 
 
 | synchroniser-package-récupération  a| 
-Lié au maintien de la cohérence du dernier package de récupération sur tous les nœuds d'administration et les nœuds de stockage qui hébergent le service ADC.
+Lié au maintien de la cohérence du dernier package de récupération sur tous les nœuds d'administration et nœuds de stockage qui hébergent le service ADC.
 
 |===

@@ -13,7 +13,7 @@ summary: 'Si une défaillance nécessite le déploiement d"un ou de plusieurs no
 [role="lead"]
 Si une défaillance nécessite le déploiement d'un ou de plusieurs nouveaux hôtes physiques ou virtuels ou la réinstallation de Linux sur un hôte existant, déployez et configurez l'hôte de remplacement avant de pouvoir restaurer le nœud de grille. Cette procédure constitue une étape du processus de restauration des nœuds grid pour tous les types de nœuds.
 
-« Linux » fait référence à un déploiement Red Hat® Enterprise Linux®, Ubuntu® ou Debian®. Pour obtenir la liste des versions prises en charge, reportez-vous au https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
+« Linux » fait référence à un déploiement Red Hat® Enterprise Linux® (RHEL), Ubuntu® ou Debian®.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
 
 Cette procédure n'est effectuée qu'en une seule étape du processus de restauration des nœuds de stockage logiciels, des nœuds d'administration principaux ou non primaires ou des nœuds de passerelle. Les étapes sont identiques quel que soit le type de nœud de grille que vous récupérez.
 

@@ -42,7 +42,7 @@ NOTE: Pour optimiser les options de restauration complète des données en cas d
 
 == Comment configurer un serveur syslog externe
 
-Pour savoir comment configurer un serveur syslog externe, reportez-vous à la section link:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"].
+Pour savoir comment configurer un serveur syslog externe, consultezlink:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"] .
 
 Si vous prévoyez de configurer l'utilisation du protocole TLS ou RELP/TLS, vous devez disposer des certificats suivants :
 

@@ -22,7 +22,7 @@ NOTE: Le bouton *Pause* n'est activé que lorsque les étapes d'évaluation ILM 
 
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.
+. Sélectionnez *Maintenance* > *Tâches* > *Mise hors service*.
 +
 La page mise hors service s'affiche.
 

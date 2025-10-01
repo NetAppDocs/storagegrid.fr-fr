@@ -91,12 +91,12 @@ entries:
     url: "/monitor/deployment-and-maintenance-logs.html"
   - title: Sur le bycast.log
     url: "/monitor/about-bycast-log.html"
-- title: Configurer les destinations des messages d'audit et des journaux
+- title: Configurer la gestion des journaux et le serveur syslog externe
   entries:
   - title: Considérations relatives au serveur syslog externe
     url: "/monitor/considerations-for-external-syslog-server.html"
-  - title: Configurer les messages d'audit et le serveur syslog externe
-    url: "/monitor/configure-audit-messages.html"
+  - title: Configurer la gestion des journaux
+    url: "/monitor/configure-log-management.html"
 - title: Utiliser la surveillance SNMP
   entries:
   - title: Surveillance SNMP
@@ -110,26 +110,20 @@ entries:
     url: "/monitor/access-snmp-mib.html"
 - title: Collecte de données StorageGRID supplémentaires
   entries:
-  - title: Utilisez des graphiques et des graphiques
-    url: "/monitor/using-charts-and-reports.html"
-  - title: Utilisez les rapports texte
-    url: "/monitor/types-of-text-reports.html"
   - title: Surveillez L'PUT et OBTENEZ des performances
     url: "/monitor/monitoring-put-and-get-performance.html"
   - title: Surveiller les opérations de vérification d'objets
     url: "/monitor/monitoring-object-verification-operations.html"
-  - title: Contrôle des événements
-    url: "/monitor/monitoring-events.html"
   - title: Examiner les messages d'audit
     url: "/monitor/reviewing-audit-messages.html"
   - title: Collecte de fichiers journaux et de données système
     url: "/monitor/collecting-log-files-and-system-data.html"
   - title: Déclencher manuellement un package AutoSupport
     url: "/monitor/manually-triggering-autosupport-message.html"
-  - title: Afficher l'arborescence de la grille topologique
-    url: "/monitor/viewing-grid-topology-tree.html"
   - title: Examinez les metrics de support
     url: "/monitor/reviewing-support-metrics.html"
+  - title: Modifier la priorisation des E/S
+    url: "/monitor/manage-io-prioritization.html"
   - title: Exécuter les diagnostics
     url: "/monitor/running-diagnostics.html"
   - title: Créer des applications de surveillance personnalisées

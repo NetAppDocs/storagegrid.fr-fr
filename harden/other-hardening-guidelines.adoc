@@ -21,9 +21,7 @@ Pour sécuriser le système StorageGRID pendant l'installation, définissez un m
 
 Pour plus d'informations, se reporter à :
 
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-* link:../vmware/index.html["Installez StorageGRID sur VMware"]
+* link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Installez l'appliance StorageGRID"^]
 
 
@@ -53,7 +51,7 @@ AutoSupport prend en charge les protocoles de transport HTTPS, HTTP et SMTP. En 
 
 Vous pouvez configurer le partage de ressources entre sources (CORS) pour un compartiment S3 si vous souhaitez que ce compartiment et ces objets soient accessibles aux applications web d'autres domaines. En général, n'activez pas les codes de commande à moins qu'ils ne soient requis. Si CORS est requis, limitez-le aux origines de confiance.
 
-Voir les étapes pour link:../tenant/configuring-cross-origin-resource-sharing-cors.html["Configuration du partage des ressources d'origine croisée (CORS)"].
+Voir les étapes pourlink:../tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["configuration de CORS pour les buckets et les objets"] .
 
 
 

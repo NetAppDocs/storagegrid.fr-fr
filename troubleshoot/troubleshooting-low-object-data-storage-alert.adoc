@@ -37,7 +37,7 @@ Dans cette condition :
 Si une alerte majeure ou mineure *stockage de données d'objet bas* est déclenchée, vous devez exécuter une procédure d'extension dès que possible.
 
 .Étapes
-. Sélectionnez *ALERTES* > *actuel*.
+. Sélectionnez *Alertes* > *Actuel*.
 +
 La page alertes s'affiche.
 
@@ -53,7 +53,7 @@ NOTE: Sélectionnez l'alerte, et non l'en-tête d'un groupe d'alertes.
 ** Valeurs actuelles des mesures de cette alerte
 
 
-. Sélectionnez *NOEUDS* > *_Storage Node ou site_* > *Storage*.
+. Sélectionnez *Nœuds* > *_Nœud de stockage ou Site_* > *Stockage*.
 . Positionnez le curseur sur le graphique stockage utilisé - données d'objet.
 +
 Les valeurs suivantes sont affichées :

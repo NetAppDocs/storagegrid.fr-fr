@@ -38,19 +38,19 @@ CAUTION: Assurez-vous qu'au moins deux nœuds de chaque site peuvent accéder à
 
 . Si vous avez ajouté un nœud de passerelle :
 +
-** Si des groupes haute disponibilité sont utilisés pour les connexions client, ajoutez le nœud de passerelle à un groupe haute disponibilité (HA). Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité* pour consulter la liste des groupes haute disponibilité existants et ajouter le nouveau nœud. Voir link:../admin/configure-high-availability-group.html["Configurez les groupes haute disponibilité"].
+** Si des groupes de haute disponibilité (HA) sont utilisés pour les connexions client, ajoutez éventuellement le nœud de passerelle à un groupe HA.  Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité* pour consulter la liste des groupes HA existants et ajouter le nouveau nœud. Voir link:../admin/configure-high-availability-group.html["Configurez les groupes haute disponibilité"] .
 
 
 . Si vous avez ajouté un nœud d'administration :
 +
-.. Si l'authentification unique est activée pour votre système StorageGRID, créez une confiance en tiers pour le nouveau nœud d'administration. Vous ne pouvez pas vous connecter au nœud tant que vous n'avez pas créé cette confiance de partie utilisatrice. Voir link:../admin/configuring-sso.html["Configurer l'authentification unique"].
-.. Si vous prévoyez d'utiliser le service Load Balancer sur les nœuds d'administration, ajoutez éventuellement le nouveau nœud d'administration à un groupe haute disponibilité. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité* pour consulter la liste des groupes haute disponibilité existants et ajouter le nouveau nœud. Voir link:../admin/configure-high-availability-group.html["Configurez les groupes haute disponibilité"].
+.. Si l’authentification unique (SSO) est activée pour votre système StorageGRID , créez une approbation de partie de confiance pour le nouveau nœud d’administration.  Vous ne pouvez pas vous connecter au nœud tant que vous n’avez pas créé cette approbation de partie de confiance. Voir link:../admin/configure-sso.html["Configurer l'authentification unique"] .
+.. Si vous prévoyez d’utiliser le service Load Balancer sur les nœuds d’administration, ajoutez éventuellement le nouveau nœud d’administration à un groupe HA.  Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité* pour consulter la liste des groupes HA existants et ajouter le nouveau nœud. Voir link:../admin/configure-high-availability-group.html["Configurez les groupes haute disponibilité"] .
 .. Vous pouvez également copier la base de données du nœud d'administration principal vers le nœud d'administration d'extension si vous souhaitez préserver la cohérence des informations d'audit et d'attribut sur chaque nœud d'administration. Voir link:copying-admin-node-database.html["Copiez la base de données du nœud d'administration"].
 .. Si vous souhaitez conserver la cohérence des metrics historiques sur chaque nœud d'administration, vous pouvez également copier la base de données Prometheus du nœud d'administration principal vers le nœud d'administration d'extension. Voir link:copying-prometheus-metrics.html["Copie des metrics Prometheus"].
 .. Si vous souhaitez conserver la cohérence des informations du journal historique sur chaque nœud d'administration, copiez les journaux d'audit existants du nœud d'administration principal vers le nœud d'administration d'extension. Voir link:copying-audit-logs.html["Copie des journaux d'audit"].
 
 
-. Pour vérifier si des nœuds d'extension ont été ajoutés avec un réseau client non fiable ou pour modifier si le réseau client d'un nœud n'est pas fiable ou approuvé, accédez à *CONFIGURATION* > *sécurité* > *contrôle pare-feu*.
+. Pour vérifier si des nœuds d'extension ont été ajoutés avec un réseau client non approuvé ou pour modifier si le réseau client d'un nœud est approuvé ou non approuvé, accédez à *Configuration* > *Sécurité* > *Contrôle du pare-feu*.
 +
 Si le réseau client sur le nœud d'extension n'est pas fiable, les connexions au nœud sur le réseau client doivent être effectuées à l'aide d'un noeud final d'équilibreur de charge. Voir link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"] et link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
 

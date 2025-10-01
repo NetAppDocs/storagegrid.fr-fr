@@ -21,24 +21,24 @@ Vous devez utiliser un navigateur Web pris en charge.
  a| 
 Google Chrome
  a| 
-119
+138
 
 
 
  a| 
 Microsoft Edge
  a| 
-119
+138
 
 
 
  a| 
 Mozilla Firefox
  a| 
-119
+140
 
 |===
-Vous devez régler la fenêtre du navigateur sur une largeur recommandée.
+Définissez la fenêtre du navigateur sur une largeur recommandée.
 
 [cols="3a,1a"]
 |===

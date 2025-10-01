@@ -49,7 +49,7 @@ Accès au Gestionnaire de locataires uniquement
 
 
  a| 
-Accès client S3 -- Service d'équilibrage de la charge
+Accès client S3 – Service d'équilibrage de charge
  a| 
 * Nœuds d'administration
 * Nœuds de passerelle

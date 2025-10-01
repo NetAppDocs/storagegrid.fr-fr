@@ -69,7 +69,7 @@ Les clients doivent être configurés pour approuver l'autorité de certificatio
 
 == Algorithmes de hachage et de cryptage pris en charge pour les bibliothèques TLS
 
-Le système StorageGRID prend en charge un ensemble de suites de chiffrement que les applications clientes peuvent utiliser lors de l'établissement d'une session TLS. Pour configurer les chiffrements, accédez à *CONFIGURATION* > *sécurité* > *Paramètres de sécurité* et sélectionnez *règles TLS et SSH*.
+Le système StorageGRID prend en charge un ensemble de suites de chiffrement que les applications clientes peuvent utiliser lors de l'établissement d'une session TLS.  Pour configurer les chiffrements, accédez à *Configuration* > *Sécurité* > *Paramètres de sécurité* et sélectionnez *Politiques TLS et SSH*.
 
 
 

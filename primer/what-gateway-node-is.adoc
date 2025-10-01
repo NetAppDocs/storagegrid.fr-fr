@@ -31,6 +31,13 @@ Le tableau ci-dessous présente les services principaux pour les nœuds de passe
 
 
  a| 
+Service de cache
+ a| 
+Gère un cache local du contenu de l'objet.
+
+
+
+ a| 
 Haute disponibilité
  a| 
 Gère les adresses IP virtuelles haute disponibilité pour les groupes de nœuds d'administration et de nœuds de passerelle.

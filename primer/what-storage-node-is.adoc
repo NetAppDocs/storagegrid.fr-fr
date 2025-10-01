@@ -33,11 +33,16 @@ Vous pouvez sélectionner le type de nœud de stockage dans les situations suiva
 
 
 
-NOTE: Vous ne pouvez pas modifier le type une fois l'installation du nœud de stockage terminée.
 
-Nœud de stockage des données et des métadonnées (combiné):: Par défaut, tous les nouveaux nœuds de stockage stockent à la fois les données d'objet et les métadonnées. Ce type de noeud de stockage est appelé noeud de stockage _combiné_.
-Nœud de stockage des métadonnées uniquement:: L'utilisation d'un nœud de stockage exclusivement pour les métadonnées peut être logique si votre grille stocke un très grand nombre de petits objets. L'installation d'une capacité de métadonnées dédiée assure un meilleur équilibre entre l'espace nécessaire pour un très grand nombre d'objets de petite taille et l'espace requis pour les métadonnées de ces objets. Par ailleurs, les nœuds de stockage de métadonnées uniquement hébergés sur des appliances haute performance peuvent améliorer les performances.
+=== Nœud de stockage des données et des métadonnées (combiné)
 
+Par défaut, tous les nouveaux nœuds de stockage stockent à la fois les données d'objet et les métadonnées. Ce type de noeud de stockage est appelé noeud de stockage _combiné_.
+
+
+
+=== Nœud de stockage des métadonnées uniquement
+
+L'utilisation d'un nœud de stockage exclusivement pour les métadonnées peut être logique si votre grille stocke un très grand nombre de petits objets. L'installation d'une capacité de métadonnées dédiée assure un meilleur équilibre entre l'espace nécessaire pour un très grand nombre d'objets de petite taille et l'espace requis pour les métadonnées de ces objets. Par ailleurs, les nœuds de stockage de métadonnées uniquement hébergés sur des appliances haute performance peuvent améliorer les performances.
 
 Les nœuds de stockage de métadonnées uniquement présentent des exigences matérielles spécifiques :
 
@@ -51,29 +56,34 @@ Les nœuds de stockage de métadonnées uniquement présentent des exigences mat
 *** SSD de 8 To ou stockage équivalent pour la base de données Cassandra (rangedb/0)
 
 
-** Si le site StorageGRID existant utilise des nœuds de stockage virtuels avec 24 Go de RAM, 8 cœurs de CPU et 3 To ou 4 To de stockage des métadonnées, les nœuds logiciels uniquement basés sur les métadonnées doivent utiliser des ressources similaires (24 Go de RAM, 8 cœurs de CPU et 4 To de stockage des métadonnées (rangedb/0).
+** Si le site StorageGRID existant utilise des nœuds de stockage virtuels avec 24 Go de RAM, un processeur à 8 cœurs et 3 To ou 4 To de stockage de métadonnées, les nœuds de métadonnées uniquement basés sur un logiciel doivent utiliser des ressources similaires (24 Go de RAM, un processeur à 8 cœurs et 4 To de stockage de métadonnées (rangedb/0)).
 
 
-* Lors de l'ajout d'un nouveau site StorageGRID, la capacité totale des métadonnées du nouveau site doit, au minimum, correspondre aux sites StorageGRID existants ; les nouvelles ressources du site doivent correspondre aux nœuds de stockage des sites StorageGRID existants.
-
-
-Lors de l'installation de nœuds de métadonnées uniquement, la grille doit également contenir un nombre minimal de nœuds pour le stockage des données :
-
-* Pour un grid sur un seul site, configurez au moins deux nœuds de stockage combinés ou uniquement des données.
-* Pour une grille multisite, configurez au moins un nœud de stockage combiné ou de données uniquement _par site_.
+* Lors de l'ajout d'un nouveau site StorageGRID , la capacité totale des métadonnées du nouveau site doit, au minimum, correspondre aux sites existants.  Les ressources d’un nouveau site doivent correspondre aux nœuds de stockage des sites existants.
 
 
 
 NOTE: Bien que les nœuds de stockage de métadonnées uniquement contiennent <<ldr-service,Service LDR>>et peuvent traiter les demandes des clients S3, les performances de StorageGRID peuvent ne pas augmenter.
 
-Nœud de stockage des données uniquement:: Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
 
 
-Lors de l'installation de nœuds de données uniquement, la grille doit contenir les éléments suivants :
+=== Nœud de stockage des données uniquement
 
-* Au moins deux nœuds de stockage combinés ou uniquement des données _par grid_
-* Au moins un nœud de stockage combiné ou uniquement des données _par site_
-* Au moins trois nœuds de stockage combinés ou métadonnées uniquement _par site_
+Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
+
+De plus, vous pouvez obtenir davantage de capacité de métadonnées en supprimant les nœuds à faible RAM de Cassandra, ce qui augmente la limite de capacité de métadonnées par nœud. link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"] .
+
+Vous pouvez convertir un nœud de stockage qui ne contient pas le<<adc-service,Service ADC>> vers un nœud de stockage de données uniquement. link:../maintain/convert-to-data-only-node.html["Convertir un nœud de stockage en nœud de données uniquement"] .
+
+
+
+== Nœuds de stockage requis par grille et par site
+
+Lors de la sélection des nœuds de stockage à utiliser dans votre topologie, gardez à l'esprit que la grille ou chaque site de la grille doit contenir les éléments suivants :
+
+* Par site (dans une grille mono ou multi-sites) : Trois<<adc-service,ADC>> Nœuds de stockage (peuvent être n'importe quelle combinaison de nœuds de stockage combinés et de métadonnées uniquement)
+* Grille à site unique : au moins deux nœuds de stockage d'objets (peut être n'importe quelle combinaison de combinés et de données uniquement)
+* Grille multisite : au moins un nœud de stockage d'objets par site (peut être combiné ou réservé aux données)
 
 
 
@@ -95,14 +105,16 @@ Compte (compte)
  a| 
 Gestion des comptes de locataire.
 
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
+
 
 
  a| 
-Contrôleur de domaine administratif (ADC)
+[[adc-service]]Contrôleur de domaine administratif (ADC)
  a| 
 Maintien de la topologie et de la configuration dans l'ensemble du grid.
 
-*Remarque* : les nœuds de stockage de données uniquement n'hébergent pas le service ADC.
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
 
 .Détails
 [%collapsible]
@@ -125,7 +137,7 @@ Cassandra
  a| 
 Stocke et protège les métadonnées d'objet.
 
-*Remarque* : les nœuds de stockage uniquement pour les données n'hébergent pas le service Cassandra.
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
 
 
 
@@ -134,7 +146,7 @@ Cône Cassandra
  a| 
 Répare automatiquement les métadonnées d'objet.
 
-*Remarque* : les nœuds de stockage exclusivement données n'hébergent pas le service Cassandra Reaper.
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
 
 
 
@@ -171,6 +183,8 @@ Le service DDS suit le nombre total d'objets ingérés dans le système StorageG
 Identité (idnt)
  a| 
 Fédération des identités d'utilisateur à partir de LDAP et d'Active Directory.
+
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
 
 
 
@@ -220,6 +234,8 @@ Pour assurer la redondance et ainsi la protection contre la perte, trois copies 
 RSM (Replicated State machine)
  a| 
 Envoi des demandes de services de la plateforme S3 à leurs terminaux respectifs
+
+Les nœuds de stockage de données uniquement n'hébergent pas ce service.
 
 
 

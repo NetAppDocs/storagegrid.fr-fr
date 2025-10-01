@@ -48,7 +48,7 @@ CAUTION: Lorsque les métadonnées d'objet utilisent au moins 90 % de l'espace d
 CAUTION: Si la taille du volume 0 est inférieure à celle de l'option de stockage de l'espace réservé aux métadonnées (par exemple, dans un environnement non productif), le calcul de l'alerte *stockage de métadonnées faible* peut être inexact.
 
 .Étapes
-. Sélectionnez *ALERTES* > *actuel*.
+. Sélectionnez *Alertes* > *Actuel*.
 . Dans le tableau des alertes, développez le groupe d'alertes *stockage de métadonnées faible*, si nécessaire, et sélectionnez l'alerte spécifique que vous souhaitez afficher.
 . Vérifiez les détails dans la boîte de dialogue d'alerte.
 . Si une alerte majeure ou critique *stockage de métadonnées faible* a été déclenchée, effectuez immédiatement une extension pour ajouter des nœuds de stockage.

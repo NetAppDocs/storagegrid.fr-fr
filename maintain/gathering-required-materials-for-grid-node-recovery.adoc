@@ -40,23 +40,23 @@ L'ordinateur portable de service doit être équipé des éléments suivants :
 
 
  a| 
-Fichier de package de récupération `.zip`
+Paquet de relance `.zip` déposer
  a| 
-Obtenez une copie du fichier de progiciel de récupération le plus récent `.zip` :
+Obtenir une copie du package de récupération le plus récent `.zip` déposer:
 `sgws-recovery-package-_id-revision_.zip`
 
-Le contenu du `.zip` fichier est mis à jour chaque fois que le système est modifié. Vous êtes invité à stocker la version la plus récente du progiciel de restauration dans un emplacement sécurisé après avoir effectué de telles modifications. Utilisez la copie la plus récente pour récupérer des données suite à des défaillances du grid.
+Le contenu de la `.zip` les fichiers sont mis à jour à chaque modification du système.  Il vous est demandé de stocker la version la plus récente du package de récupération dans un endroit sûr après avoir effectué ces modifications.  Utilisez la copie la plus récente pour récupérer après une panne de réseau.
 
-Si le nœud d'administration principal fonctionne normalement, vous pouvez télécharger le progiciel de restauration à partir de Grid Manager. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+Lorsque vous êtes connecté à un nœud d'administration, utilisez le gestionnaire de grille pour télécharger un package de récupération.  Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
 
-Si vous ne parvenez pas à accéder à Grid Manager, vous pouvez trouver des copies chiffrées du progiciel de récupération sur certains nœuds de stockage qui contiennent le service ADC. Sur chaque nœud de stockage, examinez cet emplacement pour le package de récupération : `/var/local/install/sgws-recovery-package-_grid-id_-_revision_.zip.gpg` utilisez le package de récupération avec le numéro de révision le plus élevé.
+Si vous ne pouvez pas accéder au gestionnaire de grille, vous pouvez trouver des copies chiffrées du package de récupération sur certains nœuds de stockage contenant le service ADC.  Sur chaque nœud de stockage, examinez cet emplacement pour le package de récupération : `/var/local/install/sgws-recovery-package-_grid-id_-_revision_.zip.gpg` Utilisez le package de récupération avec le numéro de révision le plus élevé.
 
 
 
  a| 
 `Passwords.txt` fichier
  a| 
-Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de restauration.
+Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande.  Inclus dans le forfait de récupération.
 
 
 
@@ -107,7 +107,7 @@ Utilisez le `.zip` fichier si vous exécutez Windows.
 
 
  a| 
-Red Hat Enterprise Linux
+RHEL
 | `StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` 
 `StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz` 
 
@@ -124,13 +124,16 @@ VMware
 `StorageGRID-Webscale-_version_-VMware-_uniqueID_.tgz` 
 |===
 . Téléchargez et extrayez le fichier d'archive.
-. Suivez l'étape appropriée pour votre plate-forme afin de choisir les fichiers dont vous avez besoin, en fonction de votre plate-forme et des nœuds de grille que vous devez récupérer.
+. Accédez à la section appropriée à votre plateforme pour choisir les fichiers dont vous avez besoin, en fonction de votre plateforme et des nœuds de grille que vous devez récupérer.
 +
 Les chemins répertoriés dans l'étape pour chaque plate-forme sont relatifs au répertoire de niveau supérieur installé par le fichier d'archive.
 
-. Si vous récupérez un link:../rhel/index.html["Système Red Hat Enterprise Linux"], sélectionnez les fichiers appropriés.
-
-
+. Si vous récupérez unlink:../swnodes/index.html["nœud basé sur un logiciel"] , sélectionnez les fichiers appropriés :
++
+[role="tabbed-block"]
+====
+.RHEL
+--
 [cols="1a,1a"]
 |===
 | Chemin d'accès et nom de fichier | Description 
@@ -205,9 +208,9 @@ Schémas API pour StorageGRID.
 *Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
 
 |===
-. Si vous récupérez un link:../ubuntu/index.html["Système Ubuntu ou Debian"], sélectionnez les fichiers appropriés.
-
-
+--
+.Ubuntu ou Debian
+--
 [cols="1a,1a"]
 |===
 | Chemin d'accès et nom de fichier | Description 
@@ -287,9 +290,9 @@ Schémas API pour StorageGRID.
 *Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
 
 |===
-. Si vous récupérez un link:../vmware/index.html["Système VMware"], sélectionnez les fichiers appropriés.
-
-
+--
+.VMware
+--
 [cols="1a,1a"]
 |===
 | Chemin d'accès et nom de fichier | Description 
@@ -384,8 +387,15 @@ Schémas API pour StorageGRID.
 *Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
 
 |===
+--
+====
+
+
 . Si vous récupérez un système basé sur l'appliance StorageGRID, sélectionnez les fichiers appropriés.
 
+
+
+NOTE: Pour l'installation de l'appareil, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau.  L'appareil peut télécharger les fichiers requis à partir du nœud d'administration où vous effectuez la procédure de récupération.
 
 [cols="1a,1a"]
 |===
@@ -402,5 +412,3 @@ Somme de contrôle MD5 pour le fichier `/debs/storagegridwebscale-
 images-version-SHA.deb`.
 
 |===
-
-NOTE: Pour l'installation de l'appliance, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau. L'appliance peut télécharger les fichiers requis à partir du nœud d'administration principal.

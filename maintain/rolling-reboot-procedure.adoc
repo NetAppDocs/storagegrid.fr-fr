@@ -58,7 +58,7 @@ Sélectionnez les nœuds que vous souhaitez redémarrer, vérifiez vos sélectio
 Dans un premier temps, accédez à la page de redémarrage en roulant et sélectionnez les nœuds que vous souhaitez redémarrer.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *redémarrage en roulant*.
+. Sélectionnez *Maintenance* > *Tâches* > *Redémarrage progressif*.
 . Consultez l'état de la connexion et les icônes d'alerte dans la colonne *Nom du nœud*.
 +
 
@@ -129,6 +129,6 @@ Les tableaux fournissent une barre de progression de l'opération sur chaque nœ
 Vous pouvez arrêter la procédure de redémarrage en continu à partir du nœud d'administration principal. Lorsque vous arrêtez la procédure, tous les nœuds dont l'état est « Arrêt des services », « redémarrage du système » ou « démarrage des services » complètent l'opération de redémarrage. Cependant, ces nœuds ne seront plus suivis dans le cadre de la procédure.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *redémarrage en roulant*.
+. Sélectionnez *Maintenance* > *Tâches* > *Redémarrage progressif*.
 . A partir de l'étape *redémarrage du moniteur*, sélectionnez *Arrêter la procédure de redémarrage*.
 

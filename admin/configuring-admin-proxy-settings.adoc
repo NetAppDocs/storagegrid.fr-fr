@@ -24,7 +24,7 @@ Pour plus d'informations sur AutoSupport, voir link:configure-autosupport-grid-m
 Vous pouvez configurer les paramètres d'un proxy d'administration unique.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres proxy*.
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres proxy*.
 +
 La page Paramètres proxy s'affiche. Par défaut, l'option stockage est sélectionnée dans le menu de l'onglet.
 

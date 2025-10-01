@@ -17,11 +17,11 @@ Vous devez créer au moins un noeud final du type correct avant d'activer un ser
 * Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Les services de plateforme ont été activés pour votre compte de locataire par un administrateur StorageGRID.
 * Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Gestion des noeuds finaux ou des autorisations d'accès racine"].
-* La ressource référencée par le noeud final des services de plate-forme a été créée :
+* La ressource référencée par le point de terminaison des services de la plateforme a été créée :
 +
 ** Réplication CloudMirror : compartiment S3
-** Notification d'événements : Amazon simple notification Service (Amazon SNS) ou rubrique Kafka
-** Notification de recherche : index Elasticsearch, si le cluster de destination n'est pas configuré pour créer automatiquement des index.
+** Notification d'événement : rubrique Amazon Simple Notification Service (Amazon SNS), rubrique Kafka ou point de terminaison webhook
+** Notification de recherche : index Elasticsearch, si le cluster de destination n'est pas configuré pour créer automatiquement des index.
 
 
 * Vous disposez des informations relatives à la ressource de destination :
@@ -76,7 +76,7 @@ Pour les terminaux Kafka, vous pouvez utiliser les identifiants suivants :
 
 --
 ====
-** Certificat de sécurité (en cas d'utilisation d'un certificat d'autorité de certification personnalisé)
+** Certificat de sécurité (si une vérification du certificat est requise)
 
 
 * Si les fonctions de sécurité de Elasticsearch sont activées, vous disposez du privilège Monitor cluster pour les tests de connectivité et du privilège write index ou des privilèges index and delete index pour les mises à jour de documents.
@@ -87,7 +87,7 @@ Pour les terminaux Kafka, vous pouvez utiliser les identifiants suivants :
 . Sélectionnez *Créer un noeud final*.
 . Entrez un nom d'affichage pour décrire brièvement le point final et son objectif.
 +
-Le type de service de plate-forme pris en charge par le noeud final est affiché à côté du nom du noeud final lorsqu'il est répertorié sur la page noeuds finaux, de sorte que vous n'avez pas besoin d'inclure ces informations dans le nom.
+Le type de service de plateforme pris en charge par le point de terminaison est affiché à côté du nom du point de terminaison lorsqu'il est répertorié sur la page Points de terminaison. Vous n'avez donc pas besoin d'inclure ces informations dans le nom.
 
 . Dans le champ *URI*, spécifiez l'identificateur de ressource unique (URI) du noeud final.
 +
@@ -140,6 +140,10 @@ NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
 
 . Sélectionnez *Continuer*.
 . Sélectionnez une valeur pour *Type d'authentification*.
++
+
+NOTE: Si vous souhaitez une authentification pour les points de terminaison webhook, configurez Mutual Transport Layer Security (mTLS) dans<<verify-certs,Étape 9>> .
+
 +
 [role="tabbed-block"]
 ====
@@ -318,17 +322,37 @@ Sélectionnez *utiliser la délégation prise de l'authentification* si le nom d
 --
 ====
 . Sélectionnez *Continuer*.
-. Sélectionnez un bouton radio pour *Verify Server* pour choisir la manière dont la connexion TLS au noeud final est vérifiée.
+. [[verify-certs]]Sélectionnez un bouton radio pour *Vérifier les certificats* pour choisir comment la connexion TLS au point de terminaison est vérifiée.
 +
+[role="tabbed-block"]
+====
+.La plupart des points finaux
+--
+Vérifiez la connexion TLS pour l’intégration de la recherche, la réplication CloudMirror, Amazon SNS ou les points de terminaison Kafka.
+
 [cols="1a,2a"]
 |===
 | Type de vérification du certificat | Description 
 
 
  a| 
+TLS
+ a| 
+Valide le certificat du serveur pour les connexions TLS à la ressource de point de terminaison.
+
+
+
+ a| 
+Désactivées
+ a| 
+La vérification du certificat est désactivée.  Cette option n'est pas sécurisée.
+
+
+
+ a| 
 Utiliser un certificat d'autorité de certification personnalisé
  a| 
-Utilisez un certificat de sécurité personnalisé. Si vous sélectionnez ce paramètre, copiez et collez le certificat de sécurité personnalisé dans la zone de texte *certificat CA*.
+Le certificat CA personnalisé est utilisé pour vérifier l’identité du serveur lors de la connexion au point de terminaison.
 
 
 
@@ -337,14 +361,80 @@ Utiliser le certificat CA du système d'exploitation
  a| 
 Utilisez le certificat d'autorité de certification Grid par défaut installé sur le système d'exploitation pour sécuriser les connexions.
 
+|===
+--
+.Points de terminaison Webhook uniquement
+--
+Vérifiez la connexion TLS pour les points de terminaison webhook.
+
+[cols="1a,2a"]
+|===
+| Type de vérification du certificat | Description 
 
 
  a| 
-Ne vérifiez pas le certificat
+TLS
  a| 
-Le certificat utilisé pour la connexion TLS n'est pas vérifié. Cette option n'est pas sécurisée.
+Valide le certificat du serveur pour les connexions TLS à la ressource de point de terminaison.
+
+
+
+ a| 
+mTLS
+ a| 
+Valide les certificats client et serveur pour les connexions TLS mutuelles à la ressource de point de terminaison.
+
+
+
+ a| 
+Désactivées
+ a| 
+La vérification du certificat est désactivée.  Cette option n'est pas sécurisée.
+
+
+
+ a| 
+Utiliser un certificat d'autorité de certification personnalisé
+ a| 
+Le certificat CA personnalisé est utilisé pour vérifier l’identité du serveur lors de la connexion au point de terminaison.
 
 |===
+Lorsque vous sélectionnez *mTLS*, ces options deviennent disponibles.
+
+[cols="1a,2a"]
+|===
+| Type de vérification du certificat | Description 
+
+
+ a| 
+Ne pas vérifier le certificat du serveur
+ a| 
+Désactive la vérification du certificat du serveur, ce qui signifie que l'identité du serveur n'est pas vérifiée.  Cette option n'est pas sécurisée.
+
+
+
+ a| 
+Certificat client
+ a| 
+Le certificat client est utilisé pour vérifier l'identité du client lors de la connexion au point de terminaison.
+
+
+
+ a| 
+Clé privée du client
+ a| 
+La clé privée du certificat client.  S'il est chiffré, il doit utiliser le format traditionnel PKCS #1 (le format PKCS #8 n'est pas pris en charge).
+
+
+
+ a| 
+Mot de passe de la clé privée du client
+ a| 
+La phrase secrète permettant de décrypter la clé privée du client.  Si la clé privée n'est pas chiffrée, laissez ce champ vide.
+
+|===
+--
+====
 . Sélectionnez *Test et Créer un noeud final*.
 +
 ** Un message de réussite s'affiche si le noeud final peut être atteint à l'aide des informations d'identification spécifiées. La connexion au noeud final est validée à partir d'un nœud sur chaque site.

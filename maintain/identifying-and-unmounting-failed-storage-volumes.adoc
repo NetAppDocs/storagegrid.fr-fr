@@ -30,28 +30,22 @@ NOTE: Réparez le matériel et connectez correctement les disques avant d'exécu
 
 CAUTION: Identifiez minutieusement les volumes de stockage défaillants. Ces informations vous permettront de vérifier quels volumes doivent être reformatés. Une fois qu'un volume a été reformaté, les données du volume ne peuvent pas être récupérées.
 
-Pour récupérer correctement les volumes de stockage défectueux, vous devez connaître à la fois les noms des périphériques des volumes de stockage défaillants et leurs ID de volume.
+Pour récupérer les volumes de stockage défaillants, vous devez connaître à la fois les noms des périphériques des volumes de stockage défaillants et leurs ID de volume.
 
-Lors de l'installation, un identifiant unique universel du système de fichiers (UUID) est attribué à chaque périphérique de stockage et il est monté dans un répertoire rangedb du nœud de stockage à l'aide de l'UUID attribué au système de fichiers. L'UUID du système de fichiers et le répertoire rangedb sont répertoriés dans le `/etc/fstab` fichier. Le nom du périphérique, le répertoire rangedb et la taille du volume monté sont affichés dans le Gestionnaire de grille.
-
-Dans l'exemple suivant, le périphérique `/dev/sdc` a une taille de volume de 4 To, est monté sur `/var/local/rangedb/0`, en utilisant le nom du périphérique `/dev/disk/by-uuid/822b0547-3b2b-472e-ad5e-e1cf1809faba` dans /`etc/fstab`le fichier :
-
-image::../media/mounting_storage_devices.gif[Exemple de taille de volume]
+Lors de l'installation, chaque périphérique de stockage se voit attribuer un identifiant unique universel (UUID) du système de fichiers et est monté sur un répertoire rangedb sur le nœud de stockage à l'aide de cet UUID du système de fichiers attribué.  L'UUID du système de fichiers et le répertoire rangedb sont répertoriés dans le `/etc/fstab` déposer.  Le point de montage, le nom du périphérique et la taille du volume sont affichés dans le gestionnaire de grille.
 
 .Étapes
 . Procédez comme suit pour enregistrer les volumes de stockage défaillants et leurs noms de périphériques :
 +
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *site* > *noeud de stockage défaillant* > *LDR* > *Storage* > *Présentation* > *main* et recherchez des magasins d'objets avec alarmes.
+.. Sélectionnez *Nœuds* > *_site_* > *_nœud de stockage défaillant_* > *Stockage*.
+.. Faites défiler vers le bas pour localiser la table Volumes et la table Magasins d'objets et enregistrez les informations suivantes pour chaque volume avec un statut Inconnu ou Hors ligne.
 +
-image::../media/ldr_storage_object_stores.gif[Section magasins d'objets]
+*** Dans la table Volumes, enregistrez le point de montage, le périphérique et la taille.
+*** À partir de la table des magasins d'objets, enregistrez le `object_store_ID` .
++
+Le `object_store_ID` correspond à l'ID du volume de stockage défaillant. Par exemple, spécifiez `0` dans la commande d'un magasin d'objets ayant l'ID 0000.
 
-.. Sélectionnez *site* > *noeud de stockage défaillant* > *SSM* > *Ressources* > *Présentation* > *main*. Déterminez la taille du point de montage et du volume de chaque volume de stockage défectueux identifié à l'étape précédente.
-+
-Les magasins d'objets sont numérotés en notation hexadécimale. Par exemple, 0000 est le premier volume et 000F est le seizième volume. Dans cet exemple, le magasin d'objets avec l'ID 0000 correspond au nom du périphérique sdc et à `/var/local/rangedb/0` une taille de 107 Go.
 
-+
-image::../media/ssm_storage_volumes.gif[exemple montrant les magasins d'objets et les points de montage]
 
 
 
@@ -61,17 +55,14 @@ image::../media/ssm_storage_volumes.gif[exemple montrant les magasins d'objets e
 .. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
 .. Entrez la commande suivante pour basculer en root : `su -`
 .. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
-
-
 +
 Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
 
 . Exécutez le script suivant pour démonter un volume de stockage défaillant :
 +
 `sn-unmount-volume object_store_ID`
-
-+
-Le `object_store_ID` correspond à l'ID du volume de stockage défaillant. Par exemple, spécifiez `0` dans la commande d'un magasin d'objets ayant l'ID 0000.
 
 . Si vous y êtes invité, appuyez sur *y* pour arrêter le service Cassandra en fonction du volume de stockage 0.
 +

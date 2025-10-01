@@ -2,6 +2,9 @@
 :allow-uri-read: 
 
 
+
+NOTE: Pour l'installation de l'appareil, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau.  L'appareil peut télécharger les fichiers requis à partir du nœud d'administration où vous effectuez la procédure de récupération.
+
 [cols="1a,1a"]
 |===
 | Chemin d'accès et nom de fichier | Description 
@@ -17,5 +20,3 @@ Somme de contrôle MD5 pour le fichier `/debs/storagegridwebscale-
 images-version-SHA.deb`.
 
 |===
-
-NOTE: Pour l'installation de l'appliance, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau. L'appliance peut télécharger les fichiers requis à partir du nœud d'administration principal.

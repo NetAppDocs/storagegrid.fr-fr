@@ -88,7 +88,7 @@ Par exemple, si l'adresse IP virtuelle du groupe haute disponibilité est 192.0.
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 . Pour trouver l'adresse IP d'un nœud de grille :
 +
-.. Sélectionnez *NOEUDS*.
+.. Sélectionnez *Nœuds*.
 .. Sélectionnez le nœud d'administration, le nœud de passerelle ou le nœud de stockage auquel vous souhaitez vous connecter.
 .. Sélectionnez l'onglet *Aperçu*.
 .. Dans la section informations sur le nœud, notez les adresses IP du nœud.
@@ -110,13 +110,13 @@ NOTE: Si vous affichez un nœud d'administration ou un nœud de passerelle et qu
 
 . Pour trouver l'adresse IP virtuelle d'un groupe haute disponibilité :
 +
-.. Sélectionnez *CONFIGURATION* > *réseau* > *groupes haute disponibilité*.
+.. Sélectionnez *Configuration* > *Réseau* > *Groupes de haute disponibilité*.
 .. Dans le tableau, noter l'adresse IP virtuelle du groupe haute disponibilité.
 
 
 . Pour trouver le numéro de port d'un noeud final Load Balancer :
 +
-.. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+.. Sélectionnez *Configuration* > *Réseau* > *Points de terminaison de l'équilibreur de charge*.
 .. Notez le numéro de port du noeud final que vous souhaitez utiliser.
 +
 

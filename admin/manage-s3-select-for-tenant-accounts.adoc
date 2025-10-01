@@ -73,4 +73,4 @@ CAUTION: SelectObjectContent les demandes peuvent réduire les performances d'é
 
 Voir la link:../s3/use-s3-select.html["Instructions d'utilisation de S3 Select"].
 
-Pour afficher link:../monitor/reviewing-support-metrics.html["Graphiques Grafana"] les opérations S3 Select dans le temps, sélectionnez *SUPPORT* > *Outils* > *Metrics* dans le Gestionnaire de grille.
+Pour voirlink:../monitor/reviewing-support-metrics.html["Graphiques Grafana"] pour les opérations S3 Sélectionnez au fil du temps, sélectionnez *Support* > *Outils* > *Métriques* dans le Gestionnaire de grille.

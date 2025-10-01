@@ -2,16 +2,16 @@
 :allow-uri-read: 
 
 
-Supposons que vous disposez d'un grid à deux sites avec la règle ILM suivante et la cohérence suivante :
+Supposons que vous ayez une grille à trois sites avec la règle ILM suivante et la cohérence suivante :
 
-* *Règle ILM* : créez deux copies d'objet, une sur le site local et une sur un site distant. Utiliser un comportement d'ingestion strict.
-* *Cohérence* : fort-global (les métadonnées d'objet sont immédiatement distribuées à tous les sites).
+* *Règle ILM* : Créez trois copies d'objet, une sur le site local et une sur chaque site distant.  Adoptez un comportement d'ingestion strict.
+* *Cohérence* : Forte-globale (les métadonnées de l'objet sont immédiatement distribuées sur plusieurs sites).
 
 
-Lorsqu'un client stocke un objet dans la grille, StorageGRID effectue à la fois des copies d'objet et distribue les métadonnées aux deux sites avant de rétablir la réussite du client.
+Lorsqu'un client stocke un objet dans la grille, StorageGRID effectue les trois copies de l'objet et distribue les métadonnées à plusieurs sites avant de renvoyer l'opération au client.
 
-L'objet est entièrement protégé contre la perte au moment du message d'ingestion. Par exemple, si le site local est perdu peu de temps après l'ingestion, des copies des données de l'objet et des métadonnées de l'objet existent toujours sur le site distant. L'objet est entièrement récupérable.
+L'objet est entièrement protégé contre la perte au moment de l'ingestion réussie du message.  Par exemple, si le site local est perdu peu de temps après l'ingestion, des copies des données d'objet et des métadonnées d'objet existent toujours sur les sites distants.  L'objet est entièrement récupérable sur les autres sites.
 
-Si vous avez utilisé la même règle ILM et la même cohérence site forte, le client peut recevoir un message de réussite après la réplication des données de l'objet vers le site distant, mais avant la distribution des métadonnées de l'objet. Dans ce cas, le niveau de protection des métadonnées d'objet ne correspond pas au niveau de protection des données d'objet. Si le site local est perdu peu de temps après l'ingestion, les métadonnées d'objet sont perdues. Impossible de récupérer l'objet.
+Si vous avez utilisé la même règle ILM et la cohérence de site forte, le client peut recevoir un message de réussite après la réplication des données d'objet sur les sites distants, mais avant que les métadonnées d'objet y soient distribuées.  Dans ce cas, le niveau de protection des métadonnées de l’objet ne correspond pas au niveau de protection des données de l’objet.  Si le site local est perdu peu de temps après l'ingestion, les métadonnées de l'objet sont perdues.  L'objet ne peut pas être récupéré.
 
 L'inter-relation entre la cohérence et les règles ILM peut être complexe. Contactez NetApp si vous avez besoin d'aide.

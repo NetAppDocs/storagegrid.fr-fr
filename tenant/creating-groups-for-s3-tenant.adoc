@@ -27,7 +27,7 @@ Vous pouvez gérer les autorisations des groupes d'utilisateurs S3 en important 
 Pour la première étape, accédez à l'assistant de création de groupe.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Si votre compte locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vérifiez qu'une bannière bleue s'affiche, indiquant que les nouveaux groupes créés sur cette grille seront clonés sur le même locataire sur l'autre grille de la connexion. Si cette bannière n'apparaît pas, vous pouvez être connecté à la grille de destination du locataire.
 +
 image::../media/grid-federation-tenant-group-banner.png[Image de la bannière bleue sur la page groupes de la grille source des locataires]

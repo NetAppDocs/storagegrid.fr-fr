@@ -33,11 +33,7 @@ S'il n'est pas possible d'importer des nœuds manquants, vous devez recréer leu
 
 Vous devez ensuite valider le fichier de configuration de la grille et résoudre tous les problèmes de réseau ou de stockage qui pourraient se produire avant de redémarrer StorageGRID. Lorsque vous recréez le fichier de configuration d'un nœud, vous devez utiliser le même nom pour le nœud de remplacement utilisé pour le nœud en cours de restauration.
 
-Pour plus d'informations sur l'emplacement du volume pour un nœud, reportez-vous aux instructions d'installation `/var/local`.
-
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-
+Voir lelink:../swnodes/index.html["Instructions d'installation de Linux"] pour plus d'informations sur l'emplacement du `/var/local` volume pour un nœud.
 
 .Étapes
 . Sur la ligne de commande de l'hôte restauré, répertorier tous les nœuds StorageGRID actuellement configurés :``sudo storagegrid node list``
@@ -76,10 +72,7 @@ NOTE: Tous les nœuds importés avec l' `--force`indicateur nécessitent des ét
 
 
 
-. Pour les nœuds grid qui ne disposent pas de `/var/local` volume, recréez le fichier de configuration du nœud pour le restaurer sur l'hôte. Pour obtenir des instructions, reportez-vous à la section :
-+
-** link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud pour Red Hat Enterprise Linux"]
-** link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud pour Ubuntu ou Debian"]
+. Pour les nœuds de grille qui n'ont pas de `/var/local` volume, recréez le fichier de configuration du nœud pour le restaurer sur l'hôte. Pour les instructions, voirlink:../swnodes/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"] .
 +
 
 NOTE: Lorsque vous recréez le fichier de configuration d'un nœud, vous devez utiliser le même nom pour le nœud de remplacement utilisé pour le nœud en cours de restauration. Pour les déploiements Linux, assurez-vous que le nom du fichier de configuration contient le nom du nœud. Lorsque cela est possible, vous devez utiliser les mêmes interfaces réseau, les mêmes mappages de périphériques de bloc et les mêmes adresses IP. Cette pratique réduit la quantité de données à copier sur le nœud lors de la restauration, ce qui peut accélérer la restauration (dans certains cas, quelques minutes au lieu de plusieurs semaines).
@@ -87,8 +80,6 @@ NOTE: Lorsque vous recréez le fichier de configuration d'un nœud, vous devez u
 +
 
 NOTE: Si vous utilisez de nouveaux périphériques de bloc (périphériques que le nœud StorageGRID n'a pas utilisés auparavant) comme valeurs pour l'une des variables de configuration commençant par `BLOCK_DEVICE_` lorsque vous recréez le fichier de configuration d'un nœud, suivez les instructions de la section <<fix-block-errors,Corrigez les erreurs de périphérique de bloc manquantes>>.
-
-
 
 . Exécutez la commande suivante sur l'hôte restauré pour lister tous les nœuds StorageGRID.
 +
@@ -145,17 +136,9 @@ Vérifiez que vous avez effectué les étapes de la section link:deploying-new-l
 
 Si vous ne parvenez pas à restaurer ou à recréer le fichier spécial de périphérique de bloc manquant, vous pouvez attribuer un nouveau périphérique de bloc de la taille et de la catégorie de stockage appropriées et modifier le fichier de configuration de nœud pour modifier la valeur de à pointer vers le nouveau fichier spécial de périphérique de `BLOCK_DEVICE_PURPOSE` bloc.
 
-Déterminez la taille et la catégorie de stockage appropriées à l'aide des tableaux correspondant à votre système d'exploitation Linux :
+Déterminez la taille et la catégorie de stockage appropriées à l’aide des tableaux correspondant à votre système d’exploitation Linux. Voir link:../swnodes/storage-and-performance-requirements.html["Les besoins en matière de stockage et de performances"] .
 
-* link:../rhel/storage-and-performance-requirements.html["Exigences en matière de stockage et de performances pour Red Hat Enterprise Linux"]
-* link:../ubuntu/storage-and-performance-requirements.html["Exigences en matière de stockage et de performances pour Ubuntu ou Debian"]
-
-
-Consultez les recommandations de configuration du stockage hôte avant de procéder au remplacement du périphérique de bloc :
-
-* link:../rhel/configuring-host-storage.html["Configurez le stockage hôte pour Red Hat Enterprise Linux"]
-* link:../ubuntu/configuring-host-storage.html["Configurer le stockage hôte pour Ubuntu ou Debian"]
-
+Consultez les recommandations pourlink:../swnodes/configuring-host-storage.html["configuration du stockage hôte"] avant de procéder au remplacement du dispositif de blocage.
 
 
 NOTE: Si vous devez fournir un nouveau périphérique de stockage en mode bloc pour l'une des variables de fichier de configuration commençant par `BLOCK_DEVICE_` parce que le périphérique de bloc d'origine a été perdu avec l'hôte en panne, assurez-vous que le nouveau périphérique de bloc n'est pas formaté avant de tenter d'autres procédures de récupération. Le nouveau périphérique de bloc n'est pas formaté si vous utilisez un stockage partagé et que vous avez créé un nouveau volume. Si vous n'êtes pas certain, exécutez la commande suivante sur tout nouveau fichier spécial de périphérique de stockage en mode bloc.

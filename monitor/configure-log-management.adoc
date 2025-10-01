@@ -1,0 +1,700 @@
+---
+permalink: monitor/configure-log-management.html 
+sidebar: sidebar 
+keywords: log management, audit level, external syslog server, log destinations 
+summary: Selon les besoins, configurez les niveaux d’audit, les en-têtes de protocole et l’emplacement des messages et des journaux d’audit. 
+---
+= Configurer la gestion des journaux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Selon les besoins, configurez les niveaux d’audit, les en-têtes de protocole et l’emplacement des messages et des journaux d’audit.
+
+Tous les nœuds StorageGRID génèrent des messages d’audit et des journaux pour suivre l’activité et les événements du système.  Les messages d’audit et les journaux sont des outils essentiels pour la surveillance et le dépannage.
+
+En option, vous pouvezlink:../monitor/considerations-for-external-syslog-server.html["configurer un serveur syslog externe"] pour enregistrer les informations d'audit à distance.  L’utilisation d’un serveur externe minimise l’impact sur les performances de la journalisation des messages d’audit sans réduire l’exhaustivité des données d’audit.  Un serveur syslog externe est particulièrement utile si vous disposez d'une grande grille, utilisez plusieurs types d'applications S3 ou souhaitez conserver toutes les données d'audit.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Si vous envisagez de configurer un serveur syslog externe, vous avez examiné et suivi leslink:../monitor/considerations-for-external-syslog-server.html["considérations relatives à l'utilisation d'un serveur syslog externe"] .
+* Si vous prévoyez de configurer un serveur syslog externe à l'aide du protocole TLS ou RELP/TLS, vous disposez des certificats CA serveur et client requis et de la clé privée client.
+
+
+
+
+== Modifier les niveaux des messages d'audit
+
+Vous pouvez définir un niveau d'audit différent pour chacune des catégories de messages suivantes dans le journal d'audit :
+
+[cols="1a,1a,1a"]
+|===
+| Catégorie de vérification | Paramètre par défaut | Plus d'informations 
+
+
+ a| 
+Système
+ a| 
+Normale
+ a| 
+link:../audit/system-audit-messages.html["Messages d'audit système"]
+
+
+
+ a| 
+Stockage
+ a| 
+Erreur
+ a| 
+link:../audit/object-storage-audit-messages.html["Messages d'audit du stockage objet"]
+
+
+
+ a| 
+Gestion
+ a| 
+Normale
+ a| 
+link:../audit/management-audit-message.html["Message d'audit de gestion"]
+
+
+
+ a| 
+Lectures du client
+ a| 
+Normale
+ a| 
+link:../audit/client-read-audit-messages.html["Messages d'audit de lecture du client"]
+
+
+
+ a| 
+Écritures des clients
+ a| 
+Normale
+ a| 
+link:../audit/client-write-audit-messages.html["Écrire des messages d'audit client"]
+
+
+
+ a| 
+ILM
+ a| 
+Normale
+ a| 
+link:../audit/ilm-audit-messages.html["Messages d'audit ILM"]
+
+
+
+ a| 
+Réplication entre plusieurs grilles
+ a| 
+Erreur
+ a| 
+link:../audit/cgrr-cross-grid-replication-request.html["CGRR : demande de réplication croisée"]
+
+|===
+
+NOTE: Lors des mises à niveau, les configurations de niveau d'audit ne seront pas effectives immédiatement.
+
+.Étapes
+. Sélectionnez *Configuration* > *Surveillance* > *Gestion des journaux*.
+. Pour chaque catégorie de message d'audit, sélectionnez un niveau d'audit dans la liste déroulante :
++
+[cols="1a,3a"]
+|===
+| Niveau d'audit | Description 
+
+
+ a| 
+Arrêt
+ a| 
+Aucun message d'audit de la catégorie n'est enregistré.
+
+
+
+ a| 
+Erreur
+ a| 
+Seuls les messages d'erreur sont enregistrés : les messages d'audit pour lesquels le code de résultat n'était pas « réussi » (SUCS).
+
+
+
+ a| 
+Normale
+ a| 
+Les messages transactionnels standard sont consignés--les messages répertoriés dans ces instructions pour la catégorie.
+
+
+
+ a| 
+Débogage
+ a| 
+Obsolète. Ce niveau se comporte de la même manière que le niveau d'audit normal.
+
+|===
++
+Les messages inclus pour tout niveau particulier incluent ceux qui seraient consignés aux niveaux supérieurs. Par exemple, le niveau Normal inclut tous les messages d'erreur.
+
++
+
+NOTE: Si vous n'avez pas besoin d'un enregistrement détaillé des opérations de lecture client pour vos applications S3, vous pouvez éventuellement modifier le paramètre *Lectures client* sur *Erreur* pour réduire le nombre de messages d'audit enregistrés dans le journal d'audit.
+
+. Sélectionnez *Enregistrer*.
+
+
+
+
+== Définissez les en-têtes de requête HTTP
+
+Vous pouvez éventuellement définir les en-têtes de requête HTTP que vous souhaitez inclure dans les messages d'audit de lecture et d'écriture du client.
+
+.Étapes
+. Dans la section *en-têtes de protocole d'audit*, définissez les en-têtes de requête HTTP que vous souhaitez inclure dans les messages d'audit de lecture et d'écriture du client.
++
+Utilisez un astérisque (\*) comme caractère générique pour qu'il corresponde à zéro ou à plusieurs caractères. Utilisez la séquence d'échappement (\*) pour faire correspondre un astérisque littéral.
+
+. Sélectionnez *Ajouter un autre en-tête* pour créer des en-têtes supplémentaires, si nécessaire.
++
+Lorsque des en-têtes HTTP sont trouvés dans une requête, ils sont inclus dans le message d'audit sous le champ HTRH.
+
++
+
+NOTE: Les en-têtes de demande du protocole d'audit sont enregistrés uniquement si le niveau d'audit pour *Lectures client* ou *Écritures client* n'est pas *Désactivé*.
+
+. Sélectionnez *Enregistrer*
+
+
+
+
+== Configurer l'emplacement du journal
+
+Par défaut, les messages d’audit et les journaux sont enregistrés sur les nœuds où ils sont générés.  Ils sont périodiquement tournés et finalement supprimés pour éviter qu'ils ne consomment trop d'espace disque.  Si vous souhaitez enregistrer les messages d’audit et un sous-ensemble de journaux en externe,<<use-external-syslog-server,utiliser un serveur syslog externe>> .
+
+Si vous souhaitez enregistrer les fichiers journaux en interne, choisissez un locataire et un bucket pour le stockage des journaux et activez l'archivage des journaux.
+
+
+
+=== [[use-external-syslog-Server]]utilisez un serveur syslog externe
+
+Vous pouvez également configurer un serveur syslog externe pour enregistrer les journaux d'audit, les journaux d'application et les journaux d'événements de sécurité dans un emplacement en dehors de votre grille.
+
+
+NOTE: Si vous ne souhaitez pas utiliser un serveur syslog externe, ignorez cette étape et accédez à<<select-log-location,Sélectionnez l'emplacement du journal>> .
+
+
+TIP: Si les options de configuration disponibles dans cette procédure ne sont pas suffisamment flexibles pour répondre à vos besoins, des options de configuration supplémentaires peuvent être appliquées à l'aide des `audit-destinations` noeuds finaux, qui se trouvent dans la section API privée de la link:../admin/using-grid-management-api.html["API de gestion du grid"]. Par exemple, vous pouvez utiliser l'API si vous souhaitez utiliser différents serveurs syslog pour différents groupes de nœuds.
+
+
+
+==== Entrez les informations syslog
+
+Accédez à l'assistant configurer le serveur syslog externe et fournissez les informations dont StorageGRID a besoin pour accéder au serveur syslog externe.
+
+.Étapes
+. Dans l’onglet Nœud local et serveur externe, sélectionnez *Configurer le serveur syslog externe*.  Ou, si vous avez déjà configuré un serveur syslog externe, sélectionnez *Modifier le serveur syslog externe*.
++
+L'assistant configurer le serveur syslog externe s'affiche.
+
+. Pour l'étape *Entrez les informations syslog* de l'assistant, entrez un nom de domaine complet valide ou une adresse IPv4 ou IPv6 pour le serveur syslog externe dans le champ *Host*.
+. Entrez le port de destination sur le serveur syslog externe (doit être un entier compris entre 1 et 65535). Le port par défaut est 514.
+. Sélectionnez le protocole utilisé pour envoyer les informations d'audit au serveur syslog externe.
++
+Il est recommandé d'utiliser *TLS* ou *RELP/TLS*. Vous devez télécharger un certificat de serveur pour utiliser l'une de ces options. L'utilisation de certificats permet de sécuriser les connexions entre votre grille et le serveur syslog externe. Pour plus d'informations, voir link:../admin/using-storagegrid-security-certificates.html["Gérer les certificats de sécurité"].
+
++
+Toutes les options de protocole requièrent la prise en charge par le serveur syslog externe ainsi que sa configuration. Vous devez choisir une option compatible avec le serveur syslog externe.
+
++
+
+NOTE: Le protocole RELP (fiable Event Logging Protocol) étend la fonctionnalité du protocole syslog afin de fournir des messages d'événement fiables. L'utilisation de RELP peut aider à éviter la perte d'informations d'audit si votre serveur syslog externe doit redémarrer.
+
+. Sélectionnez *Continuer*.
+. [[attach-certificate]]si vous avez sélectionné *TLS* ou *RELP/TLS*, téléchargez les certificats de l'autorité de certification du serveur, le certificat du client et la clé privée du client.
++
+.. Sélectionnez *Parcourir* pour le certificat ou la clé que vous souhaitez utiliser.
+.. Sélectionnez le certificat ou le fichier de clé.
+.. Sélectionnez *Ouvrir* pour charger le fichier.
++
+Une coche verte s'affiche en regard du nom du fichier de certificat ou de clé, vous informant qu'il a été téléchargé avec succès.
+
+
+
+. Sélectionnez *Continuer*.
+
+
+
+
+==== Gérer le contenu du journal système
+
+Vous pouvez sélectionner les informations à envoyer au serveur syslog externe.
+
+.Étapes
+. Pour l'étape *gérer le contenu syslog* de l'assistant, sélectionnez chaque type d'informations d'audit que vous souhaitez envoyer au serveur syslog externe.
++
+** *Envoyer les journaux d'audit* : envoie les événements StorageGRID et les activités système
+** *Envoyer des événements de sécurité* : envoie des événements de sécurité tels qu'une tentative d'ouverture de session par un utilisateur non autorisé ou une ouverture de session par un utilisateur en tant que root
+** *Envoyer les journaux d'application* : envoie des messages link:../monitor/storagegrid-software-logs.html["Fichiers journaux du logiciel StorageGRID"] utiles pour le dépannage, notamment :
++
+*** `bycast-err.log`
+*** `bycast.log`
+*** `jaeger.log`
+*** `nms.log` (Nœuds d'administration uniquement)
+*** `prometheus.log`
+*** `raft.log`
+*** `hagroups.log`
+
+
+** *Envoyer les journaux d'accès* : envoie les journaux d'accès HTTP pour les demandes externes à Grid Manager, tenant Manager, les noeuds finaux configurés de l'équilibreur de charge et les demandes de fédération de grille à partir de systèmes distants.
+
+
+. Utilisez les menus déroulants pour sélectionner la gravité et l'établissement (type de message) pour chaque catégorie d'informations d'audit que vous souhaitez envoyer.
++
+La définition de la gravité et des valeurs de l'établissement peut vous aider à regrouper les journaux de manière personnalisable pour une analyse plus facile.
+
++
+.. Pour *gravité*, sélectionnez *passe-système* ou sélectionnez une valeur de gravité comprise entre 0 et 7.
++
+Si vous sélectionnez une valeur, la valeur sélectionnée sera appliquée à tous les messages de ce type. Les informations sur les différentes gravité seront perdues si vous remplacez la gravité par une valeur fixe.
+
++
+[cols="1a,3a"]
+|===
+| Gravité | Description 
+
+
+ a| 
+Passe-système
+ a| 
+Chaque message envoyé au syslog externe a la même valeur de gravité que lorsqu'il a été connecté localement au nœud :
+
+*** Pour les journaux d'audit, la gravité est « info ».
+*** Pour les événements de sécurité, les valeurs de gravité sont générées par la distribution Linux sur les nœuds.
+*** Pour les journaux d'application, les niveaux de gravité varient entre « info » et « avis », selon le problème. Par exemple, l'ajout d'un serveur NTP et la configuration d'un groupe HA donnent la valeur « INFO », tandis que l'arrêt délibéré du service SSM ou RSM donne la valeur « notification ».
+*** Pour les journaux d'accès, la gravité est « info ».
+
+
+
+
+ a| 
+0
+ a| 
+Urgence : le système est inutilisable
+
+
+
+ a| 
+1
+ a| 
+Alerte : une action doit être effectuée immédiatement
+
+
+
+ a| 
+2
+ a| 
+Critique : conditions critiques
+
+
+
+ a| 
+3
+ a| 
+Erreur : conditions d'erreur
+
+
+
+ a| 
+4
+ a| 
+Avertissement : conditions d'avertissement
+
+
+
+ a| 
+5
+ a| 
+Remarque : condition normale mais significative
+
+
+
+ a| 
+6
+ a| 
+Information : messages d'information
+
+
+
+ a| 
+7
+ a| 
+Débogage : messages de niveau débogage
+
+|===
+.. Pour *facilty*, sélectionnez *Passthrough* ou sélectionnez une valeur d'installation comprise entre 0 et 23.
++
+Si vous sélectionnez une valeur, elle sera appliquée à tous les messages de ce type. Les informations concernant les différents sites seront perdues si vous remplacez l'établissement par une valeur fixe.
+
++
+[cols="1a,3a"]
+|===
+| Installation | Description 
+
+
+ a| 
+Passe-système
+ a| 
+Chaque message envoyé au syslog externe a la même valeur d'installation que lorsqu'il a été connecté localement au nœud :
+
+*** Pour les journaux d'audit, la fonction envoyée au serveur syslog externe est « local7 ».
+*** Pour les événements de sécurité, les valeurs d'installation sont générées par la distribution linux sur les nœuds.
+*** Pour les journaux d'application, les journaux d'application envoyés au serveur syslog externe ont les valeurs suivantes :
++
+**** `bycast.log`: utilisateur ou démon
+**** `bycast-err.log`: utilisateur, démon, local3 ou local4
+**** `jaeger.log`: local2
+**** `nms.log`: local3
+**** `prometheus.log`: local4
+**** `raft.log`: local5
+**** `hagroups.log`: local6
+
+
+*** Pour les journaux d'accès, la fonction envoyée au serveur syslog externe est "local0".
+
+
+
+
+ a| 
+0
+ a| 
+kern (messages du noyau)
+
+
+
+ a| 
+1
+ a| 
+utilisateur (messages de niveau utilisateur)
+
+
+
+ a| 
+2
+ a| 
+e-mail
+
+
+
+ a| 
+3
+ a| 
+démon (démons système)
+
+
+
+ a| 
+4
+ a| 
+auth (messages de sécurité/d'autorisation)
+
+
+
+ a| 
+5
+ a| 
+syslog (messages générés en interne par syslogd)
+
+
+
+ a| 
+6
+ a| 
+lpr (sous-système d'imprimante ligne)
+
+
+
+ a| 
+7
+ a| 
+news (sous-système d'informations réseau)
+
+
+
+ a| 
+8
+ a| 
+UCP
+
+
+
+ a| 
+9
+ a| 
+cron (démon d'horloge)
+
+
+
+ a| 
+10
+ a| 
+sécurité (messages de sécurité/d'autorisation)
+
+
+
+ a| 
+11
+ a| 
+FTP
+
+
+
+ a| 
+12
+ a| 
+NTP
+
+
+
+ a| 
+13
+ a| 
+audit journal (audit du journal)
+
+
+
+ a| 
+14
+ a| 
+alerte journal (alerte de journal)
+
+
+
+ a| 
+15
+ a| 
+horloge (démon d'horloge)
+
+
+
+ a| 
+16
+ a| 
+local0
+
+
+
+ a| 
+17
+ a| 
+local1
+
+
+
+ a| 
+18
+ a| 
+local2
+
+
+
+ a| 
+19
+ a| 
+local3
+
+
+
+ a| 
+20
+ a| 
+local4
+
+
+
+ a| 
+21
+ a| 
+local5
+
+
+
+ a| 
+22
+ a| 
+local6
+
+
+
+ a| 
+23
+ a| 
+local7
+
+|===
+
+
+. Sélectionnez *Continuer*.
+
+
+
+
+==== Envoyer des messages de test
+
+Avant de commencer à utiliser un serveur syslog externe, vous devez demander à tous les nœuds de votre grille d'envoyer des messages de test au serveur syslog externe. Ces messages de test vous aideront à valider l'intégralité de votre infrastructure de collecte de journaux avant de vous engager à envoyer des données au serveur syslog externe.
+
+
+CAUTION: N'utilisez pas la configuration du serveur syslog externe tant que vous n'avez pas confirmé que le serveur syslog externe a reçu un message test de chaque nœud de votre grille et que le message a été traité comme prévu.
+
+.Étapes
+. Si vous ne souhaitez pas envoyer de messages de test parce que vous êtes certain que votre serveur syslog externe est correctement configuré et peut recevoir des informations d'audit de tous les nœuds de votre grille, sélectionnez *Ignorer et terminer*.
++
+Une bannière verte indique que la configuration a été enregistrée.
+
+. Sinon, sélectionnez *Envoyer les messages de test* (recommandé).
++
+Les résultats de test apparaissent en permanence sur la page jusqu'à ce que vous arrêiez le test. Pendant que le test est en cours, vos messages d'audit continuent d'être envoyés à vos destinations précédemment configurées.
+
+. Si vous recevez des erreurs, corrigez-les et sélectionnez à nouveau *Envoyer des messages de test*.
++
+Reportez-vous link:../troubleshoot/troubleshooting-syslog-server.html["Dépanner un serveur syslog externe"] à pour résoudre les erreurs.
+
+. Attendez qu'une bannière verte indique que tous les nœuds ont réussi le test.
+. Vérifiez votre serveur syslog pour déterminer si les messages de test sont reçus et traités comme prévu.
++
+
+NOTE: Si vous utilisez UDP, vérifiez l’ensemble de votre infrastructure de collecte de journaux.  Le protocole UDP ne permet pas une détection d’erreur aussi rigoureuse que les autres protocoles.
+
+. Sélectionnez *Arrêter et Terminer*.
++
+Vous revenez à la page *Audit and syslog Server*. Une bannière verte indique que la configuration du serveur syslog a été enregistrée.
+
++
+
+NOTE: Les informations d'audit StorageGRID ne sont pas envoyées au serveur Syslog externe tant que vous n'avez pas sélectionné une destination incluant le serveur Syslog externe.
+
+
+
+
+
+=== Sélectionnez l'emplacement du journal
+
+Vous pouvez spécifier où se trouvent les journaux d'audit, les journaux d'événements de sécurité,link:../monitor/storagegrid-software-logs.html["Journaux d'application StorageGRID"] , et les journaux d'accès sont envoyés.
+
+[NOTE]
+====
+StorageGRID utilise par défaut les destinations d'audit de nœud local et stocke les informations d'audit dans `/var/local/log/localaudit.log`.
+
+Lors de l'utilisation de `/var/local/log/localaudit.log`, les entrées du journal d'audit Grid Manager et tenant Manager peuvent être envoyées à un nœud de stockage. Vous pouvez trouver le nœud qui contient les entrées les plus récentes à l'aide de la `run-each-node --parallel "zgrep MGAU /var/local/log/localaudit.log | tail"` commande.
+
+Certaines destinations ne sont disponibles que si vous avez configuré un serveur syslog externe.
+
+====
+.Étapes
+. Sélectionnez *Emplacement du journal* > *Nœud local et serveur externe*.
+. Pour modifier l’emplacement du journal pour les types de journaux, sélectionnez une option différente.
++
+
+TIP: *Les nœuds locaux uniquement* et *le serveur syslog externe* fournissent généralement de meilleures performances.
+
++
+[cols="1a,2a"]
+|===
+| Option | Description 
+
+
+ a| 
+Nœuds locaux uniquement (par défaut)
+ a| 
+Les messages d’audit, les journaux d’événements de sécurité et les journaux d’application ne sont pas envoyés aux nœuds d’administration.  Au lieu de cela, ils sont enregistrés uniquement sur les nœuds qui les ont générés (« le nœud local »).  Les informations d’audit générées sur chaque nœud local sont stockées dans `/var/local/log/localaudit.log` .
+
+*Remarque* : StorageGRID supprime périodiquement les journaux locaux dans une rotation pour libérer de l'espace.  Lorsque le fichier journal d'un nœud atteint 1 Go, le fichier existant est enregistré et un nouveau fichier journal est démarré.  La limite de rotation du journal est de 21 fichiers.  Lorsque la 22e version du fichier journal est créée, le fichier journal le plus ancien est supprimé.  En moyenne, environ 20 Go de données de journal sont stockés sur chaque nœud.  Pour stocker les journaux pendant une période prolongée,<<use-bucket,utiliser un locataire et un bucket pour le stockage des journaux>> .
+
+
+
+ a| 
+Nœuds d'administration/nœuds locaux
+ a| 
+Les messages d'audit sont envoyés au journal d'audit sur les nœuds d'administration, et les journaux d'événements de sécurité et d'applications sont stockés sur les nœuds qui les ont générés. Les informations d'audit sont stockées dans les fichiers suivants :
+
+** Nœuds d'administration (primaires et non principaux) : `/var/local/audit/export/audit.log`
+** Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant. Il peut contenir des informations secondaires, telles qu'une copie supplémentaire de certains messages.
+
+
+
+
+ a| 
+Serveur syslog externe
+ a| 
+Les informations d'audit sont envoyées à un serveur syslog externe et enregistrées sur les nœuds locaux(`/var/local/log/localaudit.log` ).  Le type d’informations envoyées dépend de la façon dont vous avez configuré le serveur syslog externe.  Cette option n'est activée qu'après avoir<<use-external-syslog-server,configuré un serveur syslog externe>> .
+
+
+
+ a| 
+Nœuds d'administration et serveur syslog externe
+ a| 
+Les messages d'audit sont envoyés au journal d'audit(`/var/local/audit/export/audit.log` ) sur les nœuds d'administration, et les informations d'audit sont envoyées au serveur syslog externe et enregistrées sur le nœud local(`/var/local/log/localaudit.log` ).  Le type d’informations envoyées dépend de la façon dont vous avez configuré le serveur syslog externe.  Cette option n'est activée qu'après avoir<<use-external-syslog-server,configuré un serveur syslog externe>> .
+
+|===
+. Sélectionnez *Enregistrer*.
++
+Un message d'avertissement s'affiche.
+
+. Sélectionnez *OK* pour confirmer que vous souhaitez modifier la destination des informations d'audit.
++
+Les nouveaux journaux sont envoyés aux destinations que vous avez sélectionnées. Les journaux existants restent à leur emplacement actuel.
+
+
+
+
+
+=== [[use-bucket]]Utiliser un seau
+
+Les journaux sont périodiquement tournés.  Utilisez un bucket S3 dans la même grille pour stocker les journaux pendant une période prolongée.
+
+. Sélectionnez *Emplacement du journal* > *Utiliser un bucket*.
+. Cochez la case *Activer les journaux d'archive*.
+. Si le locataire et le bucket répertoriés ne sont pas ceux que vous souhaitez utiliser, sélectionnez *Modifier le locataire et le bucket*, puis sélectionnez *Créer le locataire et le bucket* ou *Sélectionner le locataire et le bucket*.
++
+[role="tabbed-block"]
+====
+.Créer un locataire et un bucket
+--
+.. Entrez un nouveau nom de locataire.
+.. Saisissez et confirmez un mot de passe pour le nouveau locataire.
+.. Entrez un nouveau nom de bucket.
+.. Sélectionnez *Créer et activer*.
+
+
+--
+.Sélectionnez locataire et compartiment
+--
+.. Sélectionnez un nom de locataire dans le menu déroulant.
+.. Sélectionnez un bucket dans le menu déroulant.
+.. Sélectionnez *Sélectionner et activer*.
+
+
+--
+====
+
+
+. Sélectionnez *Enregistrer*.
++
+Les journaux seront stockés dans le locataire et le bucket que vous avez spécifiés.  Le nom de la clé d'objet pour les journaux est dans ce format :
+
++
+[listing]
+----
+system-logs/{node_hostname}/{absolute_path_to_log_file_on_node}--{last_modified_time}.gz
+----
++
+Par exemple :
+
++
+[listing]
+----
+system-logs/DC1-SN1/var/local/log/localaudit.log--2025-05-12_13:41:44.gz
+----
+

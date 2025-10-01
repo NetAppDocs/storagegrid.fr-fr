@@ -27,7 +27,7 @@ Si vous avez activé l'agent SNMP, les silences suppriment également les interr
 CAUTION: Soyez prudent lorsque vous décidez de désactiver une règle d'alerte. Si vous neutralisez une alerte, il est possible que vous ne détectez pas un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
 
 .Étapes
-. Sélectionnez *ALERTES* > *silences*.
+. Sélectionnez *Alertes* > *Silences*.
 +
 La page silences s'affiche.
 
@@ -99,7 +99,7 @@ Nœuds
  a| 
 Modifier un silence
  a| 
-.. Sélectionnez *ALERTES* > *silences*.
+.. Sélectionnez *Alertes* > *Silences*.
 .. Dans le tableau, sélectionnez le bouton radio correspondant au silence que vous souhaitez modifier.
 .. Sélectionnez *Modifier*.
 .. Modifiez la description, le temps restant, les niveaux de gravité sélectionnés ou le nœud affecté.
@@ -111,7 +111,7 @@ Modifier un silence
  a| 
 Supprimer un silence
  a| 
-.. Sélectionnez *ALERTES* > *silences*.
+.. Sélectionnez *Alertes* > *Silences*.
 .. Dans le tableau, sélectionnez le bouton radio correspondant au silence que vous souhaitez supprimer.
 .. Sélectionnez *Supprimer*.
 .. Sélectionnez *OK* pour confirmer que vous souhaitez supprimer ce silence.

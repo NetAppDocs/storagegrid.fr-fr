@@ -13,7 +13,7 @@ summary: 'Vous pouvez identifier les transactions de récupération d"objets dan
 [role="lead"]
 Vous pouvez identifier les transactions de récupération d'objets dans le journal d'audit en localisant les messages d'audit spécifiques à l'API S3.
 
-Tous les messages d'audit générés lors d'une transaction de récupération ne sont pas répertoriés dans les tableaux suivants. Seuls les messages requis pour suivre la transaction de récupération sont inclus.
+Tous les messages d’audit générés lors d’une transaction de récupération ne sont pas répertoriés dans le tableau suivant.  Seuls les messages nécessaires au suivi de la transaction de récupération sont inclus.
 
 
 
@@ -34,27 +34,6 @@ Demande de récupération d'un objet à partir d'un compartiment.
 CBID, S3BK, S3KY
  a| 
 link:sget-s3-get.html["SGET : OBTENEZ S3"]
-
-|===
-
-
-== Messages d'audit de récupération Swift
-
-[cols="1a,1a,2a,1a,1a"]
-|===
-| Code | Nom | Description | Tracé | Voir 
-
-
- a| 
-C'EST PARTI
- a| 
-PROFITEZ-en rapidement
- a| 
-Demande de récupération d'un objet à partir d'un conteneur.
- a| 
-CBID, WCON, WOBJ
- a| 
-link:wget-swift-get.html["WGET: SWIFT GET"]
 
 |===
 

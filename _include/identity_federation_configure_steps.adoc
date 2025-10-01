@@ -12,10 +12,10 @@ Sélectionnez *autre* pour configurer les valeurs d'un serveur LDAP qui utilise 
 
 . Si vous avez sélectionné *autre*, renseignez les champs de la section attributs LDAP. Dans le cas contraire, passez à l'étape suivante.
 +
-** *Nom unique utilisateur* : nom de l'attribut qui contient l'identifiant unique d'un utilisateur LDAP. Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `uid` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `uid`.
-** *UUID d'utilisateur* : nom de l'attribut qui contient l'identifiant unique permanent d'un utilisateur LDAP. Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `nsuniqueid`. La valeur de chaque utilisateur pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
-** *Nom unique de groupe* : nom de l'attribut qui contient l'identifiant unique d'un groupe LDAP. Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `cn` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `cn`.
-** *UUID de groupe* : nom de l'attribut qui contient l'identificateur unique permanent d'un groupe LDAP. Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP. Si vous configurez Oracle Directory Server, entrez `nsuniqueid`. La valeur de chaque groupe pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
+** *Nom unique de l'utilisateur* : le nom de l'attribut qui contient l'identifiant unique d'un utilisateur LDAP.  Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `uid` pour OpenLDAP.  Si vous configurez Oracle Directory Server, entrez `uid` .
+** *UUID utilisateur* : le nom de l'attribut qui contient l'identifiant unique permanent d'un utilisateur LDAP.  Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP.  Si vous configurez Oracle Directory Server, entrez `nsuniqueid` .  La valeur de chaque utilisateur pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
+** *Nom unique du groupe* : le nom de l'attribut qui contient l'identifiant unique d'un groupe LDAP.  Cet attribut est équivalent à `sAMAccountName` pour Active Directory et `cn` pour OpenLDAP.  Si vous configurez Oracle Directory Server, entrez `cn` .
+** *UUID de groupe* : le nom de l'attribut qui contient l'identifiant unique permanent d'un groupe LDAP.  Cet attribut est équivalent à `objectGUID` pour Active Directory et `entryUUID` pour OpenLDAP.  Si vous configurez Oracle Directory Server, entrez `nsuniqueid` .  La valeur de chaque groupe pour l'attribut spécifié doit être un nombre hexadécimal à 32 chiffres au format 16 octets ou chaîne, où les tirets sont ignorés.
 
 
 . Pour tous les types de services LDAP, entrez les informations de connexion réseau et de serveur LDAP requises dans la section configurer le serveur LDAP.
@@ -39,7 +39,7 @@ L'utilisateur spécifié doit être autorisé à répertorier les groupes et les
 *** `cn`
 *** `memberOf` ou `isMemberOf`
 *** *Active Directory* : `objectSid`, `primaryGroupID`, `userAccountControl` et `userPrincipalName`
-*** *Azure*: `accountEnabled` Et `userPrincipalName`
+*** *Entra ID*: `accountEnabled` et `userPrincipalName`
 
 
 ** *Mot de passe* : mot de passe associé au nom d'utilisateur.
@@ -65,8 +65,8 @@ Il est recommandé de fournir le format *Bind username* car il peut permettre au
 Entrez l'un des motifs suivants :
 
 +
-*** *Pattern UserPrincipalName (Active Directory et Azure)* : `[USERNAME]@_example_.com`
-*** *Modèle de nom de connexion de niveau inférieur (Active Directory et Azure)* : `_example_\[USERNAME]`
+*** *Modèle UserPrincipalName (AD et Entra ID)*: `[USERNAME]@_example_.com`
+*** *Modèle de nom de connexion de niveau inférieur (AD et Entra ID)*: `_example_\[USERNAME]`
 *** *Motif de nom distinctif* : `CN=[USERNAME],CN=Users,DC=_example_,DC=com`
 +
 Inclure *[NOM D'UTILISATEUR]* exactement comme écrit.
@@ -77,12 +77,12 @@ Inclure *[NOM D'UTILISATEUR]* exactement comme écrit.
 
 . Dans la section transport Layer Security (TLS), sélectionnez un paramètre de sécurité.
 +
-** *Utilisez STARTTLS* : utilisez STARTTLS pour sécuriser les communications avec le serveur LDAP. Il s'agit de l'option recommandée pour Active Directory, OpenLDAP ou autre, mais cette option n'est pas prise en charge pour Azure.
-** *Utilisez LDAPS* : l'option LDAPS (LDAP sur SSL) utilise TLS pour établir une connexion au serveur LDAP. Vous devez sélectionner cette option pour Azure.
-** *N'utilisez pas TLS* : le trafic réseau entre le système StorageGRID et le serveur LDAP ne sera pas sécurisé. Cette option n'est pas prise en charge pour Azure.
+** *Utiliser STARTTLS* : Utilisez STARTTLS pour sécuriser les communications avec le serveur LDAP.  Il s’agit de l’option recommandée pour Active Directory, OpenLDAP ou Autre, mais cette option n’est pas prise en charge pour Microsoft Entra ID.
+** *Utiliser LDAPS* : L'option LDAPS (LDAP sur SSL) utilise TLS pour établir une connexion au serveur LDAP.  Vous devez sélectionner cette option pour Microsoft Entra ID.
+** *N'utilisez pas TLS* : le trafic réseau entre le système StorageGRID et le serveur LDAP ne sera pas sécurisé.  Cette option n'est pas prise en charge pour Microsoft Entra ID.
 +
 
-NOTE: L'utilisation de l'option *ne pas utiliser TLS* n'est pas prise en charge si votre serveur Active Directory applique la signature LDAP. Vous devez utiliser STARTTLS ou LDAPS.
+NOTE: L'utilisation de l'option *Ne pas utiliser TLS* n'est pas prise en charge si votre serveur Active Directory applique la signature LDAP.  Vous devez utiliser STARTTLS ou LDAPS.
 
 
 
@@ -105,7 +105,7 @@ Après avoir saisi toutes les valeurs, vous devez tester la connexion avant de p
 
 .Étapes
 . Sélectionnez *Tester la connexion*.
-. Si vous n'avez pas fourni de format de nom d'utilisateur de liaison :
+. Si vous n'avez pas fourni de format de nom d'utilisateur de liaison :
 +
 ** Si les paramètres de connexion sont valides, le message « Test de connexion réussi » s'affiche. Sélectionnez *Enregistrer* pour enregistrer la configuration.
 ** Si les paramètres de connexion ne sont pas valides, le message « Impossible d'établir la connexion de test » s'affiche. Sélectionnez *Fermer*. Ensuite, résolvez tout problème et testez à nouveau la connexion.

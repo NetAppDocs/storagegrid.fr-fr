@@ -25,7 +25,7 @@ CAUTION: Pour éviter toute perte de données, n'utilisez pas de règle ILM qui 
 * Vous avez examiné le link:best-practices-ilm.html["Bonnes pratiques d'utilisation d'ILM avec des données FabricPool"].
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:../admin/admin-group-permissions.html["Permission d'accès ILM ou racine"].
-* Si vous avez mis à niveau vers StorageGRID 11.9 à partir d'une version précédente de StorageGRID, vous avez configuré le pool de stockage que vous utiliserez. En général, vous devez créer un pool de stockage pour chaque site StorageGRID que vous utiliserez pour stocker des données.
+* Si vous avez effectué une mise à niveau vers StorageGRID 12.0 à partir d'une version StorageGRID antérieure à 11.7, vous avez configuré le pool de stockage que vous utiliserez.  En général, vous devez créer un pool de stockage pour chaque site StorageGRID que vous utiliserez pour stocker des données.  (À partir de la version 11.7, des pools de stockage sont automatiquement créés pour chaque site.)
 +
 
 NOTE: Cette condition préalable ne s'applique pas si vous avez installé StorageGRID 11.7 ou 11.8. Lors de l'installation initiale de l'une de ces versions, les pools de stockage sont automatiquement créés pour chaque site.

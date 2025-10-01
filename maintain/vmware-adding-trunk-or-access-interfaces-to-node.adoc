@@ -14,7 +14,7 @@ summary: 'Vous pouvez ajouter des lignes réseau supplémentaires ou des interfa
 Une fois le nœud installé, vous pouvez ajouter une jonction ou une interface d'accès à un nœud de machine virtuelle. Les interfaces que vous ajoutez s'affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.
 
 .Avant de commencer
-* Vous avez accès aux instructions pour link:../vmware/index.html["Installation de StorageGRID sur votre plate-forme VMware"].
+* Vous avez accès aux instructions pourlink:../swnodes/index.html["Installation de StorageGRID sur votre plate-forme VMware"] .
 * Vous disposez des machines virtuelles VMware des nœuds d'administration et des nœuds de passerelle.
 * Vous disposez d'un sous-réseau réseau qui n'est pas utilisé comme réseau, administrateur ou réseau client.
 * Vous avez le `Passwords.txt` fichier.

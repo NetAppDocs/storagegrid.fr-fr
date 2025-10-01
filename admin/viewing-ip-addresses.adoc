@@ -20,7 +20,7 @@ Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-
 Pour plus d'informations sur la modification des adresses IP, reportez-vous à link:../maintain/configuring-ip-addresses.html["Configurez les adresses IP"]la section .
 
 .Étapes
-. Sélectionnez *NODES* > *_grid node_* > *Overview*.
+. Sélectionnez *Nœuds* > *_nœud de grille_* > *Aperçu*.
 . Sélectionnez *Afficher plus* à droite du titre des adresses IP.
 +
 Les adresses IP de ce nœud de grille sont répertoriées dans un tableau.

@@ -1,0 +1,110 @@
+---
+permalink: tenant/what-is-branch-bucket.html 
+sidebar: sidebar 
+keywords: how to create branch bucket 
+summary: 'Un bucket de branche fournit un accès aux objets d"un bucket tels qu"ils existaient à un moment donné.' 
+---
+= Qu'est-ce qu'un bucket de branche ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un bucket de branche fournit un accès aux objets d'un bucket tels qu'ils existaient à un moment donné.
+
+Vous créez un bucket de branche à partir d’un bucket existant.  Une fois que vous avez créé un bucket de branche, le bucket d'origine à partir duquel il a été créé est appelé le _bucket de base_.  De plus, vous pouvez créer un bucket de branche à partir d’un autre bucket de branche.
+
+Un bucket de branche fournit un accès aux données protégées, mais ne sert pas de sauvegarde.  Pour continuer à protéger les données, utilisez ces fonctionnalités sur les buckets de base :
+
+* link:../tenant/using-s3-object-lock.html["Verrouillage d'objet S3"]
+* link:../admin/grid-federation-what-is-cross-grid-replication.html["Réplication entre plusieurs grilles"]pour les godets de base
+* link:../tenant/manage-bucket-policy.html["Politiques de compartiments"]pour les buckets versionnés pour nettoyer les anciennes versions d'objets
+
+
+Notez les caractéristiques suivantes des compartiments de branche :
+
+* Vous pouvez accéder aux objets dans les compartiments de branche en utilisantlink:../tenant/use-s3-console.html["Console S3 pour télécharger des objets"] .
+* Lorsque les clients accèdent aux objets d'un bucket de branche, le bucket de branchelink:../s3/use-access-policies.html["politiques d'accès"] , plutôt que les politiques du compartiment de base, déterminent si l'accès est accordé ou refusé.
+* Les objets créés dans un bucket de base sont évalués en fonction de la manière dontlink:../ilm/access-create-ilm-rule-wizard.html["Règles ILM"] appliquer au bucket de base.  Les objets créés dans un bucket de branche sont évalués en fonction de la manière dont les règles ILM s'appliquent au bucket de branche.
+* La réplication inter-grille n'est pas prise en charge pour les buckets de branche.
+* Les services de plateforme ne sont pas pris en charge pour les buckets de branches.
+
+
+
+
+== Exemples d'utilisation de compartiments de branchement
+
+* Vous pouvez utiliser un bucket de branche pour supprimer les objets corrompus en créant un bucket de branche à partir d'un moment antérieur à la corruption, puis en pointant les applications vers le bucket de branche au lieu du bucket de base qui contient les objets corrompus.
+* Vous enregistrez des données dans un bucket versionné.  Une vulnérabilité accidentelle a provoqué l'ingestion de nombreux objets indésirables après le temps _T_.  Vous pouvez créer un compartiment de branche pour la valeur Avant l'heure, _T_, et rediriger les opérations client vers ce compartiment de branche.  Ensuite, seuls les objets ingérés avant l’heure Avant _T_ sont exposés aux clients.
+
+
+
+
+== Opérations sur les objets dans les compartiments de branche
+
+* Une opération d’objet PUT sur un bucket de branche crée un objet dans la branche.
+* Une opération d’objet GET sur un bucket de branche récupère un objet de la branche.  Si l'objet n'existe pas dans le bucket de branche, l'objet est récupéré à partir du bucket de base.
+* Les suppressions d’objets des compartiments de branche se produisent comme suit :
++
+[cols="1a,1a,2a,2a,2a"]
+|===
+| Fonctionnement | Cible | Résultat | Visibilité des objets dans le bucket de base | Visibilité des objets dans le bucket de branche 
+
+
+ a| 
+Supprimer sans ID de version
+ a| 
+Godet de base
+ a| 
+Le marqueur de suppression est créé uniquement pour le compartiment de base
+ a| 
+HEAD/GET renvoie L'objet n'existe pas, mais des versions spécifiques sont toujours accessibles
+ a| 
+HEAD/GET renvoie L'objet existe et des versions spécifiques sont toujours accessibles
+
+Le marqueur de suppression aurait été créé après le bucket de branche `beforeTime` .
+
+
+
+ a| 
+Supprimer avec l'ID de version
+ a| 
+Godet de base
+ a| 
+La version d'objet spécifique est supprimée pour le bucket de base et de branche
+ a| 
+HEAD/GET renvoie La version de l'objet n'existe pas
+ a| 
+HEAD/GET renvoie La version de l'objet n'existe pas
+
+
+
+ a| 
+Supprimer sans ID de version
+ a| 
+Seau à branches
+ a| 
+Le marqueur de suppression est créé uniquement pour le compartiment de branche
+ a| 
+HEAD/GET renvoie l'objet (l'objet bucket de base n'est pas affecté)
+ a| 
+HEAD/GET renvoie L'objet n'existe pas
+
+
+
+ a| 
+Supprimer avec l'ID de version
+ a| 
+Seau à branches
+ a| 
+La version d'objet spécifique est supprimée uniquement pour le bucket de branche
+ a| 
+HEAD/GET renvoie une version d'objet spécifique (l'objet de compartiment de base n'est pas affecté)
+ a| 
+HEAD/GET renvoie La version de l'objet n'existe pas
+
+|===
+
+
+Voir aussilink:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"] .

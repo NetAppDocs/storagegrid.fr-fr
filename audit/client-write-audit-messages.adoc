@@ -23,7 +23,7 @@ OVWR
  a| 
 Remplacement d'objet : consigne une transaction afin de remplacer un objet par un autre.
  a| 
-Clients S3 et Swift
+Client S3
  a| 
 link:ovwr-object-overwrite.html["OVWR : remplacement d'objet"]
 
@@ -74,27 +74,5 @@ Métadonnées S3 mises à jour : enregistre une transaction réussie pour mettre
 Client S3
  a| 
 link:supd-s3-metadata-updated.html["SUPD : métadonnées S3 mises à jour"]
-
-
-
- a| 
-WDEL
- a| 
-SUPPRESSION Swift : enregistre une transaction réussie pour supprimer un objet ou un conteneur.
- a| 
-Client Swift
- a| 
-link:wdel-swift-delete.html["WDEL : SUPPRESSION rapide"]
-
-
-
- a| 
-WPUT
- a| 
-SWIFT PUT : consigne une transaction réussie pour créer un nouvel objet ou conteneur.
- a| 
-Client Swift
- a| 
-link:wput-swift-put.html["WPUT : PUT SWIFT"]
 
 |===

@@ -25,7 +25,7 @@ La gestion d'un serveur de gestion des clés (KMS) implique l'affichage ou la mo
 Vous pouvez afficher des informations sur chaque serveur de gestion des clés (KMS) de votre système StorageGRID, y compris les détails des clés et l'état actuel des certificats du serveur et du client.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 +
 La page serveur de gestion des clés s'affiche et affiche les informations suivantes :
 
@@ -147,7 +147,7 @@ Répondez rapidement à tous les problèmes de certificat de serveur ou de clien
 CAUTION: Vous devez corriger tout problème de certificat dès que possible pour maintenir l'accès aux données.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 . Dans le tableau, examinez la valeur d'expiration du certificat pour chaque KMS.
 . Si l'expiration du certificat pour un KMS est inconnue, attendez jusqu'à 30 minutes, puis actualisez votre navigateur Web.
 . Si la colonne expiration du certificat indique qu'un certificat a expiré ou qu'il est sur le point d'expirer, sélectionnez KMS pour accéder à la page de détails KMS.
@@ -173,7 +173,7 @@ NOTE: Si vous obtenez un état de *l'état du certificat du serveur est inconnu*
 Vous pouvez afficher des informations sur les nœuds d'appliance de votre système StorageGRID sur lesquels le paramètre *Node Encryption* est activé.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 +
 La page Key Management Server s'affiche. L'onglet Détails de la configuration affiche tous les serveurs de gestion des clés qui ont été configurés.
 
@@ -274,7 +274,7 @@ Vous devrez peut-être modifier la configuration d'un serveur de gestion des cl�
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 +
 La page serveur de gestion des clés s'affiche et affiche tous les serveurs de gestion des clés qui ont été configurés.
 
@@ -382,7 +382,7 @@ Vous pouvez supprimer un KMS dans les cas suivants :
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 +
 La page serveur de gestion des clés s'affiche et affiche tous les serveurs de gestion des clés qui ont été configurés.
 

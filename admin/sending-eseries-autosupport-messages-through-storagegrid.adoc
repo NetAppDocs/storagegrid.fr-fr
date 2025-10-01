@@ -37,7 +37,7 @@ Vous pouvez configurer une adresse de serveur proxy spéciale dans le Gestionnai
 NOTE: Cette procédure concerne uniquement la configuration d'un serveur proxy StorageGRID pour les packages E-Series AutoSupport. Pour plus de détails sur la configuration E-Series AutoSupport, consultez le https://docs.netapp.com/us-en/e-series-family/index.html["Documentation NetApp E-Series et SANtricity"^].
 
 .Étapes
-. Dans le Gestionnaire de grille, sélectionnez *NOEUDS*.
+. Dans le gestionnaire de grille, sélectionnez *Nœuds*.
 . Dans la liste des nœuds de gauche, sélectionnez le nœud d'appliance de stockage à configurer.
 . Sélectionnez *SANtricity System Manager*.
 +
@@ -46,7 +46,7 @@ La page d'accueil de SANtricity System Manager s'affiche.
 +
 image::../media/autosupport_santricity_home_page.png[Page d'accueil de AutoSupport SANtricity]
 
-. Sélectionnez *SUPPORT* > *support Center* > *AutoSupport*.
+. Sélectionnez *Support* > *Centre d'assistance* > * AutoSupport*.
 +
 La page opérations AutoSupport s'affiche.
 

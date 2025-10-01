@@ -51,7 +51,7 @@ Le fichier logiciel est distribué et le service de mise à niveau démarre.
  a| 
 Mettez à niveau les autres nœuds grid
  a| 
-Le logiciel de tous les autres nœuds de la grille est mis à niveau, dans l'ordre dans lequel vous approuvez les nœuds. Chaque nœud de votre système est mis hors service un par un.
+Le logiciel sur tous les autres nœuds de grille est mis à niveau dans l’ordre dans lequel vous approuvez les nœuds.  Un nœud d’administration ou de passerelle est mis à niveau en même temps qu’un nœud de stockage.
  a| 
 de 15 minutes à 1 heure par nœud, avec des nœuds d'appliance exigeant le plus de temps
 
@@ -89,7 +89,7 @@ Le processus de mise à niveau vérifie chaque nœud pour vérifier que la base 
  a| 
 10 secondes par nœud ou quelques minutes pour l'ensemble du grid
  a| 
-La mise à niveau de StorageGRID 11.8 vers 11.9 ne nécessite pas de mise à niveau de la base de données Cassandra. Cependant, le service Cassandra sera arrêté et redémarré sur chaque nœud de stockage.
+La mise à niveau vers StorageGRID 12.0 inclut une mise à niveau de la base de données Cassandra.  Après la mise à niveau de StorageGRID 11.9 vers 12.0, une mise à jour du format des métadonnées se produit en arrière-plan pendant un à trois jours.  Pendant ce temps, certaines procédures de maintenance, telles que l'extension, seront désactivées.
 
 Pour les futures versions d'StorageGRID, l'étape de mise à jour de la base de données Cassandra peut prendre plusieurs jours.
 
@@ -105,6 +105,10 @@ Les fichiers temporaires sont supprimés et la mise à niveau vers la nouvelle v
 Lorsque la tâche *étapes finales de mise à niveau* est terminée, vous pouvez effectuer toutes les procédures de maintenance.
 
 |===
+
+
+== Estimer le temps de mise à niveau
+
 .Étapes
 . Estimez le temps nécessaire à la mise à niveau de tous les nœuds du grid.
 +
@@ -121,7 +125,7 @@ En règle générale, les nœuds d'appliance sont plus longs à mettre à niveau
 
 
 
-== Exemple : temps estimé pour la mise à niveau vers StorageGRID 11.9
+== Exemple : Temps estimé pour la mise à niveau vers StorageGRID 12.0
 
 Supposons que votre système dispose de 14 nœuds de grille, dont 8 sont des nœuds Linux.
 
@@ -136,7 +140,7 @@ La durée estimée de cette étape est de 2 heures.
 
 . Ajoutez les valeurs ensemble.
 +
-Vous devez prévoir jusqu'à 17 heures pour effectuer la mise à niveau de votre système vers StorageGRID 11.9.0.
+Vous devez prévoir jusqu'à 17 heures pour terminer la mise à niveau de votre système vers StorageGRID 12.0.0.
 
 
 

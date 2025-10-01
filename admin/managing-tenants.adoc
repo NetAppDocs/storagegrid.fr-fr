@@ -25,7 +25,7 @@ Les comptes de tenant peuvent être utilisés pour isoler les objets stockés pa
 * *Cas d'utilisation entreprise :* si vous gérez un système StorageGRID dans une application d'entreprise, vous pourriez vouloir isoler le stockage objet de la grille par les différents départements de votre organisation. Dans ce cas, vous pouvez créer des comptes de tenant pour le département Marketing, le service Customer support, le service des ressources humaines, etc.
 +
 
-NOTE: Si vous utilisez le protocole client S3, vous pouvez utiliser des compartiments S3 et des règles de compartiments pour isoler les objets entre les services d'une entreprise. Vous n'avez pas besoin d'utiliser de comptes de locataire. Voir les instructions d'implémentation link:../s3/bucket-and-group-access-policies.html["Compartiments S3 et règles de compartiments"] pour plus d'informations.
+NOTE: Si vous utilisez le protocole client S3, vous pouvez utiliser des buckets S3 et des stratégies de bucket pour séparer les objets entre les services d'une entreprise.  Vous n’avez pas besoin d’utiliser des comptes locataires.  Voir les instructions de mise en œuvrelink:../s3/use-access-policies.html["Compartiments S3 et règles de compartiments"] pour plus d'informations.
 
 * *Cas d'utilisation de fournisseur de services :* si vous gérez un système StorageGRID en tant que fournisseur de services, vous pouvez isoler le stockage objet de la grille par les différentes entités qui loueront le stockage sur votre grille. Dans ce cas, vous créeriez des comptes de tenant pour la société A, la société B, la société C, etc.
 

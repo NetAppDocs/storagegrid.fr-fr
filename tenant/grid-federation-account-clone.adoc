@@ -44,7 +44,7 @@ Lorsque vous créez des groupes et des utilisateurs, commencez toujours par la g
 
 
 [role="quick-margin-list"]
-* Si vous n'utilisez pas la fédération des identités, link:creating-groups-for-s3-tenant.html["créer de nouveaux groupes locaux"]puis link:managing-local-users.html["créer des utilisateurs locaux"].
+* Si vous n'utilisez pas la fédération d'identité,link:creating-groups-for-s3-tenant.html["créer de nouveaux groupes locaux"] et puislink:manage-users.html["créer des utilisateurs locaux"] .
 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Création de clés d'accès S3
@@ -78,9 +78,9 @@ NOTE: Tous les utilisateurs sélectionnés lors de la création d'un groupe loca
 
 === Les utilisateurs locaux créés dans la grille source sont clonés
 
-Lorsque vous créez un utilisateur local sur la grille source, StorageGRID le clone automatiquement dans la grille de destination. L'utilisateur d'origine et son clone ont tous les deux le même nom complet, le même nom d'utilisateur et le même paramètre *deny Access*. Les deux utilisateurs appartiennent également aux mêmes groupes. Pour obtenir des instructions, reportez-vous à la section link:managing-local-users.html["Gérez les utilisateurs locaux"].
+Lorsque vous créez un nouvel utilisateur local sur la grille source, StorageGRID clone automatiquement cet utilisateur sur la grille de destination.  L'utilisateur d'origine et son clone ont le même nom complet, le même nom d'utilisateur et le même paramètre *Refuser l'accès*.  Les deux utilisateurs appartiennent également aux mêmes groupes. Pour les instructions, voirlink:manage-users.html["Gérer les utilisateurs"] .
 
-Pour des raisons de sécurité, les mots de passe des utilisateurs locaux ne sont pas clonés dans la grille de destination. Si un utilisateur local doit accéder au gestionnaire de locataires sur la grille de destination, l'utilisateur root du compte de locataire doit ajouter un mot de passe pour cet utilisateur sur la grille de destination. Pour obtenir des instructions, reportez-vous à la section link:managing-local-users.html["Gérez les utilisateurs locaux"].
+Pour des raisons de sécurité, les mots de passe des utilisateurs locaux ne sont pas clonés dans la grille de destination.  Si un utilisateur local doit accéder à Tenant Manager sur la grille de destination, l'utilisateur root du compte locataire doit ajouter un mot de passe pour cet utilisateur sur la grille de destination. Pour les instructions, voirlink:manage-users.html["Gérer les utilisateurs"] .
 
 image::../media/grid-federation-local-user-clone.png[image montrant que les utilisateurs locaux sont clonés de la grille source à la grille de destination]
 

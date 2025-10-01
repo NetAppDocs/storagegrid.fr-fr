@@ -25,7 +25,7 @@ Gérez vos groupes de locataires selon vos besoins pour afficher, modifier ou du
 Vous pouvez afficher et modifier les informations de base et les détails de chaque groupe.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Consultez les informations fournies sur la page groupes, qui répertorie les informations de base pour tous les groupes locaux et fédérés pour ce compte de tenant.
 +
 Si le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous affichez des groupes sur la grille source du locataire :
@@ -66,15 +66,13 @@ Si le compte de tenant dispose de l'autorisation *utiliser la connexion de féd�
 
 
 
-. Modifiez les paramètres de groupe selon vos besoins. Voir link:creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"] et link:creating-groups-for-swift-tenant.html["Créez des groupes pour un locataire Swift"] pour plus de détails sur ce que vous devez saisir.
+. Modifiez les paramètres du groupe selon vos besoins.  Se référer àlink:creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"] pour plus de détails sur ce qu'il faut saisir.
 +
 .. Dans la section vue d'ensemble, modifiez le nom d'affichage en sélectionnant le nom ou l'icône d'édition image:../media/icon_edit_tm.png["Icône Modifier"].
 .. Dans l'onglet *autorisations de groupe*, mettez à jour les autorisations et sélectionnez *Enregistrer les modifications*.
 .. Dans l'onglet *Stratégie de groupe*, apportez les modifications nécessaires et sélectionnez *Enregistrer les modifications*.
 +
-*** Si vous modifiez un groupe S3, sélectionnez une règle de groupe S3 différente ou entrez la chaîne JSON pour une règle personnalisée, si nécessaire.
-*** Si vous modifiez un groupe Swift, cochez ou décochez la case *Administrateur Swift*.
-
+Sélectionnez éventuellement une autre stratégie de groupe S3 ou saisissez la chaîne JSON d’une stratégie personnalisée selon vos besoins.
 
 
 
@@ -114,10 +112,10 @@ Vous pouvez dupliquer un groupe existant pour créer de nouveaux groupes plus ra
 NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous dupliquez un groupe à partir de la grille source du locataire, le groupe dupliqué sera cloné dans la grille de destination du locataire.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Cochez la case du groupe que vous souhaitez dupliquer.
 . Sélectionnez *actions* > *Dupliquer le groupe*.
-. Voir link:creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"] ou link:creating-groups-for-swift-tenant.html["Créez des groupes pour un locataire Swift"] pour plus de détails sur ce que vous devez saisir.
+. Voirlink:creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"] pour plus de détails sur ce qu'il faut saisir.
 . Sélectionnez *Créer groupe*.
 
 
@@ -144,7 +142,7 @@ Vous pouvez supprimer un ou plusieurs groupes. Les utilisateurs qui appartiennen
 NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous supprimez un groupe, StorageGRID ne supprimera pas le groupe correspondant sur l'autre grille. Si vous devez conserver ces informations synchronisées, vous devez supprimer le même groupe des deux grilles.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Cochez la case correspondant à chaque groupe à supprimer.
 . Sélectionnez *actions* > *Supprimer groupe* ou *actions* > *Supprimer groupes*.
 +
@@ -152,3 +150,49 @@ Une boîte de dialogue de confirmation s'affiche.
 
 . Sélectionnez *Supprimer le groupe* ou *Supprimer les groupes*.
 
+
+
+
+== Configurer AssumeRole
+
+.Avant de commencer
+Vous devez être administrateur pour configurer AssumeRole.
+
+.Description de la tâche
+Pour configurer AssumeRole, créez le groupe cible à assumer, si le groupe n'existe pas déjà.  Modifiez la politique S3 du groupe pour spécifier les actions autorisées pour assumer ce groupe.  Modifiez la politique de confiance S3 du groupe pour spécifier les utilisateurs de confiance autorisés à assumer le groupe avec l'API AssumeRole.
+
+Les informations d'identification de sécurité temporaires créées en supposant que ce groupe est valide pour une durée limitée.  La séance dure entre 15 minutes et 12 heures, et la séance par défaut est de 1 heure.  Lorsque vous supprimez l'utilisateur de la politique de confiance S3 du groupe, l'utilisateur ne peut plus assumer ce groupe.
+
+.Étapes
+. Sélectionnez *Gestion des accès* > *Groupes*.
+. Cliquez sur le nom du groupe.
+. Sélectionnez l’onglet *Politique de confiance S3*.
+. Ajoutez votre politique de confiance S3, y compris une liste d’utilisateurs pouvant exécuter AssumeRole.
+. Sélectionnez *Enregistrer les modifications*.
+. Sélectionnez l’onglet *Stratégie de groupe S3*.
+. Modifiez la politique S3 pour spécifier uniquement les actions S3 requises pour les utilisateurs de confiance ajoutés dans la politique de confiance S3 de ce groupe.
+. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+=== Exemple de politique de confiance S3 AssumeRole
+
+[listing]
+----
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Principal": {
+                "AWS": [
+                    "urn:sgws:identity::1234567890:user/user1",
+                    "arn:aws:iam::1234567890:user/user2"
+                ]
+            }
+        }
+    ]
+}
+----
+Une fois la configuration terminée, les utilisateurs répertoriés dans la politique de confiance S3 peuvent exécuter AssumeRole et recevoir des informations d’identification.  Les autorisations finales sont déterminées par la politique de groupe, la politique de compartiment et la politique de session. link:../s3/use-access-policies.html["Utiliser les politiques d'accès"] .

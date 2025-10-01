@@ -44,13 +44,6 @@ Prise en charge de la signature AWS version 4, à l'exception des cas suivants :
 * Lorsque vous fournissez la valeur de somme de contrôle de charge utile réelle dans `x-amz-content-sha256`, la valeur est acceptée sans validation, comme si la valeur `UNSIGNED-PAYLOAD` avait été fournie pour l'en-tête. Lorsque vous fournissez une `x-amz-content-sha256` valeur d'en-tête qui implique le `aws-chunked` STREAMING (par exemple, STREAMING-AWS4-HMAC-SHA256-PAYLOAD), les signatures des blocs ne sont pas vérifiées par rapport aux données des blocs.
 
 
-
-
- a| 
-jeton de sécurité x-amz
- a| 
-Non mis en œuvre. Renvoie `XNotImplemented`.
-
 |===
 
 

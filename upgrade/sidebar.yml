@@ -2,10 +2,10 @@
 section: upgrade
 title: Mettez à niveau le logiciel StorageGRID
 entries:
-- title: Avant de commencer
+- title: Avant de procéder à la mise à niveau
   pdf-filename: Mettez à niveau le logiciel StorageGRID
   url: "/upgrade/index.html"
-- title: Nouveautés de StorageGRID 11.9
+- title: Quoi de neuf dans StorageGRID 12.0
   url: "/upgrade/whats-new.html"
 - title: Fonctions supprimées ou obsolètes
   url: "/upgrade/removed-or-deprecated-features.html"

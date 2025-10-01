@@ -64,7 +64,7 @@ Après avoir enregistré votre configuration, tous les ports externes du nœud d
 
 === Exemple 2 : verrouiller les ports sensibles
 
-Supposons que vous souhaitez verrouiller les ports sensibles et le service sur ce port (par exemple, SSH sur le port 22). Vous pouvez utiliser les étapes générales suivantes :
+Supposons que vous souhaitiez verrouiller les ports sensibles et le service sur ce port.  Vous pouvez utiliser les étapes générales suivantes :
 
 . Utilisez l'onglet liste d'adresses privilégiées pour accorder l'accès uniquement aux hôtes qui ont besoin d'accéder au service.
 . Utilisez l'onglet gérer l'accès externe pour bloquer tous les ports.
@@ -73,7 +73,7 @@ Supposons que vous souhaitez verrouiller les ports sensibles et le service sur c
 
 CAUTION: Ajoutez l'adresse IP privilégiée avant de bloquer l'accès aux ports affectés à Grid Manager et au gestionnaire de locataires (les ports prédéfinis sont 443 et 8443). Tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager à moins que leur adresse IP n'ait été ajoutée à la liste d'adresses privilégiées.
 
-Après avoir enregistré votre configuration, le port 22 et le service SSH seront disponibles pour les hôtes de la liste d'adresses privilégiées. Tous les autres hôtes se verront refuser l'accès au service, quelle que soit l'interface d'origine de la demande.
+Une fois votre configuration enregistrée, le port sensible et le service sur ce port sont disponibles pour les hôtes de la liste d'adresses privilégiées.  Tous les autres hôtes se voient refuser l'accès au service, quelle que soit l'interface d'où provient la demande.
 
 
 

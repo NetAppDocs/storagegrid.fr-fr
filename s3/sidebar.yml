@@ -13,8 +13,8 @@ entries:
   entries:
   - title: Requêtes des clients en conflit
     url: "/s3/conflicting-client-requests.html"
-  - title: Valeurs de cohérence
-    url: "/s3/consistency-controls.html"
+  - title: La cohérence
+    url: "/s3/consistency.html"
   - title: Gestion des versions d'objet
     url: "/s3/object-versioning.html"
   - title: Utilisez l'API REST S3 pour configurer le verrouillage objet S3
@@ -102,10 +102,12 @@ entries:
       url: "/s3/deprecated-get-bucket-compliance-request.html"
     - title: Obsolète - PUT Bucket Compliance request
       url: "/s3/deprecated-put-bucket-compliance-request.html"
-- title: Règles d'accès au compartiment et au groupe
+- title: Gérer les politiques d'accès
   entries:
-  - title: Utilisez les règles d'accès au compartiment et au groupe
-    url: "/s3/bucket-and-group-access-policies.html"
+  - title: Utiliser les politiques d'accès
+    url: "/s3/use-access-policies.html"
+  - title: Exemples de politiques de session
+    url: "/s3/example-session-policies.html"
   - title: Exemples de politiques de compartiments
     url: "/s3/example-bucket-policies.html"
   - title: Exemples de stratégies de groupe

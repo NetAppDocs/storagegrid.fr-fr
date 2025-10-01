@@ -41,12 +41,12 @@ Si l'erreur n'est pas résolue automatiquement, passez à l'étape suivante.
 
 . Si votre système StorageGRID comporte plusieurs nœuds d'administration, essayez de vous connecter au Gestionnaire de grille à partir d'un autre nœud d'administration pour vérifier l'état d'un nœud d'administration non disponible.
 +
-** Si vous pouvez vous connecter, vous pouvez utiliser les options *Dashboard*, *NODES*, *Alerts* et *SUPPORT* pour déterminer la cause de l'erreur.
+** Si vous parvenez à vous connecter, vous pouvez utiliser les options *Tableau de bord*, *Nœuds*, *Alertes* et *Assistance* pour vous aider à déterminer la cause de l'erreur.
 ** Si vous n'avez qu'un seul nœud d'administration ou si vous ne pouvez toujours pas vous connecter, passez à l'étape suivante.
 
 
 . Déterminez si le matériel du nœud est hors ligne.
-. Si l'authentification unique (SSO) est activée pour votre système StorageGRID, reportez-vous aux étapes pour link:../admin/configuring-sso.html["configuration de l'authentification unique"].
+. Si l'authentification unique (SSO) est activée pour votre système StorageGRID , reportez-vous aux étapes pourlink:../admin/configure-sso.html["configuration de l'authentification unique"] .
 +
 Pour résoudre ces problèmes, il peut être nécessaire de désactiver et de réactiver temporairement l'authentification SSO pour un nœud d'administration unique.
 
@@ -62,7 +62,7 @@ Si le compte d'utilisateur fédéré ne fonctionne pas, essayez de vous connecte
 ** Si l'utilisateur local peut se connecter :
 +
 ... Consultez les alertes.
-... Sélectionnez *CONFIGURATION* > *contrôle d'accès* > *fédération d'identités*.
+... Sélectionnez *Configuration* > *Contrôle d'accès* > *Fédération d'identité*.
 ... Cliquez sur *Tester la connexion* pour valider vos paramètres de connexion pour le serveur LDAP.
 ... Si le test échoue, corrigez toute erreur de configuration.
 

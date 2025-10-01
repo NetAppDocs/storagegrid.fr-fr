@@ -32,7 +32,7 @@ TIP: L'utilisation des services de la plateforme doit être activée pour chaque
 
 == Configuration des services de plate-forme
 
-Les services de plate-forme communiquent avec les noeuds finaux externes que vous configurez à l'aide du link:configuring-platform-services-endpoints.html["Gestionnaire de locataires"]ou du link:understanding-tenant-management-api.html["API de gestion des locataires"]. Chaque terminal représente une destination externe, par exemple un compartiment StorageGRID S3, un compartiment Amazon Web Services, une rubrique Amazon SNS ou un cluster Elasticsearch hébergé localement, sur AWS ou ailleurs.
+Les services de plateforme communiquent avec des points de terminaison externes que vous configurez à l'aide de l'link:configuring-platform-services-endpoints.html["Gestionnaire de locataires"] ou lelink:understanding-tenant-management-api.html["API de gestion des locataires"] .  Chaque point de terminaison représente une destination externe, telle qu'un bucket StorageGRID S3, un bucket Amazon Web Services, une rubrique Amazon SNS, un point de terminaison webhook ou un cluster Elasticsearch hébergé localement, sur AWS ou ailleurs.
 
 Après avoir créé un noeud final externe, vous pouvez activer un service de plate-forme pour un compartiment en ajoutant une configuration XML au compartiment. La configuration XML identifie les objets sur lesquels le compartiment doit agir, l'action que le compartiment doit effectuer et le point de terminaison que le compartiment doit utiliser pour le service.
 

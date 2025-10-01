@@ -13,15 +13,15 @@ summary: Un système StorageGRID se compose de plusieurs types de nœuds grid su
 [role="lead"]
 Un système StorageGRID se compose de plusieurs types de nœuds grid sur un ou plusieurs sites de data Center.
 
-Voir la link:nodes-and-services.html["descriptions des types de nœuds de grille"].
+En savoir plus sur lelink:nodes-and-services.html["types de nœuds de grille"] .
 
-Pour plus d'informations sur la topologie, les exigences et les communications de grille du réseau StorageGRID, reportez-vous au link:../network/index.html["Instructions de mise en réseau"].
+Pour plus d'informations sur la topologie du réseau StorageGRID , les exigences et les communications de grille, reportez-vous aulink:../network/index.html["Instructions de mise en réseau"] .
 
 
 
 == Topologies de déploiement
 
-Le système StorageGRID peut être déployé sur un seul data Center ou sur plusieurs sites de data Center.
+Le système StorageGRID peut être déployé sur un seul site de centre de données ou sur plusieurs sites de centre de données.  Le nombre maximal de sites par déploiement est de 16.
 
 
 
@@ -37,11 +37,11 @@ image::../media/data_center_site_single.png[Un seul data Center site]
 
 Dans un déploiement sur plusieurs sites, il est possible d'installer différents types et quantités de ressources StorageGRID sur chaque site. Par exemple, un data Center peut nécessiter plus de stockage qu'un autre.
 
-Différents sites sont souvent situés dans des emplacements géographiques différents dans différents domaines de défaillance, tels qu'une ligne de défaut sismique ou une inondation. Le partage des données et la reprise après incident sont réalisés par la distribution automatisée des données vers d'autres sites.
+Les sites sont souvent situés dans des endroits géographiquement différents dans différents domaines de défaillance, comme une ligne de faille sismique ou une plaine inondable.  Le partage des données et la reprise après sinistre sont réalisés par la distribution automatisée des données vers d’autres sites.
 
 image::../media/data_center_sites_multiple.png[Site de plusieurs data centers]
 
-Plusieurs sites logiques peuvent également exister au sein d'un même data Center, afin de permettre l'utilisation de la réplication distribuée et du codage d'effacement pour améliorer la disponibilité et la résilience.
+Plusieurs sites logiques peuvent également exister au sein d’un même centre de données pour permettre l’utilisation de la réplication distribuée et du codage d’effacement pour une disponibilité et une résilience accrues.
 
 
 
@@ -61,4 +61,4 @@ Les clients S3 stockent et récupèrent des objets dans StorageGRID. D'autres cl
 
 Les clients S3 peuvent se connecter à un nœud de passerelle ou à un nœud d'administration pour utiliser l'interface d'équilibrage de la charge avec les nœuds de stockage. Les clients S3 peuvent également se connecter directement aux nœuds de stockage via HTTPS.
 
-Les objets peuvent être stockés dans StorageGRID sur des nœuds de stockage logiciels ou matériels, ou dans des pools de stockage cloud, composés de compartiments S3 externes ou de conteneurs de stockage Azure Blob.
+Les objets peuvent être stockés dans StorageGRID sur des nœuds de stockage logiciels ou matériels, ou dans des pools de stockage cloud, constitués de buckets S3 externes ou de conteneurs de stockage Azure Blob.

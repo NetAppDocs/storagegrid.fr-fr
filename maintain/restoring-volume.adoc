@@ -20,7 +20,7 @@ Vous pouvez restaurer les données d'objet d'un volume de stockage ou d'un nœud
 ** link:../maintain/remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]
 
 
-* Vous avez confirmé que le noeud de stockage sur lequel vous restaurez les objets a un état de connexion de *connecté* image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]dans l'onglet *NOEUDS* > *Présentation* du Gestionnaire de grille.
+* Vous avez confirmé que le nœud de stockage sur lequel vous restaurez les objets a un état de connexion *Connecté*image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"] dans l'onglet *Nœuds* > *Aperçu* dans le Gestionnaire de grille.
 * Vous avez confirmé ce qui suit :
 +
 ** Une extension de grille pour ajouter un nœud de stockage n'est pas en cours.
@@ -34,11 +34,11 @@ Vous pouvez restaurer les données d'objet d'un volume de stockage ou d'un nœud
 
 
 .Description de la tâche
-Après avoir remplacé les lecteurs et effectué les étapes manuelles de formatage des volumes, Grid Manager affiche les volumes comme candidats à la restauration dans l'onglet *MAINTENANCE* > *Restauration du volume* > *nœuds à restaurer*.
+Une fois que vous avez remplacé les lecteurs et effectué les étapes manuelles pour formater les volumes, Grid Manager affiche les volumes comme candidats à la restauration dans l'onglet *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*.
 
 Lorsque cela est possible, restaurez les données d'objet à l'aide de la page Restauration des volumes du Gestionnaire de grille. Vous pouvez soit <<enable-auto-restore-mode,activer le mode de restauration automatique>>lancer automatiquement la restauration du volume lorsque les volumes sont prêts à être restaurés, soit <<manually-restore,effectuez manuellement la restauration des volumes>>. Suivez ces instructions :
 
-* Si les volumes sont répertoriés dans *MAINTENANCE* > *Restauration de volume* > *nœuds à restaurer*, restaurez les données d'objet comme décrit dans les étapes ci-dessous. Les volumes seront répertoriés si :
+* Si les volumes sont répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, restaurez les données de l'objet comme décrit dans les étapes ci-dessous.  Les volumes seront répertoriés si :
 +
 ** Certains volumes de stockage d'un nœud sont en panne, mais pas tous
 ** Tous les volumes de stockage d'un nœud sont en panne et sont remplacés par le même nombre de volumes ou plus
@@ -87,7 +87,7 @@ NOTE: La restauration des volumes dépend de la disponibilité des ressources da
 Lorsque vous activez le mode de restauration automatique, la restauration des volumes démarre automatiquement lorsque les volumes sont prêts à être restaurés.
 
 .Étapes
-. Dans Grid Manager, accédez à *MAINTENANCE* > *Restauration de volume*.
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
 . Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton bascule du *mode de restauration automatique* sur la position activé.
 . Lorsque la boîte de dialogue de confirmation s'affiche, vérifiez les détails.
 +
@@ -113,7 +113,7 @@ Vous pouvez désactiver le mode de restauration automatique à tout moment.
 Procédez comme suit pour restaurer un volume ou un nœud défaillant.
 
 .Étapes
-. Dans Grid Manager, accédez à *MAINTENANCE* > *Restauration de volume*.
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
 . Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton de *mode de restauration automatique* sur la position Désactivé.
 +
 Le numéro de l'onglet indique le nombre de nœuds pour lesquels des volumes nécessitent une restauration.

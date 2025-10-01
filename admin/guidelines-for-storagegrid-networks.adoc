@@ -91,9 +91,11 @@ Pour ajouter une jonction ou des interfaces d'accès, consultez les éléments s
 
 * *VMware (après l'installation du nœud)* : link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware : ajoutez du jonction ou des interfaces d'accès à un nœud"]
 +
-** *Red Hat Enterprise Linux (avant d'installer le nœud)* : link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *Ubuntu ou Debian (avant d'installer le nœud)* : link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *RHEL, Ubuntu ou Debian (après l'installation du nœud)* : link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux : ajoutez une jonction ou des interfaces d'accès à un nœud"]
+** *Linux (avant l'installation du nœud)*:link:../swnodes/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *Linux (après l'installation du nœud)*:link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Ajouter des interfaces de jonction ou d'accès à un nœud"]
 
 
 
+
+
+NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .

@@ -13,14 +13,14 @@ summary: 'La fonctionnalité AutoSupport permet à StorageGRID d"envoyer des pac
 [role="lead"]
 La fonctionnalité AutoSupport permet à StorageGRID d'envoyer des packages d'état et d'intégrité au support technique NetApp.
 
-L'utilisation de AutoSupport permet d'accélérer considérablement la détermination et la résolution des problèmes. Le support technique peut également surveiller les besoins en stockage de votre système et vous aider à déterminer si vous devez ajouter de nouveaux nœuds ou sites. Vous pouvez également configurer l'envoi des packages AutoSupport vers une destination supplémentaire.
+L'utilisation AutoSupport permet de résoudre les problèmes plus rapidement.  Le support technique peut surveiller les besoins de stockage de votre système et vous aider à déterminer si vous devez ajouter de nouveaux nœuds ou sites.  En option, AutoSupport peut envoyer des colis vers une destination supplémentaire.
 
 StorageGRID propose deux types de AutoSupport :
 
 * *StorageGRID AutoSupport* signale des problèmes de logiciel StorageGRID. Activé par défaut lors de la première installation de StorageGRID. Vous pouvez le link:configure-autosupport-grid-manager.html["Modifier la configuration AutoSupport par défaut"]faire si nécessaire.
 +
 
-NOTE: Si StorageGRID AutoSupport n'est pas activé, un message s'affiche sur le tableau de bord du Gestionnaire de grille. Le message inclut un lien vers la page de configuration de AutoSupport. Si vous fermez le message, il n'apparaîtra plus tant que le cache de votre navigateur n'aura pas été effacé, même si AutoSupport reste désactivé.
+NOTE: Si StorageGRID AutoSupport n'est pas activé, un message apparaît sur le tableau de bord du Grid Manager.  Le message inclut un lien vers la page de configuration AutoSupport .  Si vous fermez le message, il n'apparaîtra plus tant que le cache de votre navigateur n'aura pas été vidé, même si AutoSupport reste désactivé.
 
 * *Le matériel de l'appareil AutoSupport* signale les problèmes de l'appareil StorageGRID. Vous devez link:configure-autosupport-grid-manager.html#autosupport-for-appliances["Configurez le matériel AutoSupport sur chaque appliance"].
 

@@ -21,7 +21,7 @@ Après avoir remplacé un noeud de passerelle, vous devez sélectionner Démarre
 
 
 .Étapes
-. Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *récupération*.
+. Depuis le Gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Récupération*.
 . Sélectionnez le nœud de grille à récupérer dans la liste nœuds en attente.
 +
 Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pas sélectionner un nœud tant qu'il n'a pas été réinstallé et qu'il est prêt pour la restauration.

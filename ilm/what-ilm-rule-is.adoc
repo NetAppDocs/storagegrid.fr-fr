@@ -107,7 +107,7 @@ Le comportement d'ingestion détermine si les copies d'objet sont immédiatement
 .Informations associées
 * link:data-protection-options-for-ingest.html["Options d'ingestion"]
 * link:advantages-disadvantages-of-ingest-options.html["Avantages, inconvénients et limites des options d'acquisition"]
-* link:../s3/consistency-controls.html#how-consistency-controls-and-ILM-rules-interact["Impact de la cohérence et des règles ILM pour la protection des données"]
+* link:../s3/consistency.html#how-consistency-and-ILM-rules-interact["Impact de la cohérence et des règles ILM pour la protection des données"]
 
 
 

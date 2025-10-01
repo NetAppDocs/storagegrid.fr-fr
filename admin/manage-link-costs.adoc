@@ -68,11 +68,11 @@ Vous pouvez mettre à jour les coûts de liaison entre les sites de data Center 
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-* Vous avez le link:admin-group-permissions.html["Autorisation de configuration de la page de topologie de grille"].
+* Vous avez lelink:admin-group-permissions.html["Autre autorisation de configuration de grille"] .
 
 
 .Étapes
-. Sélectionnez *SUPPORT* > *autre* > *coût du lien*.
+. Sélectionnez *Assistance* > *Autre* > *Coût du lien*.
 +
 image::../media/configuring_link_costs.png[Coût des liens]
 

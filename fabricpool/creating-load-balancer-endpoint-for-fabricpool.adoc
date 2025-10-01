@@ -24,7 +24,7 @@ Pour exécuter cette tâche à l'aide de l'assistant de configuration FabricPool
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
+. Sélectionnez *Configuration* > *Réseau* > *Points de terminaison de l'équilibreur de charge*.
 . Sélectionnez *Créer*.
 . Pour l'étape *entrer les détails du noeud final*, renseignez les champs suivants.
 +

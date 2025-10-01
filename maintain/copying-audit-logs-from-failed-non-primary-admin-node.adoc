@@ -34,7 +34,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 . Arrêtez le service AMS pour l'empêcher de créer un nouveau fichier journal :``service ams stop``
 . Accédez au répertoire d'exportation d'audit :
 +
-`cd /var/local/log`
+`cd /var/local/audit/export/`
 
 . Renommez le fichier source audit.log en un nom de fichier numéroté unique. Par exemple, renommez le fichier audit.log en `2023-10-25.txt.1`.
 +

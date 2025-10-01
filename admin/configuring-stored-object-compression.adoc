@@ -40,7 +40,7 @@ NOTE: Si vous devez compresser des objets et que votre application client doit u
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *système* > *Paramètres de stockage* > *compression objet*.
+. Sélectionnez *Configuration* > *Système* > *Paramètres de stockage* > *Compression d'objet*.
 . Cochez la case *Compresser les objets stockés*.
 . Sélectionnez *Enregistrer*.
 

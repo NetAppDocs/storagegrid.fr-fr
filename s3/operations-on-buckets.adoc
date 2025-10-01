@@ -25,7 +25,7 @@ Pour plus d'informations, reportez-vous aux sections suivantes :
 * link:../admin/configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"]
 
 
-Les opérations ListObjects (GET Bucket) et ListObjectVersions (GET Bucket object versions) prennent en charge StorageGRID link:consistency-controls.html["valeurs de cohérence"].
+Les opérations ListObjects (GET Bucket) et ListObjectVersions (versions d'objet GET Bucket) prennent en charge StorageGRIDlink:consistency.html["valeurs de cohérence"] .
 
 Vous pouvez vérifier si les mises à jour de l'heure du dernier accès sont activées ou désactivées pour les compartiments individuels. Voir link:get-bucket-last-access-time-request.html["HEURE du dernier accès au compartiment"].
 
@@ -230,6 +230,14 @@ Renvoie une partie ou la totalité (jusqu'à 1,000) des objets dans un compartim
 
 Si le compartiment contient un grand nombre de clés supprimées dont le préfixe est identique, certains ne contiennent pas de `CommonPrefixes` clés.
 
+Pour les requêtes HeadObject et ListObject, StorageGRID renvoie les horodatages LastModified avec une précision différente tandis qu'AWS renvoie les horodatages avec la même précision, comme illustré dans les exemples suivants :
+
+* Objet principal StorageGRID : « LastModified » : « 2024-09-26T16:43:24+00:00 »
+* Objet de liste StorageGRID : « LastModified » : « 2024-09-26T16:43:24.931000+00:00 »
+* AWS HeadObject : « LastModified » : « 2023-10-17T00:19:54+00:00 »
+* AWS ListObject : « LastModified » : « 2023-10-17T00:19:54+00:00 »
+
+
 
 
  a| 
@@ -290,7 +298,7 @@ PutBucketNotifationConfiguration
  a| 
 Configure les notifications pour le compartiment à l'aide du fichier XML de configuration de notification inclus dans le corps de la demande. Vous devez connaître les détails d'implémentation suivants :
 
-* StorageGRID prend en charge Amazon simple notification Service (Amazon SNS) ou les rubriques Kafka en tant que destinations. Les points finaux SQS (simple Queue Service) ou Lambda d'Amazon ne sont pas pris en charge.
+* StorageGRID prend en charge les rubriques Amazon Simple Notification Service (Amazon SNS), les rubriques Kafka ou les points de terminaison webhook comme destinations.  Les points de terminaison Simple Queue Service (SQS) ou AWS Lambda ne sont pas pris en charge.
 * La destination des notifications doit être spécifiée comme URN d'un terminal StorageGRID. Les terminaux peuvent être créés à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires.
 +
 Le noeud final doit exister pour que la configuration des notifications réussisse. Si le noeud final n'existe pas, une `400 Bad Request` erreur est renvoyée avec le code `InvalidArgument`.
@@ -328,7 +336,7 @@ non inclus
  a| 
 PutBuckePolicy
  a| 
-Définit la règle attachée au compartiment. Voir link:bucket-and-group-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"].
+Définit la politique attachée au bucket. Voir link:use-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"] .
 
 
 

@@ -43,6 +43,7 @@ Par exemple, n'utilisez pas les plages de sous-réseaux suivantes pour le résea
 
 ====
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Connectez-vous au nœud d'administration principal :
 +
 .. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
@@ -149,7 +150,7 @@ Si vous n'étiez pas conscient que les modifications proposées nécessitent de 
 
 
 +
-Une fois que vous avez appliqué ou échelé les modifications, un nouveau package de récupération est généré à la suite de la modification de la configuration de la grille.
+Une fois les modifications appliquées ou mises en scène, un nouveau package de récupération est généré suite à la modification de la configuration de la grille.
 
 . Si la configuration est interrompue en raison d'erreurs, les options suivantes sont disponibles :
 +
@@ -162,14 +163,15 @@ L'opération échouée peut être relancée ultérieurement en sélectionnant l'
 ** Si vous avez dû intervenir manuellement (pour redémarrer un nœud, par exemple) et que l'action que l'outil pense avoir échoué a été réellement terminée, entrez *f* pour la marquer comme réussie et passer à l'opération suivante.
 
 
-. Téléchargez un nouveau package de récupération depuis Grid Manager.
+. Téléchargez un nouveau package de récupération à partir du gestionnaire de grille.
 +
-.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.
 
 
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID .
 
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé d'ajouter ou de modifier les listes de sous-réseaux.
 

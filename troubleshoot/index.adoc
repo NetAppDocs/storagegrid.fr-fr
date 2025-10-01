@@ -152,27 +152,6 @@ Examinez les alertes déclenchées par le passé pour obtenir des informations s
 
 
  a| 
-Contrôle des événements
- a| 
-Les événements incluent les événements d'erreur système ou de panne pour un nœud, y compris les erreurs telles que les erreurs réseau. Surveiller les événements pour en savoir plus sur les problèmes ou obtenir de l'aide pour les résoudre.
- a| 
-* link:../monitor/monitoring-events.html["Contrôle des événements"]
-
-
-
-
- a| 
-Identifier les tendances à l'aide de graphiques et de rapports texte
- a| 
-Les tendances peuvent donner des indications précieuses sur le moment où les problèmes sont apparus et vous aider à comprendre la rapidité à laquelle les choses évoluent.
- a| 
-* link:../monitor/using-charts-and-reports.html["Utilisez des graphiques et des graphiques"]
-* link:../monitor/types-of-text-reports.html["Utilisez les rapports texte"]
-
-
-
-
- a| 
 Établir les lignes de base
  a| 
 Collectez des informations sur les niveaux normaux de différentes valeurs opérationnelles. Ces valeurs de référence, ainsi que les écarts par rapport à ces lignes de base, peuvent fournir des indices précieux.
@@ -335,22 +314,13 @@ Vous pouvez collecter ces informations pour l'intégralité du système ou pour 
 
 
  a| 
-Vitesse des opérations S3/Swift
+Taux d'opérations S3
  a| 
 Opérations/seconde
  a| 
-Sur le tableau de bord Grid Manager, sélectionnez *Performance* > *S3 Operations* ou *Performance* > *Swift Operations*.
+Dans le tableau de bord du Grid Manager, sélectionnez *Performances* > *Opérations S3 pour les nœuds de stockage*.
 
-Pour afficher les taux d'entrée et de récupération et les nombres pour un site ou un nœud spécifique, sélectionnez *NODES* > *_site ou nœud de stockage_* > *objets*. Placez le curseur sur le graphique Ingest and Retrieve pour S3.
-
-
-
- a| 
-Échec des opérations S3/Swift
- a| 
-Exploitation
- a| 
-Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Dans l'onglet Présentation de la section opérations d'API, affichez la valeur des opérations S3 - FAILED ou opérations Swift - FAILED.
+Pour voir les taux et les nombres d'ingestion et de récupération pour un site ou un nœud spécifique, sélectionnez *Nœuds* > *_site ou Nœud de stockage_* > *Objets*.  Positionnez votre curseur sur le graphique d'ingestion et de récupération S3.
 
 
 
@@ -370,7 +340,7 @@ Taux d'analyse ILM
  a| 
 Objets/seconde
  a| 
-Sélectionnez *NODES* > *_grid_* > *ILM*.
+Sélectionnez *Nœuds* > *_grid_* > *ILM*.
 
 Dans le graphique ILM Queue, recherchez une période où la ligne est assez stable. Placez le curseur sur le graphique pour estimer la valeur de référence de *Scan Rate* pour votre système.
 
@@ -381,7 +351,7 @@ Objets mis en file d'attente à partir des opérations client
  a| 
 Objets/seconde
  a| 
-Sélectionnez *NODES* > *_grid_* > *ILM*.
+Sélectionnez *Nœuds* > *_grid_* > *ILM*.
 
 Dans le graphique ILM Queue, recherchez une période où la ligne est assez stable. Placez votre curseur sur le graphique pour estimer la valeur de base des *objets mis en file d'attente (à partir des opérations client)* pour votre système.
 
@@ -392,7 +362,7 @@ Latence moyenne des requêtes
  a| 
 Millisecondes
  a| 
-Sélectionnez *NODES* > *_Storage Node_* > *Objects*. Dans le tableau requêtes, affichez la valeur de la latence moyenne.
+Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Objets*.  Dans la table Requêtes, affichez la valeur de la latence moyenne.
 
 |===
 
@@ -445,7 +415,7 @@ Quelle est la gravité du problème ? Quel est l'impact sur l'application client
  a| 
 ID du système StorageGRID
  a| 
-Sélectionnez *MAINTENANCE* > *système* > *Licence*. L'ID système StorageGRID s'affiche dans le cadre de la licence actuelle.
+Sélectionnez *Maintenance* > *Système* > *Licence*.  L'ID système StorageGRID est affiché dans le cadre de la licence actuelle.
 
 
 
@@ -473,13 +443,11 @@ Résumez le mode de configuration de votre système StorageGRID. Par exemple, é
  a| 
 Fichiers journaux et données système
  a| 
-Collecte des fichiers journaux et des données système pour votre système. Sélectionnez *SUPPORT* > *Outils* > *journaux*.
+Collectez les fichiers journaux et les données système de votre système.  Sélectionnez *Support* > *Outils* > *Collecte de journaux*.
 
 Vous pouvez collecter les journaux pour toute la grille ou pour certains nœuds.
 
-Si vous ne recueillez des journaux que pour les nœuds sélectionnés, veillez à inclure au moins un nœud de stockage disposant du service ADC. (Les trois premiers nœuds de stockage d'un site incluent le service ADC.)
-
-link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]
+Si vous collectez des journaux uniquement pour des nœuds sélectionnés, assurez-vous d'inclure au moins un nœud de stockage doté du service ADC.  Les trois premiers nœuds de stockage installés sur un site incluent le service ADC.
 
 
 

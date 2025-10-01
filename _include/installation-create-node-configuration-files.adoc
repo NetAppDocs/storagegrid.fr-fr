@@ -67,7 +67,7 @@ Le tableau suivant définit les valeurs de toutes les clés prises en charge. Ch
 
 
  a| 
-Adresse IPv4 du réseau Grid du nœud d'administration principal de la grille à laquelle ce nœud appartient. Utilisez la même valeur que celle spécifiée pour GRID_NETWORK_IP pour le nœud de grille avec NODE_TYPE = VM_Admin_Node et ADMIN_ROLE = Primary. Si vous omettez ce paramètre, le nœud tente de détecter un nœud d'administration principal à l'aide de mDNS.
+Adresse IPv4 du réseau de grille du nœud d'administration que vous souhaitez utiliser pour installer le nœud basé sur Linux.  Pour la récupération, utilisez l'adresse IP du nœud d'administration principal si disponible ; sinon, utilisez l'adresse IP d'un nœud d'administration non principal.  Si vous omettez ce paramètre, le nœud tente de découvrir un nœud d’administration principal à l’aide de mDNS.
 
 link:how-grid-nodes-discover-primary-admin-node.html["Mode de détection des nœuds du grid sur le nœud d'administration principal"]
 
@@ -277,11 +277,7 @@ Définissez la clé sur « true » pour que le conteneur StorageGRID utilise l'a
 
 *Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez la clé ADMIN_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Pour plus de détails sur le clonage MAC :
-
-* link:../rhel/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations concernant le clonage d'adresses MAC (Red Hat Enterprise Linux)"]
-* link:../ubuntu/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC (Ubuntu ou Debian)"]
-
+Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 
 Et des meilleures pratiques
 
@@ -639,11 +635,7 @@ Définissez la clé sur « true » pour que le conteneur StorageGRID utilise l'a
 
 *Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez plutôt la clé CLIENT_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Pour plus de détails sur le clonage MAC :
-
-* link:../rhel/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations concernant le clonage d'adresses MAC (Red Hat Enterprise Linux)"]
-* link:../ubuntu/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC (Ubuntu ou Debian)"]
-
+Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 
 Et des meilleures pratiques
 
@@ -834,11 +826,7 @@ Définissez la valeur de la clé sur « true » pour que le conteneur StorageGRI
 
 *Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez la clé GRID_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
-Pour plus de détails sur le clonage MAC :
-
-* link:../rhel/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations concernant le clonage d'adresses MAC (Red Hat Enterprise Linux)"]
-* link:../ubuntu/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC (Ubuntu ou Debian)"]
-
+Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 
 Et des meilleures pratiques
 
@@ -980,6 +968,9 @@ Facultatif
 
 
 === Touches de remap de port
+
+
+NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée dans une prochaine version. Pour supprimer les ports remappés, reportez-vous àlink:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Supprimez les mappes de ports sur les hôtes bare Metal"] .
 
 
 

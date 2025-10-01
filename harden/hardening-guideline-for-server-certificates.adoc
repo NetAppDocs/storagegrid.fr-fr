@@ -11,7 +11,7 @@ summary: 'Vous devez remplacer les certificats par défaut créés lors de l"ins
 
 
 [role="lead"]
-Vous devez remplacer les certificats par défaut créés lors de l'installation et sélectionner la stratégie de sécurité appropriée pour les connexions TLS et SSH.
+Vous devez contrôler l’accès SSH, remplacer les certificats TLS par défaut et sélectionner la politique de sécurité appropriée pour les connexions TLS et SSH.
 
 
 
@@ -48,6 +48,12 @@ En outre, les clients doivent utiliser un contrôle strict du nom d'hôte lors d
 
 Vous pouvez sélectionner une stratégie de sécurité pour déterminer quels protocoles et chiffrements sont utilisés pour établir des connexions TLS sécurisées avec les applications client et des connexions SSH sécurisées avec les services StorageGRID internes.
 
-La règle de sécurité contrôle la façon dont TLS et SSH chiffrent les données en mouvement. Il est recommandé de désactiver les options de cryptage qui ne sont pas nécessaires pour assurer la compatibilité des applications. Utilisez la stratégie moderne par défaut, sauf si votre système doit être conforme aux critères communs ou si vous devez utiliser d'autres chiffrements.
+La politique de sécurité contrôle la manière dont TLS et SSH chiffrent les données en mouvement.  En tant que bonne pratique, vous devez désactiver les options de chiffrement qui ne sont pas nécessaires à la compatibilité des applications.  Utilisez la politique moderne par défaut, sauf si votre système doit être conforme aux critères communs, à la norme FIPS 140-2 ou si vous devez utiliser d'autres chiffrements.
 
 Voir link:../admin/manage-tls-ssh-policy.html["Gestion des règles TLS et SSH"] pour plus de détails et d'instructions.
+
+
+
+== Gérer l'accès SSH externe
+
+Pour améliorer la sécurité du système, l'accès SSH externe est bloqué par défaut.  Activez l’accès SSH uniquement lorsque vous devez effectuer des tâches nécessitant un accès SSH entrant, comme le dépannage.  Se référer àlink:../admin/manage-external-ssh-access.html["Gérer l'accès SSH externe"] pour plus de détails et d'instructions.

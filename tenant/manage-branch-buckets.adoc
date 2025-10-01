@@ -1,0 +1,195 @@
+---
+permalink: tenant/manage-branch-buckets.html 
+sidebar: sidebar 
+keywords: how to create branch bucket 
+summary: Utilisez le gestionnaire de locataires pour créer et afficher les détails des compartiments de branches. 
+---
+= Gérer les compartiments de branches
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez le gestionnaire de locataires pour créer et afficher les détails des compartiments de branches.
+
+.Avant de commencer
+* Vous vous êtes connecté au gestionnaire de locataires à l'aide d'unlink:../admin/web-browser-requirements.html["navigateur web pris en charge"] .
+* Vous appartenez à un groupe d'utilisateurs disposant de l'accès Root oulink:tenant-management-permissions.html["Autorisations de gestion de tous les compartiments"] .  Ces autorisations remplacent les paramètres d’autorisations dans les stratégies de groupe ou de compartiment.
+* Le bucket de base à partir duquel vous souhaitez créer une branche alink:../tenant/changing-bucket-versioning.html["contrôle de version activé"] .
+* Vous êtes le propriétaire du bucket de base.
+
+
+.Description de la tâche
+Notez les informations suivantes pour les compartiments de branches :
+
+* Les autorisations permettant de définir les propriétés de verrouillage d'objet S3 des buckets ou des objets peuvent être accordées parlink:../s3/use-access-policies.html["politique de compartiment ou règle de groupe"] .
+* Si vous suspendez le contrôle de version sur le bucket de base, le contenu du bucket de base ne sera plus visible dans ses buckets de branche.
+
+
+
+CAUTION: Après avoir configuré et créé un bucket de branche, vous ne pouvez pas modifier la configuration.
+
+
+
+== Créer un bucket de branche
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez le bucket à partir duquel vous souhaitez créer une branche (le « bucket de base »).
+. Sur la page des détails du bucket, sélectionnez *Branches* > *Créer un bucket de branche*.
++
+Le bouton *Créer un bucket de branche* est désactivé si le contrôle de version n'est pas activé pour le bucket de base.
+
+
+
+
+
+== Entrez les détails
+
+.Étapes
+. Saisissez les détails du compartiment de branche.
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom du bucket de branche
+ a| 
+Un nom pour le bucket de branche qui respecte ces règles :
+
+** Il doit être unique sur chaque système StorageGRID (et pas seulement au sein du compte du locataire).
+** Doit être conforme DNS.
+** Doit contenir au moins 3 et 63 caractères.
+** Chaque étiquette doit commencer et se terminer par une lettre ou un chiffre en minuscules et ne peut utiliser que des lettres minuscules, des chiffres et des tirets.
+** Ne doit pas contenir de périodes dans les demandes de type hébergement virtuel. Les périodes provoquera des problèmes avec la vérification du certificat générique du serveur.
+
+
+Pour plus d'informations, voir https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentation Amazon Web Services (AWS) sur les règles d'attribution de nom de compartiment"^].
+
+*Remarque* : vous ne pouvez pas modifier le nom après avoir créé le bucket de branche.
+
+
+
+ a| 
+Région (ne peut pas être modifiée pour les compartiments de branche)
+ a| 
+La région du bucket de branche.
+
+La région du bucket de branche doit correspondre à la région du bucket de base, ce champ est donc désactivé pour les buckets de branche.
+
+
+
+ a| 
+Avant le temps
+ a| 
+L'heure limite pour que les versions d'objet créées dans le bucket de base soient accessibles à partir du bucket de branche.  Le bucket de branche donne accès aux versions d'objet créées avant l'heure Before.
+
+Avant le temps, il doit y avoir une date et une heure qui sont passées.  Cela ne peut pas être une date future.
+
+
+
+ a| 
+Type de godet de branche
+ a| 
+** *Lecture-écriture* : Vous pouvez ajouter ou supprimer des objets ou des versions d'objets dans le bucket de branche.
+** *Lecture seule* : vous ne pouvez pas modifier les objets dans le bucket de branche.
+
+
+*Remarque* : vous pouvez définir le type de compartiment de branche en lecture seule uniquement si le compartiment de branche est vide.  Si le type d'un bucket de branche existant est défini sur lecture-écriture et que vous n'y avez pas écrit, vous pouvez modifier le type en lecture seule.
+
+|===
+. Sélectionnez *Continuer*.
+
+
+
+
+== Gérer les paramètres de l'objet (facultatif)
+
+Les paramètres d'objet pour un bucket de branche n'affectent pas les versions d'objet dans le bucket de base.
+
+.Étapes
+. Si le paramètre global de verrouillage d'objet S3 est activé, activez éventuellement le verrouillage d'objet S3 pour le compartiment de branche.  Pour activer le verrouillage d’objet S3, le bucket de branche doit être un bucket en lecture-écriture.
++
+Activez le verrouillage d'objet S3 pour un compartiment de branche uniquement si vous devez conserver des objets pendant une durée déterminée, par exemple pour répondre à certaines exigences réglementaires.  S3 Object Lock est un paramètre permanent qui vous aide à empêcher la suppression ou l'écrasement d'objets pendant une durée déterminée ou indéfiniment.
+
++
+
+CAUTION: Une fois le paramètre de verrouillage d'objet S3 activé pour un bucket, il ne peut pas être désactivé.  Toute personne disposant des autorisations appropriées peut ajouter des objets au bucket de branche qui ne peuvent pas être modifiés.  Vous ne pourrez peut-être pas supprimer ces objets ni le bucket de branche lui-même.
+
+. Si vous avez sélectionné *Activer le verrouillage d'objet S3*, activez éventuellement la *Rétention par défaut* pour le bucket de branche.
++
+
+NOTE: Votre administrateur de grille doit vous donner l'autorisation de link:../tenant/using-s3-object-lock.html["Utiliser les fonctionnalités spécifiques du verrouillage objet S3"].
+
++
+Lorsque la *rétention par défaut* est activée, les nouveaux objets ajoutés au bucket de branche seront automatiquement protégés contre la suppression ou l'écrasement.  Le paramètre *Conservation par défaut* ne s'applique pas aux objets qui ont leurs propres périodes de conservation.
+
++
+.. Si la *Rétention par défaut* est activée, spécifiez un *Mode de rétention par défaut* pour le bucket de branche.
++
+[cols="1a,2a"]
+|===
+| Mode de rétention par défaut | Description 
+
+
+ a| 
+La gouvernance
+ a| 
+*** Les utilisateurs disposant de l' `s3:BypassGovernanceRetention`autorisation peuvent utiliser l' `x-amz-bypass-governance-retention: true`en-tête de la demande pour contourner les paramètres de rétention.
+*** Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+*** Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+
+
+ a| 
+La conformité
+ a| 
+*** L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+*** La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+*** La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+*Remarque* : votre administrateur de grille doit vous permettre d'utiliser le mode de conformité.
+
+|===
+.. Si la *Conservation par défaut* est activée, spécifiez la *Période de conservation par défaut* pour le bucket de branche.
++
+La *Période de conservation par défaut* indique la durée pendant laquelle les nouveaux objets ajoutés au bucket de branche doivent être conservés, à compter du moment où ils sont ingérés.  Spécifiez une valeur inférieure ou égale à la période de conservation maximale du locataire, telle que définie par l'administrateur de la grille.
+
++
+Une période de rétention _maximum_, qui peut être de 1 jour à 100 ans, est définie lorsque l'administrateur de la grille crée le locataire. Lorsque vous définissez une période de rétention _default_, elle ne peut pas dépasser la valeur définie pour la période de rétention maximale. Si nécessaire, demandez à votre administrateur de grille d'augmenter ou de réduire la période de rétention maximale.
+
+
+
+. En option, sélectionnez *Activer la limite de capacité*.
++
+La limite de capacité est la capacité maximale disponible pour le bucket de branche.  Cette valeur représente une quantité logique (taille de l'objet), et non une quantité physique (taille sur le disque).
+
++
+Si aucune limite n'est définie, la capacité du bucket de branche est illimitée. Consultez link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["Utilisation limitée de la capacité"] pour plus d'informations.
+
++
+
+NOTE: Ce paramètre s'applique uniquement aux objets directement ingérés dans le bucket de branche, et non aux objets visibles depuis le bucket de base via le bucket de branche.
+
+. En option, sélectionnez *Activer la limite du nombre d'objets*.
++
+La limite du nombre d'objets est le nombre maximal d'objets que le bucket de branche peut contenir.  Cette valeur représente une quantité logique (nombre d'objets).  Si aucune limite n'est définie, le nombre d'objets est illimité.
+
++
+
+NOTE: Ce paramètre s'applique uniquement aux objets directement ingérés dans le bucket de branche, et non aux objets visibles depuis le bucket de base via le bucket de branche.
+
+. Sélectionnez *Créer un compartiment*.
++
+Le bucket de branche est créé et ajouté à la table sur la page Buckets.
+
+. En option, sélectionnez *Accéder à la page des détails du bucket* pourlink:viewing-s3-bucket-details.html["afficher les détails du bucket de branche"] et effectuer une configuration supplémentaire.
++
+Sur la page Détails du bucket, certaines options de configuration liées à la modification des objets sont désactivées pour les buckets en lecture seule.
+
+

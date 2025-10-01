@@ -44,7 +44,7 @@ L'ordinateur portable de service présente les caractéristiques suivantes :
  a| 
 `Passwords.txt` fichier
  a| 
-Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande. Inclus dans le package de restauration.
+Contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande.  Inclus dans le forfait de récupération.
 
 
 
@@ -60,13 +60,7 @@ Documentation StorageGRID
  a| 
 * link:../admin/index.html["Administrer StorageGRID"]
 * link:../release-notes/index.html["Notes de mise à jour"]
-* Instructions d'installation pour votre plate-forme
-+
-** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-** link:../vmware/index.html["Installez StorageGRID sur VMware"]
-
-
+* link:../swnodes/index.html["Instructions d'installation pour votre plate-forme"]
 
 
 
@@ -106,7 +100,7 @@ Utilisez le `.zip` fichier si vous exécutez Windows sur l'ordinateur portable d
 
 
  a| 
-Red Hat Enterprise Linux
+RHEL
 | `StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` 
 `StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz` 
 
@@ -134,7 +128,7 @@ Pour étendre un déploiement existant sur OpenStack, vous devez déployer une m
 +
 Les chemins répertoriés dans l'étape pour chaque plate-forme sont relatifs au répertoire de niveau supérieur installé par le fichier d'archive.
 
-. Si vous développez un système Red Hat Enterprise Linux, sélectionnez les fichiers appropriés.
+. Si vous étendez un système RHEL, sélectionnez les fichiers appropriés.
 
 
 [cols="1a,1a"]
@@ -393,6 +387,9 @@ Schémas API pour StorageGRID.
 . Si vous étendez un système basé sur l'appliance StorageGRID, sélectionnez les fichiers appropriés.
 
 
+
+NOTE: Pour l'installation de l'appareil, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau.  L'appareil peut télécharger les fichiers requis à partir du nœud d'administration où vous effectuez la procédure de récupération.
+
 [cols="1a,1a"]
 |===
 | Chemin d'accès et nom de fichier | Description 
@@ -408,9 +405,6 @@ Somme de contrôle MD5 pour le fichier `/debs/storagegridwebscale-
 images-version-SHA.deb`.
 
 |===
-
-NOTE: Pour l'installation de l'appliance, ces fichiers ne sont nécessaires que si vous devez éviter le trafic réseau. L'appliance peut télécharger les fichiers requis à partir du nœud d'administration principal.
-
 
 
 == Vérification du matériel et de la mise en réseau

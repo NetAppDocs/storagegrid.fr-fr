@@ -2,7 +2,7 @@
 permalink: tenant/index.html 
 sidebar: sidebar 
 keywords: use tenant account 
-summary: 'Un compte de locataire vous permet d"utiliser l"API REST S3 (simple Storage Service) ou l"API REST Swift pour stocker et récupérer des objets dans un système StorageGRID.' 
+summary: 'Un compte locataire vous permet d"utiliser l"API REST Simple Storage Service (S3) pour stocker et récupérer des objets dans un système StorageGRID .' 
 ---
 = Utilisez un compte de locataire
 :allow-uri-read: 
@@ -11,20 +11,20 @@ summary: 'Un compte de locataire vous permet d"utiliser l"API REST S3 (simple St
 
 
 [role="lead"]
-Un compte de locataire vous permet d'utiliser l'API REST S3 (simple Storage Service) ou l'API REST Swift pour stocker et récupérer des objets dans un système StorageGRID.
+Un compte de locataire vous permet d'utiliser l'API REST simple Storage Service (S3) pour stocker et récupérer des objets dans un système StorageGRID.
 
 
 
 == Qu'est-ce qu'un compte de locataire ?
 
-Chaque compte de locataire possède ses propres groupes, utilisateurs, compartiments S3, conteneurs Swift et objets fédérés.
+Chaque compte de locataire dispose de ses propres groupes, utilisateurs, compartiments S3 et objets fédérés ou locaux.
 
 Les comptes de tenant peuvent être utilisés pour isoler les objets stockés par des entités différentes. Par exemple, vous pouvez utiliser plusieurs comptes locataires pour l'une de ces utilisations :
 
 * *Utilisation en entreprise :* si le système StorageGRID est utilisé au sein d'une entreprise, le stockage objet de la grille peut être séparé par les différents services de l'organisation. Par exemple, il peut y avoir des comptes de tenant pour le service Marketing, le service Customer support, le service des ressources humaines, etc.
 +
 
-NOTE: Si vous utilisez le protocole client S3, vous pouvez également utiliser des compartiments S3 et des règles de compartiment pour isoler les objets entre les différents départements d'une entreprise. Vous n'avez pas besoin de créer des comptes de locataire distincts. Voir les instructions d'implémentation link:../s3/bucket-and-group-access-policies.html["Compartiments S3 et règles de compartiments"] pour plus d'informations.
+NOTE: Si vous utilisez le protocole client S3, vous pouvez également utiliser des buckets S3 et des stratégies de bucket pour séparer les objets entre les services d'une entreprise.  Vous n’avez pas besoin de créer des comptes locataires distincts.  Voir les instructions de mise en œuvrelink:../s3/use-access-policies.html["Compartiments S3 et règles de compartiments"] pour plus d'informations.
 
 * *Cas d'utilisation du fournisseur de services :* si le système StorageGRID est utilisé par un fournisseur de services, le stockage objet de la grille peut être séparé par les différentes entités qui louent le stockage. Il peut s'agir, par exemple, de comptes de locataires pour la société A, la société B, la société C, etc.
 

@@ -25,7 +25,7 @@ NOTE: Les paramètres configurés du proxy de stockage ne s'appliquent pas aux t
 Vous pouvez configurer les paramètres d'un seul proxy de stockage.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres proxy*.
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres proxy*.
 . Dans l'onglet *stockage*, cochez la case *Activer le proxy de stockage*.
 . Sélectionnez le protocole du proxy de stockage.
 . Entrez le nom d'hôte ou l'adresse IP du serveur proxy.

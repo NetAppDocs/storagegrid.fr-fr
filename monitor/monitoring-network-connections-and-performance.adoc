@@ -24,7 +24,7 @@ Utilisez le gestionnaire de grille pour surveiller la connectivité et les perfo
 Vous pouvez également link:../admin/managing-traffic-classification-policies.html["création de stratégies de classification du trafic réseau"]surveiller le trafic lié à des locataires, des compartiments, des sous-réseaux ou des terminaux d'équilibrage de la charge. Vous pouvez définir des règles de limitation du trafic selon vos besoins.
 
 .Étapes
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 +
 La page nœuds s'affiche. Chaque nœud de la grille est répertorié au format de tableau.
 
@@ -54,7 +54,7 @@ image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
 
 . Utilisez les indicateurs associés à vos stratégies de classification de trafic pour surveiller le trafic réseau.
 +
-.. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+.. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 +
 La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
 
@@ -82,7 +82,7 @@ Si une politique de classification du trafic est conçue pour limiter le trafic 
 Surveiller les nœuds de grid individuels pour vérifier leurs niveaux d'utilisation des ressources. Si les nœuds sont constamment surchargés, un nombre plus élevé de nœuds peut être requis pour une efficacité optimale des opérations.
 
 .Étapes
-. Dans la page *NODES*, sélectionnez le noeud.
+. Depuis la page *Nœuds*, sélectionnez le nœud.
 . Sélectionnez l'onglet *matériel* pour afficher les graphiques de l'utilisation de l'UC et de la mémoire.
 +
 image::../media/nodes_page_hardware_tab_graphs.png[Onglet matériel de la page nœuds]

@@ -21,4 +21,4 @@ Si vous disposez d'une règle ILM plus complexe qui comprend des règles permett
 
 La vitesse à laquelle la capacité de stockage globale est consommée peut vous aider à déterminer la quantité de stockage à ajouter lors de l'extension et les moments où il faut ajouter de l'espace de stockage. Vous pouvez utiliser le Gestionnaire de grille pour link:../monitor/monitoring-storage-capacity.html["surveillez et tracez la capacité de stockage"].
 
-Lorsque vous planifiez une extension, pensez au délai d'acquisition et d'installation d'un stockage supplémentaire.
+Lorsque vous planifiez le calendrier d’une extension, n’oubliez pas de prendre en compte le temps nécessaire pour acquérir et installer un stockage supplémentaire.  Pour simplifier la planification de l'extension, envisagez d'ajouter des nœuds de stockage lorsque les nœuds de stockage existants atteignent 70 % de leur capacité.

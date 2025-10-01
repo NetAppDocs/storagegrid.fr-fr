@@ -19,7 +19,7 @@ Vous pouvez supprimer une stratégie de classification du trafic si vous n'en av
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 +
 La page stratégies de classification du trafic s'affiche avec les stratégies existantes répertoriées dans un tableau.
 

@@ -25,14 +25,14 @@ Toutes les activités du client S3 sont associées aux comptes de locataires Sto
 La page tenants affiche les informations de base pour tous les comptes de locataires actuels.
 
 .Étapes
-. Sélectionnez *LOCATAIRES*.
+. Sélectionnez *Locataires*.
 . Vérifiez les informations affichées sur les pages tenant.
 +
 L'espace logique utilisé, l'utilisation des quotas, le quota et le nombre d'objets sont indiqués pour chaque locataire. Si aucun quota n'est défini pour un locataire, les champs utilisation du quota et quota contiennent un tiret (&#8212;).
 
 +
 
-NOTE: Les valeurs de l'espace utilisé sont des estimations. Ces estimations sont affectées par le moment de l'ingestion, la connectivité réseau et l'état des nœuds.
+NOTE: La taille logique de tous les objets appartenant à ce locataire inclut les téléchargements multipartites incomplets et en cours.  La taille n'inclut pas l'espace physique supplémentaire utilisé pour les politiques ILM.  Les valeurs de l'espace utilisé sont des estimations.  Ces estimations sont affectées par le moment des ingestions, la connectivité réseau et l’état du nœud.
 
 +
 image::../media/tenant_accounts_page.png[Page comptes de tenant]
@@ -75,6 +75,10 @@ image::../media/tenant_usage_modal.png[Modal d'utilisation des locataires]
 . Consultez la présentation du locataire en haut de la page.
 +
 Cette section de la page de détails fournit des informations récapitulatives pour le locataire, notamment le nombre d'objets du locataire, l'utilisation du quota, l'espace logique utilisé et le paramètre de quota.
+
++
+
+NOTE: La taille logique de tous les objets appartenant à ce locataire inclut les téléchargements multipartites incomplets et en cours.  La taille n'inclut pas l'espace physique supplémentaire utilisé pour les politiques ILM.  Les valeurs de l'espace utilisé sont des estimations.  Ces estimations sont affectées par le moment des ingestions, la connectivité réseau et l’état du nœud.
 
 . Dans l'onglet *Space Dclaquage*, consultez le graphique *Space Consumption*.
 +
@@ -129,7 +133,7 @@ Voir link:../admin/grid-federation-overview.html["Qu'est-ce que la fédération 
 Si des stratégies de classification du trafic sont en place pour un locataire, examinez le trafic réseau de ce locataire.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 +
 La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
 
@@ -164,7 +168,7 @@ Voir link:../audit/index.html["Examiner les journaux d'audit"] pour plus d'infor
 
 Éventuellement, utilisez des metrics Prometheus pour générer des rapports sur l'activité des locataires.
 
-* Dans le Gestionnaire de grille, sélectionnez *SUPPORT* > *Outils* > *métriques*. Vous pouvez utiliser les tableaux de bord existants, tels que S3 Overview, pour examiner les activités des clients.
+* Dans le gestionnaire de grille, sélectionnez *Support* > *Outils* > *Métriques*.  Vous pouvez utiliser des tableaux de bord existants, tels que S3 Overview, pour examiner les activités des clients.
 +
 
 NOTE: Les outils disponibles sur la page métriques sont principalement destinés au support technique. Certaines fonctions et options de menu de ces outils ne sont intentionnellement pas fonctionnelles.

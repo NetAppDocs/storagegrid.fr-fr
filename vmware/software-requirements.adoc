@@ -1,45 +1,8 @@
 ---
 permalink: vmware/software-requirements.html 
-sidebar: sidebar 
-keywords: software requirements 
-summary: 'Vous pouvez utiliser une machine virtuelle pour héberger n"importe quel type de nœud StorageGRID. Vous avez besoin d"une machine virtuelle pour chaque nœud de grille.' 
+redirect: storagegrid/swnodes/software-requirements.html 
 ---
-= Configuration logicielle requise pour VMware
+= 
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
 
-[role="lead"]
-Vous pouvez utiliser une machine virtuelle pour héberger n'importe quel type de nœud StorageGRID. Vous avez besoin d'une machine virtuelle pour chaque nœud de grille.
-
-
-
-== Hyperviseur VMware vSphere
-
-Vous devez installer VMware vSphere Hypervisor sur un serveur physique préparé. Avant d'installer le logiciel VMware, le matériel doit être configuré correctement (y compris les versions du micrologiciel et les paramètres du BIOS).
-
-* Configurez la mise en réseau dans l'hyperviseur pour prendre en charge la mise en réseau du système StorageGRID que vous installez.
-+
-link:../network/index.html["Instructions de mise en réseau"]
-
-* Assurez-vous que le datastore est suffisamment grand pour les machines virtuelles et les disques virtuels requis pour héberger les nœuds de la grille.
-* Si vous créez plusieurs datastores, nommez chacun d'entre eux afin de pouvoir facilement identifier les datastores à utiliser pour chaque nœud de la grille lorsque vous créez des machines virtuelles.
-
-
-
-
-== Configuration requise de l'hôte ESX
-
-
-CAUTION: Vous devez configurer correctement le protocole NTP (Network Time Protocol) sur chaque hôte ESX. Si l'heure de l'hôte est incorrecte, des effets négatifs, y compris la perte de données, peuvent survenir.
-
-
-
-== Configuration requise pour VMware
-
-Vous devez installer et configurer VMware vSphere et vCenter avant de déployer les nœuds StorageGRID.
-
-Pour connaître les versions prises en charge des logiciels VMware vSphere Hypervisor et VMware vCenter Server, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^].
-
-Pour connaître les étapes d'installation de ces produits VMware, reportez-vous à la documentation VMware.

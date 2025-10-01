@@ -13,6 +13,9 @@ summary: Lorsque vous commencez à utiliser la fédération GRID, examinez les s
 [role="lead"]
 Lorsque vous commencez à utiliser la fédération de grille, examinez les similarités et les différences entre link:grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"] et link:../tenant/understanding-cloudmirror-replication-service.html["Service de réplication StorageGRID CloudMirror"].
 
+
+NOTE: Vous ne pouvez pas utiliser CloudMirror sur un bucket répliqué par réplication inter-grille, et vice versa.
+
 [cols="1a,3a,3a"]
 |===
 |  | Réplication entre plusieurs grilles | Service de réplication CloudMirror 
@@ -25,7 +28,7 @@ Un système StorageGRID agit comme un système de reprise après incident. Les o
  a| 
 Permet à un locataire de répliquer automatiquement les objets à partir d'un compartiment dans StorageGRID (source) vers un compartiment S3 externe (destination).
 
-La réplication CloudMirror crée une copie indépendante d'un objet dans une infrastructure S3 indépendante. Cette copie indépendante n'est pas utilisée comme sauvegarde, mais elle est souvent traitée dans le cloud.
+La réplication CloudMirror crée une copie indépendante d'un objet dans une infrastructure S3 indépendante.  Cette copie indépendante n'est pas utilisée comme sauvegarde, mais est souvent traitée ultérieurement dans le cloud.
 
 
 

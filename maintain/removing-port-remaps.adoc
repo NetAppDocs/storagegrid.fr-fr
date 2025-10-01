@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, remove port remap, removing port remap, port remap 
 summary: 'Si vous souhaitez configurer un noeud final pour le service Load Balancer et que vous souhaitez utiliser un port qui a déjà été configuré en tant que port mappé sur d"un remappage de port, vous devez d"abord supprimer le plan de plan de port existant, sinon le noeud final ne sera pas effectif. Vous devez exécuter un script sur chaque nœud d"administration et nœud de passerelle qui comporte des ports en conflit et remappés pour supprimer toutes les mappes de ports du nœud.' 
 ---
-= Supprimer les mappages de port
+= Supprimer les remappages de ports sur les appliances StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -25,6 +25,7 @@ NOTE: Si le remap de port fournit un accès client, reconfigurez le client pour 
 NOTE: Cette procédure ne fonctionne pas pour un système StorageGRID déployé en tant que conteneur sur les hôtes bare Metal. Voir les instructions pour link:removing-port-remaps-on-bare-metal-hosts.html["suppression de mappages de port sur les hôtes bare metal"].
 
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Connectez-vous au nœud.
 +
 .. Entrez la commande suivante : `ssh -p 8022 admin@node_IP`
@@ -43,4 +44,5 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 . Redémarrez le nœud : `reboot`
 . Déconnectez-vous du shell de commande : `exit`
 . Répétez ces étapes sur chaque nœud d'administration et nœud de passerelle disposant de ports en conflit avec des ports remappés.
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé de supprimer les remappages de ports.
 

@@ -50,7 +50,7 @@ De même, pendant le fonctionnement normal, toute interface de priorité inféri
 
 == Afficher l'état actuel du groupe haute disponibilité d'un nœud
 
-Pour vérifier si un nœud est affecté à un groupe HA et déterminer son état actuel, sélectionnez *NOEUDS* > *_node_*.
+Pour voir si un nœud est affecté à un groupe HA et déterminer son état actuel, sélectionnez *Nœuds* > *_node_*.
 
 Si l'onglet *Présentation* inclut une entrée pour *groupes HA*, le nœud est affecté aux groupes HA répertoriés. La valeur après le nom du groupe est l'état actuel du nœud du groupe HA :
 

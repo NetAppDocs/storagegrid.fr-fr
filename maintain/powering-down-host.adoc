@@ -117,10 +117,10 @@ Cette LED s'allume lorsque les données en cache doivent être écrites sur les 
 
 
 .Informations associées
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Systèmes de stockage SG6000"^]
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Systèmes de stockage SG5700"^]
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Systèmes de stockage SG5800"^]
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliances de services SG110 et SG1100"^]
-* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appliances de services SG100 et SG1000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Systèmes de stockage SG6000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Systèmes de stockage SG5700"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Systèmes de stockage SG5800"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliances de services SG110 et SG1100"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appliances de services SG100 et SG1000"^]
 

@@ -48,7 +48,7 @@ L' `audit-explain`outil peut effectuer les opérations suivantes :
 `audit-explain audit.log 2019-08-12.txt.gz 2019-08-13.txt.gz`
 
 +
-`audit-explain /var/local/log/*`
+`audit-explain /var/local/audit/export/*`
 
 * Acceptez l'entrée d'un canal, qui vous permet de filtrer et de prétraiter l'entrée à l'aide de la `grep` commande ou d'autres moyens. Par exemple :
 +
@@ -84,9 +84,9 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 
 
-. Entrez la commande suivante, où `/var/local/log/audit.log` représente le nom et l'emplacement du ou des fichiers à analyser :
+. Entrez la commande suivante, où `/var/local/audit/export/audit.log` représente le nom et l'emplacement du ou des fichiers que vous souhaitez analyser :
 +
-`$ audit-explain /var/local/log/audit.log`
+`$ audit-explain /var/local/audit/export/audit.log`
 
 +
 L' `audit-explain`outil imprime des interprétations lisibles de tous les messages du ou des fichiers spécifiés.

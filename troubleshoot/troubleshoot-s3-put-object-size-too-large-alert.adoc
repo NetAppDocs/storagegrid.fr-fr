@@ -21,7 +21,7 @@ L'alerte S3 PUT Object size too large est déclenchée si un locataire tente une
 Déterminez les locataires qui utilisent des objets supérieurs à 5 Gio. Vous pouvez donc les informer.
 
 .Étapes
-. Accédez à *CONFIGURATION* > *surveillance* > *Audit et serveur syslog*.
+. Accédez à *Configuration* > *Surveillance* > *Serveur d'audit et syslog*.
 . Si les écritures client sont normales, accédez au journal d'audit :
 +
 .. Entrée `ssh admin@_primary_Admin_Node_IP_`
@@ -51,7 +51,7 @@ Nœuds locaux (par défaut)
  a| 
 Nœuds d'administration/nœuds locaux
  a| 
-*** Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+*** Nœuds d'administration (primaires et non principaux) : `/var/local/audit/export/audit.log`
 *** Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant dans ce mode.
 
 
@@ -65,7 +65,7 @@ Serveur syslog externe
 |===
 En fonction de vos paramètres de destination d'audit, entrez : `cd /var/local/log` ou `/var/local/audit/export/`
 
-Pour en savoir plus, reportez-vous link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Sélectionnez les destinations des informations d'audit"]à la section .
+Pour en savoir plus, consultezlink:../monitor/configure-log-management.html#select-log-location["Sélectionnez l'emplacement du journal"] .
 
 --
 .. Identifiez les locataires qui utilisent des objets de plus de 5 Gio.
@@ -116,7 +116,7 @@ audit.log:2023-01-05T18:47:05.525999 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):16729436
 
 . Si les écritures du client ne sont pas normales, utilisez l'ID de locataire de l'alerte pour identifier le locataire :
 +
-.. Accédez à *SUPPORT* > *Outils* > *journaux*. Collectez les journaux d'application du nœud de stockage dans l'alerte. Spécifiez 15 minutes avant et après l'alerte.
+.. Accédez à *Support* > *Outils* > *Collecte de journaux*.  Collectez les journaux d’application pour le nœud de stockage dans l’alerte.  Précisez 15 minutes avant et après l'alerte. link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"] .
 .. Extraire le fichier et aller à `bycast.log`:
 +
 `/GID<grid_id>_<time_stamp>/<site_node>/<time_stamp>/grid/bycast.log`

@@ -44,7 +44,7 @@ TIP: Vous ne pouvez pas modifier le nom du compartiment après la création du c
 
 .. Sélectionnez la région de ce compartiment.
 +
-Par défaut, tous les compartiments sont créés dans la `us-east-1` région.
+Par défaut, tous les buckets sont créés dans le `us-east-1` région.  Si la région par défaut est configurée sur une région autre que `us-east-1` , cette autre région est initialement sélectionnée dans la liste déroulante.
 
 .. Sélectionnez *Continuer*.
 .. Sélectionnez *Créer un compartiment*.

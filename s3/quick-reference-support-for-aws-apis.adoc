@@ -784,7 +784,7 @@ link:operations-on-buckets.html["Opérations sur les compartiments"]
 StorageGRID prend en charge tous <<common-params,paramètres et en-têtes communs>>ces éléments pour cette demande.
 
 .Corps de la demande
-Pour plus d'informations sur les champs de corps JSON pris en charge, reportez-vous à la section link:bucket-and-group-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"].
+Pour plus de détails sur les champs de corps JSON pris en charge, voirlink:use-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"] .
 
 
 

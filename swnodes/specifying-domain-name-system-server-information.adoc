@@ -1,0 +1,33 @@
+---
+permalink: swnodes/specifying-domain-name-system-server-information.html 
+sidebar: sidebar 
+keywords: how to specify domain name system server information, dns 
+summary: 'Vous devez spécifier des informations DNS pour votre système StorageGRID afin de pouvoir accéder aux serveurs externes en utilisant des noms d"hôte au lieu d"adresses IP.' 
+---
+= Spécifiez les informations du serveur DNS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez spécifier des informations DNS pour votre système StorageGRID afin de pouvoir accéder aux serveurs externes en utilisant des noms d'hôte au lieu d'adresses IP.
+
+.Description de la tâche
+La spécification https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/checking-dns-server-configuration.html["Informations sur le serveur DNS"^] vous permet d'utiliser des noms d'hôte de nom de domaine complet (FQDN) plutôt que des adresses IP pour les notifications par e-mail et AutoSupport.
+
+Pour garantir un fonctionnement correct, spécifiez deux ou trois serveurs DNS. Si vous spécifiez plus de trois, il est possible que seulement trois soient utilisés en raison des limitations connues du système d'exploitation sur certaines plates-formes. Si vous avez des restrictions de routage dans votre environnement, vous pouvez, link:../maintain/modifying-dns-configuration-for-single-grid-node.html["Personnaliser la liste des serveurs DNS"]pour des nœuds individuels (généralement tous les nœuds d'un site), utiliser une configuration différente de trois serveurs DNS maximum.
+
+Si possible, utilisez des serveurs DNS auxquels chaque site peut accéder localement pour vous assurer qu'un site isdébarqué peut résoudre les FQDN pour les destinations externes.
+
+.Étapes
+. Spécifiez l'adresse IPv4 pour au moins un serveur DNS dans la zone de texte *Server 1*.
+. Si nécessaire, sélectionnez le signe plus en regard de la dernière entrée pour ajouter des entrées de serveur supplémentaires.
++
+image::../media/9_gmi_installer_dns_page.gif[Cette image est expliquée par le texte qui l'entoure.]
+
++
+La meilleure pratique consiste à spécifier au moins deux serveurs DNS. Vous pouvez indiquer jusqu'à six serveurs DNS.
+
+. Sélectionnez *Suivant*.
+

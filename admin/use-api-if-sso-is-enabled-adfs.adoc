@@ -11,7 +11,7 @@ summary: 'Si vous avez configuré et activé l"authentification unique (SSO) et 
 
 
 [role="lead"]
-Si vous avez link:../admin/configuring-sso.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez Active Directory comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API de gestion de grille ou l'API de gestion des locataires.
+Si vous avezlink:../admin/how-sso-works.html["Authentification unique (SSO) configurée et activée"] et que vous utilisez Active Directory comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d'authentification valide pour l'API Grid Management ou l'API Tenant Management.
 
 
 
@@ -27,7 +27,7 @@ Ces instructions s'appliquent si vous utilisez Active Directory comme fournisseu
 .Description de la tâche
 Pour obtenir un jeton d'authentification, vous pouvez utiliser l'un des exemples suivants :
 
-* Le `storagegrid-ssoauth.py` script Python, qui se trouve dans le répertoire des fichiers d'installation de StorageGRID (`./rpms`pour Red Hat Enterprise Linux, `./debs` Ubuntu ou Debian et `./vsphere` pour VMware).
+* Le `storagegrid-ssoauth.py` Script Python, situé dans le répertoire des fichiers d'installation de StorageGRID(`./rpms` pour RHEL, `./debs` pour Ubuntu ou Debian, et `./vsphere` pour VMware).
 * Un exemple de flux de travail des requêtes Curl.
 +
 Le flux de travail de boucle risque de s'échapper si vous l'effectuez trop lentement. Vous pouvez voir l'erreur : `A valid SubjectConfirmation was not found on this Response`.

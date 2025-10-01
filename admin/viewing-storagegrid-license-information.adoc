@@ -24,7 +24,7 @@ image::../media/dashboard_health_panel_license_status.png[État de la licence de
 .Étapes
 . Accédez à la page Licence en effectuant l'une des opérations suivantes :
 +
-** Sélectionnez *MAINTENANCE* > *système* > *Licence*.
+** Sélectionnez *Maintenance* > *Système* > *Licence*.
 ** Dans la carte d'état d'intégrité du tableau de bord, sélectionnez l'icône d'état de la licence ou le lien *Licence*.
 +
 Ce lien apparaît uniquement en cas de problème avec la licence.

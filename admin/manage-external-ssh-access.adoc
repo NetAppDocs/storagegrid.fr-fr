@@ -1,0 +1,34 @@
+---
+permalink: admin/manage-external-ssh-access.html 
+sidebar: sidebar 
+keywords: security, external, ssh, access 
+summary: 'Gérez la protection SSH en bloquant ou en autorisant l"accès SSH externe.' 
+---
+= Gérer l'accès SSH externe
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez l'accès SSH pour le trafic entrant dans la grille en bloquant ou en autorisant l'accès externe.  La gestion de l'accès externe SSH n'a pas d'impact sur le trafic entre les nœuds de la grille.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["Autorisation d'accès racine"].
+
+
+.Description de la tâche
+Pour améliorer la sécurité du système, l'accès SSH externe est bloqué par défaut.  Si vous devez effectuer des tâches nécessitant un accès SSH entrant, comme le dépannage, autorisez temporairement l'accès externe.  Une fois la tâche terminée, bloquez l'accès externe.
+
+.Étapes
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres de sécurité*.
+. Sélectionnez l'onglet *Bloquer SSH*.
+. Utilisez l'option *Bloquer l'accès SSH entrant* pour gérer l'accès SSH externe :
++
+.. Cochez la case pour bloquer l'accès (par défaut).
+.. Décochez la case pour autoriser l'accès.
+
+
+. Sélectionnez *Enregistrer*.
+

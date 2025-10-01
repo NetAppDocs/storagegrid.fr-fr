@@ -14,13 +14,12 @@ summary: 'Vous pouvez surveiller les taux d"entrée et de récupération des obj
 Vous pouvez surveiller les taux d'entrée et de récupération des objets, ainsi que les mesures relatives au nombre d'objets, aux requêtes et à la vérification. Vous pouvez afficher le nombre de tentatives de lecture, d'écriture et de modification d'objets du système StorageGRID ayant échoué et réussies par les applications client.
 
 .Avant de commencer
-* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-
+Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 
 .Étapes
 . Dans le tableau de bord, sélectionnez l'onglet *Performance*.
 . Reportez-vous aux graphiques S3, qui résument le nombre d'opérations client effectuées par les nœuds de stockage et le nombre de requêtes d'API reçues par les nœuds de stockage au cours de la période sélectionnée.
-. Sélectionnez *NODES* pour accéder à la page noeuds.
+. Sélectionnez *Nœuds* pour accéder à la page Nœuds.
 . Dans la page d'accueil noeuds (niveau grille), sélectionnez l'onglet *objets*.
 +
 Le graphique présente les taux d'ingestion et de récupération S3 pour l'ensemble de votre système StorageGRID, en octets par seconde, ainsi que la quantité de données ingérées ou récupérées. Vous pouvez sélectionner un intervalle de temps ou appliquer un intervalle personnalisé.

@@ -13,9 +13,10 @@ summary: 'Plutôt que de configurer le DNS globalement pour l"ensemble du déplo
 [role="lead"]
 Plutôt que de configurer le DNS globalement pour l'ensemble du déploiement, vous pouvez exécuter un script pour configurer le DNS différemment pour chaque nœud de grille.
 
-En général, vous devez utiliser l'option *MAINTENANCE* > *réseau* > *serveurs DNS* du gestionnaire de grille pour configurer les serveurs DNS. N'utilisez le script suivant que si vous avez besoin d'utiliser différents serveurs DNS pour différents nœuds de grille.
+En général, vous devez utiliser l'option *Maintenance* > *Réseau* > *Serveurs DNS* sur le Gestionnaire de grille pour configurer les serveurs DNS.  Utilisez le script suivant uniquement si vous devez utiliser différents serveurs DNS pour différents nœuds de grille.
 
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Connectez-vous au nœud d'administration principal :
 +
 .. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
@@ -77,4 +78,5 @@ Enter command [`add search <domain>|remove search <domain>|add nameserver <ip>`]
 . [[close_cmd_shell]]Fermez le shell de commande sur le serveur : `exit`
 . Pour chaque nœud de grille, répétez les étapes de <<log_in_to_node,connectez-vous au nœud>> à <<close_cmd_shell,fermeture du shell de commande>>.
 . Lorsque vous n'avez plus besoin d'un accès sans mot de passe à d'autres serveurs, supprimez la clé privée de l'agent SSH. Entrer : `ssh-add -D`
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé de modifier la configuration DNS.
 

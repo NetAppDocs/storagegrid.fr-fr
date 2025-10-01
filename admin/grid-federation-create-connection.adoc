@@ -32,7 +32,7 @@ Effectuez ces étapes sur l'un des deux systèmes StorageGRID.
 
 .Étapes
 . Connectez-vous au Grid Manager à partir du nœud d'administration principal de l'une des grilles.
-. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 . Sélectionnez *Ajouter une connexion*.
 . Entrez les détails de la connexion.
 +
@@ -119,7 +119,7 @@ Procédez comme suit sur le système StorageGRID auquel vous vous connectez (l'a
 
 .Étapes
 . Connectez-vous au Grid Manager à partir du nœud d'administration principal.
-. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 . Sélectionnez *Télécharger le fichier de vérification* pour accéder à la page Télécharger.
 . Sélectionnez *Télécharger le fichier de vérification*. Ensuite, naviguez jusqu'au fichier téléchargé à partir de la première grille et sélectionnez(`_connection-name_.grid-federation`-le.
 +

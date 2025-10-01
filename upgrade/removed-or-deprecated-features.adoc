@@ -103,7 +103,7 @@ Moteur de mise en conteneurs Docker
  a| 
 À DÉFINIR
  a| 
-La prise en charge de Docker, car le moteur de mise en conteneurs pour les déploiements exclusivement logiciels est obsolète. Docker sera remplacé par un autre moteur de mise en conteneurs dans une prochaine version. Reportez-vous à la link:../ubuntu/software-requirements.html#docker-versions-tested["Liste des versions de Docker actuellement prises en charge"].
+La prise en charge de Docker comme moteur de conteneur pour les déploiements uniquement logiciels est obsolète.  Docker sera remplacé par un autre moteur de conteneur dans une prochaine version.  Reportez-vous à lalink:../swnodes/software-requirements.html["exigences logicielles pour les nœuds basés sur des logiciels"] pour une liste des versions de Docker actuellement prises en charge.
 
 
 
@@ -117,6 +117,18 @@ Exportation d'audit NFS
 12,0
  a| 
 https://docs.netapp.com/us-en/storagegrid-118/admin/configuring-audit-client-access.html["Configuration de l'accès client d'audit pour NFS (StorageGRID 11.8)"^]
+
+
+
+ a| 
+Remappage des ports
+ a| 
+12,0
+ a| 
+12,1
+ a| 
+12,2
+ a| 
 
 
 

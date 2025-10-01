@@ -24,7 +24,7 @@ Pour toute règle de classification de trafic existante, vous pouvez afficher le
 Même si aucune limite n'est définie pour une stratégie de classification du trafic, des mesures sont recueillies et les graphiques fournissent des informations utiles pour comprendre les tendances du trafic.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 +
 La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
 
@@ -54,9 +54,9 @@ NOTE: Lorsque les demandes sont terminées, ce graphique indique uniquement l'ut
 ** Taux de demande de lecture par taille d'objet : taux des demandes GET/HEAD correspondant à cette règle. Le positionnement sur une cellule individuelle affiche des débits par seconde. Les taux affichés dans la vue de survol sont tronqués aux nombres entiers et peuvent indiquer 0 lorsqu'il y a des demandes non nulles dans le compartiment.
 
 
-. Vous pouvez également accéder aux graphiques à partir du menu *SUPPORT*.
+. Vous pouvez également accéder aux graphiques depuis le menu *Support*.
 +
-.. Sélectionnez *SUPPORT* > *Outils* > *métriques*.
+.. Sélectionnez *Support* > *Outils* > *Métriques*.
 .. Sélectionnez *politique de classification du trafic* dans la section *Grafana*.
 .. Sélectionnez la stratégie dans le menu en haut à gauche de la page.
 .. Placez le curseur sur un graphique pour afficher une fenêtre contextuelle indiquant la date et l'heure de l'échantillon, les tailles d'objet agrégées dans le nombre et le nombre de demandes par seconde pendant cette période.

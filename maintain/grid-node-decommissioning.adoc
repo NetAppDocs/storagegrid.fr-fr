@@ -37,7 +37,7 @@ TIP: Si vous souhaitez remplacer une ancienne appliance par une nouvelle, pensez
 
 Vous pouvez désaffecter les nœuds de grid connectés ou les nœuds de grid déconnectés.
 
-Désaffectation des nœuds connectés:: En général, vous devez désaffecter les nœuds de grille uniquement lorsqu'ils sont connectés au système StorageGRID et uniquement lorsque tous les nœuds sont en état de santé normal (les icônes vertes sont affichées sur les pages *NODES* et sur la page *Démissions noeuds*).
+Désaffectation des nœuds connectés:: En général, vous devez mettre hors service les nœuds de grille uniquement lorsqu'ils sont connectés au système StorageGRID et uniquement lorsque tous les nœuds sont en état normal (ils ont des icônes vertes sur les pages *Nœuds* et sur la page *Désactiver les nœuds*).
 +
 --
 Pour obtenir des instructions, reportez-vous à la section link:decommissioning-connected-grid-nodes.html["Désaffectation des nœuds connectés"].

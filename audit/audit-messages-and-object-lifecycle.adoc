@@ -28,13 +28,6 @@ S3BK (godet), S3KY (clé), ou les deux
 
 
  a| 
-Liaison d'opérations Swift
- a| 
-WCON (conteneur), WOBJ (objet) ou les deux
-
-
-
- a| 
 Liaison des opérations internes
  a| 
 CBID (identifiant interne de l'objet)

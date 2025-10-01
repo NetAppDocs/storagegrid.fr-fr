@@ -1,0 +1,49 @@
+---
+permalink: troubleshoot/troubleshooting-load-balancer-caching.html 
+sidebar: sidebar 
+keywords: how to troubleshoot load balancer caching 
+summary: Découvrez les problèmes possibles liés à la mise en cache de l’équilibreur de charge et comment les résoudre. 
+---
+= Résoudre les problèmes de mise en cache de l'équilibreur de charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez les problèmes possibles liés à la mise en cache de l’équilibreur de charge et comment les résoudre.
+
+
+
+== Déterminer si une requête a été un succès dans le cache
+
+* L'en-tête X-Cache est défini dans la réponse aux requêtes traitées par le service de cache.  Codes possibles :
++
+** `HIT`: L'objet a été servi à partir du cache
+** `PARTIAL-HIT`: Le bucket/la clé avait un enregistrement dans le cache, mais la totalité de la plage demandée n'a pas pu être servie à partir du cache
+** `STALE`: Le bucket/la clé avait un enregistrement dans le cache, mais l'objet a été mis à jour depuis la dernière fois qu'il a été servi à partir du cache.
+** `MISS`: L'objet n'était pas dans le cache
+
+
+* Le `nginx-gw/endpoint-access.log.gz` l'enregistrement de la requête inclut « unix:/run/cache-svc/cache-svc.sock » pour les requêtes traitées par le cache.
+* Le `cache-svc/cache-svc.log` signale un message tel que « Requête 320390 : terminée avec succès (cache atteint) » ou « Requête 320375 : terminée avec succès (cache manqué) ».  Recherchez le chemin demandé en recherchant d'autres enregistrements avec la même chaîne « Requête _<numéro>_ ».
+
+
+
+
+== Faible taux de réussite du cache
+
+* Des taux de réussite de cache faibles peuvent être attendus lorsqu'une nouvelle charge de travail est ajoutée ou que l'ensemble de travail auquel accède une charge de travail change.  Dans ces situations, le taux de réussite devrait augmenter au fil du temps.
+* Si plusieurs charges de travail utilisent la mise en cache, envisagez d’ajouter des stratégies de classification du trafic pour isoler les parties des charges de travail gérées par le cache.  Les mesures du taux de réussite du cache sont disponibles selon la politique de classification du trafic.  Si certaines charges de travail ne connaissent pas de bons taux de réussite du cache, envisagez de déplacer ces charges de travail vers d'autres points de terminaison sur lesquels la mise en cache n'est pas activée.
+* Évaluer le taux d’éviction du cache.  Si le cache est trop petit pour contenir l'ensemble de travail, il subira des taux d'expulsion élevés et pourrait contribuer à des taux de réussite inférieurs.
+* Des options permettant d'améliorer les taux de réussite de certaines charges de travail peuvent être disponibles sous FPVR.
+
+
+
+
+== Faible performance
+
+* Évaluer le taux de réussite du cache.  Des taux de réussite du cache faibles peuvent entraîner de faibles performances globales.
+* Évaluer le taux d’éviction du cache.  Lors de l'expulsion, certaines ressources de stockage sont utilisées pour supprimer les objets existants du disque.  Si le processus d'expulsion ne suit pas l'accès aux nouveaux objets, le système peut atteindre les seuils de filigrane dur et commencer à contourner le cache.
+* Vérifiez les limites du réseau à l’aide des diagnostics « Utilisation de réception des interfaces réseau » et « Utilisation de transmission des interfaces réseau ».
+

@@ -13,16 +13,8 @@ summary: 'Le stockage sous-jacent d"un nœud de stockage est divisé en magasins
 [role="lead"]
 Le stockage sous-jacent d'un nœud de stockage est divisé en magasins d'objets. Les magasins d'objets sont également appelés volumes de stockage.
 
-Vous pouvez afficher les informations de magasin d'objets pour chaque nœud de stockage. Les magasins d'objets sont affichés en bas de la page *NOEUDS* > *_Storage Node_* > *Storage*.
+Vous pouvez afficher les informations du magasin d’objets pour chaque nœud de stockage.  Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*.
 
 image::../media/nodes_page_storage_nodes_storage_tables.png[Nœuds page tables de stockage de nœuds]
-
-Pour en savoir plus link:../monitor/viewing-grid-topology-tree.html["Détails sur chaque nœud de stockage"], procédez comme suit :
-
-. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-. Sélectionnez *_site_* > *_Storage Node_* > *LDR* > *Storage* > *Présentation* > *main*.
-
-
-image::../media/storage_node_object_stores.png[Magasin d'objets nœud de stockage]
 
 Selon la nature de la défaillance, les défaillances avec un volume de stockage peuvent être reflétées dans link:../monitor/alerts-reference.html["alertes de volume de stockage"]. En cas de défaillance d'un volume de stockage, réparez le volume de stockage défectueux pour restaurer le nœud de stockage à son plein fonctionnement dès que possible. Si nécessaire, vous pouvez accéder à l'onglet *Configuration* link:../maintain/checking-storage-state-after-recovering-storage-volumes.html["Placez le nœud de stockage en lecture seule"]pour que le système StorageGRID puisse l'utiliser pour la récupération des données tout en vous préparant à une récupération complète du serveur.

@@ -1,0 +1,102 @@
+---
+permalink: admin/creating-enterprise-application-entra-id.html 
+sidebar: sidebar 
+keywords: enterprise application, entra id, single sign on, sso 
+summary: Vous utilisez Entra ID pour créer une application d’entreprise pour chaque nœud d’administration de votre système. 
+---
+= Créer des applications d'entreprise dans Entra ID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous utilisez Entra ID pour créer une application d’entreprise pour chaque nœud d’administration de votre système.
+
+.Avant de commencer
+* Vous avez commencé à configurer l’authentification unique pour StorageGRID et vous avez sélectionné *Entra ID* comme type d’authentification unique.
+* Tu aslink:../admin/configure-sso.html#enter-sandbox-mode["entré en mode bac à sable"] dans Grid Manager.
+* Vous disposez du *nom de l'application d'entreprise* pour chaque nœud d'administration de votre système.  Vous pouvez copier ces valeurs à partir du tableau des détails du nœud d’administration sur la page Configurer SSO.
++
+
+NOTE: Vous devez créer une application d'entreprise pour chaque nœud d'administration de votre système StorageGRID. La présence d'une application d'entreprise pour chaque nœud d'administration garantit que les utilisateurs peuvent se connecter et se déconnecter en toute sécurité à n'importe quel nœud d'administration.
+
+* Vous avez de l'expérience dans la création d'applications d'entreprise dans Entra ID.
+* Vous disposez d'un compte Entra ID avec un abonnement actif.
+* Vous disposez de l’un des rôles suivants dans le compte Entra ID : administrateur général, administrateur d’applications cloud, administrateur d’applications ou propriétaire du principal de service.
+
+
+
+
+== Accès Entra ID
+
+.Étapes
+. Connectez-vous au https://portal.azure.com["Portail Azure"^].
+. Accéder à https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade["ID d'entrée"^] .
+. Sélectionnez https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/Overview/menuId/["Les applications d'entreprise"^].
+
+
+
+
+== Créez des applications d'entreprise et enregistrez la configuration SSO de StorageGRID
+
+Pour enregistrer la configuration SSO pour Entra ID dans StorageGRID, vous devez utiliser Entra ID pour créer une application d'entreprise pour chaque nœud d'administration.  Vous copierez les URL des métadonnées de la fédération depuis Entra ID et les collerez dans les champs *URL des métadonnées de la fédération* correspondants sur la page Configurer SSO.
+
+.Étapes
+. Répétez les étapes suivantes pour chaque nœud d'administration.
++
+.. Dans le volet Applications Entra ID Enterprise, sélectionnez *Nouvelle application*.
+.. Sélectionnez *Créez votre propre application*.
+.. Pour le nom, saisissez le *Nom de l'application d'entreprise* que vous avez copié à partir du tableau des détails du nœud d'administration sur la page Configurer SSO.
+.. Laissez le bouton radio *intégrer toute autre application que vous ne trouvez pas dans la galerie (hors galerie)* sélectionné.
+.. Sélectionnez *Créer*.
+.. Sélectionnez le lien *Get Started* dans *2. Configurez la case Single Sign On* ou sélectionnez le lien *Single Sign-on* dans la marge de gauche.
+.. Sélectionnez la case *SAML*.
+.. Copiez l'URL *App Federation Metadata URL*, que vous trouverez sous *étape 3 SAML Signing Certificate*.
+.. Accédez à la page Configurer SSO et collez l’URL dans le champ *URL des métadonnées de la fédération* qui correspond au *Nom de l’application d’entreprise* que vous avez utilisé.
+
+
+. Après avoir collé une URL de métadonnées de fédération pour chaque nœud d'administration et apporté toutes les autres modifications nécessaires à la configuration SSO, sélectionnez *Enregistrer* sur la page Configurer SSO.
+
+
+
+
+== Téléchargez les métadonnées SAML pour chaque nœud d'administration
+
+Une fois la configuration SSO enregistrée, vous pouvez télécharger un fichier de métadonnées SAML pour chaque nœud d'administration de votre système StorageGRID.
+
+.Étapes
+. Répétez ces étapes pour chaque nœud d'administration.
++
+.. Connectez-vous à StorageGRID à partir du nœud d'administration.
+.. Sélectionnez *Configuration* > *Contrôle d'accès* > *Authentification unique*.
+.. Sélectionnez le bouton pour télécharger les métadonnées SAML de ce nœud d'administration.
+.. Enregistrez le fichier que vous téléchargerez dans Entra ID.
+
+
+
+
+
+
+== Téléchargez les métadonnées SAML sur chaque application d'entreprise
+
+Après avoir téléchargé un fichier de métadonnées SAML pour chaque nœud d'administration StorageGRID , effectuez les étapes suivantes dans Entra ID :
+
+.Étapes
+. Revenez au portail Azure.
+. Répétez cette procédure pour chaque application d'entreprise :
++
+
+NOTE: Vous devrez peut-être actualiser la page applications d'entreprise pour voir les applications que vous avez précédemment ajoutées dans la liste.
+
++
+.. Accédez à la page Propriétés de l'application d'entreprise.
+.. Définissez *affectation requise* sur *non* (sauf si vous souhaitez configurer séparément les affectations).
+.. Accédez à la page Single Sign-on.
+.. Terminez la configuration SAML.
+.. Sélectionnez le bouton *Télécharger le fichier de métadonnées* et sélectionnez le fichier de métadonnées SAML que vous avez téléchargé pour le nœud d'administration correspondant.
+.. Une fois le fichier chargé, sélectionnez *Enregistrer*, puis *X* pour fermer le volet. Vous revenez à la page configurer un Single Sign-on avec SAML.
+
+
+. link:../admin/configure-sso.html#test-sso["Tester chaque application"] .
+

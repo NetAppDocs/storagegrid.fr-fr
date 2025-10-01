@@ -1,7 +1,7 @@
 ---
 permalink: audit/client-read-audit-messages.html 
 sidebar: sidebar 
-keywords: storagegrid, audit, message, messages, client read, S3SL, SGET, SHEA, WGET, WHEA, S3, swift 
+keywords: storagegrid, audit, message, messages, client read, S3SL, SGET, SHEA, WGET, WHEA, S3 
 summary: 'Les messages d"audit de lecture du client sont consignés lorsqu"une application client S3 demande la récupération d"un objet.' 
 ---
 = Messages d'audit de lecture du client
@@ -50,27 +50,5 @@ TÊTE S3 : consigne une transaction réussie pour vérifier l'existence d'un obj
 Client S3
  a| 
 link:shea-s3-head.html["SHEA : TÊTE S3"]
-
-
-
- a| 
-C'EST PARTI
- a| 
-SWIFT GET : log une transaction réussie pour récupérer un objet ou répertorier les objets dans un conteneur.
- a| 
-Client Swift
- a| 
-link:wget-swift-get.html["WGET: SWIFT GET"]
-
-
-
- a| 
-WHEA
- a| 
-SWIFT HEAD : consigne une transaction réussie afin de vérifier l'existence d'un objet ou d'un conteneur.
- a| 
-Client Swift
- a| 
-link:whea-swift-head.html["WHEA: TÊTE SWIFT"]
 
 |===

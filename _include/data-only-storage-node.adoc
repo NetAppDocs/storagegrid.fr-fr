@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
+
+De plus, vous pouvez obtenir davantage de capacité de métadonnées en supprimant les nœuds à faible RAM de Cassandra, ce qui augmente la limite de capacité de métadonnées par nœud. link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"] .

@@ -19,18 +19,18 @@ Avant de mettre un site hors service, vous devez obtenir les documents suivants.
 
 
  a| 
-Fichier de package de récupération `.zip`
+Paquet de relance `.zip` déposer
  a| 
-Vous devez télécharger le fichier du progiciel de récupération le plus récent `.zip`(`sgws-recovery-package-id-revision.zip` ). Vous pouvez utiliser le fichier du progiciel de récupération pour restaurer le système en cas de défaillance.
+Vous devez télécharger le package de récupération le plus récent `.zip` déposer(`sgws-recovery-package-id-revision.zip` ).  Vous pouvez utiliser le fichier de package de récupération pour restaurer le système en cas de panne.
 
-link:downloading-recovery-package.html["Téléchargez le progiciel de restauration"]
+link:downloading-recovery-package.html["Téléchargez le package de récupération"]
 
 
 
  a| 
 `Passwords.txt` fichier
  a| 
-Ce fichier contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande et est inclus dans le progiciel de récupération.
+Ce fichier contient les mots de passe requis pour accéder aux nœuds de grille sur la ligne de commande et est inclus dans le package de récupération.
 
 
 

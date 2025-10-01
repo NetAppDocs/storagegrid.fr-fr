@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: expand, expansion, storage node, add storage volumes, VMware 
 summary: Si un nœud de stockage comprend moins de 16 volumes de stockage, vous pouvez augmenter sa capacité en utilisant VMware vSphere pour ajouter des volumes. 
 ---
-= VMware : ajoutez des volumes de stockage au nœud de stockage
+= Ajouter des volumes de stockage aux nœuds de stockage VMware
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -14,11 +14,7 @@ summary: Si un nœud de stockage comprend moins de 16 volumes de stockage, vous 
 Si un nœud de stockage comprend moins de 16 volumes de stockage, vous pouvez augmenter sa capacité en utilisant VMware vSphere pour ajouter des volumes.
 
 .Avant de commencer
-* Vous avez accès aux instructions d'installation de StorageGRID pour les déploiements.
-+
-** link:../vmware/index.html["Installez StorageGRID sur VMware"]
-
-
+* Vous avez accès à lalink:../swnodes/index.html["instructions d'installation de StorageGRID pour les déploiements VMware"] .
 * Vous avez le `Passwords.txt` fichier.
 * Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
 
@@ -93,19 +89,13 @@ L'état est mis à jour automatiquement.
 . Vérifiez que le nœud de stockage est en ligne :
 +
 .. Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_site_* > *_Storage Node_* > *LDR* > *Storage*.
-.. Sélectionnez l'onglet *Configuration*, puis l'onglet *main*.
-.. Si la liste déroulante État de stockage - souhaité* est définie sur lecture seule ou hors ligne, sélectionnez *en ligne*.
-.. Sélectionnez *appliquer les modifications*.
+.. Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Tâches*.
+.. Si la liste déroulante *État de stockage* est définie sur Lecture seule ou Hors ligne, sélectionnez *En ligne*.
+.. Sélectionnez *Enregistrer*.
 
 
-. Pour afficher les nouveaux magasins d'objets :
-+
-.. Sélectionnez *NODES* > *_site_* > *_Storage Node_* > *Storage*.
-.. Affichez les détails dans le tableau *magasins d'objets*.
-
-
+. Pour voir les nouveaux magasins d’objets, sélectionnez *Stockage*.
+. Consultez les détails dans le tableau *Volumes*.
 
 
 .Résultat

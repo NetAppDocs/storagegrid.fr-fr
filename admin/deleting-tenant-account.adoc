@@ -21,7 +21,7 @@ Vous pouvez supprimer un compte de tenant si vous souhaitez supprimer définitiv
 
 
 .Étapes
-. Sélectionnez *LOCATAIRES*.
+. Sélectionnez *Locataires*.
 . Recherchez le ou les comptes de tenant que vous souhaitez supprimer.
 +
 Utilisez la zone de recherche pour rechercher un locataire par nom ou ID locataire.

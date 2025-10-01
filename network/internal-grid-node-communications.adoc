@@ -22,11 +22,10 @@ Outre ICMP et les ports répertoriés dans le tableau, StorageGRID utilise le pr
 
 == Instructions pour les nœuds basés sur Linux
 
-Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports au moment du déploiement à l'aide d'un paramètre de configuration de déploiement. Pour plus d'informations sur le remappage des ports et les paramètres de configuration de déploiement, reportez-vous à la section :
+Si les stratégies de réseau d’entreprise restreignent l’accès à l’un de ces ports, vous pouvez remapper les ports au moment du déploiement à l’aide d’un paramètre de configuration de déploiement.  Pour plus d'informations sur le remappage des ports et les paramètres de configuration de déploiement, consultezlink:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
 
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
 
+NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée dans une prochaine version. Pour supprimer les ports remappés, reportez-vous àlink:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Supprimez les mappes de ports sur les hôtes bare Metal"] .
 
 
 
@@ -34,13 +33,19 @@ Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces port
 
 Configurez les ports suivants uniquement si vous devez définir des restrictions de pare-feu externes à la mise en réseau VMware.
 
-Si les stratégies de mise en réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports lors du déploiement des nœuds à l'aide du client Web VMware vSphere, ou à l'aide d'un paramètre de fichier de configuration lors de l'automatisation du déploiement des nœuds de la grille. Pour plus d'informations sur le remappage des ports et les paramètres de configuration du déploiement, reportez-vous à la section link:../vmware/index.html["Installez StorageGRID sur VMware"].
+Si les stratégies de réseau d'entreprise restreignent l'accès à l'un de ces ports, vous pouvez remapper les ports lorsque vous déployez des nœuds à l'aide de VMware vSphere Web Client ou en utilisant un paramètre de fichier de configuration lors de l'automatisation du déploiement des nœuds de grille.  Pour plus d'informations sur le remappage des ports et les paramètres de configuration de déploiement, consultez les instructions delink:../swnodes/index.html["installation de StorageGRID sur VMware"] .
+
+
+NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée dans une prochaine version. Pour supprimer les ports remappés, reportez-vous àlink:../maintain/removing-port-remaps-on-bare-metal-hosts.html["Supprimez les mappes de ports sur les hôtes bare Metal"] .
 
 
 
 == Consignes pour les nœuds d'appliance
 
 Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports à l'aide du programme d'installation de l'appliance StorageGRID. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-remapping-network-ports-for-appliance.html["Facultatif : remappage des ports réseau pour l'appliance"^].
+
+
+NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée dans une prochaine version. Pour supprimer les ports remappés, reportez-vous àlink:../maintain/removing-port-remaps.html["Supprimer les remappages de ports sur les appliances StorageGRID"] .
 
 
 
@@ -151,7 +156,7 @@ Tous les nœuds
  a| 
 Nœuds de stockage
  a| 
-Trafic interne lié aux protocoles S3 et Swift.
+Trafic interne lié à S3.
 
 
 
@@ -425,19 +430,6 @@ Nœuds d'administration/de stockage
 Nœuds de stockage
  a| 
 Trafic interne lié à S3.
-
-
-
- a| 
-18083
- a| 
-TCP
- a| 
-Tous les nœuds
- a| 
-Nœuds de stockage
- a| 
-Trafic interne lié à Swift.
 
 
 

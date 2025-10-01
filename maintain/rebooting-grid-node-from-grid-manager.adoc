@@ -38,7 +38,7 @@ Lorsque StorageGRID redémarre un nœud grid, elle émet la `reboot` commande su
 TIP: Si vous devez redémarrer plusieurs nœuds, vous pouvez utiliser le link:../maintain/rolling-reboot-procedure.html["procédure de redémarrage en roulant"].
 
 .Étapes
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Sélectionnez le nœud de grille que vous souhaitez redémarrer.
 . Sélectionnez l'onglet *tâches*.
 . Sélectionnez *Reboot*.

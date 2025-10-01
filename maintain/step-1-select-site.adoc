@@ -21,7 +21,7 @@ Pour déterminer si un site peut être déclassé, commencez par accéder à l'a
 
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.
+. Sélectionnez *Maintenance* > *Tâches* > *Mise hors service*.
 . Sélectionnez *site de désaffection*.
 +
 L'étape 1 (Sélectionner le site) de l'assistant de site de désaffection s'affiche. Cette étape contient une liste alphabétique des sites de votre système StorageGRID.

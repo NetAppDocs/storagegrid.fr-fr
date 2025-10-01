@@ -28,56 +28,80 @@ NOTE: Certains services StorageGRID n'ont pas été mis à jour pour utiliser le
 == Sélectionnez une stratégie de sécurité
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres de sécurité*.
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres de sécurité*.
 +
 L'onglet *TLS et SSH policies* affiche les stratégies disponibles. La règle actuellement active est indiquée par une coche verte sur la vignette de la police.
 
 +
 image::../media/securitysettings_tls_ssh_policies_current.png[Règles TLS et SSH]
 
-. Consultez les vignettes pour en savoir plus sur les stratégies disponibles.
+. Consultez les onglets pour en savoir plus sur les politiques disponibles.
 +
-[cols="1a,2a"]
-|===
-| Politique | Description 
+[role="tabbed-block"]
+====
+.Compatibilité moderne (par défaut)
+--
+Utilisez la politique par défaut si vous avez besoin d’un cryptage fort et que vous n’avez pas d’exigences particulières.  Cette politique est compatible avec la plupart des clients TLS et SSH.
+
+--
+.Compatibilité avec les systèmes existants
+--
+Utilisez la politique de compatibilité héritée si vous avez besoin d’options de compatibilité supplémentaires pour les clients plus anciens.  Les options supplémentaires de cette politique peuvent la rendre moins sécurisée que la politique de compatibilité moderne.
+
+--
+.Critères communs
+--
+Utilisez la politique Critères communs si vous avez besoin d’une certification Critères communs.
+
+--
+.Norme FIPS stricte
+--
+Utilisez la politique stricte FIPS si vous avez besoin d'une certification Common Criteria et devez utiliser le module NetApp Cryptographic Security Module (NCSM) 3.0.8 ou le module NetApp StorageGRID Kernel Crypto API 6.1.129-1-ntap1-amd64 pour les connexions client externes aux points de terminaison de l'équilibreur de charge, au gestionnaire de locataires et au gestionnaire de grille.  L’utilisation de cette politique peut réduire les performances.
+
+Le module NCSM 3.0.8 et NetApp StorageGRID Kernel Crypto API 6.1.129-1-ntap1-amd64 sont utilisés dans les opérations suivantes :
+
+** NCSM
++
+*** Connexions TLS entre les services suivants : ADC, AMS, CMN, DDS, LDR, SSM, NMS, mgmt-api, nginx, nginx-gw et cache-svc
+*** Connexions TLS entre les clients et le service nginx-gw (points de terminaison de l'équilibreur de charge)
+*** Connexions TLS entre les clients et le service LDR
+*** Chiffrement du contenu des objets pour SSE-S3, SSE-C et le paramètre de chiffrement des objets stockés
+*** Connexions SSH
 
 
- a| 
-Compatibilité moderne (par défaut)
- a| 
-Utilisez la stratégie par défaut si vous avez besoin d'un cryptage fort et si vous ne disposez pas d'exigences particulières. Cette règle est compatible avec la plupart des clients TLS et SSH.
++
+Pour plus d'informations, reportez-vous au programme de validation des algorithmes cryptographiques du NIST.link:https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4838["Certificat n° 4838"^] .
+
+** Module d'API de chiffrement du noyau NetApp StorageGRID
++
+Le module API de chiffrement du noyau NetApp StorageGRID est présent uniquement sur les plates-formes d'appliances VM et StorageGRID .
+
++
+*** Collection d'entropie
+*** Chiffrement des nœuds
+
+
++
+Pour plus d'informations, reportez-vous au programme de validation des algorithmes cryptographiques du NIST.link:https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/validation-search?searchMode=implementation&product=NetApp+StorageGRID+Kernel+Crypto+API&productType=-1&ipp=50["Certificats #A6242 à #A6257"^] etlink:https://csrc.nist.gov/projects/cryptographic-module-validation-program/entropy-validations/certificate/223["Certificat d'entropie n° E223"^] .
 
 
 
- a| 
-Compatibilité avec les systèmes existants
- a| 
-Utilisez cette stratégie si vous avez besoin d'options de compatibilité supplémentaires pour les anciens clients. Les options supplémentaires de cette politique pourraient la rendre moins sécurisée que la politique de compatibilité moderne.
+*Remarque* : Après avoir sélectionné cette politique,link:../maintain/rolling-reboot-procedure.html["effectuer un redémarrage progressif"] pour que tous les nœuds activent le NCSM.  Utilisez *Maintenance* > *Redémarrage progressif* pour lancer et surveiller les redémarrages.
 
-
-
- a| 
-Critères communs
- a| 
-Utilisez cette règle si vous avez besoin de la certification critères communs.
-
-
-
- a| 
-Norme FIPS stricte
- a| 
-Utilisez cette règle si vous avez besoin de la certification critères communs et que vous devez utiliser le module de sécurité cryptographique NetApp 3.0.8 pour les connexions de clients externes aux terminaux d'équilibrage de charge, au gestionnaire de locataires et au gestionnaire de grille. L'utilisation de cette règle peut réduire les performances.
-
-*Remarque* : après avoir sélectionné cette stratégie, tous les nœuds doivent être link:../maintain/rolling-reboot-procedure.html["redémarrés de manière mobile"] pour activer le module de sécurité cryptographique NetApp. Utilisez *Maintenance* > *redémarrage en roulant* pour lancer et surveiller les redémarrages.
-
-
-
- a| 
-Personnalisées
- a| 
+--
+.Personnalisées
+--
 Créez une stratégie personnalisée si vous devez appliquer vos propres chiffrements.
 
-|===
+En option, si votre StorageGRID a des exigences de cryptographie FIPS 140, activez la fonctionnalité de mode FIPS pour utiliser le module NCSM 3.0.8 et NetApp StorageGRID Kernel Crypto API 6.1.129-1-ntap1-amd64 :
+
+.. Régler le `fipsMode` paramètre à `true` .
+.. Lorsque vous y êtes invité,link:../maintain/rolling-reboot-procedure.html["effectuer un redémarrage progressif"] pour que tous les nœuds activent les modules de cryptographie.  Utilisez *Maintenance* > *Redémarrage progressif* pour lancer et surveiller les redémarrages.
+.. Sélectionnez *Support* > *Diagnostics* pour afficher les versions actives du module FIPS.
+
+
+--
+====
 . Pour afficher des détails sur les chiffrements, les protocoles et les algorithmes de chaque stratégie, sélectionnez *Afficher les détails*.
 . Pour modifier la stratégie actuelle, sélectionnez *utiliser la stratégie*.
 +

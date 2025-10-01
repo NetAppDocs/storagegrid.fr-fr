@@ -30,7 +30,7 @@ Les groupes Admin vous permettent de déterminer quels utilisateurs peuvent acc�
 === Accéder à l'assistant
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *contrôle d'accès* > *groupes Admin*.
+. Sélectionnez *Configuration* > *Contrôle d'accès* > *Groupes d'administrateurs*.
 . Sélectionnez *Créer groupe*.
 
 
@@ -62,7 +62,7 @@ Vous pouvez créer un groupe local ou importer un groupe fédéré.
 . Sélectionnez *Groupe fédéré*.
 . Entrez le nom du groupe à importer, exactement tel qu'il apparaît dans le référentiel d'identité configuré.
 +
-** Pour Active Directory et Azure, utilisez sAMAccountName.
+** Pour Active Directory et Microsoft Entra ID, utilisez sAMAccountName.
 ** Pour OpenLDAP, utilisez le CN (Common Name).
 ** Pour un autre LDAP, utilisez le nom unique approprié pour le serveur LDAP.
 

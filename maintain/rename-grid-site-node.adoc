@@ -14,11 +14,7 @@ summary: 'Vous pouvez utiliser cette procédure pour ajouter ou mettre à jour l
 Vous pouvez utiliser cette procédure pour ajouter ou mettre à jour les noms d'affichage utilisés pour votre grille, vos sites et vos nœuds. Vous pouvez renommer un seul élément, plusieurs éléments ou même tous les éléments en même temps. La définition ou la mise à jour d'un nom d'affichage n'affecte en aucune façon les opérations StorageGRID.
 
 .Avant de commencer
-* À partir du *nœud d'administration principal*, vous êtes connecté au gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-+
-
-NOTE: Vous pouvez ajouter ou mettre à jour des noms d'affichage à partir d'un nœud d'administration non principal, mais vous devez être connecté au nœud d'administration principal pour télécharger un package de récupération.
-
+* À partir de n’importe quel nœud d’administration, vous êtes connecté au gestionnaire de grille à l’aide d’unlink:../admin/web-browser-requirements.html["navigateur web pris en charge"] .
 * Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
 * Vous avez la phrase secrète pour le provisionnement.
 * Vous comprenez les exigences et les meilleures pratiques en matière d'affichage des noms. Voir link:../maintain/rename-grid-site-node-overview.html["Renommez la grille, les sites et les nœuds"].
@@ -39,7 +35,7 @@ Vous pouvez utiliser un nom d'affichage précédemment utilisé par un autre nœ
 Pour commencer, sélectionnez les éléments à renommer.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *Renommer la grille, les sites et les nœuds*.
+. Sélectionnez *Maintenance* > *Tâches* > *Renommer la grille, les sites et les nœuds*.
 . Pour l'étape *Sélectionner les noms*, sélectionnez les éléments que vous souhaitez renommer.
 +
 [cols="1a,2a"]
@@ -165,9 +161,9 @@ Un message de réussite s'affiche. Les nouveaux noms d'affichage sont maintenant
 ====
 
 
-=== [[download-Recovery-package]]Téléchargez le package de récupération
+=== [[download-recovery-package]]Télécharger le package de récupération
 
-Lorsque vous avez terminé de renommer des éléments, téléchargez et enregistrez un nouveau package de récupération. Les nouveaux noms d'affichage des éléments que vous avez renommés sont inclus dans le `Passwords.txt` fichier.
+Une fois que vous avez terminé de renommer les éléments, téléchargez et enregistrez un nouveau package de récupération.  Les nouveaux noms d'affichage des éléments que vous avez renommés sont inclus dans le `Passwords.txt` déposer.
 
 .Étapes
 . Saisissez la phrase secrète pour le provisionnement.
@@ -179,7 +175,7 @@ Le téléchargement commence immédiatement.
 . Copiez le `sgws-recovery-package-_id-revision_.zip` fichier dans deux emplacements sécurisés et séparés.
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID .
 
 . Sélectionnez *Terminer* pour revenir à la première étape.
 
@@ -191,7 +187,7 @@ CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il 
 Vous pouvez rétablir le nom d'origine d'une grille, d'un site ou d'un nœud renommé. Lorsque vous rétablissez le nom système d'un élément, les pages du Gestionnaire de grille et les autres emplacements StorageGRID n'affichent plus de *Nom d'affichage* pour cet élément. Seul le nom système de l'élément est affiché.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *Renommer la grille, les sites et les nœuds*.
+. Sélectionnez *Maintenance* > *Tâches* > *Renommer la grille, les sites et les nœuds*.
 . Pour l'étape *Sélectionner les noms*, sélectionnez les éléments que vous souhaitez restaurer aux noms système.
 . Sélectionnez *Continuer*.
 . Pour l'étape *proposer de nouveaux noms*, restaurez les noms d'affichage individuellement ou en bloc.
@@ -229,7 +225,7 @@ Un message de réussite s'affiche. Les noms d'affichage de ces éléments ne son
 
 --
 ====
-. <<download-recovery-package,Téléchargez et enregistrez un nouveau package de récupération>>.
+. <<download-recovery-package,Téléchargez et enregistrez un nouveau package de récupération>> .
 +
 Les noms d'affichage des éléments que vous avez restaurés ne sont plus inclus dans le `Passwords.txt` fichier.
 

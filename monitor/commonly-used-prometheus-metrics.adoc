@@ -39,7 +39,7 @@ image::../media/nodes_page_network_traffic_graph.png[Graphique Prometheus]
 
 NOTE: Les indicateurs qui incluent _private_ dans leurs noms sont destinés à un usage interne uniquement et peuvent être modifiés sans préavis entre les versions de StorageGRID.
 
-* La page *SUPPORT* > *Tools* > *Diagnostics* et la page *SUPPORT* > *Tools* > *Metrics* : ces pages, qui sont principalement destinées au support technique, fournissent plusieurs outils et graphiques qui utilisent les valeurs des mesures Prometheus.
+* La page *Support* > *Outils* > *Diagnostics* et la page *Support* > *Outils* > *Métriques* : Ces pages, qui sont principalement destinées à être utilisées par le support technique, fournissent plusieurs outils et graphiques qui utilisent les valeurs des métriques Prometheus.
 +
 
 NOTE: Certaines fonctions et options de menu de la page métriques sont intentionnellement non fonctionnelles et peuvent faire l'objet de modifications.
@@ -65,8 +65,8 @@ storagegrid_panne_administrative:: Le nœud n'est pas connecté à la grille pou
 storagegrid_appliance_compute_controller_status:: L'état du matériel du contrôleur de calcul d'une appliance.
 disques_défaillants_appliance_storagegrid:: Pour le contrôleur de stockage d'une appliance, le nombre de disques qui ne sont pas optimaux.
 état_matériel_contrôleur_stockage_appliance_storagegrid:: État global du matériel du contrôleur de stockage d'une appliance.
-conteneurs_contenu_seaux_et_conteneurs_storagegrid:: Le nombre total de compartiments S3 et de conteneurs Swift connus par ce nœud de stockage.
-objets_contenu_storagegrid:: Le nombre total d'objets de données S3 et Swift connus de ce nœud de stockage. Count est valide uniquement pour les objets de données créés par des applications client qui communiquent avec le système via S3.
+conteneurs_contenu_seaux_et_conteneurs_storagegrid:: Le nombre total de buckets S3 connus par ce nœud de stockage.
+objets_contenu_storagegrid:: Le nombre total d'objets de données S3 connus par ce nœud de stockage.  Le comptage est valide uniquement pour les objets de données créés par des applications clientes qui s'interfacent avec le système via S3.
 objet_contenu_storagegrid_perdu:: Le nombre total d'objets détectés par ce service est manquant dans le système StorageGRID. Des mesures doivent être prises pour déterminer la cause de la perte et si la récupération est possible.
 +
 --
@@ -135,11 +135,6 @@ storage_utilisation_métadonnées_autorisés_storagegrid_octets:: Espace total s
 octets_métadonnées_utilisation_stockage_storagegrid:: Volume des métadonnées d'objet sur le volume de stockage 0, en octets.
 storage_usage_total_octets_espace_stockage_storagegrid:: Quantité totale d'espace de stockage alloué à tous les magasins d'objets.
 octets_stockage_utilisation_de_stockage_utilisables_storagegrid:: Quantité totale d'espace de stockage objet restant. Calculé en ajoutant ensemble la quantité d'espace disponible pour tous les magasins d'objets du nœud de stockage.
-storagegrid_swift_data_transfère_octets_ingérés:: Quantité totale de données ingérées à partir des clients Swift vers ce nœud de stockage depuis la dernière réinitialisation de l'attribut.
-storagegrid_swift_data_transferts_octets_récupéré:: Quantité totale de données récupérées par les clients Swift à partir de ce noeud de stockage depuis la dernière réinitialisation de l'attribut.
-storagegrid_swift_operations_failed:: Nombre total d'opérations Swift ayant échoué (codes d'état HTTP 4xx et 5xx), à l'exclusion des opérations causées par l'échec de l'autorisation Swift.
-storagegrid_swift_operations_successful:: Nombre total d'opérations Swift réussies (code d'état HTTP 2xx).
-storagegrid_swift_operations_non autorisé:: Nombre total d'opérations Swift ayant échoué à la suite d'une erreur d'autorisation (codes d'état HTTP 401, 403, 405).
 octets_données_utilisation_storagegrid_tenant:: Taille logique de tous les objets pour le locataire.
 nombre_d'objets_usage_storagegrid_tenant_storagegrid:: Le nombre d'objets pour le locataire.
 octets_quota_utilisation_storagegrid_tenant_octets:: Quantité maximale d'espace logique disponible pour les objets du locataire. Si aucune mesure de quota n'est fournie, une quantité illimitée d'espace est disponible.
@@ -151,6 +146,7 @@ octets_quota_utilisation_storagegrid_tenant_octets:: Quantité maximale d'espace
 
 [[obtenir-toutes-mesures]]pour obtenir la liste complète des mesures, utilisez l'API de gestion de grille.
 
+.Étapes
 . En haut du Gestionnaire de grille, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
 . Localisez les opérations *métriques*.
 . Exécutez `GET /grid/metric-names` l'opération.

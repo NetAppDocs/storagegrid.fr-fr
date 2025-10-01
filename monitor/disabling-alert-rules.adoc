@@ -25,7 +25,7 @@ Lorsqu'une règle d'alerte est désactivée, ses expressions ne sont pas évalu�
 CAUTION: En général, la désactivation d'une règle d'alerte par défaut n'est pas recommandée. Si une règle d'alerte est désactivée, vous risquez de ne pas détecter un problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
 
 .Étapes
-. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez *Alertes* > *Règles*.
 +
 La page règles d'alerte s'affiche.
 

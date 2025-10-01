@@ -27,14 +27,14 @@ TIP: Lorsque vous activez SSO, un référentiel d'identité configuré dans le G
 
 +
 .. Connectez-vous au Gestionnaire de locataires pour chaque compte de locataire.
-.. Sélectionnez *ACCESS MANAGEMENT* > *identity federation*.
+.. Sélectionnez *Gestion des accès* > *Fédération d'identité*.
 .. Vérifiez que la case *Activer la fédération d'identité* n'est pas cochée.
 .. Si c'est le cas, vérifiez que tous les groupes fédérés pouvant être utilisés pour ce compte de tenant ne sont plus nécessaires, décochez la case et sélectionnez *Enregistrer*.
 
 
 . Vérifiez qu'un utilisateur fédéré peut accéder au Grid Manager :
 +
-.. Dans Grid Manager, sélectionnez *CONFIGURATION* > *contrôle d'accès* > *groupes d'administration*.
+.. Depuis Grid Manager, sélectionnez *Configuration* > *Contrôle d'accès* > *Groupes d'administrateurs*.
 .. Assurez-vous qu'au moins un groupe fédéré a été importé du référentiel d'identité Active Directory et qu'il a reçu l'autorisation d'accès racine.
 .. Se déconnecter.
 .. Confirmez que vous pouvez vous reconnecter au Grid Manager en tant qu'utilisateur dans le groupe fédéré.
@@ -42,18 +42,18 @@ TIP: Lorsque vous activez SSO, un référentiel d'identité configuré dans le G
 
 . S'il existe des comptes de tenant existants, confirmez qu'un utilisateur fédéré disposant d'une autorisation d'accès racine peut se connecter :
 +
-.. Dans Grid Manager, sélectionnez *TENANTS*.
+.. Dans le gestionnaire de grille, sélectionnez *Locataires*.
 .. Sélectionnez le compte locataire, puis sélectionnez *actions* > *Modifier*.
 .. Dans l'onglet entrer les détails, sélectionnez *Continuer*.
 .. Si la case *utiliser le propre référentiel d'identité* est cochée, décochez la case et sélectionnez *Enregistrer*.
-+
-image::../media/sso_uses_own_identity_source_for_tenant.png[Case à cocher Modifier le compte de locataire > utiliser le propre référentiel d'identité non sélectionnée]
+
 
 +
 La page tenant s'affiche.
 
++
 .. Sélectionnez le compte de tenant, sélectionnez *connexion* et connectez-vous au compte de tenant en tant qu'utilisateur racine local.
-.. Dans le Gestionnaire de locataires, sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+.. Depuis le gestionnaire de locataires, sélectionnez *Gestion des accès* > *Groupes*.
 .. Assurez-vous qu'au moins un groupe fédéré du Grid Manager a reçu l'autorisation d'accès racine pour ce locataire.
 .. Se déconnecter.
 .. Confirmez que vous pouvez vous reconnecter au locataire en tant qu'utilisateur dans le groupe fédéré.

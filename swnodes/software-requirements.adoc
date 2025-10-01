@@ -1,0 +1,152 @@
+---
+permalink: swnodes/software-requirements.html 
+sidebar: sidebar 
+keywords: software requirements 
+summary: 'Vous pouvez utiliser une machine virtuelle pour héberger n"importe quel type de nœud StorageGRID. Vous avez besoin d"une machine virtuelle pour chaque nœud de grille.' 
+---
+= Configuration logicielle requise
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser une machine virtuelle pour héberger n'importe quel type de nœud StorageGRID. Vous avez besoin d'une machine virtuelle pour chaque nœud de grille.
+
+[role="tabbed-block"]
+====
+.RHEL
+--
+Pour installer StorageGRID sur RHEL, vous devez installer certains packages logiciels tiers.  Certaines distributions Linux prises en charge ne contiennent pas ces packages par défaut.  Les versions de progiciels sur lesquelles les installations StorageGRID sont testées incluent celles répertoriées sur cette page.
+
+Si vous sélectionnez une option d'installation de distribution Linux et d'exécution de conteneur qui nécessite l'un de ces packages et qu'ils ne sont pas installés automatiquement par la distribution Linux, installez l'une des versions répertoriées ici si disponible auprès de votre fournisseur ou du fournisseur de support pour votre distribution Linux. Sinon, utilisez les versions de package par défaut disponibles auprès de votre fournisseur.
+
+Toutes les options d'installation requièrent Podman ou Docker. N'installez pas les deux paquets. Installez uniquement le package requis par votre option d'installation.
+
+
+NOTE: La prise en charge de Docker, car le moteur de mise en conteneurs pour les déploiements exclusivement logiciels est obsolète. Docker sera remplacé par un autre moteur de mise en conteneurs dans une prochaine version.
+
+*Versions Python testées*
+
+* 3.5.2-2
+* 3.6.8-2
+* 3.6.8-38
+* 3.6.9-1
+* 3.7.3-1
+* 3.8.10-0
+* 3.9.2-1
+* 3.9.10-2
+* 3.9.16-1
+* 3.10.6-1
+* 3.11.2-6
+
+
+*Versions Podman testées*
+
+* 3.2.3-0
+* 3.4.4+ds1
+* 4.1.1-7
+* 4.2.0-11
+* 4.3.1+ds1-8+b1
+* 4.4.1-8
+* 4.4.1-12
+
+
+*Versions Docker testées*
+
+
+IMPORTANT: La prise en charge de Docker est obsolète et sera supprimée dans une future version.
+
+* Docker-ce 20.10.7
+* Docker-ce 20.10.20-3
+* Docker-ce 23.0.6-1
+* Docker-ce 24.0.2-1
+* Docker-ce 24.0.4-1
+* Docker-ce 24.0.5-1
+* Docker-ce 24.0.7-1
+* 1,5-2
+
+
+--
+.Ubuntu et Debian
+--
+Pour installer StorageGRID sur Ubuntu ou Debian, vous devez installer des paquets de logiciels tiers. Par défaut, certaines distributions Linux prises en charge ne contiennent pas ces packages. Les versions des progiciels sur lesquels les installations StorageGRID sont testées incluent celles répertoriées sur cette page.
+
+Si vous sélectionnez une option d'installation de distribution Linux et d'exécution de conteneur qui nécessite l'un de ces packages et qu'ils ne sont pas installés automatiquement par la distribution Linux, installez l'une des versions répertoriées ici si disponible auprès de votre fournisseur ou du fournisseur de support pour votre distribution Linux. Sinon, utilisez les versions de package par défaut disponibles auprès de votre fournisseur.
+
+Toutes les options d'installation requièrent Podman ou Docker. N'installez pas les deux paquets. Installez uniquement le package requis par votre option d'installation.
+
+
+NOTE: La prise en charge de Docker, car le moteur de mise en conteneurs pour les déploiements exclusivement logiciels est obsolète. Docker sera remplacé par un autre moteur de mise en conteneurs dans une prochaine version.
+
+*Versions Python testées*
+
+* 3.5.2-2
+* 3.6.8-2
+* 3.6.8-38
+* 3.6.9-1
+* 3.7.3-1
+* 3.8.10-0
+* 3.9.2-1
+* 3.9.10-2
+* 3.9.16-1
+* 3.10.6-1
+* 3.11.2-6
+
+
+*Versions Podman testées*
+
+* 3.2.3-0
+* 3.4.4+ds1
+* 4.1.1-7
+* 4.2.0-11
+* 4.3.1+ds1-8+b1
+* 4.4.1-8
+* 4.4.1-12
+
+
+*Versions Docker testées*
+
+
+IMPORTANT: La prise en charge de Docker est obsolète et sera supprimée dans une future version.
+
+* Docker-ce 20.10.7
+* Docker-ce 20.10.20-3
+* Docker-ce 23.0.6-1
+* Docker-ce 24.0.2-1
+* Docker-ce 24.0.4-1
+* Docker-ce 24.0.5-1
+* Docker-ce 24.0.7-1
+* 1,5-2
+
+
+--
+.VMware
+--
+*Hyperviseur VMware vSphere*
+
+Vous devez installer VMware vSphere Hypervisor sur un serveur physique préparé. Avant d'installer le logiciel VMware, le matériel doit être configuré correctement (y compris les versions du micrologiciel et les paramètres du BIOS).
+
+* Configurez la mise en réseau dans l'hyperviseur pour prendre en charge la mise en réseau du système StorageGRID que vous installez.
++
+link:../network/index.html["Instructions de mise en réseau"]
+
+* Assurez-vous que le datastore est suffisamment grand pour les machines virtuelles et les disques virtuels requis pour héberger les nœuds de la grille.
+* Si vous créez plusieurs datastores, nommez chacun d'entre eux afin de pouvoir facilement identifier les datastores à utiliser pour chaque nœud de la grille lorsque vous créez des machines virtuelles.
+
+
+*Exigences de configuration de l'hôte ESX*
+
+
+CAUTION: Vous devez configurer correctement le protocole NTP (Network Time Protocol) sur chaque hôte ESX. Si l'heure de l'hôte est incorrecte, des effets négatifs, y compris la perte de données, peuvent survenir.
+
+*Exigences de configuration VMware*
+
+Vous devez installer et configurer VMware vSphere et vCenter avant de déployer les nœuds StorageGRID.
+
+Pour connaître les versions prises en charge des logiciels VMware vSphere Hypervisor et VMware vCenter Server, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^].
+
+Pour connaître les étapes d'installation de ces produits VMware, reportez-vous à la documentation VMware.
+
+--
+====

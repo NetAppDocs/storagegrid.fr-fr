@@ -20,7 +20,7 @@ Le code d'effacement et la réplication nécessitent différentes configurations
 
 
 
-CAUTION: Lors de la configuration de votre déploiement StorageGRID pour la protection contre les pertes de site, vous devez également prendre en compte les effets link:data-protection-options-for-ingest.html["options d'ingestion"]de et link:../s3/consistency-controls.html["la cohérence"].
+CAUTION: Lors de la configuration de votre déploiement StorageGRID pour la protection contre la perte de site, vous devez également prendre en compte les effets delink:data-protection-options-for-ingest.html["options d'ingestion"] etlink:../s3/consistency.html["la cohérence"] .
 
 
 

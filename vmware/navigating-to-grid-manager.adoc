@@ -1,51 +1,8 @@
 ---
 permalink: vmware/navigating-to-grid-manager.html 
-sidebar: sidebar 
-keywords: how to navigate to Grid Manager 
-summary: Le gestionnaire de grille permet de définir toutes les informations nécessaires à la configuration du système StorageGRID. 
+redirect: storagegrid/swnodes/navigating-to-grid-manager.html 
 ---
-= Accédez au Grid Manager
+= 
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
-
-
-[role="lead"]
-Le gestionnaire de grille permet de définir toutes les informations nécessaires à la configuration du système StorageGRID.
-
-.Avant de commencer
-Le nœud d'administration principal doit être déployé et avoir terminé la séquence de démarrage initiale.
-
-.Étapes
-. Ouvrez votre navigateur Web et accédez à :
-+
-`https://_primary_admin_node_ip_`
-
-+
-Vous pouvez également accéder à Grid Manager sur le port 8443 :
-
-+
-`https://_primary_admin_node_ip_:8443`
-
-+
-Vous pouvez utiliser l'adresse IP du noeud d'administration principal sur le réseau Grid ou sur le réseau Admin, en fonction de votre configuration réseau. Vous devrez peut-être utiliser l'option Security/Advanced de votre navigateur pour accéder à un certificat non approuvé.
-
-. Gérer un mot de passe temporaire du programme d'installation selon les besoins :
-+
-** Si un mot de passe a déjà été défini à l'aide de l'une de ces méthodes, saisissez-le pour continuer.
-+
-*** Un utilisateur a défini le mot de passe lors de l'accès au programme d'installation
-*** Le mot de passe SSH/console a été automatiquement importé à partir des propriétés OVF
-
-
-** Si aucun mot de passe n'a été défini, définissez éventuellement un mot de passe pour sécuriser le programme d'installation de StorageGRID.
-
-
-. Sélectionnez *installer un système StorageGRID*.
-+
-La page utilisée pour configurer une grille StorageGRID s'affiche.
-
-+
-image::../media/gmi_installer_first_screen.gif[Cette image est expliquée par le texte qui l'entoure.]
 
 

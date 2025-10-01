@@ -66,7 +66,7 @@ NOTE: Le code d'effacement ne peut pas être utilisé si le pool de stockage com
 * Le pool de stockage doit inclure au moins les `_k+m_ +1` nœuds de stockage capables de stocker les données d'objet.
 +
 
-NOTE: Les nœuds de stockage peuvent être configurés au cours de l'installation pour contenir uniquement les métadonnées d'objet, pas les données d'objet. Pour plus d'informations, voir link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"].
+NOTE: Les nœuds de stockage peuvent être configurés lors de l'installation pour contenir des données et des métadonnées d'objet (nœud de stockage « combiné »), uniquement des métadonnées d'objet ou uniquement des données d'objet. Pour plus d'informations, reportez-vous à link:../primer/what-storage-node-is.html#types-of-storage-nodes["Types de nœuds de stockage"] .
 
 +
 Le nombre minimal de nœuds de stockage requis est `k+m`. Toutefois, il est possible de disposer d'au moins un nœud de stockage supplémentaire pour empêcher les défaillances d'entrée et les arriérés ILM en cas d'indisponibilité temporaire d'un nœud de stockage requis.

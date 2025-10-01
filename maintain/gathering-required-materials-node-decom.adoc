@@ -19,16 +19,16 @@ Avant d'effectuer la mise hors service d'un nœud de la grille, vous devez obten
 
 
  a| 
-Fichier de package de récupération `.zip`
+Paquet de relance `.zip` déposer
  a| 
-Vous devez link:downloading-recovery-package.html["Téléchargez le dernier progiciel de restauration"] `.zip` fichier (`sgws-recovery-package-_id-revision_.zip`). Vous pouvez utiliser le fichier du progiciel de récupération pour restaurer le système en cas de défaillance.
+Vous devezlink:downloading-recovery-package.html["télécharger le package de récupération le plus récent"] `.zip` déposer(`sgws-recovery-package-_id-revision_.zip` ).  Vous pouvez utiliser le fichier de package de récupération pour restaurer le système en cas de panne.
 
 
 
  a| 
 `Passwords.txt` fichier
  a| 
-Ce fichier contient les mots de passe requis pour accéder aux nœuds de la grille sur la ligne de commande et est inclus dans le progiciel de récupération.
+Ce fichier contient les mots de passe requis pour accéder aux nœuds de grille sur la ligne de commande et est inclus dans le package de récupération.
 
 
 

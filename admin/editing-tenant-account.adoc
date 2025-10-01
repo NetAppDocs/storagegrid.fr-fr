@@ -25,7 +25,7 @@ TIP: Si un locataire dispose de l'autorisation *utiliser la connexion de fédér
 NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut prendre 15 minutes ou plus en fonction de la connectivité réseau, de l'état du nœud et des opérations Cassandra.
 
 .Étapes
-. Sélectionnez *LOCATAIRES*.
+. Sélectionnez *Locataires*.
 +
 image::../media/tenant_accounts_page.png[Page comptes de tenant]
 

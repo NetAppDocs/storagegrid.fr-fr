@@ -40,6 +40,7 @@ Par exemple, n'utilisez pas les plages de sous-réseaux suivantes pour le résea
 
 ====
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Connectez-vous au nœud d'administration principal :
 +
 .. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
@@ -102,7 +103,7 @@ image::../media/change_ip_tool_aesl_sample_input.gif[modifier l'outil ip, exempl
 . Lorsque vous êtes prêt, saisissez *q* pour revenir à l'écran du menu principal. Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
 +
 
-NOTE: Si vous avez sélectionné l'un des modes de sélection de nœud "tous" à l'étape 2, appuyez sur *entrée* (sans *q*) pour passer au nœud suivant de la liste.
+NOTE: Si vous avez sélectionné l'un des modes de sélection de nœuds « tous » à l'étape 3, appuyez sur *Entrée* (sans *q*) pour accéder au nœud suivant dans la liste.
 
 . Options au choix :
 +
@@ -151,10 +152,11 @@ Updating grid network configuration on Name
 ----
 
 
-. Téléchargez un nouveau package de récupération depuis Grid Manager.
+. Téléchargez un nouveau package de récupération à partir du gestionnaire de grille.
 +
-.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.
 
 
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé d'ajouter ou de modifier les listes de sous-réseaux.
 

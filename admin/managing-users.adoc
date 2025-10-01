@@ -36,7 +36,7 @@ NOTE: Si l'authentification unique (SSO) est activée, les utilisateurs locaux n
 === Accéder à l'assistant
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *contrôle d'accès* > *utilisateurs Admin*.
+. Sélectionnez *Configuration* > *Contrôle d'accès* > *Utilisateurs administrateurs*.
 . Sélectionnez *Créer utilisateur*.
 
 
@@ -171,6 +171,33 @@ Modifier les groupes (utilisateurs locaux uniquement)
 
 
 |===
+
+
+
+
+== Importer des utilisateurs fédérés
+
+Vous pouvez importer un ou plusieurs utilisateurs fédérés, jusqu'à un maximum de 100 utilisateurs, directement dans la page Utilisateurs.
+
+.Étapes
+. Sélectionnez *Configuration* > *Contrôle d'accès* > *Utilisateurs administrateurs*.
+. Sélectionnez *Importer les utilisateurs fédérés*.
+. Saisissez l'UUID ou le nom d'utilisateur d'un ou plusieurs utilisateurs fédérés.
++
+Pour plusieurs entrées, ajoutez chaque UUID ou nom d'utilisateur sur une nouvelle ligne.
+
+. Sélectionnez *Importer*.
++
+Si l’importation dans le champ Utilisateurs échoue pour un ou plusieurs utilisateurs, procédez comme suit :
+
++
+.. Développez *Utilisateurs non importés* et sélectionnez *Copier les utilisateurs*.
+.. Réessayez l'importation en sélectionnant *Précédent* et en collant les utilisateurs copiés dans la boîte de dialogue *Importer les utilisateurs fédérés*.
+
+
++
+Après avoir fermé la boîte de dialogue *Importer les utilisateurs fédérés*, les informations sur les utilisateurs fédérés s'affichent sur la page Utilisateurs pour les utilisateurs importés avec succès.
+
 
 
 

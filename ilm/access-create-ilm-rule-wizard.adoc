@@ -24,11 +24,10 @@ NOTE: Si vous souhaitez créer la règle ILM par défaut d'une règle, suivez la
 * Vous avez configuré tous les pools de stockage cloud que vous prévoyez d'utiliser. Voir link:creating-cloud-storage-pool.html["Création d'un pool de stockage cloud"].
 * Vous connaissez le link:data-protection-options-for-ingest.html["options d'ingestion"].
 * Si vous devez créer une règle conforme pour l'utiliser avec le verrouillage objet S3, vous connaissez bien le link:requirements-for-s3-object-lock.html["Conditions requises pour le verrouillage d'objet S3"].
-* Si vous le souhaitez, vous avez regardé la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9872d38f-80b3-4ad4-9f79-b1ff008760c7["Vidéo : présentation des règles ILM"^].
+* En option, vous avez regardé la vidéo :
 +
-[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9872d38f-80b3-4ad4-9f79-b1ff008760c7]
-image::../media/video-screenshot-ilm-rules-118.png[Vidéo : présentation des règles ILM]
-
+.Aperçu des règles de l'ILM
+video::9872d38f-80b3-4ad4-9f79-b1ff008760c7[panopto]
 
 
 .Description de la tâche

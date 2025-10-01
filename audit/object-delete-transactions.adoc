@@ -38,27 +38,6 @@ link:sdel-s3-delete.html["SDEL : SUPPRESSION S3"]
 |===
 
 
-== Supprimez les messages d'audit Swift
-
-[cols="1a,1a,2a,1a,2a"]
-|===
-| Code | Nom | Description | Tracé | Voir 
-
-
- a| 
-WDEL
- a| 
-Suppression Swift
- a| 
-Demande de suppression de l'objet d'un conteneur ou du conteneur.
- a| 
-CBID, WOBJ
- a| 
-link:wdel-swift-delete.html["WDEL : SUPPRESSION rapide"]
-
-|===
-
-
 == Exemple : suppression d'objet S3
 
 Lorsqu'un client S3 supprime un objet d'un nœud de stockage (service LDR), un message d'audit est généré et enregistré dans le journal des audits.

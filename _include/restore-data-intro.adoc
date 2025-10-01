@@ -8,8 +8,8 @@
 
 Dans la mesure du possible, restaurez les données d'objet à l'aide de la page *Restauration de volume* du gestionnaire de grille.
 
-* Si les volumes sont répertoriés dans *MAINTENANCE* > *Restauration de volume* > *nœuds à restaurer*, restaurez les données d'objet à l'aide de link:../maintain/restoring-volume.html["Page de restauration de volume dans le Gestionnaire de grille"].
-* Si les volumes ne sont pas répertoriés dans *MAINTENANCE* > *Restauration de volume* > *nœuds à restaurer*, suivez les étapes ci-dessous pour utiliser le `repair-data` script pour restaurer les données d'objet.
+* Si les volumes sont répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, restaurez les données de l'objet à l'aide de l'link:../maintain/restoring-volume.html["Page de restauration de volume dans le Gestionnaire de grille"] .
+* Si les volumes ne sont pas répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, suivez les étapes ci-dessous pour utiliser le `repair-data` script pour restaurer les données de l'objet.
 +
 Si le nœud de stockage restauré contient moins de volumes que le nœud qu'il remplace, vous devez utiliser `repair-data` le script.
 
@@ -23,7 +23,7 @@ NOTE: Le script de réparation des données est obsolète et sera supprimé dans
 == Utilisez le `repair-data` script pour restaurer les données d'objet
 
 .Avant de commencer
-* Vous avez confirmé que le noeud de stockage récupéré a un état de connexion de *connecté* image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]dans l'onglet *NOEUDS* > *Présentation* du Gestionnaire de grille.
+* Vous avez confirmé que le nœud de stockage récupéré a un état de connexion *Connecté*image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"] dans l'onglet *Nœuds* > *Aperçu* dans le Gestionnaire de grille.
 
 
 .Description de la tâche

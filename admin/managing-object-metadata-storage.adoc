@@ -68,7 +68,7 @@ L'espace réservé aux métadonnées est un paramètre à l'échelle du système
 
 
  a| 
-11.5 à 11.9
+11,5 à 12,0
  a| 
 Au moins 128 Go sur chaque nœud de stockage de la grille
  a| 
@@ -116,7 +116,7 @@ Tout montant
 Procédez comme suit pour afficher le paramètre espace réservé aux métadonnées de votre système StorageGRID.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *système* > *Paramètres de stockage*.
+. Sélectionnez *Configuration* > *Système* > *Paramètres de stockage*.
 . Sur la page Paramètres de stockage, développez la section *espace réservé aux métadonnées*.
 
 
@@ -161,7 +161,7 @@ Plus ces valeurs sont faibles :
 La procédure suivante permet d'afficher l'espace réservé réel pour les métadonnées sur un nœud de stockage particulier.
 
 .Étapes
-. Dans Grid Manager, sélectionnez *NOEUDS* > *_Storage Node_*.
+. Dans le gestionnaire de grille, sélectionnez *Nœuds* > *_Nœud de stockage_*.
 . Sélectionnez l'onglet *stockage*.
 . Placez votre curseur sur le graphique stockage utilisé - métadonnées de l'objet et localisez la valeur *réel réservé*.
 +
@@ -173,7 +173,7 @@ Dans la capture d'écran, la valeur *réelle réservée* est de 8 To. Cette copi
 
 
 
-== Exemple d'espace de métadonnées réservé réel
+=== Exemple d'espace de métadonnées réservé réel
 
 Supposons que vous installiez un nouveau système StorageGRID à l'aide de la version 11.7 ou ultérieure. Dans cet exemple, supposons que chaque nœud de stockage dispose de plus de 128 Go de RAM et que le volume 0 du nœud de stockage 1 (SN1) est de 6 To. Sur la base de ces valeurs :
 
@@ -237,7 +237,7 @@ Le tableau suivant montre comment StorageGRID calcule l' *espace de métadonnée
 La procédure suivante permet d'afficher l'espace de métadonnées autorisé pour un nœud de stockage.
 
 .Étapes
-. Dans Grid Manager, sélectionnez *NODES*.
+. Dans le gestionnaire de grille, sélectionnez *Nœuds*.
 . Sélectionnez le nœud de stockage.
 . Sélectionnez l'onglet *stockage*.
 . Placez votre curseur sur le graphique de métadonnées de l'objet stockage utilisé - et localisez la valeur *autorisé*.

@@ -26,14 +26,6 @@ entries:
     url: "/expand/adding-new-site.html"
 - title: Rassembler les matériaux nécessaires
   url: "/expand/gather-required-materials.html"
-- title: Ajout de volumes de stockage
-  entries:
-  - title: Ajout de volumes de stockage aux nœuds de stockage
-    url: "/expand/adding-storage-volumes-to-storage-nodes.html"
-  - title: 'VMware : ajoutez des volumes de stockage au nœud de stockage'
-    url: "/expand/vmware-adding-storage-volumes-to-storage-node.html"
-  - title: 'Linux : ajoutez des volumes SAN ou DAS au nœud de stockage'
-    url: "/expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html"
 - title: Ajout de nœuds grid ou d'un site
   entries:
   - title: Ajout de nœuds grid à un site existant ou ajout d'un site
@@ -44,6 +36,14 @@ entries:
     url: "/expand/deploying-new-grid-nodes.html"
   - title: Réaliser une extension
     url: "/expand/performing-expansion.html"
+- title: Ajout de volumes de stockage
+  entries:
+  - title: Ajout de volumes de stockage aux nœuds de stockage
+    url: "/expand/adding-storage-volumes-to-storage-nodes.html"
+  - title: 'VMware : ajoutez des volumes de stockage au nœud de stockage'
+    url: "/expand/vmware-adding-storage-volumes-to-storage-node.html"
+  - title: 'Linux : ajoutez des volumes SAN ou DAS au nœud de stockage'
+    url: "/expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html"
 - title: Configuration du système faisant l'objet de l'extension
   entries:
   - title: Étapes de configuration

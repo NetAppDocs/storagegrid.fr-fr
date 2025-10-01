@@ -19,9 +19,9 @@ Vous pouvez créer de nouveaux groupes plus rapidement en dupliquant un groupe e
 
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Cochez la case du groupe que vous souhaitez dupliquer.
-. Sélectionnez *Dupliquer le groupe*. Pour plus de détails sur la création d'un groupe, reportez-vous aux instructions de création de groupes pour link:creating-groups-for-s3-tenant.html["Un locataire S3"] ou pour link:creating-groups-for-swift-tenant.html["Un locataire Swift"].
+. Sélectionnez *Dupliquer le groupe*.  Pour plus de détails sur la création d'un groupe, consultez les instructions de création de groupes pourlink:creating-groups-for-s3-tenant.html["Un locataire S3"] .
 . Sélectionnez l'onglet *Groupe local* pour créer un groupe local ou sélectionnez l'onglet *Groupe fédéré* pour importer un groupe à partir du référentiel d'identité configuré précédemment.
 +
 Si l'authentification unique (SSO) est activée pour votre système StorageGRID, les utilisateurs appartenant à des groupes locaux ne pourront pas se connecter au gestionnaire de locataires, bien qu'ils puissent utiliser des applications clientes pour gérer les ressources du locataire, en fonction de link:tenant-management-permissions.html["autorisations de groupe"].

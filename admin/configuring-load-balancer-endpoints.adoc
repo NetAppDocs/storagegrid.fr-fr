@@ -13,9 +13,6 @@ summary: 'Les terminaux d"équilibrage de la charge déterminent les ports et le
 [role="lead"]
 Les terminaux d'équilibrage de la charge déterminent les ports et les protocoles réseau que les clients S3 peuvent utiliser lors de la connexion à l'équilibreur de charge StorageGRID sur les nœuds de passerelle et d'administration. Vous pouvez également utiliser des noeuds finaux pour accéder au Gestionnaire de grille, au Gestionnaire de locataires, ou aux deux.
 
-
-TIP: Les détails SWIFT ont été supprimés de cette version du site doc. Voir https://docs.netapp.com/us-en/storagegrid-118/admin/configuring-client-connections.html["Configurez les connexions des clients S3 et Swift"^].
-
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine"].
@@ -41,15 +38,15 @@ NOTE: Les modifications apportées à un certificat de point final peuvent prend
 
 == Créer un noeud final d'équilibreur de charge
 
-Chaque terminal de l'équilibreur de charge client S3 spécifie un port, un type de client (S3) et un protocole réseau (HTTP ou HTTPS). Les noeuds finaux de l'équilibreur de charge de l'interface de gestion indiquent un port, un type d'interface et un réseau client non fiable.
+Chaque point de terminaison d'équilibrage de charge client S3 spécifie un port, un type de client (S3) et un protocole réseau (HTTP ou HTTPS).  Les points de terminaison de l'équilibreur de charge de l'interface de gestion spécifient un port, un type d'interface et un réseau client non approuvé.
 
 
 
 === Accéder à l'assistant
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *noeuds finaux de l'équilibreur de charge*.
-. Pour créer un noeud final pour un client S3 ou Swift, sélectionnez l'onglet *S3 ou Swift client*.
+. Sélectionnez *Configuration* > *Réseau* > *Points de terminaison de l'équilibreur de charge*.
+. Pour créer un point de terminaison pour un client S3, sélectionnez l'onglet *Client S3*.
 . Pour créer un noeud final permettant d'accéder au Gestionnaire de grille, au Gestionnaire de locataires ou aux deux, sélectionnez l'onglet *interface de gestion*.
 . Sélectionnez *Créer*.
 
@@ -64,7 +61,7 @@ Chaque terminal de l'équilibreur de charge client S3 spécifie un port, un type
 
 [role="tabbed-block"]
 ====
-.Client S3 ou Swift
+.Client S3
 --
 [cols="1a,3a"]
 |===
@@ -90,7 +87,7 @@ Si vous entrez *80* ou *8443*, le noeud final est configuré uniquement sur les 
  a| 
 Type de client
  a| 
-Type d'application client qui utilisera ce noeud final, *S3* ou *Swift*.
+Doit être *S3*.
 
 
 
@@ -102,6 +99,15 @@ Protocole réseau utilisé par les clients lors de la connexion à ce noeud fina
 * Sélectionnez *HTTPS* pour la communication sécurisée et cryptée TLS (recommandé). Vous devez joindre un certificat de sécurité avant de pouvoir enregistrer le noeud final.
 * Sélectionnez *HTTP* pour une communication moins sécurisée et non chiffrée. Utilisez HTTP uniquement pour une grille autre que la production.
 
+
+
+
+ a| 
+Activer la mise en cache
+ a| 
+Activer ou désactiverlink:../admin/managing-load-balancing.html#considerations-for-load-balancer-caching["mise en cache sur les nœuds de passerelle"] pour ce point de terminaison d'équilibrage de charge.
+
+Si des problèmes surviennent avec la mise en cache, reportez-vous àlink:../troubleshoot/troubleshooting-load-balancer-caching.html["Résoudre les problèmes de mise en cache de l'équilibreur de charge"] .
 
 |===
 --

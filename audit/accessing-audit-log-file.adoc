@@ -13,6 +13,8 @@ summary: 'Le partage d"audit contient le fichier audit.log actif et tous les fic
 [role="lead"]
 Le partage d'audit contient le fichier actif `audit.log` et tous les fichiers journaux d'audit compressés. Vous pouvez accéder aux fichiers journaux d'audit directement à partir de la ligne de commande du nœud d'administration.
 
+Le `audit.log` le fichier reste vide sauf si vous configurez StorageGRID pour *Nœuds d'administration/nœuds locaux* ou *Nœud d'administration et serveur syslog externe*. Pour plus d'informations, reportez-vous à link:../monitor/configure-log-management.html#select-log-location["Sélectionnez l'emplacement du journal"] .
+
 .Avant de commencer
 * Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
 * Vous devez avoir le `Passwords.txt` fichier.
@@ -33,7 +35,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 . Accédez au répertoire contenant les fichiers journaux d'audit :
 +
-`cd /var/local/log`
+`cd  /var/local/audit/export/`
 
 . Afficher le fichier journal d'audit actuel ou enregistré, selon les besoins.
 

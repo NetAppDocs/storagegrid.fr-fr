@@ -48,6 +48,7 @@ Avant d'ajouter des nœuds de stockage à des sites existants, consultez les con
 * Vous pouvez ajouter des nœuds de stockage et d'autres types de nœuds en une seule procédure d'extension.
 * Avant de démarrer la procédure d'extension, vous devez vérifier que toutes les opérations de réparation des données effectuées dans le cadre d'une restauration sont terminées. Voir link:../maintain/checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"].
 * Si vous devez supprimer des nœuds de stockage avant ou après une extension, vous ne devez pas désaffecter plus de 10 nœuds de stockage dans une procédure de nœud de mise hors service unique.
+* Ajoutez suffisamment de nœuds de stockage pour maintenir les performances d’E/S de stockage sous-jacentes.  Les opérations d’écriture seront réparties entre les nœuds de stockage en fonction de la capacité de stockage disponible.  Si les nœuds de stockage étendus disposent d'une capacité de stockage disponible nettement supérieure, ces nœuds recevront beaucoup plus d'écritures.  En particulier, lorsque les nœuds de stockage existants sont presque pleins, les nouvelles écritures s'appuieront uniquement sur les nœuds de stockage étendus.  Les opérations de lecture et de suppression seront gérées en fonction de votre charge de travail spécifique.
 
 
 
@@ -56,10 +57,10 @@ Avant d'ajouter des nœuds de stockage à des sites existants, consultez les con
 
 Lors de la configuration de l'extension, vous devez choisir d'inclure le service contrôleur de domaine d'administration (ADC) sur chaque nouveau nœud de stockage. Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau.
 
+* Vous pouvez link:../maintain/move-adc-service.html["déplacer le service ADC d'un nœud de stockage à un autre sur le même site"] .
 * Le système StorageGRID nécessite qu'un link:../maintain/understanding-adc-service-quorum.html["Quorum des services ADC"]soit disponible sur chaque site et à tout moment.
 * Au moins trois nœuds de stockage de chaque site doivent inclure le service ADC.
 * Il est déconseillé d'ajouter le service ADC à chaque nœud de stockage. L'inclusion d'un trop grand nombre de services ADC peut provoquer des ralentissements en raison de l'augmentation de la quantité de communication entre les nœuds.
 * Une seule grille ne doit pas comporter plus de 48 nœuds de stockage avec le service ADC. Cela équivaut à 16 sites avec trois services ADC sur chaque site.
-* En général, lorsque vous sélectionnez le paramètre *Service ADC* pour un nouveau nœud, vous devez sélectionner *automatique*. Sélectionnez *Oui* uniquement si le nouveau nœud remplace un autre nœud de stockage qui inclut le service ADC. Comme vous ne pouvez pas désaffecter un nœud de stockage si trop peu de services ADC sont conservés, cela garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
-* Vous ne pouvez pas ajouter le service ADC à un nœud après son déploiement.
+* En général, lorsque vous sélectionnez le paramètre *Service ADC* pour un nouveau nœud, vous devez sélectionner *Automatique*.  Sélectionnez *Oui* uniquement si le nouveau nœud remplace un autre nœud de stockage qui inclut le service ADC.  Étant donné que vous ne pouvez pas désactiver un nœud de stockage s'il reste trop peu de services ADC, la sélection de *Oui* garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
 

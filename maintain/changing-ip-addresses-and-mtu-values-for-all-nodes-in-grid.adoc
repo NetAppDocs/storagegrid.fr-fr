@@ -36,12 +36,13 @@ NOTE: Si les serveurs DNS existants ne seront pas accessibles à la grille sur l
 
 +
 
-NOTE: Si l'authentification SSO est activée pour votre système StorageGRID et que les approbations des parties utilisatrices ont été configurées à l'aide d'adresses IP de nœud d'administration (au lieu de noms de domaine entièrement qualifiés, selon les recommandations), soyez prêt à mettre à jour ou à reconfigurer ces approbations des parties utilisatrices dans Active Directory Federation Services (AD FS). Immédiatement après la modification des adresses IP. Voir link:../admin/configuring-sso.html["Configurer l'authentification unique"].
+NOTE: Si SSO est activé pour votre système StorageGRID et que toutes les approbations de parties de confiance ont été configurées à l'aide d'adresses IP de nœud d'administration (au lieu de noms de domaine complets, comme recommandé), soyez prêt à mettre à jour ou à reconfigurer ces approbations de parties de confiance dans Active Directory Federation Services (AD FS) immédiatement après avoir modifié les adresses IP. Voir link:../admin/configure-sso.html["Configurer l'authentification unique"] .
 
 +
 
 NOTE: Si nécessaire, ajoutez le nouveau sous-réseau pour les nouvelles adresses IP.
 
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Connectez-vous au nœud d'administration principal :
 +
 .. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
@@ -130,12 +131,13 @@ NOTE: L'ensemble de la grille doit être arrêté, de sorte que tous les nœuds 
 .. Si vous avez ajouté des serveurs DNS, supprimez les anciennes valeurs du serveur DNS.
 
 
-. Téléchargez le nouveau package de récupération depuis Grid Manager.
+. Téléchargez le nouveau package de récupération à partir du gestionnaire de grille.
 +
-.. Sélectionnez *MAINTENANCE* > *système* > *progiciel de récupération*.
+.. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
 .. Saisissez la phrase secrète pour le provisionnement.
 
 
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé de modifier les adresses IP.
 
 
 .Informations associées

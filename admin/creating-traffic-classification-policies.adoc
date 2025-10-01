@@ -21,7 +21,7 @@ Vous pouvez créer des règles de classification du trafic si vous souhaitez con
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 . Sélectionnez *Créer*.
 . Entrez un nom et une description (facultatif) pour la stratégie et sélectionnez *Continuer*.
 +
@@ -122,7 +122,7 @@ Unité qui décrit la valeur que vous avez saisie.
 
 |===
 +
-Par exemple, si vous souhaitez créer une limite de bande passante de 40 Gbit/s pour un niveau SLA, créez deux limites de bande passante agrégée : GET/HEAD à 40 Gbit/s et PUT/POST/DELETE à 40 Gbit/s.
+Par exemple, si vous souhaitez créer une limite de bande passante de 4 Go/s pour un niveau SLA, créez deux limites de bande passante agrégées : GET/HEAD à 4 Go/s et PUT/POST/DELETE à 4 Go/s.
 
 . Sélectionnez *Continuer*.
 . Lisez et passez en revue la politique de classification du trafic. Utilisez le bouton *Précédent* pour revenir en arrière et apporter les modifications nécessaires. Lorsque vous êtes satisfait de la stratégie, sélectionnez *Enregistrer et continuer*.

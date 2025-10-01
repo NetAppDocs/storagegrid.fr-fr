@@ -27,7 +27,7 @@ Selon le problème, vous pouvez vouloir link:../audit/object-ingest-transactions
 . Sélectionnez *ILM* > *Object metadata Lookup*.
 . Saisissez l'identifiant de l'objet dans le champ *Identificateur*.
 +
-Vous pouvez entrer un UUID, un CBID, un compartiment S3/une clé-objet ou un nom-objet/conteneur Swift.
+Vous pouvez saisir un UUID, un CBID ou une clé de bucket/objet S3.
 
 . Si vous souhaitez rechercher une version spécifique de l'objet, saisissez l'ID de version (facultatif).
 +

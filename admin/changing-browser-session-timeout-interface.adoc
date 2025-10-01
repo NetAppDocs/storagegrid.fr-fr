@@ -29,7 +29,7 @@ Le délai d'inactivité du navigateur est également contrôlé par les élémen
 * Un minuteur StorageGRID séparé non configurable, inclus pour la sécurité du système. Le jeton d'authentification de chaque utilisateur expire 16 heures après la connexion de l'utilisateur. Lorsque l'authentification d'un utilisateur expire, cet utilisateur est automatiquement déconnecté, même si le délai d'inactivité du navigateur est désactivé ou si la valeur du délai d'inactivité du navigateur n'a pas été atteinte. Pour renouveler le jeton, l'utilisateur doit se reconnecter.
 * Paramètres de délai d'expiration pour le fournisseur d'identité, en supposant que l'authentification unique (SSO) est activée pour StorageGRID.
 +
-Si la fonction SSO est activée et que le navigateur d'un utilisateur arrive à expiration, l'utilisateur doit saisir à nouveau ses informations d'identification SSO pour accéder à StorageGRID à nouveau. Voir link:configuring-sso.html["Configurer l'authentification unique"].
+Si SSO est activé et que le navigateur d'un utilisateur expire, l'utilisateur doit ressaisir ses informations d'identification SSO pour accéder à nouveau à StorageGRID . Voir link:how-sso-works.html["Comment fonctionne l'authentification unique"] .
 
 
 
@@ -43,7 +43,7 @@ Cette option est désactivée par défaut, mais vous pouvez activer cette foncti
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres de sécurité*.
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres de sécurité*.
 . Sélectionnez l'onglet *interface*.
 . Pour modifier le paramètre de délai d'inactivité du navigateur :
 +

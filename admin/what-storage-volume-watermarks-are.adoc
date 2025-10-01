@@ -69,7 +69,7 @@ Vous pouvez afficher les paramètres actuels du filigrane ainsi que les valeurs 
 Vous pouvez afficher les paramètres actuels du filigrane de stockage dans Grid Manager.
 
 .Étapes
-. Sélectionnez *SUPPORT* > *autre* > *filigranes de stockage*.
+. Sélectionnez *Assistance* > *Autre* > *Filigranes de stockage*.
 . Sur la page filigranes de stockage, cochez la case utiliser les valeurs optimisées.
 +
 ** Si cette case est cochée, les trois filigranes sont optimisés pour chaque volume de stockage sur chaque nœud de stockage, en fonction de la taille du nœud de stockage et de la capacité relative du volume.
@@ -90,7 +90,7 @@ Lorsque vous spécifiez des paramètres de filigrane personnalisés, vous devez 
 
 StorageGRID utilise deux metrics Prometheus pour afficher les valeurs optimisées qu'il a calculées pour le seuil en lecture seule souple du volume de stockage. Vous pouvez afficher les valeurs minimale et maximale optimisées pour chaque nœud de stockage de la grille.
 
-. Sélectionnez *SUPPORT* > *Outils* > *métriques*.
+. Sélectionnez *Support* > *Outils* > *Métriques*.
 . Dans la section Prometheus, sélectionnez le lien permettant d'accéder à l'interface utilisateur Prometheus.
 . Pour afficher le filigrane minimum en lecture seule programmable recommandé, entrez la mesure Prometheus suivante et sélectionnez *Execute* :
 +

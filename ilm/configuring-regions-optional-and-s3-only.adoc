@@ -2,16 +2,16 @@
 permalink: ilm/configuring-regions-optional-and-s3-only.html 
 sidebar: sidebar 
 keywords: S3 regions, region, ilm rules 
-summary: Les règles ILM permettent de filtrer des objets en fonction des régions où des compartiments S3 sont créés, ce qui vous permet de stocker des objets provenant de différentes régions dans différents emplacements de stockage. 
+summary: Les règles ILM peuvent filtrer les objets en fonction des régions facultatives dans lesquelles les compartiments S3 sont créés, vous permettant de stocker des objets de différentes régions dans différents emplacements de stockage. 
 ---
-= Configuration des régions (facultatif et S3 uniquement)
+= Configurer les régions S3 pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Les règles ILM permettent de filtrer des objets en fonction des régions où des compartiments S3 sont créés, ce qui vous permet de stocker des objets provenant de différentes régions dans différents emplacements de stockage.
+Les règles ILM peuvent filtrer les objets en fonction des régions facultatives dans lesquelles les compartiments S3 sont créés, vous permettant de stocker des objets de différentes régions dans différents emplacements de stockage.
 
 Si vous souhaitez utiliser une région de compartiment S3 comme filtre dans une règle, vous devez d'abord créer les régions à utiliser par les compartiments du système.
 
@@ -31,16 +31,16 @@ Lorsque vous créez une règle ILM, vous pouvez utiliser la région associée à
 Lors de la configuration de régions, suivez les consignes suivantes :
 
 * Par défaut, tous les compartiments sont considérés comme appartenant à la `us-east-1` région.
-* Vous devez créer les régions à l'aide de Grid Manager avant de spécifier une région autre que celle par défaut lors de la création de compartiments à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires ou avec l'élément de demande LocationConstraint pour les requêtes d'API PUT S3. Une erreur se produit si une demande PUT Bucket utilise une région qui n'a pas été définie dans StorageGRID.
+* Vous devez créer les régions à l'aide du gestionnaire de grille avant de pouvoir spécifier une région non par défaut lors de la création de compartiments à l'aide de l'API Tenant Manager ou Tenant Management, ou avec l'élément de demande LocationConstraint pour les demandes d'API S3 PUT Bucket.  Une erreur se produit si une demande PUT Bucket utilise une région qui n'a pas été définie dans StorageGRID.
 * Lors de la création du compartiment S3, vous devez utiliser le nom exact de la région. Les noms de région sont sensibles à la casse. Les caractères autorisés sont des chiffres, des lettres et des tirets.
 +
 
-NOTE: L'UE n'est pas considérée comme un alias pour l'ue-Ouest-1. Si vous souhaitez utiliser la région UE ou eu-West-1, vous devez utiliser le nom exact.
+NOTE: EU n'est pas considéré comme un alias pour eu-west-1.  Si vous souhaitez utiliser la région UE ou eu-ouest-1, vous devez utiliser le nom exact.
 
 * Vous ne pouvez pas supprimer ou modifier une région si elle est utilisée dans une règle affectée à une stratégie (active ou inactive).
 * Si vous utilisez une région non valide en tant que filtre avancé dans une règle ILM, vous ne pouvez pas ajouter cette règle à une règle.
 +
-Une région non valide peut se produire si vous utilisez une région en tant que filtre avancé dans une règle ILM, mais que vous supprimez cette région ultérieurement, ou si vous utilisez l'API de gestion de grille pour créer une règle et spécifier une région que vous n'avez pas définie.
+Une région non valide peut se produire si vous utilisez une région comme filtre avancé dans une règle ILM, mais que vous supprimez ultérieurement cette région, ou si vous utilisez l'API Grid Management pour créer une règle et spécifier une région que vous n'avez pas définie.
 
 * Si vous supprimez une région après l'avoir utilisée pour créer un compartiment S3, vous devez ajouter de nouveau la région si vous souhaitez utiliser le filtre avancé contrainte d'emplacement pour trouver des objets dans ce compartiment.
 
@@ -48,23 +48,43 @@ Une région non valide peut se produire si vous utilisez une région en tant que
 .Étapes
 . Sélectionnez *ILM* > *régions*.
 +
-La page régions s'affiche, les régions actuellement définies étant répertoriées. *Région 1* affiche la région par défaut, `us-east-1` qui ne peut pas être modifiée ou supprimée.
+La page Régions apparaît.
 
-. Pour ajouter une région :
+. Sélectionnez l’onglet *Toutes les régions* ou *Région par défaut*.
 +
-.. Sélectionnez *Ajouter une autre région*.
+[role="tabbed-block"]
+====
+.Toutes les régions
+--
+L'onglet *Toutes les régions* répertorie les régions actuellement définies, y compris la région par défaut définie.
+
+
+NOTE: Vous ne pouvez pas supprimer ou modifier la région par défaut dans l'onglet *Toutes les régions*.  Utilisez l’onglet *Région par défaut* pour modifier la région par défaut.
+
+.. Pour ajouter une région, sélectionnez *Ajouter une autre région*.
 .. Entrez le nom d'une région à utiliser lors de la création de compartiments S3.
 +
 Vous devez utiliser ce nom de région exact comme élément de demande LocationConstraint lorsque vous créez le compartiment S3 correspondant.
 
-
-
-. Pour supprimer une région inutilisée, sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["Supprimer l'icône"].
+.. Pour supprimer une région inutilisée, sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["Supprimer l'icône"].
 +
 Un message d'erreur s'affiche si vous tentez de supprimer une région actuellement utilisée dans une stratégie (active ou inactive).
 
-. Une fois les modifications effectuées, sélectionnez *Enregistrer*.
+.. Une fois les modifications effectuées, sélectionnez *Enregistrer*.
 +
 Vous pouvez maintenant sélectionner ces régions dans la section filtres avancés de l'étape 1 de l'assistant de création de règles ILM. Voir link:create-ilm-rule-enter-details.html#use-advanced-filters-in-ilm-rules["Utilisation de filtres avancés dans les règles ILM"].
 
+
+
+--
+.Région par défaut
+--
+L'onglet *Région par défaut* affiche la région par défaut actuellement définie, que vous pouvez modifier.
+
+.. Pour modifier la région par défaut, sélectionnez le nom de la région parmi les options disponibles dans la liste déroulante *Région par défaut*.
+.. Sélectionnez *Enregistrer*.
+
+
+--
+====
 

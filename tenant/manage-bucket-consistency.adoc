@@ -63,7 +63,7 @@ Les paramètres de compartiment suivants utilisent la cohérence *strong* par d�
 * link:deleting-s3-bucket-objects.html["Suppression du compartiment vide en arrière-plan"]
 * link:enabling-or-disabling-last-access-time-updates.html["Heure du dernier accès"]
 * link:../s3/create-s3-lifecycle-configuration.html["Cycle de vie des compartiments"]
-* link:../s3/bucket-and-group-access-policies.html["Politique des compartiments"]
+* link:../s3/use-access-policies.html["Politique des compartiments"]
 * link:../s3/operations-on-buckets.html["Balisage du compartiment"]
 * link:changing-bucket-versioning.html["Gestion des versions de compartiment"]
 * link:using-s3-object-lock.html["Verrouillage d'objet S3"]
@@ -76,7 +76,7 @@ NOTE: La valeur de cohérence pour la gestion des versions des compartiments, le
 Les paramètres de compartiment suivants n'utilisent pas une cohérence élevée et offrent une plus grande disponibilité en cas de modification. Les modifications apportées à ces paramètres peuvent prendre un certain temps avant d'avoir un effet.
 
 * link:considerations-for-platform-services.html["Configuration des services de plate-forme : intégration de notification, réplication ou recherche"]
-* link:configuring-cross-origin-resource-sharing-cors.html["Configuration DE L'INFRASTRUCTURE CORS"]
+* link:configuring-cross-origin-resource-sharing-for-buckets-and-objects.html["Configurer StorageGRID CORS pour les buckets et les objets"]
 * <<change-bucket-consistency,Modifier la cohérence du compartiment>>
 
 

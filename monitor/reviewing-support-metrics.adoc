@@ -25,7 +25,7 @@ La page Metrics vous permet d'accéder aux interfaces utilisateur de Prometheus 
 NOTE: Les outils disponibles sur la page métriques sont destinés au support technique. Certaines fonctions et options de menu de ces outils sont intentionnellement non fonctionnelles et peuvent faire l'objet de modifications. Voir la liste de link:commonly-used-prometheus-metrics.html["Metrics Prometheus couramment utilisés"].
 
 .Étapes
-. Comme indiqué par le support technique, sélectionnez *SUPPORT* > *Outils* > *métriques*.
+. Comme indiqué par le support technique, sélectionnez *Support* > *Outils* > *Métriques*.
 +
 Voici un exemple de la page métriques :
 

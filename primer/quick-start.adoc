@@ -45,14 +45,12 @@ Découvrez comment :
 
 [role="quick-margin-list"]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Installez le matériel de l'appliance"^]
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-* link:../vmware/index.html["Installez StorageGRID sur VMware"]
+* link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"]
 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Connectez-vous et vérifiez l'état du système
 [role="quick-margin-para"]
-Dès que vous installez le nœud d'administration principal, vous pouvez vous connecter à Grid Manager. Ensuite, vous pouvez vérifier l'état de santé général de votre nouveau système, activer AutoSupport et les e-mails d'alerte, et configurer les noms de domaine de terminaux S3.
+Une fois l’installation de la grille terminée, vous pouvez vous connecter au gestionnaire de grille.  À partir de là, vous pouvez vérifier l’état général de votre nouveau système, activer AutoSupport et les e-mails d’alerte, et configurer les noms de domaine de point de terminaison S3.
 
 [role="quick-margin-para"]
 Découvrez comment :

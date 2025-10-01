@@ -26,7 +26,7 @@ Lorsque vous installez StorageGRID et ajoutez des sites, une politique ILM par d
 * Si votre grille contient plusieurs sites, la règle par défaut réplique une copie de chaque objet sur chaque site.
 
 
-Si la stratégie par défaut ne répond pas à vos besoins en stockage, vous pouvez créer vos propres règles et règles. Voir link:what-ilm-rule-is.html["Création d'une règle ILM"] et link:creating-ilm-policy.html["Créer une règle ILM"].
+Si la politique par défaut ne répond pas à vos besoins de stockage, vous pouvez créer vos propres règles et politiques.  Voirlink:what-ilm-rule-is.html["Création d'une règle ILM"] etlink:creating-ilm-policy.html["Créer une règle ILM"] .
 
 
 
@@ -56,6 +56,11 @@ Balises de règles ILM:: Si vous souhaitez permettre aux locataires de basculer 
 Par exemple, vous pouvez avoir trois étiquettes nommées Gold, Silver et Bronze. Vous pouvez attribuer une règle ILM à chaque balise, en fonction de la durée et de l'emplacement où cette règle stocke les objets. Les locataires peuvent choisir la règle à utiliser en étiquetant leurs compartiments. Un compartiment marqué Gold est géré par la politique Gold et reçoit le niveau Gold de protection des données et de performances.
 
 --
+
+
+
+NOTE: Tu peuxlink:../ilm/creating-ilm-policy.html#activate-ilm-policy["créer un maximum de 10 balises de stratégie"] pour votre grille.
+
 Balise de règle ILM par défaut:: Une balise de règle ILM par défaut est automatiquement créée lors de l'installation de StorageGRID. Chaque grille doit avoir une règle active affectée à la balise par défaut. La règle par défaut s'applique à tous les compartiments S3 non balisés.
 
 

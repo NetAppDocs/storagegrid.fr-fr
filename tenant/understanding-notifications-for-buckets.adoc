@@ -11,7 +11,7 @@ summary: 'Vous pouvez activer la notification d"événements pour un compartimen
 
 
 [role="lead"]
-Vous pouvez activer la notification d'événements pour un compartiment S3 si vous souhaitez que StorageGRID envoie des notifications sur des événements spécifiés à un cluster Kafka de destination ou à Amazon simple notification Service.
+Vous pouvez activer la notification d'événement pour un compartiment S3 si vous souhaitez que StorageGRID envoie des notifications sur des événements spécifiés à un cluster Kafka de destination, à un point de terminaison webhook ou à Amazon Simple Notification Service.
 
 Par exemple, vous pouvez configurer l'envoi d'alertes aux administrateurs pour chaque objet ajouté à un compartiment, où les objets représentent les fichiers de journal associés à un événement système critique.
 

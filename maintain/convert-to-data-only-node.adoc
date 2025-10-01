@@ -1,0 +1,57 @@
+---
+permalink: maintain/convert-to-data-only-node.html 
+sidebar: sidebar 
+keywords: storagegrid, convert node, data-only node 
+summary: Pour augmenter les performances, vous pouvez convertir des nœuds de stockage non ADC plus lents en nœuds de stockage de données uniquement. 
+---
+= Convertir un nœud de stockage en nœud de données uniquement
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour augmenter les performances, vous pouvez convertir des nœuds de stockage non ADC plus lents en nœuds de stockage de données uniquement.
+
+Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
+
+De plus, vous pouvez obtenir davantage de capacité de métadonnées en supprimant les nœuds à faible RAM de Cassandra, ce qui augmente la limite de capacité de métadonnées par nœud. link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"] .
+
+Lors de la conversion de nœuds de données uniquement, la grille doit contenir au moins trois nœuds de stockage combinés ou de métadonnées uniquement par site.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Le nœud de stockage que vous souhaitez convertir ne contient pas le service ADC ou vous avezlink:../maintain/move-adc-service.html["déplacé le service ADC"] vers un autre nœud.
+* Le nœud de stockage n’est pas un nœud de métadonnées uniquement ou un nœud de données uniquement.
+* Le nœud de stockage que vous souhaitez convertir ne contient pas le service ADC ou vous avezlink:../maintain/move-adc-service.html["déplacé le service ADC"] vers un autre nœud.
+* Il y a suffisamment d'espace de métadonnées sur d'autres nœuds du site (ou vous avezlink:../expand/index.html["élargi votre grille"] ) pour héberger les métadonnées qui migreront à partir du nœud de stockage que vous convertissez.
++
+[CAUTION]
+====
+** Si les métadonnées qui migrent vers d'autres nœuds sur le même site dépassent la taille dulink:../admin/managing-object-metadata-storage.html["espace réservé aux métadonnées"] , la grille deviendra instable.
+** Une fois la conversion lancée, vous ne pourrez plus étendre la grille.
+
+
+====
+
+
+.Description de la tâche
+Utilisez cette procédure pour convertir un ou plusieurs nœuds de stockage combinés qui ne contiennent pas le service ADC en nœuds de données uniquement.
+
+En plus de convertir le nœud de stockage, cette procédure désaffecte Cassandra du nœud.  Toutes les métadonnées seront migrées vers des nœuds de stockage combinés ou contenant uniquement des métadonnées.  Selon la quantité de métadonnées à migrer, cette procédure peut prendre jusqu'à plusieurs jours par nœud.
+
+
+TIP: En règle générale, vous pouvez convertir jusqu'à 10 nœuds à la fois si l'utilisation des métadonnées par nœud est inférieure à 1 To.  Si l'utilisation des métadonnées par nœud est supérieure à 1 To, convertissez jusqu'à 5 nœuds par procédure à la place.
+
+.Étapes
+. Enregistrez les ID de nœud des nœuds de stockage non ADC que vous souhaitez convertir.
+. En haut du Gestionnaire de grille, sélectionnez l'icône d'aide et sélectionnez *documentation API*.
+. Sélectionnez *aller à la documentation privée de l'API*.
+. Sélectionnez le `POST /private/convert-to-data-only-node/start` opération. Consultez link:../admin/using-grid-management-api.html#issue-api-requests["Émettre des requêtes API"] pour plus d'informations.
++
+Chaque nœud redémarrera pendant la procédure.
+
+. Vous pouvez utiliser `GET /private/convert-to-data-only-node` pour surveiller la procédure.  Si des erreurs surviennent, sélectionnez `POST /private/convert-to-data-only-node/retry` pour réessayer la procédure.
+. link:../maintain/downloading-recovery-package.html["Télécharger un package de récupération"]après avoir terminé cette procédure.
+

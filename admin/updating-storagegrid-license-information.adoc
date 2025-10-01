@@ -20,7 +20,7 @@ Vous devez mettre à jour les informations de licence de votre système StorageG
 
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *système* > *Licence*.
+. Sélectionnez *Maintenance* > *Système* > *Licence*.
 . Dans la section mettre à jour la licence, sélectionnez *Parcourir*.
 . Localisez et sélectionnez le nouveau fichier de licence (`.txt`).
 +

@@ -22,7 +22,7 @@ Selon le type de défaillance, il se peut que vous ne puissiez pas copier les jo
 NOTE: Si les journaux d'audit ne sont pas accessibles sur le nœud d'administration défaillant maintenant, vous pourrez peut-être y accéder ultérieurement, par exemple après la restauration de l'hôte.
 
 .Étapes
-. Si possible, connectez-vous au nœud d'administration défaillant. Sinon, connectez-vous au nœud d'administration principal ou à un autre nœud d'administration, le cas échéant.
+. Connectez-vous au nœud d’administration principal défaillant, si possible.  Sinon, connectez-vous à n’importe quel nœud d’administration disponible.
 +
 .. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
 .. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
@@ -36,14 +36,28 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 . Arrêtez le service AMS pour l'empêcher de créer un nouveau fichier journal :``service ams stop``
 . Accédez au répertoire d'exportation d'audit :
 +
-`cd /var/local/log`
+`cd /var/local/audit/export`
 
-. Renommez le fichier source `audit.log` avec un nom de fichier numéroté unique. Par exemple, renommez le fichier audit.log en `2023-10-25.txt.1`.
++
+(ou `cd /var/local/log` sur les systèmes antérieurs)
+
+. Renommez le fichier journal source avec un nom de fichier numéroté unique.
++
+[NOTE]
+====
+** Si le fichier journal est dans le `/var/local/audit/export` répertoire, son nom est `audit.log` .
+** Si le fichier journal est dans le `/var/local/log` répertoire, son nom est `localaudit.log` .
+
+
+====
++
+Par exemple, renommez le `localaudit.log` fichier à `2025-10-22.txt.1` .
+
 +
 [listing]
 ----
 ls -l
-mv audit.log 2023-10-25.txt.1
+mv localaudit.log 2025-10-22.txt.1
 ----
 . Redémarrez le service AMS : `service ams start`
 . Créez le répertoire pour copier tous les fichiers journaux d'audit dans un emplacement temporaire sur un nœud de grille distinct : `ssh admin@_grid_node_IP_ mkdir -p /var/local/tmp/saved-audit-logs`

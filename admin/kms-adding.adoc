@@ -30,7 +30,7 @@ Si possible, configurez tous les serveurs de gestion de clés spécifiques au si
 À l'étape 1 (détails KMS) de l'assistant Add a Key Management Server (Ajouter un serveur de gestion des clés), vous fournissez des informations sur le cluster KMS ou KMS.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *serveur de gestion des clés*.
+. Sélectionnez *Configuration* > *Sécurité* > *Serveur de gestion des clés*.
 +
 La page serveur de gestion des clés s'affiche avec l'onglet Détails de la configuration sélectionné.
 

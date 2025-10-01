@@ -6,7 +6,7 @@
 
 == Rechercher le nom d'hôte pour le noeud de stockage
 
-. Connectez-vous au nœud d'administration principal :
+. Connectez-vous à n’importe quel nœud d’administration :
 +
 .. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
 .. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
@@ -42,7 +42,7 @@ Cette commande répare les données répliquées sur un nœud de stockage nommé
 `repair-data start-replicated-node-repair --nodes SG-DC-SN3`
 
 
-NOTE: Lorsque les données d'objet sont restaurées, l'alerte *objets perdus* est déclenchée si le système StorageGRID ne peut pas localiser les données d'objet répliquées. Des alertes peuvent être déclenchées sur les nœuds de stockage dans le système. Vous devez déterminer la cause de la perte et si la récupération est possible. Voir link:../troubleshoot/investigating-lost-objects.html["Rechercher les objets perdus"].
+NOTE: Lorsque les données d'objet sont restaurées, l'alerte *Objets perdus* est déclenchée si le système StorageGRID ne parvient pas à localiser les données d'objet répliquées.  Des alertes peuvent être déclenchées sur les nœuds de stockage dans tout le système.  Vous devez déterminer la cause de la perte et si une récupération est possible. Voir link:../troubleshoot/investigating-potentially-lost-objects.html["Enquêter sur les objets potentiellement perdus"] .
 
 --
 .Données avec code d'effacement (EC)

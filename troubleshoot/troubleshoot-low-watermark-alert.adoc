@@ -84,7 +84,7 @@ Vous pouvez résoudre l'alerte *dépassement de filigrane en lecture seule* en m
 === Évaluer l'utilisation des données d'objet pour l'ensemble de la grille
 
 .Étapes
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Pour chaque site de la grille, développez la liste des nœuds.
 . Examinez les valeurs de pourcentage affichées dans la colonne *données objet utilisées* pour chaque nœud de stockage de chaque site.
 +
@@ -105,7 +105,7 @@ image::../media/nodes_page_object_data_used_with_alert.png[Page nœuds affichant
 StorageGRID utilise deux metrics Prometheus pour afficher les valeurs optimisées qu'il a calculées pour le seuil en lecture seule souple du volume de stockage. Vous pouvez afficher les valeurs minimale et maximale optimisées pour chaque nœud de stockage de la grille.
 
 .Étapes
-. Sélectionnez *SUPPORT* > *Outils* > *métriques*.
+. Sélectionnez *Support* > *Outils* > *Métriques*.
 . Dans la section Prometheus, sélectionnez le lien permettant d'accéder à l'interface utilisateur Prometheus.
 . Pour afficher le filigrane minimum en lecture seule programmable recommandé, entrez la mesure Prometheus suivante et sélectionnez *Execute* :
 +
@@ -129,7 +129,7 @@ La dernière colonne affiche la valeur maximale optimisée du filigrane en lectu
 === [[Déterminez-filigranes-optimisés]]Déterminez si vous pouvez utiliser des filigranes optimisés
 
 .Étapes
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Répétez la procédure suivante pour chaque nœud de stockage en ligne :
 +
 .. Sélectionnez *_Storage Node_* > *Storage*.
@@ -153,7 +153,7 @@ NOTE: Les mêmes valeurs de filigrane personnalisées sont appliquées à chaque
 === [[utiliser-filigranes-optimisés]]utiliser des filigranes optimisés
 
 .Étapes
-. Accédez à *SUPPORT* > *autre* > *filigranes de stockage*.
+. Accédez à *Assistance* > *Autre* > *Filigranes de stockage*.
 . Cochez la case *utiliser les valeurs optimisées*.
 . Sélectionnez *Enregistrer*.
 

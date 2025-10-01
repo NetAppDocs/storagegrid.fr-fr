@@ -22,7 +22,7 @@ Vous pouvez désactiver les notifications SNMP, mettre à jour les chaînes de c
 Pour plus de détails sur chaque champ de la page agent SNMP, reportez-vous à la sectionlink:configuring-snmp-agent.html["Configurez l'agent SNMP"]. Vous devez sélectionner *Enregistrer* au bas de la page pour valider les modifications que vous apportez à chaque onglet.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *surveillance* > *agent SNMP*.
+. Sélectionnez *Configuration* > *Surveillance* > *Agent SNMP*.
 +
 La page agent SNMP s'affiche.
 

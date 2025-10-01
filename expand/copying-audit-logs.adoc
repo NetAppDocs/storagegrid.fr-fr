@@ -1,8 +1,8 @@
 ---
-permalink: expand/copying-audit-logs.html 
 sidebar: sidebar 
+permalink: expand/copying-audit-logs.html 
 keywords: copy audit log, Admin Node expansion, 
-summary: 'Lorsque vous ajoutez un nouveau nœud d"administration par le biais d"une procédure d"extension, son service AMS consigne uniquement les événements et actions qui se produisent une fois qu"il rejoint le système. Si nécessaire, vous pouvez copier les journaux d"audit à partir d"un nœud d"administration déjà installé vers le nouveau nœud d"administration d"extension afin qu"il soit synchronisé avec le reste du système StorageGRID.' 
+summary: 'Lorsque vous ajoutez un nouveau nœud d"administration via une procédure d"extension, son service AMS enregistre uniquement les événements et les actions qui se produisent après son adhésion au système.  Si nécessaire, vous pouvez copier les journaux d"audit d"un nœud d"administration précédemment installé vers le nouveau nœud d"administration d"extension afin qu"il soit synchronisé avec le reste du système StorageGRID .' 
 ---
 = Copie des journaux d'audit
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Lorsque vous ajoutez un nouveau nœud d"administration par le biais d"
 
 
 [role="lead"]
-Lorsque vous ajoutez un nouveau nœud d'administration par le biais d'une procédure d'extension, son service AMS consigne uniquement les événements et actions qui se produisent une fois qu'il rejoint le système. Si nécessaire, vous pouvez copier les journaux d'audit à partir d'un nœud d'administration déjà installé vers le nouveau nœud d'administration d'extension afin qu'il soit synchronisé avec le reste du système StorageGRID.
+Lorsque vous ajoutez un nouveau nœud d'administration via une procédure d'extension, son service AMS enregistre uniquement les événements et les actions qui se produisent après son adhésion au système.  Si nécessaire, vous pouvez copier les journaux d'audit d'un nœud d'administration précédemment installé vers le nouveau nœud d'administration d'extension afin qu'il soit synchronisé avec le reste du système StorageGRID .
 
 .Avant de commencer
 * Vous avez terminé les étapes d'extension requises pour ajouter un nœud d'administration.
@@ -23,13 +23,13 @@ Pour rendre disponibles les messages d'audit historiques sur un nouveau nœud d'
 
 [NOTE]
 ====
-Par défaut, les informations d'audit sont envoyées au journal d'audit des nœuds d'administration. Vous pouvez ignorer ces étapes si l'une des conditions suivantes s'applique :
+Par défaut, les informations d’audit sont envoyées à l’ `localaudit` connectez-vous sur chaque nœud.  Pour utiliser cette procédure, vous devez avoir configuré les nœuds d’administration comme destination d’audit comme suit :
 
-* Un serveur syslog externe et des journaux d'audit sont maintenant envoyés au serveur syslog au lieu de vers les nœuds d'administration.
-* Vous avez explicitement indiqué que les messages d'audit doivent être enregistrés uniquement sur les nœuds locaux qui les ont générés.
+* Vous avez configuré *Nœuds d'administration/nœuds locaux* comme destination du journal.
+* Vous avez configuré *Nœuds d'administration et serveur syslog externe* comme destination du journal.
 
 
-Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"] pour plus de détails.
+Se référer àlink:../monitor/configure-audit-messages.html["Configurer les messages d'audit et le serveur syslog externe"] pour plus de détails.
 
 ====
 .Étapes
@@ -47,9 +47,9 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 . Arrêtez le service AMS pour l'empêcher de créer un nouveau fichier : `service ams stop`
 . Accédez au répertoire d'exportation d'audit :
 +
-`cd /var/local/log`
+`cd /var/local/audit/export/`
 
-. Renommez le fichier source `audit.log` pour vous assurer qu'il n'écrase pas le fichier sur le noeud d'administration d'extension dans lequel vous le copiez :
+. Renommer la source `audit.log` fichier pour garantir qu'il n'écrase pas le fichier sur le nœud d'administration d'extension sur lequel vous le copiez :
 +
 [listing]
 ----
@@ -58,7 +58,7 @@ mv audit.log _new_name_.txt
 ----
 . Copiez tous les fichiers journaux d'audit vers l'emplacement de destination du nœud d'administration d'extension :
 +
-`scp -p * _IP_address_:/var/local/log`
+`scp -p * _IP_address_:/var/local/audit/export/`
 
 . Si vous êtes invité à saisir la phrase de passe pour `/root/.ssh/id_rsa`, entrez le mot de passe d'accès SSH du nœud d'administration principal répertorié dans `Passwords.txt` le fichier.
 . Restaurez le fichier d'origine `audit.log` :
@@ -86,7 +86,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 . Mettez à jour les paramètres utilisateur et groupe des fichiers journaux d'audit :
 +
-`cd /var/local/log`
+`cd /var/local/audit/export/`
 
 +
 `chown ams-user:bycast *`

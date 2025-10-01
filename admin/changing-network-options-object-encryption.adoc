@@ -57,7 +57,7 @@ Reportez-vous  à la section link:summary-ip-addresses-and-ports-for-client-conn
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *Paramètres de sécurité*.
+. Sélectionnez *Configuration* > *Sécurité* > *Paramètres de sécurité*.
 . Sélectionnez l'onglet *réseau et objets*.
 . Pour le chiffrement des objets stockés, utilisez le paramètre *None* (par défaut) si vous ne souhaitez pas que les objets stockés soient cryptés, ou sélectionnez *AES-128* ou *AES-256* pour crypter les objets stockés.
 . Vous pouvez sélectionner *empêcher la modification du client* si vous voulez empêcher les clients S3 de faire des demandes spécifiques.

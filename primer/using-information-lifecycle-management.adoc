@@ -11,13 +11,11 @@ summary: 'La gestion du cycle de vie des informations \(ILM\) permet de contrôl
 
 
 [role="lead"]
-La gestion du cycle de vie des informations (ILM) permet de contrôler le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID. Les règles ILM déterminent la façon dont StorageGRID stocke les objets au fil du temps. Vous configurez une ou plusieurs règles ILM, puis les ajoutez à une règle ILM.
-
-Une grille n'a qu'une seule règle active à la fois. Une politique peut contenir plusieurs règles.
+Vous utilisez la gestion du cycle de vie des informations (ILM) pour contrôler le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID .  Les règles ILM déterminent la manière dont StorageGRID stocke les objets au fil du temps.  Vous configurez une ou plusieurs règles ILM, puis les ajoutez à une stratégie ILM.  Une grille peut avoir plusieurs politiques actives à la fois.
 
 Les règles ILM définissent :
 
-* Les objets à stocker. Une règle peut s'appliquer à tous les objets ou vous pouvez spécifier des filtres pour identifier les objets auxquels une règle s'applique. Par exemple, une règle ne peut s'appliquer qu'aux objets associés à certains comptes de locataire, à des compartiments S3 spécifiques, à des conteneurs Swift ou à des valeurs de métadonnées spécifiques.
+* Quels objets doivent être stockés.  Une règle peut s'appliquer à tous les objets ou vous pouvez spécifier des filtres pour identifier les objets auxquels une règle s'applique.  Par exemple, une règle peut s’appliquer uniquement aux objets associés à certains comptes de locataire, à des compartiments S3 spécifiques ou à des valeurs de métadonnées spécifiques.
 * Type et emplacement de stockage. Les objets peuvent être stockés sur des nœuds de stockage ou dans des pools de stockage cloud.
 * Le type de copie d'objet effectuée. Les copies peuvent être répliquées ou avec code d'effacement.
 * Pour les copies répliquées, le nombre de copies effectuées.

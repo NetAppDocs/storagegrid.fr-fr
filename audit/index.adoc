@@ -17,4 +17,4 @@ Ces instructions s'adresse aux administrateurs responsables de la production de 
 
 Pour utiliser le fichier journal texte, vous devez avoir accès au partage d'audit configuré sur le nœud d'administration.
 
-Pour plus d'informations sur la configuration des niveaux de messages d'audit et l'utilisation d'un serveur syslog externe, reportez-vous à la section link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+Pour plus d'informations sur la configuration des niveaux de messages d'audit et l'utilisation d'un serveur syslog externe, consultezlink:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"] .

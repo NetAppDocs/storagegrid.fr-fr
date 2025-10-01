@@ -92,6 +92,8 @@ Lorsque des objets sont versionnés, les demandes de suppression d'objets ne sup
 
 Bien que l'objet n'ait pas été supprimé, StorageGRID se comporte comme si la version actuelle de l'objet n'est plus disponible. Les requêtes à cet objet renvoient 404 NotFound. Cependant, les données d'objet non actuelles n'ayant pas été supprimées, les demandes qui spécifient une version non actuelle de l'objet peuvent réussir.
 
+Si un client supprime une version d'objet avec un ID de version d'unlink:../tenant/what-is-branch-bucket.html["seau de branche"] StorageGRID masque l'existence de la version de l'objet mais ne crée pas de marqueur de suppression dans le bucket de branche.  Si un client supprime un objet sans ID de version d'un bucket de branche, StorageGRID crée un marqueur de suppression dans le bucket de branche conformément au comportement S3 standard.
+
 Pour libérer de l'espace lors de la suppression d'objets multiversion ou pour supprimer des marqueurs de suppression, utilisez l'une des méthodes suivantes :
 
 * *Demande client S3* : spécifiez l'ID de version de l'objet dans la demande de SUPPRESSION D'objet S3 (`DELETE /object?versionId=ID`). Notez que cette demande ne supprime que les copies d'objet pour la version spécifiée (les autres versions occupent toujours de l'espace).

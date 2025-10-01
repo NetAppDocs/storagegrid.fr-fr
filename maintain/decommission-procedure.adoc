@@ -22,3 +22,5 @@ Pour supprimer un nœud de grille ou un site, effectuez l'une des procédures de
 CAUTION: Avant de procéder à la désaffectation d'un site déconnecté, contactez votre ingénieur commercial NetApp. NetApp évaluera vos besoins avant d'activer toutes les étapes de l'assistant Decommission site. N'essayez pas de désaffecter le site si vous pensez qu'il est possible de récupérer le site ou de récupérer les données d'objet à partir du site.
 
 
+
+Avant de mettre hors service un nœud de grille, vous devez confirmer qu'aucune tâche de réparation de données n'est active.  Si des réparations ont échoué, vous devez les redémarrer et les laisser se terminer avant d'effectuer la procédure de mise hors service. link:../maintain/checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"] .

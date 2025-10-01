@@ -40,7 +40,7 @@ Vous devez consulter régulièrement les résultats des vérifications de fond e
 .Étapes
 . Examiner les résultats des vérifications de base :
 +
-.. Sélectionnez *NODES* > *_Storage Node_* > *Objects*.
+.. Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Objets*.
 .. Vérifier les résultats de la vérification :
 +
 *** Pour vérifier la vérification des données d'objet répliqué, consultez les attributs de la section Vérification.
@@ -60,8 +60,8 @@ Sélectionnez le point d'interrogation image:../media/icon_nms_question.png["poi
 
 . Examinez les résultats des travaux de vérification de l'existence d'un objet :
 +
-.. Sélectionnez *MAINTENANCE* > *Vérification de l'existence d'objet* > *Historique du travail*.
-.. Scannez la colonne copies d'objet manquantes détectées. Si des travaux ont entraîné 100 copies d'objets manquantes ou plus et que l'alerte *objets perdus* a été déclenchée, contactez le support technique.
+.. Sélectionnez *Maintenance* > *Vérification de l'existence de l'objet* > *Historique des tâches*.
+.. Analysez la colonne Copies d’objets manquantes détectées.  Si des tâches ont entraîné 100 copies d'objets manquantes ou plus et que l'alerte *Objets potentiellement perdus* a été déclenchée, contactez le support technique.
 +
 image::../media/oec_job_history.png[Historique du travail de vérification de l'existence d'un objet]
 

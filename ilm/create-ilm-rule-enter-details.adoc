@@ -125,7 +125,7 @@ Contrainte d'emplacement (S3 uniquement)
  a| 
 Région dans laquelle un compartiment S3 a été créé. Utilisez *ILM* > *régions* pour définir les régions affichées.
 
-*Note:* Une valeur US-est-1 fera correspondre des objets dans des compartiments créés dans la région US-est-1 ainsi que des objets dans des compartiments n'ayant pas de région spécifiée. Voir link:configuring-regions-optional-and-s3-only.html["Configuration des régions (facultatif et S3 uniquement)"].
+*Remarque :* une valeur us-east-1 correspondra aux objets dans les buckets créés dans la région us-east-1 ainsi qu'aux objets dans les buckets qui n'ont aucune région spécifiée. Voir link:configuring-regions-optional-and-s3-only.html["Configurer les régions S3"] .
 
 
 

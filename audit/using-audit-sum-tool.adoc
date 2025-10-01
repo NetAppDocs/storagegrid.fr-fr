@@ -15,8 +15,8 @@ Vous pouvez utiliser `audit-sum` l'outil pour compter les messages d'audit d'éc
 
 .Avant de commencer
 * Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
-* Vous devez avoir le `Passwords.txt` fichier.
-* Vous devez connaître l'adresse IP du nœud d'administration principal.
+* Vous avez le `Passwords.txt` fichier.
+* Vous connaissez l'adresse IP du nœud d'administration principal.
 
 
 .Description de la tâche
@@ -37,10 +37,10 @@ Cet exemple montre les résultats typiques de l' `audit-sum`outil. Cet exemple m
   SHEA                    22716        0.005           2.349           0.272
   SPUT                  1771398        0.011        1770.563           0.487
 ----
- `audit-sum`L'outil fournit le nombre et l'heure des messages d'audit S3, Swift et ILM suivants dans un journal d'audit.
+Le `audit-sum` L'outil fournit les décomptes et les heures des messages d'audit S3 et ILM suivants dans un journal d'audit.
 
 
-NOTE: Les codes d'audit sont supprimés du produit et de la documentation, car les fonctionnalités sont obsolètes. Si vous rencontrez un code d'audit qui n'est pas répertorié ici, consultez les versions précédentes de cette rubrique pour connaître les versions antérieures de SG. Par exemple https://docs.netapp.com/us-en/storagegrid-118/audit/using-audit-sum-tool.html["StorageGRID 11.8 à l'aide de la documentation de l'outil de somme d'audit"^], .
+NOTE: Les codes d'audit sont supprimés du produit et de la documentation à mesure que les fonctionnalités sont obsolètes.  Si vous rencontrez un code d'audit qui n'est pas répertorié ici, vérifiez les versions précédentes de cette rubrique pour les anciennes versions de StorageGRID . Par exemple :  https://docs.netapp.com/us-en/storagegrid-118/audit/using-audit-sum-tool.html["StorageGRID 11.8 Utilisation de l'outil de somme d'audit"^] .
 
 [cols="14,43,43"]
 |===
@@ -60,18 +60,6 @@ NOTE: Les codes d'audit sont supprimés du produit et de la documentation, car l
 
 
 | SPUT | S3 PUT : enregistre la réussite d'une transaction pour créer un nouvel objet ou un compartiment. | link:sput-s3-put.html["SPUT : PUT S3"] 
-
-
-| WDEL | SUPPRESSION Swift : enregistre une transaction réussie pour supprimer un objet ou un conteneur. | link:wdel-swift-delete.html["WDEL : SUPPRESSION rapide"] 
-
-
-| C'EST PARTI | SWIFT GET : log une transaction réussie pour récupérer un objet ou répertorier les objets dans un conteneur. | link:wget-swift-get.html["WGET: SWIFT GET"] 
-
-
-| WHEA | SWIFT HEAD : consigne une transaction réussie afin de vérifier l'existence d'un objet ou d'un conteneur. | link:whea-swift-head.html["WHEA: TÊTE SWIFT"] 
-
-
-| WPUT | SWIFT PUT : consigne une transaction réussie pour créer un nouvel objet ou conteneur. | link:wput-swift-put.html["WPUT : PUT SWIFT"] 
 |===
 L' `audit-sum`outil peut effectuer les opérations suivantes :
 
@@ -87,7 +75,7 @@ L' `audit-sum`outil peut effectuer les opérations suivantes :
 `audit-sum audit.log 2019-08-12.txt.gz 2019-08-13.txt.gz`
 
 +
-`audit-sum /var/local/log/*`
+`audit-sum /var/local/audit/export/*`
 
 * Acceptez l'entrée d'un canal, qui vous permet de filtrer et de prétraiter l'entrée à l'aide de la `grep` commande ou d'autres moyens. Par exemple :
 +
@@ -103,7 +91,7 @@ L' `audit-sum`outil peut effectuer les opérations suivantes :
 
 [NOTE]
 ====
-Cet outil n'accepte pas les fichiers compressés comme entrée de pipettes. Pour traiter des fichiers compressés, indiquez leurs noms de fichiers en tant qu'arguments de ligne de commande ou utilisez l' `zcat`outil pour décompresser d'abord les fichiers. Par exemple :
+Cet outil n'accepte pas les fichiers compressés comme entrée canalisée.  Pour traiter les fichiers compressés, fournissez leurs noms de fichiers comme arguments de ligne de commande ou utilisez le `zcat` outil pour décompresser les fichiers en premier. Par exemple:
 
 `audit-sum audit.log.gz`
 
@@ -130,9 +118,9 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 . Pour analyser tous les messages liés aux opérations d'écriture, de lecture, de tête et de suppression, procédez comme suit :
 +
-.. Entrez la commande suivante, où `/var/local/log/audit.log` représente le nom et l'emplacement du ou des fichiers à analyser :
+.. Entrez la commande suivante, où `/var/local/audit/export/audit.log` représente le nom et l'emplacement du ou des fichiers que vous souhaitez analyser :
 +
-`$ audit-sum /var/local/log/audit.log`
+`$ audit-sum /var/local/audit/export/audit.log`
 
 +
 Cet exemple montre les résultats typiques de l' `audit-sum`outil. Cet exemple montre la durée des opérations de protocoles.
@@ -225,7 +213,7 @@ Dans cet exemple, la taille moyenne des objets pour SPUT est inférieure à 2.5 
   2019-09-05T09           27591        0.010        1481.867           1.354
 ----
 +
-Ces résultats montrent que S3 GÉNÈRE un trafic entre 06:00 et 07:00. Les temps maximum et moyen sont à la fois considérablement plus élevés à ces moments aussi, et ils n'ont pas augmenté progressivement à mesure que le comptage a augmenté. Cela suggère que la capacité a été dépassée quelque part, peut-être dans le réseau ou que la grille peut traiter les demandes.
+Ces résultats montrent que le trafic S3 GET a augmenté entre 06h00 et 07h00.  Les temps maximum et moyen sont tous deux considérablement plus élevés au cours de cette période, et ils n'ont pas augmenté progressivement à mesure que le nombre augmentait.  Ces mesures suggèrent que la capacité a été dépassée, peut-être dans le réseau ou dans la capacité du réseau à traiter les demandes.
 
 .. Pour déterminer la taille des objets récupérés chaque heure d'hier, ajoutez l'option size (`-s`) à la commande :
 +

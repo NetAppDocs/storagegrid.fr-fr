@@ -19,7 +19,7 @@ Vous pouvez modifier une stratégie de classification de trafic pour modifier so
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 +
 La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans un tableau.
 

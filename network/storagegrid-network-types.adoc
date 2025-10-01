@@ -91,13 +91,7 @@ Réseau client (facultatif)
 eth2
 
 |===
-Pour plus de détails sur le mappage de ports virtuels ou physiques aux interfaces réseau de nœuds, reportez-vous aux instructions d'installation :
-
-.Nœuds basés sur logiciel
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-* link:../vmware/index.html["Installez StorageGRID sur VMware"]
-
+Pour plus de détails sur le mappage des ports virtuels ou physiques aux interfaces réseau des nœuds, voirlink:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
 
 .Nœuds d'appliance
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Système de stockage SG6160"^]

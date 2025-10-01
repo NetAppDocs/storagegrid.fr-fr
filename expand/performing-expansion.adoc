@@ -37,7 +37,7 @@ CAUTION: L'exécution de certaines étapes et étapes d'extension sur un grand g
 
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *expansion*.
+. Sélectionnez *Maintenance* > *Tâches* > *Extension*.
 +
 La page d'extension de la grille s'affiche. La section nœuds en attente répertorie les nœuds prêts à être ajoutés.
 
@@ -119,9 +119,10 @@ Le rôle NTP (Network Time Protocol) du nœud de grille :
  a| 
 Service ADC (nœuds de stockage combinés ou métadonnées uniquement)
  a| 
-Si ce nœud de stockage exécute le service contrôleur de domaine administratif (ADC). Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau. Au moins trois nœuds de stockage de chaque site doivent inclure le service ADC. Vous ne pouvez pas ajouter le service ADC à un nœud après son déploiement.
+Si ce nœud de stockage exécutera le service de contrôleur de domaine administratif (ADC).  Le service ADC suit l'emplacement et la disponibilité des services du réseau.  Au moins trois nœuds de stockage sur chaque site doivent inclure le service ADC.
 
-*** Sélectionnez *Oui* si le nœud de stockage que vous remplacez inclut le service ADC. Comme vous ne pouvez pas désaffecter un nœud de stockage si trop peu de services ADC sont conservés, cela garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
+*** Sélectionnez *Oui* si le nœud de stockage que vous remplacez inclut le service ADC.  Étant donné que vous ne pouvez pas désactiver un nœud de stockage s'il reste trop peu de services ADC, ce paramètre garantit qu'un nouveau service ADC est disponible avant la suppression de l'ancien service.
+*** Tu peuxlink:../maintain/move-adc-service.html["déplacer le service ADC vers un autre nœud de stockage sur le même site"] pour garantir que le quorum du service ADC soit respecté.
 *** Sélectionnez *automatique* pour permettre au système de déterminer si ce nœud nécessite le service ADC.
 
 
@@ -174,24 +175,21 @@ Au bout de quelques minutes, cette page se met à jour pour afficher l'état de 
 NOTE: Lors de l'étape « installation de nœuds de grille » pour une nouvelle appliance, le programme d'installation de l'appliance StorageGRID indique que l'installation passe de l'étape 3 à l'étape 4, finalisation de l'installation. Une fois l'étape 4 terminée, le contrôleur est redémarré.
 
 +
-image::../media/grid_expansion_progress.png[Cette image est expliquée par le texte qui l'entoure.]
-
-+
 
 NOTE: L'extension de site inclut une tâche supplémentaire pour configurer Cassandra pour le nouveau site.
 
-. Dès que le lien *Download Recovery Package* apparaît, téléchargez le fichier Recovery Package.
+. Dès que le lien *Télécharger le package de récupération* apparaît, téléchargez le fichier du package de récupération.
 +
-Vous devez télécharger une copie mise à jour du fichier du pack de récupération dès que possible après avoir apporté des modifications de topologie de grille au système StorageGRID. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
+Vous devez télécharger une copie mise à jour du fichier de package de récupération dès que possible après avoir apporté des modifications à la topologie de grille du système StorageGRID .  Le fichier de package de récupération vous permet de restaurer le système en cas de panne.
 
 +
 .. Sélectionnez le lien de téléchargement.
 .. Saisissez le mot de passe de provisionnement et sélectionnez *Démarrer le téléchargement*.
 .. Une fois le téléchargement terminé, ouvrez `.zip` le fichier et confirmez que vous pouvez accéder au contenu, y compris au `Passwords.txt` fichier.
-.. Copiez le fichier du progiciel de récupération téléchargé (`.zip`) dans deux emplacements sécurisés et séparés.
+.. Copiez le fichier du package de récupération téléchargé(`.zip` ) vers deux endroits sûrs, sécurisés et séparés.
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID .
 
 
 
@@ -206,8 +204,6 @@ CAUTION: Ne redémarrez aucun nœud de stockage pendant les étapes « extension
 .Ajout de nœuds de stockage
 --
 Si vous ajoutez des nœuds de stockage à un site existant, consultez le pourcentage affiché dans le message d'état « démarrage de Cassandra et données en streaming ».
-
-image::../media/grid_expansion_starting_cassandra.png[Extension de grille > démarrage de Cassandra et du streaming de données]
 
 Ce pourcentage estime que le streaming Cassandra est complet, en fonction du volume total de données Cassandra disponibles et du volume qui a déjà été écrit sur le nouveau nœud.
 

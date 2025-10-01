@@ -30,7 +30,7 @@ StorageGRID peut envoyer les informations d'audit par défaut ou modifier la des
 * StorageGRID sélectionne par défaut les destinations d'audit de nœud local.
 * Les entrées du journal d'audit Grid Manager et tenant Manager peuvent être envoyées à un nœud de stockage.
 * Vous pouvez également modifier la destination des journaux d'audit et envoyer des informations d'audit à un serveur syslog externe. Les journaux locaux des enregistrements d'audit continuent à être générés et stockés lorsqu'un serveur syslog externe est configuré.
-* link:../monitor/configure-audit-messages.html["Découvrez comment configurer les messages d'audit et les destinations des journaux"].
+* link:../monitor/configure-log-management.html["En savoir plus sur la configuration de la gestion des journaux"] .
 
 
 Pour plus de détails sur le fichier journal d'audit, le format des messages d'audit, les types de messages d'audit et les outils disponibles pour analyser les messages d'audit, reportez-vous à la section link:../audit/index.html["Examiner les journaux d'audit"].

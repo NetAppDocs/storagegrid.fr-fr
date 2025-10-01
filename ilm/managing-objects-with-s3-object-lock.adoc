@@ -102,7 +102,7 @@ Si vous avez utilisé la fonctionnalité de conformité héritée dans une versi
  a| 
 Comment cette fonctionnalité est-elle activée dans le monde entier ?
  a| 
-Dans Grid Manager, sélectionnez *CONFIGURATION* > *système* > *verrouillage objet S3*.
+Depuis le Gestionnaire de grille, sélectionnez *Configuration* > *Système* > *Verrouillage d'objet S3*.
  a| 
 N'est plus pris en charge.
 

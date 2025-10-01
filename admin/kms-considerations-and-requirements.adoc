@@ -35,7 +35,7 @@ Vous devez vous assurer que chaque nœud d'appliance qui utilise le chiffrement 
 
 Les communications entre les nœuds d'appliance et le KMS configuré utilisent des connexions TLS sécurisées. StorageGRID peut prendre en charge le protocole TLS 1.2 ou TLS 1.3 lorsqu'il établit des connexions KMIP à un cluster KMS ou KMS, en fonction des éléments pris en charge par KMS et que link:manage-tls-ssh-policy.html["Règles TLS et SSH"] vous utilisez.
 
-StorageGRID négocie le protocole et le chiffrement (TLS 1.2) ou la suite de chiffrement (TLS 1.3) avec le KMS lors de la connexion. Pour connaître les versions de protocole et les suites de chiffrement/chiffrement disponibles, consultez la `tlsOutbound` section de la stratégie TLS et SSH active de la grille (*CONFIGURATION* > *sécurité* *Paramètres de sécurité*).
+StorageGRID négocie le protocole et le chiffrement (TLS 1.2) ou la suite de chiffrement (TLS 1.3) avec le KMS lorsqu'il établit la connexion.  Pour voir quelles versions de protocole et quels chiffrements/suites de chiffrement sont disponibles, consultez le `tlsOutbound` section de la politique TLS et SSH active de la grille (*Configuration* > *Sécurité* *Paramètres de sécurité*).
 
 
 

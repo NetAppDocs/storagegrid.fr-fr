@@ -56,7 +56,7 @@ Nœud d'administration principal
 | /var/local/log/gdu-server.log  a| 
 Créé par le service GDU. Contient les événements liés aux procédures d'approvisionnement et de maintenance gérées par le nœud d'administration principal.
  a| 
-Nœud d'administration principal
+Nœuds d'administration
 
 
 

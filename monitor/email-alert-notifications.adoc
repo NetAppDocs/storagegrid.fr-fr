@@ -24,7 +24,7 @@ La configuration des e-mails utilisée pour les notifications d'alerte n'est pas
 Si votre déploiement StorageGRID inclut plusieurs nœuds d'administration, le nœud d'administration principal est l'expéditeur préféré pour les notifications d'alerte, les packages AutoSupport, les traps et les notifications SNMP. Si le nœud d'administration principal n'est plus disponible, les notifications sont envoyées temporairement par d'autres nœuds d'administration. Voir link:../primer/what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"].
 
 .Étapes
-. Sélectionnez *ALERTES* > *Configuration de la messagerie*.
+. Sélectionnez *Alertes* > *Configuration de la messagerie électronique*.
 +
 La page Configuration de l'e-mail s'affiche.
 
@@ -290,7 +290,7 @@ Si l'alerte *échec de notification par e-mail* est déclenchée ou si vous ne p
 .Étapes
 . Vérifiez vos paramètres.
 +
-.. Sélectionnez *ALERTES* > *Configuration de la messagerie*.
+.. Sélectionnez *Alertes* > *Configuration de la messagerie électronique*.
 .. Vérifiez que les paramètres du serveur de messagerie (SMTP) sont corrects.
 .. Vérifiez que vous avez spécifié des adresses e-mail valides pour les destinataires.
 

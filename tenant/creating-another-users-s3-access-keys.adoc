@@ -31,7 +31,7 @@ Chaque clé peut avoir une heure d'expiration spécifique ou pas d'expiration. S
 CAUTION: Les compartiments S3 et les objets appartenant à un utilisateur sont accessibles à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour cet utilisateur dans le Gestionnaire de locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées du compte et ne les partagez jamais avec d'autres utilisateurs.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Users*.
+. Sélectionnez *Gestion des accès* > *Utilisateurs*.
 . Sélectionnez l'utilisateur dont vous souhaitez gérer les clés d'accès S3.
 +
 La page de détails utilisateur s'affiche.

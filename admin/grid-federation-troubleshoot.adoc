@@ -62,7 +62,7 @@ Lors de la modification d'une connexion de fédération de grille, le message d'
 Lorsque vous modifiez une connexion de fédération de grille, StorageGRID tente d'enregistrer un fichier de configuration de candidat sur tous les nœuds d'administration de la première grille. Un message d'avertissement s'affiche si ce fichier ne peut pas être enregistré sur tous les nœuds d'administration, par exemple, parce qu'un nœud d'administration est hors ligne.
 
 .Actions recommandées
-. Dans la grille que vous utilisez pour modifier la connexion, sélectionnez *NODES*.
+. Dans la grille que vous utilisez pour modifier la connexion, sélectionnez *Nœuds*.
 . Vérifiez que tous les nœuds d'administration de ce grid sont en ligne.
 . Si des nœuds sont hors ligne, remettez-les en ligne et réessayez de modifier la connexion.
 
@@ -84,7 +84,7 @@ Pour des raisons de sécurité, lorsqu'un compte de locataire est cloné depuis 
 .Actions recommandées
 Pour que l'utilisateur root puisse se connecter à la grille de destination du locataire, l'administrateur de la grille doit d'abord  se connecter link:changing-password-for-tenant-local-root-user.html["modifiez le mot de passe de l'utilisateur root local"]à la grille de destination.
 
-Pour qu'un utilisateur local cloné puisse se connecter à la grille de destination du locataire, l'utilisateur root du locataire cloné doit ajouter un mot de passe pour l'utilisateur sur la grille de destination. Pour obtenir des instructions, reportez-vous à la section link:../tenant/managing-local-users.html["Gérez les utilisateurs locaux"] dans les instructions d'utilisation du Gestionnaire de locataires.
+Avant qu'un utilisateur local cloné puisse se connecter à la grille de destination du locataire, l'utilisateur root du locataire cloné doit ajouter un mot de passe pour l'utilisateur sur la grille de destination.  Pour les instructions, reportez-vous àlink:../tenant/manage-users.html["Gérer les utilisateurs"] dans les instructions d'utilisation du Tenant Manager.
 
 
 
@@ -99,7 +99,7 @@ Ce problème peut se produire si les mises à jour de l'état de la connexion so
 .Actions recommandées
 . Vérifiez la raison indiquée dans le message d'erreur et résolvez tout problème de réseau ou autre qui pourrait empêcher la connexion de fonctionner. Voir <<grid-federation-errors,Alertes et erreurs de connexion de fédération de grille>>.
 . Suivez les instructions pour tester une connexion de fédération de grille dans link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"] pour vérifier que le problème a été résolu.
-. Dans la grille source du locataire, sélectionnez *TENANTS*.
+. Dans la grille source du locataire, sélectionnez *Locataires*.
 . Recherchez le compte de locataire qui n'a pas pu être cloné.
 . Sélectionnez le nom du locataire pour afficher la page de détails.
 . Sélectionnez *Réessayer le clone de compte*.
@@ -125,14 +125,16 @@ Quand link:../monitor/grid-federation-monitor-connections.html["affichage d'une 
 image::../media/grid-federation-last-error.png[Capture d'écran affichant un message dans la colonne dernière erreur d'une connexion de fédération de grille]
 
 .Détails
-Pour chaque connexion de fédération de grille, la colonne *dernière erreur* indique l'erreur la plus récente à se produire, le cas échéant, lors de la réplication des données d'un locataire vers l'autre grille. Cette colonne affiche uniquement la dernière erreur de réplication inter-grille à se produire ; les erreurs précédentes qui se sont peut-être produites ne seront pas affichées. Une erreur dans cette colonne peut se produire pour l'une des raisons suivantes :
+Pour chaque connexion de fédération de grille, la colonne *Dernière erreur* affiche l'erreur la plus récente survenue, le cas échéant, lors de la réplication des données d'un locataire sur l'autre grille.  Cette colonne affiche uniquement la dernière erreur de réplication inter-grille survenue ; les erreurs précédentes qui auraient pu se produire ne sont pas affichées.  Une erreur dans cette colonne peut se produire pour l'une des raisons suivantes :
 
-* La version de l'objet source est introuvable.
-* Le compartiment source est introuvable.
+* La version de l'objet source n'a pas été trouvée.
+* Le bucket source n'a pas été trouvé.
 * Le compartiment de destination a été supprimé.
 * Le compartiment de destination a été recréé par un autre compte.
 * La gestion des versions du compartiment de destination est suspendue.
 * Le compartiment de destination a été recréé par le même compte, mais il n'est plus versionné.
+* L'objet source possède des paramètres de verrouillage d'objet S3 qui ne sont pas conformes aux paramètres de conservation au niveau du locataire de la grille de destination.
+* L'objet source dispose de paramètres de verrouillage d'objet S3 et le verrouillage d'objet S3 est désactivé sur le bucket de destination.
 
 
 .Actions recommandées
@@ -167,7 +169,7 @@ Cette alerte indique que les objets tenant ne peuvent pas être répliqués entr
 
 .Actions recommandées
 . Connectez-vous à la grille dans laquelle l'alerte a été déclenchée.
-. Accédez à *CONFIGURATION* > *système* > *fédération de grille* et localisez le nom de connexion indiqué dans l'alerte.
+. Accédez à *Configuration* > *Système* > *Fédération de grille* et recherchez le nom de connexion répertorié dans l'alerte.
 . Dans l'onglet locataires autorisés, consultez la colonne *dernière erreur* pour déterminer quels comptes de locataires ont des erreurs.
 . Pour en savoir plus sur l'échec, reportez-vous aux instructions de la section link:../monitor/grid-federation-monitor-connections.html["Surveiller les connexions de fédération de grille"] pour consulter les mesures de réplication entre les grilles.
 . Pour chaque compte de locataire concerné :
@@ -181,7 +183,6 @@ Cette alerte indique que les objets tenant ne peuvent pas être répliqués entr
 +
 ** Il existe un compartiment correspondant pour le même locataire sur l'autre grille (doit utiliser le nom exact).
 ** La gestion des versions des objets est activée dans les deux compartiments (la gestion des versions ne peut pas être suspendue sur les deux grilles).
-** Le verrouillage d'objet S3 est désactivé dans les deux compartiments.
 ** Aucun compartiment n'est à l'état *Suppression d'objets : lecture seule*.
 
 

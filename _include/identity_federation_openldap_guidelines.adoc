@@ -5,7 +5,7 @@
 Si vous souhaitez utiliser un serveur OpenLDAP pour la fédération des identités, vous devez configurer des paramètres spécifiques sur le serveur OpenLDAP.
 
 
-CAUTION: Pour les référentiels d'identité qui ne sont pas ActiveDirectory ou Azure, StorageGRID ne bloquera pas automatiquement l'accès S3 aux utilisateurs désactivés en externe. Pour bloquer l'accès S3, supprimez les clés S3 de l'utilisateur ou supprimez l'utilisateur de tous les groupes.
+CAUTION: Pour les sources d’identité qui ne sont pas Active Directory ou Microsoft Entra ID, StorageGRID ne bloquera pas automatiquement l’accès S3 aux utilisateurs désactivés en externe.  Pour bloquer l’accès S3, supprimez toutes les clés S3 de l’utilisateur ou supprimez l’utilisateur de tous les groupes.
 
 
 

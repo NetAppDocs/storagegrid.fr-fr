@@ -46,7 +46,7 @@ Le tableau inclut les informations suivantes pour chaque nœud :
 ** Utilisation du stockage : pourcentage de l'espace utilisable total pour les données d'objet utilisées pour le nœud de stockage.
 +
 
-NOTE: La même valeur d'utilisation du stockage (%) est également affichée dans le graphique stockage utilisé - données d'objet pour chaque nœud de stockage (sélectionnez *NŒUDS* > *_nœud de stockage_* > *stockage*).
+NOTE: La même valeur d'utilisation du stockage (%) est également affichée dans le graphique Stockage utilisé - Données d'objet pour chaque nœud de stockage (sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*).
 
 
 

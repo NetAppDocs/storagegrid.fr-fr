@@ -30,7 +30,7 @@ Chaque magasin d'objets est monté sur un volume qui correspond à son ID. Par e
 Avant d'ajouter de nouveaux volumes de stockage, utilisez la grille Manager pour afficher les magasins d'objets actuels pour chaque nœud de stockage ainsi que les points de montage correspondants. Vous pouvez utiliser ces informations lors de l'ajout de volumes de stockage.
 
 .Étapes
-. Sélectionnez *NODES* > *_site_* > *_Storage Node_* > *Storage*.
+. Sélectionnez *Nœuds* > *_site_* > *_Nœud de stockage_* > *Stockage*.
 . Faites défiler vers le bas pour afficher les quantités de stockage disponibles pour chaque volume et magasin d'objets.
 +
 Pour les nœuds de stockage de l'appliance, le nom mondial de chaque disque correspond à l'identifiant WWID (WWID) du volume qui s'affiche lorsque vous affichez les propriétés standard du volume dans SANtricity OS (le logiciel de gestion connecté au contrôleur de stockage de l'appliance).

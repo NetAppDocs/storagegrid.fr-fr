@@ -22,7 +22,7 @@ Lorsque vous développez une grille, les nœuds que vous ajoutez n'ont pas à co
 Vous devez déployer une machine virtuelle dans VMware vSphere pour chaque nœud VMware que vous souhaitez ajouter à l'extension.
 
 .Étapes
-. link:../vmware/deploying-storagegrid-node-as-virtual-machine.html["Déployez le nouveau nœud en tant que machine virtuelle"] Et connectez-le à un ou plusieurs réseaux StorageGRID.
+. link:../swnodes/deploying-storagegrid-node-as-virtual-machine.html["Déployez le nouveau nœud en tant que machine virtuelle"]et le connecter à un ou plusieurs réseaux StorageGRID .
 +
 Lorsque vous déployez le nœud, vous pouvez remappage les ports de nœud ou augmenter les paramètres de processeur ou de mémoire.
 
@@ -36,12 +36,7 @@ Lorsque vous déployez le nœud, vous pouvez remappage les ports de nœud ou aug
 Vous pouvez déployer des nœuds grid sur de nouveaux hôtes Linux ou sur des hôtes Linux existants. Si vous avez besoin d'hôtes Linux supplémentaires pour prendre en charge les exigences en matière de processeur, de RAM et de stockage des nœuds StorageGRID que vous souhaitez ajouter à votre grille, vous devez les préparer de la même manière que lorsque vous les avez installés pour la première fois. Vous déployez ensuite les nœuds d'extension de la même manière que vous avez déployé des nœuds grid lors de l'installation.
 
 .Avant de commencer
-* Vous disposez des instructions d'installation de StorageGRID pour votre version de Linux, et vous avez examiné la configuration matérielle et la configuration de stockage requise.
-+
-** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-
-
+* Vous disposez des instructions d'installation de StorageGRID pour votre version de Linux et vous avez examiné leslink:../swnodes/index.html["exigences matérielles et de stockage"] .
 * Si vous prévoyez de déployer de nouveaux nœuds grid sur des hôtes existants, vous avez confirmé que les hôtes existants disposent de suffisamment de processeur, de mémoire RAM et de capacité de stockage pour les nœuds supplémentaires.
 * Vous disposez d'un plan pour réduire les domaines d'échec. Par exemple, vous ne devez pas déployer tous les nœuds de passerelle sur un hôte physique unique.
 +
@@ -145,9 +140,6 @@ Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modi
 
 . Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, sélectionnez *Démarrer l'installation*.
 +
-image::../media/appliance_installer_home_start_installation_enabled.gif[Cette image est décrite par le texte environnant.]
-
-+
 L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
 
 . Si votre extension inclut plusieurs nœuds d'appliance, répétez les étapes précédentes pour chaque appliance.
@@ -158,9 +150,6 @@ NOTE: Si vous devez déployer plusieurs nœuds de stockage d'appliance à la foi
 . Si vous devez accéder manuellement à la page installation du moniteur, sélectionnez *installation du moniteur* dans la barre de menus.
 +
 La page installation du moniteur affiche la progression de l'installation.
-
-+
-image::../media/monitor_installation_configure_storage.gif[Cette image est expliquée par le texte qui l'entoure.]
 
 +
 La barre d'état bleue indique la tâche en cours. Les barres d'état vertes indiquent que les tâches ont été effectuées avec succès.
@@ -191,8 +180,5 @@ Au cours de cette étape, le programme d'installation copie l'image du système 
 +
 
 NOTE: Attendez que tous les nœuds ajoutés à cette extension soient prêts pour approbation avant de passer à Grid Manager pour approuver les nœuds.
-
-+
-image::../media/monitor_installation_install_sgws.gif[Cette image est expliquée par le texte qui l'entoure.]
 
 

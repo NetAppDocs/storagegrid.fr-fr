@@ -16,7 +16,7 @@ Après avoir ajouté des nœuds de stockage, vous pouvez utiliser la procédure 
 .Avant de commencer
 * Vous avez terminé les étapes d'extension pour ajouter les nouveaux nœuds de stockage.
 * Vous avez examiné le link:considerations-for-rebalancing-erasure-coded-data.html["considérations relatives au rééquilibrage des données avec code d'effacement"].
-* Vous comprenez que les données d'objet répliqué ne seront pas déplacées par cette procédure et que la procédure de rééquilibrage EC ne tient pas compte de l'utilisation des données répliquées sur chaque nœud de stockage lors de la détermination de l'emplacement du déplacement des données codées par l'effacement.
+* Vous comprenez que les données d’objet répliquées ne seront pas déplacées par cette procédure et que la procédure de rééquilibrage EC ne déplace pas les données répliquées.  Cependant, les données répliquées sont prises en compte pour déterminer où déplacer les données EC.
 * Vous avez le `Passwords.txt` fichier.
 
 
@@ -34,16 +34,6 @@ Vous pouvez relancer la procédure une fois que tous les volumes sont de nouveau
 
 NOTE: Les opérations de l'API S3 pour le téléchargement d'objets (ou de parties d'objets) peuvent échouer lors de la procédure de rééquilibrage de l'EC s'ils nécessitent plus de 24 heures. Les opérations PUT de longue durée échouent si la règle ILM applicable utilise un placement équilibré ou strict à l'entrée. L'erreur suivante sera signalée : `500 Internal Server Error`.
 
-* Au cours de cette procédure, tous les nœuds ont une limite de capacité de stockage de 80 %. Les nœuds qui dépassent cette limite, mais qui sont toujours stockés en dessous de la partition de données cible, sont exclus de :
-+
-** La valeur de déséquilibre du site
-** Toute condition d'achèvement de travail
-+
-
-NOTE: La partition de données cible est calculée en divisant le total des données d'un site par le nombre de nœuds.
-
-
-
 * *Conditions d'achèvement du travail*. La procédure de rééquilibrage EC est considérée comme terminée lorsque l'une des conditions suivantes est vraie :
 +
 ** Elle ne peut plus déplacer de données avec code d'effacement.
@@ -56,7 +46,7 @@ NOTE: La partition de données cible est calculée en divisant le total des donn
 .Étapes
 . [[Review_Object_Storage]]consultez les détails actuels du stockage objet pour le site que vous prévoyez de rééquilibrer.
 +
-.. Sélectionnez *NOEUDS*.
+.. Sélectionnez *Nœuds*.
 .. Sélectionnez le premier nœud de stockage du site.
 .. Sélectionnez l'onglet *stockage*.
 .. Positionnez le curseur de votre souris sur le graphique stockage utilisé - données d'objet pour afficher la quantité actuelle de données répliquées et de données avec code d'effacement sur le nœud de stockage.
@@ -112,7 +102,7 @@ Pour obtenir de l'aide sur la commande rééquilibrer-données :
 +
 ** Si `State` est `In progress`, l'opération de rééquilibrage EC est toujours en cours d'exécution. Vous devez régulièrement surveiller la procédure jusqu'à ce qu'elle soit terminée.
 +
-Utilisez cette `Site Imbalance` valeur pour évaluer le déséquilibre de l'utilisation des données de code d'effacement dans les nœuds de stockage sur le site. Cette valeur peut aller de 1.0 à 0, 0 indiquant que l'utilisation des données de code d'effacement est complètement équilibrée entre tous les nœuds de stockage sur le site.
+Accédez à la page Nœuds pour évaluer la répartition des données sur les nœuds de stockage du site.
 
 +
 La tâche de rééquilibrage EC est considérée comme terminée et s'arrête lorsque les données de tous les nœuds sont dans un écart de 5 % par rapport à la partition de données cible.

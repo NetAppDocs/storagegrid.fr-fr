@@ -29,7 +29,7 @@ Vérifiez les paramètres de conformité des locataires existants après avoir a
 NOTE: Le paramètre conformité globale est obsolète. Si vous avez activé ce paramètre à l'aide d'une version précédente de StorageGRID, le paramètre verrouillage objet S3 est activé automatiquement. Vous pouvez continuer à utiliser StorageGRID pour gérer les paramètres des compartiments conformes existants ; cependant, vous ne pouvez pas créer de nouveaux compartiments conformes. Pour plus de détails, voir https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^].
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *système* > *verrouillage objet S3*.
+. Sélectionnez *Configuration* > *Système* > *Verrouillage d'objet S3*.
 +
 La page Paramètres de verrouillage d'objet S3 s'affiche.
 

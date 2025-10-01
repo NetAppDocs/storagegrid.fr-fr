@@ -19,7 +19,7 @@ Nœuds locaux (par défaut)
  a| 
 Nœuds d'administration/nœuds locaux
  a| 
-* Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+* Nœuds d'administration (primaires et non principaux) : `/var/local/audit/export/audit.log`
 * Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant dans ce mode.
 
 
@@ -33,4 +33,4 @@ Serveur syslog externe
 |===
 En fonction de vos paramètres de destination d'audit, entrez : `cd /var/local/log` ou `/var/local/audit/export/`
 
-Pour en savoir plus, reportez-vous link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Sélectionnez les destinations des informations d'audit"]à la section .
+Pour en savoir plus, consultezlink:../monitor/configure-log-management.html#select-log-location["Sélectionnez l'emplacement du journal"] .

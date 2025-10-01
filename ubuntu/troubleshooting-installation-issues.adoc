@@ -1,31 +1,8 @@
 ---
 permalink: ubuntu/troubleshooting-installation-issues.html 
-sidebar: sidebar 
-keywords: how to troubleshoot ubuntu or debian installation 
-summary: 'En cas de problème lors de l"installation de votre système StorageGRID, vous pouvez accéder aux fichiers journaux d"installation. Le support technique peut également avoir besoin d"utiliser les fichiers journaux d"installation pour résoudre les problèmes.' 
+redirect: storagegrid/swnodes/troubleshooting-installation-issues.html 
 ---
-= Résoudre les problèmes d'installation
+= 
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
 
-[role="lead"]
-En cas de problème lors de l'installation de votre système StorageGRID, vous pouvez accéder aux fichiers journaux d'installation. Le support technique peut également avoir besoin d'utiliser les fichiers journaux d'installation pour résoudre les problèmes.
-
-Les fichiers journaux d'installation suivants sont disponibles à partir du conteneur qui exécute chaque nœud :
-
-* `/var/local/log/install.log` (disponible sur tous les nœuds grid)
-* `/var/local/log/gdu-server.log` (Disponible sur le nœud d'administration principal)
-
-
-Les fichiers journaux d'installation suivants sont disponibles auprès de l'hôte :
-
-* `/var/log/storagegrid/daemon.log`
-* `/var/log/storagegrid/nodes/<node-name>.log`
-
-
-Pour savoir comment accéder aux fichiers journaux, reportez-vous à link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]la section .
-
-.Informations associées
-link:../troubleshoot/index.html["Dépanner un système StorageGRID"]

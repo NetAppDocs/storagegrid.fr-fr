@@ -10,8 +10,10 @@ settings:
     harmony_enabled: false
     hide_language_selector: false
   versions:
-  - version-number: '11.9'
+  - version-number: '12.0'
     url: "/storagegrid"
+  - version-number: '11.9'
+    url: "/storagegrid-119"
   - version-number: '11.8'
     url: "/storagegrid-118"
   - version-number: '11.7'
@@ -23,7 +25,7 @@ settings:
   langs: fr-fr,us-en,de-de,es-es,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
 sidebar:
   entries:
-  - title: Documentation StorageGRID 11.9
+  - title: Logiciel StorageGRID 12.0
     url: "/index.html"
   - title: Appliances StorageGRID
     url: "/storagegrid-hardware.html"
@@ -39,11 +41,9 @@ sidebar:
   - title: Installation, mise à niveau et correctif
     url: "/landing-install-upgrade/index.html"
     entries:
-    - title: Installez les appliances
+    - title: Installer des nœuds basés sur des appareils
       url: "/storagegrid-hardware.html"
-    - section: rhel
-    - section: ubuntu
-    - section: vmware
+    - section: swnodes
     - section: upgrade
     - title: Appliquez le correctif StorageGRID
       entries:
@@ -84,7 +84,7 @@ sidebar:
     entries:
     - title: Maintenance de la grille
       url: "/maintain/index.html"
-    - title: Téléchargez le progiciel de restauration
+    - title: Télécharger le package de récupération
       url: "/maintain/downloading-recovery-package.html"
     - title: Désaffectez les nœuds ou le site
       entries:
@@ -150,6 +150,30 @@ sidebar:
       - title: Procédures de maintenance des nœuds
         pdf-filename: Procédures de nœud
         url: "/maintain/grid-node-procedures.html"
+      - title: Déplacer le service ADC
+        url: "/maintain/move-adc-service.html"
+      - title: Convertir en nœud de données uniquement
+        url: "/maintain/convert-to-data-only-node.html"
+      - title: Procédures de redémarrage, d'arrêt et d'alimentation
+        entries:
+        - title: Effectuer un redémarrage en continu
+          url: "/maintain/rolling-reboot-procedure.html"
+        - title: Redémarrez le nœud à partir de l'onglet tâches
+          url: "/maintain/rebooting-grid-node-from-grid-manager.html"
+        - title: Redémarrer le nœud à partir du shell de commande
+          url: "/maintain/rebooting-grid-node-from-command-shell.html"
+        - title: Arrêter le nœud
+          url: "/maintain/shutting-down-grid-node.html"
+        - title: Mettez l'hôte hors tension
+          url: "/maintain/powering-down-host.html"
+        - title: Mettez tous les nœuds hors tension et sous tension
+          url: "/maintain/powering-off-and-on-all-nodes-in-grid.html"
+      - title: Procédures de remap de port
+        entries:
+        - title: Supprimer les remappages de ports sur les appliances StorageGRID
+          url: "/maintain/removing-port-remaps.html"
+        - title: Supprimez les mappes de ports sur les hôtes bare Metal
+          url: "/maintain/removing-port-remaps-on-bare-metal-hosts.html"
       - title: Procédures de Server Manager
         entries:
         - title: Afficher l'état et la version de Server Manager
@@ -174,26 +198,6 @@ sidebar:
           url: "/maintain/using-donotstart-file.html"
         - title: Dépanner Server Manager
           url: "/maintain/accessing-server-manager-log-file.html"
-      - title: Procédures de redémarrage, d'arrêt et d'alimentation
-        entries:
-        - title: Effectuer un redémarrage en continu
-          url: "/maintain/rolling-reboot-procedure.html"
-        - title: Redémarrez le nœud à partir de l'onglet tâches
-          url: "/maintain/rebooting-grid-node-from-grid-manager.html"
-        - title: Redémarrer le nœud à partir du shell de commande
-          url: "/maintain/rebooting-grid-node-from-command-shell.html"
-        - title: Arrêter le nœud
-          url: "/maintain/shutting-down-grid-node.html"
-        - title: Mettez l'hôte hors tension
-          url: "/maintain/powering-down-host.html"
-        - title: Mettez tous les nœuds hors tension et sous tension
-          url: "/maintain/powering-off-and-on-all-nodes-in-grid.html"
-      - title: Procédures de remap de port
-        entries:
-        - title: Supprimer les mappages de port
-          url: "/maintain/removing-port-remaps.html"
-        - title: Supprimez les mappes de ports sur les hôtes bare Metal
-          url: "/maintain/removing-port-remaps-on-bare-metal-hosts.html"
     - title: Procédures réseau
       entries:
       - title: Mise à jour des sous-réseaux pour le réseau Grid
@@ -406,7 +410,7 @@ sidebar:
         url: "/maintain/monitoring-services-appliance-installation.html"
     - title: Comment le support technique récupère un site
       url: "/maintain/how-site-recovery-is-performed-by-technical-support.html"
-  - title: Activez StorageGRID
+  - title: Solutions et ressources StorageGRID
     url: "/storagegrid-enable.html"
   - title: StorageGRID et BlueXP
     url: "/storagegrid-bluexp.html"

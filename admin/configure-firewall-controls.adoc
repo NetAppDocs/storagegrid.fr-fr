@@ -38,7 +38,7 @@ Pour plus d'informations sur les pare-feu externes et la sécurité réseau, rep
 == Accès aux contrôles de pare-feu
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *contrôle du pare-feu*.
+. Sélectionnez *Configuration* > *Sécurité* > *Contrôle du pare-feu*.
 +
 Les trois onglets de cette page sont décrits dans link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
 

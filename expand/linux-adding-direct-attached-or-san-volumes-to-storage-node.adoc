@@ -14,12 +14,7 @@ summary: Si un nœud de stockage contient moins de 48 volumes de stockage, vous 
 Si un nœud de stockage contient moins de 48 volumes de stockage, vous pouvez augmenter sa capacité en ajoutant de nouveaux périphériques de stockage en mode bloc, en les rendant visibles pour les hôtes Linux et en ajoutant les nouveaux mappages de périphériques de bloc au fichier de configuration StorageGRID utilisé pour le nœud de stockage.
 
 .Avant de commencer
-* Vous avez accès aux instructions d'installation de StorageGRID pour votre plate-forme Linux.
-+
-** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-
-
+* Vous avez accès à lalink:../swnodes/index.html["instructions pour l'installation de StorageGRID"] pour votre plateforme Linux.
 * Vous avez le `Passwords.txt` fichier.
 * Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
 
@@ -167,19 +162,13 @@ Le `setup_rangedbs.sh` script s'exécute automatiquement.
 . Vérifiez que l'état du stockage du nœud de stockage est en ligne :
 +
 .. Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_site_* > *_Storage Node_* > *LDR* > *Storage*.
-.. Sélectionnez l'onglet *Configuration*, puis l'onglet *main*.
-.. Si la liste déroulante État de stockage - souhaité* est définie sur lecture seule ou hors ligne, sélectionnez *en ligne*.
-.. Cliquez sur *appliquer les modifications*.
+.. Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Tâches*.
+.. Si la liste déroulante *État de stockage* est définie sur Lecture seule ou Hors ligne, sélectionnez *En ligne*.
+.. Sélectionnez *Enregistrer*.
 
 
-. Pour afficher les nouveaux magasins d'objets :
-+
-.. Sélectionnez *NODES* > *_site_* > *_Storage Node_* > *Storage*.
-.. Affichez les détails dans le tableau *magasins d'objets*.
-
-
+. Pour voir les nouveaux magasins d’objets, sélectionnez *Stockage*.
+. Consultez les détails dans le tableau *Volumes*.
 
 
 .Résultat

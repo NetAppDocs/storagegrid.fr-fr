@@ -85,6 +85,7 @@ L'alerte *Grid Network MTU mismatch* est déclenchée lorsque le paramètre MTU 
 Les différences dans les paramètres MTU peuvent indiquer que certains réseaux eth0, mais pas tous, sont configurés pour les trames jumbo. Une différence de taille de MTU supérieure à 1000 peut entraîner des problèmes de performances du réseau.
 
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Répertorie les paramètres MTU pour eth0 sur tous les nœuds.
 +
 ** Utilisez la requête fournie dans Grid Manager.
@@ -148,6 +149,7 @@ Le nœud. La valeur par défaut est le nœud local.
 |===
 
 
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé la tâche.
 
 
 
@@ -257,12 +259,12 @@ Des problèmes de connectivité réseau peuvent survenir pour les nœuds Storage
 
 === Clonage d'adresses MAC
 
-Dans certains cas, les problèmes de réseau peuvent être résolus en utilisant le clonage d'adresses MAC. Si vous utilisez des hôtes virtuels, définissez la valeur de la clé de clonage d'adresse MAC de chacun de vos réseaux sur « true » dans le fichier de configuration de nœud. Ce paramètre entraîne l'utilisation de l'adresse MAC du conteneur StorageGRID de l'hôte. Pour créer des fichiers de configuration de nœud, reportez-vous aux instructions de link:../rhel/creating-node-configuration-files.html["Red Hat Enterprise Linux"]ou link:../ubuntu/creating-node-configuration-files.html["Ubuntu ou Debian"].
+Dans certains cas, les problèmes de réseau peuvent être résolus en utilisant le clonage d'adresse MAC.  Si vous utilisez des hôtes virtuels, définissez la valeur de la clé de clonage d'adresse MAC pour chacun de vos réseaux sur « true » dans votre fichier de configuration de nœud.  Ce paramètre oblige l'adresse MAC du conteneur StorageGRID à utiliser l'adresse MAC de l'hôte.  Consultez les instructions pourlink:../swnodes/creating-node-configuration-files.html["créer des fichiers de configuration de nœud"] .
 
 
 NOTE: Créez des interfaces réseau virtuelles distinctes pour le système d'exploitation hôte Linux. L'utilisation des mêmes interfaces réseau pour le système d'exploitation hôte Linux et le conteneur StorageGRID peut rendre le système d'exploitation hôte inaccessible si le mode promiscuous n'a pas été activé sur l'hyperviseur.
 
-Pour plus d'informations sur l'activation du clonage MAC, reportez-vous aux instructions de link:../rhel/configuring-host-network.html["Red Hat Enterprise Linux"]ou link:../ubuntu/configuring-host-network.html["Ubuntu ou Debian"].
+Pour plus d'informations, consultez les instructions pourlink:../swnodes/configuring-host-network.html["activer le clonage MAC"] .
 
 
 
@@ -270,7 +272,7 @@ Pour plus d'informations sur l'activation du clonage MAC, reportez-vous aux inst
 
 Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et que vous préférez autoriser toutes les interfaces à recevoir et transmettre des données pour les adresses MAC autres que celles attribuées par l'hyperviseur, Assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accept* pour le mode promiscuous, les modifications d'adresse MAC et les transmissions forgées. Les valeurs définies sur le commutateur virtuel peuvent être remplacées par les valeurs au niveau du groupe de ports, de sorte que les paramètres soient les mêmes aux deux endroits.
 
-Pour plus d'informations sur l'utilisation du mode promiscuous, reportez-vous aux instructions de link:../rhel/configuring-host-network.html["Red Hat Enterprise Linux"]ou link:../ubuntu/configuring-host-network.html["Ubuntu ou Debian"].
+Pour plus d'informations sur l'utilisation du mode Promiscuous, consultez les instructions delink:../swnodes/configuring-host-network.html["comment configurer le réseau hôte"] .
 
 
 
@@ -327,7 +329,7 @@ Vous devrez peut-être activer la prise en charge IPv6 dans le noyau si vous ave
 .Description de la tâche
 Pour afficher l'adresse IPv6 qui a été attribuée à un nœud de grille :
 
-. Sélectionnez *NODES* et sélectionnez le nœud.
+. Sélectionnez *Nœuds* et sélectionnez le nœud.
 . Sélectionnez *Afficher les adresses IP supplémentaires* en regard de *adresses IP* dans l'onglet vue d'ensemble.
 
 

@@ -1,0 +1,33 @@
+---
+permalink: monitor/manage-io-prioritization.html 
+sidebar: sidebar 
+keywords: ec repair priority, ec purge priority 
+summary: 'La priorisation des entrées/sorties (E/S) vous permet de modifier les priorités relatives des opérations d"E/S sur la grille.' 
+---
+= Modifier la priorisation des E/S
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La priorisation des entrées/sorties (E/S) vous permet de modifier les priorités relatives des opérations d'E/S sur la grille.
+
+Par défaut, le trafic d'E/S PUT et GET du client bénéficie de la priorité la plus élevée par rapport aux activités d'arrière-plan telles que la purge des données codées par effacement (EC) et la réparation EC.  En augmentant la priorité de la purge des données codées par effacement (EC) et des activités de réparation EC, ces tâches peuvent éventuellement être exécutées plus rapidement.  L’efficacité des modifications de priorité des E/S est affectée par le taux de demandes des clients, les fluctuations du trafic réseau et d’autres tâches réseau en cours.
+
+.Avant de commencer
+* Consultez la page de priorisation des E/S pour déterminer les options susceptibles d’avoir un impact sur votre réseau.
+* Évaluez si le trafic client en cours peut gérer en toute sécurité des temps d’attente plus longs ou des délais d’attente des clients.
+* Soyez prêt à surveiller l’effet du changement de priorité et à l’ajuster si nécessaire.  Ces changements sont mis en œuvre rapidement, mais leurs effets peuvent prendre des heures à devenir visibles.
+
+
+.Étapes
+. Sélectionnez *Support* > *Priorisation des E/S*.
+. (Facultatif) Modifiez la priorité de purge et de réparation EC, pour les opérations en arrière-plan qui purgent les données EC, à partir de leurs valeurs par défaut.
++
+
+NOTE: Utilisez la priorité de purge et de réparation EC faible par défaut pour les grilles dotées de nœuds RAID.
+
+. Sélectionnez *Enregistrer*.
+. Surveiller lelink:../monitor/commonly-used-prometheus-metrics.html#where-are-prometheus-metrics-used["métrique"] pour évaluer l’effet des changements de priorisation.
+

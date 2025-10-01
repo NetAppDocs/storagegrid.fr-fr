@@ -25,7 +25,7 @@ Lorsque vous modifiez une règle d'alerte par défaut, vous pouvez modifier les 
 CAUTION: Soyez prudent lorsque vous décidez de modifier une règle d'alerte. Si vous modifiez les valeurs de déclenchement, il est possible que vous ne déteciez pas de problème sous-jacent tant qu'elle n'empêche pas l'exécution d'une opération critique.
 
 .Étapes
-. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez *Alertes* > *Règles*.
 +
 La page règles d'alerte s'affiche.
 

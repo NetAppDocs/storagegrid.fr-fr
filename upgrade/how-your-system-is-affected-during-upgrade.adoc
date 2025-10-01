@@ -15,6 +15,12 @@ Découvrez les conséquences sur votre système StorageGRID lors de la mise à n
 
 
 
+== L'accès SSH externe est autorisé jusqu'à la fin de la mise à niveau
+
+L'accès SSH externe est autorisé pendant la mise à niveau.  Une fois la mise à niveau terminée, l’accès SSH externe est bloqué par défaut.  Après la mise à niveau, vous pouvez utiliser l'onglet *Bloquer SSH* disponible sur la page *Gestionnaire de grille* > *Paramètres de sécurité* pourlink:../admin/manage-external-ssh-access.html["gérer l'accès SSH externe"] .  L'accès SSH entre les nœuds de la grille n'est pas affecté.
+
+
+
 == Les mises à niveau de StorageGRID ne générant pas de perturbation
 
 Le système StorageGRID peut ingérer et récupérer les données depuis les applications client tout au long du processus de mise à niveau. Si vous approuvez la mise à niveau de tous les nœuds du même type (par exemple, nœuds de stockage), les nœuds sont arrêtés un par un. Ainsi, il n'y a pas de temps lorsque tous les nœuds de grid ou tous les nœuds de grid d'un certain type sont indisponibles.
@@ -40,14 +46,20 @@ NOTE: Vous pouvez utiliser plusieurs passerelles et groupes haute disponibilité
 
 
 
+== Les réparations en arrière-plan ne s'exécuteront pas sur les grilles avec des nœuds de versions mixtes
+
+Les réparations en arrière-plan ne s'exécutent pas pendant la mise à niveau lorsque la grille contient des nœuds de versions mixtes.  Les incohérences qui surviennent lors d’une panne de site ne seront pas réparées tant que la mise à niveau n’est pas terminée.
+
+
+
 == Le micrologiciel de l'appliance est mis à niveau
 
-Pendant la mise à niveau de StorageGRID 11.9 :
+Pendant la mise à niveau vers StorageGRID 12.0 :
 
-* Tous les nœuds d'appliance StorageGRID sont automatiquement mis à niveau vers la version 3.9 du firmware du programme d'installation de l'appliance StorageGRID.
-* Les appliances SG6060 et SGF6024 sont automatiquement mises à niveau vers la version 3B08.EX du firmware du BIOS et la version 4.00.07 du firmware du BMC.
-* Les appliances SG100 et SG1000 sont automatiquement mises à niveau vers la version 3B13.EC du firmware du BIOS et la version 4.74.07 du firmware du BMC.
-* Les appliances SGF6112, SG6160, SG110 et SG1100 sont automatiquement mises à niveau vers la version 3.16.07 du firmware BMC.
+* Tous les nœuds d'appliance StorageGRID sont automatiquement mis à niveau vers la version 12.0 du micrologiciel du programme d'installation de l'appliance StorageGRID .
+* Les appareils SG6060 et SGF6024 sont automatiquement mis à niveau vers la version 3B08.EX du micrologiciel du BIOS et la version 4.01.07 du micrologiciel BMC .
+* Les appareils SG100 et SG1000 sont automatiquement mis à niveau vers la version 3B13.EC du micrologiciel du BIOS et la version 4.75.07 du micrologiciel BMC .
+* Les appareils SGF6112, SG6160, SG110 et SG1100 sont automatiquement mis à niveau vers la version 3A14.QD du micrologiciel BIOS et la version 3.19.07 du micrologiciel BMC .
 
 
 
@@ -65,24 +77,18 @@ Pendant la mise à niveau de StorageGRID 11.9 :
 
 Des alertes peuvent être déclenchées lorsque les services démarrent et s'arrêtent, et lorsque le système StorageGRID fonctionne comme un environnement de version mixte (certains nœuds de grid exécutant une version antérieure, alors que d'autres ont été mis à niveau vers une version plus récente). D'autres alertes peuvent être déclenchées une fois la mise à niveau terminée.
 
-Par exemple, vous pouvez voir l'alerte *Impossible de communiquer avec le nœud* lorsque les services sont arrêtés, ou vous pouvez voir l'alerte *Cassandra communication error* lorsque certains nœuds ont été mis à niveau vers StorageGRID 11.9 mais que d'autres nœuds exécutent encore StorageGRID 11.8. En général, ces alertes s'efface une fois la mise à niveau terminée.
+Par exemple, vous pouvez voir l'alerte *Impossible de communiquer avec le nœud* lorsque les services sont arrêtés, ou vous pouvez voir l'alerte *Erreur de communication Cassandra* lorsque certains nœuds ont été mis à niveau vers StorageGRID 12.0 mais que d'autres nœuds exécutent toujours StorageGRID 11.9.  En général, ces alertes disparaissent une fois la mise à niveau terminée.
 
-L'alerte *ILM placement unatteignable* peut être déclenchée lorsque les nœuds de stockage sont arrêtés lors de la mise à niveau vers StorageGRID 11.9. Cette alerte peut persister 1 jour après la fin de la mise à niveau.
+L'alerte *Placement ILM impossible* peut être déclenchée lorsque les nœuds de stockage sont arrêtés pendant la mise à niveau vers StorageGRID 12.0.  Cette alerte peut persister pendant 1 jour après la fin de la mise à niveau.
 
 Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes liées à la mise à niveau en sélectionnant *alertes récemment résolues* ou *alertes actuelles* dans le tableau de bord de Grid Manager.
-
-
-
-== De nombreuses notifications SNMP sont générées
-
-Notez que de nombreuses notifications SNMP peuvent être générées lorsque les nœuds de la grille sont arrêtés et redémarrés lors de la mise à niveau. Pour éviter les notifications excessives, décochez la case *Activer les notifications d'agent SNMP* (*CONFIGURATION* > *surveillance* > *agent SNMP*) pour désactiver les notifications SNMP avant de démarrer la mise à niveau. Ensuite, réactivez les notifications une fois la mise à niveau terminée.
 
 
 
 == Les modifications de configuration sont restreintes
 
 
-NOTE: Cette liste s'applique spécifiquement aux mises à niveau de StorageGRID 11.8 vers StorageGRID 11.9. Si vous effectuez une mise à niveau vers une autre version de StorageGRID, reportez-vous à la liste des modifications restreintes dans les instructions de mise à niveau de cette version.
+NOTE: Cette liste s'applique spécifiquement aux mises à niveau de StorageGRID 11.9 vers StorageGRID 12.0.  Si vous effectuez une mise à niveau vers une autre version de StorageGRID , reportez-vous à la liste des modifications restreintes dans les instructions de mise à niveau de cette version.
 
 Jusqu'à la fin de la tâche *Activer la nouvelle fonction* :
 
@@ -94,31 +100,12 @@ Jusqu'à la fin de la tâche *Activer la nouvelle fonction* :
 
 NOTE: Contactez le support technique si vous avez besoin de restaurer un nœud pendant la mise à niveau.
 
-* Lors de la mise à niveau vers StorageGRID 11.9, vous ne devez pas gérer les groupes haute disponibilité, les interfaces VLAN ni les terminaux d'équilibrage de la charge.
-* Ne supprimez aucun groupe haute disponibilité qu'une fois la mise à niveau vers StorageGRID 11.9 terminée. Les adresses IP virtuelles d'autres groupes haute disponibilité peuvent devenir inaccessibles.
+* Vous ne devez pas gérer les groupes HA, les interfaces VLAN ou les points de terminaison d'équilibrage de charge pendant la mise à niveau vers StorageGRID 12.0.
+* Ne supprimez aucun groupe HA tant que la mise à niveau vers StorageGRID 12.0 n'est pas terminée.  Les adresses IP virtuelles dans d’autres groupes HA peuvent devenir inaccessibles.
 
 
 Jusqu'à la fin de la tâche *étapes de mise à niveau finale* :
 
 * N'effectuez pas de procédure d'extension.
 * N'effectuez pas de procédure de mise hors service.
-
-
-
-
-== Vous ne pouvez pas afficher les détails des compartiments ni gérer ces compartiments depuis le gestionnaire de locataires
-
-Lors de la mise à niveau vers StorageGRID 11.9 (c'est-à-dire lorsque le système fonctionne comme un environnement à versions mixtes), vous ne pouvez pas afficher les détails des compartiments ni gérer les compartiments à l'aide du gestionnaire de locataires. L'une des erreurs suivantes apparaît sur la page compartiments du Gestionnaire de locataires :
-
-* Vous ne pouvez pas utiliser cette API pendant la mise à niveau vers 11.9.
-* Vous ne pouvez pas afficher les détails de la gestion des versions du compartiment dans le Gestionnaire de locataires pendant la mise à niveau vers la version 11.9.
-
-
-Cette erreur se résoudra une fois la mise à niveau vers 11.9 terminée.
-
-.Solution de contournement
-Pendant la mise à niveau vers la version 11.9, utilisez les outils suivants pour afficher les détails des compartiments ou gérer les compartiments au lieu d'utiliser le gestionnaire de locataires :
-
-* Pour effectuer des opérations S3 standard sur un compartiment, utilisez le link:../s3/operations-on-buckets.html["L'API REST S3"] ou le link:../tenant/understanding-tenant-management-api.html["API de gestion des locataires"].
-* Pour exécuter des opérations personnalisées StorageGRID sur un compartiment (par exemple, affichage et modification de la cohérence du compartiment, activation ou désactivation des dernières mises à jour des heures d'accès ou configuration de l'intégration des recherches), utilisez l'API de gestion des locataires.
 

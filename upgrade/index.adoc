@@ -16,12 +16,16 @@ Suivez ces instructions pour mettre à niveau un système StorageGRID vers une n
 Lorsque vous effectuez la mise à niveau, tous les nœuds de votre système StorageGRID sont mis à niveau.
 
 
+CAUTION: Ne démarrez pas la mise à niveau si vous avez un besoin urgent d’étendre votre stockage pour augmenter la capacité (si votre stockage est presque plein).  Terminez la procédure de mise à niveau en temps opportun.  Si une récupération est nécessaire, contactez le support technique.
 
-== Avant de commencer
 
-Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et les améliorations de StorageGRID 11.9, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID.
 
-* link:whats-new.html["Nouveautés de StorageGRID 11.9"]
+== Avant de procéder à la mise à niveau
+
+Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et améliorations de StorageGRID 12.0, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID .
+
+* link:how-your-system-is-affected-during-upgrade.html["Quel est l'impact de votre système pendant la mise à niveau"]
+* link:whats-new.html["Quoi de neuf dans StorageGRID 12.0"]
 * link:removed-or-deprecated-features.html["Fonctions supprimées ou obsolètes"]
 * link:changes-to-grid-management-api.html["Modifications apportées à l'API de gestion du grid"]
 * link:changes-to-tenant-management-api.html["Modifications apportées à l'API de gestion des locataires"]

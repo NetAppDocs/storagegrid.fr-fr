@@ -18,12 +18,12 @@ Vous devez exécuter manuellement deux scripts pour remonter les volumes de stoc
 +
 L'exécution `sn-remount-volumes` du script peut vous aider à identifier d'autres volumes de stockage défaillants.
 
-* Vous avez vérifié qu'une mise hors service du nœud de stockage n'est pas en cours ou que vous avez interrompu la procédure de mise hors service du nœud. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.)
-* Vous avez vérifié qu'une extension n'est pas en cours. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *expansion*.)
+* Vous avez vérifié qu'une mise hors service du nœud de stockage n'est pas en cours ou vous avez suspendu la procédure de mise hors service du nœud.  (Dans le gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Désactivation*.)
+* Vous avez vérifié qu'une extension n'est pas en cours.  (Dans le gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Extension*.)
 * Vous avez link:reviewing-warnings-for-system-drive-recovery.html["Consultez les avertissements relatifs à la restauration du lecteur du système du nœud de stockage"].
 +
 
-CAUTION: Si plus d'un nœud de stockage est hors ligne ou si un nœud de stockage de cette grille a été reconstruit au cours des 15 derniers jours, contactez le support technique. N'exécutez pas `sn-recovery-postinstall.sh` le script. Reconstruire Cassandra sur deux nœuds de stockage ou plus dans les 15 jours suivant l'arrêt du service peut entraîner une perte de données.
+CAUTION: Contactez le support technique si plusieurs nœuds de stockage sont hors ligne.  Ne courez pas le `sn-recovery-postinstall.sh` scénario.
 
 
 

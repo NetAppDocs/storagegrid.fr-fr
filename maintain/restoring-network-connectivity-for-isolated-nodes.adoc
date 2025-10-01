@@ -17,7 +17,7 @@ Dans certaines circonstances, un ou plusieurs groupes de nœuds peuvent ne pas �
 L'isolation des nœuds est indiquée par :
 
 * Alertes, telles que *Impossible de communiquer avec le noeud* (*alertes* > *actuel*)
-* Diagnostics liés à la connectivité (*SUPPORT* > *Tools* > *Diagnostics*)
+* Diagnostics liés à la connectivité (*Support* > *Outils* > *Diagnostics*)
 
 
 L'existence de nœuds isolés entraîne notamment les conséquences suivantes :

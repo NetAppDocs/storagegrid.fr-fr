@@ -51,7 +51,7 @@ NOTE: Lorsque vous spécifiez la source NTP externe pour une installation Storag
 Procédez comme suit pour ajouter, mettre à jour ou supprimer des serveurs NTP.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *réseau* > *serveurs NTP*.
+. Sélectionnez *Maintenance* > *Réseau* > *Serveurs NTP*.
 . Dans la section serveurs, ajoutez, mettez à jour ou supprimez des entrées de serveur NTP, si nécessaire.
 +
 Vous devez inclure au moins quatre serveurs NTP et vous pouvez spécifier jusqu'à six serveurs.

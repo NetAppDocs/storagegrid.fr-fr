@@ -18,7 +18,7 @@ La restauration du nœud d'administration principal est terminée.
 
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Dans la liste de gauche, sélectionnez le nœud d'administration principal.
 . Dans l'onglet vue d'ensemble, notez la version affichée dans le champ *version du logiciel*.
 . Sélectionnez un autre nœud de grille.

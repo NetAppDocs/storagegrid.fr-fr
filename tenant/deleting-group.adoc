@@ -19,7 +19,7 @@ Vous pouvez supprimer un groupe du système. Les utilisateurs appartenant unique
 
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Cochez la case correspondant à chaque groupe à supprimer.
 . Sélectionnez *actions* > *Supprimer le groupe*.
 . Sélectionnez *Supprimer le groupe*.

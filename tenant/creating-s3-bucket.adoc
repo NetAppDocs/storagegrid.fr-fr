@@ -18,13 +18,13 @@ Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiment
 * Vous appartenez à un groupe d'utilisateurs disposant de l'accès racine ou de la fonction gérer tous les compartiments link:tenant-management-permissions.html["permission"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
 +
 
-NOTE: Les autorisations permettant de définir ou de modifier les propriétés S3 Object Lock des compartiments ou des objets peuvent être accordées par link:../s3/bucket-and-group-access-policies.html["politique de compartiment ou règle de groupe"].
+NOTE: Les autorisations permettant de définir ou de modifier les propriétés de verrouillage d'objet S3 des compartiments ou des objets peuvent être accordées parlink:../s3/use-access-policies.html["politique de compartiment ou règle de groupe"] .
 
 * Si vous prévoyez d'activer le verrouillage objet S3 pour un compartiment, un administrateur du grid a activé le paramètre de verrouillage objet S3 global pour le système StorageGRID. Vous avez également passé en revue les exigences relatives aux compartiments et aux objets S3 Object Lock.
 * Si chaque locataire dispose de 5,000 compartiments, chaque nœud de stockage de la grille dispose d'au moins 64 Go de RAM.
 +
 
-NOTE: Chaque grille peut contenir un maximum de 100,000 compartiments.
+NOTE: Chaque grille peut contenir un maximum de 100 000 buckets, y comprislink:../tenant/what-is-branch-bucket.html["seaux de branches"] .
 
 
 
@@ -72,7 +72,7 @@ Région
  a| 
 La région du godet.
 
-L'administrateur StorageGRID gère les régions disponibles. Ce compartiment peut affecter la règle de protection des données appliquée aux objets. Par défaut, tous les compartiments sont créés dans la `us-east-1` région.
+Votre administrateur StorageGRID gère les régions disponibles.  La région d’un bucket peut affecter la politique de protection des données appliquée aux objets.  Par défaut, tous les buckets sont créés dans le `us-east-1` région.  Si la région par défaut est configurée sur une région autre que `us-east-1` , cette autre région est initialement sélectionnée dans la liste déroulante.
 
 *Remarque* : vous ne pouvez pas modifier la région après avoir créé le compartiment.
 
@@ -87,7 +87,15 @@ L'administrateur StorageGRID gère les régions disponibles. Ce compartiment peu
 .Étapes
 . Activez éventuellement le contrôle de version d'objet pour le compartiment.
 +
-Activez la gestion des versions d'objet si vous souhaitez stocker chaque version de chaque objet dans ce compartiment. Vous pouvez ensuite récupérer les versions précédentes d'un objet si nécessaire. Vous devez activer la gestion des versions d'objet si le compartiment est utilisé pour la réplication entre plusieurs grilles.
+Activez la gestion des versions d'objet si vous souhaitez stocker chaque version de chaque objet dans ce compartiment. Vous pouvez ensuite récupérer les versions précédentes d'un objet si nécessaire.
+
++
+Vous devez activer le contrôle de version des objets si :
+
++
+** Le bucket sera utilisé pour la réplication inter-grille.
+** Vous souhaitez créer unlink:../tenant/what-is-branch-bucket.html["seau de branche"] de ce seau.
+
 
 . Si le paramètre global S3 Object Lock est activé, activez éventuellement S3 Object Lock pour que le compartiment stocke des objets à l'aide d'un modèle WORM (Write-once-read-many).
 +
@@ -146,12 +154,16 @@ Une période de rétention _maximum_, qui peut être de 1 jour à 100 ans, est d
 
 
 
-. [[Capacity-limit]]en option, sélectionnez *Enable Capacity limit*.
+. [[capacity-limit]]Vous pouvez également sélectionner *Activer la limite de capacité*, saisir une valeur et sélectionner l'unité de capacité.
 +
 La limite de capacité est la capacité maximale disponible pour les objets de ce compartiment. Cette valeur représente une quantité logique (taille de l'objet), et non une quantité physique (taille sur le disque).
 
 +
 Si aucune limite n'est définie, la capacité de ce godet est illimitée. Pour plus d'informations, reportez-vous à la section link:../tenant/understanding-tenant-manager-dashboard.html#bucket-capacity-usage["Utilisation limitée de la capacité"] .
+
+. [[object-count-limit]]Si vous le souhaitez, sélectionnez *Activer la limite du nombre d'objets*.
++
+La limite du nombre d'objets est le nombre maximal d'objets que ce bucket peut contenir.  Cette valeur représente une quantité logique (nombre d'objets).  Si aucune limite n'est définie, le nombre d'objets est illimité.
 
 . Sélectionnez *Créer un compartiment*.
 +
@@ -159,3 +171,5 @@ Le godet est créé et ajouté au tableau sur la page godets.
 
 . Si vous le souhaitez, sélectionnez *aller à la page des détails du compartiment* pour link:viewing-s3-bucket-details.html["afficher les détails du compartiment"]effectuer une configuration supplémentaire.
 
+
+Vous pouvez égalementlink:../tenant/manage-branch-buckets.html["créer des compartiments de branches"] selon les besoins.

@@ -51,9 +51,7 @@ Après avoir déterminé les réseaux StorageGRID que vous souhaitez utiliser et
 
 
 .Installation des nœuds basés sur logiciel
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-* link:../vmware/index.html["Installez StorageGRID sur VMware"]
+* link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"]
 
 
 .Configuration et administration du logiciel StorageGRID

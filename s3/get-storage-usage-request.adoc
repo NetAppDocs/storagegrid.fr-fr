@@ -72,4 +72,4 @@ Content-Type: application/xml
 Chaque version d'objet stockée contribuera aux `ObjectCount` valeurs et `DataBytes` dans la réponse. Les marqueurs de suppression ne sont pas ajoutés au `ObjectCount` total.
 
 .Informations associées
-link:consistency-controls.html["Valeurs de cohérence"]
+link:consistency.html["La cohérence"]

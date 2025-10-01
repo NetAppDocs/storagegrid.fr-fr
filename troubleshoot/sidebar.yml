@@ -20,12 +20,8 @@ entries:
     - title: Méthodes de récupération des objets
       pdf-filename: Dépanner les données d'objet perdues ou manquantes
       url: "/troubleshoot/troubleshooting-lost-and-missing-object-data.html"
-    - title: Rechercher les objets perdus
-      url: "/troubleshoot/investigating-lost-objects.html"
-    - title: Recherche et restauration d'objets potentiellement perdus
-      url: "/troubleshoot/searching-for-and-restoring-potentially-lost-objects.html"
-    - title: Réinitialiser le nombre d'objets perdus et manquants
-      url: "/troubleshoot/resetting-lost-and-missing-object-counts.html"
+    - title: Enquêter sur les objets potentiellement perdus
+      url: "/troubleshoot/investigating-potentially-lost-objects.html"
   - title: Dépanner l'alerte de stockage de données d'objet faible
     url: "/troubleshoot/troubleshooting-low-object-data-storage-alert.html"
   - title: Dépanner les alertes de remplacement de filigrane en lecture seule faible
@@ -40,3 +36,5 @@ entries:
   url: "/troubleshoot/troubleshooting-network-hardware-and-platform-issues.html"
 - title: Dépanner le serveur syslog externe
   url: "/troubleshoot/troubleshooting-syslog-server.html"
+- title: Résoudre les problèmes de mise en cache de l'équilibreur de charge
+  url: "/troubleshoot/troubleshooting-load-balancer-caching.html"

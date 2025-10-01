@@ -30,7 +30,7 @@ indexpage:
     - title: Autorisations de groupe d'administration
       url: "../admin/admin-group-permissions.html"
     - title: Configurer l'authentification unique
-      url: "../admin/configuring-sso.html"
+      url: "../admin/how-sso-works.html"
   - title: Utiliser la fédération de grille
     links:
     - title: Qu'est-ce que la fédération de grille ?

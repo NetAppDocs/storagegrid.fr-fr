@@ -33,7 +33,7 @@ Cette procédure ne représente qu'une étape du processus de restauration du n�
 . Si le nœud de grille défaillant est un nœud de stockage, déterminez si l'un des disques durs virtuels utilisés pour le stockage des données n'est pas endommagé et conservez-le pour qu'il soit reconnecté au nœud de grille récupéré.
 . Mise hors tension de la machine virtuelle
 . Sélectionnez *actions* > *toutes les actions vCenter* > *Supprimer du disque* pour supprimer la machine virtuelle.
-. Déployez une nouvelle machine virtuelle en tant que nœud de remplacement et connectez-la à un ou plusieurs réseaux StorageGRID. Pour obtenir des instructions, voir link:../vmware/deploying-storagegrid-node-as-virtual-machine.html["Déploiement d'un nœud StorageGRID en tant que machine virtuelle"].
+. Déployez une nouvelle machine virtuelle pour être le nœud de remplacement et connectez-la à un ou plusieurs réseaux StorageGRID .  Pour les instructions, voirlink:../swnodes/deploying-storagegrid-node-as-virtual-machine.html["Déploiement d'un nœud StorageGRID en tant que machine virtuelle"] .
 +
 Lorsque vous déployez le nœud, vous pouvez remappage les ports de nœud ou augmenter les paramètres de processeur ou de mémoire.
 

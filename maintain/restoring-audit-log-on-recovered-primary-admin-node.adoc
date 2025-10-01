@@ -33,7 +33,7 @@ Par défaut, les informations d'audit sont envoyées au journal d'audit des nœu
 * Vous avez explicitement indiqué que les messages d'audit doivent être enregistrés uniquement sur les nœuds locaux qui les ont générés.
 
 
-Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"] pour plus de détails.
+Voirlink:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"] pour plus de détails.
 
 ====
 .Étapes
@@ -48,12 +48,12 @@ Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'au
 +
 Une fois connecté en tant que root, l'invite passe de `$` à `#`.
 
-. Vérifiez quels fichiers d'audit ont été conservés : `cd /var/local/log`
+. Vérifiez quels fichiers d’audit ont été conservés : `cd /var/local/audit/export`
 . Copiez les fichiers journaux d'audit conservés sur le nœud d'administration récupéré : `scp admin@_grid_node_IP_:/var/local/tmp/saved-audit-logs/YYYY* .`
 +
 Lorsque vous y êtes invité, entrez le mot de passe pour l'administrateur.
 
 . Pour plus de sécurité, supprimez les journaux d'audit du nœud de grille défaillant après avoir vérifié qu'ils ont bien été copiés sur le nœud d'administration restauré.
-. Mettez à jour les paramètres utilisateur et groupe des fichiers journaux d'audit sur le nœud d'administration récupéré : `chown ams-user: bycast *`
+. Mettre à jour les paramètres utilisateur et groupe des fichiers journaux d’audit sur le nœud d’administration récupéré : `chown ams-user:bycast *`
 . Se déconnecter en tant que root : `exit`
 

@@ -21,9 +21,9 @@ Si des nœuds StorageGRID sont déployés sur des hôtes Linux, link:linux-insta
 [role="quick-margin-para"]
 Depuis le nœud d'administration principal, accédez à la page mise à niveau StorageGRID et téléchargez le fichier de mise à niveau et le fichier correctif, si nécessaire.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Télécharger le package de récupération
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"]Télécharger le package de récupération
 [role="quick-margin-para"]
-Téléchargez le progiciel de récupération actuel avant de démarrer la mise à niveau.
+Téléchargez le package de récupération actuel avant de commencer la mise à niveau.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Exécuter des précontrôles de mise à niveau
 [role="quick-margin-para"]
@@ -33,9 +33,9 @@ Les précontrôles de mise à niveau vous aident à détecter les problèmes, de
 [role="quick-margin-para"]
 Lorsque vous démarrez la mise à niveau, les précontrôles sont à nouveau exécutés et le nœud d'administration principal est mis à niveau automatiquement. Vous ne pouvez pas accéder au gestionnaire de grille pendant la mise à niveau du nœud d'administration principal. Les journaux d'audit seront également indisponibles. Cette mise à niveau peut prendre jusqu'à 30 minutes.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Six"] Télécharger le package de récupération
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Six"]Télécharger le package de récupération
 [role="quick-margin-para"]
-Une fois le nœud d'administration principal mis à niveau, téléchargez un nouveau package de récupération.
+Une fois le nœud d’administration principal mis à niveau, téléchargez un nouveau package de récupération.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sept"] Approuver les nœuds
 [role="quick-margin-para"]

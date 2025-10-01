@@ -63,7 +63,7 @@ NOTE: Les mesures qui incluent ``_private_`` dans leur nom sont destinées à un
 * *ntp-servers* : opérations de liste ou de mise à jour des serveurs NTP (Network Time Protocol) externes.
 * *Objets* : opérations sur les objets et les métadonnées des objets.
 * *Récupération* : opérations pour la procédure de récupération.
-* *Recovery-package*: Opérations pour télécharger le progiciel de récupération.
+* *recovery-package* : Opérations de téléchargement du package de récupération.
 * *Régions* : opérations pour afficher et créer des régions.
 * *s3-object-lock* : opérations sur les paramètres globaux de verrouillage d'objet S3.
 * *Server-certificate* : opérations pour afficher et mettre à jour les certificats de serveur Grid Manager.

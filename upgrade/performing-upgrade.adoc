@@ -2,7 +2,7 @@
 permalink: upgrade/performing-upgrade.html 
 sidebar: sidebar 
 keywords: upgrade, how to perform a software upgrade 
-summary: Vous pouvez effectuer une mise à niveau vers StorageGRID 11.9 et appliquer simultanément le dernier correctif pour cette version. La page de mise à niveau StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement correctes. 
+summary: Vous pouvez effectuer une mise à niveau vers StorageGRID 12.0 et appliquer le dernier correctif pour cette version en même temps.  La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées. 
 ---
 = Effectuez la mise à niveau
 :allow-uri-read: 
@@ -11,10 +11,13 @@ summary: Vous pouvez effectuer une mise à niveau vers StorageGRID 11.9 et appli
 
 
 [role="lead"]
-Vous pouvez effectuer une mise à niveau vers StorageGRID 11.9 et appliquer simultanément le dernier correctif pour cette version. La page de mise à niveau StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement correctes.
+Vous pouvez effectuer une mise à niveau vers StorageGRID 12.0 et appliquer le dernier correctif pour cette version en même temps.  La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées.
 
 .Avant de commencer
 Vous avez passé en revue toutes les considérations et terminé toutes les étapes de planification et de préparation.
+
+
+CAUTION: Ne démarrez pas la mise à niveau si vous avez un besoin urgent d’étendre votre stockage pour augmenter la capacité (si votre stockage est presque plein).  Terminez la procédure de mise à niveau en temps opportun.  Si une récupération est nécessaire, contactez le support technique.
 
 
 
@@ -24,7 +27,7 @@ Dans un premier temps, accédez à la page mise à niveau StorageGRID dans le Ge
 
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-. Sélectionnez *MAINTENANCE* > *système* > *mise à jour logicielle*.
+. Sélectionnez *Maintenance* > *Système* > *Mise à jour du logiciel*.
 . Dans la mosaïque de mise à niveau StorageGRID, sélectionnez *mettre à niveau*.
 
 
@@ -32,10 +35,10 @@ Dans un premier temps, accédez à la page mise à niveau StorageGRID dans le Ge
 
 == Sélectionnez fichiers
 
-Le chemin de mise à jour de la page mise à niveau StorageGRID indique les versions majeures (par exemple, 11.9.0) et les correctifs (par exemple, 11.9.0.1) que vous devez installer pour obtenir la dernière version de StorageGRID. Vous devez installer les versions et correctifs recommandés dans l'ordre indiqué.
+Le chemin de mise à jour sur la page de mise à niveau de StorageGRID indique les versions principales (par exemple, 12.0.0) et les correctifs (par exemple, 12.0.0.1) que vous devez installer pour obtenir la dernière version de StorageGRID .  Vous devez installer les versions et les correctifs recommandés dans l'ordre indiqué.
 
 
-TIP: Si aucun chemin de mise à jour n'est affiché, votre navigateur ne pourra peut-être pas accéder au site de support NetApp ou la case *Rechercher les mises à jour logicielles* sur la page AutoSupport (*SUPPORT* > *Outils* > *AutoSupport* > *Paramètres*) peut être désactivée.
+TIP: Si aucun chemin de mise à jour n'est affiché, il est possible que votre navigateur ne puisse pas accéder au site de support NetApp ou que la case à cocher *Rechercher les mises à jour logicielles* sur la page AutoSupport (*Support* > *Outils* > * AutoSupport* > *Paramètres*) soit désactivée.
 
 .Étapes
 . Pour l'étape *Sélectionner des fichiers*, vérifiez le chemin de mise à jour.
@@ -47,9 +50,9 @@ Si aucun chemin de mise à jour n'est affiché, rendez-vous sur le https://mysup
 
 NOTE: Si vous avez besoin de télécharger et d'installer un package RPM ou DEB sur tous les hôtes Linux, il se peut que vous ayez déjà répertorié les fichiers de mise à niveau et de correctif StorageGRID dans le chemin de mise à jour.
 
-. Sélectionnez *Parcourir* pour télécharger le fichier de mise à niveau de version vers StorageGRID : `NetApp_StorageGRID_11.9.0_Software_uniqueID.upgrade`
+. Sélectionnez *Parcourir* pour télécharger le fichier de mise à niveau de version sur StorageGRID: `NetApp_StorageGRID_12.0.0_Software_uniqueID.upgrade`
 +
-Une fois le processus de téléchargement et de validation terminé, une coche verte apparaît en regard du nom du fichier.
+Une fois le téléchargement et la vérification de la signature du code terminés, une coche verte apparaît à côté du nom du fichier.
 
 . Si vous avez téléchargé un fichier correctif, sélectionnez *Parcourir* pour télécharger ce fichier. Le correctif sera automatiquement appliqué dans le cadre de la mise à niveau de la version.
 . Sélectionnez *Continuer*.
@@ -65,16 +68,16 @@ L'exécution de contrôles préalables vous permet de détecter et de résoudre 
 . Pour l'étape *Exécuter les précontrôles*, commencez par saisir la phrase de passe de provisionnement pour votre grille.
 . Sélectionnez *Télécharger le paquet de récupération*.
 +
-Vous devez télécharger la copie actuelle du fichier du package de récupération avant de mettre à niveau le nœud d'administration principal. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
+Vous devez télécharger la copie actuelle du fichier du package de récupération avant de mettre à niveau le nœud d’administration principal.  Le fichier de package de récupération vous permet de restaurer le système en cas de panne.
 
 . Une fois le fichier téléchargé, vérifiez que vous pouvez y accéder, y compris le `Passwords.txt` fichier.
 . Copiez le fichier téléchargé (`.zip`) dans deux emplacements sécurisés et séparés.
 +
 
-CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il contient des clés de cryptage et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID.
+CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID .
 
 . Sélectionnez *Exécuter les précontrôles* et attendez que les précontrôles soient terminés.
-. Passez en revue les détails de chaque vérification préalable signalée et résolvez les erreurs signalées. Voir https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version StorageGRID 11.9.
+. Passez en revue les détails de chaque pré-vérification signalée et résolvez toutes les erreurs signalées.  Voir le https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.0_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version StorageGRID 12.0.
 +
 Vous devez résoudre tous les problèmes de vérification préalable _erreurs_ avant de pouvoir mettre à niveau votre système. Cependant, vous n'avez pas besoin de corriger les _avertissements_ de prévérification avant de procéder à la mise à niveau.
 
@@ -123,19 +126,19 @@ Vous devez mettre à niveau tous les nœuds de la grille, mais vous pouvez effec
 Si l'ordre de mise à niveau des nœuds est important, approuvez les nœuds ou les groupes de nœuds un par un et attendez que la mise à niveau soit terminée sur chaque nœud avant d'approuver le prochain nœud ou groupe de nœuds.
 
 
-NOTE: Lorsque la mise à niveau démarre sur un nœud de la grille, les services de ce nœud sont arrêtés. Plus tard, le nœud de la grille est redémarré. Pour éviter toute interruption de service pour les applications client qui communiquent avec le nœud, n'approuvez pas la mise à niveau d'un nœud, sauf si vous êtes sûr que le nœud est prêt à être arrêté et redémarré. Si nécessaire, planifiez une fenêtre de maintenance ou avisez les clients.
+CAUTION: Lorsque la mise à niveau démarre sur un nœud de la grille, les services de ce nœud sont arrêtés. Plus tard, le nœud de la grille est redémarré. Pour éviter toute interruption de service pour les applications client qui communiquent avec le nœud, n'approuvez pas la mise à niveau d'un nœud, sauf si vous êtes sûr que le nœud est prêt à être arrêté et redémarré. Si nécessaire, planifiez une fenêtre de maintenance ou avisez les clients.
 
 .Étapes
 . Pour l'étape *mettre à niveau d'autres nœuds*, consultez le résumé, qui fournit l'heure de début de la mise à niveau dans son ensemble et l'état de chaque tâche de mise à niveau majeure.
 +
 ** *Démarrer le service de mise à niveau* est la première tâche de mise à niveau. Au cours de cette tâche, le fichier logiciel est distribué aux nœuds de grille et le service de mise à niveau est lancé sur chaque nœud.
-** Lorsque la tâche *Démarrer le service de mise à niveau* est terminée, la tâche *mettre à niveau d'autres nœuds de grille* démarre et vous êtes invité à télécharger une nouvelle copie du progiciel de récupération.
+** Une fois la tâche *Démarrer le service de mise à niveau* terminée, la tâche *Mettre à niveau les autres nœuds de grille* démarre et vous êtes invité à télécharger une nouvelle copie du package de récupération.
 
 
-. Lorsque vous y êtes invité, saisissez votre phrase de passe de provisionnement et téléchargez une nouvelle copie du pack de récupération.
+. Lorsque vous y êtes invité, entrez votre mot de passe de provisionnement et téléchargez une nouvelle copie du package de récupération.
 +
 
-CAUTION: Vous devez télécharger une nouvelle copie du fichier du package de récupération après la mise à niveau du nœud d'administration principal. Le fichier du progiciel de récupération vous permet de restaurer le système en cas de défaillance.
+CAUTION: Vous devez télécharger une nouvelle copie du fichier du package de récupération après la mise à niveau du nœud d’administration principal.  Le fichier de package de récupération vous permet de restaurer le système en cas de panne.
 
 . Consultez les tableaux d'état pour chaque type de nœud. Il existe des tableaux pour les nœuds d'administration non primaires, les nœuds de passerelle et les nœuds de stockage.
 +
@@ -148,6 +151,10 @@ Un nœud de grille peut se trouver dans l'une des étapes suivantes lorsque les 
 
 
 . [[Approval-STEP]]lorsque vous êtes prêt à sélectionner des nœuds de grille pour la mise à niveau (ou si vous devez annuler l'approbation des nœuds sélectionnés), utilisez les instructions suivantes :
++
+
+NOTE: Pour une mise à niveau vers StorageGRID 12.0, si vous souhaitez approuver des nœuds individuels au lieu de tous les nœuds, la meilleure pratique consiste à mettre à niveau un site entier avant de passer au site suivant.
+
 +
 [cols="1a,1a"]
 |===
@@ -240,12 +247,7 @@ Lorsque tous les nœuds de grille ont terminé les étapes de mise à niveau, la
 
 .Étapes
 . Dès que la tâche *Activer les fonctions* est terminée (ce qui se produit rapidement), vous pouvez commencer à utiliser link:whats-new.html["nouvelles fonctionnalités"]dans la version StorageGRID mise à niveau.
-. Pendant la tâche *mettre à niveau la base de données*, le processus de mise à niveau vérifie chaque nœud pour vérifier que la base de données Cassandra n'a pas besoin d'être mise à jour.
-+
-
-NOTE: La mise à niveau de StorageGRID 11.8 vers 11.9 ne nécessite pas de mise à niveau de la base de données Cassandra. Cependant, le service Cassandra sera arrêté et redémarré sur chaque nœud de stockage. Pour les futures versions d'StorageGRID, l'étape de mise à jour de la base de données Cassandra peut prendre plusieurs jours.
-
-. Une fois la tâche *mettre à niveau la base de données* terminée, attendez quelques minutes pour que les *étapes finales de la mise à niveau* soient terminées.
+. La mise à niveau de la base de données Cassandra démarre.  Cette mise à niveau se produira en arrière-plan pendant un à trois jours et le service Cassandra sera arrêté et redémarré sur chaque nœud de stockage.  Pendant cette période, certaines procédures de maintenance impliquant le streaming de métadonnées, telles que l'extension, seront désactivées.
 . Lorsque les *étapes finales de la mise à niveau* sont terminées, la mise à niveau est effectuée. La première étape, *Sélectionner les fichiers*, est réaffichée avec une bannière de succès verte.
 . Vérifiez que les opérations de la grille sont à nouveau normales :
 +
@@ -254,3 +256,6 @@ NOTE: La mise à niveau de StorageGRID 11.8 vers 11.9 ne nécessite pas de mise 
 
 
 
+
+.Informations associées
+link:how-your-system-is-affected-during-upgrade.html["Quel est l'impact de votre système pendant la mise à niveau"]

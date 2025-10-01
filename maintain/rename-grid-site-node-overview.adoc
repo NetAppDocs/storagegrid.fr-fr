@@ -29,7 +29,7 @@ Utilisez la procédure de renommage pour corriger les fautes de frappe, mettre e
 
 Le tableau suivant récapitule les emplacements où les noms des systèmes et les noms d'affichage sont affichés dans l'interface utilisateur de StorageGRID et dans les fichiers StorageGRID.
 
-[cols="2a,2a,3a"]
+[cols="1a,1a,3a"]
 |===
 | Emplacement | Nom du système | Nom d'affichage 
 
@@ -55,20 +55,11 @@ Si un élément est renommé, affiché à la place du nom du système dans les e
 
 
  a| 
-*NOEUDS* > *vue d'ensemble* pour un noeud
+*Nœuds* > onglet *Aperçu* pour un nœud
  a| 
 Toujours affiché
  a| 
 S'affiche uniquement si l'élément est renommé
-
-
-
- a| 
-Pages héritées dans le gestionnaire de grille (par exemple, *SUPPORT* > *topologie de grille*)
- a| 
-Illustré
- a| 
-Non illustré
 
 
 
@@ -99,7 +90,7 @@ Affiché comme nom principal lorsque l'élément est renommé :
 
 
  a| 
-`Passwords.txt` Dans le progiciel de récupération
+`Passwords.txt`fichier dans le package de récupération
  a| 
 Comme illustré `Server Name`
  a| 

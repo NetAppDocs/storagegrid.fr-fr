@@ -53,13 +53,7 @@ L'écran d'ouverture de session qui s'affiche dépend de l'URL que vous avez sai
 Si StorageGRID n'utilise pas SSO, l'un des écrans suivants s'affiche :
 
 ** Page de connexion de Grid Manager. Sélectionnez le lien *tenant sign-in*.
-+
-image::../media/tenant_login_link.png[Lien de connexion du locataire sur la page de connexion de Grid Manager]
-
-** Page de connexion du Gestionnaire de locataires. Le champ *compte* est peut-être déjà renseigné, comme indiqué ci-dessous.
-+
-image::../media/tenant_user_sign_in.png[Page de connexion du gestionnaire de locataires]
-
+** La page de connexion du gestionnaire de locataires.  Le champ *Compte* est peut-être déjà rempli.
 +
 ... Si l'ID de compte à 20 chiffres du locataire ne s'affiche pas, sélectionnez le nom du compte du locataire s'il apparaît dans la liste des comptes récents ou saisissez l'ID du compte.
 ... Saisissez votre nom d'utilisateur et votre mot de passe.
@@ -77,17 +71,11 @@ Le tableau de bord du gestionnaire de locataires s'affiche.
 --
 Si StorageGRID utilise SSO, l'un des écrans suivants s'affiche :
 
-** La page SSO de votre organisation. Par exemple :
-+
-image::../media/sso_organization_page.gif[Exemple d'organisation page de connexion pour SSO]
-
+** La page SSO de votre organisation.
 +
 Entrez vos informations d'identification SSO standard et sélectionnez *se connecter*.
 
 ** Page de connexion SSO du Gestionnaire de locataires.
-+
-image::../media/sign_in_sso.png[Connexion à un compte de locataire si SSO est activé]
-
 +
 ... Si l'ID de compte à 20 chiffres du locataire ne s'affiche pas, sélectionnez le nom du compte du locataire s'il apparaît dans la liste des comptes récents ou saisissez l'ID du compte.
 ... Sélectionnez *connexion*.

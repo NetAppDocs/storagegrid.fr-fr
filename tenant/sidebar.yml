@@ -39,14 +39,12 @@ entries:
     entries:
     - title: Créer des groupes S3
       url: "/tenant/creating-groups-for-s3-tenant.html"
-    - title: Créer des groupes Swift
-      url: "/tenant/creating-groups-for-swift-tenant.html"
     - title: Autorisations de gestion des locataires
       url: "/tenant/tenant-management-permissions.html"
     - title: Gérer les groupes
       url: "/tenant/manage-groups.html"
-  - title: Gérez les utilisateurs locaux
-    url: "/tenant/managing-local-users.html"
+  - title: Gérer les utilisateurs
+    url: "/tenant/manage-users.html"
 - title: Gestion des clés d'accès S3
   entries:
   - title: Clés d'accès aux locataires
@@ -70,6 +68,10 @@ entries:
     url: "/tenant/creating-s3-bucket.html"
   - title: Afficher les détails du compartiment
     url: "/tenant/viewing-s3-bucket-details.html"
+  - title: Qu'est-ce qu'un bucket de branche
+    url: "/tenant/what-is-branch-bucket.html"
+  - title: Gérer les compartiments de branches
+    url: "/tenant/manage-branch-buckets.html"
   - title: Appliquez la balise de règle ILM au compartiment
     url: "/tenant/ilm-policy-tags.html"
   - title: Gestion de la règle de compartiment
@@ -84,8 +86,8 @@ entries:
     url: "/tenant/using-s3-object-lock.html"
   - title: Mettre à jour la conservation par défaut du verrouillage d'objet S3
     url: "/tenant/update-default-retention-settings.html"
-  - title: Configurer le partage de ressources inter-sources (CORS)
-    url: "/tenant/configuring-cross-origin-resource-sharing-cors.html"
+  - title: Configurer CORS pour les buckets et les objets
+    url: "/tenant/configuring-cross-origin-resource-sharing-for-buckets-and-objects.html"
   - title: Supprime les objets du compartiment
     url: "/tenant/deleting-s3-bucket-objects.html"
   - title: Supprimer le compartiment

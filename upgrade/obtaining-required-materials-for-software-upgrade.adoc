@@ -48,19 +48,15 @@ Archive RPM ou DEB Linux
  a| 
 Si des nœuds sont déployés sur des hôtes Linux, vous devez d'link:linux-installing-rpm-or-deb-package-on-all-hosts.html["Téléchargez et installez le progiciel RPM ou DEB sur tous les hôtes"]abord démarrer la mise à niveau.
 
-Assurez-vous que votre système d'exploitation répond aux exigences minimales de StorageGRID en matière de version du noyau :
-
-* link:../rhel/installing-linux.html["Installez StorageGRID sur les hôtes Red Hat Enterprise Linux"]
-* link:../ubuntu/installing-linux.html["Installez StorageGRID sur les hôtes Ubuntu ou Debian"]
-
+Assurez-vous que votre système d'exploitation Linux répond aux exigences minimales de version du noyau de StorageGRID. Voir link:../swnodes/installing-linux.html["Installer StorageGRID sur les hôtes Linux"] .
 
 
 
  a| 
 Documentation StorageGRID
  a| 
-* link:../release-notes/index.html["Notes de mise à jour"] Pour StorageGRID 11.9 (connexion requise). Lisez-les attentivement avant de commencer la mise à niveau.
-* https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version majeure vers laquelle vous effectuez la mise à niveau (connexion requise)
+* link:../release-notes/index.html["Notes de mise à jour"]pour StorageGRID 12.0 (connexion requise).  Assurez-vous de les lire attentivement avant de commencer la mise à niveau.
+* https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.0_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^]pour la version majeure vers laquelle vous effectuez la mise à niveau (connexion requise)
 * Autre https://docs.netapp.com/us-en/storagegrid-family/index.html["Documentation StorageGRID"^], selon les besoins.
 
 

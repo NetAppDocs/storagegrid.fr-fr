@@ -37,12 +37,12 @@ Si les opérations sont trop longues avec la console S3 (en minutes ou en heures
 .Avant de commencer
 * Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Si vous souhaitez gérer des objets, vous appartenez à un groupe d'utilisateurs disposant de l'autorisation d'accès racine. Vous pouvez également appartenir à un groupe d'utilisateurs disposant de l'autorisation utiliser l'onglet de la console S3 et de l'autorisation Afficher tous les compartiments ou gérer tous les compartiments. Voir link:tenant-management-permissions.html["Autorisations de gestion des locataires"].
-* Une règle de groupe S3 ou de compartiment a été configurée pour l'utilisateur. Voir link:../s3/bucket-and-group-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"].
+* Une stratégie de groupe ou de compartiment S3 a été configurée pour l’utilisateur. Voir link:../s3/use-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"] .
 * Vous connaissez l'ID de clé d'accès de l'utilisateur et la clé d'accès secrète. Vous disposez éventuellement d'un `.csv` fichier contenant ces informations. Voir la link:creating-your-own-s3-access-keys.html["instructions pour la création de clés d'accès"].
 
 
 .Étapes
-. Sélectionnez *STORAGE* > *Buckets* > *_bucket name_*.
+. Sélectionnez *Stockage* > *Compartiments* > *_nom du compartiment_*.
 . Sélectionnez l'onglet S3 Console.
 . Collez l'ID de clé d'accès et la clé d'accès secrète dans les champs. Sinon, sélectionnez *Télécharger les clés d'accès* et sélectionnez votre `.csv` fichier.
 . Sélectionnez *connexion*.

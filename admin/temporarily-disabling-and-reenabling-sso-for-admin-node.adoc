@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: signing in when sso is down, single sign on failure 
 summary: 'Il se peut que vous ne puissiez pas vous connecter à Grid Manager si le système d"authentification unique \(SSO\) tombe en panne. Dans ce cas, vous pouvez temporairement désactiver et réactiver SSO pour un noeud d"administration. Pour désactiver puis réactiver SSO, vous devez accéder au shell de commande du nœud.' 
 ---
-= Désactivez et réactivez temporairement l'authentification unique pour un nœud d'administration
+= Désactiver et réactiver temporairement SSO pour un nœud d'administration
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -52,7 +52,7 @@ La page de connexion à Grid Manager s'affiche car SSO a été désactivé.
 . Connectez-vous avec le nom d'utilisateur root et le mot de passe de l'utilisateur root local.
 . Si vous avez désactivé l'authentification SSO temporairement car vous avez besoin de corriger la configuration SSO :
 +
-.. Sélectionnez *CONFIGURATION* > *contrôle d'accès* > *connexion unique*.
+.. Sélectionnez *Configuration* > *Contrôle d'accès* > *Authentification unique*.
 .. Modifiez les paramètres SSO incorrects ou obsolètes.
 .. Sélectionnez *Enregistrer*.
 +

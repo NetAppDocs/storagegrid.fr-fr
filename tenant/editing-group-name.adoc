@@ -19,7 +19,7 @@ Vous pouvez modifier le nom d'affichage d'un groupe. Vous ne pouvez pas modifier
 
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Cochez la case du groupe dont vous souhaitez modifier le nom d'affichage.
 . Sélectionnez *actions* > *Modifier le nom du groupe*.
 +

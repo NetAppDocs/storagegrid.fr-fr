@@ -17,7 +17,7 @@ Des nœuds d'administration qui assurent les services de gestion tels que la con
 
 == Différences entre les nœuds d'administration principaux et non principaux
 
-Lorsque vous vous connectez à Grid Manager ou au Gestionnaire de locataires, vous vous connectez à un noeud d'administration. Vous pouvez vous connecter à n'importe quel nœud d'administration et chaque nœud d'administration affiche une vue similaire du système StorageGRID. Toutefois, le nœud d'administration principal offre davantage de fonctionnalités que les nœuds d'administration non primaires. Par exemple, la plupart des procédures de maintenance doivent être effectuées à partir des nœuds d'administration principaux.
+Lorsque vous vous connectez au gestionnaire de grille ou au gestionnaire de locataires, vous vous connectez à un nœud d'administration.  Vous pouvez vous connecter à n’importe quel nœud d’administration, et chaque nœud d’administration affiche une vue similaire du système StorageGRID .  Cependant, le nœud d’administration principal fournit plus de fonctionnalités que les nœuds d’administration non principaux.  Par exemple, la plupart des procédures de maintenance doivent être effectuées à partir du nœud d’administration principal.
 
 Le tableau récapitule les fonctionnalités des nœuds d'administration primaires et non primaires.
 
@@ -99,6 +99,15 @@ Non
 
 
  a| 
+Peut télécharger le package de récupération
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+ a| 
 Peut effectuer un rééquilibrage du code d'effacement après l'extension du nœud de stockage
  a| 
 Oui
@@ -121,6 +130,24 @@ Peut collecter des fichiers journaux et des données système à partir d'un ou 
  a| 
 Oui
  a| 
+Oui
+
+
+
+ a| 
+Peut récupérer le stockage, la passerelle et les nœuds d'administration non principaux
+ a| 
+Oui
+ a| 
+Oui
+
+
+
+ a| 
+Peut récupérer le nœud d'administration principal
+ a| 
+Oui
+ a| 
 Non
 
 
@@ -139,12 +166,12 @@ Oui. Sert d'émetteur de secours.
 
 Si votre déploiement StorageGRID inclut plusieurs nœuds d'administration, le nœud d'administration principal est l'expéditeur préféré pour les notifications d'alerte, les packages AutoSupport, les traps et les notifications SNMP.
 
-Dans le cadre des opérations système normales, seul l'expéditeur préféré envoie des notifications. Cependant, tous les autres nœuds d'administration contrôlent l'expéditeur préféré. Si un problème est détecté, les autres nœuds d'administration agissent en tant que _expéditeurs de secours_.
+Dans le cadre du fonctionnement normal du système, seul l’expéditeur préféré envoie des notifications.  Cependant, tous les autres nœuds d’administration surveillent l’expéditeur préféré.  Si un problème est détecté, d’autres nœuds d’administration agissent comme expéditeurs de secours.
 
-Plusieurs notifications peuvent être envoyées dans les cas suivants :
+Plusieurs notifications peuvent être envoyées dans ces cas :
 
 * Si les nœuds d'administration sont « débarqués » les uns des autres, l'expéditeur préféré et les expéditeurs en veille essayeront d'envoyer des notifications et plusieurs copies de notifications peuvent être reçues.
-* Si l'expéditeur en veille détecte des problèmes avec l'expéditeur préféré et commence à envoyer des notifications, l'expéditeur préféré peut retrouver sa capacité à envoyer des notifications. Dans ce cas, des notifications en double peuvent être envoyées. L'expéditeur en attente interrompt l'envoi des notifications lorsqu'il ne détecte plus d'erreurs sur l'expéditeur préféré.
+* Si un expéditeur de secours détecte des problèmes avec l'expéditeur préféré et commence à envoyer des notifications, l'expéditeur préféré peut retrouver sa capacité à envoyer des notifications.  Si cela se produit, des notifications en double peuvent être envoyées.  L'expéditeur de secours cessera d'envoyer des notifications lorsqu'il ne détectera plus d'erreurs sur l'expéditeur préféré.
 +
 
 NOTE: Lorsque vous testez les packages AutoSupport, tous les nœuds d'administration envoient le test. Lorsque vous testez les notifications d'alertes, vous devez vous connecter à chaque nœud d'administration pour vérifier la connectivité.

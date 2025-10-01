@@ -1,0 +1,74 @@
+---
+permalink: admin/use-api-if-sso-is-enabled-entra-id.html 
+sidebar: sidebar 
+keywords: how to access storagegrid API if SSO is enabled with Entra ID 
+summary: 'Si vous avez configuré et activé l"authentification unique (SSO) et que vous utilisez Entra ID comme fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d"authentification valide pour l"API Grid Management ou l"API Tenant Management.' 
+---
+= Utiliser l'API si l'authentification unique est activée (ID Entra)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous avezlink:../admin/how-sso-works.html["Authentification unique (SSO) configurée et activée"] et vous utilisez Entra ID comme fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d'authentification valide pour l'API Grid Management ou l'API Tenant Management.
+
+
+
+== Sign in à l'API si l'authentification unique Entra ID est activée
+
+Ces instructions s'appliquent si vous utilisez Entra ID comme fournisseur d'identité SSO
+
+.Avant de commencer
+* Vous connaissez l'adresse e-mail SSO et le mot de passe d'un utilisateur fédéré appartenant à un groupe d'utilisateurs StorageGRID.
+* Pour accéder à l'API de gestion des locataires, vous connaissez l'ID du compte locataire.
+
+
+.Description de la tâche
+Pour obtenir un jeton d'authentification, vous pouvez utiliser les exemples de scripts suivants :
+
+* Le `storagegrid-ssoauth-azure.py` script Python
+*  `storagegrid-ssoauth-azure.js`Script Node.js
+
+
+Les deux scripts se trouvent dans le répertoire des fichiers d'installation de StorageGRID(`./rpms` pour RHEL, `./debs` pour Ubuntu ou Debian, et `./vsphere` pour VMware).
+
+Pour écrire votre propre intégration API avec Entra ID, consultez le `storagegrid-ssoauth-azure.py` scénario.  Le script Python envoie deux requêtes directement à StorageGRID (d'abord pour obtenir le SAMLRequest, puis pour obtenir le jeton d'autorisation), et appelle également le script Node.js pour interagir avec Entra ID afin d'effectuer les opérations SSO.
+
+Les opérations SSO peuvent être exécutées à l’aide d’une série de requêtes API, mais cela n’est pas simple.  Le module Puppeteer Node.js est utilisé pour récupérer l'interface SSO Entra ID.
+
+Si vous avez un problème de codage d'URL, vous pouvez voir l'erreur : `Unsupported SAML version`.
+
+.Étapes
+. Installez les dépendances requises comme suit :
++
+.. Installez Node.js (voir https://nodejs.org/en/download/["https://nodejs.org/en/download/"^]).
+.. Installez les modules Node.js requis (maripeteer et jsdom) :
++
+`npm install -g <module>`
+
+
+
+. Passez le script Python à l'interpréteur Python pour exécuter le script.
++
+Le script Python appellera ensuite le script Node.js correspondant pour effectuer les interactions SSO Entra ID.
+
+. Lorsque vous y êtes invité, entrez des valeurs pour les arguments suivants (ou transmettez-les à l'aide de paramètres) :
++
+** L'adresse e-mail SSO utilisée pour se connecter à Entra ID
+** L'adresse de StorageGRID
+** L'ID du compte de locataire, pour accéder à l'API de gestion des locataires
+
+
+. Lorsque vous y êtes invité, saisissez le mot de passe et soyez prêt à fournir une autorisation MFA à Entra ID si demandé.
++
+image::../media/sso_api_password_mfa.png[Invite de saisie du mot de passe et de l'authentification multifacteur]
+
++
+
+NOTE: Le script suppose que l'authentification multifacteur est effectuée à l'aide de l'authentificateur Microsoft. Vous devrez peut-être modifier le script pour prendre en charge d'autres formes de MFA (comme la saisie d'un code reçu dans un message texte).
+
++
+Le jeton d'autorisation StorageGRID est fourni dans la sortie. Vous pouvez maintenant utiliser le token pour d'autres requêtes, de la même manière que vous utilisiez l'API si SSO n'était pas utilisé.
+
+

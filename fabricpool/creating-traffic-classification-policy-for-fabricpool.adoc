@@ -36,7 +36,7 @@ Par exemple, si d'autres clients S3 utilisent ce système StorageGRID, vous deve
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *classification du trafic*.
+. Sélectionnez *Configuration* > *Réseau* > *Classification du trafic*.
 . Sélectionnez *Créer*.
 . Entrez un nom et une description (facultatif) pour la stratégie et sélectionnez *Continuer*.
 . Pour l'étape Ajouter des règles de correspondance, ajoutez au moins une règle.

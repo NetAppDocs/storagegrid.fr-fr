@@ -19,7 +19,7 @@ Vous pouvez supprimer une règle d'alerte personnalisée si vous ne souhaitez pl
 
 
 .Étapes
-. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez *Alertes* > *Règles*.
 +
 La page règles d'alerte s'affiche.
 

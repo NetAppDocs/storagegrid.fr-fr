@@ -22,7 +22,7 @@ Si vous utilisez un locataire S3 et que vous disposez des autorisations appropri
 CAUTION: Les compartiments S3 et les objets appartenant à un utilisateur sont accessibles à l'aide de l'ID de clé d'accès et de la clé secrète affichée pour cet utilisateur dans le Gestionnaire de locataires. Pour cette raison, protégez les clés d'accès comme vous le feriez avec un mot de passe. Faites pivoter les clés d'accès régulièrement, supprimez les clés inutilisées du compte et ne les partagez jamais avec d'autres utilisateurs.
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Users*.
+. Sélectionnez *Gestion des accès* > *Utilisateurs*.
 . Sur la page utilisateurs, sélectionnez l'utilisateur dont vous souhaitez afficher les clés d'accès S3.
 . Dans la page Détails de l'utilisateur, sélectionnez *touches d'accès*.
 . Trier les clés par *heure d'expiration* ou *ID de clé d'accès*.

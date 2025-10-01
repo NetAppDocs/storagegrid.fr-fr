@@ -20,11 +20,10 @@ Si vous envisagez d'utiliser un pool de stockage cloud pour déplacer les objets
 * En général, le stockage d'archivage dans le cloud, comme Amazon S3 Glacier ou Azure Blob Storage, est un emplacement économique pour stocker les données d'objet. Mais le coût de la récupération des données à partir du stockage d'archivage dans le cloud est relativement élevé. Pour atteindre le coût global le plus bas, vous devez savoir quand et à quelle fréquence vous accéderez aux objets dans Cloud Storage Pool. L'utilisation d'un pool de stockage cloud est recommandée uniquement pour le contenu dont vous souhaitez accéder rarement.
 * L'utilisation de pools de stockage cloud avec FabricPool n'est pas prise en charge en raison de la latence ajoutée pour extraire un objet de la cible du pool de stockage cloud.
 * Les objets avec le verrouillage d'objet S3 activé ne peuvent pas être placés dans les pools de stockage cloud.
-* Si S3 Object Lock est activé pour le compartiment S3 de destination d'un pool de stockage cloud, la tentative de configuration de la réplication de compartiment (PutBucketReplication) échoue avec une erreur AccessDenied.
 * Les combinaisons de plateforme, d'authentification et de protocoles suivantes avec le verrouillage objet S3 ne sont pas prises en charge pour les pools de stockage cloud :
 +
 ** *Plateformes* : Google Cloud Platform et Azure
-** *Types d'authentification* : rôles IAM partout et accès anonyme
+** *Types d'authentification* : Accès anonyme
 ** *Protocole* : HTTP
 
 

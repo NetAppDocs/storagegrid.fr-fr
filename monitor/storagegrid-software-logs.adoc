@@ -14,7 +14,7 @@ summary: Les journaux StorageGRID vous permettent de résoudre les problèmes.
 Les journaux StorageGRID vous permettent de résoudre les problèmes.
 
 
-NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou modifier la destination des informations d'audit telles que `bycast.log` et `nms.log`, reportez-vous à la section link:../monitor/configure-audit-messages.html#["Configurez les messages d'audit et les destinations des journaux"].
+NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou modifier la destination des informations d'audit telles que le `bycast.log` et `nms.log` , voirlink:../monitor/configure-log-management.html["Configurer la gestion des journaux"] .
 
 
 
@@ -26,14 +26,14 @@ NOTE: Si vous souhaitez envoyer vos journaux à un serveur syslog externe ou mod
 
 
 | /var/local/log/bycast.log  a| 
-Fichier de dépannage StorageGRID principal. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_Node_* > *SSM* > *Events*.
+Le fichier de dépannage principal de StorageGRID .
  a| 
 Tous les nœuds
 
 
 
 | /var/local/log/bycast-err.log  a| 
-Contient un sous-ensemble de `bycast.log` (messages avec ERREUR DE gravité et CRITIQUE). Des messages CRITIQUES sont également affichés dans le système. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_Node_* > *SSM* > *Events*.
+Contient un sous-ensemble de `bycast.log` (messages de gravité ERREUR et CRITIQUE).  Des messages CRITIQUES sont également affichés dans le système.
  a| 
 Tous les nœuds
 
@@ -188,6 +188,13 @@ Nœuds de stockage exécutant le service ADC
 | /var/local/log/ams.errlog  a| 
  a| 
 Nœuds d'administration
+
+
+
+| /var/local/log/cache-svc.log + /var/local/log/cache-svc.errlog  a| 
+Journaux du service de cache.
+ a| 
+Nœuds de passerelle
 
 
 

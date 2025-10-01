@@ -48,10 +48,7 @@ Pour installer le logiciel StorageGRID sur une appliance de services :
 +
 La page d'accueil du programme d'installation de l'appliance StorageGRID s'affiche.
 
-+
-image::../media/services_appliance_installer_gateway_node.png[Page d'accueil du programme d'installation de l'appareil]
-
-. Pour installer un nœud d'administration principal :
+. Pour installer un nœud d’administration principal :
 +
 .. Dans la section noeud, pour *Type de noeud*, sélectionnez *Administrateur principal*.
 .. Dans le champ *Nom du noeud*, entrez le même nom que celui utilisé pour le noeud que vous êtes en train de récupérer, puis cliquez sur *Enregistrer*.
@@ -63,9 +60,6 @@ Si la version du logiciel prêt à être installée est correcte, passez directe
 +
 La page Télécharger le logiciel StorageGRID s'affiche.
 
-+
-image::../media/upload_sw_for_pa_on_sga1000.png[Capture d'écran décrite par le texte environnant]
-
 .. Cliquez sur *Parcourir* pour télécharger le *progiciel* et le *fichier de somme de contrôle* pour le logiciel StorageGRID.
 +
 Les fichiers sont automatiquement chargés après leur sélection.
@@ -73,7 +67,7 @@ Les fichiers sont automatiquement chargés après leur sélection.
 .. Cliquez sur *Accueil* pour revenir à la page d'accueil du programme d'installation de l'appliance StorageGRID.
 
 
-. Pour installer un nœud de passerelle ou un nœud d'administration non primaire :
+. Pour installer un nœud de passerelle ou un nœud d’administration non principal :
 +
 .. Dans la section noeud, pour *Type de noeud*, sélectionnez *passerelle* ou *non-administrateur principal*, selon le type de noeud que vous restaurez.
 .. Dans le champ *Nom du noeud*, entrez le même nom que celui utilisé pour le noeud que vous êtes en train de récupérer, puis cliquez sur *Enregistrer*.
@@ -81,7 +75,7 @@ Les fichiers sont automatiquement chargés après leur sélection.
 +
 Le programme d'installation de l'appliance StorageGRID peut détecter automatiquement cette adresse IP, en supposant que le nœud d'administration principal, ou au moins un autre nœud de grille avec ADMIN_IP configuré, soit présent sur le même sous-réseau.
 
-.. Si cette adresse IP n'apparaît pas ou si vous devez la modifier, spécifiez l'adresse :
+.. Si cette adresse IP n'est pas affichée ou si vous devez la modifier, spécifiez l'adresse :
 
 
 +
@@ -113,7 +107,7 @@ Détection automatique de tous les nœuds d'administration principaux connectés
 |===
 . [[installation_section_STEP]]dans la section installation, vérifiez que l'état actuel est prêt à démarrer l'installation du nom du noeud et que le bouton *Démarrer l'installation* est activé.
 +
-Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres de port. Pour obtenir des instructions, reportez-vous aux instructions d'entretien de votre appareil.
+Si le bouton *Démarrer l'installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres du port.  Reportez-vous aux instructions d'entretien de votre appareil.
 
 . Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, cliquez sur *Démarrer l'installation*.
 +

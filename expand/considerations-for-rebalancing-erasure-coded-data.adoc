@@ -26,9 +26,9 @@ La procédure de rééquilibrage de la ce :
 * Seul le déplacement des données d'objet avec code d'effacement Il ne déplace pas les données d'objet répliqué.
 * Redistribue les données au sein d'un site. Il ne déplace pas les données entre les sites.
 * Redistribue les données entre tous les nœuds de stockage du site. Elle ne rerépartit pas les données au sein des volumes de stockage.
-* Ne prend pas en compte l'utilisation des données répliquées sur chaque nœud de stockage lors de la détermination de l'emplacement de déplacement des données avec code d'effacement.
-* Redistribue uniformément les données avec code d'effacement entre les nœuds de stockage sans tenir compte des capacités relatives de chaque nœud.
-* Ne distribuera pas les données avec code d'effacement aux nœuds de stockage pleins à plus de 80 %.
+* Tente de distribuer le même nombre d'octets à chaque nœud.  Les nœuds contenant davantage de données répliquées stockeront moins de données codées par effacement une fois le rééquilibrage terminé.
+* Redistribue les données codées par effacement de manière uniforme entre les nœuds de stockage sans tenir compte des capacités relatives de chaque nœud.  Les données répliquées sont incluses dans le calcul.
+* Ne distribuera pas de données codées par effacement aux nœuds de stockage qui sont remplis à plus de 80 %.
 * Risque de diminuer les performances des opérations ILM et des opérations client S3 lorsqu'elles s'exécutent&#8212;des ressources supplémentaires sont nécessaires pour redistribuer les fragments de code d'effacement.
 
 
@@ -39,7 +39,7 @@ Lorsque la procédure de rééquilibrage EC est terminée :
 * Les valeurs utilisées (%) peuvent différer d'un nœud de stockage à un autre, et ce pour deux raisons :
 +
 ** Les copies d'objet répliquées continueront à consommer de l'espace sur les nœuds existants&#8212;la procédure de rééquilibrage EC ne déplace pas les données répliquées.
-** Les nœuds de plus grande capacité seront relativement moins remplis que les nœuds de plus petite capacité, même si tous les nœuds finissent par représenter environ le même volume de données avec code d'effacement.
+** Les nœuds de plus grande capacité seront relativement moins remplis que les nœuds de plus petite capacité, même si tous les nœuds se retrouveront avec approximativement la même quantité de données.
 +
 Par exemple, supposons que trois nœuds de 200 To soient remplis à 80 % (200 et#215 ; 0.8 = 160 To sur chaque nœud, ou 480 To pour le site). Si vous ajoutez un nœud de 400 To et exécutez la procédure de rééquilibrage, tous les nœuds auront à peu près le même volume de données de code d'effacement (480/4 = 120 To). Cependant, le pourcentage utilisé pour le nœud le plus grand sera inférieur au pourcentage utilisé pour les nœuds plus petits.
 
@@ -53,6 +53,10 @@ image::../media/used_space_with_larger_node.png[Espace utilisé avant extension]
 
 
 == Quand rééquilibrer les données avec code d'effacement
+
+La procédure de rééquilibrage EC redistribue les données codées par effacement existantes pour garantir que les nœuds ne deviennent pas ou ne restent pas pleins.  La procédure permet de garantir que le codage EC peut continuer sur le site.
+
+Exécutez la procédure de rééquilibrage lorsqu'il existe un biais préoccupant dans la distribution des données sur un site et que le site stocke principalement des données EC (puisque les données répliquées ne peuvent pas être déplacées par rééquilibrage).
 
 Prenons le scénario suivant :
 

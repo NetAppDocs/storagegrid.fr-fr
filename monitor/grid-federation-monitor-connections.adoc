@@ -25,7 +25,7 @@ Vous pouvez surveiller des informations de base sur tous link:../admin/grid-fede
 La page Grid federation affiche des informations de base sur toutes les connexions de fédération de grille et sur tous les comptes de locataire autorisés à utiliser les connexions de fédération de grille.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 +
 La page grid federation s'affiche.
 
@@ -107,7 +107,7 @@ image::../media/grid-federation-certificates-tab.png[onglet-certificats-fédéra
 Vous pouvez utiliser le tableau de bord de réplication Cross-Grid de Grafana pour afficher les metrics Prometheus sur les opérations de réplication cross-grid sur votre grille.
 
 .Étapes
-. Dans le Gestionnaire de grille, sélectionnez *SUPPORT* > *Outils* > *métriques*.
+. Depuis le gestionnaire de grille, sélectionnez *Support* > *Outils* > *Métriques*.
 +
 
 NOTE: Les outils disponibles sur la page métriques sont destinés au support technique. Certaines fonctions et options de menu de ces outils sont intentionnellement non fonctionnelles et peuvent faire l'objet de modifications. Voir la liste de link:../monitor/commonly-used-prometheus-metrics.html["Metrics Prometheus couramment utilisés"].

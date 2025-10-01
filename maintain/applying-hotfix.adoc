@@ -26,7 +26,7 @@ Le correctif est d'abord appliqué automatiquement au nœud d'administration pri
 
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-. Sélectionnez *MAINTENANCE* > *système* > *mise à jour logicielle*.
+. Sélectionnez *Maintenance* > *Système* > *Mise à jour du logiciel*.
 +
 La page mise à jour du logiciel s'affiche.
 
@@ -70,7 +70,7 @@ Un avertissement s'affiche indiquant que la connexion de votre navigateur peut �
 Lorsque le correctif démarre :
 
 +
-.. Les validations de correctif sont exécutées.
+.. Les validations du correctif sont exécutées, y compris la vérification de la signature du code.
 +
 
 NOTE: Si des erreurs sont signalées, résolvez-les, téléchargez à nouveau le fichier correctif et sélectionnez à nouveau *Démarrer*.

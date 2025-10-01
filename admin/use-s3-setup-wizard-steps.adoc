@@ -170,7 +170,7 @@ Port
  a| 
 Port StorageGRID que vous souhaitez utiliser pour l'équilibrage de charge. Ce champ est défini par défaut sur 10433 pour le premier noeud final que vous créez, mais vous pouvez entrer n'importe quel port externe inutilisé. Si vous entrez 80 ou 443, le noeud final est configuré uniquement sur les noeuds de passerelle, car ces ports sont réservés sur les noeuds d'administration.
 
-*Remarque :* les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir la link:../network/network-port-reference.html["Référence du port réseau"].
+*Remarque :* les ports utilisés par d’autres services de grille ne sont pas autorisés. Voir link:../network/internal-grid-node-communications.html#storagegrid-internal-ports["Ports internes StorageGRID"] .
 
 
 
@@ -347,7 +347,7 @@ Pour plus d'informations sur cette tâche, reportez-vous aux sections link:creat
 +
 Les noms de locataires n'ont pas besoin d'être uniques. Lors de la création du compte locataire, il reçoit un ID de compte numérique unique.
 
-. Définissez l'accès racine du compte de tenant, selon que votre système StorageGRID utilise link:using-identity-federation.html["fédération des identités"] link:configuring-sso.html["Authentification unique (SSO)"]ou les deux.
+. Définissez l'accès root pour le compte locataire, selon que votre système StorageGRID utiliselink:using-identity-federation.html["fédération des identités"] ,link:how-sso-works.html["Authentification unique (SSO)"] , ou les deux.
 +
 [cols="1a,2a"]
 |===

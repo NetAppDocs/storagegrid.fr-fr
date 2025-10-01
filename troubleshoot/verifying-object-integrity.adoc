@@ -39,88 +39,11 @@ La vérification des antécédents s'exécute à un taux continu conçu pour ne 
 
 
 
-=== Alertes liées à la vérification des antécédents
+== Alertes liées à la vérification des antécédents
 
 Si le système détecte un objet corrompu qu'il ne peut pas corriger automatiquement (parce que la corruption empêche l'objet d'être identifié), l'alerte *objet corrompu non identifié détecté* est déclenchée.
 
-Si la vérification en arrière-plan ne peut pas remplacer un objet corrompu car il ne peut pas localiser une autre copie, l'alerte *objets perdus* est déclenchée.
-
-
-
-=== Modifier le taux de vérification des antécédents
-
-Vous pouvez modifier la vitesse à laquelle la vérification en arrière-plan vérifie les données d'objet répliquées sur un nœud de stockage si vous avez des problèmes d'intégrité des données.
-
-.Avant de commencer
-* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
-
-
-.Description de la tâche
-Vous pouvez modifier le taux de vérification pour la vérification en arrière-plan sur un nœud de stockage :
-
-* Adaptatif : paramètre par défaut. La tâche est conçue pour vérifier à un maximum de 4 Mo/s ou 10 objets/s (selon la première limite dépassée).
-* Élevé : la vérification du stockage s'effectue rapidement, à une vitesse qui peut ralentir les activités ordinaires des systèmes.
-
-
-Utilisez le taux de vérification élevé uniquement si vous soupçonnez qu'une erreur matérielle ou logicielle pourrait avoir des données d'objet corrompues. Une fois la vérification de l'arrière-plan de priorité élevée terminée, le taux de vérification se réinitialise automatiquement sur Adaptive.
-
-.Étapes
-. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-. Sélectionnez *_Storage Node_* > *LDR* > *Verification*.
-. Sélectionnez *Configuration* > *main*.
-. Accédez à *LDR* > *Verification* > *Configuration* > *main*.
-. Sous Vérification de l'arrière-plan, sélectionnez *taux de vérification* > *taux élevé* ou *taux de vérification* > *adaptatif*.
-+
-image::../media/background_verification_rate.png[Réglage du taux de vérification]
-
-. Cliquez sur *appliquer les modifications*.
-. Surveiller les résultats de la vérification en arrière-plan des objets répliqués.
-+
-.. Accédez à *NOEUDS* > *_Storage Node_* > *objets*.
-.. Dans la section Vérification, surveillez les valeurs de *objets corrompus* et *objets corrompus non identifiés*.
-+
-Si la vérification en arrière-plan trouve des données d'objet répliqué corrompues, la mesure *objets corrompus* est incrémentée et StorageGRID tente d'extraire l'identificateur d'objet des données, comme suit :
-
-+
-*** Si l'identifiant d'objet peut être extrait, StorageGRID crée automatiquement une nouvelle copie des données de l'objet. La nouvelle copie peut être effectuée à n'importe quel endroit du système StorageGRID qui respecte les règles ILM actives.
-*** Si l'identifiant de l'objet ne peut pas être extrait (car il a été corrompu), la mesure *objets corrompus non identifiés* est incrémentée et l'alerte *objet corrompu non identifié détecté* est déclenchée.
-
-
-.. Si des données d'objet répliqué corrompues sont trouvées, contactez le support technique pour déterminer la cause première de la corruption.
-
-
-. Surveillez les résultats de la vérification en arrière-plan des objets avec code d'effacement.
-+
-Si la vérification en arrière-plan détecte des fragments corrompus de données d'objet codées par effacement, l'attribut fragments corrompus détectés est incrémenté. StorageGRID restaure en reconstruisant le fragment corrompu sur le même nœud de stockage.
-
-+
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_Storage Node_* > *LDR* > *codage d'effacement*.
-.. Dans le tableau Résultats de la vérification, surveillez l'attribut fragments corrompus détectés (ECCD).
-
-
-. Une fois les objets corrompus automatiquement restaurés par le système StorageGRID, réinitialisez le nombre d'objets corrompus.
-+
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_Storage Node_* > *LDR* > *Verification* > *Configuration*.
-.. Sélectionnez *Réinitialiser le nombre d'objets corrompus*.
-.. Cliquez sur *appliquer les modifications*.
-
-
-. Si vous êtes sûr que les objets mis en quarantaine ne sont pas nécessaires, vous pouvez les supprimer.
-+
-
-NOTE: Si l'alerte *objets perdus* a été déclenchée, le support technique peut vouloir accéder aux objets mis en quarantaine pour aider à déboguer le problème sous-jacent ou tenter de récupérer les données.
-
-+
-.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-.. Sélectionnez *_Storage Node_* > *LDR* > *Verification* > *Configuration*.
-.. Sélectionnez *Supprimer les objets en quarantaine*.
-.. Sélectionnez *appliquer les modifications*.
-
-
-
+Si la vérification en arrière-plan ne peut pas remplacer un objet corrompu car elle ne peut pas localiser une autre copie, l'alerte *Objets potentiellement perdus* est déclenchée.
 
 
 
@@ -138,14 +61,14 @@ Le contrôle d'existence des objets lit les métadonnées de chaque objet stock�
 
 
 
-=== Exécutez la vérification de l'existence d'objet
+== Exécutez la vérification de l'existence d'objet
 
 Vous créez et exécutez un travail de vérification de l'existence d'un objet à la fois. Lorsque vous créez un travail, vous sélectionnez les nœuds de stockage et les volumes à vérifier. Vous sélectionnez également la cohérence du travail.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
-* Vous avez vérifié que les nœuds de stockage à vérifier sont en ligne. Sélectionnez *NOEUDS* pour afficher la table des noeuds. Assurez-vous qu'aucune icône d'alerte n'apparaît en regard du nom du nœud pour les nœuds que vous souhaitez vérifier.
+* Vous avez vérifié que les nœuds de stockage que vous souhaitez vérifier sont en ligne.  Sélectionnez *Nœuds* pour afficher le tableau des nœuds.  Assurez-vous qu'aucune icône d'alerte n'apparaît à côté du nom du nœud pour les nœuds que vous souhaitez vérifier.
 * Vous avez vérifié que les procédures suivantes sont *non* exécutées sur les nœuds que vous voulez vérifier :
 +
 ** Extension de la grille pour ajouter un nœud de stockage
@@ -164,7 +87,7 @@ Le contrôle d'existence d'objet ne fournit pas d'informations utiles pendant qu
 Une tâche de vérification de l'existence d'un objet peut prendre des jours ou des semaines, selon le nombre d'objets dans la grille, les nœuds et volumes de stockage sélectionnés et la cohérence sélectionnée. Vous ne pouvez exécuter qu'une seule tâche à la fois, mais vous pouvez sélectionner plusieurs nœuds de stockage et volumes en même temps.
 
 .Étapes
-. Sélectionnez *MAINTENANCE* > *tâches* > *Vérification d'existence d'objet*.
+. Sélectionnez *Maintenance* > *Tâches* > *Vérification de l'existence de l'objet*.
 . Sélectionnez *Créer un travail*. L'assistant création d'un objet Vérification de l'existence s'affiche.
 . Sélectionnez les nœuds contenant les volumes à vérifier. Pour sélectionner tous les nœuds en ligne, cochez la case *Node name* dans l'en-tête de colonne.
 +
@@ -214,19 +137,16 @@ NOTE: Si nécessaire, vous pouvez naviguer hors de la page de vérification de l
 Cette valeur représente le nombre total de copies manquantes d'objets répliqués et d'objets avec code d'effacement avec un ou plusieurs fragments manquants.
 
 +
-Si le nombre de copies d'objet manquantes détectées est supérieur à 100, il peut y avoir un problème avec le stockage du nœud de stockage.
-
-+
-image::../media/oec_active.png[Travail OEC actif]
+Si le nombre de copies d'objets manquants détectées est supérieur à 100, il peut y avoir un problème avec le stockage du nœud de stockage.
 
 . Une fois le travail terminé, prenez les mesures supplémentaires requises :
 +
 ** Si les copies d'objet manquantes détectées sont nulles, aucun problème n'a été trouvé. Aucune action n'est requise.
-** Si les copies d'objet manquantes détectées sont supérieures à zéro et que l'alerte *objets perdus* n'a pas été déclenchée, toutes les copies manquantes ont été réparées par le système. Vérifiez que tout problème matériel a été corrigé pour éviter d'endommager ultérieurement les copies d'objet.
-** Si les copies d'objet manquantes détectées sont supérieures à zéro et que l'alerte *objets perdus* a été déclenchée, l'intégrité des données pourrait être affectée. Contactez l'assistance technique.
-** Vous pouvez rechercher des copies d'objet perdues en utilisant grep pour extraire les messages d'audit LLST : `grep LLST audit_file_name`.
+** Si le nombre de copies d'objets manquantes détectées est supérieur à zéro et que l'alerte *Objets potentiellement perdus* n'a pas été déclenchée, alors toutes les copies manquantes ont été réparées par le système.  Vérifiez que tous les problèmes matériels ont été corrigés pour éviter de futurs dommages aux copies d’objets.
+** Si le nombre de copies d'objets manquantes détectées est supérieur à zéro et que l'alerte *Objets potentiellement perdus* a été déclenchée, l'intégrité des données peut être affectée.  Contactez le support technique.
+** Vous pouvez rechercher des copies d'objets potentiellement perdues en utilisant grep pour extraire les messages d'audit LLST : `grep LLST audit_file_name` .
 +
-Cette procédure est similaire à celle de link:../troubleshoot/investigating-lost-objects.html["analyse des objets perdus"], bien que pour les copies d'objet que vous recherchez `LLST` à la place de `OLST` .
+Cette procédure est similaire à celle pourlink:../troubleshoot/investigating-potentially-lost-objects.html["enquêter sur des objets potentiellement perdus"] , bien que pour les copies d'objets, vous recherchez `LLST` au lieu de `OLST` .
 
 
 
@@ -235,7 +155,7 @@ Cette procédure est similaire à celle de link:../troubleshoot/investigating-lo
 Lorsque StorageGRID a eu le temps d'assurer la cohérence des métadonnées pour les nœuds et les volumes inclus dans le travail, réexécuter ce travail peut effacer les copies d'objet manquantes, ou faire vérifier d'autres copies d'objet si elles ne sont pas prises en compte.
 
 +
-.. Sélectionnez *MAINTENANCE* > *Vérification de l'existence d'objet* > *Historique du travail*.
+.. Sélectionnez *Maintenance* > *Vérification de l'existence de l'objet* > *Historique des tâches*.
 .. Déterminez les travaux prêts à être réexécutés :
 +
 ... Consultez la colonne *end Time* pour déterminer les tâches qui ont été exécutées il y a plus de trois semaines.
@@ -243,9 +163,6 @@ Lorsque StorageGRID a eu le temps d'assurer la cohérence des métadonnées pour
 
 
 .. Cochez la case de chaque travail à repasser, puis sélectionnez *repassage*.
-+
-image::../media/oec_rerun.png[Repassage OEC]
-
 .. Dans l'assistant Réanalyser les travaux, examinez les nœuds et volumes sélectionnés et la cohérence.
 .. Lorsque vous êtes prêt à réexécuter les travaux, sélectionnez *repassage*.
 
@@ -253,6 +170,3 @@ image::../media/oec_rerun.png[Repassage OEC]
 
 
 L'onglet travail actif s'affiche. Tous les travaux que vous avez sélectionnés sont réexécutés comme un travail à une cohérence de site fort. Un champ *travaux connexes* de la section Détails répertorie les ID des travaux d'origine.
-
-.Une fois que vous avez terminé
-Si vous avez toujours des problèmes d'intégrité des données, accédez à *SUPPORT* > *Outils* > *topologie de grille* > *_site_* > *_Storage Node_* > *LDR* > *Verification* > *Configuration* > *main* et augmentez le taux de vérification en arrière-plan. La vérification en arrière-plan vérifie l'exactitude de toutes les données d'objet stockées et répare tout problème détecté. Trouver et réparer les problèmes le plus rapidement possible réduit le risque de perte de données.

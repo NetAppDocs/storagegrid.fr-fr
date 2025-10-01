@@ -21,7 +21,7 @@ Par défaut, chaque nœud d'administration est doté d'un certificat signé par 
 Vous devez terminer la configuration sur le serveur et, en fonction de l'autorité de certification racine (AC) que vous utilisez, les utilisateurs peuvent également avoir besoin d'installer le certificat d'autorité de certification Grid dans le navigateur Web qu'ils utiliseront pour accéder au Grid Manager et au Gestionnaire de locataires.
 
 
-NOTE: Pour garantir que les opérations ne sont pas interrompues par un certificat de serveur défaillant, l'alerte *expiration du certificat de serveur pour l'interface de gestion* est déclenchée lorsque ce certificat de serveur est sur le point d'expirer. Si nécessaire, vous pouvez afficher le moment où le certificat en cours expire en sélectionnant *CONFIGURATION* > *sécurité* > *certificats* et en consultant la date d'expiration du certificat de l'interface de gestion dans l'onglet Global.
+NOTE: Pour garantir que les opérations ne sont pas perturbées par un certificat de serveur défaillant, l'alerte *Expiration du certificat de serveur pour l'interface de gestion* est déclenchée lorsque ce certificat de serveur est sur le point d'expirer.  Si nécessaire, vous pouvez voir quand le certificat actuel expire en sélectionnant *Configuration* > *Sécurité* > *Certificats* et en regardant la date d'expiration du certificat de l'interface de gestion dans l'onglet Global.
 
 [NOTE]
 ====
@@ -39,7 +39,7 @@ Si vous accédez à Grid Manager ou au Gestionnaire de locataires à l'aide d'un
 Pour ajouter un certificat d'interface de gestion personnalisée, vous pouvez fournir votre propre certificat ou en générer un à l'aide de Grid Manager.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
 . Sélectionnez *utiliser le certificat personnalisé*.
 . Chargez ou générez le certificat.
@@ -166,7 +166,7 @@ NOTE: Après avoir téléchargé ou généré un nouveau certificat, autorisez j
 Vous pouvez revenir à l'utilisation du certificat d'interface de gestion par défaut pour les connexions Grid Manager et tenant Manager.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
 . Sélectionnez *utiliser le certificat par défaut*.
 +
@@ -229,7 +229,7 @@ Incluez les étiquettes DE DÉBUT et DE FIN dans votre sélection.
 . Vérifiez que le certificat a été configuré :
 +
 .. Accédez au Grid Manager.
-.. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*
+.. Sélectionnez *Configuration* > *Sécurité* > *Certificats*
 .. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
 
 
@@ -243,7 +243,7 @@ Incluez les étiquettes DE DÉBUT et DE FIN dans votre sélection.
 Vous pouvez enregistrer ou copier le contenu du certificat de l'interface de gestion pour l'utiliser ailleurs.
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 . Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
 . Sélectionnez l'onglet *Server* ou *CA bundle*, puis téléchargez ou copiez le certificat.
 +

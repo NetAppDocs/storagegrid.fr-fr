@@ -13,11 +13,7 @@ summary: 'Procédez comme suit pour ajouter une interface sur le réseau Admin o
 [role="lead"]
 Procédez comme suit pour ajouter une interface sur le réseau Admin ou le réseau client à un nœud Linux après l'avoir installé.
 
-Si vous n'avez pas configuré ADMIN_NETWORK_TARGET ni CLIENT_NETWORK_TARGET dans le fichier de configuration du nœud sur l'hôte Linux au cours de l'installation, utilisez cette procédure pour ajouter l'interface. Pour plus d'informations sur le fichier de configuration des nœuds, reportez-vous aux instructions de votre système d'exploitation Linux :
-
-* link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-* link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-
+Si vous n'avez pas configuré ADMIN_NETWORK_TARGET ou CLIENT_NETWORK_TARGET dans le fichier de configuration du nœud sur l'hôte Linux lors de l'installation, utilisez cette procédure pour ajouter l'interface.  Pour plus d'informations sur le fichier de configuration du nœud, voirlink:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
 
 Cette procédure est effectuée sur le serveur Linux hébergeant le nœud nécessitant la nouvelle affectation de réseau, et non à l'intérieur du nœud. Cette procédure ajoute uniquement l'interface au nœud. Une erreur de validation se produit si vous tentez de spécifier d'autres paramètres réseau.
 

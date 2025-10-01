@@ -18,15 +18,14 @@ Vous pouvez afficher la liste de toutes les règles d'alerte par défaut et pers
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
-* Vous avez éventuellement regardé la vidéo : https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1["Vidéo : présentation des alertes"^]
+* En option, vous avez regardé la vidéo :
 +
-[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1]
-image::../media/video-screenshot-alert-overview-118.png[Vidéo : présentation des alertes]
-
+.Aperçu des alertes
+video::2eea81c5-8323-417f-b0a0-b1ff008506c1[panopto]
 
 
 .Étapes
-. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez *Alertes* > *Règles*.
 +
 La page règles d'alerte s'affiche.
 

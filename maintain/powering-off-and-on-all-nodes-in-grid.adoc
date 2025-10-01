@@ -33,6 +33,7 @@ NOTE: Si un seul hôte comprend plusieurs nœuds de grille, n'arrêtez pas l'hô
 NOTE: Si nécessaire, vous pouvez link:linux-migrating-grid-node-to-new-host.html["Migrer des nœuds d'un hôte Linux vers un autre"]effectuer la maintenance de l'hôte sans affecter les fonctionnalités ou la disponibilité de votre grille.
 
 .Étapes
+. L'accès SSH externe est bloqué par défaut.  Si nécessaire,link:../admin/manage-external-ssh-access.html["autoriser temporairement l'accès"] .
 . Arrêtez toutes les applications client d'accéder à la grille.
 . [[log_in_to_gn]]Connectez-vous à chaque nœud de passerelle :
 +
@@ -141,6 +142,7 @@ Cette LED s'allume lorsque les données en cache doivent être écrites sur les 
 +
 La grille StorageGRID est maintenant arrêtée.
 
+. Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé d'arrêter les nœuds.
 
 
 
@@ -171,7 +173,7 @@ Vous pouvez mettre ces nœuds sous tension dans n'importe quel ordre.
 
 . Mettez les hôtes sous tension pour tous les nœuds de passerelle.
 . Connectez-vous au Grid Manager.
-. Sélectionnez *NODES* et surveillez l'état des nœuds de la grille. Vérifiez qu'il n'y a pas d'icône d'alerte en regard des noms de nœud.
+. Sélectionnez *Nœuds* et surveillez l’état des nœuds de la grille.  Vérifiez qu’il n’y a pas d’icônes d’alerte à côté des noms de nœuds.
 
 
 .Informations associées

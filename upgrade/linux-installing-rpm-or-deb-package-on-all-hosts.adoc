@@ -36,8 +36,8 @@ La page des téléchargements de la version sélectionnée s'affiche. La page co
 ** L'archive de mise à niveau pour la dernière version (il s'agit du fichier dans la section intitulée *VMware, SG1000 ou SG100 Primary Admin Node*). Ce fichier n'est pas nécessaire tant que vous n'avez pas effectué la mise à niveau, mais le téléchargement de ce fichier permet de gagner du temps.
 ** Une archive RPM ou DEB `.tgz` au format ou `.zip`. Sélectionnez le `.zip` fichier si vous exécutez Windows sur l'ordinateur portable de service.
 +
-*** Red Hat Enterprise Linux + +
-`StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip`
+*** RHEL +
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` +
 `StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz`
 *** Ubuntu ou Debian + +
 `StorageGRID-Webscale-_version_-DEB-_uniqueID_.zip`
@@ -57,6 +57,12 @@ Vous serez invité à télécharger le fichier de correctif sur la page mise à 
 
 
 
+. La vérification de la signature du code est manuelle sur un nœud Linux.  En option, vérifiez l’archive d’installation :
++
+.. Téléchargez le package de vérification de signature de code StorageGRID. Le nom de fichier de ce module utilise le format `StorageGRID_<version-number>_Code_Signature_Verification_Package.tar.gz`, où `<version-number>` est la version du logiciel StorageGRID.
+.. Suivez les étapes pourlink:../swnodes/download-files-verify.html["vérifiez manuellement les fichiers d'installation"] .
+
+
 
 
 
@@ -69,12 +75,7 @@ Procédez comme suit avant de mettre à niveau le logiciel StorageGRID.
 . Extrayez les packages RPM ou DEB du fichier d'installation.
 . Installez les packages RPM ou DEB sur tous les hôtes Linux.
 +
-Reportez-vous aux étapes d'installation des services d'hôte StorageGRID dans les instructions d'installation :
-
-+
-** link:../rhel/installing-storagegrid-webscale-host-service.html["Red Hat Enterprise Linux : installez les services hôtes StorageGRID"]
-** link:../ubuntu/installing-storagegrid-webscale-host-services.html["Ubuntu ou Debian : installez les services hôtes StorageGRID"]
-
+Consultez les étapes d'installation des services hôtes StorageGRID pour Linux danslink:../swnodes/installing-storagegrid-webscale-host-services.html["Installez les services d'hôte StorageGRID"] .
 
 +
 Les nouveaux packages sont installés en tant que modules supplémentaires.
@@ -93,7 +94,7 @@ Pour libérer de l'espace sur les hôtes Linux, vous pouvez supprimer les archiv
 
 [role="tabbed-block"]
 ====
-.Red Hat
+.RHEL
 --
 . Capturer la liste des packages StorageGRID installés : `dnf list | grep -i storagegrid`.
 +

@@ -144,3 +144,6 @@ Selon vos besoins, vous pouvez utiliser plusieurs méthodes de chiffrement à la
 
 
 Si seule une petite partie de vos objets doit être cryptée, pensez à contrôler le chiffrement au niveau du compartiment ou de l'objet au niveau individuel. L'activation de plusieurs niveaux de chiffrement a un coût supplémentaire en termes de performance.
+
+.Informations associées
+link:manage-tls-ssh-policy.html#select-a-security-policy["En savoir plus sur les options de cryptage certifiées FIPS"]

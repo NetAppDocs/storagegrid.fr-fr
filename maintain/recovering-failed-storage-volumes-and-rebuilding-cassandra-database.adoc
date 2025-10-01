@@ -18,8 +18,8 @@ Vous devez exécuter un script qui reformate et remonte le stockage sur les volu
 * Les lecteurs système du serveur sont intacts.
 * La cause de la défaillance a été identifiée et, si nécessaire, le matériel de stockage de remplacement a déjà été acquis.
 * La taille totale du stockage de remplacement est la même que celle de l'original.
-* Vous avez vérifié qu'une mise hors service du nœud de stockage n'est pas en cours ou que vous avez interrompu la procédure de mise hors service du nœud. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.)
-* Vous avez vérifié qu'une extension n'est pas en cours. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *expansion*.)
+* Vous avez vérifié qu'une mise hors service du nœud de stockage n'est pas en cours ou vous avez suspendu la procédure de mise hors service du nœud.  (Dans le gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Désactivation*.)
+* Vous avez vérifié qu'une extension n'est pas en cours.  (Dans le gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Extension*.)
 * Vous avez link:reviewing-warnings-about-storage-volume-recovery.html["vérifié les avertissements concernant la restauration du volume de stockage"].
 
 
@@ -28,7 +28,7 @@ Vous devez exécuter un script qui reformate et remonte le stockage sur les volu
 +
 Ne remontez pas les volumes lors de cette étape. Le stockage est remonté et ajouté à `/etc/fstab` dans une étape ultérieure.
 
-. Dans le Gestionnaire de grille, accédez à *NODES* `*appliance Storage Node*` > > *matériel*. Dans la section dispositif StorageGRID de la page, vérifiez que le mode RAID de stockage fonctionne correctement.
+. Dans le gestionnaire de grille, accédez à *Nœuds* > `*appliance Storage Node*` > *Matériel*.  Dans la section Appliance StorageGRID de la page, vérifiez que le mode RAID de stockage est sain.
 . Connectez-vous au noeud de stockage défaillant :
 +
 .. Entrez la commande suivante : `ssh admin@_grid_node_IP_`
@@ -51,7 +51,7 @@ NOTE: Le commentaire d'un volume en échec dans le `/etc/fstab` fichier est insu
 ** Si nécessaire, vous serez invité à reconstruire la base de données Cassandra.
 +
 *** Examinez les avertissements. Si aucune d'entre elles ne s'applique, reconstruisez la base de données Cassandra. Saisissez : *y*
-*** Si plus d'un nœud de stockage est hors ligne ou si un autre nœud de stockage a été reconstruit au cours des 15 derniers jours. Saisissez : *n*
+*** Si plusieurs nœuds de stockage sont hors ligne.  Entrez : *n*
 +
 Le script s'quittera sans reconstruire Cassandra. Contactez l'assistance technique.
 

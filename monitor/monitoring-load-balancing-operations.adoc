@@ -25,7 +25,7 @@ Pour plus d'informations, voir link:../admin/configuring-client-connections.html
 .Étapes
 . Si les clients S3 se connectent à l'aide du service Load Balancer, vérifiez que les nœuds d'administration ou les nœuds de passerelle distribuent activement le trafic comme vous le souhaitez :
 +
-.. Sélectionnez *NOEUDS*.
+.. Sélectionnez *Nœuds*.
 .. Sélectionnez un nœud de passerelle ou un nœud d'administration.
 .. Dans l'onglet *Overview*, vérifiez si une interface de nœud fait partie d'un groupe HA et si l'interface de nœud a le rôle Primary.
 +

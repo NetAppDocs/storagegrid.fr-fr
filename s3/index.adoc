@@ -19,7 +19,7 @@ La prise en charge de l'API REST S3 vous permet de connecter les applications or
 
 == Versions prises en charge
 
-StorageGRID prend en charge les versions spécifiques suivantes de S3 et HTTP.
+StorageGRID prend en charge les versions spécifiques suivantes de STS, S3 et HTTP :
 
 [cols="1a,1a"]
 |===
@@ -27,9 +27,18 @@ StorageGRID prend en charge les versions spécifiques suivantes de S3 et HTTP.
 
 
  a| 
+Spécification de l'API STS AssumeRole
+ a| 
+https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html["Documentation Amazon Web Services (AWS) : Référence de l'API Amazon Assumerole"^]
+
+Pour plus d'informations sur AssumeRole, reportez-vous àlink:../tenant/manage-groups.html#set-up-assumerole["Configurer AssumeRole"] .
+
+
+
+ a| 
 Spécification de l'API S3
  a| 
-http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html["Documentation Amazon Web Services (AWS) : référence de l'API Amazon simple Storage Service"^]
+http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html["Documentation AWS : Référence de l'API Amazon Simple Storage Service"^]
 
 
 
@@ -52,6 +61,15 @@ https://datatracker.ietf.org/doc/html/rfc2616["IETF RFC 2616 : Protocole de tran
 [cols="1a,4a"]
 |===
 | Relâchez | Commentaires 
+
+
+ a| 
+12,0
+ a| 
+* Ajout de la prise en charge du partage de ressources inter-origines (CORS) pour une interface de gestion, qui permet à un autre domaine d'accéder aux données dans StorageGRID à l'aide des API de gestion. link:../admin/enable-cross-origin-resource-sharing-for-management-interface.html["En savoir plus >>"] .
+* Ajout de la prise en charge de STS AssumeRole et de la politique de session. Voir link:example-session-policies.html["un exemple de politique de session"] .  Vous pouvez configurer AssumeRole sous les groupes de locataires.
+
+
 
 
  a| 
@@ -201,6 +219,6 @@ Ajout de la prise en charge du téléchargement partitionné, des demandes de ty
  a| 
 10,0
  a| 
-Prise en charge initiale de l'API REST S3 par le système StorageGRID.la version actuellement prise en charge de _simple Storage Service API Reference_ est 2006-03-01.
+Prise en charge initiale de l'API REST S3 par le système StorageGRID .  La version actuellement prise en charge de la _Référence API du service de stockage simple_ est 2006-03-01.
 
 |===

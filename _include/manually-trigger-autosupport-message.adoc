@@ -3,18 +3,18 @@
 
 
 .Avant de commencer
-* Vous devez être connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-* Vous devez disposer de l'accès racine ou d'une autre autorisation de configuration de grille.
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous disposez de l'accès root ou de l'autorisation de configuration d'une autre grille.
 
 
 .Étapes
-. Sélectionnez *SUPPORT* > *Outils* > *AutoSupport*.
+. Sélectionnez *Support* > *Outils* > * AutoSupport*.
 . Dans l'onglet *actions*, sélectionnez *Envoyer AutoSupport déclenché par l'utilisateur*.
 +
-StorageGRID tente d'envoyer un pack AutoSupport sur le site de support NetApp. Si la tentative réussit, les valeurs *résultat le plus récent* et *dernier temps* réussi dans l'onglet *Résultats* sont mises à jour. En cas de problème, la valeur *résultat le plus récent* est mise à jour sur « échec » et StorageGRID n'essaie pas d'envoyer à nouveau le paquet AutoSupport.
+StorageGRID tente d'envoyer un package AutoSupport au site de support NetApp .  Si la tentative réussit, les valeurs *Résultat le plus récent* et *Dernière heure de réussite* dans l'onglet *Résultats* sont mises à jour.  En cas de problème, la valeur *Résultat le plus récent* est mise à jour sur « Échec » et StorageGRID n'essaie pas d'envoyer à nouveau le package AutoSupport .
 
-+
-
-TIP: Après avoir envoyé un pack AutoSupport déclenché par l'utilisateur, actualisez la page AutoSupport de votre navigateur au bout d'une minute pour accéder aux résultats les plus récents.
+. Après 1 minute, actualisez la page AutoSupport dans votre navigateur pour accéder aux résultats les plus récents.
 
 
+
+TIP: De plus, vous pouvezlink:../monitor/collecting-log-files-and-system-data.html["collecter des fichiers journaux et des données système plus complets"] et envoyez-les au site de support NetApp .

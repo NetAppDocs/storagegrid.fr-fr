@@ -63,3 +63,6 @@ Vous pouvez également sélectionner le nom de la balise. La page de détails de
 
 . Sélectionnez *Oui* pour supprimer la balise.
 
+
+.Informations associées
+link:creating-ilm-policy.html#activate-ilm-policy["En savoir plus sur la création de balises de stratégie ILM"]

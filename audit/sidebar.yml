@@ -146,11 +146,3 @@ entries:
       url: "/audit/syst-node-stopping.html"
     - title: 'SYSU : démarrage du nœud'
       url: "/audit/sysu-node-start.html"
-    - title: 'WDEL : SUPPRESSION rapide'
-      url: "/audit/wdel-swift-delete.html"
-    - title: 'WGET: SWIFT GET'
-      url: "/audit/wget-swift-get.html"
-    - title: 'WHEA: TÊTE SWIFT'
-      url: "/audit/whea-swift-head.html"
-    - title: 'WPUT : PUT SWIFT'
-      url: "/audit/wput-swift-put.html"

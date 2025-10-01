@@ -1,26 +1,8 @@
 ---
 permalink: vmware/post-installation-guidelines.html 
-sidebar: sidebar 
-keywords: after installation guidelines vmware 
-summary: 'Une fois le déploiement et la configuration des nœuds de la grille effectués, suivez ces instructions pour l"adressage DHCP et les modifications de configuration réseau.' 
+redirect: storagegrid/swnodes/post-installation-guidelines.html 
 ---
-= Instructions de post-installation
+= 
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
-
-[role="lead"]
-Une fois le déploiement et la configuration des nœuds de la grille effectués, suivez ces instructions pour l'adressage DHCP et les modifications de configuration réseau.
-
-* Si DHCP était utilisé pour attribuer des adresses IP, configurez une réservation DHCP pour chaque adresse IP sur les réseaux utilisés.
-+
-Vous ne pouvez configurer DHCP que pendant la phase de déploiement. Vous ne pouvez pas configurer DHCP pendant la configuration.
-
-+
-
-NOTE: Les nœuds redémarrent lorsque la configuration Grid Network est modifiée par DHCP, ce qui peut provoquer des pannes si une modification DHCP affecte plusieurs nœuds en même temps.
-
-* Vous devez utiliser les procédures Modifier IP pour modifier les adresses IP, les masques de sous-réseau et les passerelles par défaut pour un noeud de grille. Voir link:../maintain/configuring-ip-addresses.html["Configurez les adresses IP"].
-* Si vous modifiez la configuration réseau, y compris le routage et les modifications de passerelle, la connectivité client au nœud d'administration principal et à d'autres nœuds de la grille risque d'être perdue. En fonction des modifications de réseau appliquées, vous devrez peut-être rétablir ces connexions.
 

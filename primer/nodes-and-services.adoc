@@ -17,7 +17,7 @@ L'élément de base d'un système StorageGRID est le nœud grid. Les nœuds cont
 
 == Types de nœuds grid
 
-Le système StorageGRID utilise quatre types de nœuds grid :
+Le système StorageGRID utilise trois types de nœuds de grille :
 
 Nœuds d'administration:: Fournir des services de gestion tels que la configuration, la surveillance et la journalisation du système. Lorsque vous vous connectez à Grid Manager, vous vous connectez à un noeud d'administration. Chaque grid doit posséder un nœud d'administration principal et des nœuds d'administration non primaires supplémentaires pour assurer la redondance. Vous pouvez vous connecter à n'importe quel nœud d'administration et chaque nœud d'administration affiche une vue similaire du système StorageGRID. Cependant, les procédures de maintenance doivent être effectuées à l'aide du nœud d'administration principal.
 +
@@ -30,6 +30,8 @@ Voir link:what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"]
 Nœuds de stockage:: Gestion et stockage des données d'objet et des métadonnées Chaque site de votre système StorageGRID doit avoir au moins trois nœuds de stockage.
 +
 --
+Lors de l'installation initiale d'un nouveau nœud de stockage, vous pouvez spécifier qu'il soit utilisé uniquement pourlink:../primer/what-storage-node-is.html#types-of-storage-nodes["et stocker les métadonnées"] .
+
 Voir link:what-storage-node-is.html["Qu'est-ce qu'un nœud de stockage ?"]
 
 --
@@ -45,7 +47,7 @@ Voir link:what-gateway-node-is.html["Qu'est-ce qu'un nœud de passerelle ?"]
 
 == Nœuds matériels et logiciels
 
-Les nœuds StorageGRID peuvent être déployés en tant que nœuds d'appliance StorageGRID ou en tant que nœuds logiciels.
+Les nœuds StorageGRID peuvent être déployés en tant que nœuds d’appliance StorageGRID ou en tant que nœuds logiciels.  Le nombre maximal de nœuds (y compris tous les types de nœuds) par système est de 220.
 
 
 
@@ -63,16 +65,9 @@ Consultez les sections suivantes pour en savoir plus sur les dispositifs disponi
 
 === Nœuds basés sur logiciel
 
-Des nœuds grid logiciels peuvent être déployés en tant que machines virtuelles VMware ou à l'intérieur des moteurs de conteneurs sur un hôte Linux.
-
-* Machine virtuelle (VM) dans VMware vSphere : voir link:../vmware/index.html["Installez StorageGRID sur VMware"].
-* Dans un moteur de conteneur sur Red Hat Enterprise Linux : voir link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"].
-* Dans un moteur de conteneur sous Ubuntu ou Debian : voir link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"].
-
+Les nœuds de grille basés sur des logiciels peuvent être déployés en tant que machines virtuelles VMware ou dans des moteurs de conteneurs sur un hôte Linux. Voir link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
 
 Utilisez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] pour déterminer les versions prises en charge.
-
-Lors de l'installation initiale d'un nouveau nœud de stockage logiciel, vous pouvez spécifier qu'il ne doit être utilisé que pour link:../primer/what-storage-node-is.html#types-of-storage-nodes["et stocker les métadonnées"].
 
 
 
@@ -109,6 +104,42 @@ AMS (Audit Management System)
 Surveille et consigne tous les événements et transactions système audités dans un fichier journal texte.
  a| 
 Nœuds d'administration
+
+
+
+ a| 
+Apache Tomcat
+ a| 
+Serveur Web pour applications basées sur Java.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
+Démon Avahi
+ a| 
+Gère mDNS, qui est utilisé pour la résolution de noms et la découverte de services au sein du réseau local.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Service de cache
+ a| 
+S'exécute sur des nœuds d'équilibrage de charge (passerelle) et gère un cache local du contenu des objets.
+ a| 
+Nœuds de passerelle
+
+
+
+ a| 
+Cassandra
+ a| 
+Gère la base de données distribuée pour les métadonnées des objets.
+ a| 
+Nœuds de stockage (sauf données uniquement)
 
 
 
@@ -187,7 +218,7 @@ Nœuds d'administration et de passerelle
  a| 
 Identité (idnt)
  a| 
-Fédération des identités d'utilisateur à partir de LDAP et d'Active Directory.
+Gère les utilisateurs et les groupes locaux, l'authentification et fédère les identités des utilisateurs à partir de LDAP et d'Active Directory.
  a| 
 Nœuds de stockage qui utilisent le service ADC
 
@@ -239,9 +270,9 @@ Tous les nœuds
 
 
  a| 
-nginx-gw
+Équilibreur de charge nginx-gw
  a| 
-Alimente le service Load Balancer.
+Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage Le service Load Balancer peut être configuré via la page de configuration des noeuds finaux Load Balancer. Ce service est également connu sous le nom de service nginx-gw.
  a| 
 Nœuds d'administration et de passerelle
 
@@ -253,6 +284,24 @@ Système de gestion de réseau (NMS)
 Alimente les options de surveillance, de rapport et de configuration qui sont affichées via le gestionnaire de grille.
  a| 
 Nœuds d'administration
+
+
+
+ a| 
+Exportateur de nœuds (collecte de données Prometheus)
+ a| 
+Publie des statistiques au niveau du système pour la collecte de mesures de séries chronologiques Prometheus.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+ntp
+ a| 
+Service de protocole de temps réseau (NTP).
+ a| 
+Tous les nœuds
 
 
 
@@ -293,7 +342,70 @@ Une instance est présente sur chaque nœud de grille
 
 
  a| 
-Collecteur de traces
+Gestionnaire de serveur
+ a| 
+Gère les services StorageGRID .
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Agent SNMP
+ a| 
+Répond aux requêtes SNMP.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
+Service de gestion des ports SNMP
+ a| 
+Gère la gestion dynamique des ports SNMP.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+SSH (Shell sécurisé)
+ a| 
+Gère l'accès sécurisé et la gestion du système à distance.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+SSM (Moniteur d'état du système)
+ a| 
+Surveille l'état du matériel et communique des rapports au service NMS.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Statistique
+ a| 
+Enregistre des métriques supplémentaires liées aux buckets S3.
+ a| 
+Nœuds de stockage
+
+
+
+ a| 
+Agent de traçage (agent Jaeger)
+ a| 
+Reçoit et traite les informations de traçage soumises par le collecteur de traces (jaeger-collector).
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+Collectionneur de traces (jaeger-collector)
  a| 
 Effectue la collecte des traces afin de recueillir des informations à utiliser par le support technique. Le service de collecteur de trace utilise le logiciel Open Source Jaeger.
  a| 

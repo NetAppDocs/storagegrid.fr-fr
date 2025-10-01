@@ -46,7 +46,7 @@ NOTE: La clé privée du client doit être au format crypté OpenSSL ou au forma
 
 
 
-.. Si nécessaire, modifiez la méthode de vérification du serveur.
+.. Si nécessaire, modifiez la méthode de vérification des certificats.
 
 
 . Sélectionnez *Tester et enregistrer les modifications*.

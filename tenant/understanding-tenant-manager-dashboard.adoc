@@ -2,7 +2,7 @@
 permalink: tenant/understanding-tenant-manager-dashboard.html 
 sidebar: sidebar 
 keywords: how to understand tenant manager dashboard 
-summary: 'Le tableau de bord du gestionnaire de locataires offre un aperçu de la configuration d"un compte de locataire et de la quantité d"espace utilisée par les objets dans les compartiments du locataire \(S3\) ou conteneurs \(Swift\). Si le locataire dispose d"un quota, le tableau de bord indique la part du quota utilisée et la quantité restante. En cas d"erreurs liées au compte de tenant, les erreurs s"affichent dans le tableau de bord.' 
+summary: 'Le tableau de bord du gestionnaire de locataires fournit un aperçu de la configuration d"un compte de locataire et de la quantité d"espace utilisée par les objets dans les compartiments S3 du locataire.  Si le locataire dispose d"un quota, le tableau de bord indique la part du quota utilisée et la part restante.  S"il y a des erreurs liées au compte locataire, les erreurs sont affichées sur le tableau de bord.' 
 ---
 = Présentation du tableau de bord du gestionnaire de locataires
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: 'Le tableau de bord du gestionnaire de locataires offre un aperçu de l
 
 
 [role="lead"]
-Le tableau de bord du gestionnaire de locataires présente la configuration d'un compte de locataire et la quantité d'espace utilisée par les objets dans les compartiments du locataire (S3) ou les conteneurs (Swift). Si le locataire dispose d'un quota, le tableau de bord indique la part du quota utilisée et la quantité restante. En cas d'erreurs liées au compte de tenant, les erreurs s'affichent dans le tableau de bord.
+Le tableau de bord du gestionnaire de locataires fournit un aperçu de la configuration d'un compte de locataire et de la quantité d'espace utilisée par les objets dans les compartiments S3 du locataire.  Si le locataire dispose d'un quota, le tableau de bord indique la part du quota utilisée et la part restante.  S'il y a des erreurs liées au compte locataire, les erreurs sont affichées sur le tableau de bord.
 
 
-NOTE: Les valeurs espace utilisé sont des estimations. Ces estimations sont affectées par le moment de l'ingestion, la connectivité réseau et l'état des nœuds.
+NOTE: La taille logique de tous les objets appartenant à ce locataire inclut les téléchargements multipartites incomplets et en cours.  La taille n'inclut pas l'espace physique supplémentaire utilisé pour les politiques ILM.  Les valeurs de l'espace utilisé sont des estimations.  Ces estimations sont affectées par le moment des ingestions, la connectivité réseau et l’état du nœud.
 
 Une fois les objets téléchargés, le tableau de bord ressemble à l'exemple suivant :
 

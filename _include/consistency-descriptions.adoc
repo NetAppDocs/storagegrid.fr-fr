@@ -1,0 +1,28 @@
+= 
+:allow-uri-read: 
+
+
+* *All* : tous les nœuds reçoivent immédiatement les métadonnées de l'objet ou la demande échoue.
+* *Strong-global* : garantit la cohérence de lecture après écriture pour toutes les demandes client sur tous les sites.  Lorsque la sémantique du quorum est configurée, les comportements suivants s'appliquent :
++
+** Permet une tolérance aux pannes de site pour les demandes des clients lorsque les grilles comportent trois sites ou plus.  Les réseaux à deux sites n'auront pas de tolérance aux pannes de site.
+** Les opérations S3 suivantes ne réussiront pas avec un site en panne :
++
+*** DeleteBuckeEncryption
+*** MettreBucketBranch
+*** PutBucketEncryption
+*** PutBuckeVersioning
+*** PutObjectLegalHold
+*** PutObjectLockConfiguration
+*** PutObjectRetention
+
+
+
+
++
+Si nécessaire, vous pouvez https://kb.netapp.com/hybrid/StorageGRID/Object_Mgmt/Configuring_StorageGRID_quorum_semantics_for_strong-global_consistency["configurer la sémantique du quorum StorageGRID pour une cohérence globale forte"^] .
+
+* *Strong-site* : les métadonnées de l'objet sont immédiatement distribuées à d'autres nœuds du site. Garantit la cohérence de lecture après écriture pour toutes les demandes client dans un site.
+* *Read-After-New-write* : fournit une cohérence lecture-après-écriture pour les nouveaux objets et une cohérence éventuelle pour les mises à jour d'objets. Offre une haute disponibilité et une protection des données garanties. Recommandé dans la plupart des cas.
+* *Disponible* : assure la cohérence finale pour les nouveaux objets et les mises à jour d'objets. Pour les compartiments S3, utilisez uniquement si nécessaire (par exemple, pour un compartiment qui contient des valeurs de journal rarement lues ou pour les opérations HEAD ou GET sur des clés qui n'existent pas). Non pris en charge pour les compartiments FabricPool S3.
+

@@ -33,7 +33,7 @@ Les métadonnées d'objet constituent toutes les informations qui décrivent un 
 
 Les métadonnées de l'objet incluent les informations suivantes :
 
-* Les métadonnées du système, y compris un ID unique pour chaque objet (UUID), le nom de l'objet, le nom du compartiment S3 ou du conteneur Swift, le nom ou l'ID du compte du locataire, la taille logique de l'objet, la date et l'heure de la première création de l'objet, et la date et l'heure de la dernière modification de l'objet.
+* Métadonnées du système, y compris un ID unique pour chaque objet (UUID), le nom de l'objet, le nom du compartiment S3, le nom ou l'ID du compte locataire, la taille logique de l'objet, la date et l'heure de création de l'objet, ainsi que la date et l'heure de la dernière modification de l'objet.
 * Emplacement de stockage actuel de chaque copie d'objet ou fragment codé d'effacement.
 * Toutes les métadonnées utilisateur associées à l'objet.
 

@@ -13,11 +13,10 @@ summary: 'À quelques exceptions près, vous préparez les nouveaux hôtes comme
 [role="lead"]
 À quelques exceptions près, vous préparez les nouveaux hôtes comme vous l'avez fait lors du processus d'installation initiale.
 
-Pour déployer de nouveaux hôtes Linux physiques ou virtuels ou les réinstaller, suivez la procédure de préparation des hôtes dans les instructions d'installation de StorageGRID pour votre système d'exploitation Linux :
+Pour déployer des hôtes Linux physiques ou virtuels nouveaux ou réinstallés, suivez la procédure de préparation des hôtes dans les instructions d'installation de StorageGRID pour votre système d'exploitation Linux. Voir link:../swnodes/installing-linux.html["Installez Linux"] .
 
-* link:../rhel/installing-linux.html["Installer Linux (Red Hat Enterprise Linux)"]
-* link:../ubuntu/installing-linux.html["Installer Linux (Ubuntu ou Debian)"]
 
+NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
 
 Cette procédure comprend les étapes permettant d'effectuer les tâches suivantes :
 

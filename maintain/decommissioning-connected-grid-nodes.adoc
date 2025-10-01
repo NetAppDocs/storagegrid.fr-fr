@@ -99,13 +99,13 @@ La procédure de mise hors service du nœud démarre et la progression est affic
 
 CAUTION: Ne mettez pas un nœud de stockage hors ligne après le démarrage de la procédure de mise hors service. La modification de l'état peut entraîner l'absence de copie de contenu vers d'autres emplacements.
 
-. Dès que le nouveau progiciel de récupération est disponible, sélectionnez le lien Package de récupération dans la bannière ou sélectionnez *MAINTENANCE* > *système* > *paquet de récupération* pour accéder à la page du progiciel de récupération. Téléchargez ensuite le `.zip` fichier.
+. Dès que le nouveau package de récupération est disponible, sélectionnez le lien du package de récupération dans la bannière ou sélectionnez *Maintenance* > *Système* > *Package de récupération* pour accéder à la page du package de récupération.  Ensuite, téléchargez le `.zip` déposer.
 +
-Voir link:downloading-recovery-package.html["Téléchargement du progiciel de restauration"].
+Voir link:downloading-recovery-package.html["téléchargement du package de récupération"] .
 
 +
 
-NOTE: Téléchargez le progiciel de récupération dès que possible pour vous assurer que vous pouvez récupérer votre grille si un problème survient pendant la procédure de mise hors service.
+NOTE: Téléchargez le package de récupération dès que possible pour vous assurer de pouvoir récupérer votre réseau en cas de problème lors de la procédure de mise hors service.
 
 . Surveillez régulièrement la page nœuds de mise hors service pour vous assurer que tous les nœuds sélectionnés sont correctement mis hors service.
 +
@@ -122,7 +122,7 @@ Suivez cette procédure une fois la procédure de mise hors service du nœud ter
 
 . Suivez l'étape appropriée pour votre plate-forme. Par exemple :
 +
-** *Linux* : vous pouvez détacher les volumes et supprimer les fichiers de configuration de nœud que vous avez créés lors de l'installation. Voir link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"] et link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"].
+** *Linux* : vous souhaiterez peut-être détacher les volumes et supprimer les fichiers de configuration de nœud que vous avez créés lors de l'installation. Voir link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
 ** *VMware* : vous pouvez utiliser l'option " Supprimer du disque " de vCenter pour supprimer la machine virtuelle. Il se peut également que vous deviez supprimer tous les disques de données qui sont indépendants de la machine virtuelle.
 ** *Appliance StorageGRID* : le nœud de l'appliance revient automatiquement à un état non déployé où vous pouvez accéder au programme d'installation de l'appliance StorageGRID. Vous pouvez mettre l'appareil hors tension ou l'ajouter à un autre système StorageGRID.
 

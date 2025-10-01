@@ -20,8 +20,6 @@ entries:
     url: "/primer/what-storage-node-is.html"
   - title: Qu'est-ce qu'un nœud de passerelle
     url: "/primer/what-gateway-node-is.html"
-  - title: Qu'est-ce qu'un nœud d'archivage
-    url: "/primer/what-archive-node-is.html"
 - title: La gestion des données par StorageGRID
   entries:
   - title: Qu'est-ce qu'un objet

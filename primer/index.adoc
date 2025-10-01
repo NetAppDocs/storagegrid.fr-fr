@@ -29,16 +29,7 @@ NOTE: La prise en charge des nœuds d'archivage a été supprimée. Le déplacem
 La baie StorageGRID présente plusieurs avantages :
 
 * Référentiel de données distribué géographiquement extrêmement évolutif et facile à utiliser pour les données non structurées.
-* Protocoles de stockage objet standard :
-+
-** Amazon Web Services simple Storage Service (S3)
-** OpenStack Swift
-+
-
-NOTE: La prise en charge des applications du client Swift a été obsolète et sera supprimée dans une prochaine version.
-
-
-
+* Le protocole de stockage d'objets standard Amazon Web Services Simple Storage Service (S3).
 * Compatibilité avec le cloud hybride. La gestion du cycle de vie des informations basée sur des règles stocke les objets dans des clouds publics, notamment Amazon Web Services (AWS) et Microsoft Azure. Les services de plateforme StorageGRID permettent la réplication de contenu, la notification d'événements et la recherche de métadonnées d'objets stockés dans les clouds publics.
 * Protection flexible des données pour assurer la durabilité et la disponibilité. Les données peuvent être protégées au moyen de la réplication et du code d'effacement à plusieurs couches. La vérification des données au repos et à la volée garantit l'intégrité des données conservées à long terme.
 * Gestion dynamique du cycle de vie des données pour vous aider à gérer les coûts de stockage. Vous pouvez créer des règles ILM pour gérer le cycle de vie des données au niveau objet, personnaliser la localisation des données, la durabilité, les performances, le coût et de conservation des données.
@@ -49,7 +40,7 @@ NOTE: La prise en charge des applications du client Swift a été obsolète et s
 +
 ** Ordinateurs virtuels exécutés dans VMware.
 ** Moteurs de mise en conteneurs sur hôtes Linux.
-** Appliances StorageGRID spécialisées.
+** Appareils conçus par StorageGRID.
 +
 *** Les appliances de stockage fournissent le stockage objet.
 *** Les appliances de services proposent des services d'administration du grid et d'équilibrage de la charge.

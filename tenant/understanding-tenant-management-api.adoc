@@ -44,7 +44,7 @@ Pour plus d'informations sur l'amélioration de la sécurité d'authentification
 NOTE: Si l'authentification unique (SSO) est activée pour le système StorageGRID, vous devez effectuer différentes étapes pour l'authentification. Voir la link:../admin/using-grid-management-api.html["Instructions d'utilisation de l'API de gestion de grille"].
 
 * *Config* : opérations liées à la version du produit et aux versions de l'API de gestion des locataires. Vous pouvez lister la version du produit ainsi que les versions principales de l'API prises en charge par cette version.
-* *Conteneurs* : opérations sur les compartiments S3 ou les conteneurs Swift.
+* *conteneurs* : opérations sur les buckets S3.
 * *Désactivé-features* : opérations permettant d'afficher les fonctions qui auraient pu être désactivées.
 * *Noeuds finaux* : opérations pour gérer un noeud final. Les terminaux permettent à un compartiment S3 d'utiliser un service externe pour la réplication StorageGRID CloudMirror, les notifications ou l'intégration de la recherche.
 * *Grid-federation-connections* : opérations sur les connexions de fédération de grille et la réplication de grille transversale.

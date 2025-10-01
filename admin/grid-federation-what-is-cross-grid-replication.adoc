@@ -17,7 +17,7 @@ La réplication inter-grid est la réplication automatique des objets entre des 
 
 == Flux de production pour la réplication entre les grilles
 
-Le diagramme de flux de travail résume les étapes de configuration de la réplication inter-grille entre les compartiments sur deux grilles.
+Le diagramme de flux de travail résume les étapes de configuration de la réplication inter-grille entre les buckets sur deux grilles.
 
 image::../media/grid-federation-cgr-workflow.png[Flux de production de réplication entre les grilles]
 
@@ -25,11 +25,11 @@ image::../media/grid-federation-cgr-workflow.png[Flux de production de réplicat
 
 == Conditions requises pour la réplication entre les grilles
 
-Si un compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* pour utiliser un ou plusieurs link:grid-federation-overview.html["connexions de fédération de grille"], un utilisateur de tenant avec l'autorisation d'accès racine peut créer des compartiments identiques dans les comptes de tenant correspondants sur chaque grille. Ces compartiments :
+Si un compte locataire dispose de l'autorisation *Utiliser la connexion à la fédération de grille* pour utiliser une ou plusieurslink:grid-federation-overview.html["connexions de fédération de grille"] , un utilisateur locataire avec l'autorisation d'accès root peut créer des buckets dans les comptes locataires correspondants sur chaque grille.  Ces seaux :
 
-* Doit avoir le même nom mais peut avoir des régions différentes
+* Peuvent avoir des noms différents les uns des autres
+* Peut avoir différentes régions
 * La gestion des versions doit être activée
-* Le verrouillage d'objet S3 doit être désactivé
 * Doit être vide
 
 
@@ -42,13 +42,13 @@ link:../tenant/grid-federation-manage-cross-grid-replication.html["Gérer la ré
 
 == Fonctionnement de la réplication entre les grilles
 
-La réplication inter-grille peut être configurée pour se produire dans une direction ou dans les deux directions.
+Vous pouvez configurer la réplication inter-grille pour qu'elle se produise dans un sens ou dans les deux sens.
 
 
 
 === Réplication dans une direction
 
-Si vous activez la réplication inter-grid pour un compartiment sur une seule grille, les objets ajoutés à ce compartiment (le compartiment source) sont répliqués dans le compartiment correspondant de l'autre grille (le compartiment de destination). Toutefois, les objets ajoutés au compartiment de destination ne sont pas répliqués à nouveau vers la source. Dans la figure, la réplication inter-grille est activée pour `my-bucket` de la grille 1 à la grille 2, mais elle n'est pas activée dans l'autre sens.
+Si vous activez la réplication inter-grille pour un bucket sur une seule grille, les objets ajoutés à ce bucket (le bucket source) sont répliqués vers le bucket correspondant sur l'autre grille (le bucket de destination).  Cependant, les objets ajoutés au bucket de destination ne sont pas répliqués vers la source.  Dans la figure, la réplication inter-grille est activée pour `my-bucket` de la grille 1 à la grille 2, mais ce n'est pas activé dans l'autre sens.
 
 image::../media/grid-federation-cross-grid-replication-one-direction.png[image montrant la connexion de fédération de grille dans une direction]
 
@@ -68,7 +68,7 @@ Lorsqu'un client S3 ajoute un objet à un compartiment pour lequel la réplicati
 
 . StorageGRID réplique automatiquement l'objet depuis le compartiment source vers le compartiment de destination. Le temps nécessaire pour effectuer cette opération de réplication en arrière-plan dépend de plusieurs facteurs, dont le nombre d'autres opérations de réplication en attente.
 +
-Le client S3 peut vérifier l'état de réplication d'un objet en émettant une requête GetObject ou HeadObject. La réponse inclut un en-tête de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status`, qui aura l'une des valeurs suivantes : le client S3 peut vérifier l'état de réplication d'un objet en émettant une requête GetObject ou HeadObject. La réponse inclut un en-tête de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status`, qui aura l'une des valeurs suivantes :
+Le client S3 peut vérifier l'état de réplication d'un objet en émettant une requête GetObject ou HeadObject.  La réponse inclut un StorageGRID spécifique `x-ntap-sg-cgr-replication-status` en-tête de réponse, qui a l'une des valeurs suivantes :
 
 +
 [cols="1a,2a"]
@@ -81,7 +81,7 @@ Source
  a| 
 ** *TERMINÉ* : la réplication a réussi pour toutes les connexions de grille.
 ** *EN ATTENTE* : l'objet n'a pas été répliqué vers au moins une connexion de grille.
-** *ÉCHEC* : la réplication n'est pas en attente pour une connexion de grille et au moins une a échoué avec une défaillance permanente. L'utilisateur doit résoudre l'erreur.
+** *ÉCHEC* : La réplication n'est en attente pour aucune connexion au réseau et au moins une a échoué avec une panne permanente.  Un utilisateur doit résoudre l’erreur.
 
 
 
@@ -94,7 +94,7 @@ Destination
 |===
 +
 
-NOTE: StorageGRID ne prend pas en charge la `x-amz-replication-status` barre de coupe.
+NOTE: StorageGRID ne prend pas en charge le `x-amz-replication-status` en-tête.
 
 . StorageGRID utilise les règles ILM actives de chaque grille pour gérer les objets, comme n'importe quel autre objet. Par exemple, l'objet A sur la grille 1 peut être stocké sous forme de deux copies répliquées et conservé indéfiniment, tandis que la copie de l'objet A répliqué sur la grille 2 peut être stockée avec un code d'effacement 2+1 et supprimée après trois ans.
 
@@ -116,26 +116,26 @@ Lorsque StorageGRID supprime un objet en raison d'une opération de suppression 
 Pour comprendre ce qui se passe lorsqu'un client S3 supprime des objets d'un compartiment dans lequel la réplication inter-grid est activée, vérifiez comment les clients S3 suppriment des objets des compartiments pour lesquels la gestion de version est activée, comme suit :
 
 * Si un client S3 émet une demande de suppression qui inclut un ID de version, cette version de l'objet est définitivement supprimée. Aucun marqueur de suppression n'est ajouté au godet.
-* Si un client S3 émet une demande de suppression qui n'inclut pas d'ID de version, StorageGRID ne supprime aucune version d'objet. Au lieu de cela, il ajoute un marqueur de suppression au godet. Avec le marqueur de suppression, StorageGRID agit comme si l'objet avait été supprimé :
+* Si un client S3 émet une demande de suppression qui n'inclut pas d'ID de version, StorageGRID ne supprime aucune version d'objet.  Au lieu de cela, il ajoute un marqueur de suppression au bucket.  Le marqueur de suppression oblige StorageGRID à agir comme si l'objet avait été supprimé :
 +
-** Une demande GetObject sans ID de version échoue avec `404 No Object Found`
-** Une demande GetObject avec un ID de version valide réussit et renvoie la version d'objet demandée.
+** Une requête GetObject sans ID de version échoue avec `404 No Object Found`
+** Une demande GetObject avec un ID de version valide réussit et renvoie la version de l'objet demandée.
 
 
 
 
 Lorsqu'un client S3 supprime un objet d'un compartiment pour lequel la réplication inter-grid est activée, StorageGRID détermine s'il faut répliquer la demande de suppression vers la destination, comme suit :
 
-* Si la demande de suppression inclut un ID de version, cette version d'objet est définitivement supprimée de la grille source. Cependant, StorageGRID ne réplique pas les demandes de suppression qui incluent un ID de version, de sorte que la même version d'objet n'est pas supprimée de la destination.
-* Si la demande de suppression n'inclut pas d'ID de version, StorageGRID peut éventuellement répliquer le marqueur de suppression en fonction de la configuration de la réplication inter-grid pour le compartiment :
+* Si la demande de suppression inclut un ID de version, cette version d'objet est définitivement supprimée de la grille source.  Cependant, StorageGRID ne réplique pas les demandes de suppression qui incluent un ID de version, de sorte que la même version d'objet n'est pas supprimée de la destination.
+* Si la demande de suppression n'inclut pas d'ID de version, StorageGRID peut éventuellement répliquer le marqueur de suppression, en fonction de la configuration de la réplication inter-grille pour le bucket :
 +
 ** Si vous choisissez de répliquer les marqueurs de suppression (par défaut), un marqueur de suppression est ajouté au compartiment source et répliqué vers le compartiment de destination. En effet, l'objet semble être supprimé sur les deux grilles.
-** Si vous choisissez de ne pas répliquer les marqueurs de suppression, un marqueur de suppression est ajouté au compartiment source, mais il n'est pas répliqué vers le compartiment de destination. En effet, les objets supprimés de la grille source ne sont pas supprimés de la grille de destination.
+** Si vous choisissez de ne pas répliquer les marqueurs de suppression, un marqueur de suppression est ajouté au bucket source mais n'est pas répliqué dans le bucket de destination.  En effet, les objets supprimés sur la grille source ne sont pas supprimés sur la grille de destination.
 
 
 
 
-Dans la figure, *replicate delete marqueurs* a été défini sur *Yes* lorsque link:../tenant/grid-federation-manage-cross-grid-replication.html["la réplication inter-grid a été activée"]. Les demandes de suppression du compartiment source qui incluent un ID de version ne supprimera pas les objets du compartiment de destination. Les demandes de suppression pour le compartiment source qui n'incluent pas d'ID de version apparaissent pour supprimer des objets dans le compartiment de destination.
+Dans la figure, *Répliquer les marqueurs de suppression* était défini sur *Oui* lorsquelink:../tenant/grid-federation-manage-cross-grid-replication.html["la réplication inter-grid a été activée"] .  Les demandes de suppression pour le bucket source qui incluent un ID de version ne suppriment pas les objets du bucket de destination.  Les demandes de suppression pour le bucket source qui n'incluent pas d'ID de version semblent supprimer des objets dans le bucket de destination.
 
 image::../media/grid-federation-cross-grid-replication-delete.png[image montrant la suppression du client répliqué sur les deux grilles]
 
@@ -151,29 +151,81 @@ Lorsque vous répliquez les objets entre les grilles à l'aide de la réplicatio
 Pour chiffrer des objets individuels, vous pouvez utiliser SSE (chiffrement côté serveur avec des clés gérées par StorageGRID) lors de l'ajout des objets au compartiment source. Utilisez l' `x-amz-server-side-encryption`en-tête de la requête et spécifiez `AES256`. Voir link:../s3/using-server-side-encryption.html["Utilisez le cryptage côté serveur"].
 
 
-NOTE: L'utilisation de SSE-C (chiffrement côté serveur avec clés fournies par le client) n'est pas prise en charge pour la réplication inter-grille. L'opération d'acquisition échoue.
+NOTE: L'utilisation de SSE-C (chiffrement côté serveur avec clés fournies par le client) n'est pas prise en charge pour la réplication inter-grille.  L'opération d'ingestion échouera.
 
 Pour utiliser le cryptage par défaut pour un compartiment, utilisez une requête PutBucketEncryption et définissez le `SSEAlgorithm` paramètre sur `AES256`. Le chiffrement au niveau du compartiment s'applique à tous les objets ingérés sans l' `x-amz-server-side-encryption`en-tête de la demande. Voir link:../s3/operations-on-buckets.html["Opérations sur les compartiments"].
 
 Pour utiliser le cryptage au niveau de la grille, définissez l'option *Stored object Encryption* sur *AES-256*. Le chiffrement au niveau du grid s'applique aux objets qui ne sont pas chiffrés au niveau du compartiment ou qui sont ingérés sans l'en-tête de la `x-amz-server-side-encryption` demande. Voir link:../admin/changing-network-options-object-encryption.html["Configurez les options réseau et objet"].
 
 
-NOTE: SSE ne prend pas en charge AES-128. Si l'option *Stored object Encryption* est activée pour la grille source à l'aide de l'option *AES-128*, l'utilisation de l'algorithme AES-128 ne sera pas propagée à l'objet répliqué. À la place, l'objet répliqué utilisera le paramètre de chiffrement par défaut du compartiment ou de la grille de destination, le cas échéant.
+NOTE: SSE ne prend pas en charge AES-128.  Si l'option *Cryptage d'objet stocké* est activée pour la grille source à l'aide de l'option *AES-128*, l'utilisation de l'algorithme AES-128 n'est pas propagée à l'objet répliqué.  Au lieu de cela, l'objet répliqué utilise le bucket par défaut de la destination ou le paramètre de chiffrement au niveau de la grille, s'il est disponible.
 
 Lors de la détermination du mode de chiffrement des objets source, StorageGRID applique les règles suivantes :
 
 . Utilisez l' `x-amz-server-side-encryption`en-tête d'ingestion, le cas échéant.
-. Si aucun en-tête d'ingestion n'est présent, utilisez le paramètre de chiffrement par défaut du compartiment, s'il est configuré.
-. Si aucun paramètre de compartiment n'est configuré, utilisez le paramètre de chiffrement au niveau de la grille, si celui-ci est configuré.
-. Si aucun paramètre de grille n'est présent, ne chiffrez pas l'objet source.
+. Si aucun en-tête d'ingestion n'est présent, utilisez le paramètre de chiffrement par défaut du bucket, s'il est configuré.
+. Si aucun paramètre de bucket n'est configuré, utilisez le paramètre de chiffrement à l'échelle de la grille, s'il est configuré.
+. Si un paramètre à l’échelle de la grille n’est pas présent, ne cryptez pas l’objet source.
 
 
 Pour déterminer comment chiffrer les objets répliqués, StorageGRID applique les règles suivantes dans l'ordre suivant :
 
 . Utilisez le même chiffrement que l'objet source, sauf si cet objet utilise le chiffrement AES-128.
-. Si l'objet source n'est pas chiffré ou utilise la norme AES-128, utilisez le paramètre de chiffrement par défaut du compartiment de destination, s'il est configuré.
-. Si le compartiment de destination ne possède pas de paramètre de chiffrement, utilisez le paramètre de chiffrement de la grille de destination, si celui-ci est configuré.
-. Si aucun paramètre de grille n'est présent, ne chiffrez pas l'objet de destination.
+. Si l'objet source n'est pas chiffré ou s'il utilise AES-128, utilisez le paramètre de chiffrement par défaut du bucket de destination, s'il est configuré.
+. Si le bucket de destination ne dispose pas de paramètre de chiffrement, utilisez le paramètre de chiffrement à l'échelle de la grille de destination, s'il est configuré.
+. Si un paramètre à l’échelle de la grille n’est pas présent, ne cryptez pas l’objet de destination.
+
+
+
+
+=== Réplication inter-grille avec S3 Object Lock
+
+Vous pouvez configurer la réplication inter-grille entre les buckets StorageGRID avec S3 Object Lock activé dans les circonstances suivantes.
+
+[cols="1a,1a"]
+|===
+| Lorsque le verrouillage d'objet S3 sur le bucket source est... | Et le verrouillage de l'objet S3 sur le bucket de destination est... 
+
+
+ a| 
+Activé
+ a| 
+Activé
+
+
+
+ a| 
+Désactivées
+ a| 
+Activé
+
+|===
+Lorsque le verrouillage d’objet S3 sur le bucket source est activé :
+
+* Les objets sont verrouillés avec des paramètres de rétention à la destination dans cet ordre :
++
+.. Les valeurs d'en-tête de rétention de l'objet source pour :
++
+`x-amz-object-lock-mode`
+
++
+`x-amz-object-lock-retain-until-date`
+
+.. La rétention par défaut du bucket source, si elle est définie.
+.. La rétention par défaut du bucket de destination, si elle est définie.
+
+
++
+La rétention par défaut du bucket de destination ne remplace pas les paramètres de rétention répliqués à partir de l'objet source.
+
+* Vous pouvez définir le statut de conservation légale pour l'objet de destination en utilisant `x-amz-object-lock-legal-hold` lors du téléchargement de l'objet.
+* Une erreur se produit si le locataire ou le bucket de destination ne prend pas en charge les paramètres de verrouillage d'objet S3 de l'objet source. Consultez link:../admin/grid-federation-troubleshoot.html#cross-grid-replication-alerts-and-errors["Alertes et erreurs de réplication inter-grille."]
+
+
+Lorsque le verrouillage d’objet S3 sur le bucket source est désactivé :
+
+* Vous pouvez configurer la rétention par défaut sur le bucket de destination pour appliquer les paramètres de rétention S3 Object Lock à l'objet de destination.
+* L'objet de destination ne peut pas définir un statut de conservation légale.
 
 
 
@@ -182,10 +234,18 @@ Pour déterminer comment chiffrer les objets répliqués, StorageGRID applique l
 
 Les requêtes PutObjectTagging et DeleteObjectTagging ne sont pas prises en charge pour les objets dans les compartiments pour lesquels la réplication inter-grid est activée.
 
-Si un client S3 émet une requête PutObjectTagging ou DeleteObjectTagging, `501 Not Implemented` est renvoyée. Le message est `Put(Delete) ObjectTagging is not available for buckets that have cross-grid replication configured`.
+Si un client S3 émet une requête PutObjectTagging ou DeleteObjectTagging, `501 Not Implemented` est retourné.  Le message est `Put(Delete) ObjectTagging isn't available for buckets that have cross-grid replication configured` .
+
+
+
+=== PutObjectRetention et PutObjectLegalHold ne sont pas pris en charge
+
+Les requêtes PutObjectRetention et PutObjectLegalHold ne sont pas entièrement prises en charge pour les objets dans les buckets pour lesquels la réplication inter-grille est activée.
+
+Si un client S3 émet une demande PutObjectRetention ou PutObjectLegalHold, les paramètres de l'objet source sont modifiés, mais les modifications ne sont pas appliquées à la destination.
 
 
 
 === Comment les objets segmentés sont répliqués
 
-La taille de segment maximale de la grille source s'applique aux objets répliqués sur la grille de destination. Lorsque des objets sont répliqués dans une autre grille, le paramètre *taille de segment maximale* (*CONFIGURATION* > *système* > *Options de stockage*) de la grille source sera utilisé sur les deux grilles. Par exemple, supposons que la taille de segment maximale de la grille source soit de 1 Go, alors que la taille de segment maximale de la grille de destination est de 50 Mo. Si vous ingérer un objet de 2 Go sur la grille source, cet objet est enregistré en tant que deux segments de 1 Go. Il sera également répliqué sur la grille de destination sous forme de deux segments de 1 Go, même si la taille maximale de segment de cette grille est de 50 Mo.
+La taille de segment maximale de la grille source s'applique aux objets répliqués sur la grille de destination.  Lorsque des objets sont répliqués sur une autre grille, le paramètre *Taille maximale du segment* (*Configuration* > *Système* > *Options de stockage*) de la grille source est utilisé sur les deux grilles.  Par exemple, supposons que la taille maximale du segment pour la grille source soit de 1 Go, tandis que la taille maximale du segment de la grille de destination soit de 50 Mo.  Si vous ingérez un objet de 2 Go sur la grille source, cet objet est enregistré sous forme de deux segments de 1 Go.  Il est également répliqué sur la grille de destination sous forme de deux segments de 1 Go, même si la taille de segment maximale de cette grille est de 50 Mo.

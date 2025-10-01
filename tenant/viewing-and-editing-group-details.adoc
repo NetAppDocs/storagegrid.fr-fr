@@ -19,7 +19,7 @@ Lorsque vous affichez les détails d'un groupe, vous pouvez modifier le nom d'af
 
 
 .Étapes
-. Sélectionnez *ACCESS MANAGEMENT* > *Groups*.
+. Sélectionnez *Gestion des accès* > *Groupes*.
 . Sélectionnez le nom du groupe dont vous souhaitez afficher ou modifier les détails.
 +
 Vous pouvez également sélectionner *actions* > *Afficher les détails du groupe*.
@@ -44,10 +44,6 @@ Vous ne pouvez pas modifier le nom unique d'un groupe. Vous ne pouvez pas modifi
 .. Pour la règle de groupe, apportez les modifications appropriées à votre locataire S3.
 +
 *** Si vous modifiez un groupe pour un locataire S3, vous pouvez choisir une autre règle de groupe S3. Si vous sélectionnez une règle S3 personnalisée, mettez à jour la chaîne JSON si nécessaire.
-*** Si vous modifiez un groupe pour un locataire Swift, vous pouvez éventuellement cocher ou décocher la case *Administrateur Swift*.
-+
-Pour plus d'informations sur l'autorisation de l'administrateur Swift, reportez-vous aux instructions de création de groupes pour un locataire Swift.
-
 
 
 .. Si vous le souhaitez, vous pouvez ajouter ou supprimer des utilisateurs.
@@ -58,5 +54,4 @@ Pour plus d'informations sur l'autorisation de l'administrateur Swift, reportez-
 
 .Informations associées
 * link:creating-groups-for-s3-tenant.html["Créez des groupes pour les locataires S3"]
-* link:creating-groups-for-swift-tenant.html["Créez des groupes pour le locataire Swift"]
 

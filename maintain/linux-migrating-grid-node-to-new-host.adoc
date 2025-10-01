@@ -16,12 +16,7 @@ Vous pouvez migrer un ou plusieurs nœuds StorageGRID d'un hôte Linux (l' _hôt
 Par exemple, vous pouvez souhaiter migrer un nœud pour effectuer l'application de correctifs et le redémarrage du système d'exploitation.
 
 .Avant de commencer
-* Vous avez planifié votre déploiement StorageGRID pour inclure une prise en charge de la migration.
-+
-** link:../rhel/node-container-migration-requirements.html["Exigences de migration de conteneurs de nœuds pour Red Hat Enterprise Linux"]
-** link:../ubuntu/node-container-migration-requirements.html["Configuration requise pour la migration des conteneurs de nœuds pour Ubuntu ou Debian"]
-
-
+* Vous avez planifié votre déploiement StorageGRID pour inclure la prise en charge de la migration. Voir link:../swnodes/node-container-migration-requirements.html["Exigences de migration des conteneurs de nœuds"] .
 * L'hôte cible est déjà prêt pour l'utilisation de StorageGRID.
 * Le stockage partagé est utilisé pour tous les volumes de stockage par nœud
 * Les interfaces réseau portent des noms cohérents sur tous les hôtes.
@@ -132,12 +127,7 @@ Checking for duplication of unique values... PASSED
 ----
 . Si des erreurs de validation se produisent, traitez-les avant de démarrer le nœud migré.
 +
-Pour plus d'informations sur le dépannage, reportez-vous aux instructions d'installation de StorageGRID pour votre système d'exploitation Linux.
-
-+
-** link:../rhel/index.html["Installez StorageGRID sur Red Hat Enterprise Linux"]
-** link:../ubuntu/index.html["Installez StorageGRID sur Ubuntu ou Debian"]
-
+Pour obtenir des informations de dépannage, consultez StorageGRIDlink:../swnodes/index.html["instructions d'installation"] pour votre système d'exploitation Linux.
 
 
 

@@ -50,15 +50,6 @@ NOTE: Pour accorder l'accès à la page locataires, qui contient l'option *chang
 
 
 
-== Configuration de la page de topologie grid
-
-Cette autorisation permet d'accéder aux onglets Configuration de la page *SUPPORT* > *Outils* > *topologie de grille*.
-
-
-NOTE: La page de topologie de la grille est obsolète et sera supprimée dans une version ultérieure.
-
-
-
 == ILM
 
 Cette autorisation permet d'accéder aux options de menu *ILM* suivantes :
@@ -73,7 +64,7 @@ Cette autorisation permet d'accéder aux options de menu *ILM* suivantes :
 
 
 
-NOTE: Les utilisateurs doivent disposer des autorisations *autre configuration de grille* et *Configuration de page de topologie de grille* pour gérer les classes de stockage.
+NOTE: Les utilisateurs doivent disposer de l'autorisation *Autre configuration de grille* pour gérer les niveaux de stockage.
 
 
 
@@ -81,17 +72,17 @@ NOTE: Les utilisateurs doivent disposer des autorisations *autre configuration d
 
 Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser les options suivantes :
 
-* *CONFIGURATION* > *contrôle d'accès* :
+* *Configuration* > *Contrôle d'accès*:
 +
 ** Mots de passe de grille
 
 
-* *CONFIGURATION* > *réseau* :
+* *Configuration* > *Réseau*:
 +
 ** Noms de domaine de terminaux S3
 
 
-* *MAINTENANCE* > *tâches* :
+* *Maintenance* > *Tâches*:
 +
 ** Désaffectation
 ** De développement
@@ -99,13 +90,13 @@ Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser le
 ** Reprise après incident
 
 
-* *MAINTENANCE* > *système* :
+* *Maintenance* > *Système*:
 +
 ** Package de restauration
 ** Mise à jour logicielle
 
 
-* *SUPPORT* > *Outils* :
+* *Support* > *Outils*:
 +
 ** Journaux
 
@@ -114,29 +105,29 @@ Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser le
 
 Les utilisateurs qui ne disposent pas de l'autorisation Maintenance peuvent afficher, mais pas modifier, les pages suivantes :
 
-* *MAINTENANCE* > *réseau* :
+* *Maintenance* > *Réseau*:
 +
 ** Serveurs DNS
 ** Réseau Grid
 ** Serveurs NTP
 
 
-* *MAINTENANCE* > *système* :
+* *Maintenance* > *Système*:
 +
 ** Licence
 
 
-* *CONFIGURATION* > *réseau* :
+* *Configuration* > *Réseau*:
 +
 ** Noms de domaine de terminaux S3
 
 
-* *CONFIGURATION* > *sécurité* :
+* *Configuration* > *Sécurité*:
 +
 ** Certificats
 
 
-* *CONFIGURATION* > *surveillance* :
+* *Configuration* > *Surveillance*:
 +
 ** Serveur d'audit et syslog
 
@@ -155,7 +146,7 @@ Cette autorisation donne accès aux options de gestion des alertes. Les utilisat
 
 Cette autorisation permet d'accéder aux éléments suivants :
 
-* *SUPPORT* > *Outils* > *métriques* page
+* *Assistance* > *Outils* > Page *Métriques*
 * Requêtes de metrics Prometheus personnalisées à l'aide de la section *Metrics* de l'API de gestion de grille
 * Cartes de tableau de bord de Grid Manager qui contiennent des metrics
 
@@ -170,18 +161,15 @@ Cette autorisation permet d'accéder à la page *ILM* > *recherche de métadonn�
 
 == Autre configuration de grille
 
-Cette autorisation donne accès à d'autres options de configuration de grille.
-
-
-TIP: Pour voir ces options supplémentaires, les utilisateurs doivent également disposer de l'autorisation *Grid topology page configuration*.
+Cette autorisation donne accès à ces options de configuration de grille supplémentaires :
 
 * *ILM* :
 +
 ** Niveaux de stockage
 
 
-* *CONFIGURATION* > *système* :
-* *SUPPORT* > *autre* :
+* *Configuration* > *Système*:
+* *Support* > *Autre*:
 +
 ** Coût des liens
 

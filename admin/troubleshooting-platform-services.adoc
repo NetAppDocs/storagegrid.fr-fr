@@ -45,7 +45,7 @@ NOTE: Certains messages d'erreur dans la colonne *dernière erreur* peuvent incl
 
 == Problèmes liés aux serveurs proxy
 
-Si vous avez configuré un link:configuring-storage-proxy-settings.html["proxy de stockage"] entre les noeuds de stockage et les noeuds finaux du service de plate-forme, des erreurs peuvent se produire si votre service proxy n'autorise pas les messages de StorageGRID. Pour résoudre ces problèmes, vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages liés au service de plate-forme ne sont pas bloqués.
+Si vous avez configuré unlink:configuring-storage-proxy-settings.html["proxy de stockage"] entre les nœuds de stockage et les points de terminaison du service de la plateforme, des erreurs peuvent se produire si votre service proxy n'autorise pas les messages provenant de StorageGRID.  Pour résoudre ces problèmes, vérifiez les paramètres de votre serveur proxy pour vous assurer que les messages liés au service de la plateforme ne sont pas bloqués.
 
 
 
@@ -61,8 +61,9 @@ Certains problèmes de service de plateforme peuvent entraîner l'échec des op�
 
 Pour vérifier l'état des services :
 
-. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
-. Sélectionnez *_site_* > *_Storage Node_* > *SSM* > *Services*.
+. Sélectionnez *Nœuds* > *_site_* > *_Nœud de stockage_* > *Aperçu*.
+. Vérifiez les alertes actives dans le tableau Alertes.
+. Résolvez toutes les alertes actives.  Si nécessaire, contactez le support technique.
 
 
 
@@ -72,13 +73,17 @@ Pour vérifier l'état des services :
 Une fois les noeuds finaux créés, des erreurs de demande de service de plate-forme peuvent se produire pour diverses raisons. Certaines erreurs peuvent être récupérées avec l'intervention de l'utilisateur. Par exemple, des erreurs récupérables peuvent se produire pour les raisons suivantes :
 
 * Les informations d'identification de l'utilisateur ont été supprimées ou ont expiré.
-* Le compartiment de destination n'existe pas.
+* Le bucket de destination n'existe pas.
 * La notification ne peut pas être remise.
 
 
 Si StorageGRID rencontre une erreur récupérable, la demande de service de plate-forme sera relancée jusqu'à ce qu'elle réussisse.
 
-D'autres erreurs sont irrécupérables. Par exemple, une erreur irrécupérable se produit si le noeud final est supprimé.
+D’autres erreurs sont irrécupérables.  Par exemple, des erreurs irrécupérables peuvent se produire pour les raisons suivantes :
+
+* Le point de terminaison est supprimé.
+* Une destination de point de terminaison webhook répond à une demande de notification avec un `400 Bad Request` erreur.
+
 
 Si StorageGRID rencontre une erreur de point final irrécupérable :
 
@@ -91,7 +96,7 @@ Si StorageGRID rencontre une erreur de point final irrécupérable :
 
 == Les messages des services de plateforme ne peuvent pas être transmis
 
-Si la destination rencontre un problème qui l'empêche d'accepter des messages de services de plate-forme, l'opération client sur le compartiment réussit, mais le message des services de plate-forme n'est pas livré. Par exemple, cette erreur peut se produire si les informations d'identification sont mises à jour sur la destination de sorte que StorageGRID ne puisse plus s'authentifier auprès du service de destination.
+Si la destination rencontre un problème qui l'empêche d'accepter les messages des services de plateforme, l'opération client sur le bucket réussit, mais le message des services de plateforme n'est pas remis.  Par exemple, cette erreur peut se produire si les informations d’identification sont mises à jour sur la destination de telle sorte que StorageGRID ne peut plus s’authentifier auprès du service de destination.
 
 Recherchez les alertes associées.
 
@@ -111,7 +116,7 @@ Les demandes CloudMirror sont plus susceptibles d'être affectées par les perfo
 
 Pour afficher le taux d'échec de la demande pour les services de plate-forme :
 
-. Sélectionnez *NOEUDS*.
+. Sélectionnez *Nœuds*.
 . Sélectionnez *_site_* > *Platform Services*.
 . Afficher le tableau des taux d'erreur de demande.
 +

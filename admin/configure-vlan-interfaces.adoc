@@ -26,12 +26,14 @@ Vous pouvez créer des interfaces VLAN sur des nœuds d'administration et de pas
 * Si vous avez besoin d'ajouter des interfaces de jonction, consultez les informations suivantes :
 +
 ** *VMware (après l'installation du nœud)* : link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware : ajoutez du jonction ou des interfaces d'accès à un nœud"]
-** *RHEL (avant l'installation du nœud)* : link:../rhel/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *Ubuntu ou Debian (avant d'installer le nœud)* : link:../ubuntu/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
-** *RHEL, Ubuntu ou Debian (après l'installation du nœud)* : link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux : ajoutez une jonction ou des interfaces d'accès à un nœud"]
+** *Linux (avant l'installation du nœud)*:link:../swnodes/creating-node-configuration-files.html["Créez des fichiers de configuration de nœud"]
+** *Linux (après l'installation du nœud)*:link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Ajouter des interfaces de jonction ou d'accès à un nœud"]
 
 
 
+
+
+NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
 
 
 
@@ -54,7 +56,7 @@ Vous pouvez utiliser Grid Manager pour créer des interfaces VLAN qui permettent
 === Accéder à l'assistant
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *interfaces VLAN*.
+. Sélectionnez *Configuration* > *Réseau* > *Interfaces VLAN*.
 . Sélectionnez *Créer*.
 
 
@@ -101,7 +103,7 @@ image::../media/vlan-create-parent-interfaces.png[VLAN create Wizard parent inte
 
 
 . Sélectionnez *Enregistrer*.
-. Attendez jusqu'à 5 minutes que la nouvelle interface apparaisse comme une sélection sur la page groupes haute disponibilité et qu'elle soit répertoriée dans la table *interfaces réseau* pour le nœud (*NOEUDS* > *_parent interface node_* > *Network*).
+. Attendez jusqu'à 5 minutes pour que la nouvelle interface apparaisse comme sélection sur la page Groupes de haute disponibilité et soit répertoriée dans la table *Interfaces réseau* pour le nœud (*Nœuds* > *_nœud d'interface parent_* > *Réseau*).
 
 
 
@@ -126,7 +128,7 @@ Par exemple, supposons que le VLAN 200 est connecté aux interfaces parents sur 
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *interfaces VLAN*.
+. Sélectionnez *Configuration* > *Réseau* > *Interfaces VLAN*.
 . Cochez la case correspondant à l'interface VLAN à modifier. Sélectionnez ensuite *actions* > *Modifier*.
 . Vous pouvez également mettre à jour l'ID VLAN ou la description. Sélectionnez ensuite *Continuer*.
 +
@@ -153,7 +155,7 @@ Pour éviter toute perturbation du trafic client, envisagez d'effectuer l'une de
 
 
 .Étapes
-. Sélectionnez *CONFIGURATION* > *réseau* > *interfaces VLAN*.
+. Sélectionnez *Configuration* > *Réseau* > *Interfaces VLAN*.
 . Cochez la case correspondant à chaque interface VLAN à supprimer. Sélectionnez ensuite *actions* > *Supprimer*.
 . Sélectionnez *Oui* pour confirmer votre sélection.
 +

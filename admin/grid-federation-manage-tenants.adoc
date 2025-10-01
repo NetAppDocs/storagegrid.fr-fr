@@ -52,7 +52,7 @@ TIP: Pour qu'un utilisateur root local puisse se connecter au tenant répliqué 
 Vous pouvez afficher les détails d'un locataire autorisé à utiliser une connexion de fédération de grille.
 
 .Étapes
-. Sélectionnez *LOCATAIRES*.
+. Sélectionnez *Locataires*.
 . Sur la page tenants, sélectionnez le nom du locataire pour afficher la page des détails du locataire.
 +
 S'il s'agit de la grille source du locataire (c'est-à-dire si le locataire a été créé sur cette grille), une bannière apparaît pour vous rappeler que le locataire a été cloné dans une autre grille. Si vous modifiez ou supprimez ce locataire, vos modifications ne seront pas synchronisées avec l'autre grille.
@@ -121,7 +121,7 @@ Dans un premier temps, désactivez la réplication inter-grid pour tous les comp
 
 .Étapes
 . À partir de l'une des grilles, connectez-vous au Gestionnaire de grille à partir du nœud d'administration principal.
-. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 . Sélectionnez le nom de la connexion pour afficher ses détails.
 . Dans l'onglet *locataires autorisés*, déterminez si le locataire utilise la connexion.
 . Si le locataire est répertorié, demandez-lui de vous indiquer link:../tenant/grid-federation-manage-cross-grid-replication.html["désactiver la réplication entre les grilles"]tous ses compartiments sur les deux grilles de la connexion.
@@ -145,7 +145,7 @@ Une fois la réplication multigrille désactivée pour les compartiments de tena
 ====
 .Page de fédération de grille
 --
-.. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+.. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 .. Sélectionnez le nom de la connexion pour afficher sa page de détails.
 .. Dans l'onglet *locataires autorisés*, sélectionnez le bouton radio du locataire.
 .. Sélectionnez *Supprimer l'autorisation*.
@@ -154,7 +154,7 @@ Une fois la réplication multigrille désactivée pour les compartiments de tena
 --
 .Page locataires
 --
-.. Sélectionnez *LOCATAIRES*.
+.. Sélectionnez *Locataires*.
 .. Sélectionnez le nom du locataire pour afficher la page de détails.
 .. Dans l'onglet *grid federation*, sélectionnez le bouton radio de la connexion.
 .. Sélectionnez *Supprimer l'autorisation*.
@@ -196,7 +196,7 @@ Avant de supprimer l'autorisation d'un locataire par la force, notez les consid�
 
 .Étapes
 . Connectez-vous au Grid Manager à partir du nœud d'administration principal.
-. Sélectionnez *CONFIGURATION* > *système* > *fédération de grille*.
+. Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 . Sélectionnez le nom de la connexion pour afficher sa page de détails.
 . Dans l'onglet *locataires autorisés*, sélectionnez le bouton radio du locataire.
 . Sélectionnez *Supprimer l'autorisation*.
