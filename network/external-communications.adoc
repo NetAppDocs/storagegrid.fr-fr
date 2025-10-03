@@ -244,9 +244,9 @@ Navigateur
  a| 
 Nœuds d'administration
  a| 
-Utilisé par les navigateurs Web et les clients API de gestion pour accéder à Grid Manager et tenant Manager.
+Utilisé par les navigateurs Web et les clients API de gestion pour accéder au Grid Manager et au Tenant Manager.
 
-*Remarque* : si vous fermez les ports Grid Manager 443 ou 8443, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager à moins que leur adresse IP n'ait été ajoutée à la liste d'adresses privilégiées. Reportez-vous  à la section link:../admin/configure-firewall-controls.html["Configurer les contrôles de pare-feu"] pour configurer des adresses IP privilégiées.
+*Remarque* : si vous fermez les ports 443 ou 8443 de Grid Manager, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager, sauf si leur adresse IP a été ajoutée à la liste d'adresses privilégiées. Se référer àlink:../admin/configure-firewall-controls.html["Configurer les contrôles de pare-feu"] pour configurer des adresses IP privilégiées.
 
 
 
@@ -306,7 +306,7 @@ Tous les nœuds
  a| 
 Tous les nœuds
  a| 
-Fournit le service DNS multidiffusion (mDNS) utilisé pour les modifications d'IP de grille complète et pour la découverte du nœud d'administration principal pendant l'installation, l'extension et la récupération.
+Fournit le service DNS multidiffusion (mDNS) utilisé pour les modifications d'adresse IP de grille complète et pour la découverte du nœud d'administration principal lors de l'installation, de l'extension et de la récupération.
 
 
 
@@ -336,9 +336,26 @@ Navigateur
  a| 
 Nœuds d'administration
  a| 
-Facultatif. Utilisé par les navigateurs Web et les clients API de gestion pour accéder à Grid Manager. Peut être utilisé pour séparer les communications Grid Manager et tenant Manager.
+Facultatif. Utilisé par les navigateurs Web et les clients API de gestion pour accéder au Grid Manager. Peut être utilisé pour séparer les communications de Grid Manager et de Tenant Manager.
 
-*Remarque* : si vous fermez les ports Grid Manager 443 ou 8443, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager à moins que leur adresse IP n'ait été ajoutée à la liste d'adresses privilégiées. Reportez-vous  à la section link:../admin/configure-firewall-controls.html["Configurer les contrôles de pare-feu"] pour configurer des adresses IP privilégiées.
+*Remarque* : si vous fermez les ports 443 ou 8443 de Grid Manager, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdent l'accès à Grid Manager, sauf si leur adresse IP a été ajoutée à la liste d'adresses privilégiées.  Se référer àlink:../admin/configure-firewall-controls.html["Configurer les contrôles de pare-feu"] pour configurer des adresses IP privilégiées.
+
+
+
+ a| 
+8443
+ a| 
+TCP
+ a| 
+HTTPS
+ a| 
+Navigateur
+ a| 
+Appliances
+ a| 
+Utilisé par les navigateurs Web et les clients API de gestion pour accéder au programme d'installation de l'appliance StorageGRID .
+
+*Remarque* : le port 443 redirige vers le port 8443 pour le programme d'installation de l'appliance StorageGRID .
 
 
 
@@ -400,7 +417,7 @@ Navigateur
  a| 
 Nœuds d'administration
  a| 
-Facultatif. Utilisé par les navigateurs Web et les clients API de gestion pour accéder au Gestionnaire de locataires. Peut être utilisé pour séparer les communications Grid Manager et tenant Manager.
+Facultatif. Utilisé par les navigateurs Web et les clients API de gestion pour accéder au gestionnaire de locataires. Peut être utilisé pour séparer les communications de Grid Manager et de Tenant Manager.
 
 
 
