@@ -13,6 +13,10 @@ summary: 'Le tableau suivant décrit les messages d"erreur pouvant être liés �
 [role="lead"]
 Le tableau suivant décrit les messages d'erreur pouvant être liés à un serveur syslog externe et répertorie les actions correctives.
 
+Ces erreurs sont affichées par l'assistant de configuration du serveur syslog externe si vous rencontrez des problèmes lors de l'envoi de messages de test pour valider que le serveur syslog externe est correctement configuré.
+
+Les problèmes lors de l'exécution peuvent être signalés par lelink:../monitor/alerts-reference.html#audit-and-syslog-alerts["Erreur de transfert du serveur syslog externe"] alerte.  Si vous recevez cette alerte, suivez les instructions de l'alerte pour renvoyer les messages de test afin d'obtenir des messages d'erreur détaillés.
+
 Pour plus d'informations sur l'envoi d'informations d'audit à un serveur syslog externe, reportez-vous à la section :
 
 * link:../monitor/considerations-for-external-syslog-server.html["Considérations relatives à l'utilisation d'un serveur syslog externe"]
