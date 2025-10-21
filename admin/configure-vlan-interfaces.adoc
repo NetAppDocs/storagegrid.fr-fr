@@ -11,7 +11,7 @@ summary: 'Vous pouvez créer des interfaces LAN virtuelles \(VLAN\) sur des nœu
 
 
 [role="lead"]
-Vous pouvez créer des interfaces VLAN sur des nœuds d'administration et de passerelle et les utiliser dans des groupes haute disponibilité et des terminaux d'équilibrage de la charge pour isoler et partitionner le trafic afin d'assurer la sécurité, la flexibilité et les performances.
+Créez des interfaces LAN virtuelles (VLAN) sur les nœuds d'administration et les nœuds de passerelle et utilisez-les dans des groupes HA et des points de terminaison d'équilibrage de charge pour isoler et partitionner le trafic pour la sécurité, la flexibilité et les performances. Les nœuds sélectionnés dans le groupe HA peuvent utiliser les interfaces VLAN pour partager jusqu'à 10 adresses IP virtuelles, de sorte que si un nœud tombe en panne, un autre nœud prend en charge le trafic vers et depuis les adresses IP virtuelles.
 
 
 
