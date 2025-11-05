@@ -2,7 +2,7 @@
 permalink: troubleshoot/investigating-potentially-lost-objects.html 
 sidebar: sidebar 
 keywords: lost objects, investigating, objects 
-summary: 'Lorsque l"alerte *Objets potentiellement perdus* est déclenchée, vous devez enquêter immédiatement.  Collectez des informations sur les objets concernés et contactez le support technique.' 
+summary: 'Lorsque l"alerte « Objets potentiellement perdus » est déclenchée, vous devez enquêter immédiatement. Collectez des informations sur les objets concernés et contactez le support technique.' 
 ---
 = Enquêter sur les objets potentiellement perdus
 :allow-uri-read: 

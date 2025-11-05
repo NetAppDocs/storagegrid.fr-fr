@@ -249,6 +249,8 @@ Tous les nœuds
  a| 
 Fournit le service DNS multidiffusion (mDNS) utilisé pour les modifications d'adresse IP de grille complète et pour la découverte du nœud d'administration principal lors de l'installation, de l'extension et de la récupération.
 
+*Remarque* : La configuration de ce port est facultative.
+
 
 
  a| 

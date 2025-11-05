@@ -28,6 +28,10 @@ Pour améliorer la sécurité du système, l'accès SSH externe est bloqué par 
 +
 .. Cochez la case pour bloquer l'accès (par défaut).
 .. Décochez la case pour autoriser l'accès.
++
+
+NOTE: Nécessite un accès au port 22 entre l'ordinateur portable de service et tous les autres nœuds du réseau.  Supprimez l'accès au port 22 une fois la tâche de maintenance terminée.
+
 
 
 . Sélectionnez *Enregistrer*.

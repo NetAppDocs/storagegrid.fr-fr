@@ -70,7 +70,7 @@ Si le compte d'utilisateur fédéré ne fonctionne pas, essayez de vous connecte
 ** Si l'utilisateur local ne peut pas se connecter et que vous êtes sûr que les informations d'identification sont correctes, passez à l'étape suivante.
 
 
-. Utilisez SSH (Secure Shell) pour vous connecter au nœud d'administration :
+. Utilisez Secure Shell (SSH) pour vous connecter au nœud d'administration :
 +
 .. Entrez la commande suivante : `ssh admin@Admin_Node_IP`
 .. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
