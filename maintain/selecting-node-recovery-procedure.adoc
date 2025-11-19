@@ -59,4 +59,4 @@ https://docs.netapp.com/us-en/storagegrid-118/maintain/recovering-from-archive-n
 
 |===
 
-NOTE: Si un serveur hébergeant plusieurs nœuds de la grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Toutefois, si le serveur en panne héberge le nœud d'administration principal, vous devez d'abord restaurer ce nœud. La récupération du nœud d'administration principal empêche les autres restaurations de nœud d'arrêter lorsqu'elles attendent de contacter le nœud d'administration principal.
+NOTE: Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Toutefois, si le serveur défaillant héberge le nœud d'administration principal et qu'il n'existe aucun nœud d'administration secondaire, vous devez d'abord récupérer le nœud d'administration principal. La récupération du nœud d’administration principal en premier empêche les autres récupérations de nœuds de s’arrêter pendant qu’elles attendent de contacter le nœud d’administration principal.
