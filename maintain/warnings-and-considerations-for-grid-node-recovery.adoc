@@ -46,7 +46,7 @@ Les conditions suivantes sont réunies lors de la récupération des nœuds de l
 
 == Ordre de restauration de nœud en cas de défaillance d'un serveur hébergeant plusieurs nœuds de la grille
 
-Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Toutefois, si le serveur défaillant héberge le nœud d'administration principal et qu'il n'existe aucun nœud d'administration secondaire, vous devez d'abord récupérer le nœud d'administration principal.
+Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Cependant, si le serveur défaillant héberge le nœud d’administration principal, vous devez d’abord récupérer ce nœud.
 
 
 
