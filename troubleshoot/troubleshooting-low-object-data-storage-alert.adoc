@@ -2,7 +2,7 @@
 permalink: troubleshoot/troubleshooting-low-object-data-storage-alert.html 
 sidebar: sidebar 
 keywords: how to troubleshoot the Low object data storage alert 
-summary: 'L"alerte *mémoire de données d"objet faible* surveille la quantité d"espace disponible pour le stockage de données d"objet sur chaque nœud de stockage.' 
+summary: 'L"alerte de faible capacité de stockage des données d"objets surveille l"espace disponible pour le stockage des données d"objets sur chaque nœud de stockage.' 
 ---
 = Dépanner l'alerte de stockage de données d'objet faible
 :allow-uri-read: 
