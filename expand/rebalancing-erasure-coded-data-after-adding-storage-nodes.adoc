@@ -1,10 +1,10 @@
 ---
 permalink: expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html 
 sidebar: sidebar 
-keywords: erasure coding, EC, rebalancing, site rebalance procedure 
+keywords: erasure coding, EC, rebalancing, site rebalance procedure, StorageGRID 
 summary: 'Après avoir ajouté des nœuds de stockage, vous pouvez utiliser la procédure de rééquilibrage du code d"effacement pour redistribuer les fragments avec code d"effacement entre les nœuds de stockage existants et les nouveaux nœuds.' 
 ---
-= Rééquilibrent les données codées après l'ajout de nœuds de stockage
+= Rééquilibrez les données à codage d'effacement après l'ajout de nœuds à votre système StorageGRID.
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

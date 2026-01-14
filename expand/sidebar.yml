@@ -1,36 +1,36 @@
 ---
 section: expand
-title: Développez une grille
+title: Agrandir la grille
 url: "/landing-expand/index.html"
 entries:
-- title: Types d'extension
+- title: Découvrez l'expansion
   pdf-filename: Développez votre système StorageGRID
   url: "/expand/index.html"
-- title: Planifiez l'extension de StorageGRID
+- title: Planification de l'expansion
   entries:
-  - title: Ajoutez de la capacité de stockage
-    entries:
-    - title: 'Conseils : ajoutez de la capacité d''objet'
-      url: "/expand/guidelines-for-adding-object-capacity.html"
-    - title: Ajoutez de la capacité de stockage pour les objets répliqués
-      url: "/expand/adding-storage-capacity-for-replicated-objects.html"
-    - title: Ajoutez de la capacité de stockage pour les objets avec code d'effacement
-      url: "/expand/adding-storage-capacity-for-erasure-coded-objects.html"
-    - title: Considérations relatives au rééquilibrage des données avec code d'effacement
-      url: "/expand/considerations-for-rebalancing-erasure-coded-data.html"
-  - title: Ajoutez de la capacité des métadonnées
+  - title: Planification de l'expansion des données répliquées
+    url: "/expand/adding-storage-capacity-for-replicated-objects.html"
+  - title: Planification de l'expansion des données codées par effacement
+    url: "/expand/adding-storage-capacity-for-erasure-coded-objects.html"
+  - title: Découvrez le rééquilibrage du code d'effacement après l'expansion
+    url: "/expand/considerations-for-rebalancing-erasure-coded-data.html"
+- title: directives d'expansion
+  entries:
+  - title: Instructions d'ajout de capacité d'objet
+    url: "/expand/guidelines-for-adding-object-capacity.html"
+  - title: Lignes directrices pour l'ajout de capacité de métadonnées
     url: "/expand/adding-metadata-capacity.html"
-  - title: Redondance ou nouvelles fonctionnalités
+  - title: Instructions pour l'ajout de nœuds de grille
     url: "/expand/adding-grid-nodes-to-add-capabilities.html"
-  - title: Ajouter un site
+  - title: Directives pour l'ajout d'un nouveau site
     url: "/expand/adding-new-site.html"
-- title: Rassembler les matériaux nécessaires
+- title: Préparez-vous à l'expansion
   url: "/expand/gather-required-materials.html"
 - title: Ajout de nœuds grid ou d'un site
   entries:
-  - title: Ajout de nœuds grid à un site existant ou ajout d'un site
+  - title: Résumé du flux de travail
     url: "/expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html"
-  - title: Mise à jour des sous-réseaux pour le réseau Grid
+  - title: Ajouter ou mettre à jour des sous-réseaux au réseau Grid
     url: "/expand/updating-subnets-for-grid-network.html"
   - title: Déploiement de nouveaux nœuds grid
     url: "/expand/deploying-new-grid-nodes.html"
@@ -40,15 +40,15 @@ entries:
   entries:
   - title: Ajout de volumes de stockage aux nœuds de stockage
     url: "/expand/adding-storage-volumes-to-storage-nodes.html"
-  - title: 'VMware : ajoutez des volumes de stockage au nœud de stockage'
+  - title: Ajouter des volumes de stockage pour VMware
     url: "/expand/vmware-adding-storage-volumes-to-storage-node.html"
-  - title: 'Linux : ajoutez des volumes SAN ou DAS au nœud de stockage'
+  - title: Ajoutez des volumes à connexion directe ou SAN pour Linux
     url: "/expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html"
 - title: Configuration du système faisant l'objet de l'extension
   entries:
-  - title: Étapes de configuration
+  - title: Configurez les nœuds et sites nouvellement ajoutés
     url: "/expand/configuring-expanded-storagegrid-system.html"
-  - title: Vérifiez que le nœud de stockage est actif
+  - title: Vérifiez que les nœuds de stockage sont actifs
     url: "/expand/verifying-storage-node-is-active.html"
   - title: Copiez la base de données du nœud d'administration
     url: "/expand/copying-admin-node-database.html"
@@ -56,7 +56,7 @@ entries:
     url: "/expand/copying-prometheus-metrics.html"
   - title: Copie des journaux d'audit
     url: "/expand/copying-audit-logs.html"
-  - title: Rééquilibrent les données codées après l'ajout de nœuds de stockage
+  - title: Rééquilibrer les données codées par effacement
     url: "/expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html"
-- title: Résolution des problèmes d'extension
+- title: Résolution des erreurs d'expansion
   url: "/expand/contacting-technical-support.html"

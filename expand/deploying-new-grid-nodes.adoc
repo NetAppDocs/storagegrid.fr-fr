@@ -1,10 +1,10 @@
 ---
 permalink: expand/deploying-new-grid-nodes.html 
 sidebar: sidebar 
-keywords: expansion, add nodes 
+keywords: expansion, add nodes, StorageGRID 
 summary: 'Les étapes du déploiement de nouveaux nœuds de grille dans une extension sont les mêmes que celles utilisées lors de l"installation initiale de la grille. Vous devez déployer tous les nouveaux nœuds de la grille avant de pouvoir réaliser l"extension.' 
 ---
-= Déploiement de nouveaux nœuds grid
+= Déployez de nouveaux nœuds de grille dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

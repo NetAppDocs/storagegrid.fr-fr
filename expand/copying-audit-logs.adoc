@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: expand/copying-audit-logs.html 
-keywords: copy audit log, Admin Node expansion, 
+keywords: copy audit log, Admin Node expansion, StorageGRID 
 summary: 'Lorsque vous ajoutez un nouveau nœud d"administration via une procédure d"extension, son service AMS enregistre uniquement les événements et les actions qui se produisent après son adhésion au système.  Si nécessaire, vous pouvez copier les journaux d"audit d"un nœud d"administration précédemment installé vers le nouveau nœud d"administration d"extension afin qu"il soit synchronisé avec le reste du système StorageGRID .' 
 ---
-= Copie des journaux d'audit
+= Copiez les journaux d'audit vers les nouveaux nœuds d'administration dans StorageGRID.
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -1,10 +1,10 @@
 ---
 permalink: expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html 
 sidebar: sidebar 
-keywords: grid node, add node, add site, expand, expansion 
+keywords: grid node, add node, add site, expand, expansion, StorageGRID 
 summary: 'Suivez cette procédure pour ajouter des nœuds de grille à des sites existants ou pour ajouter un nouveau site. Vous ne pouvez effectuer qu"un seul type d"extension à la fois.' 
 ---
-= Ajout de nœuds grid à un site existant ou ajout d'un site
+= Résumé du processus d'ajout de nœuds de grille ou de nouveaux sites à StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -25,6 +25,6 @@ NOTE: Vous ne pouvez pas démarrer une extension pendant qu'une autre procédure
 
 .Étapes
 . link:updating-subnets-for-grid-network.html["Mise à jour des sous-réseaux pour le réseau Grid"].
-. link:deploying-new-grid-nodes.html["Déploiement de nouveaux nœuds grid"].
-. link:performing-expansion.html["Réaliser une extension"].
+. link:deploying-new-grid-nodes.html["Déployez les nouveaux nœuds de grille"].
+. link:performing-expansion.html["Effectuer l'extension"].
 

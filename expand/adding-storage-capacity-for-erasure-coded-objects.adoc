@@ -1,10 +1,10 @@
 ---
 permalink: expand/adding-storage-capacity-for-erasure-coded-objects.html 
 sidebar: sidebar 
-keywords: erasure coding, capacity, storage nodes, ec, expand, expansion 
+keywords: erasure coding, capacity, storage nodes, ec, expand, expansion, StorageGRID 
 summary: 'Si votre règle ILM comprend une règle qui effectue des copies avec code d"effacement, vous devez prévoir où ajouter du stockage, et quand ajouter de la capacité de stockage. La quantité de stockage que vous ajoutez et la durée de l"ajout peuvent affecter la capacité de stockage utilisable de la grille.' 
 ---
-= Ajoutez de la capacité de stockage pour les objets avec code d'effacement
+= Planification de l'extension des données à codage d'effacement (EC) dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

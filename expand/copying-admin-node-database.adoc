@@ -1,10 +1,10 @@
 ---
 permalink: expand/copying-admin-node-database.html 
 sidebar: sidebar 
-keywords: copy Admin Node database, alert history, Admin Node expansion 
+keywords: copy Admin Node database, alert history, Admin Node expansion, StorageGRID 
 summary: 'Lorsque vous ajoutez des nœuds d"administration via une procédure d"extension, vous pouvez éventuellement copier la base de données du nœud d"administration principal vers le nouveau nœud d"administration. La copie de la base de données vous permet de conserver des informations historiques sur les attributs, les alertes et les alertes.' 
 ---
-= Copiez la base de données du nœud d'administration
+= Copiez la base de données du nœud d'administration vers de nouveaux nœuds d'administration dans StorageGRID.
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

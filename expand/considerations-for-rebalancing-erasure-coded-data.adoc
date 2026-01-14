@@ -1,10 +1,10 @@
 ---
 permalink: expand/considerations-for-rebalancing-erasure-coded-data.html 
 sidebar: sidebar 
-keywords: erasure coding, rebalance, ec rebalance, site rebalance 
+keywords: erasure coding, rebalance, ec rebalance, site rebalance, StorageGRID 
 summary: 'Si vous effectuez une extension pour ajouter des nœuds de stockage et que vous utilisez des règles ILM pour effacer les données de code, vous devrez peut-être effectuer la procédure de rééquilibrage EC si vous ne pouvez pas ajouter suffisamment de nœuds de stockage pour le modèle de code d"effacement que vous utilisez.' 
 ---
-= Considérations relatives au rééquilibrage des données avec code d'effacement
+= Découvrez le rééquilibrage EC après l'extension de StorageGRID.
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
