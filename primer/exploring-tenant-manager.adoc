@@ -1,10 +1,10 @@
 ---
 permalink: primer/exploring-tenant-manager.html 
 sidebar: sidebar 
-keywords: what is the tenant manager, tenant manager dashboard 
+keywords: StorageGRID, what is the tenant manager, tenant manager dashboard 
 summary: 'Le gestionnaire de locataires est une interface graphique basée sur un navigateur qui permet aux utilisateurs locataires d"accéder pour configurer, gérer et surveiller leurs comptes de stockage.' 
 ---
-= Explorez le Gestionnaire de locataires
+= Explorez le StorageGRID Tenant Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

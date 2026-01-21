@@ -1,10 +1,10 @@
 ---
 permalink: primer/what-storage-node-is.html 
 sidebar: sidebar 
-keywords: what is a storage node, how many storage nodes 
+keywords: StorageGRID, what is a storage node, how many storage nodes 
 summary: 'Des nœuds de stockage gèrent et stockent les données et les métadonnées d"objets. Les nœuds de stockage incluent les services et les processus requis pour stocker, déplacer, vérifier et récupérer les données d"objet et les métadonnées sur disque.' 
 ---
-= Qu'est-ce qu'un nœud de stockage ?
+= Qu'est-ce qu'un nœud de stockage StorageGRID ?
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

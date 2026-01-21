@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, network port, external communications, ports, TCP, UDP, client communications 
 summary: Les clients doivent communiquer avec les nœuds du grid pour ingérer et récupérer le contenu. Les ports utilisés dépendent des protocoles de stockage objet choisis. Ces ports doivent être accessibles au client. 
 ---
-= Communications externes
+= Communications externes pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -1,10 +1,10 @@
 ---
 permalink: harden/other-hardening-guidelines.html 
 sidebar: sidebar 
-keywords: Hardening guidelines, security 
+keywords: StorageGRID, hardening guidelines, security 
 summary: 'Outre les directives de renforcement des réseaux et nœuds StorageGRID, vous devez suivre les instructions de renforcement correspondant à d"autres domaines du système StorageGRID.' 
 ---
-= Autres directives de durcissement
+= Recommandations de renforcement pour les journaux, les mots de passe et les messages d'audit dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

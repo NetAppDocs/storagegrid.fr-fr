@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: client network topology 
 summary: 'L"utilisation d"un réseau client est facultative. L"utilisation d"un réseau client permet de séparer le trafic réseau client \(par exemple, S3\) du trafic interne du grid, ce qui permet de sécuriser davantage le réseau grid. Le trafic administratif peut être géré par le client ou le réseau de grille lorsque le réseau d"administration n"est pas configuré.' 
 ---
-= Topologie du réseau client
+= Topologie du réseau client pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

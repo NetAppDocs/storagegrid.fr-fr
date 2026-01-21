@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, network, networking, ethernet, subnet, routing 
 summary: 'Utilisez ces instructions pour en savoir plus sur l"architecture StorageGRID et les topologies réseau, ainsi que sur les exigences de configuration et de provisionnement réseau.' 
 ---
-= Instructions de mise en réseau
+= Directives de mise en réseau pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

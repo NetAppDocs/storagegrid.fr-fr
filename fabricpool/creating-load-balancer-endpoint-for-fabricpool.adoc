@@ -1,10 +1,10 @@
 ---
 permalink: fabricpool/creating-load-balancer-endpoint-for-fabricpool.html 
 sidebar: sidebar 
-keywords: fabricPool, load balancer, endpoint, load balancing, create, creating, certificate 
+keywords: fabricPool, StorageGRID, load balancer, endpoint, load balancing, create, creating, certificate 
 summary: 'StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir d"applications client, telles qu"FabricPool. L"équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.' 
 ---
-= Créez un noeud final d'équilibrage de charge pour FabricPool
+= Créez un point de terminaison d'équilibrage de charge pour FabricPool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

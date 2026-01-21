@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: admin network topology, using admin network 
 summary: 'L"utilisation d"un réseau d"administration est facultative. L"une des façons de pouvoir utiliser un réseau d"administration et un réseau de grille consiste à configurer un réseau de grille routable et un réseau d"administration limité pour chaque nœud.' 
 ---
-= Topologie du réseau d'administration
+= Topologie du réseau d'administration pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

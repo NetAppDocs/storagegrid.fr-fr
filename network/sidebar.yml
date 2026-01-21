@@ -2,8 +2,8 @@
 section: network
 title: Instructions de mise en réseau
 entries:
-- title: La mise en réseau StorageGRID
-  pdf-filename: Instructions de mise en réseau d'StorageGRID
+- title: Instructions de mise en réseau
+  pdf-filename: Directives de mise en réseau pour StorageGRID
   url: "/network/index.html"
 - title: Types de réseau StorageGRID
   url: "/network/storagegrid-network-types.html"
@@ -28,7 +28,7 @@ entries:
   - title: Mise en réseau et ports pour les services de plateforme et les pools de
       stockage cloud
     url: "/network/networking-and-ports-for-platform-services-and-cloud-storage-pools.html"
-  - title: Nœuds d'appliance
+  - title: Configuration réseau de l'appliance
     url: "/network/appliance-nodes.html"
 - title: Installation et provisionnement réseau
   url: "/network/network-installation-and-provisioning.html"

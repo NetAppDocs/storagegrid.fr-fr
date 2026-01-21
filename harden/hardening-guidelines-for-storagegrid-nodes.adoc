@@ -1,7 +1,7 @@
 ---
 permalink: harden/hardening-guidelines-for-storagegrid-nodes.html 
 sidebar: sidebar 
-keywords: hardening guidelines, nodes, security 
+keywords: StorageGRID, hardening guidelines, nodes, security 
 summary: 'Les nœuds StorageGRID peuvent être déployés sur des machines virtuelles VMware, au sein d"un moteur de conteneurs sur des hôtes Linux, ou en tant qu"appliances matérielles dédiées. Chaque type de plateforme et chaque type de nœud dispose de ses propres pratiques de renforcement.' 
 ---
 = Instructions de renforcement pour les nœuds StorageGRID

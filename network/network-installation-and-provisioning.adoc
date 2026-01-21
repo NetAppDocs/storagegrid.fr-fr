@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network install, network provisioning 
 summary: 'Vous devez comprendre comment le réseau Grid et les réseaux d"administration et de client facultatifs sont utilisés pendant le déploiement des nœuds et la configuration de la grille.' 
 ---
-= Installation et provisionnement réseau
+= Installation et mise en service du réseau pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

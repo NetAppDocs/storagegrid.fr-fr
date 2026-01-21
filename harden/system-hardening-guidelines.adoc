@@ -1,10 +1,10 @@
 ---
 permalink: harden/system-hardening-guidelines.html 
 sidebar: sidebar 
-keywords: security,system hardening 
+keywords: StorageGRID, security, system hardening 
 summary: 'Lors de l"installation et de la configuration de StorageGRID, ces instructions vous aideront à répondre aux objectifs de sécurité que vous avez définis pour la confidentialité, l"intégrité et la disponibilité des systèmes d"information.' 
 ---
-= Directives de renforcement du système
+= Directives de renforcement du système pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

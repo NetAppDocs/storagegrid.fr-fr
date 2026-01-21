@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: StorageGRID, fabricPool, ONTAP System Manager, ONTAP CLI, port, FQDN, object store name 
 summary: Avant de connecter StorageGRID en tant que niveau cloud pour FabricPool, vous devez effectuer les étapes de configuration dans StorageGRID et obtenir certaines valeurs. 
 ---
-= Informations nécessaires pour rattacher StorageGRID à un niveau cloud
+= Informations nécessaires pour connecter StorageGRID en tant que niveau cloud FabricPool
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

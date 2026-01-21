@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, network port, internal communications, ports, TCP, UDP, grid communications, port 
 summary: 'Le pare-feu interne StorageGRID autorise uniquement les connexions entrantes à des ports spécifiques du réseau Grid, à l"exception des ports 22, 80, 123 et 443 \(voir les informations sur les communications externes\). Les connexions sont également acceptées sur les ports définis par les terminaux d"équilibreur de charge.' 
 ---
-= Communications internes sur les nœuds de la grille
+= Communications internes entre les nœuds de la grille pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

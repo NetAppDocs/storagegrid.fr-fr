@@ -1,10 +1,10 @@
 ---
 permalink: fabricpool/creating-s3-bucket-and-access-key.html 
 sidebar: sidebar 
-keywords: fabricPool, S3 bucket, bucket, access key, secret access key 
+keywords: fabricPool, StorageGRID, S3 bucket, bucket, access key, secret access key 
 summary: 'Avant d"utiliser StorageGRID avec un workload FabricPool, vous devez créer un compartiment S3 pour vos données FabricPool. Vous devez également obtenir une clé d"accès et une clé secrète pour le compte de locataire que vous utiliserez pour FabricPool.' 
 ---
-= Création d'un compartiment S3 et obtention des clés d'accès
+= Créez un compartiment S3 et obtenez les clés d'accès pour FabricPool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -1,10 +1,10 @@
 ---
 permalink: primer/ingest-data-flow.html 
 sidebar: sidebar 
-keywords: object data, ingest 
+keywords: StorageGRID, object data, ingest 
 summary: 'Une opération d"acquisition ou de sauvegarde se compose d"un flux de données défini entre le client et le système StorageGRID.' 
 ---
-= Ingestion des données
+= Comment StorageGRID gère l'ingestion d'objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

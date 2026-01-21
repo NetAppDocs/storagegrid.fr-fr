@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: networking for appliance, port bond mode 
 summary: Vous pouvez configurer les ports réseau sur les appliances StorageGRID de sorte à utiliser les modes de liaison de ports qui répondent à vos exigences en matière de débit, de redondance et de basculement. 
 ---
-= Nœuds d'appliance
+= Configuration réseau pour les nœuds d'appliance StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

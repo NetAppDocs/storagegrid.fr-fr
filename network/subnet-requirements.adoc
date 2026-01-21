@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network subnets 
 summary: Respectez les exigences et les directives suivantes pour les sous-réseaux réseau. 
 ---
-= Exigences relatives au sous-réseau
+= Exigences de sous-réseau pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

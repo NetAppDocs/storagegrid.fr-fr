@@ -1,10 +1,10 @@
 ---
 permalink: primer/retrieve-data-flow.html 
 sidebar: sidebar 
-keywords: object data, retrieve 
+keywords: StorageGRID, object data, retrieve 
 summary: 'Une opération de récupération se compose d"un flux de données défini entre le système StorageGRID et le client. Le système utilise des attributs pour suivre l"extraction de l"objet à partir d"un nœud de stockage ou, si nécessaire, d"un pool de stockage cloud.' 
 ---
-= Récupérer le flux de données
+= Comment StorageGRID gère la récupération des objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

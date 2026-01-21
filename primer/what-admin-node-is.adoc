@@ -1,10 +1,10 @@
 ---
 permalink: primer/what-admin-node-is.html 
 sidebar: sidebar 
-keywords: admin nodes 
+keywords: StorageGRID, admin nodes 
 summary: 'Des nœuds d"administration qui assurent les services de gestion tels que la configuration du système, la surveillance et la journalisation. Les nœuds d"administration peuvent également être utilisés pour équilibrer la charge du trafic client S3. Chaque grid doit être connecté à un nœud d"administration principal et doit comporter un nombre quelconque de nœuds d"administration non primaires pour assurer la redondance.' 
 ---
-= Qu'est-ce qu'un nœud d'administration ?
+= Qu'est-ce qu'un nœud d'administration StorageGRID ?
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

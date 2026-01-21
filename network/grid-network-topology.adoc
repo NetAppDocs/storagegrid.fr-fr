@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid network topology 
 summary: La topologie réseau la plus simple est créée en configurant le réseau Grid uniquement. 
 ---
-= Topologie du réseau grid
+= Topologie du réseau Grid pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

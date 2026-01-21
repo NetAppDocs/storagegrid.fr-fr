@@ -1,10 +1,10 @@
 ---
 permalink: harden/index.html 
 sidebar: sidebar 
-keywords: Hardening guidelines, system, security 
+keywords: StorageGRID, hardening guidelines, system, security 
 summary: 'Le renforcement des systèmes consiste à éliminer autant de risques que possible pour la sécurité d"un système StorageGRID.' 
 ---
-= Considérations générales pour le renforcement du système
+= Découvrez le renforcement du système pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

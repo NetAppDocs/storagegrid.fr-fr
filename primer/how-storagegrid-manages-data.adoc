@@ -1,10 +1,10 @@
 ---
 permalink: primer/how-storagegrid-manages-data.html 
 sidebar: sidebar 
-keywords: how storagegrid manages data, what an object is, how object data is protected 
+keywords: StorageGRID, how storagegrid manages data, what an object is, how object data is protected 
 summary: 'Avec le stockage objet, l"unité de stockage est un objet, et non un fichier ou un bloc. Contrairement à la hiérarchie de type arborescence d"un système de fichiers ou stockage en blocs, le stockage objet organise les données dans une disposition plate et non structurée.' 
 ---
-= Qu'est-ce qu'un objet
+= Qu'est-ce qu'un objet StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

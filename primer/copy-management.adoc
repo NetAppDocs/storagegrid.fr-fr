@@ -1,10 +1,10 @@
 ---
 permalink: primer/copy-management.html 
 sidebar: sidebar 
-keywords: object data, ilm policy, ilm rules, replicated copy, replication, erasure-coded copy, ec, cloud storage pool 
+keywords: StorageGRID, object data, ilm policy, ilm rules, replicated copy, replication, erasure-coded copy, ec, cloud storage pool 
 summary: 'Les données d"objet sont gérées par la règle ILM active et ses règles ILM. Les règles ILM permettent de réaliser des copies répliquées ou avec code d"effacement pour protéger les données en mode objet contre la perte.' 
 ---
-= Gestion des copies
+= Comment StorageGRID gère les copies d'objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

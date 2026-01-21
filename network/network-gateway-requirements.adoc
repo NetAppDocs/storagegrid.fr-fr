@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network gateway requirements 
 summary: Suivez ces exigences et instructions pour les passerelles ou routeurs réseau. 
 ---
-= Configuration requise pour la passerelle réseau
+= Exigences relatives à la passerelle réseau pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

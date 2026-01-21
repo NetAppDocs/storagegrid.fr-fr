@@ -13,7 +13,7 @@ entries:
   entries:
   - title: Nœuds et services
     url: "/primer/nodes-and-services.html"
-    pdf-filename: Nœuds et services
+    pdf-filename: Nœuds et services StorageGRID
   - title: Qu'est-ce qu'un nœud d'administration
     url: "/primer/what-admin-node-is.html"
   - title: Qu'est-ce qu'un noeud de stockage
@@ -25,15 +25,15 @@ entries:
   - title: Qu'est-ce qu'un objet
     pdf-filename: Présentation de la gestion des données par StorageGRID
     url: "/primer/how-storagegrid-manages-data.html"
-  - title: La vie d'un objet
+  - title: Cycle de vie d'un objet
     url: "/primer/life-of-object.html"
-  - title: Ingestion des données
+  - title: Ingestion de données
     url: "/primer/ingest-data-flow.html"
   - title: Gestion des copies
     url: "/primer/copy-management.html"
-  - title: Récupérer le flux de données
+  - title: Récupération de données
     url: "/primer/retrieve-data-flow.html"
-  - title: Supprimer le flux de données
+  - title: Suppression des données
     url: "/primer/delete-data-flow.html"
   - title: Gestion du cycle de vie des informations
     url: "/primer/using-information-lifecycle-management.html"

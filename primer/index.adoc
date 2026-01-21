@@ -1,7 +1,7 @@
 ---
 permalink: primer/index.html 
 sidebar: sidebar 
-keywords: grid primer, what is storagegrid, storagegrid basics 
+keywords: StorageGRID, grid primer, what is storagegrid, storagegrid basics 
 summary: 'NetApp StorageGRID est une suite de stockage objet Software-defined qui prend en charge un large éventail d"utilisations dans les environnements multiclouds publics, privés et hybrides. StorageGRID offre une prise en charge native de l"API Amazon S3 et propose des innovations de pointe, telles que la gestion automatisée du cycle de vie, pour stocker, sécuriser, protéger et conserver les données non structurées de manière économique sur de longues périodes.' 
 ---
 = Qu'est-ce que StorageGRID ?
