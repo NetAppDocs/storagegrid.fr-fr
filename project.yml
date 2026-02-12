@@ -28,7 +28,7 @@ sidebar:
   - title: Logiciel StorageGRID 12.0
     url: "/index.html"
   - title: Appliances StorageGRID
-    url: "/storagegrid-hardware.html"
+    url: "/swnodes/storagegrid-hardware.html"
   - title: Notes de mise à jour
     url: "/release-notes/index.html"
   - title: Commencez
@@ -41,8 +41,6 @@ sidebar:
   - title: Installation, mise à niveau et correctif
     url: "/landing-install-upgrade/index.html"
     entries:
-    - title: Installer des nœuds basés sur des appareils
-      url: "/storagegrid-hardware.html"
     - section: swnodes
     - section: upgrade
     - title: Appliquez le correctif StorageGRID
