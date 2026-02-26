@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: audit log, auditing bucket and object operations, S3 audit messages 
 summary: 'Les messages d"audit sont générés par les services StorageGRID et stockés dans des fichiers journaux texte. Vous pouvez consulter les messages d"audit spécifiques à S3 dans le journal d"audit pour obtenir des informations détaillées sur les opérations relatives aux compartiments et aux objets.' 
 ---
-= Opérations S3 suivies dans les journaux d'audit
+= Opérations S3 suivies dans les journaux d'audit de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

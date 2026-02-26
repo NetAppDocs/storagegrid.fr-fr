@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: HeadObject 
 summary: 'Vous pouvez utiliser la requête S3 HeadObject pour extraire des métadonnées d"un objet sans renvoyer l"objet.' 
 ---
-= Objet principal
+= Récupérer les métadonnées d'un objet dans StorageGRID avec la requête S3 HeadObject
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

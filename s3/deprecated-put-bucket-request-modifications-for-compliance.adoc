@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, deprecated bucket requests for compliance 
 summary: 'L"élément XML SGCompliance est obsolète. Auparavant, vous pouviez inclure cet élément personnalisé StorageGRID dans le corps de requête XML facultatif des requêtes CreateBucket pour créer un compartiment compatible.' 
 ---
-= Obsolète : CreateBucket demande des modifications pour la conformité
+= Élément SGCompliance obsolète dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

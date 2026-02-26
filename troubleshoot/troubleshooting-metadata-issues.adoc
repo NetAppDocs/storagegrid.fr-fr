@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot metadata issues 
 summary: 'En cas de problèmes liés aux métadonnées, des alertes vous informeront de la source des problèmes et des mesures recommandées à prendre. En particulier, vous devez ajouter de nouveaux nœuds de stockage si l"alerte de faible stockage des métadonnées est déclenchée.' 
 ---
-= Diagnostiquez les problèmes liés aux métadonnées
+= Résolvez les problèmes de métadonnées dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

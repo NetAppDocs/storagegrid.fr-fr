@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, PUT bucket metadata notification configuration request 
 summary: 'La demande de configuration DE notification DE métadonnées PUT compartiments vous permet d"activer le service d"intégration de la recherche pour chaque compartiment. Le XML de configuration de notification de métadonnées que vous fournissez dans le corps de la requête spécifie les objets dont les métadonnées sont envoyées à l"index de recherche de destination.' 
 ---
-= CONFIGURATION de notification des métadonnées de compartiment
+= Activez le service d'intégration de recherche dans StorageGRID avec la requête de configuration de notification des métadonnées du compartiment PUT
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

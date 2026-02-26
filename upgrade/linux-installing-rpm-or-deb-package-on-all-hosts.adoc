@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade, linux, rpm, deb, 
 summary: Si des nœuds StorageGRID sont déployés sur des hôtes Linux, installez un module RPM ou DEB supplémentaire sur chacun de ces hôtes avant de démarrer la mise à niveau. 
 ---
-= Linux : téléchargez et installez le progiciel RPM ou DEB sur tous les hôtes
+= Téléchargez et installez les paquets RPM ou DEB sur tous les hôtes Linux pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

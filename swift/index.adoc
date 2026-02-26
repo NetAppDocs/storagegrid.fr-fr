@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: openstack swift api support, swift rest api 
 summary: 'La prise en charge de l"API Swift est arrivée en fin de vie et sera supprimée dans une prochaine version.' 
 ---
-= Utilisez l'API REST de Swift
+= Prise en charge de l'API REST Swift dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

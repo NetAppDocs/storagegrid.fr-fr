@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: about s3, s3 rest api, s3 overview 
 summary: 'StorageGRID prend en charge l"API simple Storage Service \(S3\), implémentée en tant que ensemble de services web Representational State Transfer \(REST\).' 
 ---
-= Versions et mises à jour prises en charge par l'API REST S3
+= Versions et mises à jour prises en charge de l'API REST StorageGRID S3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

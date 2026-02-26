@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, deprecated bucket requests 
 summary: 'Vous devrez peut-être utiliser l"API REST StorageGRID S3 pour gérer les compartiments qui ont été créés à l"aide de la fonctionnalité de conformité héritée.' 
 ---
-= Demandes de compartiment obsolètes pour la conformité des anciennes
+= Requêtes de compartiment obsolètes pour la conformité StorageGRID héritée
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

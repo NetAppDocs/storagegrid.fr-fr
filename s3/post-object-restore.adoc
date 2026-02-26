@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: post, RestoreObject, object 
 summary: Vous pouvez utiliser la requête objet de restauration S3 pour restaurer un objet stocké dans un pool de stockage cloud. 
 ---
-= Objet de restauration
+= Restaurez un objet dans StorageGRID avec la requête S3 RestoreObject
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade, time estimate, duration, cassandra upgrade 
 summary: Réfléchissez au moment opportun pour effectuer une mise à niveau, en fonction du temps nécessaire. Soyez conscient des opérations que vous pouvez et ne pouvez pas effectuer à chaque étape de la mise à niveau. 
 ---
-= Estimer le temps nécessaire pour effectuer une mise à niveau
+= Estimez le temps nécessaire pour effectuer une mise à niveau de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: SelectObjectContent, filter object content 
 summary: 'Vous pouvez utiliser la requête S3 SelectObjectContent pour filtrer le contenu d"un objet S3 à partir d"une instruction SQL simple.' 
 ---
-= SelectObjectContent
+= Filtrer les données d'objets dans StorageGRID avec la requête S3 SelectObjectContent
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

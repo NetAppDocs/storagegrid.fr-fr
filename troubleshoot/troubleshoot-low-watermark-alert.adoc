@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: troubleshoot low soft read-only watermark override alert, optimized watermarks 
 summary: 'Si vous utilisez des valeurs personnalisées pour les filigranes de volume de stockage, vous devrez peut-être résoudre l"alerte de remplacement du filigrane en lecture seule faible. Si possible, vous devez mettre à jour votre système pour commencer à utiliser les valeurs optimisées.' 
 ---
-= Dépanner les alertes de remplacement de filigrane en lecture seule faible
+= Résoudre l'alerte de remplacement de filigrane dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

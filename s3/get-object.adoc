@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: get object 
 summary: 'Vous pouvez utiliser la requête D"objet GET S3 pour récupérer un objet à partir d"un compartiment S3.' 
 ---
-= GetObject
+= Récupérer un objet depuis un bucket dans StorageGRID avec la requête GetObject
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

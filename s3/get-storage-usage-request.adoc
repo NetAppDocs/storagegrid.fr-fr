@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, GET storage usage request 
 summary: La demande GET Storage usage vous indique la quantité totale de stockage utilisée par un compte et pour chaque compartiment associé au compte. 
 ---
-= DEMANDE d'utilisation du stockage
+= Récupérez l'utilisation du stockage du compte et du bucket dans StorageGRID avec la requête GET Storage Usage
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: bucket policy examples 
 summary: 'Utilisez les exemples de cette section pour créer des règles d"accès StorageGRID pour les compartiments.' 
 ---
-= Exemples de politiques de compartiments
+= Exemples de stratégie de compartiment de l'API REST StorageGRID S3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

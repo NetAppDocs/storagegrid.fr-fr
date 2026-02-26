@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object, add object, put, PutObject request 
 summary: Vous pouvez utiliser la demande S3 PutObject pour ajouter un objet à un compartiment. 
 ---
-= PutObject
+= Ajouter un objet à un compartiment dans StorageGRID avec la requête S3 PutObject
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

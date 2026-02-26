@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot S3 PUT Object size too large alert, S3 PutObject size 
 summary: 'L"alerte S3 PUT Object size too large est déclenchée si un locataire tente une opération PutObject non parties qui dépasse la taille limite S3 de 5 Gio.' 
 ---
-= Dépannez l'alerte de taille d'objet PUT S3 trop grande
+= Résoudre l'alerte « Taille d'objet S3 PUT trop importante » dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

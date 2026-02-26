@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot the Low object data storage alert 
 summary: 'L"alerte de faible capacité de stockage des données d"objets surveille l"espace disponible pour le stockage des données d"objets sur chaque nœud de stockage.' 
 ---
-= Dépanner l'alerte de stockage de données d'objet faible
+= Résolvez l'alerte de faible capacité de stockage des données d'objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

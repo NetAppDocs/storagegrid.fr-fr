@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, version, current version, previous version 
 summary: Avant de démarrer la mise à niveau, vérifiez que la version précédente de StorageGRID est actuellement installée avec le dernier correctif disponible appliqué. 
 ---
-= Vérifier la version installée de StorageGRID
+= Vérifiez la version installée de StorageGRID avant la mise à niveau
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

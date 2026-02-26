@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade workflow 
 summary: Avant de commencer la mise à niveau, passez en revue le workflow général. La page mise à niveau de StorageGRID vous guide tout au long des étapes de mise à niveau. 
 ---
-= Démarrage rapide de la mise à niveau
+= Démarrage rapide pour les mises à niveau de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

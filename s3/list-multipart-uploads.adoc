@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ListMultipartUploads, uploads, multipart uploads, bucket 
 summary: 'L"opération ListMultipartUploads répertorie les téléchargements partitionnés en cours pour un compartiment.' 
 ---
-= ListMultipartUploads
+= Fonctionnement S3 ListMultipartUploads et paramètres pris en charge dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

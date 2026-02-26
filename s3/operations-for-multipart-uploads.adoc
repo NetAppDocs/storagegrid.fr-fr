@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: operations, multipart uploads, uploads, rest API 
 summary: Cette section décrit comment StorageGRID prend en charge les opérations de téléchargement partitionné. 
 ---
-= Opérations pour les téléchargements partitionnés
+= Opérations de chargement multiparties prises en charge dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

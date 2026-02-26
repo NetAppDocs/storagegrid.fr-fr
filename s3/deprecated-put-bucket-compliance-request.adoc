@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, PUT deprecated compliance requests 
 summary: 'La demande DE conformité DE PUT Bucket est obsolète. Cependant, vous pouvez continuer à utiliser cette demande pour modifier les paramètres de conformité d"un compartiment conforme existant.' 
 ---
-= Obsolète : demande de conformité du compartiment PUT
+= Requête PUT Bucket compliance obsolète dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

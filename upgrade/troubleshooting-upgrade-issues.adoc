@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade, troubleshoot, troubleshooting, errors, upgrade precheck 
 summary: 'Si un problème se produit lors de la mise à niveau, vous pouvez résoudre le problème vous-même. Si vous ne parvenez pas à résoudre un problème, collectez autant d"informations que possible, puis contactez le support technique.' 
 ---
-= Résoudre les problèmes de mise à niveau
+= Résoudre les problèmes de mise à niveau de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

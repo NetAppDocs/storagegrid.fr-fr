@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: multipart upload, object, object size 
 summary: 'L"opération CompleteMultipartUpload effectue un téléchargement partitionné d"un objet en assemblant les pièces précédemment téléchargées.' 
 ---
-= CompleteMultipartUpload
+= Comment l'API REST S3 de StorageGRID effectue les chargements en plusieurs parties
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

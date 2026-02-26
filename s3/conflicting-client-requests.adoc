@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: conflicting client requests 
 summary: Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». 
 ---
-= Requêtes des clients en conflit
+= Comment l'API REST StorageGRID S3 résout les requêtes client conflictuelles
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot certificate errors 
 summary: 'Si vous rencontrez un problème de sécurité ou de certificat lorsque vous tentez de vous connecter à StorageGRID à l"aide d"un navigateur Web, d"un client S3 ou d"un outil de surveillance externe, vous devez vérifier le certificat.' 
 ---
-= Résoudre les erreurs de certificat
+= Dépanner les erreurs de certificat dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to confirm object location, object metadata lookup 
 summary: 'En fonction du problème, vous pouvez confirmer l"emplacement de stockage des données d"objet. Par exemple, vous pouvez vérifier que la règle ILM fonctionne comme prévu et que les données d"objet sont stockées à l"emplacement prévu.' 
 ---
-= Confirmer l'emplacement des données d'objet
+= Confirmez l'emplacement des données d'objet dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

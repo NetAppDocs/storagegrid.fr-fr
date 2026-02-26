@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: server side encryption, encryption, operations on objects, objects 
 summary: 'Le chiffrement côté serveur vous permet de protéger vos données au repos objet. StorageGRID crypte les données lors de leur écriture et décrypte les données lorsque vous accédez à l"objet.' 
 ---
-= Utilisez le cryptage côté serveur
+= Comment StorageGRID utilise le chiffrement côté serveur
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

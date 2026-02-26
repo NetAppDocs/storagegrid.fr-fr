@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary: Certaines fonctionnalités ont été supprimées ou obsolètes dans cette version. Consultez ces éléments pour savoir si vous devez mettre à jour les applications client ou modifier votre configuration avant de procéder à la mise à niveau. 
 ---
-= Fonctionnalités supprimées ou obsolètes
+= Fonctionnalités et capacités supprimées ou obsolètes dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

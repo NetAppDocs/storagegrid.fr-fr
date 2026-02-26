@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: initiate multipart upload, CreateMultipartUpload, upload ID 
 summary: 'L"opération CreateMultipartUpload lance un téléchargement partitionné pour un objet et renvoie un ID de téléchargement.' 
 ---
-= CreateMultipartUpload
+= En-têtes et options des requêtes S3 CreateMultipartUpload dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

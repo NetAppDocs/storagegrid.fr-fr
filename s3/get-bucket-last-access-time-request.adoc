@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, GET last access time request 
 summary: 'La demande D"heure de dernier accès À GET Bucket vous permet de déterminer si les dernières mises à jour de temps d"accès sont activées ou désactivées pour les compartiments individuels.' 
 ---
-= HEURE du dernier accès au compartiment
+= Récupérez l'état de la dernière date d'accès au bucket dans StorageGRID avec la requête GET Bucket last access time
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

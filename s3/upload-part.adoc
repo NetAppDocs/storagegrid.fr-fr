@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: s3 UploadPart operation 
 summary: 'L"opération UploadPart télécharge une pièce dans un téléchargement partitionné pour un objet.' 
 ---
-= UploadPart
+= En-têtes de requête pris en charge et non pris en charge pour les opérations S3 UploadPart dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

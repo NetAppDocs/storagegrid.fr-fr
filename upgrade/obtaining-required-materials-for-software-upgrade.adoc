@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade, requirements, rhel, red hat, linux, ubuntu, debian 
 summary: Avant de commencer la mise à niveau du logiciel, procurez-vous tous les documents nécessaires. 
 ---
-= Procurez-vous les ressources nécessaires à une mise à niveau logicielle
+= Obtenez les éléments nécessaires pour une mise à niveau du logiciel StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

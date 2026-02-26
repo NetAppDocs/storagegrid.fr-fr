@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: bucket, buckets, operations on buckets 
 summary: Le système StorageGRID prend en charge un maximum de 5,000 compartiments pour chaque compte de locataire S3. 
 ---
-= Opérations sur les compartiments
+= Opérations sur les compartiments S3 et détails d’implémentation dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

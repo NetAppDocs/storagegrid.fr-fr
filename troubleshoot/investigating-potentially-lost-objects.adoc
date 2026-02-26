@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: lost objects, investigating, objects 
 summary: 'Lorsque l"alerte « Objets potentiellement perdus » est déclenchée, vous devez enquêter immédiatement. Collectez des informations sur les objets concernés et contactez le support technique.' 
 ---
-= Enquêter sur les objets potentiellement perdus
+= Résolvez l'alerte relative aux objets potentiellement perdus dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

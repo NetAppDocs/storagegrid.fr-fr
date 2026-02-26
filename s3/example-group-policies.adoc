@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: group policy examples 
 summary: 'Utilisez les exemples de cette section pour créer des stratégies d"accès StorageGRID pour les groupes.' 
 ---
-= Exemples de stratégies de groupe
+= Exemples de stratégie de groupe pour l'API REST S3 de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: upgrade, grid tasks, firewall, ports 
 summary: Avant de mettre à niveau un système StorageGRID, vérifiez que le système est prêt pour la mise à niveau. Vérifiez que le système fonctionne normalement et que tous les nœuds de grid sont opérationnels. 
 ---
-= Vérifier l'état du système
+= Vérifiez l'état de votre système StorageGRID avant la mise à niveau
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

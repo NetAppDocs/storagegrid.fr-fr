@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object version, object versioning 
 summary: 'Vous pouvez définir l"état de gestion des versions d"un compartiment si vous souhaitez conserver plusieurs versions d"un objet. L"activation de la gestion des versions pour un compartiment vous protège contre la suppression accidentelle d"objets et vous permet de récupérer et de restaurer des versions antérieures d"un objet.' 
 ---
-= Gestion des versions d'objet
+= Comment StorageGRID utilise le versionnage des objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

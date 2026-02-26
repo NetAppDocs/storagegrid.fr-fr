@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, PUT bucket consistency request 
 summary: 'La demande de cohérence PUT Bucket vous permet d"indiquer la cohérence à appliquer aux opérations effectuées sur un compartiment.' 
 ---
-= PRÉSERVER la cohérence du godet
+= Spécifiez les niveaux de cohérence dans StorageGRID avec la requête PUT Bucket consistency
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

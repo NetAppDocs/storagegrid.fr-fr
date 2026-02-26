@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot load balancer caching 
 summary: Découvrez les problèmes possibles liés à la mise en cache de l’équilibreur de charge et comment les résoudre. 
 ---
-= Résoudre les problèmes de mise en cache de l'équilibreur de charge
+= Découvrez les problèmes de mise en cache des équilibreurs de charge dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

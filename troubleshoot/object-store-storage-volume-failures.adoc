@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to confirm object location, object metadata lookup 
 summary: 'Le stockage sous-jacent d"un nœud de stockage est divisé en magasins d"objets. Les magasins d"objets sont également appelés volumes de stockage.' 
 ---
-= Défaillances de stockage d'objets (volume de stockage)
+= Découvrez les défaillances du stockage d'objets pour les volumes de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

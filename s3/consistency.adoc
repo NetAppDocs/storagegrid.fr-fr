@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: consistency, consistency control, consistency values 
 summary: La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites. Vous pouvez modifier la cohérence selon les besoins de votre application. 
 ---
-= La cohérence
+= Comment l'API REST StorageGRID S3 équilibre la disponibilité et la cohérence
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

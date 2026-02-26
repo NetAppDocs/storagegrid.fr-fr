@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: S3 REST API, S3 operations, GET bucket consistency 
 summary: La demande de cohérence GET Bucket vous permet de déterminer la cohérence appliquée à un compartiment spécifique. 
 ---
-= OPTIMISEZ la cohérence des compartiments
+= Récupérez le niveau de cohérence du compartiment dans StorageGRID avec la requête GET Bucket consistency
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

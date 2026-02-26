@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: aws cli, test s3 client connection 
 summary: 'Vous pouvez utiliser l"interface de ligne de commande d"Amazon Web Services pour tester votre connexion au système et vérifier que vous pouvez lire et écrire des objets.' 
 ---
-= Test de la configuration de l'API REST S3
+= Tester la configuration de l'API REST S3 de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
