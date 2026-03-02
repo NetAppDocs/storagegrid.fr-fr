@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, SYSU, Node Start 
 summary: 'Lors du redémarrage d"un service, ce message est généré pour indiquer si l"arrêt précédent était propre \(commandé\) ou désordonnée \(inattendu\).' 
 ---
-= SYSU : démarrage du nœud
+= Message d'audit SYSU pour le nœud démarre dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

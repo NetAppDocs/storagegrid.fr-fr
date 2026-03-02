@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, LLST, Location Lost 
 summary: 'Ce message est généré chaque fois qu"un emplacement de la copie d"objet \(répliquée ou avec code d"effacement\) est introuvable.' 
 ---
-= LLST : emplacement perdu
+= Message d'audit LLST concernant les emplacements de copies d'objets perdus dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

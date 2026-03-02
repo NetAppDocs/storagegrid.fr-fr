@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, log, log file, access, accessing 
 summary: 'Le partage d"audit contient le fichier audit.log actif et tous les fichiers journaux d"audit compressés. Vous pouvez accéder aux fichiers journaux d"audit directement à partir de la ligne de commande du nœud d"administration.' 
 ---
-= Accéder au fichier journal d'audit
+= Accédez aux fichiers du journal des audits depuis la ligne de commandes du nœud d'administration StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

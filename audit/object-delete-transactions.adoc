@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object delete transaction, S3 delete, SDEL, WDEL 
 summary: 'Vous pouvez identifier les transactions de suppression d"objets dans le journal d"audit en localisant les messages d"audit spécifiques à l"API S3.' 
 ---
-= Transactions de suppression d'objet
+= Messages d'audit pour les transactions de suppression d'objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

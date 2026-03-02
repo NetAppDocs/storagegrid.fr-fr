@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: audit, object storage, object management, object retrieval, node transfer, verification, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
 summary: 'Vous devez connaître les messages d"audit appartenant à la catégorie d"audit du stockage objet. Ce sont des événements liés au stockage et à la gestion des objets dans le système StorageGRID. Il s"agit notamment du stockage objet et des récupérations, des transferts entre nœuds grid et nœuds.' 
 ---
-= Messages d'audit du stockage objet
+= Messages d'audit pour les événements de stockage d'objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

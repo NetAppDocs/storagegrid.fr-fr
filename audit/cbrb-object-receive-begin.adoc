@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, CBRB, Object Receive Begin 
 summary: 'Dans le cadre d"opérations normales, les blocs de contenu sont transférés en continu entre différents nœuds lorsque des données sont accessibles, répliquées et conservées. Lorsque le transfert d"un bloc de contenu d"un nœud à un autre est lancé, ce message est émis par l"entité de destination.' 
 ---
-= CBRB : début de la réception de l'objet
+= Message d'audit CBRB pour le début de la réception d'objet dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

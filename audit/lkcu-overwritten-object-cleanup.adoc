@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, LKCU, Overwritten Object Cleanup 
 summary: 'Ce message est généré lorsque StorageGRID supprime un objet écrasé qui auparavant requiert un nettoyage pour libérer de l"espace de stockage. Un objet est écrasé lorsqu"un client S3 écrit un objet dans un chemin qui contient déjà un objet. Le processus de suppression se produit automatiquement et en arrière-plan.' 
 ---
-= LKCU : nettoyage d'objet écrasé
+= Message d'audit LKCU pour le nettoyage des objets écrasés dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

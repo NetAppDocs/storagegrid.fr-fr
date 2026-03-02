@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, tool, audit-explain, audit explain, translate audit messages, translate messages, translate audit message, translate message 
 summary: 'Vous pouvez utiliser l"outil audit-explication pour traduire les messages d"audit dans le journal d"audit dans un format facile à lire.' 
 ---
-= Utiliser l'outil d'explication d'audit
+= Utilisez l'outil audit-explain pour traduire les messages d'audit StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object retrieve, transactions, SGET, WGET 
 summary: 'Vous pouvez identifier les transactions de récupération d"objets dans le journal d"audit en localisant les messages d"audit spécifiques à l"API S3.' 
 ---
-= Transactions de récupération d'objet
+= Messages d'audit pour les transactions de récupération d'objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

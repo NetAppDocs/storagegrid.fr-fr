@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, GTED, Grid Task Ended 
 summary: 'Ce message d"audit indique que le service CMN a terminé le traitement de la tâche de grille spécifiée et a déplacé la tâche vers la table Historique. Si le résultat est SUC, ABRT ou ROLF, un message d"audit correspondant à la tâche de grille démarrée sera affiché. Les autres résultats indiquent que le traitement de cette tâche de grille n"a jamais démarré.' 
 ---
-= GTED : tâche de grille terminée
+= Message d'audit GTED pour les tâches de grille terminées dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

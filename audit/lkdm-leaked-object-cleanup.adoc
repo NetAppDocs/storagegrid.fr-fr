@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, LKDM, Leaked Object Cleanup 
 summary:  
 ---
-= LKDM : nettoyage d'objets fuyée
+= Message d'audit LKDM pour le nettoyage des objets ayant fuité dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

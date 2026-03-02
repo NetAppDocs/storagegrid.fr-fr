@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, EBDL, Empty Bucket Delete 
 summary: 'Le scanner ILM a supprimé un objet d"un compartiment qui supprime tous les objets (en cours d"exécution d"une opération de compartiment vide).' 
 ---
-= EBDL : suppression du compartiment vide
+= Message d'audit EBDL pour les suppressions d'objets de compartiment vides dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

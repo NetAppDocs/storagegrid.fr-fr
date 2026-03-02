@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, flow, retention 
 summary: 'Tous les services StorageGRID génèrent des messages d"audit pendant le fonctionnement normal du système. Vous devez comprendre comment ces messages d"audit passent du système StorageGRID au fichier audit.log.' 
 ---
-= Flux et conservation des messages d'audit
+= Comment les messages d'audit transitent dans le système StorageGRID jusqu'au fichier audit.log pour conservation
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, SVRF, Object Store Verify Fail 
 summary: 'Ce message est émis chaque fois qu"un bloc de contenu échoue au processus de vérification. Chaque fois que les données d"objet répliqué sont lues ou écrites sur le disque, plusieurs vérifications et vérifications d"intégrité sont effectuées pour s"assurer que les données envoyées à l"utilisateur requérant sont identiques aux données initialement ingérées sur le système. Si l"une de ces vérifications échoue, le système met automatiquement en quarantaine les données d"objet répliqué corrompues pour les empêcher d"être récupérées à nouveau.' 
 ---
-= SVRF : échec de la vérification du magasin d'objets
+= Message d'audit SVRF pour les échecs de vérification du stockage d'objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

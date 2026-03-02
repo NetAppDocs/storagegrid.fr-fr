@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, messages, message 
 summary: 'Les descriptions détaillées des messages d"audit renvoyés par le système sont répertoriées dans les sections suivantes. Chaque message d"audit est d"abord répertorié dans un tableau qui regroupe les messages associés en fonction de la classe d"activité que le message représente. Ces regroupements sont utiles à la fois pour comprendre les types d"activités auditées et pour sélectionner le type souhaité de filtrage des messages d"audit.' 
 ---
-= Descriptions des messages d'audit
+= Découvrez les types et codes de messages d'audit dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

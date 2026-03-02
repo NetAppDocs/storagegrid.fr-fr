@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, SADE, Security Audit Enable 
 summary: 'Ce message indique que le service d"origine \(ID de nœud\) a restauré la journalisation des messages d"audit ; les messages d"audit sont à nouveau collectés et livrés.' 
 ---
-= SADE : activation de l'audit de sécurité
+= Message d'audit SADE pour l'activation de l'audit de sécurité dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

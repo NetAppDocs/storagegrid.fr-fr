@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, SDEL, S3 DELETE 
 summary: 'Lorsqu"un client S3 émet une transaction DE SUPPRESSION, une requête est formulée pour supprimer l"objet ou le compartiment spécifié. Ce message est émis par le serveur si la transaction a réussi.' 
 ---
-= SDEL : SUPPRESSION S3
+= Message d'audit SDEL pour les transactions S3 DELETE dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

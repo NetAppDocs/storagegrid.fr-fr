@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: audit message, event, shea, s3 head 
 summary: 'Chaque message d"audit du journal d"audit enregistre les données spécifiques à un événement système.' 
 ---
-= Données spécifiques à un événement
+= Données spécifiques à l'événement dans les messages d'audit StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

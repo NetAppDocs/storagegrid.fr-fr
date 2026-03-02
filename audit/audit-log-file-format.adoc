@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, log file formats, log formats, log file format, log format 
 summary: 'Les fichiers journaux d"audit se trouvent sur chaque nœud d"administration et contiennent un ensemble de messages d"audit individuels.' 
 ---
-= Format du fichier journal d'audit
+= Découvrez le format des fichiers journal des audits dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, log, object lifecycle, ingest, retrieve, delete, s3, timing, ILM, Information lifecycle management 
 summary: 'Des messages d"audit sont générés à chaque ingestion, récupération ou suppression d"un objet. Vous pouvez identifier ces transactions dans le journal d"audit en localisant les messages d"audit spécifiques à l"API S3.' 
 ---
-= Quand un message d'audit est-il généré ?
+= Lorsque des messages d'audit sont générés dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

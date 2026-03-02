@@ -40,7 +40,7 @@ Pour plus d'informations, voir https://docs.aws.amazon.com/AmazonS3/latest/API/A
 
 == Exemple de syntaxe de demande CSV
 
-[source, asciidoc]
+[source, cli]
 ----
 POST /{Key+}?select&select-type=2 HTTP/1.1
 Host: Bucket.s3.abc-company.com
@@ -83,7 +83,7 @@ x-amz-expected-bucket-owner: ExpectedBucketOwner
 
 == Exemple de syntaxe de demande de parquet
 
-[source, asciidoc]
+[source, cli]
 ----
 POST /{Key+}?select&select-type=2 HTTP/1.1
 Host: Bucket.s3.abc-company.com

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, SCMT, Object Store Commit 
 summary: 'Le contenu de la grille n"est pas disponible ou reconnu comme stocké tant qu"il n"a pas été commis \(c"est-à-dire qu"il a été stocké de manière persistante\). Le contenu stocké de manière persistante a été entièrement écrit sur le disque et a transmis des contrôles d"intégrité liés. Ce message est émis lorsqu"un bloc de contenu est attribué au stockage.' 
 ---
-= SCMT : validation du magasin d'objets
+= Message d'audit SCMT pour les validations dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

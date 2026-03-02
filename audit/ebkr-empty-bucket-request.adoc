@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, EBKR, Empty Bucket Request 
 summary: 'Ce message indique qu"un utilisateur a envoyé une demande d"activation ou de désactivation de compartiment vide (c"est-à-dire de supprimer des objets de compartiment ou d"arrêter de supprimer des objets).' 
 ---
-= EBKR : demande de godet vide
+= Message d'audit EBKR pour les requêtes de compartiment vide dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

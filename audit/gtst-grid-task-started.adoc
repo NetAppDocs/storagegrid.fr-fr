@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, GTST, Grid Task Started 
 summary: 'Ce message d"audit indique que le service CMN a commencé à traiter la tâche de grille spécifiée. Le message d"audit suit immédiatement le message de la tâche de grille soumise pour les tâches de grille initiées par le service interne Grid Task Submission et sélectionnées pour l"activation automatique. Pour les tâches de grille soumises dans la table en attente, ce message est généré lorsque l"utilisateur démarre la tâche de grille.' 
 ---
-= GTST : tâche de grille démarrée
+= Message d'audit GTST pour les tâches de grille démarrées dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

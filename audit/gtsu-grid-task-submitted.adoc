@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit, message, GTSU, Grid Task Submitted 
 summary: 'Ce message d"audit indique qu"une tâche de grille a été envoyée au service CMN.' 
 ---
-= GTSU : tâche de grille soumise
+= Message d'audit GTSU pour les tâches de grille soumises dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
