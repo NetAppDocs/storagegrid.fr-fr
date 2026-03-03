@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: rename erasure-coding profile, ec profile 
 summary: 'Vous pouvez afficher les détails d"un profil de code d"effacement et renommer un profil si nécessaire. Vous pouvez désactiver un profil de code d"effacement s"il n"est actuellement utilisé dans aucune règle ILM.' 
 ---
-= Gestion des profils de code d'effacement
+= Gérez les profils de code d'effacement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

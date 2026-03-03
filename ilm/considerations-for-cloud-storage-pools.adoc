@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what is a cloud storage pool, considerations for a cloud storage pool 
 summary: 'Si vous envisagez d"utiliser un pool de stockage cloud pour déplacer les objets hors du système StorageGRID, vous devez étudier les critères de configuration et d"utilisation des pools de stockage cloud.' 
 ---
-= Considérations relatives aux pools de stockage cloud
+= Exigences et limites des Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

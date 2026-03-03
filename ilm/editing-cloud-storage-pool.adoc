@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: edit cloud storage pool 
 summary: 'Vous pouvez modifier un pool de stockage cloud pour en changer le nom, le terminal de service ou d"autres détails. Toutefois, vous ne pouvez pas modifier le compartiment S3 ou le conteneur Azure pour un pool de stockage cloud.' 
 ---
-= Modifiez un pool de stockage cloud
+= Modifier un Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

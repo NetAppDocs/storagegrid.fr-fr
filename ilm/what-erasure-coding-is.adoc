@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what is erasure coding, what is ec 
 summary: 'Le code d"effacement est l"une des deux méthodes utilisées par StorageGRID pour stocker des données en mode objet. Lorsque les objets correspondent à une règle ILM utilisant le code d"effacement, ces objets sont découpés en fragments de données, des fragments de parité supplémentaires sont calculés et chaque fragment est stocké sur un autre nœud de stockage.' 
 ---
-= Qu'est-ce que le code d'effacement ?
+= Découvrez le code d'effacement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

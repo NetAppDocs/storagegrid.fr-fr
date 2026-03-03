@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: strict ingest example, example ILM rule, information lifecycle rule examples 
 summary: 'Vous pouvez utiliser un filtre d"emplacement et un comportement d"ingestion strict dans une règle pour empêcher la sauvegarde des objets dans un emplacement de data Center spécifique.' 
 ---
-= Exemple 5 : règles et règles ILM pour un comportement d'ingestion strict
+= Règles et politiques ILM pour un comportement d'ingestion strict dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

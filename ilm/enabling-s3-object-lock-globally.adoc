@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: enable s3 object lock, object lock 
 summary: 'Si un compte de locataire S3 doit respecter les exigences réglementaires lors de la sauvegarde des données d"objet, vous devez activer le verrouillage objet S3 pour l"intégralité de votre système StorageGRID. L"activation du paramètre de verrouillage d"objet S3 global permet aux locataires S3 de créer et de gérer des compartiments et des objets avec le verrouillage d"objet S3.' 
 ---
-= Activez le verrouillage global des objets S3
+= Activer le verrouillage d'objet S3 globalement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

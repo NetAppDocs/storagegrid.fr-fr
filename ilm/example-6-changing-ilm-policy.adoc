@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: change ILM policy, example ILM policy, information lifecycle policy example 
 summary: Si vous devez modifier la protection de vos données ou ajouter de nouveaux sites, vous pouvez créer et activer une nouvelle règle ILM. 
 ---
-= Exemple 6 : modification d'une règle ILM
+= Comment la modification d'une politique ILM affecte les performances de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

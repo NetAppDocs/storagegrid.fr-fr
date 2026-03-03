@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: consistency error, s3 object lock and consistency 
 summary: 'Si un site de data Center ou plusieurs nœuds de stockage sur un site deviennent indisponibles, les locataires S3 peuvent avoir à appliquer des modifications à la configuration de verrouillage d"objet S3 ou de conformité héritée.' 
 ---
-= Résolvez les erreurs de cohérence lors de la mise à jour de la configuration du verrouillage d'objet S3 ou de la conformité héritée
+= Résolvez les erreurs de cohérence lors de la mise à jour de S3 Object Lock ou des paramètres de conformité hérités dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

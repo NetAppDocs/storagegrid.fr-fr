@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replication, object copies 
 summary: 'La réplication est l"une des deux méthodes utilisées par StorageGRID pour stocker les données d"objet. Lorsque les objets correspondent à une règle ILM utilisant la réplication, le système crée des copies exactes des données en mode objet et les stocke sur des nœuds de stockage.' 
 ---
-= Qu'est-ce que la réplication ?
+= Découvrez la réplication dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

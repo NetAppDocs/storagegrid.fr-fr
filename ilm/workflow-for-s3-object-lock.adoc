@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object lock workflow 
 summary: 'En tant qu"administrateur du grid, vous devez coordonner étroitement avec les utilisateurs des locataires pour assurer la protection des objets conformément aux exigences de conservation.' 
 ---
-= Tâches de verrouillage d'objet S3
+= Workflow de verrouillage d'objet S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

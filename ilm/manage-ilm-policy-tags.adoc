@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ILM policy tag 
 summary: Vous pouvez afficher les détails des balises de règles ILM, modifier une balise ou supprimer une balise. 
 ---
-= Gestion des balises de règles ILM
+= Gérer les balises de stratégie ILM dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

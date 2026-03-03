@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: verify ilm policy, object metadata lookup 
 summary: 'Après avoir activé une règle ILM, vous ingérer des objets de test représentatifs dans le système StorageGRID, puis effectuer une recherche de métadonnées d"objet pour vérifier que les copies sont effectuées comme prévu et placées dans les emplacements appropriés.' 
 ---
-= Vérification d'une règle ILM avec la recherche de métadonnées d'objet
+= Vérifiez une stratégie ILM avec la recherche de métadonnées d'objet dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

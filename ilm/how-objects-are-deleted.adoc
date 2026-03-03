@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ILM deletion, how objects are deleted 
 summary: 'StorageGRID peut supprimer des objets en réponse directe à une requête d"un client ou automatiquement à la suite de l"expiration du cycle de vie d"un compartiment S3 ou des exigences de la politique ILM. Pour gérer plus efficacement les objets, il est important de comprendre les différentes méthodes de suppression des objets et la façon dont StorageGRID les gère.' 
 ---
-= Comment supprimer les objets
+= Comment StorageGRID supprime des objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what is a storage pool 
 summary: Un pool de stockage est un regroupement logique de nœuds de stockage. 
 ---
-= Qu'est-ce qu'un pool de stockage ?
+= Découvrez les pools de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

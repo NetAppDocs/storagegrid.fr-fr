@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ILM policy,S3 Object Lock 
 summary: 'Vous pouvez utiliser le compartiment S3, les règles ILM et la règle ILM dans cet exemple à partir d"un point de départ lors de la définition d"une règle ILM afin de répondre aux exigences de protection et de conservation des objets dans des compartiments où le verrouillage d"objet S3 est activé.' 
 ---
-= Exemple 7 : règle ILM conforme pour le verrouillage d'objet S3
+= Stratégie ILM conforme pour S3 Object Lock dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

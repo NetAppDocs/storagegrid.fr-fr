@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: example ILM rule, information lifecycle rule examples 
 summary: Vous pouvez utiliser les exemples de règles et de règle suivants comme point de départ pour définir une règle ILM afin de répondre à vos exigences de protection et de conservation des objets. 
 ---
-= Exemple 1 : règles et règles ILM pour le stockage objet
+= Règles ILM et politique pour la protection et la conservation de base des objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

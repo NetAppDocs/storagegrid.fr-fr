@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: use cloud storage pool, benefits of cloud storage pools 
 summary: 'À l"aide des pools de stockage cloud, vous pouvez sauvegarder ou hiérarchiser les données vers un emplacement externe. En outre, vous pouvez sauvegarder ou déplacer des données vers plusieurs clouds.' 
 ---
-= Quand utiliser les pools de stockage cloud
+= Cas d'utilisation des Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

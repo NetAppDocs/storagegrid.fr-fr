@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create ILM policy 
 summary: Créez une ou plusieurs règles ILM pour répondre à vos exigences en matière de qualité de service. 
 ---
-= Création de règles ILM
+= Créer des règles ILM dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

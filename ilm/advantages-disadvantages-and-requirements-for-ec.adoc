@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: erasure coding advantages, disadvantages, EC requirements 
 summary: 'Avant de décider s"il est nécessaire d"utiliser la réplication ou le codage d"effacement pour protéger les données d"objet contre la perte, vous devez connaître les avantages, les inconvénients et les exigences du codage d"effacement.' 
 ---
-= Avantages, inconvénients et exigences du code d'effacement
+= Avantages, inconvénients et exigences du code d'effacement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

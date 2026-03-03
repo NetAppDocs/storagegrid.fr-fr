@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: erasure-coding scheme 
 summary: 'Les schémas de codage d"effacement contrôlent le nombre de fragments de données et le nombre de fragments de parité créés pour chaque objet.' 
 ---
-= Que sont les schémas de code d'effacement ?
+= Découvrez les schémas de code d'effacement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: site-loss protection, cross-site replication, storage pools 
 summary: 'Si votre déploiement StorageGRID inclut plusieurs sites, vous pouvez utiliser la réplication et le code d"effacement avec des pools de stockage configurés de manière appropriée pour assurer la protection contre la perte de site.' 
 ---
-= Activer la protection contre la perte de site
+= Protection contre les pertes de site grâce aux pools de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

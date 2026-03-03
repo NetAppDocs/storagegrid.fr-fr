@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how object retention is determined 
 summary: 'StorageGRID fournit aux administrateurs du grid et aux utilisateurs de locataires individuels les options permettant de spécifier la durée de stockage des objets. En général, les instructions de conservation fournies par un utilisateur locataire ont priorité sur les instructions de conservation fournies par l"administrateur de la grille.' 
 ---
-= Méthode de détermination de la conservation des objets
+= Comment StorageGRID détermine la conservation des objets
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

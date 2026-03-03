@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: view cloud storage pool 
 summary: 'Vous pouvez afficher les détails d"un pool de stockage cloud pour déterminer où il est utilisé et voir quels nœuds et niveaux de stockage sont inclus.' 
 ---
-= Afficher les détails du pool de stockage cloud
+= Afficher les détails du pool de stockage cloud dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

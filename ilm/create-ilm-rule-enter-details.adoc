@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ILM rule step 1, define basics 
 summary: 'L"étape 1 \(entrer les détails\) de l"assistant Créer une règle ILM vous permet d"entrer un nom et une description pour la règle et de définir des filtres pour cette règle.' 
 ---
-= Étape 1 sur 3 : saisissez les détails
+= Saisissez les détails et les filtres d'une règle ILM StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage pool, view details 
 summary: 'Vous pouvez afficher les détails d"un pool de stockage pour déterminer où le pool de stockage est utilisé et pour voir quels nœuds et niveaux de stockage sont inclus.' 
 ---
-= Afficher les détails du pool de stockage
+= Afficher les détails du pool de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

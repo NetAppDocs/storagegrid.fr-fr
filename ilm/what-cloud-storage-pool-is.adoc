@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what is a cloud storage pool 
 summary: 'Un pool de stockage cloud permet d"utiliser des règles ILM pour déplacer des données d"objet en dehors de votre système StorageGRID. Par exemple, vous pouvez déplacer les objets rarement consultés vers un stockage cloud moins coûteux, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le Tier d"accès Archive dans le stockage Microsoft Azure Blob. Vous pouvez également conserver une sauvegarde dans le cloud des objets StorageGRID pour améliorer la reprise d"activité.' 
 ---
-= Qu'est-ce qu'un pool de stockage cloud ?
+= Découvrez les Cloud Storage Pools dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

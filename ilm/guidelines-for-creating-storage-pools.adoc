@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage pool guidelines 
 summary: 'Configurez et utilisez les pools de stockage pour vous protéger contre les pertes de données, en distribuant les données entre plusieurs sites. Les copies répliquées et les copies avec code d"effacement nécessitent différentes configurations de pool de stockage.' 
 ---
-= Instructions pour la création de pools de stockage
+= Directives de configuration des pools de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

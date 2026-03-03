@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ilm rule step 2, define placements 
 summary: 'L"étape définir les placements de l"assistant Créer une règle ILM vous permet de définir les instructions de placement qui déterminent la durée de stockage des objets, le type de copies \(répliquées ou avec code d"effacement\), l"emplacement de stockage et le nombre de copies.' 
 ---
-= Étape 2 sur 3 : définir les placements
+= Définir les instructions de placement pour une règle StorageGRID ILM
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

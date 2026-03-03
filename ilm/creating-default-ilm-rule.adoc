@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: create default ilm rule 
 summary: 'Avant de créer une règle ILM, vous devez créer une règle par défaut afin de placer tous les objets qui ne correspondent pas à une autre règle de la politique. La règle par défaut ne peut pas utiliser de filtre. Elle doit s"appliquer à tous les locataires, à tous les compartiments et à toutes les versions d"objet.' 
 ---
-= Créez une règle ILM par défaut
+= Créez une règle ILM par défaut dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

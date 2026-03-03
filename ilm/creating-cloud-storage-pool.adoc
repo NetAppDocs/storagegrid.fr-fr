@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create cloud storage pool 
 summary: Un pool de stockage cloud désigne un compartiment Amazon S3 externe unique, un autre fournisseur compatible avec S3 ou un conteneur de stockage Azure Blob. 
 ---
-= Création d'un pool de stockage cloud
+= Créez un Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

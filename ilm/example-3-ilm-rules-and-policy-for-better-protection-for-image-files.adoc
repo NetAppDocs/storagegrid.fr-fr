@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: example ILM rule, information lifecycle rule examples 
 summary: Vous pouvez utiliser les règles et règles suivantes pour vous assurer que les images de plus de 1 Mo sont codées avec effacement et que deux copies sont réalisées avec des images de plus petite taille. 
 ---
-= Exemple 3 : règles et règles ILM pour une meilleure protection des fichiers image
+= Règles et politique ILM pour la protection des fichiers image dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

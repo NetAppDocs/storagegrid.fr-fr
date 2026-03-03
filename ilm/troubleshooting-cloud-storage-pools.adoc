@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cloud storage pool, troubleshoot 
 summary: 'Suivez ces étapes de dépannage pour résoudre les erreurs que vous pouvez rencontrer lors de la création, de la modification ou de la suppression d"un pool de stockage cloud.' 
 ---
-= Résoudre les problèmes liés aux pools de stockage cloud
+= Dépanner les pools de stockage cloud dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

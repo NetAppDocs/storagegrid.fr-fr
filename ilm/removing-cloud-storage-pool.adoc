@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: remove cloud storage pool 
 summary: 'Vous pouvez supprimer un pool de stockage cloud s"il n"est pas utilisé dans une règle ILM et s"il ne contient pas de données d"objet.' 
 ---
-= Supprimez un pool de stockage cloud
+= Supprimer un Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

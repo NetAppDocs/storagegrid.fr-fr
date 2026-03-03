@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: s3 object lock, manage objects with object lock 
 summary: 'En tant qu"administrateur de la grille, vous pouvez activer la fonction de verrouillage des objets S3 pour votre système StorageGRID et mettre en œuvre une règle ILM conforme pour vous assurer que les objets des compartiments S3 spécifiques ne sont pas supprimés ou remplacés pour une durée spécifiée.' 
 ---
-= Gestion des objets avec le verrouillage d'objets S3
+= Comment le verrouillage d'objets S3 protège les objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what is a storage grade, create storage grade 
 summary: Les niveaux de stockage identifient le type de stockage utilisé par un nœud de stockage. Vous pouvez créer des classes de stockage si vous souhaitez que les règles ILM placent certains objets sur certains nœuds de stockage. 
 ---
-= Créer et attribuer des notes de stockage
+= Créez et attribuez des niveaux de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: lifecycle of cloud storage pool object 
 summary: 'Avant d"implémenter les pools de stockage cloud, vérifiez le cycle de vie des objets stockés dans chaque type de pool de stockage cloud.' 
 ---
-= Cycle de vie d'un objet de pool de stockage cloud
+= Cycle de vie d'un objet Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
