@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to validate StorageGRID configuration 
 summary: Après avoir créé des fichiers de configuration dans /etc/storagegrid/noeuds pour chacun de vos nœuds StorageGRID, vous devez valider le contenu de ces fichiers. 
 ---
-= Valider la configuration de StorageGRID (Linux)
+= Valider la configuration StorageGRID sous Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

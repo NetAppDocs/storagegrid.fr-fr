@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: after installation guidelines 
 summary: 'Une fois le déploiement et la configuration des nœuds de la grille effectués, suivez ces instructions pour l"adressage DHCP et les modifications de configuration réseau.' 
 ---
-= Instructions de post-installation
+= Exigences réseau et DHCP après l'installation de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

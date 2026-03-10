@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to collect information about your vmware deployment environment 
 summary: 'Avant de déployer les nœuds de la grille, vous devez collecter des informations sur la configuration de votre réseau et l"environnement VMware.' 
 ---
-= Collectez des informations sur votre environnement de déploiement (VMware)
+= Collectez des informations sur votre environnement VMware pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

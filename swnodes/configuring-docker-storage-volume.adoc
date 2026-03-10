@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure container engine storage volume, Docker, Podman 
 summary: 'Avant d"installer le moteur de conteneur Docker ou Podman, vous devrez peut-être formater le volume de stockage et le monter.' 
 ---
-= Configurer le volume de stockage du moteur de conteneur (Linux)
+= Configurer le volume de stockage du moteur de conteneur pour StorageGRID sur Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

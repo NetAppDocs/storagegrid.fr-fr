@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to migrate a node 
 summary: 'La fonction de migration de nœud vous permet de déplacer manuellement un nœud d"un hôte à un autre. En général, les deux hôtes se trouvent dans le même data Center physique.' 
 ---
-= Exigences de migration des conteneurs Node (Linux)
+= Exigences de migration des conteneurs de nœuds StorageGRID pour Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

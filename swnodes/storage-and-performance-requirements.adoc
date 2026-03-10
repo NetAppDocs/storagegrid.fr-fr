@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage requirements, performance requirements, host storage, host volumes, netapp ontap, fabricpool 
 summary: 'Vous devez connaître les exigences de stockage des nœuds StorageGRID afin de fournir un espace suffisant pour prendre en charge la configuration initiale et l"extension future du stockage.' 
 ---
-= Les besoins en matière de stockage et de performances
+= Exigences de stockage et de performance pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

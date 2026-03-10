@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create rhel ubuntu or debian node configuration files, port, remap, port remap 
 summary: 'Les fichiers de configuration des nœuds sont de petits fichiers texte qui fournissent les informations dont le service hôte StorageGRID a besoin pour démarrer un nœud et le connecter à des ressources de stockage bloc et réseau appropriées. Les fichiers de configuration de nœud sont utilisés pour les nœuds virtuels et ne sont pas utilisés pour les nœuds d"appliance.' 
 ---
-= Créer des fichiers de configuration de nœud pour les déploiements Linux
+= Créer des fichiers de configuration de nœud StorageGRID pour les déploiements Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to deploy grid nodes in vsphere or vsphere web client, port, remap, port remap, vmware 
 summary: Vous utilisez le client Web VMware vSphere pour déployer chaque nœud de grid en tant que machine virtuelle. Pendant le déploiement, chaque nœud de grid est créé et connecté à un ou plusieurs réseaux StorageGRID. 
 ---
-= Déployer un nœud StorageGRID en tant que machine virtuelle (VMware)
+= Déployez des nœuds de grille en tant que machines virtuelles pour StorageGRID avec VMware vSphere
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

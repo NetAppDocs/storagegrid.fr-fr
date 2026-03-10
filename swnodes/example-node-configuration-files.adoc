@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: example debian node configuration file, example ubuntu linux node configuration file, example red hat linux node configuration file, example rhel node configuration file 
 summary: Vous pouvez utiliser les exemples de fichiers de configuration de nœud pour vous aider à configurer les fichiers de configuration de nœud pour votre système StorageGRID. Les exemples montrent les fichiers de configuration des nœuds pour tous les types de nœuds grid. 
 ---
-= Exemples de fichiers de configuration de nœud (Linux)
+= Exemples de fichiers de configuration pour les nœuds StorageGRID sous Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

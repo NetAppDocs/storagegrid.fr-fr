@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to install on ubuntu, how to install on debian, how to install on red hat linux, how to install on rhel 
 summary: 'Sur les systèmes bare Metal, StorageGRID modifie les paramètres de l"hôte `sysctl`.' 
 ---
-= Comment les paramètres à l'échelle de l'hôte changent pendant l'installation (Linux)
+= Comment StorageGRID modifie les paramètres globaux de l'hôte
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: software requirements 
 summary: 'Vous pouvez utiliser une machine virtuelle pour héberger n"importe quel type de nœud StorageGRID. Vous avez besoin d"une machine virtuelle pour chaque nœud de grille.' 
 ---
-= Configuration logicielle requise
+= Exigences logicielles pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

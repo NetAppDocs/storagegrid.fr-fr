@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to approve pending grid nodes 
 summary: Vous devez approuver chaque nœud de la grille pour pouvoir rejoindre le système StorageGRID. 
 ---
-= Approuver les nœuds de la grille en attente
+= Approuver les nœuds de grille en attente pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

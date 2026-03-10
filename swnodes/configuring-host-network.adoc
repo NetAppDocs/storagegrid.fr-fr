@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure the host network 
 summary: 'Une fois l"installation de Linux terminée sur vos hôtes, vous devrez peut-être procéder à une configuration supplémentaire pour préparer un ensemble d"interfaces réseau sur chaque hôte, adapté au mappage vers les nœuds StorageGRID que vous pourrez déployer ultérieurement.' 
 ---
-= Configurer le réseau hôte (Linux)
+= Configurer le réseau hôte StorageGRID pour les déploiements Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

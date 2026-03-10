@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to start host service 
 summary: 'Pour démarrer vos nœuds StorageGRID et s"assurer qu"ils redémarrent après un redémarrage de l"hôte, vous devez activer et démarrer le service hôte StorageGRID.' 
 ---
-= Démarrer le service hôte StorageGRID (Linux)
+= Démarrez le service hôte StorageGRID sous Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

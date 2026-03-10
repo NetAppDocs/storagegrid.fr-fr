@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure host storage 
 summary: Vous devez allouer des volumes de stockage en blocs à chaque hôte Linux. 
 ---
-= Configurer le stockage hôte (Linux)
+= Configurer le stockage hôte StorageGRID pour les déploiements Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

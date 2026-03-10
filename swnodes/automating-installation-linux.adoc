@@ -2,9 +2,9 @@
 permalink: swnodes/automating-installation-linux.html 
 sidebar: sidebar 
 keywords: how to automate linux installation 
-summary: Vous pouvez automatiser l’installation Linux du service hôte StorageGRID et la configuration des nœuds de grille. 
+summary: 'Vous pouvez automatiser l"installation du service hôte StorageGRID et la configuration des nœuds de grille sous Linux.' 
 ---
-= Automatiser l'installation (Linux)
+= Automatisez l'installation du service hôte StorageGRID et la configuration des nœuds de la grille sous Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

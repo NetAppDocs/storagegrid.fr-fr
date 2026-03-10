@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to specify Grid Network subnets 
 summary: Vous devez spécifier les sous-réseaux utilisés sur le réseau grille. 
 ---
-= Spécifiez les sous-réseaux du réseau de la grille
+= Spécifiez les sous-réseaux du réseau Grid pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

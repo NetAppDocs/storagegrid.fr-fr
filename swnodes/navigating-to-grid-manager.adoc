@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to navigate to Grid Manager 
 summary: Le gestionnaire de grille permet de définir toutes les informations nécessaires à la configuration du système StorageGRID. 
 ---
-= Accédez au Grid Manager
+= Accédez au gestionnaire de grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

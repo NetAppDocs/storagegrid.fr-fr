@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how grid nodes discover the primary Admin Node 
 summary: 'Les nœuds de grid communiquent avec le nœud d"administration principal pour la configuration et la gestion. Chaque nœud de la grille doit connaître l"adresse IP du nœud d"administration principal sur le réseau Grid.' 
 ---
-= Mode de détection des nœuds du grid sur le nœud d'administration principal
+= Comment les nœuds de la grille découvrent le nœud d'administration principal dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
