@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage tab 
 summary: 'L"onglet stockage récapitule la disponibilité du stockage et d"autres mesures de stockage.' 
 ---
-= Afficher l'onglet stockage
+= Affichez l’onglet Stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

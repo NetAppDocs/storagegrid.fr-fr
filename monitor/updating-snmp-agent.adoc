@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to update the SNMP agent 
 summary: 'Vous pouvez désactiver les notifications SNMP, mettre à jour les chaînes de communauté ou ajouter ou supprimer des adresses d"agent, des utilisateurs USM et des destinations d"interruption.' 
 ---
-= Mettez à jour l'agent SNMP
+= Mettre à jour l'agent SNMP StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

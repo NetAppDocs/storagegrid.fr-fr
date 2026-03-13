@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: overview tab 
 summary: 'L"onglet Présentation fournit des informations de base sur chaque nœud. Il affiche également toutes les alertes qui affectent actuellement le nœud.' 
 ---
-= Afficher l'onglet vue d'ensemble
+= Consultez l'onglet Vue d'ensemble StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to review audit messages, how to view audit messages 
 summary: 'Les messages d"audit vous permettent de mieux comprendre le fonctionnement détaillé de votre système StorageGRID. Vous pouvez utiliser les journaux d"audit pour résoudre les problèmes et évaluer les performances.' 
 ---
-= Examiner les messages d'audit
+= Examiner les messages d'audit de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to edit alert rules 
 summary: 'Vous pouvez modifier une règle d"alerte pour modifier les conditions de déclenchement, pour une règle d"alerte personnalisée, vous pouvez également mettre à jour le nom de la règle, sa description et les actions recommandées.' 
 ---
-= Modifiez les règles d'alerte
+= Modifier les règles d'alerte dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

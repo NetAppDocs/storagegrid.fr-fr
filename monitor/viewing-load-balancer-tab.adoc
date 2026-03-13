@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: load balancer tab 
 summary: 'L"onglet Load Balancer contient des graphiques de performance et de diagnostic relatifs au fonctionnement du service Load Balancer.' 
 ---
-= Afficher l'onglet équilibreur de charge
+= Affichez l’onglet Équilibreur de charge StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

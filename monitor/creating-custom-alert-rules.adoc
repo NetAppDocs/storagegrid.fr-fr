@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create custom alert rules 
 summary: 'Vous pouvez créer des règles d"alerte personnalisées afin de définir vos propres conditions pour déclencher des alertes.' 
 ---
-= Création de règles d'alerte personnalisées
+= Créez des règles d'alerte personnalisées dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

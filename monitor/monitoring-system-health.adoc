@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to monitor system health, how to view system health 
 summary: 'Surveillez quotidiennement l"état global de votre système StorageGRID.' 
 ---
-= Contrôle de l'état des systèmes
+= Surveillez l'état du système dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

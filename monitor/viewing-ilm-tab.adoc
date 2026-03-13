@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ilm tab 
 summary: 'L"onglet ILM fournit des informations sur les opérations \(ILM\) de gestion du cycle de vie des informations.' 
 ---
-= Afficher l'onglet ILM
+= Affichez l’onglet StorageGRID ILM
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

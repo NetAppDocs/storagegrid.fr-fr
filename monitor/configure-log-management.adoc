@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: log management, audit level, external syslog server, log destinations 
 summary: Selon les besoins, configurez les niveaux d’audit, les en-têtes de protocole et l’emplacement des messages et des journaux d’audit. 
 ---
-= Configurer la gestion des journaux
+= Configurer la gestion des journaux dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

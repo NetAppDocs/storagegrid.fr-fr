@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to monitor storage capacity 
 summary: 'Contrôlez l"espace total disponible pour vérifier que le système StorageGRID ne manque pas d"espace de stockage pour les objets ou les métadonnées d"objet.' 
 ---
-= Surveiller la capacité de stockage
+= Surveillez la capacité de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

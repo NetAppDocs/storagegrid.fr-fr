@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: hardware tab 
 summary: 'L"onglet matériel affiche l"utilisation du CPU et de la mémoire pour chaque nœud, ainsi que des informations supplémentaires sur le matériel des appliances.' 
 ---
-= Afficher l'onglet matériel
+= Consultez l'onglet Matériel StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

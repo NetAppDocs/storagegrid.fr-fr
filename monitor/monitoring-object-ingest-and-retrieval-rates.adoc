@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object ingest rates, object retrieval rates, monitor s3, client operations 
 summary: 'Vous pouvez surveiller les taux d"entrée et de récupération des objets, ainsi que les mesures relatives au nombre d"objets, aux requêtes et à la vérification. Vous pouvez afficher le nombre de tentatives de lecture, d"écriture et de modification d"objets du système StorageGRID ayant échoué et réussies par les applications client.' 
 ---
-= Surveillez les opérations du client S3
+= Surveillez les opérations du client S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: log, logs, log files 
 summary: 'StorageGRID fournit des journaux utilisés pour capturer les événements, les messages de diagnostic et les conditions d"erreur. Il se peut que vous soyez invité à collecter les fichiers journaux et à les transférer au support technique pour faciliter le dépannage.' 
 ---
-= Référence des fichiers journaux
+= Fichiers journaux StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

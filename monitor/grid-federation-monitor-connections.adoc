@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid federation, monitor connection, cross grid replication metrics 
 summary: 'Vous pouvez contrôler les informations de base sur toutes les connexions de fédération de grille, des informations détaillées sur une connexion spécifique ou des metrics Prometheus sur les opérations de réplication entre les grilles. Vous pouvez surveiller une connexion à partir de l"une ou l"autre des grilles.' 
 ---
-= Surveiller les connexions de fédération de grille
+= Surveiller les connexions de fédération de grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

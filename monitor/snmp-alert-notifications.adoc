@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to use snmp notifications for alerts 
 summary: 'Si vous souhaitez que StorageGRID envoie des notifications SNMP lorsque des alertes se produisent, vous devez activer l"agent SNMP StorageGRID et configurer une ou plusieurs destinations d"interruption.' 
 ---
-= Configurez les notifications SNMP pour les alertes
+= Configurer les notifications SNMP pour les alertes StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

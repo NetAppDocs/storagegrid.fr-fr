@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: objects tab 
 summary: 'L"onglet objets fournit des informations sur les taux d"entrée et de récupération S3.' 
 ---
-= Afficher l'onglet objets
+= Affichez l’onglet Objets StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to disable alert rules, how to remove a custom alert rule 
 summary: 'Si vous souhaitez que des notifications par e-mail soient envoyées lorsque des alertes se produisent, vous devez fournir des informations sur votre serveur SMTP. Vous devez également saisir des adresses e-mail pour les destinataires des notifications d"alerte.' 
 ---
-= Configurez les notifications par e-mail pour les alertes
+= Configurer les notifications par e-mail pour les alertes StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

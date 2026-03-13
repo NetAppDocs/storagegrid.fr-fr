@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to monitor tenant activity 
 summary: 'Toutes les activités du client S3 sont associées aux comptes de locataires StorageGRID. Vous pouvez utiliser Grid Manager pour surveiller l"utilisation du stockage ou le trafic réseau de tous les locataires ou d"un locataire spécifique. Vous pouvez utiliser le journal des audits ou les tableaux de bord Grafana pour collecter des informations plus détaillées sur l"utilisation de StorageGRID par les locataires.' 
 ---
-= Surveillez l'activité des locataires
+= Surveillez l'activité des locataires dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

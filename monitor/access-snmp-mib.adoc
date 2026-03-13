@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: mib, snmp, monitoring 
 summary: Les fichiers MIB contiennent des définitions et des informations sur les propriétés des ressources et services gérés pour les nœuds de votre grille. Vous pouvez accéder aux fichiers MIB qui définissent les objets et les notifications pour StorageGRID. Ces fichiers peuvent être utiles pour la surveillance de votre grille. 
 ---
-= Accéder aux fichiers MIB
+= Accéder aux fichiers MIB de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

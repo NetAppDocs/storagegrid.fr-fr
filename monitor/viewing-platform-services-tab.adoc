@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: platform services tab 
 summary: 'L"onglet Services de plateforme fournit des informations sur les opérations de service de la plateforme S3 sur un site.' 
 ---
-= Afficher l'onglet Platform Services
+= Consultez l'onglet Services de la plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

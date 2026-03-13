@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: Manage drives tab, hardware diagnostics, fail drive, logically replace drive 
 summary: 'L"onglet gérer les disques vous permet d"accéder aux détails et d"effectuer des tâches de dépannage et de maintenance sur les disques des appliances qui prennent en charge cette fonctionnalité.' 
 ---
-= Affichez l'onglet gérer les lecteurs
+= Consultez l'onglet Gérer les disques de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

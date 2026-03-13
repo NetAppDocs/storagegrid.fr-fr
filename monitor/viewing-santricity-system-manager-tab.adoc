@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: SANtricity System Manager tab, hardware diagnostics 
 summary: 'L"onglet SANtricity System Manager vous permet d"accéder à SANtricity System Manager sans devoir configurer ni connecter le port de gestion de l"appliance de stockage. Cet onglet permet de consulter les informations de diagnostic du matériel et les informations environnementales, ainsi que les problèmes liés aux lecteurs.' 
 ---
-= Afficher l'onglet SANtricity System Manager (E-Series uniquement)
+= Affichez l’onglet SANtricity System Manager de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

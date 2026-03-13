@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: monitoring, monitoring network connections, network, network performance 
 summary: 'L"intégrité et la bande passante du réseau entre les nœuds et les sites, ainsi que l"utilisation des ressources par les nœuds de grid individuels, sont essentielles à l"efficacité des opérations.' 
 ---
-= Surveiller les ressources réseau et système
+= Surveillez les ressources réseau et système dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

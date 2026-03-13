@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to view dashboard, how to configure dashboard 
 summary: 'Vous pouvez utiliser le tableau de bord pour surveiller les activités du système en un coup d"œil. Vous pouvez créer des tableaux de bord personnalisés pour contrôler votre implémentation de StorageGRID.' 
 ---
-= Affichez et gérez le tableau de bord
+= Consultez et gérez le tableau de bord dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

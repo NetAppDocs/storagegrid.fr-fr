@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: nodes page 
 summary: 'Si vous avez besoin d"informations plus détaillées sur votre système StorageGRID que le tableau de bord ne l"indique, vous pouvez utiliser la page nœuds pour afficher les mesures de la grille dans son intégralité, de chaque site de la grille et de chaque nœud d"un site.' 
 ---
-= Afficher la page nœuds
+= Consultez la page des nœuds StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

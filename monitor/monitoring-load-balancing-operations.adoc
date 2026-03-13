@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: load balancing, monitoring 
 summary: 'Si vous utilisez un équilibreur de charge pour gérer les connexions client à StorageGRID, vous devez surveiller les opérations d"équilibrage de charge après avoir configuré le système initialement et après avoir effectué des modifications de configuration ou effectué une extension.' 
 ---
-= Surveiller les opérations d'équilibrage de charge
+= Surveillez les opérations d'équilibrage de charge dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

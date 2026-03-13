@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: custom monitoring, monitoring, dashboard 
 summary: 'Vous pouvez créer des applications et des tableaux de bord de surveillance personnalisés à l"aide des metrics StorageGRID disponibles dans l"API de gestion du grid.' 
 ---
-= Créer des applications de surveillance personnalisées
+= Créez des applications de surveillance personnalisées pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: Tasks tab, rename node, reboot node, storage state, maintenance mode 
 summary: 'L"onglet Tâches s"affiche pour tous les nœuds.  Vous pouvez utiliser cet onglet pour renommer ou redémarrer un nœud ou pour mettre un nœud d"appliance en mode maintenance.  Pour les nœuds de stockage, vous pouvez définir l’état de stockage.' 
 ---
-= Utilisez l'onglet tâches
+= Utilisez l'onglet Tâches StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

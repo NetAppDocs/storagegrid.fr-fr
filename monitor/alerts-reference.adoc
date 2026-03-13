@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: alerts reference 
 summary: 'Cette référence répertorie les alertes par défaut qui apparaissent dans le Gestionnaire de grille. Les actions recommandées sont dans le message d"alerte que vous recevez.' 
 ---
-= Référence des alertes
+= Alertes dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

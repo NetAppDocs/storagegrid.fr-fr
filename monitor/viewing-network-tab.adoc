@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network tab 
 summary: 'L"onglet réseau affiche un graphique indiquant le trafic réseau reçu et envoyé sur toutes les interfaces réseau du nœud, du site ou de la grille.' 
 ---
-= Afficher l'onglet réseau
+= Affichez l’onglet Réseau StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

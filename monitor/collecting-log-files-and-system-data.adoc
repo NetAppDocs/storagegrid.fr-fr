@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to collect system data, how to collect logs 
 summary: Vous pouvez récupérer les fichiers journaux StorageGRID et les données système, y compris les données de configuration, et les envoyer au support technique. 
 ---
-= Collecte de fichiers journaux et de données système
+= Collectez les fichiers journaux et les données système de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

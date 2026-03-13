@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: deployment, logs, Maintenance 
 summary: Vous pouvez utiliser les journaux de déploiement et de maintenance pour résoudre les problèmes. 
 ---
-= Journaux de déploiement et de maintenance
+= Journaux de déploiement et de maintenance dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
