@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create S3 bucket 
 summary: 'Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiments S3 pour les données d"objet.' 
 ---
-= Créer un compartiment S3
+= Créez un compartiment StorageGRID S3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

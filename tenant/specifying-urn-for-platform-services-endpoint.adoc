@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to specify platform services urn 
 summary: 'Lorsque vous créez un noeud final de services de plate-forme, vous devez spécifier un Nom de ressource unique (URN). Vous utiliserez l"URN pour référencer le noeud final lorsque vous créerez un XML de configuration pour le service de plate-forme. L"URN de chaque terminal doit être unique.' 
 ---
-= Spécifiez l'URN du terminal des services de plateforme
+= Spécifiez un URN pour un point de terminaison des services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

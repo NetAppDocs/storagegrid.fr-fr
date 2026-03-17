@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create branch bucket 
 summary: 'Un bucket de branche fournit un accès aux objets d"un bucket tels qu"ils existaient à un moment donné.' 
 ---
-= Qu'est-ce qu'un bucket de branche ?
+= Découvrez les compartiments de branche StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

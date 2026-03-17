@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to protect against cross-site request forgery, csrf 
 summary: 'Vous pouvez vous protéger contre les attaques intersites \(CSRF\) contre StorageGRID en utilisant des jetons CSRF pour améliorer l"authentification qui utilise des cookies. Grid Manager et tenant Manager activent automatiquement cette fonction de sécurité ; les autres clients API peuvent choisir de l"activer lorsqu"ils se connectent.' 
 ---
-= Protection contre la contrefaçon de demandes intersites (CSRF)
+= Protégez-vous contre la falsification de requêtes intersites (CSRF) dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

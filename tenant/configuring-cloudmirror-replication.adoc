@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure CloudMirror replication, replication xml 
 summary: Vous activez la réplication CloudMirror pour un compartiment en créant un XML de configuration de réplication de compartiment et en utilisant le gestionnaire de locataires pour appliquer le XML au compartiment. 
 ---
-= Configurez la réplication CloudMirror
+= Configurez la réplication CloudMirror dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

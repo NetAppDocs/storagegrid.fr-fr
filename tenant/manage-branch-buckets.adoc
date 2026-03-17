@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create branch bucket 
 summary: Utilisez le gestionnaire de locataires pour créer et afficher les détails des compartiments de branches. 
 ---
-= Gérer les compartiments de branches
+= Gérer les compartiments de branche StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

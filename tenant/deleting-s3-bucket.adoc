@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to delete S3 bucket 
 summary: Vous pouvez utiliser le Gestionnaire de locataires pour supprimer un compartiment S3 vide. 
 ---
-= Supprimez le compartiment S3
+= Supprimer un compartiment StorageGRID S3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

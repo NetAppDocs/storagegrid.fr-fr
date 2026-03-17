@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create platform services endpoint 
 summary: 'Vous devez créer au moins un noeud final du type correct avant d"activer un service de plate-forme.' 
 ---
-= Créer un terminal de services de plate-forme
+= Créer un point de terminaison de services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

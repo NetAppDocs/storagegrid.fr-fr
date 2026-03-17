@@ -2,9 +2,9 @@
 permalink: tenant/grid-federation-manage-cross-grid-replication.html 
 sidebar: sidebar 
 keywords: grid federation, cross-grid replication, use grid federation connection, replicate client delete markers, s3 bucket 
-summary: 'si votre compte de locataire a reçu l"autorisation utiliser la connexion de fédération grid lors de sa création, vous pouvez utiliser la réplication multigrille pour répliquer automatiquement les objets entre les compartiments de la grille source du locataire et les compartiments de la grille de destination du locataire. La réplication inter-grille peut se produire dans une ou les deux directions.' 
+summary: 'Si l"autorisation Use grid federation connection a été attribuée à votre compte locataire lors de sa création, vous pouvez utiliser la réplication inter-grilles pour répliquer automatiquement les objets entre les compartiments de la grille source du locataire et ceux de la grille de destination. La réplication inter-grilles peut s"effectuer dans un sens ou dans les deux.' 
 ---
-= Gérer la réplication entre les grilles
+= Gérer la réplication inter-grilles dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

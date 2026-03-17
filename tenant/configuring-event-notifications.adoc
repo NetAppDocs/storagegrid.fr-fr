@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure event notifications, bucket notification 
 summary: Vous activez les notifications pour un compartiment en créant un XML de configuration de notification et en utilisant le gestionnaire de locataires pour appliquer le XML à un compartiment. 
 ---
-= Configurer les notifications d'événements
+= Configurez les notifications d'événements dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

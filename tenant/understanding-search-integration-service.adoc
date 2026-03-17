@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to understand search integration service 
 summary: 'Si vous souhaitez utiliser un service externe de recherche et d"analyse de données pour vos métadonnées d"objet, vous pouvez activer l"intégration de la recherche pour un compartiment S3.' 
 ---
-= Comprendre le service d'intégration de la recherche
+= Découvrez le service d'intégration de recherche StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

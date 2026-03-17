@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to change bucket versioning, disabled versioning, enabled versioning, suspended versioning 
 summary: 'Si vous utilisez un locataire S3, vous pouvez modifier l"état de gestion des versions des compartiments S3.' 
 ---
-= Modifiez le contrôle de version d'objet pour un compartiment
+= Modifier le versionnage des objets pour un compartiment S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

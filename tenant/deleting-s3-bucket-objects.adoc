@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to delete bucket objects, empty bucket 
 summary: 'Vous pouvez utiliser le Gestionnaire de locataires pour supprimer les objets d"une ou de plusieurs compartiments.' 
 ---
-= Supprime les objets du compartiment
+= Supprimer des objets d'un compartiment StorageGRID S3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

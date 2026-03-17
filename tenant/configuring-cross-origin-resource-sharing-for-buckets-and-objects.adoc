@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure cross-origin resource sharing, cors 
 summary: 'Vous pouvez configurer le partage de ressources d"origine croisée \(CORS\) pour un compartiment S3 si vous souhaitez que ce compartiment et les objets de ce compartiment soient accessibles aux applications Web d"autres domaines.' 
 ---
-= Configurer StorageGRID CORS pour les buckets et les objets
+= Configurer CORS pour les compartiments S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

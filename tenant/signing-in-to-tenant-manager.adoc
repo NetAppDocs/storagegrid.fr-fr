@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to sign in to tenant manager 
 summary: 'Pour accéder au Gestionnaire de locataires, entrez l"URL du locataire dans la barre d"adresse d"un navigateur Web pris en charge.' 
 ---
-= Connectez-vous au Gestionnaire de locataires
+= Se connecter à StorageGRID Tenant Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

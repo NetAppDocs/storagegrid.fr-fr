@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to use s3 object lock 
 summary: Vous pouvez utiliser le verrouillage objet S3 si les compartiments et les objets doivent respecter les exigences réglementaires en matière de conservation des données. 
 ---
-= Utilisez le verrouillage d'objet S3 pour conserver les objets
+= Utilisez S3 Object Lock pour conserver les objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to view your s3 access key 
 summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez afficher la liste de vos clés d"accès S3. Vous pouvez trier la liste en fonction de l"heure d"expiration afin de déterminer quelles clés vont bientôt expirer. Si nécessaire, vous pouvez créer de nouvelles clés ou supprimer des clés que vous n"utilisez plus.' 
 ---
-= Affichez vos clés d'accès S3
+= Consultez vos clés d'accès S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

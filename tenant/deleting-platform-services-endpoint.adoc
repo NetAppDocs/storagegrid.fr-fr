@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to delete tenant platform services endpoint 
 summary: Vous pouvez supprimer un noeud final si vous ne souhaitez plus utiliser le service de plate-forme associé. 
 ---
-= Supprimer le noeud final des services de plate-forme
+= Supprimer un point de terminaison des services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

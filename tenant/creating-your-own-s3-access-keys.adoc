@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to create your own S3 access key 
 summary: 'Si vous utilisez un locataire S3 et que vous disposez de l"autorisation appropriée, vous pouvez créer vos propres clés d"accès S3. Vous devez disposer d"une clé d"accès pour accéder à vos compartiments et objets.' 
 ---
-= Créez vos propres clés d'accès S3
+= Créez vos propres clés d'accès S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

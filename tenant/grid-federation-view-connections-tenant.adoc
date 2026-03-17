@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid federation connection, view, clear error, last error 
 summary: 'Si votre compte de locataire dispose de l"autorisation utiliser la fédération de grille, vous pouvez afficher les connexions autorisées.' 
 ---
-= Afficher les connexions de fédération de grille
+= Afficher les connexions de fédération de grilles dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

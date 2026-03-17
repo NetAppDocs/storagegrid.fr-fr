@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to understand tenant management api 
 summary: 'Vous pouvez effectuer des tâches de gestion du système via l"API REST de gestion des locataires plutôt que dans l"interface utilisateur du gestionnaire de locataires. Par exemple, vous pouvez utiliser l"API pour automatiser les opérations ou créer plusieurs entités plus rapidement (par exemple, les utilisateurs).' 
 ---
-= Compréhension de l'API de gestion des locataires
+= Découvrez l'API de gestion des locataires StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

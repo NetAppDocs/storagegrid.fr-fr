@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to assign ilm policy tag to bucket 
 summary: Choisissez une balise de règle ILM à attribuer à un compartiment en fonction de vos besoins en stockage objet. 
 ---
-= Applique une balise de règle ILM à un compartiment
+= Appliquer une étiquette de stratégie ILM à un compartiment StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

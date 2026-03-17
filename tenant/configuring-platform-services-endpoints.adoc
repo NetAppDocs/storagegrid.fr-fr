@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure platform services endpoint 
 summary: 'Avant de pouvoir configurer un service de plateforme pour un compartiment, vous devez configurer au moins un point de terminaison afin qu"il soit la destination du service de plateforme.' 
 ---
-= Configurer les terminaux des services de plateforme
+= Configurez les points de terminaison des services de plateforme dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

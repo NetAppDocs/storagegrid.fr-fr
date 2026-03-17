@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: account clone, cloning tenant, grid federation, cross-grid replication 
 summary: 'Si un locataire a été créé ou modifié pour utiliser une connexion de fédération de grille, ce locataire est répliqué d"un système StorageGRID \(le locataire source\) vers un autre système StorageGRID \(le locataire de réplica\). Une fois le tenant répliqué, tous les groupes et utilisateurs ajoutés au tenant source sont clonés dans le tenant de réplica.' 
 ---
-= Cloner des groupes de locataires et des utilisateurs
+= Cloner les groupes de locataires et les utilisateurs dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

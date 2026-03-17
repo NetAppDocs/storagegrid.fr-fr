@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: tenant management api version 
 summary: 'L"API de gestion des locataires utilise la gestion des versions pour prendre en charge les mises à niveau sans interruption.' 
 ---
-= Gestion des versions de l'API de gestion des locataires
+= Versionnage de l'API de gestion des locataires StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

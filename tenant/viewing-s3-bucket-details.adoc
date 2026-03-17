@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to view bucket details 
 summary: Vous pouvez afficher les compartiments de votre compte de locataire. 
 ---
-= Afficher les détails du compartiment
+= Afficher les détails du compartiment S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

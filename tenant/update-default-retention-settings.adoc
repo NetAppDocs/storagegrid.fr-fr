@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: update default retention for s3 object lock bucket, default retention mode, default retention period, compliance, governance 
 summary: 'Si vous avez activé le verrouillage objet S3 lors de la création du compartiment, vous pouvez modifier ce dernier pour modifier les paramètres de conservation par défaut. Vous pouvez activer (ou désactiver) la rétention par défaut et définir un mode de rétention et une période de rétention par défaut.' 
 ---
-= Mettre à jour la conservation par défaut du verrouillage d'objet S3
+= Mettre à jour la rétention par défaut du verrouillage d'objet S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

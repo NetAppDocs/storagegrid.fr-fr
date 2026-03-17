@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to troubleshoot platform services endpoint 
 summary: 'Si une erreur se produit lorsque StorageGRID tente de communiquer avec un noeud final de services de plate-forme, un message s"affiche sur le tableau de bord. Sur la page noeuds finaux des services de plate-forme, la colonne dernière erreur indique il y a combien de temps l"erreur s"est produite. Aucune erreur ne s"affiche si les autorisations associées aux informations d"identification d"un noeud final sont incorrectes.' 
 ---
-= Dépanner les erreurs de point final des services de plate-forme
+= Dépanner les erreurs de point de terminaison des services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

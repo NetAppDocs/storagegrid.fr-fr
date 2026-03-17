@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure open ldap 
 summary: Si vous souhaitez utiliser un serveur OpenLDAP pour la fédération des identités, vous devez configurer des paramètres spécifiques sur le serveur OpenLDAP. 
 ---
-= Instructions de configuration du serveur OpenLDAP
+= Configurer un serveur OpenLDAP pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

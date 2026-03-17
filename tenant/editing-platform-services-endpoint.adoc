@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to edit platform services endpoint 
 summary: 'Vous pouvez modifier la configuration d"un point de terminaison de services de plate-forme pour modifier son nom, son URI ou d"autres détails. Par exemple, vous devrez peut-être mettre à jour les informations d"identification expirées ou modifier l"URI pour qu"il pointe vers un index Elasticsearch de sauvegarde pour le basculement. Vous ne pouvez pas modifier l"URN d"un terminal de services de plateforme.' 
 ---
-= Modifier le point final des services de plate-forme
+= Modifier un point de terminaison de services de plateforme dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

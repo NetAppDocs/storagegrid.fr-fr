@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to view other user access key 
 summary: 'Si vous utilisez un locataire S3 et que vous disposez des autorisations appropriées, vous pouvez afficher les clés d"accès S3 d"un autre utilisateur. Vous pouvez trier la liste par heure d"expiration pour déterminer quelles clés vont bientôt expirer. Au besoin, vous pouvez créer de nouvelles clés et supprimer des clés qui ne sont plus utilisées.' 
 ---
-= Afficher les clés d'accès S3 d'un autre utilisateur
+= Afficher les clés d'accès S3 d'un autre utilisateur dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

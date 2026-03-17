@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to use s3 console 
 summary: 'Vous pouvez utiliser la console S3 pour afficher et gérer les objets d"un compartiment S3.' 
 ---
-= Utiliser la console S3
+= Utilisez la console S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

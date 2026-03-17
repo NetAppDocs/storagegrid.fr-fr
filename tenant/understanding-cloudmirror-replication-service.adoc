@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cloudmirror replication 
 summary: Vous pouvez activer la réplication CloudMirror pour un compartiment S3 si vous souhaitez que StorageGRID réplique des objets spécifiés ajoutés au compartiment dans un ou plusieurs compartiments de destination. 
 ---
-= Présentation du service de réplication CloudMirror
+= Découvrez le service de réplication CloudMirror StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

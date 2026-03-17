@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to view and edit group 
 summary: 'Lorsque vous affichez les détails d"un groupe, vous pouvez modifier le nom d"affichage, les autorisations, les règles et les utilisateurs appartenant au groupe.' 
 ---
-= Afficher et modifier les détails du groupe
+= Afficher et modifier les détails du groupe de locataires dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

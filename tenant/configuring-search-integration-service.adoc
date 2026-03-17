@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure search integration service 
 summary: 'Vous activez l"intégration de la recherche pour un compartiment en créant un XML de configuration d"intégration de recherche et en utilisant le gestionnaire de locataires pour appliquer le XML à un compartiment.' 
 ---
-= Configurer le service d'intégration de la recherche
+= Configurez le service d'intégration de recherche dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

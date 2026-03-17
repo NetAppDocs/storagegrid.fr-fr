@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to test platform services endpoint connection 
 summary: 'Si la connexion à un service de plate-forme a changé, vous pouvez tester la connexion du noeud final pour vérifier que la ressource de destination existe et qu"elle peut être atteinte à l"aide des informations d"identification que vous avez spécifiées.' 
 ---
-= Tester la connexion pour le point final des services de plate-forme
+= Tester la connexion pour un point de terminaison des services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

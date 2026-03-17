@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: tenant management permissions 
 summary: 'Avant de créer un groupe de locataires, tenez compte des autorisations que vous souhaitez attribuer à ce groupe. Les autorisations de gestion des locataires déterminent les tâches que les utilisateurs peuvent effectuer à l"aide du Gestionnaire de locataires ou de l"API de gestion des locataires. Un utilisateur peut appartenir à un ou plusieurs groupes. Les autorisations sont cumulatives si un utilisateur appartient à plusieurs groupes.' 
 ---
-= Autorisations de gestion des locataires
+= Autorisations de gestion des locataires StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
