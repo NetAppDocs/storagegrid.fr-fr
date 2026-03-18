@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, appliance, reinstallation appliance, reinstall appliance 
 summary: 'Lors de la restauration d"un nœud de stockage d"appliance, vous devez d"abord préparer l"appliance pour la réinstallation du logiciel StorageGRID.' 
 ---
-= Préparez le nœud de stockage de l'appliance pour la réinstallation
+= Préparer le nœud de stockage StorageGRID pour la réinstallation
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

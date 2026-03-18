@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit log, copy audit log, copying audit log, primary admin node, primary admin node 
 summary: 'Si vous pouvez copier les journaux d"audit à partir du noeud d"administration principal défaillant, vous devez les conserver pour conserver l"enregistrement de l"activité et de l"utilisation du système dans la grille. Vous pouvez restaurer les journaux d"audit conservés sur le nœud d"administration principal restauré une fois qu"il est en cours d"exécution.' 
 ---
-= La copie des journaux d'audit à partir d'un nœud d'administration principal a échoué
+= Copier les journaux d'audit d'un nœud d'administration StorageGRID principal en panne
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

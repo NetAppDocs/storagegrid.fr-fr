@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, admin node failure, workflow 
 summary: 'Le processus de restauration d"un noeud d"administration dépend du noeud d"administration principal ou non primaire.' 
 ---
-= Restauration du nœud d'administration principal ou non principal
+= Récupération du nœud d'administration principal ou non principal dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

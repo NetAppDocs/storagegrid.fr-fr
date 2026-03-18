@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, replace storage node, replacing storage node 
 summary: 'Si le lecteur du système est défectueux, vous devez d"abord remplacer le nœud de stockage.' 
 ---
-= Remplacez le nœud de stockage
+= Remplacer le nœud de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

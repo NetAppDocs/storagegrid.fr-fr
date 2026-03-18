@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, restore admin node database, restore database, primary admin node 
 summary: 'Si vous souhaitez conserver les informations historiques relatives aux attributs et aux alertes sur un nœud d"administration principal qui a échoué, vous pouvez restaurer la base de données du nœud d"administration. Vous ne pouvez restaurer cette base de données que si votre système StorageGRID inclut un autre noeud d"administration.' 
 ---
-= Restaurez la base de données du nœud d'administration lors de la récupération du nœud d'administration principal
+= Restaurez la base de données StorageGRID Admin Node lors de la récupération du nœud d'administration principal
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

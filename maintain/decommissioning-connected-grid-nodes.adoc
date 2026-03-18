@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission, connected nodes, decommission node 
 summary: Vous pouvez mettre hors service et supprimer définitivement les nœuds connectés à la grille. 
 ---
-= Désaffectation des nœuds connectés
+= Mettre hors service les nœuds StorageGRID connectés
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

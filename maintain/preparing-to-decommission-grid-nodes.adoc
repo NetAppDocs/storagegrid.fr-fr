@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission 
 summary: 'Vous devez examiner les éléments à prendre en compte lors de la suppression des nœuds de la grille et vérifier qu"aucun travail de réparation n"est actif pour les données codées de l"effacement.' 
 ---
-= Préparez-vous à la mise hors service des nœuds de la grille
+= Préparez-vous à la mise hors service des nœuds StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

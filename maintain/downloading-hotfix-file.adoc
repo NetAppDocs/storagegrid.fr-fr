@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, hotfix, download 
 summary: Vous devez télécharger le fichier de correctif avant de pouvoir appliquer le correctif. 
 ---
-= Téléchargez le fichier de correctif
+= Télécharger un fichier correctif StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

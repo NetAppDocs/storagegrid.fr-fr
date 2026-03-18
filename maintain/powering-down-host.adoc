@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, stop services, power down host, power off host 
 summary: Avant de mettre un hôte hors tension, vous devez arrêter les services de tous les nœuds du grid sur cet hôte. 
 ---
-= Mettez l'hôte hors tension
+= Mettre hors tension un hôte StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

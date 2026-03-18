@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: add extra interface to node, trunk interface, access interface 
 summary: 'Vous pouvez ajouter une jonction ou des interfaces d"accès supplémentaires à un nœud Linux après l"avoir installé. Les interfaces que vous ajoutez s"affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.' 
 ---
-= Linux : ajoutez une jonction ou des interfaces d'accès à un nœud
+= Ajoutez des interfaces trunk ou d'accès à un nœud Linux dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

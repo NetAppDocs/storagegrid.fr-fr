@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, restore node to host, node configuration file, start host service 
 summary: Pour restaurer un nœud de grille défaillant sur un nouvel hôte Linux, procédez comme suit afin de restaurer le fichier de configuration du nœud. 
 ---
-= Restaurez les nœuds de la grille sur l'hôte
+= Restaurez les nœuds StorageGRID sur l'hôte
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

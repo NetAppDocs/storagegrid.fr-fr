@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, archive node failure, workflow 
 summary: 'La prise en charge des nœuds d"archivage a été supprimée.' 
 ---
-= Échec de la restauration à partir du nœud d'archivage
+= Récupérer après des pannes de nœuds d'archivage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission 
 summary: Avant de mettre un site hors service, vous devez obtenir les documents suivants. 
 ---
-= Rassembler les matériaux nécessaires
+= Rassemblez les matériaux nécessaires pour la mise hors service du site StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

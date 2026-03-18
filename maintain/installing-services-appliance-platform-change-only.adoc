@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover services appliance, recover appliance, recovering appliance, recovering services appliance, install services appliance, installing services appliance, services appliance 
 summary: 'Lorsque vous récupérez un nœud de grid en panne hébergé sur VMware ou un hôte Linux et que vous utilisez une appliance de services pour le nœud de remplacement, vous devez d"abord installer le nouveau matériel de l"appliance en utilisant le même nom de nœud (nom du système) que le nœud en panne.' 
 ---
-= Installer l'appliance de services (changement de plateforme uniquement)
+= Installer l'appliance de services StorageGRID (changement de plateforme uniquement)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

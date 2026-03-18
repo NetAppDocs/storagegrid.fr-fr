@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, primary admin node, hotfix 
 summary: 'Après avoir récupéré un nœud d"administration principal, déterminez si vous devez appliquer un correctif.' 
 ---
-= Déterminez les exigences de correctif pour le nœud d'administration principal
+= Déterminer l'exigence de correctif pour le nœud d'administration principal dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

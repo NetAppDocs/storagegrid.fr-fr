@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recovery, node recovery, storage state 
 summary: 'Après avoir restauré un noeud de stockage d"appliance, vous devez vérifier que l"état souhaité du noeud de stockage de l"appliance est défini sur en ligne et vous assurer que l"état est en ligne par défaut à chaque redémarrage du serveur de noeud de stockage.' 
 ---
-= Vérifiez l'état de stockage après la récupération du nœud de stockage de l'appliance
+= Vérifier l'état du stockage après la récupération d'un nœud de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

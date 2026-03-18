@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, disconnected nodes, decommission node 
 summary: 'Vous devrez peut-être désaffecter un nœud qui n"est pas actuellement connecté à la grille \(un nœud dont l"état de santé est inconnu ou désactivé d"un point de vue administratif\).' 
 ---
-= Désaffectation des nœuds de la grille déconnectés
+= Mettre hors service les nœuds StorageGRID déconnectés
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

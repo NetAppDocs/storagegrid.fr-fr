@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, linux, linux host, bare metal host, baremetal host, remove port remap, removing port remap, port remap 
 summary: 'Si vous souhaitez configurer un noeud final pour le service Load Balancer et que vous souhaitez utiliser un port qui a déjà été configuré en tant que port mappé sur d"un remappage de port, vous devez d"abord supprimer le plan de plan de port existant, sinon le noeud final ne sera pas effectif.' 
 ---
-= Supprimez les mappes de ports sur les hôtes bare Metal
+= Supprimer les réaffectations de ports StorageGRID sur les hôtes physiques
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, select site 
 summary: 'Pour déterminer si un site peut être déclassé, commencez par accéder à l"assistant Decommission site.' 
 ---
-= Étape 1 : sélectionnez site
+= Sélectionnez un site à mettre hors service dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, restore, volume 
 summary: 'Vous pouvez restaurer les données d"objet d"un volume de stockage ou d"un nœud de stockage défaillant à l"aide de Grid Manager. Vous pouvez également utiliser Grid Manager pour surveiller les processus de restauration en cours et afficher un historique de restauration.' 
 ---
-= Restaurez les données d'objet à l'aide de Grid Manager
+= Restaurez les données d'objet à l'aide de StorageGRID Grid Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

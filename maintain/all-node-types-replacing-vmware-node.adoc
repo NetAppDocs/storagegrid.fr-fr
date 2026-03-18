@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replace VMware node 
 summary: Lorsque vous restaurez un nœud StorageGRID en panne hébergé sur VMware, vous supprimez le nœud en panne et déployez un nœud de restauration. 
 ---
-= Remplacer le nœud VMware
+= Remplacer un nœud VMware dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

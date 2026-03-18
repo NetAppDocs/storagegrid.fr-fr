@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, vmware, automatic restart, auto restart, configure automatic restart, configure auto restart 
 summary: 'Si la machine virtuelle ne redémarre pas après le redémarrage de l"hyperviseur VMware vSphere, vous devrez peut-être configurer la machine virtuelle pour le redémarrage automatique.' 
 ---
-= VMware : configurez la machine virtuelle pour un redémarrage automatique
+= Configurer une machine virtuelle VMware pour un redémarrage automatique dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

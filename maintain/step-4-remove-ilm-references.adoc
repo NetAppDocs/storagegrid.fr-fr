@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, remove ilm reference 
 summary: 'À partir de l"étape 4 \(Supprimer les références ILM\) de l"assistant site de désaffectation, vous devez supprimer ou modifier toutes les règles ILM inutilisées qui font référence au site, même si ces règles ne sont pas utilisées dans une stratégie ILM.' 
 ---
-= Étape 4 : supprimer les références ILM
+= Supprimer les références ILM à un site dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

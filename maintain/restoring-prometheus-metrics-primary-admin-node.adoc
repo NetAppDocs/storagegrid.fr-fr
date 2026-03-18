@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, restore metrics, restore prometheus, primary admin node 
 summary: 'Vous pouvez également conserver les metrics historiques gérés par Prometheus sur un nœud d"administration principal défaillant. Les metrics de Prometheus ne peuvent être restaurés que si votre système StorageGRID inclut un autre nœud d"administration.' 
 ---
-= Restaurez les metrics Prometheus lors de la récupération du nœud d'administration principal
+= Restaurez les métriques Prometheus lors de la récupération du nœud d'administration principal StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

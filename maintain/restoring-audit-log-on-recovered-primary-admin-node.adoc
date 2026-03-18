@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, restore audit log, primary admin node 
 summary: 'Si vous avez pu conserver le journal d"audit à partir du nœud d"administration principal défaillant, vous pouvez le copier sur le nœud d"administration principal en cours de restauration.' 
 ---
-= Restaurez le journal d'audit sur le nœud d'administration principal restauré
+= Restaurer le journal des audits sur le nœud d'administration StorageGRID principal récupéré
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

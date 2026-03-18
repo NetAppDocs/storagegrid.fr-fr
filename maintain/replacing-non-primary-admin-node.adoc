@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, replace non-primary admin node, replacing non-primary admin node, non-primary admin node 
 summary: 'Pour restaurer un noeud d"administration non primaire, vous devez d"abord remplacer le matériel physique ou virtuel.' 
 ---
-= Remplacez un nœud d'administration non primaire
+= Remplacer le nœud d'administration StorageGRID non principal
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

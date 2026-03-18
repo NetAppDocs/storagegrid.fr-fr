@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, volume warning 
 summary: Avant de récupérer des volumes de stockage défaillants pour un noeud de stockage, vous devez vérifier les avertissements suivants. 
 ---
-= Avertissements pour la restauration du volume de stockage
+= Avertissements concernant la récupération des volumes de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

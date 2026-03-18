@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage node decommission, considerations, appliance node clone 
 summary: Avant de désaffecter un nœud de stockage, déterminez si vous pouvez le cloner à la place. Ensuite, si vous décidez de désaffecter le nœud, examinez la façon dont StorageGRID gère les objets et les métadonnées pendant la procédure de désaffectation. 
 ---
-= Considérations relatives à la désaffectation des nœuds de stockage
+= Considérations relatives à la mise hors service des nœuds de stockage dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

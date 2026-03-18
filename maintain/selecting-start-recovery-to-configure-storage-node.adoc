@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, storage node 
 summary: Après avoir remplacé un noeud de stockage, vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer le nouveau noeud en remplacement du noeud défaillant. 
 ---
-= Sélectionnez Démarrer la restauration pour configurer le nœud de stockage
+= Sélectionnez Démarrer la récupération pour configurer le nœud de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replace linux node 
 summary: 'Si une défaillance nécessite le déploiement d"un ou de plusieurs nouveaux hôtes physiques ou virtuels ou la réinstallation de Linux sur un hôte existant, déployez et configurez l"hôte de remplacement avant de pouvoir restaurer le nœud de grille. Cette procédure constitue une étape du processus de restauration des nœuds grid pour tous les types de nœuds.' 
 ---
-= Remplacez le nœud Linux
+= Remplacer un nœud Linux dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

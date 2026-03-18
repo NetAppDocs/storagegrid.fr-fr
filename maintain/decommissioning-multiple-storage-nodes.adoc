@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission nodes, storage node, multiple storage nodes 
 summary: Si vous devez supprimer plusieurs nœuds de stockage, vous pouvez les désaffecter de manière séquentielle ou parallèle. 
 ---
-= Désaffectation de plusieurs nœuds de stockage
+= Mise hors service de plusieurs nœuds de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

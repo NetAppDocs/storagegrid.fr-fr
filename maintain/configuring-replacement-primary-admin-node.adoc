@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, primary admin node, replace primary admin node, replacing primary admin node 
 summary: 'Le nœud de remplacement doit être configuré en tant que nœud d"administration principal de votre système StorageGRID.' 
 ---
-= Configurez le nœud d'administration principal de remplacement
+= Configurez un nœud d'administration principal de remplacement dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

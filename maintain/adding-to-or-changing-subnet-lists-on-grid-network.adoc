@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, subnet list, grid network 
 summary: 'Vous pouvez utiliser l"outil Modifier IP pour ajouter ou modifier des sous-réseaux sur le réseau de grille.' 
 ---
-= Ajouter ou modifier des listes de sous-réseaux sur le réseau Grid
+= Ajouter ou modifier les listes de sous-réseaux sur le réseau Grid dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

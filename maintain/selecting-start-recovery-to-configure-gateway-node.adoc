@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, gateway node 
 summary: Après avoir remplacé un noeud de passerelle, vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer le nouveau noeud en remplacement du noeud défaillant. 
 ---
-= Sélectionnez Démarrer la récupération pour configurer le nœud de passerelle
+= Sélectionnez Démarrer la récupération pour configurer le nœud de passerelle StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

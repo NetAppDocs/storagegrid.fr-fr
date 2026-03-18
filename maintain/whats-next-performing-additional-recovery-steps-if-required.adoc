@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, corrective action, additional recovery 
 summary: 'En fonction des actions spécifiques que vous avez effectuées pour exécuter les nœuds StorageGRID sur l"hôte de remplacement, vous devrez peut-être effectuer des étapes de restauration supplémentaires pour chaque nœud.' 
 ---
-= Qu'est-ce qui suit : effectuez des étapes de récupération supplémentaires, si nécessaire
+= Effectuez des étapes de récupération supplémentaires du nœud StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

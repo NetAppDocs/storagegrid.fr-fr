@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, server manager, log file 
 summary: 'Si un problème survient lors de l"utilisation de Server Manager, vérifiez son fichier journal.' 
 ---
-= Dépanner Server Manager
+= Dépanner Server Manager dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

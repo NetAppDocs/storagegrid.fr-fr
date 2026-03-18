@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, adc, adc quorum 
 summary: 'Il se peut que vous ne puissiez pas désaffecter certains nœuds de stockage sur un site si trop peu de services de contrôleur de domaine administratif \(ADC\) resteraient disponibles après la mise hors service.' 
 ---
-= Qu'est-ce que le quorum ADC ?
+= Qu’est-ce que le quorum ADC de StorageGRID ?
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

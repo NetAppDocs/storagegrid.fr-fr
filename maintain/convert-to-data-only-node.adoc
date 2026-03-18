@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, convert node, data-only node 
 summary: Pour augmenter les performances, vous pouvez convertir des nœuds de stockage non ADC plus lents en nœuds de stockage de données uniquement. 
 ---
-= Convertir un nœud de stockage en nœud de données uniquement
+= Convertir un nœud de stockage StorageGRID en un nœud de données uniquement
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

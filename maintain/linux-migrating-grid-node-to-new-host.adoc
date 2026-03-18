@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, linux, migrate node, migrating node, new host for node 
 summary: 'Vous pouvez migrer un ou plusieurs nœuds StorageGRID d"un hôte Linux vers un autre hôte Linux pour effectuer la maintenance de l"hôte sans affecter les fonctionnalités ou la disponibilité de votre réseau.' 
 ---
-= Linux : migration du nœud grid vers le nouvel hôte
+= Migrer un nœud StorageGRID vers un nouvel hôte Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

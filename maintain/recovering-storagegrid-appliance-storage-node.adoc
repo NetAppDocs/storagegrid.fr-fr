@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, appliance storage node failure, workflow 
 summary: 'La procédure de restauration d"un nœud de stockage de l"appliance StorageGRID défaillant est identique, que vous soyez en train de récupérer à partir de la perte du disque système ou de la perte de volumes de stockage uniquement.' 
 ---
-= Avertissements relatifs à la récupération des nœuds de stockage de l'appliance
+= Avertissements pour la récupération des nœuds de stockage StorageGRID de l'appliance StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to decommission 
 summary: Vous pouvez effectuer une procédure de mise hors service pour supprimer définitivement les nœuds grid ou un site entier du système StorageGRID. 
 ---
-= Désaffectez le nœud ou le site
+= Mettre hors service un nœud ou un site StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

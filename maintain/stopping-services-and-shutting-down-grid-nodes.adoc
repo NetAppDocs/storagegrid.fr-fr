@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, stop services, shut down nodes, node shutdown 
 summary: Avant de mettre un système StorageGRID hors tension, vous devez arrêter tous les services exécutés sur chaque nœud de grid, puis arrêter toutes les machines virtuelles VMware, les moteurs de conteneurs et les appliances StorageGRID. 
 ---
-= Arrêtez les services et arrêtez les nœuds de la grille
+= Arrêtez les services et éteignez les nœuds StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

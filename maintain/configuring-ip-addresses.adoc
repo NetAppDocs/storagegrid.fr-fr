@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: configure ip address, change IP tool, ethernet, dhcp, ha group 
 summary: 'Vous pouvez configurer le réseau en configurant des adresses IP pour les noeuds de la grille à l"aide de l"outil Modifier les adresses IP.' 
 ---
-= Instructions relatives à l'adresse IP
+= StorageGRID Règles d'adressage IP
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, node shutdown, shut down node, node shut down 
 summary: Vous pouvez arrêter un nœud de grille à partir du shell de commande du nœud. 
 ---
-= Arrêter le nœud de la grille
+= Arrêter le nœud StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

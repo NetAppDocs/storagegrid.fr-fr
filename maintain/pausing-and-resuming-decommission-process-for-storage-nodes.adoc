@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to pause decommission 
 summary: 'Si vous devez effectuer une deuxième procédure de maintenance, vous pouvez interrompre la procédure de mise hors service d"un nœud de stockage pendant certaines étapes. Une fois l"autre procédure terminée, vous pouvez reprendre la mise hors service.' 
 ---
-= Interrompre et reprendre le processus de mise hors service des nœuds de stockage
+= Mettre en pause et reprendre le processus de mise hors service des nœuds de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: rename grid, rename site, rename node, display name, system name 
 summary: 'Si nécessaire, vous pouvez modifier les noms d"affichage affichés dans le Gestionnaire de grille pour l"ensemble de votre grille, chaque site et chaque nœud. Vous pouvez mettre à jour les noms d"affichage en toute sécurité et à tout moment.' 
 ---
-= Utilisez la procédure de renommage
+= Utilisez la procédure de renommage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, storage volume, failed storage volume, unmount failed volume 
 summary: 'Lors de la restauration d"un nœud de stockage dont les volumes de stockage sont en panne, vous devez identifier et démonter les volumes en panne. Vous devez vérifier que seuls les volumes de stockage défaillants sont reformatés dans le cadre de la procédure de restauration.' 
 ---
-= Identifiez et démontez les volumes de stockage défectueux
+= Identifier et démonter les volumes de stockage défaillants dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

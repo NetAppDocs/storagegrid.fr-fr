@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: restore replicated data, restore erasure-coded data, recover storage node, recover storage volume 
 summary: 'Après avoir restauré un volume de stockage sur un nœud de stockage sur lequel le disque système est intact, vous pouvez restaurer les données d"objet répliquées ou avec code d"effacement qui ont été perdues en cas de défaillance du volume de stockage.' 
 ---
-= Restaurez les données d'objet vers le volume de stockage sur lequel le disque système est intact
+= Restaurez les données d'objet sur le volume de stockage StorageGRID où le lecteur système est intact
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

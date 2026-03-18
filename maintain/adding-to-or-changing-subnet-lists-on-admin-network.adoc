@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, subnet list, admin network 
 summary: 'Vous pouvez ajouter, supprimer ou modifier les sous-réseaux dans la liste de sous-réseaux réseau réseau Admin d"un ou plusieurs nœuds.' 
 ---
-= Ajouter ou modifier des listes de sous-réseaux sur le réseau d'administration
+= Ajouter ou modifier les listes de sous-réseaux sur le réseau d'administration dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

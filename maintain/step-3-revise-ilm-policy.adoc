@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, revise ilm policies 
 summary: 'A partir de l"étape 3 \(réviser les règles ILM\) de l"assistant site de désaffectation, vous pouvez déterminer si le site est référencé par une stratégie ILM.' 
 ---
-= Étape 3 : révision des règles ILM
+= Révisez les politiques ILM pour la mise hors service de site dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, service error state, error, error state 
 summary: 'Si vous détectez qu"un service a entré un état d"erreur, essayez de redémarrer le service.' 
 ---
-= Service avec un état d'erreur
+= Service en état d'erreur dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, restore, ilm policy, storage configuration 
 summary: Si vous prévoyez de désaffecter un nœud de stockage, vous devez consulter la politique ILM de votre système StorageGRID avant de commencer le processus de mise hors service. 
 ---
-= Examiner la règle ILM et la configuration du stockage
+= Examinez la politique ILM de StorageGRID et la configuration de stockage
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

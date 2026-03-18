@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, network connection, restore network connection, isolated node, restore isolated node connection 
 summary: 'Dans certaines circonstances, un ou plusieurs groupes de nœuds peuvent ne pas être en mesure de contacter le reste de la grille. Par exemple, les modifications d"adresse IP à l"échelle du site ou de la grille peuvent entraîner l"isolement de nœuds.' 
 ---
-= Restaurez la connectivité réseau pour les nœuds isolés
+= Rétablir la connectivité réseau pour les nœuds StorageGRID isolés
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, primary admin node failure 
 summary: 'Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d"un nœud d"administration principal. Le nœud d"administration principal héberge le service Configuration Management Node \(CMN\) pour la grille.' 
 ---
-= Restaurez vos données après une panne de nœud d'administration principal
+= Récupérer après des pannes du nœud d'administration principal StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

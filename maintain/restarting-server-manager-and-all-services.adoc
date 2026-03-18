@@ -2,16 +2,16 @@
 permalink: maintain/restarting-server-manager-and-all-services.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, server manager, restart server manager 
-summary: 'Vous devrez peut-être redémarrer Server Manager et tous les services s"exécutant sur un nœud de la grille.' 
+summary: 'Vous devrez peut-être redémarrer Server Manager et tous les services en cours d"exécution sur un nœud de la grille.' 
 ---
-= Redémarrez Server Manager et tous les services
+= Redémarrez StorageGRID Server Manager et tous les services
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Vous devrez peut-être redémarrer Server Manager et tous les services s'exécutant sur un nœud de la grille.
+Vous devrez peut-être redémarrer Server Manager et tous les services en cours d'exécution sur un nœud de la grille.
 
 .Avant de commencer
 Vous avez le `Passwords.txt` fichier.

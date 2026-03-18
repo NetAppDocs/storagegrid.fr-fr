@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, non-primary admin node 
 summary: 'Après avoir remplacé un noeud d"administration non primaire, vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer le nouveau noeud en remplacement du noeud défaillant.' 
 ---
-= Sélectionnez Démarrer la restauration pour configurer un noeud d'administration non primaire
+= Sélectionnez Démarrer la récupération pour configurer le nœud d'administration StorageGRID non principal
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

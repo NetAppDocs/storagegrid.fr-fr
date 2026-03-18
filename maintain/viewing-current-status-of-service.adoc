@@ -2,16 +2,16 @@
 permalink: maintain/viewing-current-status-of-service.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, service, status 
-summary: 'Vous pouvez afficher à tout moment l"état actuel d"un service exécuté sur un nœud de la grille.' 
+summary: 'Vous pouvez consulter à tout moment l"état actuel d"un service en cours d"exécution sur un nœud de grille.' 
 ---
-= Afficher l'état actuel du service
+= Afficher l'état actuel d'un service StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Vous pouvez afficher à tout moment l'état actuel d'un service exécuté sur un nœud de la grille.
+Vous pouvez consulter à tout moment l'état actuel d'un service en cours d'exécution sur un nœud de grille.
 
 .Avant de commencer
 Vous avez le `Passwords.txt` fichier.

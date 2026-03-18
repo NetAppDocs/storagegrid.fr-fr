@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, maintenance, maintain, failed storage volumes, failed volumes, cassandra, cassandra rebuild, rebuild cassandra, cassandra database 
 summary: 'Vous devez exécuter un script qui reformate et remonte le stockage sur les volumes de stockage défaillants, puis rereconstruit la base de données Cassandra sur le nœud de stockage si le système détermine qu"elle est nécessaire.' 
 ---
-= Restaurez des volumes de stockage défaillants et reconstruisez la base de données Cassandra
+= Récupérez les volumes de stockage défaillants et reconstruisez la base de données Cassandra dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, procedure 
 summary: Vous devez sélectionner la procédure de restauration correcte pour le type de nœud qui a échoué. 
 ---
-= Sélectionnez la procédure de restauration du noeud
+= Sélectionnez la procédure de récupération du nœud StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

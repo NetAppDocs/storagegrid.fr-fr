@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, appliance storage node 
 summary: 'Vous devez sélectionner Démarrer la restauration dans Grid Manager pour configurer un noeud de stockage d"appliance en remplacement du noeud défaillant.' 
 ---
-= Sélectionnez Démarrer la restauration pour configurer le nœud de stockage de l'appliance
+= Sélectionnez Démarrer la récupération pour configurer le nœud de stockage de l'appliance StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

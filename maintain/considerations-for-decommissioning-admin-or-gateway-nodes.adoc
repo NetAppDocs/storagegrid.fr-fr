@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission admin node, decommission gateway node 
 summary: 'Consultez les considérations relatives à la désaffectation d"un nœud d"administration ou d"un nœud de passerelle.' 
 ---
-= Considérations relatives à la désaffectation des nœuds d'administration ou de passerelle
+= Considérations relatives à la mise hors service du nœud Admin ou Gateway StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

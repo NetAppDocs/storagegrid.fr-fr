@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, replace gateway node, replacing gateway node 
 summary: Vous pouvez remplacer un nœud de passerelle défaillant par un nœud de passerelle exécuté sur le même matériel physique ou virtuel, ou remplacer un nœud de passerelle exécuté sur VMware ou un hôte Linux par un nœud de passerelle hébergé sur une appliance de services. 
 ---
-= Remplacer le nœud de passerelle
+= Remplacer le nœud de passerelle StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

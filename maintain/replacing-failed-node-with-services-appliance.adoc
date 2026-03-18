@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, replace failed node, services appliance 
 summary: 'Vous pouvez utiliser une appliance de services pour restaurer un nœud de passerelle défaillant, un nœud d"administration non principal défaillant ou un nœud d"administration principal défaillant hébergé sur VMware, un hôte Linux ou une appliance de services. Cette procédure constitue une étape de la procédure de restauration des nœuds de la grille.' 
 ---
-= Remplacez le nœud défectueux par l'appliance de services
+= Remplacez le nœud StorageGRID défaillant par un dispositif de services
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

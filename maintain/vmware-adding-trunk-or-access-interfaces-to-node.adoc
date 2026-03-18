@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: add extra interface to node, access interface, VM interface 
 summary: 'Vous pouvez ajouter des lignes réseau supplémentaires ou des interfaces d"accès à un nœud de machine virtuelle après son installation. Les interfaces que vous ajoutez s"affichent sur la page des interfaces VLAN et sur la page des groupes haute disponibilité.' 
 ---
-= VMware : ajoutez du jonction ou des interfaces d'accès à un nœud
+= Ajoutez des interfaces trunk ou d'accès à un nœud VMware dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

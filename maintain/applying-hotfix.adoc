@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, hotfix, software update 
 summary: 'Le correctif est d"abord appliqué automatiquement au nœud d"administration principal. Vous devez ensuite approuver l"application du correctif sur d"autres nœuds de la grille jusqu"à ce que tous les nœuds exécutent la même version logicielle. Vous pouvez personnaliser la séquence d"approbation en sélectionnant pour approuver des nœuds de grille individuels, des groupes de nœuds de grille ou tous les nœuds de la grille.' 
 ---
-= Appliquez un correctif
+= Appliquer un correctif dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

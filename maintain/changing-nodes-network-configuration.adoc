@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, network configuration, node network configuration 
 summary: 'Vous pouvez modifier la configuration réseau d"un ou plusieurs nœuds à l"aide de l"outil Modifier IP. Vous pouvez modifier la configuration du réseau Grid ou ajouter, modifier ou supprimer les réseaux d"administration ou de client.' 
 ---
-= Modifier la configuration réseau du nœud
+= Modifier la configuration réseau du nœud dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

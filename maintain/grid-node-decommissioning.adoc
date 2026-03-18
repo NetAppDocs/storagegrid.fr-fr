@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission, remove grid node 
 summary: 'Vous pouvez utiliser la procédure de désaffectation de nœud pour supprimer un ou plusieurs nœuds de grid sur un ou plusieurs sites. Vous ne pouvez pas désaffecter le nœud d"administration principal.' 
 ---
-= Mise hors service du nœud de la grille
+= Mise hors service d'un nœud de la grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

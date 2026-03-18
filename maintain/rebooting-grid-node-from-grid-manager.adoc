@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: reboot grid node, tasks tab 
 summary: 'Vous pouvez redémarrer un nœud de grid individuel à partir de l"onglet tâches de la page nœuds.' 
 ---
-= Redémarrez le nœud de la grille à partir de l'onglet tâches
+= Redémarrer le nœud StorageGRID depuis l'onglet Tâches
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

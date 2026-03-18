@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recovery, grid node recovery, node recovery 
 summary: 'Avant d"effectuer des procédures de maintenance, vous devez vous assurer que vous disposez des matériaux nécessaires pour récupérer un nœud de grille défaillant.' 
 ---
-= Collectez les ressources requises pour la restauration des nœuds du grid
+= Rassemblez les matériaux nécessaires pour la récupération des nœuds de la grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

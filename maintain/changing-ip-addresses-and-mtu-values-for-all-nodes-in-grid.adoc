@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, node ip address, change node ip, change node ip address, changing node ip, changing node ip address 
 summary: 'Si vous devez modifier l"adresse IP du réseau Grid pour tous les nœuds de la grille, vous devez suivre cette procédure spéciale. Vous ne pouvez pas modifier l"IP du réseau Grid à l"échelle de la grille en utilisant la procédure pour changer les nœuds individuels.' 
 ---
-= Modifiez les adresses IP de tous les nœuds de la grille
+= Modifier les adresses IP de tous les nœuds dans une grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

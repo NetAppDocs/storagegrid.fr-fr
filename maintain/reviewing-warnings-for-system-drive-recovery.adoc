@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, system drive warning, storage node 
 summary: 'Avant de restaurer un disque système défaillant d"un nœud de stockage, consultez les avertissements généraux et les considérations concernant la restauration du nœud de grille et les avertissements spécifiques suivants.' 
 ---
-= Avertissements concernant la restauration du disque système du nœud de stockage
+= Avertissements pour la récupération du disque système du nœud de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

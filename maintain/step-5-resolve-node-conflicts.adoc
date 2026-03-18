@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, resolve node conflict 
 summary: 'À partir de l"étape 5 \(résoudre les conflits de nœud\) de l"assistant dédié au site de mise hors service, vous pouvez déterminer si des nœuds de votre système StorageGRID sont déconnectés ou si des nœuds du site sélectionné appartiennent à un groupe haute disponibilité \(HA\). Après la résolution d"un conflit de nœud, vous démarrez la procédure de mise hors service à partir de cette page.' 
 ---
-= Étape 5 : résoudre les conflits de nœuds (et démarrer la mise hors service)
+= Résolvez les conflits de nœuds et démarrez la mise hors service du site dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, storage volume failure, volume failure, system drive intact 
 summary: Vous devez effectuer une série de tâches pour restaurer un nœud de stockage logiciel dans lequel un ou plusieurs volumes de stockage du nœud de stockage sont défaillants, mais le lecteur système est intact. Si seuls les volumes de stockage ont échoué, le nœud de stockage est toujours disponible pour le système StorageGRID. 
 ---
-= Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact
+= Récupérer après une panne de volume de stockage StorageGRID lorsque le disque système est intact
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

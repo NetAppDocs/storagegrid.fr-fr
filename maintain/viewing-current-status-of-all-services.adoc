@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, service, status 
 summary: 'Vous pouvez afficher à tout moment l"état actuel de tous les services s"exécutant sur un nœud de la grille.' 
 ---
-= Afficher l'état actuel de tous les services
+= Afficher l'état actuel de tous les services StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

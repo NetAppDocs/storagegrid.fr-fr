@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, reboot node, command shell reboot 
 summary: 'Si vous devez surveiller de plus près l"opération de redémarrage ou si vous ne parvenez pas à accéder au Gestionnaire de grille, vous pouvez vous connecter au noeud de grille et exécuter la commande de redémarrage de Server Manager à partir du shell de commande.' 
 ---
-= Redémarrez le nœud grid à partir du shell de commande
+= Redémarrer le nœud StorageGRID depuis l'invite de commandes
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

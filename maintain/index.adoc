@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: maintain overview, maintenance overview, about maintain, about maintenance 
 summary: 'Les tâches de maintenance du grid comprennent la désaffectation d"un nœud ou d"un site, le changement de nom d"une grille, d"un nœud ou d"un site et la maintenance du réseau. Vous pouvez également effectuer des procédures d"hôte et de middleware, ainsi que des procédures de nœud de grille.' 
 ---
-= Maintenance de la grille
+= Maintenance du grid StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

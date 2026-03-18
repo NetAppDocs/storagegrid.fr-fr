@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, server manager, start server manager, start services, start all services 
 summary: Vous devrez peut-être démarrer Server Manager, qui démarre également tous les services sur le nœud de la grille. 
 ---
-= Démarrez Server Manager et tous les services
+= Démarrez StorageGRID Server Manager et tous les services
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

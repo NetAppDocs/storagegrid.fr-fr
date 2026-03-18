@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: restore replicated data, restore erasure-coded data, recover appliance storage node, recover storage volume 
 summary: 'Après avoir restauré des volumes de stockage pour le nœud de stockage de l"appliance, vous pouvez restaurer les données d"objet répliquées ou avec code d"effacement qui ont été perdues en cas de défaillance du nœud de stockage.' 
 ---
-= Restaurez les données d'objet vers un volume de stockage pour l'appliance
+= Restaurez les données d'objet sur un volume de stockage pour une StorageGRID appliance
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

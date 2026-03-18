@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, appliance, reinstallation appliance, reinstall appliance 
 summary: 'Lorsque vous récupérez un nœud de grid hébergé sur une appliance de services, vous devez d"abord préparer l"appliance pour la réinstallation du logiciel StorageGRID.' 
 ---
-= Préparez l'appareil pour la réinstallation (remplacement de la plate-forme uniquement)
+= Préparez l'appliance StorageGRID pour la réinstallation (remplacement de la plateforme uniquement)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

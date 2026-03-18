@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, hotfix 
 summary: 'Avant d"appliquer un correctif, vous devez obtenir tous les matériaux requis.' 
 ---
-= Procurez-vous le matériel requis pour le correctif
+= Obtenez les matériaux nécessaires pour un correctif StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

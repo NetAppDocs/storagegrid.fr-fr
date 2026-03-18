@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, stop service, service 
 summary: 'Certaines procédures de maintenance exigent d"arrêter un seul service tout en maintenant d"autres services sur le nœud de la grille en cours d"exécution. N"arrêtez les services individuels que si vous y êtes invité par une procédure de maintenance.' 
 ---
-= Arrêtez l'entretien
+= Arrêter un service StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

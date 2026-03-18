@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: reboot nodes, rolling reboot procedure 
 summary: Vous pouvez effectuer un redémarrage en continu pour redémarrer plusieurs nœuds grid sans interrompre le service. 
 ---
-= Effectuer un redémarrage en continu
+= Effectuez un redémarrage progressif de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

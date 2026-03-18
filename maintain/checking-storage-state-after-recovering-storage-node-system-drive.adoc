@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, storage node recovery, system drive, storage state 
 summary: 'Après avoir restauré le lecteur système d"un noeud de stockage, vous devez vérifier que l"état souhaité du noeud de stockage est défini sur en ligne et vous assurer que l"état est en ligne par défaut à chaque redémarrage du serveur de noeud de stockage.' 
 ---
-= Vérifiez l'état du stockage après avoir restauré le lecteur système du nœud de stockage
+= Vérifiez l'état du stockage après la récupération d'un disque système StorageGRID Storage Node
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

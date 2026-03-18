@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, server manager, status, version 
 summary: 'Pour chaque nœud de grille, vous pouvez afficher l"état et la version actuels de Server Manager exécuté sur ce nœud de grille. Vous pouvez également obtenir l"état actuel de tous les services exécutés sur ce nœud de grille.' 
 ---
-= Afficher l'état et la version de Server Manager
+= Afficher l'état et la version de StorageGRID Server Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

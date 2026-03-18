@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, services appliance, start software installation 
 summary: 'Pour installer un nœud de passerelle ou un nœud d"administration sur une appliance de services, utilisez le programme d"installation de l"appliance StorageGRID, inclus dans l"appliance.' 
 ---
-= Démarrez l'installation du logiciel sur l'appliance des services
+= Démarrez l'installation du logiciel StorageGRID sur un appareil de services
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

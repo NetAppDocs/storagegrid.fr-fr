@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, storage node, consolidate storage node, consolidating storage node 
 summary: Vous pouvez consolider les nœuds de stockage pour réduire le nombre de nœuds de stockage sur un site ou un déploiement, tout en augmentant la capacité de stockage. 
 ---
-= Consolidez les nœuds de stockage
+= Consolider les nœuds de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

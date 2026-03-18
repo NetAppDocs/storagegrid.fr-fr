@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, decommission nodes, decommissioning nodes, maintenance task 
 summary: 'Lorsque vous accédez à la page Decommission Nodes dans Grid Manager, vous pouvez voir en un coup d"œil quels nœuds peuvent être désaffectés.' 
 ---
-= Accédez à la page nœuds de mise hors service
+= Accédez à la page Décommissionnement des nœuds dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

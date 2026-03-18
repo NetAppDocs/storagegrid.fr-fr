@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, monitor decommission, decommission 
 summary: 'À partir de l"étape 6 \(Monitor Decommission\) de l"assistant de page site de mise hors service, vous pouvez suivre la progression à mesure que le site est supprimé.' 
 ---
-= Étape 6 : surveiller la mise hors service
+= Surveillez la progression de la mise hors service du site dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

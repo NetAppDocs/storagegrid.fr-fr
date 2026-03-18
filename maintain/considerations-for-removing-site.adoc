@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to remove site 
 summary: 'Avant d"utiliser la procédure de mise hors service du site pour supprimer un site, vous devez prendre en compte les considérations.' 
 ---
-= Considérations relatives à la suppression d'un site
+= Considérations relatives à la mise hors service des sites dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

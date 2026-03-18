@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, audit log, copy audit log, copying audit log, non-primary admin node, non primary admin node 
 summary: 'Si vous pouvez copier les journaux d"audit à partir du noeud d"administration défaillant, conservez-les pour conserver l"enregistrement de l"activité et de l"utilisation du système dans la grille. Vous pouvez restaurer les journaux d"audit conservés sur le nœud d"administration non primaire restauré après son exécution.' 
 ---
-= Copie des journaux d'audit à partir d'un nœud d'administration non primaire ayant échoué
+= Copier les journaux d'audit d'un nœud d'administration StorageGRID non principal défaillant
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

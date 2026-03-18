@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, node decommission, decommission 
 summary: 'Avant d"effectuer la mise hors service d"un nœud de la grille, vous devez obtenir les informations suivantes.' 
 ---
-= Rassembler les matériaux nécessaires
+= Rassemblez les matériaux nécessaires pour la mise hors service du nœud StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

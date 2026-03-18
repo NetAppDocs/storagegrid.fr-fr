@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: recover, storage node failure, Reaper 
 summary: 'La procédure de récupération d"un noeud de stockage défaillant dépend du type de panne et du type de noeud de stockage qui a échoué.' 
 ---
-= Restaurez les données après une panne de nœud de stockage
+= Récupérer après des pannes de nœuds de stockage StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
