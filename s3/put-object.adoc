@@ -142,7 +142,13 @@ Voir <<Demander des en-têtes pour le cryptage côté serveur>>
 Les en-têtes de demande suivants ne sont pas pris en charge :
 
 * `If-Match`
++
+Le  `If-Match header` est accepté mais non fonctionnel.
+
 * `If-None-Match`
++
+Le  `If-None-Match header` est accepté mais non fonctionnel.
+
 * `x-amz-acl`
 * `x-amz-sdk-checksum-algorithm`
 * `x-amz-trailer`

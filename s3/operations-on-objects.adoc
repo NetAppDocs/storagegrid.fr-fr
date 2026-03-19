@@ -38,10 +38,16 @@ Le tableau ci-dessous décrit la manière dont StorageGRID implémente les opér
  a| 
 DeleteObject
  a| 
-L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
-
 Lors du traitement d'une requête DeleteObject, StorageGRID tente de supprimer immédiatement toutes les copies de l'objet de tous les emplacements stockés. En cas de succès, StorageGRID renvoie immédiatement une réponse au client. Si toutes les copies ne peuvent pas être supprimées dans les 30 secondes (par exemple, parce qu'un emplacement est temporairement indisponible), StorageGRID met les copies en file d'attente pour suppression et indique que le client a réussi.
 
+Restrictions::
++
+--
+* L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
+* Les  `If-None` et  `If-None-Match` en-têtes sont acceptés mais non fonctionnels.
+
+
+--
 Gestion des versions:: Pour supprimer une version spécifique, le demandeur doit être le propriétaire du compartiment et utiliser la `versionId` sous-ressource. L'utilisation de cette sous-ressource supprime définitivement la version. Si le `versionId` correspond à un marqueur de suppression, l'en-tête de réponse `x-amz-delete-marker` est renvoyé à `true`.
 +
 --

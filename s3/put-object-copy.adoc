@@ -101,6 +101,14 @@ Les en-têtes de demande suivants ne sont pas pris en charge :
 * `Content-Encoding`
 * `Content-Language`
 * `Expires`
+* `If-Match`
++
+Le  `If-Match header` est accepté mais non fonctionnel.
+
+* `If-None-Match`
++
+Le  `If-None-Match header` est accepté mais non fonctionnel.
+
 * `x-amz-checksum-algorithm`
 +
 Lorsque vous copiez un objet, si celui-ci possède un checksum, StorageGRID ne copie pas cette valeur de checksum vers le nouvel objet. Ce comportement s'applique que vous essayiez ou non d'utiliser `x-amz-checksum-algorithm` dans la demande d'objet.
