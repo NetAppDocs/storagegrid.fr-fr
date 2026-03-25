@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: autosupport, how to send asup message 
 summary: 'Pour aider le support technique à résoudre les problèmes liés à votre système StorageGRID, vous pouvez déclencher manuellement l"envoi d"un pack AutoSupport.' 
 ---
-= Déclencher manuellement un package AutoSupport
+= Déclencher manuellement un AutoSupport package dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

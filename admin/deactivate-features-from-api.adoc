@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: deactivate features from api 
 summary: 'Vous pouvez utiliser l"API de gestion de grille pour désactiver complètement certaines fonctions du système StorageGRID. Lorsqu"une fonction est désactivée, aucune autorisation ne peut être attribuée pour effectuer les tâches associées à cette fonctionnalité.' 
 ---
-= Désactivez les fonctions à l'aide de l'API
+= Désactivez les fonctionnalités de StorageGRID avec l'API
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

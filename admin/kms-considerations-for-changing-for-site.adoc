@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: kms cluster, copy kms encryption key 
 summary: 'Chaque serveur de gestion des clés \(KMS\) ou cluster KMS fournit une clé de chiffrement à tous les nœuds d"appliance sur un site unique ou dans un groupe de sites. Si vous devez modifier le KMS utilisé pour un site, vous devrez peut-être copier la clé de chiffrement d"un KMS vers un autre.' 
 ---
-= Considérations relatives à la modification du KMS pour un site
+= Considérations relatives à la modification du KMS pour un site StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: admin nodes, more than one admin node, multiple admin nodes 
 summary: 'Un système StorageGRID peut inclure plusieurs nœuds d"administration pour vous permettre de contrôler et de configurer en continu votre système StorageGRID, même en cas de panne d"un nœud d"administration.' 
 ---
-= Utiliser plusieurs nœuds d'administration
+= Utilisez plusieurs nœuds d'administration dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

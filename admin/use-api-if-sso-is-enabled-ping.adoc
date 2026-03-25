@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to access storagegrid API if SSO is enabled with PingFederate 
 summary: 'Si vous avez configuré et activé la connexion unique (SSO) et que vous utilisez PingFederate comme fournisseur SSO, vous devez émettre une série de requêtes API pour obtenir un jeton d"authentification valide pour l"API Grid Management ou l"API tenant Management.' 
 ---
-= Utilisez l'API si l'authentification unique est activée (PingFederate)
+= Utilisez l'API StorageGRID si l'authentification unique est activée (PingFederate)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

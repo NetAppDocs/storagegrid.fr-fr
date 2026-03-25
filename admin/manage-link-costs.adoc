@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: link cost, site latency, manage link costs, prioritize sites 
 summary: 'Les coûts de liaison vous permettent de définir la priorité du site de data Center qui fournit un service demandé lorsqu"au moins deux sites de data Center existent. Vous pouvez ajuster les coûts de liaison pour refléter la latence entre les sites.' 
 ---
-= Gérer les coûts de liaison
+= Gérer les coûts de liaison dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

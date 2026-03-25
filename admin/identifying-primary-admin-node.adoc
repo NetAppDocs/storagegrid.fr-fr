@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: primary admin node, configuration management node 
 summary: 'Le nœud d"administration principal offre davantage de fonctionnalités que les nœuds d"administration non primaires. Par exemple, certaines procédures de maintenance doivent être effectuées à l"aide du nœud d"administration principal.' 
 ---
-= Identifiez le nœud d'administration principal
+= Identifiez le nœud d'administration principal dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

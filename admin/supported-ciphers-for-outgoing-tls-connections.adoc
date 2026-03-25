@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: tls cipher suites, transport layer security connections 
 summary: 'Le système StorageGRID prend en charge un ensemble limité de suites de chiffrement pour les connexions \(TLS\) de la couche de transport aux systèmes externes utilisés pour la fédération des identités et les pools de stockage cloud.' 
 ---
-= Chiffrement pris en charge pour les connexions TLS sortantes
+= Chiffrements pris en charge pour les connexions TLS sortantes dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

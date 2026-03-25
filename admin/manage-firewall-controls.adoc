@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: firewall controls, untrusted client network, privileged address, manage external access 
 summary: 'StorageGRID comprend un pare-feu interne sur chaque nœud qui améliore la sécurité de votre grille en vous permettant de personnaliser l"accès au réseau Grid, au réseau Admin et au réseau client.' 
 ---
-= Gérer les contrôles de pare-feu internes
+= Gérez les contrôles de pare-feu internes dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

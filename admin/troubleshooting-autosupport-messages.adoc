@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: troubleshoot autosupport, asup package 
 summary: 'Si une tentative d"envoi d"un package AutoSupport échoue, le système StorageGRID prend différentes actions selon le type de package AutoSupport. Vous pouvez vérifier l"état des packages AutoSupport en sélectionnant support \> Outils \> AutoSupport \> Résultats.' 
 ---
-= Dépanner les packages AutoSupport
+= Dépanner les packages AutoSupport de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

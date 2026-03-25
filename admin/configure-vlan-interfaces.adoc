@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure vlan interfaces, vlan interfaces, trunk interface 
 summary: 'Vous pouvez créer des interfaces LAN virtuelles \(VLAN\) sur des nœuds d"administration et de passerelle et les utiliser dans les groupes haute disponibilité et les terminaux d"équilibrage de la charge pour isoler et partitionner le trafic afin de garantir la sécurité, la flexibilité et la performance.' 
 ---
-= Configurez les interfaces VLAN
+= Configurez les interfaces VLAN dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

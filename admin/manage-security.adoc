@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to manage security 
 summary: Vous pouvez configurer différents paramètres de sécurité à partir du Gestionnaire de grille pour sécuriser votre système StorageGRID. 
 ---
-= Gérer la sécurité
+= Gérer la sécurité dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

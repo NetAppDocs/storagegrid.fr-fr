@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: object metadata, metadata capacity, best practices 
 summary: 'La capacité des métadonnées d"objet d"un système StorageGRID contrôle le nombre maximal d"objets qui peuvent être stockés sur le système en question. Pour s"assurer que votre système StorageGRID dispose d"un espace suffisant pour stocker les nouveaux objets, vous devez comprendre où et comment StorageGRID stocke les métadonnées d"objet.' 
 ---
-= Gérer le stockage des métadonnées d'objet
+= Gérez le stockage des métadonnées des objets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

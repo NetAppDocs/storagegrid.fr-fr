@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: tenant, delete, remove tenant 
 summary: 'Vous pouvez supprimer un compte de tenant si vous souhaitez supprimer définitivement l"accès du locataire au système.' 
 ---
-= Supprimer le compte de locataire
+= Supprimer un compte locataire StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

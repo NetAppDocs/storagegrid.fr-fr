@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: sso requirements, single sign on requirements, identity federation requirements for sso, pingfederate, entra id, ad fs 
 summary: 'Avant d"activer l"authentification unique pour un système StorageGRID, vérifiez les conditions requises et les points à prendre en compte.' 
 ---
-= Exigences et considérations relatives à l'authentification unique (SSO)
+= Exigences et considérations relatives à l'authentification unique StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

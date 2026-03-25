@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: firewall, privileged IP address, untrusted client network, configure firewall controls, monitor 
 summary: 'Vous pouvez configurer l"accès au réseau pour des ports StorageGRID internes spécifiques.' 
 ---
-= Configurer le pare-feu interne
+= Configurer le pare-feu interne de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

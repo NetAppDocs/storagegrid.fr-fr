@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: edit traffic classification policy 
 summary: Vous pouvez modifier une stratégie de classification de trafic pour modifier son nom ou sa description, ou pour créer, modifier ou supprimer des règles ou des limites de la stratégie. 
 ---
-= Modifier la stratégie de classification du trafic
+= Modifier une politique de classification du trafic StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

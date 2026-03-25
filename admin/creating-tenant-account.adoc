@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: create tenant, tenant account 
 summary: 'Vous devez créer au moins un compte de locataire pour contrôler l"accès au stockage dans votre système StorageGRID.' 
 ---
-= Créez un compte de locataire
+= Créer un compte locataire StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

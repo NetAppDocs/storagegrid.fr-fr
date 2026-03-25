@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure load balancer endpoint, how to attach certificate to load balancer endpoint 
 summary: 'Les terminaux d"équilibrage de la charge déterminent les ports et les protocoles réseau que les clients S3 peuvent utiliser lors de la connexion à l"équilibreur de charge StorageGRID sur les nœuds de passerelle et d"administration. Vous pouvez également utiliser des noeuds finaux pour accéder au Gestionnaire de grille, au Gestionnaire de locataires, ou aux deux.' 
 ---
-= Configurer les terminaux de l'équilibreur de charge
+= Configurer les points de terminaison de l'équilibreur de charge StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

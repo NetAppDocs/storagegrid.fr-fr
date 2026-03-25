@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: enable http, storage node connections 
 summary: Vous pouvez configurer la sécurité du réseau et des objets pour chiffrer les objets stockés, empêcher certaines requêtes S3 ou autoriser les connexions client aux nœuds de stockage à utiliser le protocole HTTP au lieu du protocole HTTPS. 
 ---
-= Configurer la sécurité du réseau et des objets
+= Configurer la sécurité du réseau et des objets StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

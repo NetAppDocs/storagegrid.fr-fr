@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid manager, sign in, log in 
 summary: 'Vous accédez à la page de connexion de Grid Manager en entrant le nom de domaine complet \(FQDN\) ou l"adresse IP d"un noeud d"administration dans la barre d"adresse d"un navigateur Web pris en charge.' 
 ---
-= Connectez-vous au Grid Manager
+= Sign in au StorageGRID Grid Manager
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

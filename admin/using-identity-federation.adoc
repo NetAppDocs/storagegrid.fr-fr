@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to use identity federation, how to use federated groups with Grid Manager 
 summary: 'L"utilisation de la fédération des identités accélère la configuration des groupes et des utilisateurs et permet aux utilisateurs de se connecter à StorageGRID à l"aide des informations d"identification familières.' 
 ---
-= Utiliser la fédération des identités
+= Utilisez la fédération d'identité dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

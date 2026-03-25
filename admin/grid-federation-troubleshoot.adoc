@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: troubleshoot, grid federation connection, account clone, cross-grid replication, alerts, errors 
 summary: Vous devrez peut-être résoudre les problèmes liés aux alertes et aux erreurs liées aux connexions de fédération du grid, au clone de compte et à la réplication intergrille. 
 ---
-= Dépanner les erreurs de fédération de grille
+= Dépanner les erreurs de fédération de grille dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

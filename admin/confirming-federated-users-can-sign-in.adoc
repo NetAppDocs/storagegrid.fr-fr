@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: sso configuration 
 summary: 'Avant d"activer la connexion unique \(SSO\), vous devez confirmer qu"au moins un utilisateur fédéré peut se connecter au Grid Manager et se connecter au tenant Manager pour tout compte de tenant existant.' 
 ---
-= Confirmez que les utilisateurs fédérés peuvent se connecter
+= Confirmez que les utilisateurs fédérés peuvent se connecter à StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

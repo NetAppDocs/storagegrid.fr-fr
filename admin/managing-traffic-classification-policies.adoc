@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: QoS, quality of service, traffic classification, best practices, limit traffic, monitor traffic 
 summary: 'Les stratégies de classification du trafic vous permettent d"identifier et de surveiller différents types de trafic réseau. Ces règles contribuent au contrôle et à la limitation du trafic pour améliorer vos offres de qualité de services (QoS).' 
 ---
-= Que sont les politiques de classification du trafic ?
+= Politiques de classification du trafic dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

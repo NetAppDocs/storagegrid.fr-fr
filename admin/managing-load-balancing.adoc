@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: manage load balancing, balance workload, client ingest, client retrieval, distribute connection 
 summary: 'L"équilibrage des charges vous permet de gérer les workloads d"ingestion et de récupération à partir des clients S3.' 
 ---
-= Considérations relatives à l'équilibrage de charge
+= Découvrez l'équilibrage de charge StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

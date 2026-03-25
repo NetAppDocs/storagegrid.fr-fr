@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: traffic classification, network traffic, traffic limits, policy 
 summary: 'Vous créez des règles de classification du trafic pour surveiller et limiter, éventuellement, le trafic réseau par compartiment, locataire, sous-réseau IP ou point de terminaison d"équilibrage de la charge. Vous pouvez également définir des limites pour une stratégie en fonction de la bande passante, du nombre de demandes simultanées ou du taux de demande.' 
 ---
-= Créer des stratégies de classification du trafic
+= Créer des politiques de classification du trafic StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

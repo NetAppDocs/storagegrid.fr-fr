@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: platform services, ports for platform services, 443, 80 
 summary: Si vous autorisez un locataire S3 à utiliser des services de plateforme, vous devez configurer la mise en réseau pour le grid de manière à ce que les messages des services de plateforme puissent être envoyés vers leur destination. 
 ---
-= Réseau et ports pour les services de plate-forme
+= Réseau et ports pour les services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

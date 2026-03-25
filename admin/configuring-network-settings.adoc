@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network settings, vlan interface, traffic classification 
 summary: Vous pouvez configurer différents paramètres réseau à partir du Gestionnaire de grille pour affiner le fonctionnement de votre système StorageGRID. 
 ---
-= Configurez les paramètres réseau
+= Configurer les paramètres réseau de StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

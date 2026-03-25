@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: network traffic, traffic classification policy, monitor traffic 
 summary: Vous pouvez surveiller le trafic réseau en affichant les graphiques disponibles à partir de la page stratégies de classification du trafic. 
 ---
-= Afficher les données de trafic réseau
+= Afficher les indicateurs de trafic réseau dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

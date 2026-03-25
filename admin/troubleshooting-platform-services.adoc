@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: troubleshoot platform services, platform services endpoint error 
 summary: 'Les terminaux utilisés dans les services de plateforme sont créés et gérés par les utilisateurs locataires dans le Gestionnaire de locataires. Toutefois, si un locataire a des problèmes de configuration ou d"utilisation des services de plateforme, vous pouvez utiliser le Gestionnaire de grille pour résoudre le problème.' 
 ---
-= Résoudre les problèmes liés aux services de plateforme
+= Dépanner les services de plateforme StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

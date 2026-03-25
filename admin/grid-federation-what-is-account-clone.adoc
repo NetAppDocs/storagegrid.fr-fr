@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: account clone, tenant replication, disaster recovery, grid federation 
 summary: 'Le clone du compte correspond à la réplication automatique d"un compte de locataire, de groupes de locataires, d"utilisateurs de locataires et, éventuellement, Clés d"accès S3 entre les systèmes StorageGRID dans une connexion de fédération de grid.' 
 ---
-= Qu'est-ce que le clone du compte ?
+= En savoir plus sur le clonage de compte dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

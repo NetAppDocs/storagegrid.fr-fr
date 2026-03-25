@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: firewall access, firewall ports, external firewall 
 summary: Vous pouvez ouvrir ou fermer des ports spécifiques au niveau du pare-feu externe. 
 ---
-= Contrôler l'accès au niveau du pare-feu externe
+= Contrôlez l'accès à StorageGRID à un pare-feu externe
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

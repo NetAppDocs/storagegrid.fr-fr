@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: security, browser inactivity timeout, management API stack track 
 summary: 'Les paramètres de sécurité de l"interface vous permettent de contrôler si les utilisateurs sont déconnectés s"ils sont inactifs pendant plus de temps que spécifié et si une trace de pile est incluse dans les réponses d"erreur de l"API.' 
 ---
-= Modifier les paramètres de sécurité de l'interface
+= Modifier les paramètres de sécurité de l'interface StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

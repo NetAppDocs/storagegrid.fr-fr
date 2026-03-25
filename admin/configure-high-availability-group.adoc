@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to configure high availability group, node priority order, failover 
 summary: 'Vous pouvez configurer les groupes haute disponibilité \(HA\) pour fournir un accès haute disponibilité aux services sur les nœuds d"administration ou les nœuds de passerelle.' 
 ---
-= Configurez les groupes haute disponibilité
+= Configurez des groupes de haute disponibilité dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid ca certificate, copy certificate 
 summary: 'StorageGRID utilise une autorité de certification interne \(CA\) pour sécuriser le trafic interne. Ce certificat ne change pas si vous téléchargez vos propres certificats.' 
 ---
-= Copiez le certificat de l'autorité de certification Grid
+= Copiez le certificat d'autorité de certification (CA) StorageGRID Grid
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

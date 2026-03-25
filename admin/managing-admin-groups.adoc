@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: what are admin groups, user permissions 
 summary: 'Vous pouvez créer des groupes d"administration pour gérer les autorisations de sécurité d"un ou plusieurs utilisateurs administrateurs. Les utilisateurs doivent appartenir à un groupe pour pouvoir accéder au système StorageGRID.' 
 ---
-= Gérez les groupes d'administration
+= Gérer les groupes d'administrateurs dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: manage tenants, tenant account, what is a tenant 
 summary: 'Un compte de locataire vous permet d"utiliser l"API REST simple Storage Service \(S3\) pour stocker et récupérer des objets dans un système StorageGRID.' 
 ---
-= Qu'est-ce qu'un compte de locataire ?
+= Comptes locataires dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storage node is full 
 summary: 'Lorsque les nœuds de stockage atteignent leur capacité maximale, ils doivent étendre le système StorageGRID en ajoutant du nouveau stockage. Trois options sont disponibles : ajout de volumes de stockage, ajout de tiroirs d"extension de stockage et ajout de nœuds de stockage.' 
 ---
-= Gérer des nœuds de stockage complets
+= Gérer les nœuds de stockage complets dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

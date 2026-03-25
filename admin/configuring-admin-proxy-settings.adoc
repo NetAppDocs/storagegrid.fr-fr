@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: admin proxy, autosupport, non-transparent proxy 
 summary: 'Si vous envoyez des packages AutoSupport via HTTP ou HTTPS, vous pouvez configurer un serveur proxy non transparent entre les nœuds d"administration et le support technique \(AutoSupport\).' 
 ---
-= Configurer les paramètres du proxy d'administration
+= Configurez les paramètres du proxy d'administration dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

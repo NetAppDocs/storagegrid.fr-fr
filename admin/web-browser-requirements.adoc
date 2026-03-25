@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: web browser requirements, supported browser, chrome, edge, firefox 
 summary: Vous devez utiliser un navigateur Web pris en charge. 
 ---
-= Navigateurs Web pris en charge
+= Configuration requise du navigateur Web pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: relying party trust, active directory, ad fs, single sign on, sso 
 summary: 'Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une confiance de partie de confiance pour chaque nœud d"administration de votre système. Vous pouvez créer des approbations tierces via les commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant manuellement les données.' 
 ---
-= Créer des fiducies de tiers de confiance dans AD FS
+= Créer des approbations de parties de confiance dans AD FS pour StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

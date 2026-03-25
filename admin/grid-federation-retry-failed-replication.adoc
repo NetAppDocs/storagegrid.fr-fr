@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid federation, troubleshoot 
 summary: 'Après avoir résolu l"alerte d"échec permanent de la réplication multigrille, vous devez déterminer si des objets ou des marqueurs de suppression n"ont pas pu être répliqués sur l"autre grille. Vous pouvez ensuite réingérer ces objets ou utiliser l"API de gestion de grille pour réessayer la réplication.' 
 ---
-= Identifier et réessayer les opérations de réplication ayant échoué
+= Identifier et réessayer les opérations de réplication StorageGRID ayant échoué
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

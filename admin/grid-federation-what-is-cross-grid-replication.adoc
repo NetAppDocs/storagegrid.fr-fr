@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cross-grid replication, cgr, disaster recovery, grid federation 
 summary: La réplication inter-grid est la réplication automatique des objets entre des compartiments S3 sélectionnés dans deux systèmes StorageGRID connectés dans une connexion de fédération de grid. Le clone du compte est requis pour la réplication entre les grilles. 
 ---
-= Qu'est-ce que la réplication inter-grid ?
+= Découvrez la réplication inter-grilles dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

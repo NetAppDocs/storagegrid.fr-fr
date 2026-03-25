@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ip addresses for client, how to connect to storagegrid, ports, vip 
 summary: 'Pour stocker ou récupérer des objets, les applications client S3 se connectent au service Load Balancer, qui est inclus sur tous les nœuds d"administration et les nœuds de passerelle, ou au service LDR (local distribution Router), qui est inclus sur tous les nœuds de stockage.' 
 ---
-= Résumé : adresses IP et ports pour les connexions client
+= Adresses IP et ports pour les connexions client StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

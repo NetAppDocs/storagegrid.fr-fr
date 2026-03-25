@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: kms, appliance configuration, node encryption 
 summary: 'Avant de pouvoir utiliser un serveur de gestion des clés \(KMS\) pour sécuriser les données StorageGRID sur les nœuds d"appliance, vous devez effectuer deux tâches de configuration : configurer un ou plusieurs serveurs KMS et activer le chiffrement des nœuds pour les nœuds de l"appliance. Une fois ces deux tâches de configuration terminées, le processus de gestion des clés est automatique.' 
 ---
-= KM et configuration de l'appliance
+= Configuration du serveur de gestion des clés et de l'appliance StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

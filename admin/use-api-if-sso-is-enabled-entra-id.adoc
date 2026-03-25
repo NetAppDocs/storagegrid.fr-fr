@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: how to access storagegrid API if SSO is enabled with Entra ID 
 summary: 'Si vous avez configuré et activé l"authentification unique (SSO) et que vous utilisez Entra ID comme fournisseur SSO, vous pouvez utiliser deux exemples de scripts pour obtenir un jeton d"authentification valide pour l"API Grid Management ou l"API Tenant Management.' 
 ---
-= Utiliser l'API si l'authentification unique est activée (ID Entra)
+= Utilisez l'API StorageGRID si l'authentification unique est activée (Entra ID)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

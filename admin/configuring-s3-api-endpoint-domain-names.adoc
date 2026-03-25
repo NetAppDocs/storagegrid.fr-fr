@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: s3 endpoint domain names, virtual-hosted-style requests 
 summary: Pour prendre en charge les requêtes de type hébergement virtuel S3, vous devez utiliser le gestionnaire Grid pour configurer la liste des noms de domaine de terminaux S3 auxquels les clients S3 se connectent. 
 ---
-= Configuration des noms de domaine de terminaux S3
+= Configurez les noms de domaine des points de terminaison S3 dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

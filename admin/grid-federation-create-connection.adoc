@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: grid federation, create connection, configure connection 
 summary: 'Vous pouvez créer une connexion de fédération de grille entre deux systèmes StorageGRID si vous souhaitez cloner les détails du locataire et répliquer les données d"objet.' 
 ---
-= Créer des connexions de fédération de grille
+= Créer des connexions de fédération de grille StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
