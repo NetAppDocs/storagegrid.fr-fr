@@ -5,14 +5,6 @@ entries:
 - title: Avant de procéder à la mise à niveau
   pdf-filename: Mettez à niveau le logiciel StorageGRID
   url: "/upgrade/index.html"
-- title: Quoi de neuf dans StorageGRID 12.0
-  url: "/upgrade/whats-new.html"
-- title: Fonctions supprimées ou obsolètes
-  url: "/upgrade/removed-or-deprecated-features.html"
-- title: Modifications apportées à l'API de gestion du grid
-  url: "/upgrade/changes-to-grid-management-api.html"
-- title: Modifications apportées à l'API de gestion des locataires
-  url: "/upgrade/changes-to-tenant-management-api.html"
 - title: Planifiez et préparez la mise à niveau
   entries:
   - title: Estimer le temps de réalisation de la mise à niveau

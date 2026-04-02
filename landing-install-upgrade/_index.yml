@@ -34,7 +34,7 @@ indexpage:
   - title: Mise à niveau ou correctif
     links:
     - title: Quoi de neuf
-      url: "../upgrade/whats-new.html"
+      url: "../release-notes/whats-new.html"
     - title: Estimer le temps de réalisation
       url: "../upgrade/estimating-time-to-complete-upgrade.html"
     - title: Quel est l'impact sur votre système lors de la mise à niveau

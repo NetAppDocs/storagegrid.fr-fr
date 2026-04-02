@@ -60,7 +60,7 @@ L'ordinateur portable de service doit posséder :
 Documentation StorageGRID::
 +
 --
-* link:../release-notes/index.html["Notes de mise à jour"]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Notes de mise à jour"^]. Vous devez vous connecter avec votre compte NetApp ou créer un compte pour accéder aux notes de version.
 * link:../admin/index.html["Instructions d'administration de StorageGRID"]
 
 

@@ -33,7 +33,7 @@ image::../media/grid-federation-workflow.png[Flux de travail de connexion de fé
 
 * Les grilles utilisées pour la fédération de grille doivent exécuter des versions StorageGRID identiques ou ne doivent pas avoir plus d'une différence de version majeure entre elles.
 +
-Pour plus de détails sur les exigences de version, reportez-vous au link:../release-notes/index.html["Notes de mise à jour"].
+Pour plus de détails sur les exigences de version, consultez  https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Notes de mise à jour"^]. Vous devez vous connecter avec votre compte NetApp ou créer un compte pour accéder aux notes de version.
 
 * Une grille peut avoir une ou plusieurs connexions de fédération de grille à d'autres grilles. Chaque connexion de fédération de grille est indépendante des autres connexions. Par exemple, si la grille 1 a une connexion avec la grille 2 et une seconde connexion avec la grille 3, il n'y a pas de connexion implicite entre la grille 2 et la grille 3.
 * Les connexions de fédération de grille sont bidirectionnelles. Une fois la connexion établie, vous pouvez surveiller et gérer la connexion à partir de l'une ou l'autre grille.

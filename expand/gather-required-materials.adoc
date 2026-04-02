@@ -59,7 +59,7 @@ La phrase de passe est créée et documentée lors de l'installation initiale du
 Documentation StorageGRID
  a| 
 * link:../admin/index.html["Administrer StorageGRID"]
-* link:../release-notes/index.html["Notes de mise à jour"]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Notes de mise à jour"^]. Vous devez vous connecter avec votre compte NetApp ou créer un compte pour accéder aux notes de version.
 * link:../swnodes/index.html["Instructions d'installation pour votre plate-forme"]
 
 

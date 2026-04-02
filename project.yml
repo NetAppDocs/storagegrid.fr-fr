@@ -30,7 +30,15 @@ sidebar:
   - title: Appliances StorageGRID
     url: "/swnodes/storagegrid-hardware.html"
   - title: Notes de mise à jour
-    url: "/release-notes/index.html"
+    entries:
+    - title: Quoi de neuf dans StorageGRID 12.0
+      url: "/release-notes/whats-new.html"
+    - title: Fonctionnalités supprimées ou obsolètes
+      url: "/release-notes/removed-or-deprecated-features.html"
+    - title: Modifications apportées à l'API de gestion du grid
+      url: "/release-notes/changes-to-grid-management-api.html"
+    - title: Modifications apportées à l'API de gestion des locataires
+      url: "/release-notes/changes-to-tenant-management-api.html"
   - title: Commencez
     url: "/landing-get-started/index.html"
     entries:

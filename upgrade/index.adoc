@@ -25,8 +25,8 @@ CAUTION: Ne démarrez pas la mise à niveau si vous avez un besoin urgent d’é
 Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et améliorations de StorageGRID 12.0, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID .
 
 * link:how-your-system-is-affected-during-upgrade.html["Quel est l'impact de votre système pendant la mise à niveau"]
-* link:whats-new.html["Quoi de neuf dans StorageGRID 12.0"]
-* link:removed-or-deprecated-features.html["Fonctions supprimées ou obsolètes"]
-* link:changes-to-grid-management-api.html["Modifications apportées à l'API de gestion du grid"]
-* link:changes-to-tenant-management-api.html["Modifications apportées à l'API de gestion des locataires"]
+* link:../release-notes/whats-new.html["Quoi de neuf dans StorageGRID 12.0"]
+* link:../release-notes/removed-or-deprecated-features.html["Fonctions supprimées ou obsolètes"]
+* link:../release-notes/changes-to-grid-management-api.html["Modifications apportées à l'API de gestion du grid"]
+* link:../release-notes/changes-to-tenant-management-api.html["Modifications apportées à l'API de gestion des locataires"]
 
