@@ -825,7 +825,7 @@ Objet de restauration
 |===
 
 
-== Utiliser l'autorisation PutOverwriteObject
+== [[use-putoverwriteobject-permission]]Utilisez l'autorisation PutOverwriteObject
 
 L'autorisation s3:PutOverwriteObject est une autorisation StorageGRID personnalisée qui s'applique aux opérations qui créent ou mettent à jour des objets. Le paramètre de cette autorisation détermine si le client peut remplacer les données d'un objet, les métadonnées définies par l'utilisateur ou le balisage d'objets S3.
 
