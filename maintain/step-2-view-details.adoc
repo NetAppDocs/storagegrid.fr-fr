@@ -2,7 +2,7 @@
 permalink: maintain/step-2-view-details.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, view details 
-summary: 'À partir de l"étape 2 \(Afficher les détails\) de l"assistant dédié au site de mise hors service, vous pouvez vérifier quels nœuds sont inclus sur le site, voir la quantité d"espace utilisée sur chaque nœud de stockage et évaluer la quantité d"espace disponible sur les autres sites de votre grille.' 
+summary: 'À partir de l"étape 2 (Afficher les détails) de l"assistant Decommission site, vous pouvez vérifier quels nœuds sont inclus sur le site, voir combien d"espace a été utilisé sur chaque noeud de stockage et évaluer la quantité d"espace disponible sur les autres sites de votre grille.' 
 ---
 = Consultez les détails du site avant la mise hors service dans StorageGRID
 :allow-uri-read: 

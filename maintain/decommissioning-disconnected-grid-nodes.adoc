@@ -2,7 +2,7 @@
 permalink: maintain/decommissioning-disconnected-grid-nodes.html 
 sidebar: sidebar 
 keywords: storagegrid, disconnected nodes, decommission node 
-summary: 'Vous devrez peut-être désaffecter un nœud qui n"est pas actuellement connecté à la grille \(un nœud dont l"état de santé est inconnu ou désactivé d"un point de vue administratif\).' 
+summary: 'Vous devrez peut-être désaffecter un nœud qui n"est pas actuellement connecté à la grille (dont l"état de santé est inconnu ou désactivé d"un point de vue administratif).' 
 ---
 = Mettre hors service les nœuds StorageGRID déconnectés
 :allow-uri-read: 

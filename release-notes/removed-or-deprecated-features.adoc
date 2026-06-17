@@ -39,7 +39,7 @@ NOTE: Dans certains cas, NetApp peut mettre fin à la prise en charge de certain
 
 
  a| 
-Alarmes héritées (_pas alertes_)
+Alarmes, héritées (_pas Alertes_)
  a| 
 11,7
  a| 
@@ -104,6 +104,19 @@ Moteur de mise en conteneurs Docker
 À DÉFINIR
  a| 
 La prise en charge de Docker comme moteur de conteneur pour les déploiements uniquement logiciels est obsolète.  Docker sera remplacé par un autre moteur de conteneur dans une prochaine version.  Reportez-vous à lalink:../swnodes/software-requirements.html["exigences logicielles pour les nœuds basés sur des logiciels"] pour une liste des versions de Docker actuellement prises en charge.
+
+
+
+ a| 
+Configuration de l'e-mail (ancienne version)
+ a| 
+11,9
+ a| 
+12,0
+ a| 
+12,1
+ a| 
+https://docs.netapp.com/us-en/storagegrid-118/monitor/managing-alarms.html#configure-notifications-for-alarms-legacy-system["Configurer les notifications d'alarmes (système hérité) (StorageGRID 11.8)"^]
 
 
 

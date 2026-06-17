@@ -2,7 +2,7 @@
 permalink: admin/confirming-federated-users-can-sign-in.html 
 sidebar: sidebar 
 keywords: sso configuration 
-summary: 'Avant d"activer la connexion unique \(SSO\), vous devez confirmer qu"au moins un utilisateur fédéré peut se connecter au Grid Manager et se connecter au tenant Manager pour tout compte de tenant existant.' 
+summary: 'Avant d"activer l"authentification unique (SSO), vous devez confirmer qu"au moins un utilisateur fédéré peut se connecter au Grid Manager et au tenant Manager pour tout compte de tenant existant.' 
 ---
 = Confirmez que les utilisateurs fédérés peuvent se connecter à StorageGRID
 :allow-uri-read: 

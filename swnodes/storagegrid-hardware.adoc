@@ -10,7 +10,7 @@ summary: Découvrez comment installer, configurer et utiliser le matériel des a
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

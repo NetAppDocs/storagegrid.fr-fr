@@ -2,7 +2,7 @@
 permalink: tenant/using-storagegrid-tenant-account.html 
 sidebar: sidebar 
 keywords: how to use tenant account 
-summary: 'Un compte de locataire vous permet d"utiliser l"API REST simple Storage Service \(S3\) pour stocker et récupérer des objets dans un système StorageGRID.' 
+summary: 'Un compte de locataire vous permet d"utiliser l"API REST simple Storage Service (S3) pour stocker et récupérer des objets dans un système StorageGRID.' 
 ---
 = Utilisez le compte de locataire StorageGRID
 :allow-uri-read: 

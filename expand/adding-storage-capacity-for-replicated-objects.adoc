@@ -2,7 +2,7 @@
 permalink: expand/adding-storage-capacity-for-replicated-objects.html 
 sidebar: sidebar 
 keywords: replication, replicated, copies, capacity, storage nodes, expand, expansion, StorageGRID 
-summary: 'Si la règle de gestion du cycle de vie des informations \(ILM\) de votre déploiement inclut une règle qui crée des copies répliquées des objets, vous devez tenir compte de la quantité de stockage à ajouter et de l"emplacement d"ajout des nouveaux volumes ou nœuds de stockage.' 
+summary: 'Si la règle de gestion du cycle de vie des informations (ILM) de votre déploiement inclut une règle qui crée des copies répliquées des objets, vous devez tenir compte de la quantité de stockage à ajouter et de l"emplacement où ajouter les nouveaux volumes ou nœuds de stockage.' 
 ---
 = Planification de l'extension des données répliquées dans StorageGRID
 :allow-uri-read: 

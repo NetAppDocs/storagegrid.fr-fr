@@ -2,7 +2,7 @@
 permalink: maintain/recovering-from-primary-admin-node-failures.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, primary admin node failure 
-summary: 'Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d"un nœud d"administration principal. Le nœud d"administration principal héberge le service Configuration Management Node \(CMN\) pour la grille.' 
+summary: 'Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d"un nœud d"administration principal. Le nœud d"administration principal héberge le service de nœud de gestion de la configuration (CMN) pour la grille.' 
 ---
 = Récupérer après des pannes du nœud d'administration principal StorageGRID
 :allow-uri-read: 
@@ -14,7 +14,7 @@ summary: 'Vous devez effectuer un ensemble spécifique de tâches pour effectuer
 Vous devez effectuer un ensemble spécifique de tâches pour effectuer une restauration suite à une défaillance d'un nœud d'administration principal. Le nœud d'administration principal héberge le service de nœud de gestion de la configuration (CMN) pour la grille.
 
 
-CAUTION: Vous devez réparer ou remplacer rapidement un nœud d'administration principal en panne, faute de quoi la grille risque de perdre son ingestion de nouveaux objets. La période exacte dépend de votre taux d'acquisition de l'objet : si vous avez besoin d'une évaluation plus précise de la durée de votre grille, contactez le support technique.
+CAUTION: Vous devez réparer ou remplacer rapidement un nœud d'administration principal défaillant, faute de quoi vous risquez de ne pas pouvoir effectuer certaines opérations de maintenance.
 
 Pour restaurer un nœud d'administration principal, suivez ces étapes générales :
 

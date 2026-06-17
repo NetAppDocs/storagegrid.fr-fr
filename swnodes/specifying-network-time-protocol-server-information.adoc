@@ -2,7 +2,7 @@
 permalink: swnodes/specifying-network-time-protocol-server-information.html 
 sidebar: sidebar 
 keywords: how to specify Network Time Protocol server information 
-summary: 'Vous devez spécifier les informations de configuration du protocole NTP \(Network Time Protocol\) pour le système StorageGRID, de sorte que les opérations effectuées sur des serveurs distincts puissent rester synchronisées.' 
+summary: 'Vous devez spécifier les informations de configuration du protocole NTP (Network Time Protocol) pour le système StorageGRID, de sorte que les opérations effectuées sur des serveurs distincts puissent rester synchronisées.' 
 ---
 = Spécifiez les informations du serveur Network Time Protocol pour StorageGRID
 :allow-uri-read: 

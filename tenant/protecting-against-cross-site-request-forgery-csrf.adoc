@@ -2,7 +2,7 @@
 permalink: tenant/protecting-against-cross-site-request-forgery-csrf.html 
 sidebar: sidebar 
 keywords: how to protect against cross-site request forgery, csrf 
-summary: 'Vous pouvez vous protéger contre les attaques intersites \(CSRF\) contre StorageGRID en utilisant des jetons CSRF pour améliorer l"authentification qui utilise des cookies. Grid Manager et tenant Manager activent automatiquement cette fonction de sécurité ; les autres clients API peuvent choisir de l"activer lorsqu"ils se connectent.' 
+summary: 'Vous pouvez contribuer à protéger StorageGRID contre les attaques par falsification de requête inter-sites (CSRF) en utilisant des jetons CSRF pour renforcer l"authentification qui utilise des cookies.' 
 ---
 = Protégez-vous contre la falsification de requêtes intersites (CSRF) dans StorageGRID
 :allow-uri-read: 

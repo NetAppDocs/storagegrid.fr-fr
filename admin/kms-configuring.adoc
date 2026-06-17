@@ -2,7 +2,7 @@
 permalink: admin/kms-configuring.html 
 sidebar: sidebar 
 keywords: configure kms, key management server, kmip, Key Management Interoperability Protocol 
-summary: 'Un serveur de gestion des clés \(KMS\) est un système tiers externe qui fournit des clés de chiffrement aux nœuds de l"appliance StorageGRID sur le site StorageGRID associé à l"aide du protocole KMIP (Key Management Interoperability Protocol).' 
+summary: 'Un serveur de gestion de clés (KMS) est un système externe tiers qui fournit des clés de chiffrement aux nœuds d"appliance StorageGRID sur le site StorageGRID associé en utilisant le protocole d"interopérabilité de gestion de clés (KMIP)' 
 ---
 = Découvrez les serveurs de gestion des clés dans StorageGRID
 :allow-uri-read: 

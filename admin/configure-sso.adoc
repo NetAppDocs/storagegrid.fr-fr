@@ -2,7 +2,7 @@
 permalink: admin/configure-sso.html 
 sidebar: sidebar 
 keywords: use sandbox mode for sso, how to test single sign-on 
-summary: 'Vous pouvez suivre l"assistant de configuration SSO et entrer en mode sandbox pour configurer et tester l"authentification unique (SSO) avant de l"activer pour tous les utilisateurs de StorageGRID .  Une fois SSO activé, vous pouvez revenir au mode sandbox lorsque cela est nécessaire pour modifier ou retester la configuration.' 
+summary: 'Vous pouvez suivre l"assistant de configuration SSO et accéder au mode sandbox pour configurer et tester l"authentification unique (SSO) avant de l"activer pour tous les utilisateurs de StorageGRID. Une fois SSO activé, vous pouvez revenir au mode sandbox si nécessaire pour modifier ou tester à nouveau la configuration.' 
 ---
 = Configurer l'authentification unique (SSO) dans StorageGRID
 :allow-uri-read: 

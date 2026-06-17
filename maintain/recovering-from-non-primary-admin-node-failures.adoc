@@ -2,7 +2,7 @@
 permalink: maintain/recovering-from-non-primary-admin-node-failures.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, non-primary admin node failure 
-summary: 'Vous devez effectuer les tâches suivantes pour effectuer une restauration à partir d"une panne de nœud d"administration non primaire. Un nœud d"administration héberge le service Configuration Management Node \(CMN\) et est appelé noeud d"administration principal. Bien que vous puissiez avoir plusieurs nœuds d"administration, chaque système StorageGRID n"inclut qu"un seul nœud d"administration principal. Tous les autres nœuds d"administration sont des nœuds d"administration non primaires.' 
+summary: 'Vous devez effectuer les tâches suivantes pour effectuer une restauration à partir d"une panne de nœud d"administration non primaire. Un nœud d"administration héberge le service de nœud de gestion de la configuration (CMN) et est appelé nœud d"administration principal. Bien que vous puissiez avoir plusieurs nœuds d"administration, chaque système StorageGRID n"inclut qu"un seul nœud d"administration principal. Tous les autres nœuds d"administration sont des nœuds d"administration non primaires.' 
 ---
 = Récupérer après des pannes de nœuds d'administration StorageGRID non principaux
 :allow-uri-read: 

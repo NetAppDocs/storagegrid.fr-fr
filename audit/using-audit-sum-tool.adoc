@@ -2,7 +2,7 @@
 permalink: audit/using-audit-sum-tool.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, tool, audit-sum, audit sum, write, read, head, delete, minimum time, maximum time, average time, minimum size, maximum size, average size 
-summary: 'Vous pouvez utiliser l"outil audit-sum pour compter les messages d"audit d"écriture, de lecture, de tête et de suppression et pour afficher les temps minimum, maximum et moyen \(ou taille\) pour chaque type d"opération.' 
+summary: 'Vous pouvez utiliser l"outil audit-sum pour compter les messages d"audit d"écriture, de lecture, d"en-tête et de suppression, ainsi que pour voir le temps (ou la taille) minimum, maximum et moyen pour chaque type d"opération.' 
 ---
 = Utilisez l'outil audit-sum pour résumer les messages d'audit de StorageGRID
 :allow-uri-read: 

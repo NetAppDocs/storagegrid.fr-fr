@@ -2,7 +2,7 @@
 permalink: audit/sadd-security-audit-disable.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, SADD, Security Audit Disable 
-summary: 'Ce message indique que le service d"origine \(ID de nœud\) a désactivé la journalisation des messages d"audit ; les messages d"audit ne sont plus collectés ni livrés.' 
+summary: 'Ce message indique que le service d"origine (ID du nœud) a désactivé la journalisation des messages d"audit. StorageGRID ne collecte ni ne transmet plus de messages d"audit.' 
 ---
 = Message d'audit SADD pour la désactivation de l'audit de sécurité dans StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Ce message indique que le service d"origine \(ID de nœud\) a désacti
 
 
 [role="lead"]
-Ce message indique que le service d'origine (ID de nœud) a désactivé la journalisation des messages d'audit ; les messages d'audit ne sont plus collectés ou livrés.
+Ce message indique que le service d'origine (ID du nœud) a désactivé la journalisation des messages d'audit. StorageGRID ne collecte ni ne transmet plus de messages d'audit.
 
 [cols="1a,1a,4a"]
 |===

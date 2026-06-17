@@ -2,7 +2,7 @@
 permalink: ilm/advantages-disadvantages-of-ingest-options.html 
 sidebar: sidebar 
 keywords: ingest options, balance ingest, strict ingest, dual commit ingest 
-summary: 'Comprendre les avantages et les inconvénients de chacune des trois options de protection des données à l"entrée \(équilibré, strict ou double allocation\) vous permet de choisir celle qui convient le mieux à définir pour une règle ILM.' 
+summary: 'Découvrez les avantages et les inconvénients de chacune des trois options de protection des données à l"entrée (équilibre, stricte ou double engagement). Vous pouvez décider de la règle ILM à sélectionner.' 
 ---
 = Avantages, inconvénients et limitations des options d'ingestion ILM dans StorageGRID
 :allow-uri-read: 

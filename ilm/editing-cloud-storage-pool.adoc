@@ -2,7 +2,7 @@
 permalink: ilm/editing-cloud-storage-pool.html 
 sidebar: sidebar 
 keywords: edit cloud storage pool 
-summary: 'Vous pouvez modifier un pool de stockage cloud pour en changer le nom, le terminal de service ou d"autres détails. Toutefois, vous ne pouvez pas modifier le compartiment S3 ou le conteneur Azure pour un pool de stockage cloud.' 
+summary: 'Vous pouvez modifier un pool de stockage cloud pour en changer le nom, le point de terminaison de service ou d"autres détails ; toutefois, vous ne pouvez pas changer le compartiment S3 ou le conteneur Azure pour un pool de stockage cloud.' 
 ---
 = Modifier un Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 

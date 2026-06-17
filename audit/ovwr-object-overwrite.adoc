@@ -2,7 +2,7 @@
 permalink: audit/ovwr-object-overwrite.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, OVWR, Object Overwrite 
-summary: 'Ce message est généré lorsqu"une opération \(client-demandé\) externe entraîne le remplacement d"un objet par un autre objet.' 
+summary: 'Ce message est généré lorsqu"une opération externe (client-demandé) provoque le remplacement d"un objet par un autre objet.' 
 ---
 = Message d'audit OVWR pour les remplacements d'objets dans StorageGRID
 :allow-uri-read: 

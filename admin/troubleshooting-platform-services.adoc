@@ -2,7 +2,7 @@
 permalink: admin/troubleshooting-platform-services.html 
 sidebar: sidebar 
 keywords: troubleshoot platform services, platform services endpoint error 
-summary: 'Les terminaux utilisés dans les services de plateforme sont créés et gérés par les utilisateurs locataires dans le Gestionnaire de locataires. Toutefois, si un locataire a des problèmes de configuration ou d"utilisation des services de plateforme, vous pouvez utiliser le Gestionnaire de grille pour résoudre le problème.' 
+summary: Les points de terminaison utilisés dans les services de la plateforme sont créés et gérés par les utilisateurs locataires dans le Tenant Manager. Cependant, si un locataire rencontre des difficultés pour configurer ou utiliser les services de la plateforme, vous pouvez utiliser le Grid Manager pour aider à résoudre le problème. 
 ---
 = Dépanner les services de plateforme StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Les terminaux utilisés dans les services de plateforme sont créés e
 
 
 [role="lead"]
-Les terminaux utilisés dans les services de plateforme sont créés et gérés par les utilisateurs locataires dans le Gestionnaire de locataires. Toutefois, si un locataire a des problèmes de configuration ou d'utilisation des services de plateforme, vous pouvez utiliser le Gestionnaire de grille pour résoudre le problème.
+Les points de terminaison utilisés dans les services de la plateforme sont créés et gérés par les utilisateurs locataires dans le Tenant Manager. Cependant, si un locataire rencontre des difficultés pour configurer ou utiliser les services de la plateforme, vous pouvez utiliser le Grid Manager pour aider à résoudre le problème.
 
 
 

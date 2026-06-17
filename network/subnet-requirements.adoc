@@ -23,9 +23,13 @@ Les restrictions suivantes sont appliquées par le Grid Manager pendant le dépl
 * N'utilisez pas de sous-réseaux contenant les adresses IPv4 suivantes pour le réseau de grille, le réseau d'administration ou le réseau client d'un nœud :
 +
 ** 192 168 130 101
+** 192 168 130 121
 ** 192 168 131 101
+** 192 168 131 121
 ** 192 168 130 102
+** 192 168 130 122
 ** 192 168 131 102
+** 192 168 131 122
 ** 198.51.100.2
 ** 198.51.100.4
 

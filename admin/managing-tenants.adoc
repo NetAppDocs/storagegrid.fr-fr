@@ -2,7 +2,7 @@
 permalink: admin/managing-tenants.html 
 sidebar: sidebar 
 keywords: manage tenants, tenant account, what is a tenant 
-summary: 'Un compte de locataire vous permet d"utiliser l"API REST simple Storage Service \(S3\) pour stocker et récupérer des objets dans un système StorageGRID.' 
+summary: 'Un compte de locataire vous permet d"utiliser l"API REST simple Storage Service (S3) pour stocker et récupérer des objets dans un système StorageGRID.' 
 ---
 = Comptes locataires dans StorageGRID
 :allow-uri-read: 
