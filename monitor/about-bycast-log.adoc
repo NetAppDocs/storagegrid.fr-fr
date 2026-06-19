@@ -2,7 +2,7 @@
 permalink: monitor/about-bycast-log.html 
 sidebar: sidebar 
 keywords: bycast, log 
-summary: 'Le fichier /var/local/log/bycast.log est le fichier de dépannage principal du logiciel StorageGRID. Il existe un `bycast.log` fichier pour chaque nœud de grille. Le fichier contient des messages spécifiques à ce nœud de grille.' 
+summary: Le fichier /var/local/log/bycast.log est le fichier principal de dépannage du logiciel StorageGRID. Il existe un fichier bycast.log pour chaque nœud de la grille. Le fichier contient des messages spécifiques à ce nœud de la grille. 
 ---
 = En savoir plus sur le fichier bycast.log de StorageGRID
 :allow-uri-read: 

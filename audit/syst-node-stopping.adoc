@@ -2,7 +2,7 @@
 permalink: audit/syst-node-stopping.html 
 sidebar: sidebar 
 keywords: storagegrid, audit, message, SYST, Node Stopping 
-summary: 'Lorsqu"un service est correctement arrêté, ce message est généré pour indiquer que l"arrêt a été demandé et que le service a lancé sa séquence d"arrêt. SYST peut être utilisé pour déterminer si l"arrêt a été demandé, avant le redémarrage du service (contrairement à SYSD, qui est généralement envoyé après le redémarrage du service).' 
+summary: 'Lorsqu"un service est arrêté correctement, ce message est généré pour indiquer que l"arrêt a été demandé et que le service a entamé sa séquence d"arrêt. SYST peut être utilisé pour déterminer si l"arrêt a été demandé, avant que le service ne soit redémarré (contrairement à SYSD, qui est généralement envoyé après le redémarrage du service).' 
 ---
 = Message d'audit SYST pour l'arrêt d'un nœud dans StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Lorsqu"un service est correctement arrêté, ce message est généré 
 
 
 [role="lead"]
-Lorsqu'un service est correctement arrêté, ce message est généré pour indiquer que l'arrêt a été demandé et que le service a lancé sa séquence d'arrêt. SYST peut être utilisé pour déterminer si l'arrêt a été demandé, avant le redémarrage du service (contrairement à SYSD, qui est généralement envoyé après le redémarrage du service).
+Lorsqu'un service est arrêté correctement, ce message est généré pour indiquer que l'arrêt a été demandé et que le service a entamé sa séquence d'arrêt. SYST peut être utilisé pour déterminer si l'arrêt a été demandé, avant que le service ne soit redémarré (contrairement à SYSD, qui est généralement envoyé après le redémarrage du service).
 
 [cols="1a,1a,4a"]
 |===

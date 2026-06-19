@@ -2,7 +2,7 @@
 permalink: admin/managing-full-storage-nodes.html 
 sidebar: sidebar 
 keywords: storage node is full 
-summary: 'Lorsque les nœuds de stockage atteignent leur capacité, vous devez étendre le système StorageGRID en ajoutant de nouveaux espaces de stockage. Trois options s"offrent à vous : ajouter des volumes de stockage, ajouter des étagères d"extension de stockage ou ajouter des nœuds de stockage.' 
+summary: 'Lorsque les nœuds de stockage atteignent leur capacité maximale, vous devez étendre le système StorageGRID en ajoutant de nouveaux espaces de stockage. Vous pouvez le faire en ajoutant des volumes de stockage, des étagères d"expansion de stockage et des nœuds de stockage.' 
 ---
 = Gérer les nœuds de stockage complets dans StorageGRID
 :allow-uri-read: 

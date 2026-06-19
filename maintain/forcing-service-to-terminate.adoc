@@ -2,7 +2,7 @@
 permalink: maintain/forcing-service-to-terminate.html 
 sidebar: sidebar 
 keywords: storagegrid, terminate service, terminating service, force terminate 
-summary: 'Si vous devez arrêter immédiatement un service, vous pouvez utiliser `force-stop` la commande.' 
+summary: Si vous devez arrêter un service immédiatement, vous pouvez utiliser la commande force-stop. 
 ---
 = Forcer un service StorageGRID à se terminer
 :allow-uri-read: 
