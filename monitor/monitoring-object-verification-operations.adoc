@@ -45,14 +45,14 @@ Vous devez consulter régulièrement les résultats des vérifications de fond e
 +
 *** Pour vérifier la vérification des données d'objet répliqué, consultez les attributs de la section Vérification.
 +
-image::../media/nodes_storage_node_object_verification.png[Nœuds > nœud de stockage > objet > Vérification]
+image:nodes_storage_node_object_verification.png["Nœuds > Nœud de stockage > Objet > Vérification"]
 
 *** Pour vérifier la vérification du fragment avec code d'effacement, sélectionnez *_Storage Node_* > *ILM* et examinez les attributs de la section Vérification du code d'effacement.
 +
-image::../media/nodes_storage_node_ilm_ec_verification.png[Nœuds > nœud de stockage > ILM > Vérification EC]
+image:nodes_storage_node_ilm_ec_verification.png["Nœuds > Nœud de stockage > ILM > Vérification EC"]
 
 +
-Sélectionnez le point d'interrogation image:../media/icon_nms_question.png["point d'interrogation"]en regard du nom d'un attribut pour afficher le texte d'aide.
+Sélectionnez le point d'interrogation image:icon_nms_question.png["point d'interrogation"] à côté du nom d'un attribut pour afficher le texte d'aide.
 
 
 
@@ -63,7 +63,7 @@ Sélectionnez le point d'interrogation image:../media/icon_nms_question.png["poi
 .. Sélectionnez *Maintenance* > *Vérification de l'existence de l'objet* > *Historique des tâches*.
 .. Analysez la colonne Copies d’objets manquantes détectées.  Si des tâches ont entraîné 100 copies d'objets manquantes ou plus et que l'alerte *Objets potentiellement perdus* a été déclenchée, contactez le support technique.
 +
-image::../media/oec_job_history.png[Historique du travail de vérification de l'existence d'un objet]
+image:oec_job_history.png["Historique du travail de vérification de l'existence d'un objet"]
 
 
 

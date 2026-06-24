@@ -19,6 +19,6 @@ Le réseau d'administration peut être unique à chaque nœud et peut être comp
 
 Dans cet exemple, le réseau Grid est utilisé pour le trafic lié aux requêtes des clients S3 et à la gestion des objets, tandis que le réseau Admin est utilisé pour les fonctions d'administration.
 
-image::../media/grid_admin_networks.png[Réseaux d'administration du grid]
+image:grid_admin_networks.png["Réseaux d'administration du grid"]
 
-image::../media/grid_admin_networks_ips.png[Adresses IP des réseaux d'administration du grid]
+image:grid_admin_networks_ips.png["Adresses IP des réseaux d'administration du grid"]

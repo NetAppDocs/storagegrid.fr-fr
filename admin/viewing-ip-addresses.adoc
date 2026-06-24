@@ -26,6 +26,6 @@ Pour plus d'informations sur la modification des adresses IP, reportez-vous à l
 Les adresses IP de ce nœud de grille sont répertoriées dans un tableau.
 
 +
-image::../media/nodes_page_overview_tab_extended.png[Adresses IP de la page noeuds]
+image:nodes_page_overview_tab_extended.png["Adresses IP de la page noeuds"]
 
 

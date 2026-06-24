@@ -30,21 +30,21 @@ Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pa
 . Saisissez la phrase de passe de provisionnement *.
 . Cliquez sur *Démarrer la récupération*.
 +
-image::../media/4b_select_recovery_node.png[Capture d'écran affichant la page Maintenance > récupération]
+image:4b_select_recovery_node.png["Capture d'écran affichant la page Maintenance > Récupération"]
 
 . Surveiller la progression de la récupération dans le tableau de noeuds de grille de récupération.
 +
 Lorsque le nœud de grille atteint l'étape « en attente des étapes manuelles », passez à la rubrique suivante et suivez les étapes manuelles pour remonter et reformater les volumes de stockage de l'appliance.
 
 +
-image::../media/recovery_reset_button.gif[capture d'écran indiquant l'étape en attente des étapes manuelles]
+image:recovery_reset_button.gif["capture d'écran indiquant l'étape en attente des étapes manuelles"]
 
 +
 
 NOTE: À tout moment pendant la récupération, vous pouvez cliquer sur *Réinitialiser* pour démarrer une nouvelle restauration. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
 
 +
-image::../media/recovery_reset_warning.gif[capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration]
+image:recovery_reset_warning.gif["capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration"]
 
 +
 Si vous souhaitez réessayer la restauration après la réinitialisation de la procédure, vous devez restaurer le nœud de l'appliance à l'état pré-installé en exécutant `sgareinstall` sur le nœud.

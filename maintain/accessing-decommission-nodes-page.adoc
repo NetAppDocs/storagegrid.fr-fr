@@ -36,7 +36,7 @@ La page nœuds de mise hors service s'affiche. À partir de cette page, vous pou
 Dans cet exemple, la colonne désaffectation possible indique que vous pouvez désaffecter le nœud de passerelle et l'un des quatre nœuds de stockage.
 
 +
-image::../media/decommission_nodes_page_all_connected.png[Page Désaffectez les nœuds]
+image:decommission_nodes_page_all_connected.png["Page Désaffectez les nœuds"]
 
 
 
@@ -68,8 +68,8 @@ Vous ne pouvez pas désaffecter un nœud de grid connecté si un nœud de grid e
 
 La colonne *Santé* comprend l'une des icônes suivantes pour les nœuds de grille déconnectés :
 
-** image:../media/icon_alarm_gray_administratively_down.png["icône questionmark grise"] (Gris) : administrative down
-** image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"] (Bleu) : inconnu
+** image:icon_alarm_gray_administratively_down.png["icône questionmark grise"] (gris) : Administrativement désactivé
+** image:icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"] (bleu) : Inconnu
 
  a| 
 Vous devez remettre tous les nœuds déconnectés en ligne ou link:decommissioning-disconnected-grid-nodes.html["déclassez tous les nœuds déconnectés"] avant de pouvoir supprimer un nœud connecté.

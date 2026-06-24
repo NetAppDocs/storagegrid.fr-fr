@@ -40,7 +40,7 @@ Les utilisateurs S3 qui n'appartiennent à aucun groupe ne disposent pas d'autor
 Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, une bannière bleue indique qu'il s'agit de la grille source du locataire. Tous les utilisateurs locaux que vous créez sur cette grille seront clonés dans l'autre grille de la connexion.
 
 +
-image::../media/grid-federation-tenant-user-banner.png[Image de la bannière bleue sur la page utilisateur s'il s'agit de la grille source du locataire]
+image:grid-federation-tenant-user-banner.png["Image de la bannière bleue sur la page utilisateur s'il s'agit de la grille source du locataire"]
 
 . Sélectionnez *Créer utilisateur*.
 
@@ -157,7 +157,7 @@ Si le compte de tenant dispose de l'autorisation *utiliser la connexion de féd�
 
 . Modifiez les paramètres utilisateur selon vos besoins. Voir <<create-user,Créer un utilisateur local>> pour plus de détails sur ce que vous devez saisir.
 +
-.. Dans la section vue d'ensemble, modifiez le nom complet en sélectionnant le nom ou l'icône d'édition image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Dans la section Vue d'ensemble, modifiez le nom complet en sélectionnant le nom ou l'icône de modification image:icon_edit_tm.png["Icône Modifier"].
 +
 Vous ne pouvez pas modifier le nom d'utilisateur.
 

@@ -37,7 +37,7 @@ NOTE: Vous devez disposer d'un firmware SANtricity 8.70 ou supérieur pour accé
 
 L'onglet affiche la page d'accueil de SANtricity System Manager.
 
-image::../media/nodes_page_santricity_tab.png[Onglet SANtricity de la page nœuds]
+image:nodes_page_santricity_tab.png["Onglet SANtricity de la page nœuds"]
 
 
 NOTE: Pour plus de facilité, vous pouvez utiliser le lien SANtricity System Manager pour ouvrir SANtricity System Manager dans une nouvelle fenêtre de navigateur.

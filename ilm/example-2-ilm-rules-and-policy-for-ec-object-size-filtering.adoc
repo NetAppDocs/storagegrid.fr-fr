@@ -57,7 +57,7 @@ Placements
 Créez une copie avec code d'effacement 2+1 sur trois sites
 
 |===
-image::../media/policy_2_rule_1_ec_objects_adv_filtering.png[Règle ILM 1, par exemple 2 : utilise ce pour tous les objets de plus de 1 Mo]
+image:policy_2_rule_1_ec_objects_adv_filtering.png["Règle ILM 1, par exemple 2 : utilise ce pour tous les objets de plus de 1 Mo"]
 
 
 

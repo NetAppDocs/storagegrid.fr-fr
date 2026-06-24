@@ -15,7 +15,7 @@ Un système StorageGRID peut inclure plusieurs nœuds d'administration pour vous
 
 Si un nœud d'administration n'est plus disponible, le traitement des attributs se poursuit, les alertes sont toujours déclenchées et les notifications par e-mail et les packs AutoSupport sont toujours envoyés. Toutefois, le fait d'avoir plusieurs nœuds d'administration n'offre pas de protection de basculement, à l'exception des notifications et des packages AutoSupport.
 
-image::../media/admin_node_redundancy.png[Diagramme de redondance des nœuds d'administration]
+image:admin_node_redundancy.png["Diagramme de redondance des nœuds d'administration"]
 
 Deux options s'offrent à vous pour continuer à afficher et à configurer le système StorageGRID en cas de défaillance d'un nœud d'administration :
 

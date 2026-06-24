@@ -25,7 +25,7 @@ Si vous avez plusieurs sous-réseaux de grille, la passerelle de réseau de gril
 ** Si vous avez déjà déployé au moins un nœud, cliquez sur *détecter les sous-réseaux de réseaux de grille* pour remplir automatiquement la liste de sous-réseaux de réseau de grille avec les sous-réseaux signalés par les nœuds de grille enregistrés avec le gestionnaire de grille.
 ** Vous devez ajouter manuellement tout sous-réseau pour les serveurs NTP, DNS, LDAP ou autres serveurs externes auxquels vous accédez via la passerelle réseau Grid.
 +
-image::../media/4_gmi_installer_grid_network_page.gif[Spécifiez les sous-réseaux]
+image:4_gmi_installer_grid_network_page.gif["Spécifiez les sous-réseaux"]
 
 
 

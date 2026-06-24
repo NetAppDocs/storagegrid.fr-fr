@@ -24,7 +24,7 @@ Les coûts de liaison vous permettent de définir la priorité du site de data C
 
 Le schéma présente une grille de trois sites avec des coûts de liaison configurés entre les sites :
 
-image::../media/link_costs.gif[Schéma conceptuel des coûts de liaison entre les centres de données]
+image:link_costs.gif["Schéma conceptuel des coûts de liaison entre les centres de données"]
 
 * Le service Load Balancer sur les nœuds d'administration et les nœuds de passerelle répartit uniformément les connexions client vers tous les nœuds de stockage sur le même site de data Center et vers tous les sites de data Center, avec un coût de liaison de 0.
 +
@@ -74,14 +74,14 @@ Vous pouvez mettre à jour les coûts de liaison entre les sites de data Center 
 .Étapes
 . Sélectionnez *Assistance* > *Autre* > *Coût du lien*.
 +
-image::../media/configuring_link_costs.png[Coût des liens]
+image:configuring_link_costs.png["Coût des liens"]
 
 . Sélectionnez un site sous *Link Source* et entrez une valeur de coût comprise entre 0 et 100 sous *Link destination*.
 +
 Vous ne pouvez pas modifier le coût du lien si la source est identique à la destination.
 
 +
-Pour annuler les modifications, sélectionnez image:../media/nms_revert.gif["icône annuler"]*Revert*.
+Pour annuler les modifications, sélectionnez image:nms_revert.gif["icône annuler"]*Revert*.
 
 . Sélectionnez *appliquer les modifications*.
 

@@ -141,7 +141,7 @@ Modifier le nom d'affichage (groupes locaux uniquement)
 
  a| 
 .. Sélectionnez le nom du groupe pour afficher les détails.
-.. Sélectionnez l'icône Modifier image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Sélectionnez l’icône de modification image:icon_edit_tm.png["Icône Modifier"].
 .. Saisissez le nouveau nom.
 .. Sélectionnez *Enregistrer les modifications*.
 

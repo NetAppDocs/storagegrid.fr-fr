@@ -21,7 +21,7 @@ Le clone de compte est requis pour link:grid-federation-what-is-cross-grid-repli
 
 Le schéma de workflow présente les étapes que les administrateurs du grid et les locataires autorisés doivent suivre pour configurer le clone de compte. Ces étapes sont effectuées après link:grid-federation-create-connection.html["la connexion de fédération de grille est configurée"].
 
-image::../media/grid-federation-account-clone-workflow.png[workflow de clonage de compte]
+image:grid-federation-account-clone-workflow.png["workflow de clonage de compte"]
 
 
 

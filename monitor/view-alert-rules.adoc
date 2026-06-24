@@ -30,7 +30,7 @@ video::2eea81c5-8323-417f-b0a0-b1ff008506c1[panopto]
 La page règles d'alerte s'affiche.
 
 +
-image::../media/alert_rules_page.png[Page règles d'alerte]
+image:alert_rules_page.png["Page règles d'alerte"]
 
 . Vérifiez les informations du tableau des règles d'alerte :
 +
@@ -51,9 +51,9 @@ Conditions
  a| 
 Expressions Prometheus qui déterminent le moment où cette alerte est déclenchée. Une alerte peut être déclenchée à un ou plusieurs des niveaux de sévérité suivants, mais une condition pour chaque gravité n'est pas requise.
 
-** *Critique* image:../media/icon_alert_red_critical.png["Icône alerte rouge critique"]: il existe une condition anormale qui a arrêté les opérations normales d'un noeud ou d'un service StorageGRID. Vous devez immédiatement résoudre le problème sous-jacent. Une interruption du service et une perte de données peuvent se produire si le problème n'est pas résolu.
-** *Majeur* image:../media/icon_alert_orange_major.png["Icône alerte Orange majeur"]: il existe une condition anormale qui affecte les opérations en cours ou qui approche du seuil pour une alerte critique. Vous devez examiner les alertes majeures et résoudre tous les problèmes sous-jacents pour vérifier que leur condition anormale n'arrête pas le fonctionnement normal d'un nœud ou d'un service StorageGRID.
-** *Mineur* image:../media/icon_alert_yellow_minor.png["Icône alerte jaune mineure"]: le système fonctionne normalement, mais il existe une condition anormale qui pourrait affecter la capacité de fonctionnement du système s'il continue. Vous devez surveiller et résoudre les alertes mineures qui ne sont pas claires par elles-mêmes pour vous assurer qu'elles n'entraînent pas de problème plus grave.
+** *Critique* image:icon_alert_red_critical.png["Icône alerte rouge critique"] : Une condition anormale a interrompu le fonctionnement normal d’un nœud ou service StorageGRID. Vous devez résoudre immédiatement le problème sous-jacent. Une interruption de service et une perte de données peuvent survenir si le problème n’est pas résolu.
+** *Majeur* image:icon_alert_orange_major.png["Icône alerte Orange majeur"] : Une anomalie affecte les opérations en cours ou approche le seuil d’alerte critique. Vous devez enquêter sur les alertes majeures et résoudre tout problème sous-jacent afin de garantir que l’anomalie ne perturbe pas le fonctionnement normal d’un nœud ou d’un service StorageGRID.
+** *Mineur* image:icon_alert_yellow_minor.png["Icône alerte jaune mineure"] : Le système fonctionne normalement, mais une anomalie existe qui pourrait affecter la capacité du système à fonctionner si elle persiste. Vous devez surveiller et résoudre les alertes mineures qui ne se résolvent pas d'elles-mêmes afin de vous assurer qu'elles ne provoquent pas un problème plus grave.
 
 
 

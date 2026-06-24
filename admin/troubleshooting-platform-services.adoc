@@ -32,11 +32,11 @@ NOTE: La création du terminal échoue si les services de plateforme ne sont pas
 
 Si une erreur se produit lorsque StorageGRID tente d'atteindre un noeud final existant, un message s'affiche sur le tableau de bord dans le Gestionnaire de locataires.
 
-image::../media/tenant_dashboard_endpoint_error.png[message d'erreur de point final sur le tableau de bord]
+image:tenant_dashboard_endpoint_error.png["message d'erreur de point final sur le tableau de bord"]
 
-Les utilisateurs locataires peuvent accéder à la page noeuds finaux pour consulter le message d'erreur le plus récent pour chaque noeud final et déterminer la durée de l'erreur. La colonne *dernière erreur* affiche le message d'erreur le plus récent pour chaque noeud final et indique la durée de l'erreur. Des erreurs incluant l'image:../media/icon_alert_red_critical.png["Icône X rouge"]icône se sont produites au cours des 7 derniers jours.
+Les utilisateurs locataires peuvent accéder à la page « Points de terminaison » pour examiner le message d'erreur le plus récent pour chaque point de terminaison et déterminer depuis combien de temps l'erreur s'est produite. La colonne « Dernière erreur » affiche le message d'erreur le plus récent pour chaque point de terminaison et indique depuis combien de temps l'erreur s'est produite. Les erreurs qui incluent l'icône image:icon_alert_red_critical.png["Icône X rouge"] se sont produites au cours des 7 derniers jours.
 
-image::../media/endpoints_last_error.png[Capture d'écran de la page des points de terminaison affichant la colonne dernière erreur]
+image:endpoints_last_error.png["Capture d'écran de la page des points de terminaison affichant la colonne dernière erreur"]
 
 
 NOTE: Certains messages d'erreur dans la colonne *dernière erreur* peuvent inclure un LogId entre parenthèses. Un administrateur de grille ou le support technique peut utiliser cet ID pour trouver des informations plus détaillées sur l'erreur dans bycast.log.
@@ -120,7 +120,7 @@ Pour afficher le taux d'échec de la demande pour les services de plate-forme :
 . Sélectionnez *_site_* > *Platform Services*.
 . Afficher le tableau des taux d'erreur de demande.
 +
-image::../media/nodes_page_site_level_platform_services.gif[Nœuds page Services de plateforme au niveau du site]
+image:nodes_page_site_level_platform_services.gif["Nœuds page Services de plateforme au niveau du site"]
 
 
 

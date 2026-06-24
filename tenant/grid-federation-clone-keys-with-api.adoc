@@ -39,7 +39,7 @@ Vous pouvez cloner vos propres clés d'accès si vous devez accéder aux mêmes 
 `POST /org/users/current-user/replicate-s3-access-key`
 
 +
-image::../media/grid-federation-post-current-user-replicate.png[POST-terminal pour la réplication de sa propre clé d'accès]
+image:grid-federation-post-current-user-replicate.png["POST-terminal pour la réplication de sa propre clé d'accès"]
 
 . Sélectionnez *essayez-le*.
 . Dans la zone de texte *body*, remplacez les entrées d'exemple pour *accesskey* et *secretAccessKey* par les valeurs du fichier *.csv* que vous avez téléchargé.
@@ -47,7 +47,7 @@ image::../media/grid-federation-post-current-user-replicate.png[POST-terminal po
 Veillez à conserver les guillemets doubles autour de chaque chaîne.
 
 +
-image::../media/grid-federation-clone-access-key.png[API du gestionnaire de locataires saisie de valeurs pour cloner la clé d'accès]
+image:grid-federation-clone-access-key.png["API du gestionnaire de locataires saisie de valeurs pour cloner la clé d'accès"]
 
 . Si la clé expire, remplacez l'exemple de *expire* par la date et l'heure d'expiration sous forme de chaîne au format de données ISO 8601 (par exemple, `2024-02-28T22:46:33-08:00`). Si la clé n'expire pas, entrez *null* comme valeur pour l'entrée *Expires* (ou supprimez la ligne *Expires* et la virgule précédente).
 . Sélectionnez *Exécuter*.
@@ -80,7 +80,7 @@ Vous pouvez cloner les clés d'accès d'un autre utilisateur s'il doit accéder 
 `POST /org/users/{userId}/replicate-s3-access-key`
 
 +
-image::../media/grid-federation-post-other-user.png[POST-terminal pour la réplication de la clé d'accès d'un autre utilisateur]
+image:grid-federation-post-other-user.png["POST-terminal pour la réplication de la clé d'accès d'un autre utilisateur"]
 
 . Sélectionnez *essayez-le*.
 . Dans la zone de texte *userid*, collez l'ID utilisateur que vous avez copié.

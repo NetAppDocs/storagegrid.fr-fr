@@ -16,7 +16,7 @@ Vous devez vérifier que le système est prêt à prendre en charge le correctif
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 . Si possible, assurez-vous que le système fonctionne normalement et que tous les nœuds de la grille sont connectés à la grille.
 +
-Les nœuds connectés sont coches vertes image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]sur la page nœuds.
+Les nœuds connectés ont des coches vertes image:icon_alert_green_checkmark.png["icône alerte verte coche"] sur la page Nœuds.
 
 . Recherchez et résolvez les alertes en cours, si possible.
 . Assurez-vous qu'aucune autre procédure de maintenance n'est en cours, telle qu'une procédure de mise à niveau, de récupération, d'extension ou de mise hors service.

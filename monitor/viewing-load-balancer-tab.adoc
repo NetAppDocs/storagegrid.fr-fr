@@ -17,7 +17,7 @@ L'onglet Load Balancer s'affiche pour les nœuds d'administration et les nœuds 
 
 Si aucune E/S n'est exécutée via le service Load Balancer ou si aucun équilibreur de charge n'est configuré, les graphiques affichent « aucune donnée ».
 
-image::../media/nodes_page_load_balancer_tab.png[Onglet équilibreur de la charge de la page noeuds]
+image:nodes_page_load_balancer_tab.png["Onglet équilibreur de la charge de la page noeuds"]
 
 
 

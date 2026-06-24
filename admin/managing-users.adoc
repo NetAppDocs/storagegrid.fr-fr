@@ -109,7 +109,7 @@ Modifier le nom complet (utilisateurs locaux uniquement)
 
  a| 
 .. Sélectionnez le nom de l'utilisateur pour afficher les détails.
-.. Sélectionnez l'icône Modifier image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Sélectionnez l’icône de modification image:icon_edit_tm.png["Icône Modifier"].
 .. Saisissez le nouveau nom.
 .. Sélectionnez *Enregistrer les modifications*.
 

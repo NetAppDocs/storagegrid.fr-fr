@@ -30,7 +30,7 @@ NOTE: La mise hors service ne démarre pas si un ou plusieurs volumes sont hors 
 
 NOTE: Si un ou plusieurs volumes sont déconnectés alors qu'une mise hors service est en cours, le processus de mise hors service se termine une fois ces volumes remis en ligne.
 
-* Tous les nœuds de la grille ont une intégrité normale (verte) image:../media/icon_alert_green_checkmark.png["icône de coche verte"]. Si l'une de ces icônes apparaît dans la colonne *Santé*, vous devez essayer de résoudre le problème :
+* Tous les nœuds de la grille ont un état normal (vert) image:icon_alert_green_checkmark.png["icône de coche verte"]. Si vous voyez l'une de ces icônes dans la colonne *État*, vous devez essayer de résoudre le problème :
 +
 [cols="1a,1a,3a"]
 |===
@@ -38,7 +38,7 @@ NOTE: Si un ou plusieurs volumes sont déconnectés alors qu'une mise hors servi
 
 
  a| 
-image:../media/icon_alarm_yellow_notice.gif["icône carrée jaune"]
+image:icon_alarm_yellow_notice.gif["icône carrée jaune"]
  a| 
 Jaune
  a| 
@@ -47,7 +47,7 @@ Avertissement
 
 
  a| 
-image:../media/icon_alert_yellow_minor.png["icône orange clair en forme de losange"]
+image:icon_alert_yellow_minor.png["icône orange clair en forme de losange"]
  a| 
 Orange clair
  a| 
@@ -56,7 +56,7 @@ Mineur
 
 
  a| 
-image:../media/icon_alert_orange_major.png["icône losange orange foncé"]
+image:icon_alert_orange_major.png["icône losange orange foncé"]
  a| 
 Orange foncé
  a| 
@@ -65,7 +65,7 @@ Majeur
 
 
  a| 
-image:../media/icon_alert_red_critical.png["icône x rouge"]
+image:icon_alert_red_critical.png["icône x rouge"]
  a| 
 Rouge
  a| 

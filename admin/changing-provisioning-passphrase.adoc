@@ -36,7 +36,7 @@ CAUTION: Stockez la phrase secrète de provisionnement dans un endroit sûr.  Il
 Le système affiche une bannière verte de réussite lorsque la modification de la phrase de passe de provisionnement est terminée.
 
 +
-image::../media/change_provisioning_passphrase_success.png[Message de réussite pour la phrase de passe de provisionnement modifié]
+image:change_provisioning_passphrase_success.png["Message de réussite pour la phrase de passe de provisionnement modifié"]
 
 . Sélectionnez *progiciel de récupération*.
 . Saisissez la nouvelle phrase secrète de provisionnement pour télécharger le nouveau package de récupération.

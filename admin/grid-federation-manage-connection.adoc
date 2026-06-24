@@ -205,7 +205,7 @@ En général, utilisez le même nombre de jours pour les certificats des deux c�
 
 Vous pouvez supprimer une connexion de fédération de grille de l'une des grilles de la connexion. Comme indiqué dans la figure, vous devez effectuer les étapes préalables sur les deux grilles pour confirmer que la connexion n'est pas utilisée par un locataire sur l'une ou l'autre des grilles.
 
-image::../media/grid-federation-remove-connection.png[procédure de suppression de la connexion de fédération de grille]
+image:grid-federation-remove-connection.png["procédure de suppression de la connexion de fédération de grille"]
 
 Avant de supprimer une connexion, notez les points suivants :
 

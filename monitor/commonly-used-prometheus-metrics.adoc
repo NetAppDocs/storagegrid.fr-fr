@@ -31,7 +31,7 @@ Les metrics collectées par Prometheus sont utilisés à plusieurs endroits dans
 
 * *Page noeuds* : les graphiques et graphiques des onglets disponibles sur la page noeuds utilisent l'outil de visualisation Grafana pour afficher les metrics de séries chronologiques recueillies par Prometheus. Grafana affiche les données de séries chronologiques aux formats graphique et graphique, tandis que Prometheus sert de source de données back-end.
 +
-image::../media/nodes_page_network_traffic_graph.png[Graphique Prometheus]
+image:nodes_page_network_traffic_graph.png["Graphique Prometheus"]
 
 * *Alertes* : les alertes sont déclenchées à des niveaux de gravité spécifiques lorsque les conditions de règle d'alerte qui utilisent des metrics Prometheus sont définies comme vraies.
 * *Grid Management API* : vous pouvez utiliser des metrics Prometheus dans des règles d'alerte personnalisées ou avec des outils d'automatisation externes pour surveiller votre système StorageGRID. La liste complète des metrics de Prometheus est disponible via l'API Grid Management. (En haut de Grid Manager, sélectionnez l'icône d'aide et sélectionnez *documentation API* > *metrics*.) Bien que plus d'un millier de mesures soient disponibles, seul un nombre relativement faible est requis pour surveiller les opérations StorageGRID les plus stratégiques.

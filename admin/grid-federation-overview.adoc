@@ -25,7 +25,7 @@ Une connexion de fédération grid est une connexion bidirectionnelle, fiable et
 
 Le diagramme de flux de travail récapitule les étapes de configuration d'une connexion de fédération de grille entre deux grilles.
 
-image::../media/grid-federation-workflow.png[Flux de travail de connexion de fédération de grille]
+image:grid-federation-workflow.png["Flux de travail de connexion de fédération de grille"]
 
 
 
@@ -85,7 +85,7 @@ Lorsque vous configurez une connexion de fédération de grille, StorageGRID gé
 * Certificats de serveur et de client pour authentifier et crypter les informations envoyées de la grille 2 à la grille 1
 
 
-image::../media/grid-federation-certificates.png[Certificats de fédération de grille]
+image:grid-federation-certificates.png["Certificats de fédération de grille"]
 
 Par défaut, les certificats sont valides pendant 730 jours (2 ans). Lorsque ces certificats sont proches de leur date d'expiration, l'alerte *expiration du certificat de fédération GRID* vous rappelle de faire pivoter les certificats, ce que vous pouvez faire à l'aide de Grid Manager.
 

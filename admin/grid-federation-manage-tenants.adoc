@@ -58,7 +58,7 @@ Vous pouvez afficher les détails d'un locataire autorisé à utiliser une conne
 S'il s'agit de la grille source du locataire (c'est-à-dire si le locataire a été créé sur cette grille), une bannière apparaît pour vous rappeler que le locataire a été cloné dans une autre grille. Si vous modifiez ou supprimez ce locataire, vos modifications ne seront pas synchronisées avec l'autre grille.
 
 +
-image::../media/grid-federation-tenant-detail.png[onglet grid federation de la page de détails du locataire]
+image:grid-federation-tenant-detail.png["onglet grid federation de la page de détails du locataire"]
 
 . Sélectionnez éventuellement l'onglet *Grid federation* à link:../monitor/grid-federation-monitor-connections.html["surveillez la connexion de fédération de grille"].
 
@@ -96,7 +96,7 @@ Pour éviter ces erreurs, supprimez l'autorisation du locataire d'utiliser la co
 
 Pour empêcher un locataire d'utiliser une connexion de fédération de grille, vous devez supprimer l'autorisation *utiliser la connexion de fédération de grille*.
 
-image::../media/grid-federation-remove-permission.png[procédure de suppression de la connexion de fédération de grille]
+image:grid-federation-remove-permission.png["procédure de suppression de la connexion de fédération de grille"]
 
 Avant de supprimer l'autorisation d'un locataire d'utiliser une connexion de fédération de grille, notez ce qui suit :
 
@@ -167,7 +167,7 @@ Une fois la réplication multigrille désactivée pour les compartiments de tena
 ** Si l'autorisation peut être supprimée, vous êtes renvoyé à la page des détails et un message de réussite s'affiche. Ce locataire ne peut plus utiliser la connexion de fédération de grille.
 ** Si la réplication entre plusieurs compartiments de tenant est toujours activée, une erreur s'affiche.
 +
-image::../media/grid-federation-remove-permission-error.png[message d'erreur affiché si cgr est activé pour un compartiment pour le tenant]
+image:grid-federation-remove-permission-error.png["message d'erreur affiché si cgr est activé pour un compartiment pour le tenant"]
 
 +
 Vous pouvez effectuer l'une des opérations suivantes :

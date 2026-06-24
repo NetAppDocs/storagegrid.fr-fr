@@ -21,7 +21,7 @@ Tout au long de la durée de vie d'un objet comprend les opérations d'ingestion
 * *Supprimer* : processus de suppression de toutes les copies d'objet de la grille. Ces objets peuvent être supprimés suite à l'envoi d'une requête de suppression au système StorageGRID ou à un processus automatique exécuté par StorageGRID au moment où sa durée de vie arrive à expiration.
 
 
-image::../media/object_lifecycle.png[diagramme montrant la durée de vie d'un objet]
+image:object_lifecycle.png["diagramme montrant la durée de vie d'un objet"]
 
 .Informations associées
 * link:../ilm/index.html["Gestion des objets avec ILM"]

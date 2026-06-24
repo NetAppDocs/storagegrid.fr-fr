@@ -32,7 +32,7 @@ Vous pouvez exécuter l'assistant d'installation FabricPool lorsque vous commenc
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 . Si la bannière *FabricPool and S3 setup Wizard* apparaît sur le tableau de bord, sélectionnez le lien dans la bannière. Si la bannière ne s'affiche plus, sélectionnez l'icône d'aide dans la barre d'en-tête du Gestionnaire de grille et sélectionnez *Assistant d'installation FabricPool et S3*.
 +
-image::../media/help_menu.png[menu aide]
+image:help_menu.png["menu aide"]
 
 . Dans la section FabricPool de la page de l'assistant d'installation de FabricPool et S3, sélectionnez *configurer maintenant*.
 +
@@ -432,7 +432,7 @@ NOTE: Ne sélectionnez pas un compartiment dans lequel le verrouillage d'objet S
 Au cours de cette étape, vous téléchargez un fichier que vous pouvez utiliser pour saisir des valeurs dans ONTAP System Manager.
 
 .Étapes
-. Si vous le souhaitez, sélectionnez l'icône de copie (image:../media/icon_tenant_copy_url.png["icône copier"]) pour copier l'ID de la clé d'accès et la clé d'accès secrète dans le presse-papiers.
+. Vous pouvez également sélectionner l’icône de copie (image:icon_tenant_copy_url.png["icône copier"]) pour copier à la fois l’ID de clé d’accès et la clé d’accès secrète dans le presse-papiers.
 +
 Ces valeurs sont incluses dans le fichier de téléchargement, mais vous pouvez les enregistrer séparément.
 

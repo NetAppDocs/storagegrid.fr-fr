@@ -19,9 +19,9 @@ Si vous configurez un réseau client pour un nœud au cours de l'installation, l
 
 Dans cet exemple, le réseau client est utilisé pour les requêtes des clients S3 et pour les fonctions administratives, tandis que le réseau Grid est dédié aux opérations de gestion d'objets internes.
 
-image::../media/grid_client_networks.png[Réseaux client Grid]
+image:grid_client_networks.png["Réseaux client Grid"]
 
-image::../media/grid_client_networks_ips.png[Adresses IP des réseaux clients du grid]
+image:grid_client_networks_ips.png["Adresses IP des réseaux clients du grid"]
 
 .Informations associées
 link:../maintain/changing-nodes-network-configuration.html["Modifier la configuration réseau du nœud"]

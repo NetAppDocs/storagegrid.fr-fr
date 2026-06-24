@@ -40,7 +40,7 @@ La page nœuds de mise hors service s'affiche. Lorsque la procédure de mise hor
 L'étape en cours est mise en pause et le bouton *reprendre* est activé.
 
 +
-image::../media/decommission_nodes_procedure_paused.png[Procédure mise hors service des nœuds mise en pause]
+image:decommission_nodes_procedure_paused.png["Procédure mise hors service des nœuds mise en pause"]
 
 . Une fois l'autre procédure de maintenance terminée, sélectionnez *reprendre* pour poursuivre la mise hors service.
 

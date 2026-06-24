@@ -52,7 +52,7 @@ L'exemple suivant présente les résultats de la recherche de métadonnées d'ob
 
 NOTE: La capture d'écran suivante en est un exemple. Vos résultats varient en fonction de votre version de StorageGRID.
 
-image::../media/object_lookup_results.png[Résultats de la recherche d'objets]
+image:object_lookup_results.png["Résultats de la recherche d'objets"]
 
 .Informations associées
 link:../s3/index.html["UTILISEZ L'API REST S3"]

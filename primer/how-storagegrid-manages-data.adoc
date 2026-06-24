@@ -17,7 +17,7 @@ Le stockage objet dissocie l'emplacement physique des données de la méthode de
 
 Chaque objet d'un système de stockage basé sur les objets comporte deux parties : les données d'objet et les métadonnées d'objet.
 
-image::../media/object_conceptual_drawing.png[Objet]
+image:object_conceptual_drawing.png["Objet"]
 
 
 
@@ -56,7 +56,7 @@ Lorsque StorageGRID fait correspondre des objets à une règle de gestion du cyc
 
 Dans l'exemple suivant, la règle Make 2 copies spécifie que deux copies répliquées de chaque objet sont placées dans un pool de stockage contenant trois nœuds de stockage.
 
-image::../media/ilm_replication_make_2_copies.png[Règle de création de 2 copies]
+image:ilm_replication_make_2_copies.png["Règle de création de 2 copies"]
 
 
 
@@ -66,7 +66,7 @@ Lorsque StorageGRID mappe les objets sur une règle ILM configurée pour créer 
 
 L'exemple suivant illustre l'utilisation du code d'effacement sur les données d'un objet. Dans cet exemple, la règle ILM utilise un schéma de code d'effacement 4+2. Chaque objet est tranché en quatre fragments de données égaux et deux fragments de parité sont calculés à partir des données d'objet. Chacun des six fragments est stocké sur un nœud de stockage différent dans trois data centers pour assurer la protection des données en cas de défaillance d'un nœud ou de perte d'un site.
 
-image::../media/ec_three_sites_4_plus_2.png[Code d'effacement trois sites 4 plus 2]
+image:ec_three_sites_4_plus_2.png["Code d'effacement trois sites 4 plus 2"]
 
 .Informations associées
 * link:../ilm/index.html["Gestion des objets avec ILM"]

@@ -44,7 +44,7 @@ Pour déplacer un nœud d'un hôte à un autre, le service d'hôte StorageGRID d
 
 Supposons, par exemple, que le nœud StorageGRID exécutant sur Host1 ait été configuré avec les mappages d'interface suivants :
 
-image::../media/eth0_bond.gif[Cette image est expliquée par le texte qui l'entoure.]
+image:eth0_bond.gif["Cette image est expliquée par le texte qui l'entoure."]
 
 Le côté gauche des flèches correspond aux interfaces traditionnelles affichées à partir d'un conteneur StorageGRID (c'est-à-dire, respectivement, les interfaces réseau Grid, Admin et client). Le côté droit des flèches correspond aux interfaces hôtes réelles fournissant ces réseaux, qui sont trois interfaces VLAN subordonnées à la même liaison d'interface physique.
 
@@ -66,4 +66,4 @@ Compte tenu de ce mode de fonctionnement, toutes les données système et les vo
 
 L'exemple suivant montre une solution pour le mappage de périphériques en mode bloc pour un nœud de stockage StorageGRID, où les chemins d'accès multiples DM sont utilisés sur les hôtes, et le champ alias a été utilisé dans `/etc/multipath.conf` pour fournir des noms de périphériques en mode bloc cohérents et conviviaux disponibles sur tous les hôtes.
 
-image::../media/block_device_mapping_rhel.gif[Mappage des périphériques de bloc]
+image:block_device_mapping_rhel.gif["Mappage des périphériques de bloc"]

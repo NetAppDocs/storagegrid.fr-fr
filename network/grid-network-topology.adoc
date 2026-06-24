@@ -24,6 +24,6 @@ Dans cet exemple, tout le trafic partage le même réseau, y compris le trafic l
 
 NOTE: Cette topologie est adaptée aux déploiements sur un seul site qui ne sont pas disponibles en externe, aux démonstrations de faisabilité ou aux déploiements de test, ou lorsqu'un équilibreur de charge tiers agit comme limite d'accès client. Lorsque cela est possible, le réseau Grid doit être utilisé exclusivement pour le trafic interne. Le réseau d'administration et le réseau client disposent d'autres restrictions de pare-feu qui bloquent le trafic externe vers les services internes. L'utilisation du réseau Grid pour le trafic client externe est prise en charge, mais cette utilisation offre moins de couches de protection.
 
-image::../media/grid_network.png[Réseau Grid]
+image:grid_network.png["Réseau Grid"]
 
-image::../media/grid_network_ips.png[Adresses IP du réseau grid]
+image:grid_network_ips.png["Adresses IP du réseau grid"]

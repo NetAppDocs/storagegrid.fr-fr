@@ -34,7 +34,7 @@ La page des détails du point final s'affiche.
 NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
 
 +
-.. Pour modifier le nom d'affichage du noeud final, sélectionnez l'icône de modification image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Pour modifier le nom d'affichage du point de terminaison, sélectionnez l'icône de modification image:icon_edit_tm.png["Icône Modifier"].
 .. Modifiez l'URI si nécessaire.
 .. Si nécessaire, modifiez le type d'authentification.
 +

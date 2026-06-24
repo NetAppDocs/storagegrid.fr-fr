@@ -29,26 +29,26 @@ Vous pouvez également link:../admin/managing-traffic-classification-policies.ht
 La page nœuds s'affiche. Chaque nœud de la grille est répertorié au format de tableau.
 
 +
-image::../media/nodes_menu.png[Menu noeuds]
+image:nodes_menu.png["Menu noeuds"]
 
 . Sélectionnez le nom de la grille, un site de centre de données spécifique ou un nœud de grille, puis sélectionnez l'onglet *réseau*.
 +
 Le graphique trafic réseau fournit un récapitulatif du trafic réseau global pour la grille dans son ensemble, le site du centre de données ou le nœud.
 
 +
-image::../media/nodes_page_network_traffic_graph.png[Courbes de trafic réseau de la page noeuds]
+image:nodes_page_network_traffic_graph.png["Courbes de trafic réseau de la page noeuds"]
 
 +
 .. Si vous avez sélectionné un nœud de grille, faites défiler vers le bas pour consulter la section *interfaces réseau* de la page.
 +
-image::../media/nodes_page_network_interfaces.png[Nœuds page interfaces réseau]
+image:nodes_page_network_interfaces.png["Nœuds page interfaces réseau"]
 
 .. Pour les nœuds de grille, faites défiler vers le bas pour consulter la section *communication réseau* de la page.
 +
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
 
 +
-image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
+image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
 
 
 
@@ -59,7 +59,7 @@ image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
 La page règles de classification du trafic s'affiche et les stratégies existantes sont répertoriées dans le tableau.
 
 +
-image::../media/traffic_classification_policies_main_screen_w_examples.png[Politique de trafic pour un exemple de graphique]
+image:traffic_classification_policies_main_screen_w_examples.png["Politique de trafic pour un exemple de graphique"]
 
 .. Pour afficher les graphiques présentant les mesures de réseau associées à une stratégie, sélectionnez le bouton radio à gauche de la stratégie, puis cliquez sur *métriques*.
 .. Consultez les graphiques pour comprendre le trafic réseau associé à la stratégie.
@@ -85,7 +85,7 @@ Surveiller les nœuds de grid individuels pour vérifier leurs niveaux d'utilisa
 . Depuis la page *Nœuds*, sélectionnez le nœud.
 . Sélectionnez l'onglet *matériel* pour afficher les graphiques de l'utilisation de l'UC et de la mémoire.
 +
-image::../media/nodes_page_hardware_tab_graphs.png[Onglet matériel de la page nœuds]
+image:nodes_page_hardware_tab_graphs.png["Onglet matériel de la page nœuds"]
 
 . Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
 . Si le nœud est hébergé sur une appliance de stockage ou sur une appliance de services, faites défiler la page vers le bas pour afficher les tableaux des composants. L'état de tous les composants doit être « nominal ». Rechercher les composants ayant un autre état.

@@ -18,7 +18,7 @@ NOTE: La taille logique de tous les objets appartenant à ce locataire inclut le
 
 Une fois les objets téléchargés, le tableau de bord ressemble à l'exemple suivant :
 
-image::../media/tenant_dashboard_with_buckets.png[Tableau de bord - liste des compartiments]
+image:tenant_dashboard_with_buckets.png["Tableau de bord - liste des compartiments"]
 
 
 
@@ -48,11 +48,11 @@ CAUTION: L'utilisation des quotas est basée sur des estimations internes et peu
 Vous pouvez placer le curseur sur n'importe quel segment de graphique pour afficher l'espace total utilisé par ce compartiment ou ce conteneur.
 
 +
-image::../media/tenant_dashboard_storage_usage_segment.png[Segment de diagramme à barres]
+image:tenant_dashboard_storage_usage_segment.png["Segment de diagramme à barres"]
 
 * Pour correspondre au graphique à barres, une liste des plus grands seaux ou conteneurs, y compris la quantité totale de données d'objet et le nombre d'objets pour chaque godet ou conteneur.
 +
-image::../media/tenant_dashboard_buckets.png[Compartiments du tableau de bord des locataires]
+image:tenant_dashboard_buckets.png["Compartiments du tableau de bord des locataires"]
 
 +
 Si le locataire possède plus de neuf compartiments ou conteneurs, tous les autres compartiments ou conteneurs sont regroupés en une seule entrée au bas de la liste.
@@ -89,6 +89,6 @@ Si aucune limite n'est définie pour un godet, sa capacité est illimitée. Tout
 
 Si vous avez utilisé le gestionnaire de grille pour configurer un ou plusieurs points de terminaison pour les services de plateforme, le tableau de bord du gestionnaire de locataires affiche une alerte si des erreurs de point de terminaison se sont produites au cours des sept derniers jours.
 
-image::../media/tenant_dashboard_endpoint_error.png[Tableau de bord affichant le message de point final]
+image:tenant_dashboard_endpoint_error.png["Tableau de bord affichant le message de point final"]
 
 Pour link:troubleshooting-platform-services-endpoint-errors.html["erreurs de noeud final des services de plate-forme"]afficher des détails sur , sélectionnez *noeuds finaux* pour afficher la page noeuds finaux.

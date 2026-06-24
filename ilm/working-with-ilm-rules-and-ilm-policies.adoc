@@ -85,7 +85,7 @@ Pour afficher les détails d'une règle ILM, y compris le diagramme de conservat
 . Sélectionnez *ILM* > *règles*.
 . Sélectionnez le nom de la règle dont vous souhaitez afficher les détails. Exemple :
 +
-image::../media/ilm_rule_details_page.png[Page de détails des règles ILM]
+image:ilm_rule_details_page.png["Page de détails des règles ILM"]
 
 
 
@@ -174,9 +174,9 @@ NOTE: Le tableau de bord pouvant être personnalisé, l'onglet ILM peut ne pas �
 
 . Surveillez les mesures dans l'onglet ILM.
 +
-Vous pouvez sélectionner le point d'interrogation image:../media/icon_nms_question.png["icône point d'interrogation"]pour afficher une description des éléments de l'onglet ILM.
+Vous pouvez sélectionner le point d'interrogation image:icon_nms_question.png["icône point d'interrogation"] pour afficher une description des éléments de l'onglet ILM.
 
 +
-image::../media/ilm_metrics_on_dashboard.png[Metrics ILM sur le tableau de bord Grid Manager]
+image:ilm_metrics_on_dashboard.png["Metrics ILM sur le tableau de bord Grid Manager"]
 
 

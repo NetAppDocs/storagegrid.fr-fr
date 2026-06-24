@@ -23,7 +23,7 @@ La règle par défaut est la dernière règle évaluée dans une politique ILM. 
 
 Dans cet exemple de règle, la première règle s'applique uniquement aux objets appartenant à test-tenant-1. La règle par défaut, qui est la dernière, s'applique aux objets appartenant à tous les autres comptes de tenant.
 
-image::../media/ilm_policies_page_default_rule.png[Règle par défaut de la page de règles ILM]
+image:ilm_policies_page_default_rule.png["Règle par défaut de la page de règles ILM"]
 
 Lorsque vous créez la règle par défaut, gardez ces exigences à l'esprit :
 

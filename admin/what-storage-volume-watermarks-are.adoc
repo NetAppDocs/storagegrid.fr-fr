@@ -13,7 +13,7 @@ summary: 'StorageGRID utilise trois filigranes de volume de stockage qui garanti
 [role="lead"]
 StorageGRID utilise trois filigranes de volume de stockage qui garantissent que les nœuds de stockage sont transférés en toute sécurité vers un état en lecture seule avant de s'exécuter avec un espace critique et que les nœuds de stockage ayant été transférés vers un état en lecture seule afin de devenir à nouveau en lecture/écriture.
 
-image::../media/storage_volume_watermarks.png[Filigranes de volume de stockage]
+image:storage_volume_watermarks.png["Filigranes de volume de stockage"]
 
 
 NOTE: Les filigranes du volume de stockage ne s'appliquent qu'à l'espace utilisé pour les données d'objets répliquées et codées par effacement. Pour en savoir plus sur l'espace réservé aux métadonnées d'objet sur le volume 0, rendez-vous link:managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"]sur .

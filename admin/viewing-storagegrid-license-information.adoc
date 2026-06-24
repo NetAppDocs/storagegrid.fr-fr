@@ -19,7 +19,7 @@ Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-
 .Description de la tâche
 En cas de problème avec la licence logicielle de ce système StorageGRID, la carte d'état d'intégrité du tableau de bord comprend une icône d'état de la licence et un lien *Licence*. Ce numéro indique le nombre de problèmes liés à la licence.
 
-image::../media/dashboard_health_panel_license_status.png[État de la licence de la carte d'état d'intégrité du tableau de bord]
+image:dashboard_health_panel_license_status.png["État de la licence de la carte d'état d'intégrité du tableau de bord"]
 
 .Étapes
 . Accédez à la page Licence en effectuant l'une des opérations suivantes :

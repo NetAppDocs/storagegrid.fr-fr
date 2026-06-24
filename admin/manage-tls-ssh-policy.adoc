@@ -33,7 +33,7 @@ NOTE: Certains services StorageGRID n'ont pas été mis à jour pour utiliser le
 L'onglet *TLS et SSH policies* affiche les stratégies disponibles. La règle actuellement active est indiquée par une coche verte sur la vignette de la police.
 
 +
-image::../media/securitysettings_tls_ssh_policies_current.png[Règles TLS et SSH]
+image:securitysettings_tls_ssh_policies_current.png["Règles TLS et SSH"]
 
 . Consultez les onglets pour en savoir plus sur les politiques disponibles.
 +
@@ -119,7 +119,7 @@ Vous pouvez créer une stratégie personnalisée si vous devez appliquer vos pro
 . Dans la mosaïque de la stratégie la plus similaire à la stratégie personnalisée que vous souhaitez créer, sélectionnez *Afficher les détails*.
 . Sélectionnez *Copier dans le presse-papiers*, puis sélectionnez *Annuler*.
 +
-image::../media/securitysettings-custom-security-policy-copy.png[copie d'une stratégie existante pour créer une stratégie personnalisée]
+image:securitysettings-custom-security-policy-copy.png["copie d'une stratégie existante pour créer une stratégie personnalisée"]
 
 . Dans la mosaïque *Personnaliser la stratégie*, sélectionnez *configurer et utiliser*.
 . Collez le fichier JSON que vous avez copié et apportez les modifications nécessaires.

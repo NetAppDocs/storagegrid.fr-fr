@@ -62,7 +62,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 Le menu principal s'affiche.
 
 +
-image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+image:change_ip_tool_main_menu.png["Capture d'écran affichant l'écran d'accueil de l'outil modifier IP"]
 
 . Limitez éventuellement les réseaux/nœuds sur lesquels les opérations sont effectuées. Options au choix :
 +
@@ -101,7 +101,7 @@ TIP: Vous pouvez réduire la quantité de saisie requise en utilisant la « flè
 
 L'exemple ci-dessous illustre l'ajout de sous-réseaux à la liste de sous-réseaux du réseau Admin :
 
-image::../media/change_ip_tool_aesl_sample_input.gif[modifier l'outil ip, exemple aesl]
+image:change_ip_tool_aesl_sample_input.gif["modifier l'outil ip, exemple aesl"]
 
 --
 . Lorsque vous êtes prêt, saisissez *q* pour revenir à l'écran du menu principal. Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
@@ -113,7 +113,7 @@ NOTE: Si vous avez sélectionné l'un des modes de sélection de nœuds « tous
 +
 ** Sélectionnez l'option *5* pour afficher les modifications dans la sortie qui sont isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple ci-dessous :
 +
-image::../media/change_ip_tool_aesl_sample_output.png[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_aesl_sample_output.png["capture d'écran décrite par le texte environnant"]
 
 ** Sélectionnez l'option *6* pour afficher les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions). *Note:* certains émulateurs de terminaux peuvent montrer des ajouts et des suppressions en utilisant le formatage barré.
 +

@@ -32,14 +32,14 @@ CAUTION: Soyez prudent lorsque vous décidez de désactiver une règle d'alerte.
 La page silences s'affiche.
 
 +
-image::../media/alerts_silences_page.png[Page alertes > silences]
+image:alerts_silences_page.png["Alertes > Silences page"]
 
 . Sélectionnez *Créer*.
 +
 La boîte de dialogue Créer une Silence s'affiche.
 
 +
-image::../media/alerts_create_silence.png[Alertes > Créer Silence]
+image:alerts_create_silence.png["Alertes > Créer un silence"]
 
 . Sélectionnez ou entrez les informations suivantes :
 +

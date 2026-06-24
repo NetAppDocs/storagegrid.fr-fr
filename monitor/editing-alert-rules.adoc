@@ -35,7 +35,7 @@ La page règles d'alerte s'affiche.
 La boîte de dialogue Modifier la règle s'affiche. Cet exemple montre une règle d'alerte par défaut, les champs Nom unique, Description et actions recommandées sont désactivés et ne peuvent pas être modifiés.
 
 +
-image::../media/alert_rules_edit_rule.png[Alertes > Modifier la règle]
+image:alert_rules_edit_rule.png["Alertes > Modifier la règle"]
 
 . Cochez ou décochez la case *activé* pour déterminer si cette règle d'alerte est actuellement activée.
 +
@@ -86,7 +86,7 @@ En option, les actions recommandées à effectuer lorsque cette alerte est décl
 NOTE: Si vous souhaitez restaurer une condition pour une règle d'alerte par défaut modifiée à sa valeur d'origine, sélectionnez les trois points à droite de la condition modifiée.
 
 +
-image::../media/alert_rules_edit_revert_to_default.png[Règles d'alerte : rétablissement d'une condition modifiée en valeur par défaut]
+image:alert_rules_edit_revert_to_default.png["Règles d'alerte : rétablissement d'une condition modifiée en valeur par défaut"]
 
 +
 

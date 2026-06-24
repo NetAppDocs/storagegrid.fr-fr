@@ -39,7 +39,7 @@ Pour les nœuds de stockage de l'appliance, le nom mondial de chaque disque corr
 Pour vous aider à interpréter les statistiques de lecture et d'écriture du disque relatives aux points de montage du volume, la première partie du nom affichée dans la colonne *Name* de la table Disk Devices (c'est-à-dire _sdc_, _sdd_, _sde_, etc.) correspond à la valeur indiquée dans la colonne *Device* de la table volumes.
 
 +
-image::../media/nodes_page_storage_tables_vol_expansion.png[Nœuds tables de stockage des pages]
+image:nodes_page_storage_tables_vol_expansion.png["Nœuds tables de stockage des pages"]
 
 . Suivez les instructions fournies par votre plateforme pour ajouter de nouveaux volumes de stockage au nœud de stockage.
 +

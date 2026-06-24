@@ -44,7 +44,7 @@ Lorsque la procédure de rééquilibrage EC est terminée :
 Par exemple, supposons que trois nœuds de 200 To soient remplis à 80 % (200 et#215 ; 0.8 = 160 To sur chaque nœud, ou 480 To pour le site). Si vous ajoutez un nœud de 400 To et exécutez la procédure de rééquilibrage, tous les nœuds auront à peu près le même volume de données de code d'effacement (480/4 = 120 To). Cependant, le pourcentage utilisé pour le nœud le plus grand sera inférieur au pourcentage utilisé pour les nœuds plus petits.
 
 +
-image::../media/used_space_with_larger_node.png[Espace utilisé avant extension]
+image:used_space_with_larger_node.png["Espace utilisé avant extension"]
 
 
 
@@ -64,7 +64,7 @@ Prenons le scénario suivant :
 * La règle ILM utilise une règle de code d'effacement 2+1 pour tous les objets de plus de 1.0 Mo et une règle de réplication à 2 copies pour les objets plus petits.
 * Tous les nœuds de stockage sont devenus complètement pleins. L'alerte *Low Object Storage* a été déclenchée au niveau de gravité principal.
 +
-image::../media/used_space_before_expansion.png[Espace utilisé avant extension]
+image:used_space_before_expansion.png["Espace utilisé avant extension"]
 
 
 
@@ -74,7 +74,7 @@ image::../media/used_space_before_expansion.png[Espace utilisé avant extension]
 
 Pour savoir quand le rééquilibrage EC n'est pas nécessaire, supposons que vous ayez ajouté trois (ou plus) nouveaux nœuds de stockage. Dans ce cas, vous n'avez pas besoin d'effectuer le rééquilibrage EC. Les nœuds de stockage d'origine resteront pleins, mais les nouveaux objets utiliseront désormais les trois nouveaux nœuds pour le code d'effacement 2+1&#8212;les deux fragments de données et le fragment de parité peuvent chacun être stockés sur un nœud différent.
 
-image::../media/used_space_after_3_node_expansion.png[Espace utilisé après l'extension à 3 nœuds]
+image:used_space_after_3_node_expansion.png["Espace utilisé après l'extension à 3 nœuds"]
 
 
 CAUTION: Dans ce cas, vous pouvez exécuter la procédure de rééquilibrage de l'effacement, mais le déplacement des données existantes avec code d'effacement réduit temporairement les performances de la grille, ce qui peut avoir un impact sur les opérations client.
@@ -85,11 +85,11 @@ CAUTION: Dans ce cas, vous pouvez exécuter la procédure de rééquilibrage de 
 
 Pour savoir quand un rééquilibrage EC est nécessaire, supposons que vous ne pouvez ajouter que deux nœuds de stockage au lieu de trois. Étant donné que le modèle 2+1 requiert au moins trois nœuds de stockage pour disposer d'espace disponible, les nœuds vides ne peuvent pas être utilisés pour les nouvelles données avec code d'effacement.
 
-image::../media/used_space_after_2_node_expansion.png[Espace utilisé après l'extension à 2 nœuds]
+image:used_space_after_2_node_expansion.png["Espace utilisé après l'extension à 2 nœuds"]
 
 Pour utiliser les nouveaux nœuds de stockage, vous devez exécuter la procédure de rééquilibrage EC. À l'exécution de cette procédure, StorageGRID redistribue les données avec code d'effacement et les fragments de parité existants entre tous les nœuds de stockage sur le site. Dans cet exemple, lorsque la procédure de rééquilibrage de l'EC est terminée, les cinq nœuds sont désormais remplis à seulement 60 % et les objets peuvent continuer à être ingérés dans le schéma de code d'effacement 2+1 sur tous les nœuds de stockage.
 
-image::../media/used_space_after_ec_rebalance.png[Rééquilibrage EC de l'espace utilisé]
+image:used_space_after_ec_rebalance.png["Rééquilibrage EC de l'espace utilisé"]
 
 
 

@@ -16,7 +16,7 @@ Vous devez examiner attentivement les informations de configuration que vous ave
 .Étapes
 . Afficher la page *Résumé*.
 +
-image::../media/11_gmi_installer_summary_page.gif[Page récapitulative du programme d'installation de Grid Manager]
+image:11_gmi_installer_summary_page.gif["Page récapitulative du programme d'installation de Grid Manager"]
 
 . Vérifiez que toutes les informations de configuration de la grille sont correctes. Utilisez les liens Modifier de la page Résumé pour revenir en arrière et corriger les erreurs.
 . Cliquez sur *installer*.
@@ -38,7 +38,7 @@ CAUTION: Le fichier du progiciel de récupération doit être sécurisé car il 
 Si l'installation est toujours en cours, la page d'état s'affiche. Cette page indique la progression de l'installation pour chaque nœud de la grille.
 
 +
-image::../media/12_gmi_installer_status_page.gif[Cette image est expliquée par le texte qui l'entoure.]
+image:12_gmi_installer_status_page.gif["Cette image est expliquée par le texte qui l'entoure."]
 
 +
 Lorsque l'étape complète est atteinte pour tous les nœuds de la grille, la page de connexion de Grid Manager s'affiche.

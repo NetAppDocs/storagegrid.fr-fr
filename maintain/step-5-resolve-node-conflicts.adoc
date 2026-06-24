@@ -16,7 +16,7 @@ summary: 'À partir de l"étape 5 (résoudre les conflits de nœuds) de l"assist
 .Avant de commencer
 Vous devez vous assurer que tous les nœuds de votre système StorageGRID sont dans l'état approprié, comme suit :
 
-* Tous les nœuds de votre système StorageGRID doivent être connectés (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]).
+* Tous les nœuds de votre système StorageGRID doivent être connectés (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]).
 +
 
 NOTE: Si vous effectuez une mise hors service du site déconnecté, tous les nœuds du site que vous supprimez doivent être déconnectés et tous les nœuds de tous les autres sites doivent être connectés.
@@ -56,9 +56,9 @@ NOTE: Si vous devez effectuer une autre procédure de maintenance lors de la mis
 
 
 .Étapes
-. Consultez la section noeuds déconnectés de l'étape 5 (résoudre les conflits de noeuds) pour déterminer si des noeuds de votre système StorageGRID ont un état de connexion inconnu (image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]) ou administratif désactivé ( )image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"].
+. Consultez la section des nœuds déconnectés de l’étape 5 (Résoudre les conflits de nœuds) pour déterminer si des nœuds de votre système StorageGRID ont un état de connexion Inconnu (image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]) ou Administrativement hors service (image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]).
 +
-image::../media/decommission_site_step_5_disconnected_nodes.png[Désaffectez le site étape 5 résoudre les conflits de nœud]
+image:decommission_site_step_5_disconnected_nodes.png["Désaffectez le site étape 5 résoudre les conflits de nœud"]
 
 . Si un nœud est déconnecté, remettre en ligne.
 +
@@ -69,7 +69,7 @@ Voir la link:../maintain/grid-node-procedures.html["Procédures de nœud"]. Cont
 Ce tableau répertorie tous les nœuds du site sélectionné qui appartiennent à un groupe haute disponibilité (HA).
 
 +
-image::../media/decommission_site_step_5_ha_groups.png[Désaffectation du site étape 5 groupes haute disponibilité]
+image:decommission_site_step_5_ha_groups.png["Désaffectation du site étape 5 groupes haute disponibilité"]
 
 . Si des nœuds sont répertoriés, effectuez l'une des opérations suivantes :
 +
@@ -85,21 +85,21 @@ Si tous les nœuds sont connectés et qu'aucun nœud du site sélectionné n'est
 Le bouton *Start Decommission* devient activé.
 
 +
-image::../media/decommission_site_step_5_provision_passphrase.png[Désaffectez la phrase de passe de l'étape 5 du site]
+image:decommission_site_step_5_provision_passphrase.png["Désaffectez la phrase de passe de l'étape 5 du site"]
 
 . Si vous êtes prêt à démarrer la procédure de mise hors service du site, sélectionnez *Start Decommission*.
 +
 Un avertissement répertorie le site et les nœuds qui seront supprimés. Nous vous rappelons qu'il peut prendre des jours, des semaines, voire des mois pour supprimer complètement le site.
 
 +
-image::../media/decommission_site_step_5_warning.png[Mise hors service du site - étape 5 Avertissement]
+image:decommission_site_step_5_warning.png["Mise hors service du site - étape 5 Avertissement"]
 
 . Vérifiez l'avertissement. Si vous êtes prêt à commencer, sélectionnez *OK*.
 +
 Un message apparaît au fur et à mesure que la nouvelle configuration de grille est générée. Ce processus peut prendre un certain temps, selon le type et le nombre de nœuds de la grille désaffectés.
 
 +
-image::../media/decommission_site_step_5_grid_configuration.png[Désaffectez la configuration de la grille étape 5 du site]
+image:decommission_site_step_5_grid_configuration.png["Désaffectez la configuration de la grille étape 5 du site"]
 
 +
 Lorsque la nouvelle configuration de grille a été générée, l'étape 6 (Monitor Decommission) s'affiche.

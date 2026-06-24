@@ -64,7 +64,7 @@ Le niveau de stockage, _inclut tous les niveaux de stockage_, inclut tous les n�
 NOTE: Vous êtes averti si vous ajoutez plusieurs entrées avec différents niveaux de stockage pour un site.
 
 +
-Pour supprimer une entrée, sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"].
+Pour supprimer une entrée, sélectionnez l'icône de suppression image:icon-x-to-remove.png["icône supprimer"].
 
 . Lorsque vous êtes satisfait de vos sélections, sélectionnez *Enregistrer*.
 +

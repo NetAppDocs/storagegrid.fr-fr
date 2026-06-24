@@ -395,7 +395,7 @@ NOTE: Un nœud de stockage d’appareil peut également avoir jusqu’à 48 volu
 
 Comme illustré dans la figure, StorageGRID réserve l'espace des métadonnées d'objet sur le volume de stockage 0 de chaque nœud de stockage. Tout espace restant sur le volume de stockage 0 et tout autre volume de stockage du nœud de stockage est utilisé exclusivement pour les données d'objet.
 
-image::../media/metadata_space_storage_node.png[Nœud de stockage de l'espace de métadonnées]
+image:metadata_space_storage_node.png["Nœud de stockage de l'espace de métadonnées"]
 
 Pour assurer la redondance et protéger les métadonnées d'objet contre la perte, StorageGRID stocke trois copies des métadonnées de tous les objets du système sur chaque site. Les trois copies de métadonnées d'objet sont réparties de manière uniforme sur tous les nœuds de stockage de chaque site.
 

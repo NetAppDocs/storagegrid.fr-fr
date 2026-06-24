@@ -40,9 +40,9 @@ Par défaut, un pool de stockage est créé pour chaque site lors de l'installat
 
 Placement des règles ILM :
 
-image::../media/ilm_replication_at_2_sites.png[Réplication d'une copie sur deux sites]
+image:ilm_replication_at_2_sites.png["Réplication d'une copie sur deux sites"]
 
-image::../media/ilm_replication_make_2_copies_2_pools_2_sites.png[Faites 1 copie sur chacun des 2 sites - pool de stockage spécifique au site]
+image:ilm_replication_make_2_copies_2_pools_2_sites.png["Faites 1 copie sur chacun des 2 sites - pool de stockage spécifique au site"]
 
 Si un site est perdu, des copies des objets sont disponibles sur l'autre site.
 
@@ -58,7 +58,7 @@ Les pools de stockage comprenant plusieurs sites par pool de stockage vous perme
 
 Placement des règles ILM :
 
-image::../media/ilm_erasure_coding_site_loss_protection_4+2.png[Pool de stockage EC 1 9 nœuds de stockage 3 sites]
+image:ilm_erasure_coding_site_loss_protection_4+2.png["Pool de stockage EC 1 9 nœuds de stockage 3 sites"]
 
 Dans cet exemple :
 
@@ -72,8 +72,8 @@ NOTE: Le code d'effacement est autorisé dans les pools de stockage contenant un
 
 Règle ILM basée sur un schéma de code d'effacement 4+2 :
 
-image::../media/ec_three_sites_4_plus_2_site_loss_example_template.png[Stockage d'objets par code d'effacement utilisant un schéma de code d'effacement 4+2 sur 3 sites]
+image:ec_three_sites_4_plus_2_site_loss_example_template.png["Stockage d'objets par code d'effacement utilisant un schéma de code d'effacement 4+2 sur 3 sites"]
 
 En cas de perte d'un site, les données peuvent toujours être restaurées :
 
-image::../media/ec_three_sites_4_plus_2_site_loss_example.png[Code d'effacement 4+2 EC schéma 1 site perdu]
+image:ec_three_sites_4_plus_2_site_loss_example.png["Code d'effacement 4+2 EC schéma 1 site perdu"]

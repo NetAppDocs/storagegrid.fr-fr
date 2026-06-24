@@ -47,6 +47,6 @@ Vous pouvez utiliser l'adresse IP du noeud d'administration principal sur le ré
 La page utilisée pour configurer une grille StorageGRID s'affiche.
 
 +
-image::../media/gmi_installer_first_screen.gif[Premier écran du programme d'installation StorageGRID]
+image:gmi_installer_first_screen.gif["Premier écran du programme d'installation StorageGRID"]
 
 

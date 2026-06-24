@@ -19,15 +19,15 @@ Au fur et à mesure que vous créez des règles ILM, StorageGRID crée des profi
 
 L'exemple suivant illustre l'utilisation d'un algorithme de code d'effacement sur les données d'un objet. Dans cet exemple, la règle ILM utilise un schéma de code d'effacement 4+2. Chaque objet est tranché en quatre fragments de données égaux et deux fragments de parité sont calculés à partir des données d'objet. Chacun des six fragments est stocké sur un nœud différent sur trois sites du data Center pour assurer la protection des données en cas de défaillance d'un nœud ou de perte d'un site.
 
-image::../media/ec_three_sites_4_plus_2.png[Codage d'effacement sur trois sites 4 plus 2]
+image:ec_three_sites_4_plus_2.png["Codage d'effacement sur trois sites 4 plus 2"]
 
 Le schéma de code d'effacement 4+2 peut être configuré de différentes manières. Par exemple, vous pouvez configurer un pool de stockage sur un seul site qui contient six nœuds de stockage. Pour link:using-multiple-storage-pools-for-cross-site-replication.html["protection contre la perte de site"], vous pouvez utiliser un pool de stockage contenant trois sites avec trois nœuds de stockage sur chaque site. Un objet peut être récupéré tant que quatre des six fragments (données ou parité) restent disponibles. Jusqu'à deux fragments peuvent être perdus sans perte des données de l'objet. Si un site entier est perdu, l'objet peut toujours être récupéré ou réparé, tant que tous les autres fragments restent accessibles.
 
-image::../media/ec_recoverable_4_plus_2.png[Codage d'effacement récupérable 4 plus 2]
+image:ec_recoverable_4_plus_2.png["Codage d'effacement récupérable 4 plus 2"]
 
 Si plus de deux nœuds de stockage sont perdus, l'objet n'est pas récupérable.
 
-image::../media/ec_unrecoverable_4_plus_2.png[Codage d'effacement irrécupérable 4 plus 2]
+image:ec_unrecoverable_4_plus_2.png["Codage d'effacement irrécupérable 4 plus 2"]
 
 .Informations associées
 * link:what-replication-is.html["Qu'est-ce que la réplication"]

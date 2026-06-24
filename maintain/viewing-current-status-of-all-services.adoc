@@ -33,7 +33,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 Par exemple, la sortie du nœud d'administration principal indique l'état actuel des services AMS, CMN et NMS en cours d'exécution. Cette sortie est immédiatement mise à jour si l'état d'un service change.
 
 +
-image::../media/storagegrid_status_output.gif[capture d'écran de la sortie de la commande storage-grid]
+image:storagegrid_status_output.gif["capture d'écran de la sortie de la commande storage-grid"]
 
 . Revenez à la ligne de commande, appuyez sur *Ctrl*+*C*.
 . Vous pouvez également afficher un rapport statique pour tous les services s'exécutant sur le nœud de grille : `/usr/local/servermanager/reader.rb`

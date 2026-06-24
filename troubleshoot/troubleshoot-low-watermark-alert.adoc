@@ -88,7 +88,7 @@ Vous pouvez résoudre l'alerte *dépassement de filigrane en lecture seule* en m
 . Pour chaque site de la grille, développez la liste des nœuds.
 . Examinez les valeurs de pourcentage affichées dans la colonne *données objet utilisées* pour chaque nœud de stockage de chaque site.
 +
-image::../media/nodes_page_object_data_used_with_alert.png[Page nœuds affichant les données d'objet utilisées pour 3 SNS]
+image:nodes_page_object_data_used_with_alert.png["Page nœuds affichant les données d'objet utilisées pour 3 SNS"]
 
 . Suivez l'étape appropriée :
 +

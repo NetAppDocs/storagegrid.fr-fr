@@ -19,7 +19,7 @@ La réplication inter-grid est la réplication automatique des objets entre des 
 
 Le diagramme de flux de travail résume les étapes de configuration de la réplication inter-grille entre les buckets sur deux grilles.
 
-image::../media/grid-federation-cgr-workflow.png[Flux de production de réplication entre les grilles]
+image:grid-federation-cgr-workflow.png["Flux de production de réplication entre les grilles"]
 
 
 
@@ -50,7 +50,7 @@ Vous pouvez configurer la réplication inter-grille pour qu'elle se produise dan
 
 Si vous activez la réplication inter-grille pour un bucket sur une seule grille, les objets ajoutés à ce bucket (le bucket source) sont répliqués vers le bucket correspondant sur l'autre grille (le bucket de destination).  Cependant, les objets ajoutés au bucket de destination ne sont pas répliqués vers la source.  Dans la figure, la réplication inter-grille est activée pour `my-bucket` de la grille 1 à la grille 2, mais ce n'est pas activé dans l'autre sens.
 
-image::../media/grid-federation-cross-grid-replication-one-direction.png[image montrant la connexion de fédération de grille dans une direction]
+image:grid-federation-cross-grid-replication-one-direction.png["image montrant la connexion de fédération de grille dans une direction"]
 
 
 
@@ -58,7 +58,7 @@ image::../media/grid-federation-cross-grid-replication-one-direction.png[image m
 
 Si vous activez la réplication inter-grid pour le même compartiment sur les deux grilles, les objets ajoutés à l'un des compartiments sont répliqués sur l'autre grille. Dans la figure, la réplication inter-grille est activée pour `my-bucket` dans les deux sens.
 
-image::../media/grid-federation-cross-grid-replication.png[image montrant la réplication dans une direction par rapport à la réplication dans les deux directions]
+image:grid-federation-cross-grid-replication.png["image montrant la réplication dans une direction par rapport à la réplication dans les deux directions"]
 
 
 
@@ -137,7 +137,7 @@ Lorsqu'un client S3 supprime un objet d'un compartiment pour lequel la réplicat
 
 Dans la figure, *Répliquer les marqueurs de suppression* était défini sur *Oui* lorsquelink:../tenant/grid-federation-manage-cross-grid-replication.html["la réplication inter-grid a été activée"] .  Les demandes de suppression pour le bucket source qui incluent un ID de version ne suppriment pas les objets du bucket de destination.  Les demandes de suppression pour le bucket source qui n'incluent pas d'ID de version semblent supprimer des objets dans le bucket de destination.
 
-image::../media/grid-federation-cross-grid-replication-delete.png[image montrant la suppression du client répliqué sur les deux grilles]
+image:grid-federation-cross-grid-replication-delete.png["image montrant la suppression du client répliqué sur les deux grilles"]
 
 
 NOTE: Si vous souhaitez que les suppressions d'objets restent synchronisées entre les grilles, créez les compartiments correspondants link:../s3/create-s3-lifecycle-configuration.html["Configurations de cycle de vie S3"]sur les deux grilles.

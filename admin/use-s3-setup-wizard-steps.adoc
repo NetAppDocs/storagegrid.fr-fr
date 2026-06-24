@@ -26,7 +26,7 @@ L'assistant d'installation de S3 vous permet de configurer StorageGRID pour une 
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:web-browser-requirements.html["navigateur web pris en charge"].
 . Si la bannière *FabricPool and S3 setup Wizard* apparaît sur le tableau de bord, sélectionnez le lien dans la bannière. Si la bannière ne s'affiche plus, sélectionnez l'icône d'aide dans la barre d'en-tête du Gestionnaire de grille et sélectionnez *Assistant d'installation FabricPool et S3*.
 +
-image::../media/help_menu.png[menu aide]
+image:help_menu.png["menu aide"]
 
 . Dans la section application S3 de la page de l'assistant d'installation FabricPool et S3, sélectionnez *configurer maintenant*.
 
@@ -409,7 +409,7 @@ Dans l'étape de téléchargement des données, vous pouvez télécharger un ou 
 . Si vous avez sélectionné *Créer la clé d'accès S3 de l'utilisateur root automatiquement*, effectuez l'une des opérations suivantes ou les deux :
 +
 ** Sélectionnez *Télécharger les clés d'accès* pour télécharger un `.csv` fichier contenant le nom du compte du locataire, l'ID de la clé d'accès et la clé d'accès secrète.
-** Sélectionnez l'icône de copie (image:../media/icon_tenant_copy_url.png["icône copier"]) pour copier l'ID de la clé d'accès et la clé d'accès secrète dans le presse-papiers.
+** Sélectionnez l'icône de copie (image:icon_tenant_copy_url.png["icône copier"]) pour copier l'ID de clé d'accès et la clé d'accès secrète dans le presse-papiers.
 
 
 . Sélectionnez *Télécharger les valeurs de configuration* pour télécharger un `.txt` fichier contenant les paramètres du noeud final de l'équilibreur de charge, du locataire, du compartiment et de l'utilisateur root.

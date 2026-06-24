@@ -38,7 +38,7 @@ CAUTION: Assurez-vous qu'au moins deux nœuds de chaque site peuvent accéder à
 . Spécifiez les adresses IPv4 pour au moins quatre serveurs NTP dans les zones de texte *Server 1* à *Server 4*.
 . Si nécessaire, sélectionnez le signe plus en regard de la dernière entrée pour ajouter des entrées de serveur supplémentaires.
 +
-image::../media/8_gmi_installer_ntp_page.gif[Cette image est expliquée par le texte qui l'entoure.]
+image:8_gmi_installer_ntp_page.gif["Cette image est expliquée par le texte qui l'entoure."]
 
 . Sélectionnez *Suivant*.
 

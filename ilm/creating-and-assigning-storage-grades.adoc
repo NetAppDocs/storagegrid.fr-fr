@@ -35,13 +35,13 @@ NOTE: Ne créez pas plus de niveaux de stockage que nécessaire. Par exemple, ne
 . Sélectionnez *ILM* > *grades de stockage*.
 . Définissez des niveaux de stockage personnalisés :
 +
-.. Pour chaque classe de stockage personnalisée que vous souhaitez ajouter, sélectionnez *Insérer* image:../media/icon_nms_insert.gif["insérer l'icône"] pour ajouter une ligne.
+.. Pour chaque niveau de stockage personnalisé que vous souhaitez ajouter, sélectionnez *Insérer* image:icon_nms_insert.gif["insérer l'icône"] pour ajouter une ligne.
 .. Saisissez un libellé descriptif.
 +
-image::../media/editing_storage_grades.gif[Notes de stockage]
+image:editing_storage_grades.gif["Notes de stockage"]
 
 .. Sélectionnez *appliquer les modifications*.
-.. Si vous avez besoin de modifier une étiquette enregistrée, sélectionnez *Modifier* image:../media/icon_nms_edit.gif["icône modifier"] et sélectionnez *appliquer les modifications*.
+.. Si vous devez modifier une étiquette enregistrée, sélectionnez *Modifier* image:icon_nms_edit.gif["icône modifier"] et sélectionnez *Appliquer les modifications*.
 +
 
 NOTE: Vous ne pouvez pas supprimer des niveaux de stockage.
@@ -50,10 +50,10 @@ NOTE: Vous ne pouvez pas supprimer des niveaux de stockage.
 
 . Attribuez de nouveaux niveaux de stockage aux nœuds de stockage :
 +
-.. Localisez le noeud de stockage dans la liste LDR et sélectionnez son icône *Edit* image:../media/icon_nms_edit.gif["icône modifier"].
+.. Repérez le nœud de stockage dans la liste LDR et sélectionnez son icône *Modifier* image:icon_nms_edit.gif["icône modifier"].
 .. Sélectionnez le niveau de stockage approprié dans la liste.
 +
-image::../media/assigning_storage_grades_to_storage_nodes.gif[Notes de stockage]
+image:assigning_storage_grades_to_storage_nodes.gif["Notes de stockage"]
 
 +
 

@@ -47,7 +47,7 @@ NOTE: StorageGRID considère chaque profil de code d'effacement comme unique et 
 
 Dans cet exemple, la politique ILM active a été initialement conçue pour un système StorageGRID à deux sites et utilise deux règles ILM.
 
-image::../media/policy_6_active_policy.png[Exemple de règle ILM 6 règle active]
+image:policy_6_active_policy.png["Exemple de règle ILM 6 règle active"]
 
 Dans cette politique ILM, les objets appartenant au locataire A sont protégés par un code d'effacement 2+1 sur un seul site, tandis que les objets de tous les autres locataires sont protégés sur deux sites à l'aide de la réplication à 2 copies.
 

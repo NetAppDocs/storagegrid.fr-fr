@@ -33,7 +33,7 @@ La suppression de chaque nœud de passerelle ou d'un nœud d'administration peut
 .Étapes
 . Dès qu'un nouveau package de récupération a été généré, téléchargez le fichier.
 +
-image::../media/decommission_site_step_6_recovery_package.png[Paquet de récupération de l'étape 6 de déclassement du site]
+image:decommission_site_step_6_recovery_package.png["Paquet de récupération de l'étape 6 de déclassement du site"]
 
 +
 
@@ -56,14 +56,14 @@ NOTE: Le fichier du package de récupération doit être sécurisé car il conti
 Le déplacement des données a commencé lorsque vous avez activé la nouvelle règle ILM à l'étape 3 (réviser la politique ILM). Un déplacement des données sera effectué tout au long de la procédure de mise hors service.
 
 +
-image::../media/decommission_site_step_6_data_movement.png[Désaffectez le déplacement des données étape 6 du site]
+image:decommission_site_step_6_data_movement.png["Désaffectez le déplacement des données étape 6 du site"]
 
 . Dans la section progression du nœud de la page, surveillez la progression de la procédure de mise hors service lorsque les nœuds sont supprimés.
 +
 Lorsqu'un nœud de stockage est supprimé, chaque nœud passe par une série d'étapes. Si la plupart de ces étapes se produisent rapidement, voire de façon imperceptible, vous devrez peut-être attendre des jours, voire des semaines, pour les autres étapes, et déterminer le volume de données à déplacer. Du temps supplémentaire est nécessaire pour gérer les données codées et réévaluer les règles ILM.
 
 +
-image::../media/decommission_site_step_6_storage_node.png[Désaffectation du nœud de stockage étape 6 du site]
+image:decommission_site_step_6_storage_node.png["Désaffectation du nœud de stockage étape 6 du site"]
 
 +
 Si vous surveillez la progression de la désaffectation d'un site connecté, consultez ce tableau pour comprendre les étapes de mise hors service d'un nœud de stockage :
@@ -213,7 +213,7 @@ Quelques minutes
 +
 ** Pendant l'étape *réparer Cassandra*, StorageGRID effectue les réparations nécessaires aux clusters Cassandra qui restent dans votre réseau. Ces réparations peuvent prendre plusieurs jours ou plus, selon le nombre de nœuds de stockage restants dans votre grid.
 +
-image::../media/decommission_site_step_6_repair_cassandra.png[Désaffectez le site étape 6 réparation Cassandra]
+image:decommission_site_step_6_repair_cassandra.png["Désaffectez le site étape 6 réparation Cassandra"]
 
 ** Au cours de l'étape *Désactiver les profils EC et Supprimer les pools de stockage*, les modifications ILM suivantes sont apportées :
 +
@@ -227,13 +227,13 @@ NOTE: Le pool de stockage tous les nœuds (StorageGRID 11.6 et versions antérie
 
 ** Enfin, lors de l'étape *Remove Configuration*, toutes les références restantes au site et à ses nœuds sont supprimées du reste de la grille.
 +
-image::../media/decommission_site_step_6_remove_configuration.png[Désaffectez le site étape 6 Supprimer la configuration]
+image:decommission_site_step_6_remove_configuration.png["Désaffectez le site étape 6 Supprimer la configuration"]
 
 
 
 . Une fois la procédure de mise hors service terminée, la page site de mise hors service affiche un message de réussite et le site supprimé n'est plus affiché.
 +
-image::../media/decommission_site_success_message.png[Message de réussite du site de désaffectation]
+image:decommission_site_success_message.png["Message de réussite du site de désaffectation"]
 
 
 

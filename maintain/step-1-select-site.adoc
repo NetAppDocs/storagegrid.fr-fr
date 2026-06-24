@@ -27,7 +27,7 @@ Pour déterminer si un site peut être déclassé, commencez par accéder à l'a
 L'étape 1 (Sélectionner le site) de l'assistant de site de désaffection s'affiche. Cette étape contient une liste alphabétique des sites de votre système StorageGRID.
 
 +
-image::../media/decommission_site_step_select_site.png[Désaffectez le site étape 1 sélectionnez site]
+image:decommission_site_step_select_site.png["Désaffectez le site étape 1 sélectionnez site"]
 
 . Affichez les valeurs de la colonne capacité de stockage * utilisée pour déterminer la quantité de stockage actuellement utilisée pour les données d'objet de chaque site.
 +
@@ -54,7 +54,7 @@ NOTE: S'il y a plusieurs raisons pour lesquelles un site ne peut pas être désa
 
 
  a| 
-Coche verte (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"])
+Coche verte (image:icon_alert_green_checkmark.png["Icône alerte verte coche"])
  a| 
 Vous pouvez désaffecter ce site.
  a| 
@@ -83,7 +83,7 @@ Aucune. Vous ne pouvez pas effectuer cette procédure.
  a| 
 Non. Tous les nœuds de ce site sont déconnectés. Contactez votre ingénieur commercial NetApp.
  a| 
-Vous ne pouvez pas procéder à une désaffectation de site connecté à moins que chaque nœud du site ne soit connecté (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]).
+Vous ne pouvez pas effectuer la mise hors service d'un site connecté à moins que chaque nœud du site ne soit connecté (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]).
  a| 
 Si vous souhaitez effectuer une mise hors service hors site déconnectée, vous devez contacter votre ingénieur commercial NetApp, qui examinera vos besoins et active le reste de l'assistant de mise hors service.
 
@@ -91,7 +91,7 @@ Si vous souhaitez effectuer une mise hors service hors site déconnectée, vous 
 
 |===
 +
-L'exemple montre un système StorageGRID avec trois sites. La coche verte (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) pour les sites de Raleigh et de Sunnyvale indique que vous pouvez désaffecter ces sites. Cependant, vous ne pouvez pas désaffecter le site de Vancouver car il contient le nœud d'administration principal.
+L'exemple illustre un système StorageGRID avec trois sites. La coche verte (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]) pour les sites de Raleigh et Sunnyvale indique que vous pouvez mettre ces sites hors service. Cependant, vous ne pouvez pas mettre le site de Vancouver hors service car il contient le nœud d'administration principal.
 
 
 

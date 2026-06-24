@@ -24,7 +24,7 @@ Si vous accédez à Grid Manager ou au Gestionnaire de locataires à l'aide d'un
 
 L'exemple suivant montre une erreur de certificat lorsque le certificat de l'interface de gestion personnalisée a expiré :
 
-image::../media/certificate_error.png[Exemple d'erreur de certificat]
+image:certificate_error.png["Exemple d'erreur de certificat"]
 
 Pour garantir que les opérations ne sont pas interrompues par un certificat de serveur défaillant, l'alerte *expiration du certificat de serveur pour l'interface de gestion* est déclenchée lorsque le certificat de serveur est sur le point d'expirer.
 

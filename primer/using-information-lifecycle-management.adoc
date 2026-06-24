@@ -81,7 +81,7 @@ Lorsque des clients enregistrent des objets dans StorageGRID, les objets sont é
 
 
 
-image::../media/ilm_policy_and_rules.png[Règles et règles ILM]
+image:ilm_policy_and_rules.png["Règles et règles ILM"]
 
 .Informations associées
 * link:../ilm/index.html["Gestion des objets avec ILM"]

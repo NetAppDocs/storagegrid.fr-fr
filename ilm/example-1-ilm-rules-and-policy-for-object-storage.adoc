@@ -60,7 +60,7 @@ La section analyse des règles du diagramme de rétention indique :
 * Les objets traités par cette règle ne seront pas supprimés par ILM.
 
 
-image::../media/ilm_rule_two_copies_two_data_centers.png[Règle ILM 1, exemple 1 : copie des données d'objet vers deux sites]
+image:ilm_rule_two_copies_two_data_centers.png["Règle ILM 1, exemple 1 : copie des données d'objet vers deux sites"]
 
 
 
@@ -102,7 +102,7 @@ Placements
 Pour les objets du compartiment S3 nommés finance-records, créez une copie avec code d'effacement dans le pool spécifié par le profil de code d'effacement. Conserver cette copie pour toujours.
 
 |===
-image::../media/ilm_rule_ec_for_s3_bucket_finance_records.png[Règle ILM 2, exemple 1 : profil de code d'effacement avec mise en correspondance des compartiments]
+image:ilm_rule_ec_for_s3_bucket_finance_records.png["Règle ILM 2, exemple 1 : profil de code d'effacement avec mise en correspondance des compartiments"]
 
 
 
@@ -115,7 +115,7 @@ Une règle ILM standard pour un grid multisite peut inclure des règles ILM, tel
 * Lors de l'ingestion, stockez tous les objets appartenant au compartiment S3 nommé `finance-records` dans un pool de stockage contenant trois sites. Utilisez le code d'effacement 6+3.
 * Si un objet ne correspond pas à la première règle ILM, utilisez la règle ILM par défaut de la règle, deux copies de data centers, pour stocker une copie de cet objet sur le site 1 et une copie sur le site 2.
 +
-image::../media/policy_1_configured_policy.png[Règle ILM, par exemple 1]
+image:policy_1_configured_policy.png["Règle ILM, par exemple 1"]
 
 
 

@@ -19,7 +19,7 @@ Si l'autorisation *utiliser la connexion de fédération de grille* a été attr
 
 Le diagramme de flux de travail résume les étapes à suivre pour configurer la réplication inter-grille entre les buckets de deux grilles.  Ces étapes sont décrites plus en détail sous le diagramme.
 
-image::../media/grid-federation-cgr-workflow.png[Flux de production de réplication entre les grilles]
+image:grid-federation-cgr-workflow.png["Flux de production de réplication entre les grilles"]
 
 
 
@@ -86,7 +86,7 @@ Vous devez effectuer ces étapes avant d'ajouter des objets à l'un ou l'autre c
 *** *Yes* (par défaut) : un marqueur de suppression est ajouté au compartiment source et répliqué dans le compartiment de destination.
 *** *Non* : un marqueur de suppression est ajouté au bucket source mais n'est pas répliqué dans le bucket de destination.
 +
-image::../media/grid-federation-cross-grid-replication-client-deletes.png[image montrant la suppression du client répliqué sur les deux grilles]
+image:grid-federation-cross-grid-replication-client-deletes.png["image montrant la suppression du client répliqué sur les deux grilles"]
 
 +
 

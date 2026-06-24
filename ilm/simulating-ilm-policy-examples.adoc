@@ -28,7 +28,7 @@ Dans cet exemple, la *exemple de règle ILM* est simulée contre les objets ing�
 
 Après avoir simulé la règle, confirmez que chaque objet a été mis en correspondance avec la règle appropriée.
 
-image::../media/simulate_policy_screen.png[Simuler les résultats de la règle]
+image:simulate_policy_screen.png["Simuler les résultats de la règle"]
 
 Dans cet exemple :
 
@@ -57,7 +57,7 @@ Dans cet exemple, la politique *Demo* est en cours de simulation. Cette règle, 
 Les résultats de la simulation s'affichent, indiquant que l' `Havok.png`objet a été mis en correspondance avec la règle *PNgs*.
 
 +
-image::../media/simulate_reorder_rules_pngs_result.png[Exemple 2 : réorganisation des règles lors de la simulation d'une politique ILM]
+image:simulate_reorder_rules_pngs_result.png["Exemple 2 : réorganisation des règles lors de la simulation d'une politique ILM"]
 
 +
 Cependant, `Havok.png` était destiné à tester la règle *X-MEN*.
@@ -75,7 +75,7 @@ Cependant, `Havok.png` était destiné à tester la règle *X-MEN*.
 Les objets que vous avez testés précédemment sont réévalués par rapport à la règle mise à jour et les nouveaux résultats de simulation sont affichés. Dans l'exemple, la colonne correspondance de règle indique que l' `Havok.png`objet correspond désormais à la règle de métadonnées X-MEN, comme prévu. La colonne comparaison précédente indique que la règle des PNG correspond à l'objet dans la simulation précédente.
 
 +
-image::../media/simulate_reorder_rules_correct_result.png[Exemple 2 : réorganisation des règles lors de la simulation d'une politique ILM]
+image:simulate_reorder_rules_correct_result.png["Exemple 2 : réorganisation des règles lors de la simulation d'une politique ILM"]
 
 
 
@@ -87,7 +87,7 @@ Cet exemple montre comment simuler une stratégie, corriger une règle dans la r
 
 Dans cet exemple, la politique *Demo* est en cours de simulation. Cette règle a pour but de rechercher des objets qui ont des `series=x-men` métadonnées utilisateur. Cependant, des résultats inattendus se sont produits lors de la simulation de cette règle par rapport à l' `Beast.jpg`objet. Au lieu de faire correspondre la règle de métadonnées X-Men, l'objet correspond à la règle par défaut, deux copies de deux centres de données.
 
-image::../media/simulate_results_for_object_wrong_metadata.png[Exemple 3 : correction d'une règle lors de la simulation d'une règle ILM]
+image:simulate_results_for_object_wrong_metadata.png["Exemple 3 : correction d'une règle lors de la simulation d'une règle ILM"]
 
 Lorsqu'un objet test n'est pas associé à la règle attendue de la stratégie, vous devez examiner chaque règle de la stratégie et corriger les erreurs éventuelles.
 
@@ -108,6 +108,6 @@ Supposons, par exemple, que les métadonnées de la règle X-MEN aient été sai
 Dans cet exemple, la règle X-MEN corrigée correspond désormais à l' `Beast.jpg`objet en fonction des `series=x-men` métadonnées de l'utilisateur, comme prévu.
 
 +
-image::../media/simulate_results_for_object_corrected_metadata.png[Exemple 3 : correction d'une règle lors de la simulation d'une règle ILM]
+image:simulate_results_for_object_corrected_metadata.png["Exemple 3 : correction d'une règle lors de la simulation d'une règle ILM"]
 
 

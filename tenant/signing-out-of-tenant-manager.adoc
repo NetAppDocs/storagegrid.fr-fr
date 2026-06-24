@@ -16,7 +16,7 @@ Lorsque vous avez terminé de travailler avec le Gestionnaire de locataires, vou
 .Étapes
 . Localisez la liste déroulante Nom d'utilisateur dans le coin supérieur droit de l'interface utilisateur.
 +
-image::../media/tenant_user_sign_out.png[Lien de déconnexion]
+image:tenant_user_sign_out.png["Lien de déconnexion"]
 
 . Sélectionnez le nom d'utilisateur, puis sélectionnez *Déconnexion*.
 +

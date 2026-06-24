@@ -18,7 +18,7 @@ Le système StorageGRID peut continuer à fonctionner lorsque certaines parties 
 
 Pour être averti des alertes dès qu'elles sont déclenchées, vous pouvez https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/setting-up-email-notifications-for-alerts.html["configurez les notifications par e-mail pour les alertes"^] ou link:using-snmp-monitoring.html["Configurer les interruptions SNMP"].
 
-image::../media/health_status_card.png[Carte d'état de santé - tableau de bord]
+image:health_status_card.png["Carte d'état de santé - tableau de bord"]
 
 Lorsque des problèmes existent, des liens s'affichent pour vous permettre d'afficher des détails supplémentaires :
 
@@ -66,7 +66,7 @@ Si un ou plusieurs nœuds sont déconnectés de la grille, les opérations Stora
 
 
  a| 
-image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"]
+image:icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"]
  a| 
 *Non connecté - Inconnu*
 
@@ -83,7 +83,7 @@ Par exemple, vous devrez peut-être redémarrer un service qui a arrêté ou red
 
 
  a| 
-image:../media/icon_alarm_gray_administratively_down.png["icône questionmark grise"]
+image:icon_alarm_gray_administratively_down.png["icône questionmark grise"]
  a| 
 *Non connecté - Arrêt administratif*
 
@@ -100,7 +100,7 @@ Si une ou plusieurs alertes sont actives <<Afficher les alertes actuelles et ré
 
 
  a| 
-image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]
+image:icon_alert_green_checkmark.png["icône alerte verte coche"]
  a| 
 * Connecté*
 
@@ -140,11 +140,11 @@ Gravité
  a| 
 Gravité de l'alerte. Pour les alertes actuelles, si plusieurs alertes sont regroupées, la ligne de titre indique le nombre d'instances de cette alerte qui se produisent à chaque gravité.
 
-image:../media/icon_alert_red_critical.png["Icône alerte rouge critique"] *Critique* : il existe une condition anormale qui a arrêté les opérations normales d'un noeud ou d'un service StorageGRID. Vous devez immédiatement résoudre le problème sous-jacent. Une interruption du service et une perte de données peuvent se produire si le problème n'est pas résolu.
+image:icon_alert_red_critical.png["Icône alerte rouge critique"] *Critique* : Une condition anormale existe qui a interrompu le fonctionnement normal d’un nœud ou service StorageGRID. Vous devez résoudre immédiatement le problème sous-jacent. Une interruption de service et une perte de données peuvent survenir si le problème n’est pas résolu.
 
-image:../media/icon_alert_orange_major.png["Icône alerte Orange majeur"] *Majeur* : il existe une condition anormale qui affecte les opérations en cours ou qui approche du seuil pour une alerte critique. Vous devez examiner les alertes majeures et résoudre tous les problèmes sous-jacents pour vérifier que leur condition anormale n'arrête pas le fonctionnement normal d'un nœud ou d'un service StorageGRID.
+image:icon_alert_orange_major.png["Icône alerte Orange majeur"] *Majeur* : Une anomalie existe qui affecte les opérations en cours ou approche le seuil d’alerte critique. Vous devez enquêter sur les alertes majeures et résoudre tout problème sous-jacent afin de garantir que l’anomalie ne perturbe pas le fonctionnement normal d’un nœud ou service StorageGRID.
 
-image:../media/icon_alert_yellow_minor.png["Icône alerte jaune mineure"] *Mineur* : le système fonctionne normalement, mais il existe une condition anormale qui pourrait affecter la capacité de fonctionnement du système s'il continue. Vous devez surveiller et résoudre les alertes mineures qui ne sont pas claires par elles-mêmes pour vous assurer qu'elles n'entraînent pas de problème plus grave.
+image:icon_alert_yellow_minor.png["Icône alerte jaune mineure"] *Mineur* : Le système fonctionne normalement, mais une anomalie existe qui pourrait affecter la capacité du système à fonctionner si elle persiste. Vous devez surveiller et résoudre les alertes mineures qui ne se résolvent pas d'elles-mêmes afin de vous assurer qu'elles ne provoquent pas un problème plus grave.
 
 
 
@@ -208,9 +208,9 @@ La page d'alertes en cours est actualisée toutes les deux minutes.
 
 
 
-. Pour développer des groupes d'alertes, sélectionnez la touche d'avertissement vers le bas image:../media/icon_alert_caret_down.png["icône de point d'arrêt"]. Pour réduire les alertes individuelles d'un groupe, sélectionnez la touche UP caret image:../media/icon_alert_caret_up.png["Icône attention"]ou sélectionnez le nom du groupe.
+. Pour développer les groupes d'alertes, sélectionnez la flèche vers le bas image:icon_alert_caret_down.png["icône de point d'arrêt"]. Pour réduire les alertes individuelles d'un groupe, sélectionnez la flèche vers le haut image:icon_alert_caret_up.png["Icône attention"], ou sélectionnez le nom du groupe.
 . Pour afficher des alertes individuelles au lieu de groupes d'alertes, décochez la case *alertes de groupe*.
-. Pour trier les alertes ou les groupes d'alertes actuels, sélectionnez les flèches haut/bas image:../media/icon_alert_sort_column.png["Icône de flèches de tri"]dans chaque en-tête de colonne.
+. Pour trier les alertes ou groupes d'alertes en cours, sélectionnez les flèches haut/bas image:icon_alert_sort_column.png["Icône de flèches de tri"] dans l'en-tête de chaque colonne.
 +
 ** Lorsque *alertes de groupe* est sélectionné, les groupes d'alertes et les alertes individuelles de chaque groupe sont triés. Par exemple, vous pouvez trier les alertes d'un groupe par *heure déclenchée* pour trouver l'instance la plus récente d'une alerte spécifique.
 ** Lorsque *alertes de groupe* est effacé, la liste complète des alertes est triée. Par exemple, vous pouvez trier toutes les alertes par *nœud/site* pour voir toutes les alertes affectant un nœud spécifique.

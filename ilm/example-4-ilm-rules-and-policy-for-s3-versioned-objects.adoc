@@ -77,7 +77,7 @@ La règle ILM 1 s'applique à toutes les versions de l'objet, c'est pourquoi vou
 
 Pour créer une règle qui utilise « Noncurrent Time » comme heure de référence, sélectionnez *Oui* pour la question, « appliquer cette règle aux anciennes versions d'objet uniquement (dans les compartiments S3 avec multiversion activée) ? » À l'étape 1 (entrer les détails) de l'assistant de création de règles ILM. Lorsque vous sélectionnez *Oui*, _Noncurrent Time_ est automatiquement sélectionné pour l'heure de référence et vous ne pouvez pas sélectionner une autre heure de référence.
 
-image::../media/ilm-rule-apply-only-to-older-object-verions.png[Appliquer la règle ILM uniquement aux versions d'objets plus anciennes (heure non actuelle)]
+image:ilm-rule-apply-only-to-older-object-verions.png["Appliquer la règle ILM uniquement aux versions d'objets plus anciennes (heure non actuelle)"]
 
 Dans cet exemple, seules deux copies des versions non actuelles sont stockées, et ces copies seront stockées pendant deux ans.
 

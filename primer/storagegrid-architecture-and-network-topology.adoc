@@ -29,7 +29,7 @@ Le système StorageGRID peut être déployé sur un seul site de centre de donn�
 
 Dans un déploiement avec un site unique, l'infrastructure et les opérations du système StorageGRID sont centralisées.
 
-image::../media/data_center_site_single.png[Un seul data Center site]
+image:data_center_site_single.png["Un seul data Center site"]
 
 
 
@@ -39,7 +39,7 @@ Dans un déploiement sur plusieurs sites, il est possible d'installer différent
 
 Les sites sont souvent situés dans des endroits géographiquement différents dans différents domaines de défaillance, comme une ligne de faille sismique ou une plaine inondable.  Le partage des données et la reprise après sinistre sont réalisés par la distribution automatisée des données vers d’autres sites.
 
-image::../media/data_center_sites_multiple.png[Site de plusieurs data centers]
+image:data_center_sites_multiple.png["Site de plusieurs data centers"]
 
 Plusieurs sites logiques peuvent également exister au sein d’un même centre de données pour permettre l’utilisation de la réplication distribuée et du codage d’effacement pour une disponibilité et une résilience accrues.
 
@@ -55,7 +55,7 @@ Dans un déploiement sur un ou plusieurs sites, vous pouvez éventuellement incl
 
 Ce schéma montre comment les nœuds grid sont organisés dans un système StorageGRID.
 
-image::../media/grid_nodes_and_components.png[schéma décrit par le texte environnant]
+image:grid_nodes_and_components.png["schéma décrit par le texte environnant"]
 
 Les clients S3 stockent et récupèrent des objets dans StorageGRID. D'autres clients sont utilisés pour envoyer des notifications par e-mail, pour accéder à l'interface de gestion StorageGRID et éventuellement pour accéder au partage d'audit.
 

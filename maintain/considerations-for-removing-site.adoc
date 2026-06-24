@@ -32,7 +32,7 @@ Lorsque la procédure de mise hors service du site est terminée :
 Vous pouvez utiliser la procédure de mise hors service du site pour supprimer un site dans lequel tous les nœuds sont connectés à StorageGRID (appelé mise hors service du site connecté) ou pour supprimer un site dans lequel tous les nœuds sont déconnectés de StorageGRID (appelé mise hors service hors site déconnectée). Avant de commencer, vous devez comprendre les différences entre ces procédures.
 
 
-NOTE: Si un site contient un mélange de nœuds connectés (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) et déconnectés (image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] ou image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]), vous devez remettre tous les nœuds hors ligne en ligne.
+NOTE: Si un site contient un mélange de nœuds connectés (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]) et de nœuds déconnectés (image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] ou image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]), vous devez remettre en ligne tous les nœuds hors ligne.
 
 * Une désaffectation de site connecté vous permet de supprimer un site opérationnel du système StorageGRID. Par exemple, vous pouvez effectuer une mise hors service du site connecté pour supprimer un site qui fonctionne mais qui n'est plus nécessaire.
 * Lorsque StorageGRID supprime un site connecté, il gère les données d'objet du site à l'aide de ILM. Avant de pouvoir lancer la désaffectation d'un site connecté, vous devez supprimer ce site de toutes les règles ILM et activer une nouvelle règle ILM. Les processus ILM pour migrer les données d'objet et les processus internes pour supprimer un site peuvent se produire au même moment, mais la meilleure pratique consiste à exécuter la procédure ILM avant de démarrer la procédure de déclassement.
@@ -54,8 +54,8 @@ Avant de supprimer un site connecté ou déconnecté, vous devez connaître les 
 
 * Vous ne pouvez pas désaffecter un site qui inclut le nœud d'administration principal.
 * Vous ne pouvez pas désaffecter un site si l'un des nœuds dispose d'une interface appartenant à un groupe haute disponibilité (HA). Vous devez modifier le groupe haute disponibilité pour supprimer l'interface du nœud ou supprimer l'ensemble du groupe haute disponibilité.
-* Vous ne pouvez pas désaffecter un site s'il contient un mélange deimage:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] nœuds connectés (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) et déconnectés (image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] ou ).
-* Vous ne pouvez pas désaffecter un site si un nœud d'un autre site est déconnecté (image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] ou image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]).
+* Vous ne pouvez pas mettre hors service un site s'il contient un mélange de nœuds connectés (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]) et déconnectés (image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] ou image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]).
+* Vous ne pouvez pas mettre hors service un site si un nœud d'un autre site est déconnecté (image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] ou image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]).
 * Vous ne pouvez pas démarrer la procédure de mise hors service du site si une opération de réparation de nœud ec est en cours. Voir link:checking-data-repair-jobs.html["Vérifier les travaux de réparation des données"] pour suivre les réparations des données avec code d'effacement.
 * Pendant que la procédure de mise hors service du site est en cours d'exécution :
 +
@@ -117,7 +117,7 @@ CAUTION: Ne créez jamais de règle ILM à copie unique pour la suppression d'un
 
 Avant que StorageGRID puisse supprimer un site connecté, vous devez vous assurer que :
 
-* Tous les nœuds de votre système StorageGRID doivent avoir un état de connexion *connecté* (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) ; cependant, les nœuds peuvent avoir des alertes actives.
+* Tous les nœuds de votre système StorageGRID doivent avoir un état de connexion *Connecté* (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]); cependant, les nœuds peuvent avoir des alertes actives.
 +
 
 NOTE: Vous pouvez exécuter les étapes 1-4 de l'assistant Decommission site si un ou plusieurs nœuds sont déconnectés. Toutefois, vous ne pouvez pas effectuer l'étape 5 de l'assistant, qui démarre le processus de mise hors service, sauf si tous les nœuds sont connectés.
@@ -147,11 +147,11 @@ CAUTION: N'essayez pas de désaffecter le site si vous pensez qu'il est possible
 
 * Tous les nœuds du site doivent avoir un état de connexion de l'un des éléments suivants :
 +
-** *Inconnu* (image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]) : pour une raison inconnue, un nœud est déconnecté ou les services sur le nœud sont arrêtés de façon inattendue. Par exemple, un service du nœud peut être arrêté, ou le nœud a perdu sa connexion réseau en raison d'une panne de courant ou d'une panne imprévue.
-** *Administrativement arrêté* (image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]) : le nœud n'est pas connecté à la grille pour une raison prévue. Par exemple, le ou les services du nœud ont été normalement arrêtés.
+** *Inconnu* (image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]) : Pour une raison inconnue, un nœud est déconnecté ou les services sur le nœud sont indisponibles de manière inattendue. Par exemple, un service sur le nœud peut être arrêté, ou le nœud peut avoir perdu sa connexion réseau en raison d'une panne de courant ou d'une interruption inattendue.
+** *Hors service administrativement* (image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"]) : Le nœud n’est pas connecté à la grille pour une raison prévue. Par exemple, le nœud ou les services sur le nœud ont été arrêtés correctement.
 
 
-* Tous les nœuds de tous les autres sites doivent avoir un état de connexion *connecté* (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) ; cependant, ces autres nœuds peuvent avoir des alertes actives.
+* Tous les nœuds de tous les autres sites doivent avoir un état de connexion *Connecté* (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]); cependant, ces autres nœuds peuvent avoir des alertes actives.
 * Vous devez comprendre que vous ne pourrez plus utiliser StorageGRID pour consulter ou récupérer toutes les données d'objet qui ont été stockées sur le site. Lorsque StorageGRID exécute cette procédure, il ne tente pas de préserver les données du site déconnecté.
 +
 

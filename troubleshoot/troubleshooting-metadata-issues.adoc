@@ -21,7 +21,7 @@ Suivez les actions recommandées pour chaque alerte liée aux métadonnées qui 
 
 StorageGRID réserve un certain espace sur le volume 0 de chaque nœud de stockage pour les métadonnées de l'objet. Cet espace, appelé _espace réservé réel_, est subdivisé en l'espace autorisé pour les métadonnées de l'objet (espace de métadonnées autorisé) et l'espace requis pour les opérations de base de données essentielles, telles que la compaction et la réparation. L'espace de métadonnées autorisé régit la capacité globale des objets.
 
-image::../media/metadata_allowed_space_volume_0.png[Espace autorisé pour les métadonnées Volume 0]
+image:metadata_allowed_space_volume_0.png["Espace autorisé pour les métadonnées Volume 0"]
 
 Si les métadonnées d'objet consomment plus de 100 % de l'espace autorisé pour les métadonnées, les opérations de base de données ne peuvent pas s'exécuter efficacement et des erreurs se produisent.
 

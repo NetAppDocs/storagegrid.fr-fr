@@ -35,11 +35,11 @@ Le tableau de bord de Grid Manager vous permet d'évaluer rapidement la quantit�
 NOTE: Le résumé n'inclut pas les supports d'archivage.
 
 +
-image::../media/dashboard_data_and_metadata_space_usage_breakdown.png[Répartition de l'utilisation de l'espace de données et de métadonnées]
+image:dashboard_data_and_metadata_space_usage_breakdown.png["Répartition de l'utilisation de l'espace de données et de métadonnées"]
 
 .. Notez le tableau sur la carte de stockage dans le temps. Utilisez la liste déroulante période pour vous aider à déterminer la rapidité de consommation du stockage.
 +
-image::../media/dashboard_storage_over_time.png[Graphique stockage dans le temps]
+image:dashboard_storage_over_time.png["Graphique stockage dans le temps"]
 
 
 
@@ -48,7 +48,7 @@ image::../media/dashboard_storage_over_time.png[Graphique stockage dans le temps
 .. Sélectionnez *Nœuds*.
 .. Sélectionnez *_GRID_* > *stockage*.
 +
-image::../media/nodes_deployment_storage_tab.png[Onglet stockage de déploiement des nœuds]
+image:nodes_deployment_storage_tab.png["Onglet stockage de déploiement des nœuds"]
 
 .. Placez votre curseur sur les graphiques *stockage utilisé - données d'objet* et *stockage utilisé - métadonnées d'objet* pour connaître la quantité de stockage d'objet et de métadonnées d'objet disponible pour l'ensemble de la grille, ainsi que la quantité utilisée au fil du temps.
 +
@@ -79,7 +79,7 @@ Surveillez l'espace total utilisable pour chaque nœud de stockage pour vous ass
 .Description de la tâche
 L'espace utilisable correspond à la quantité d'espace de stockage disponible pour stocker des objets. L'espace total utilisable d'un nœud de stockage est calculé en ajoutant ensemble l'espace disponible sur tous les magasins d'objets du nœud.
 
-image::../media/calculating_watermarks.gif[Dessin conceptuel de l'espace utilisable total]
+image:calculating_watermarks.gif["Dessin conceptuel de l'espace utilisable total"]
 
 .Étapes
 . Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*.
@@ -97,17 +97,17 @@ Les valeurs suivantes sont affichées :
 ** *Données avec code d'effacement* : estimation de la quantité de données d'objet avec code d'effacement sur ce nœud, ce site ou ce grid.
 ** *Total* : la quantité totale d'espace utilisable sur ce nœud, site ou grille. La valeur utilisée est la `storagegrid_storage_utilization_data_bytes` mesure.
 +
-image::../media/nodes_page_storage_used_object_data.png[Nœuds stockage de page données d'objet utilisées]
+image:nodes_page_storage_used_object_data.png["Nœuds stockage de page données d'objet utilisées"]
 
 
 
 . Passez en revue les valeurs disponibles dans les tableaux volumes et magasins d'objets, sous les graphiques.
 +
 
-NOTE: Pour afficher les graphiques de ces valeurs, cliquez sur les icônes du graphique image:../media/icon_chart_new_for_11_5.png["Icône de graphique"]dans les colonnes disponibles.
+NOTE: Pour visualiser les graphiques de ces valeurs, cliquez sur les icônes de graphique image:icon_chart_new_for_11_5.png["Icône de graphique"] dans les colonnes disponibles.
 
 +
-image::../media/nodes_page_storage_tables.png[Les tables de stockage d'objets sont stockées]
+image:nodes_page_storage_tables.png["Les tables de stockage d'objets sont stockées"]
 
 . Surveillez les valeurs dans le temps pour estimer le taux de consommation de l'espace de stockage utilisable.
 . Pour préserver le fonctionnement normal du système, ajoutez des nœuds de stockage, ajoutez des volumes de stockage ou archivez les données d'objet avant de consommer l'espace utilisable.
@@ -143,7 +143,7 @@ L'utilisation des métadonnées peut notamment être augmentée, comme la taille
 . Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Stockage*.
 . Positionnez le curseur sur le graphique de métadonnées de l'objet stockage utilisé - pour afficher les valeurs d'une heure spécifique.
 +
-image::../media/storage_used_object_metadata.png[Stockage utilisé : métadonnées d'objet]
+image:storage_used_object_metadata.png["Stockage utilisé : métadonnées d'objet"]
 
 +
 Utilisé (%):: Pourcentage de l'espace de métadonnées autorisé utilisé sur ce nœud de stockage.
@@ -202,4 +202,4 @@ Si vous disposez d'une nouvelle installation StorageGRID, autorisez l'accumulati
 . Utilisez ces valeurs pour déterminer quand ajouter de nouveaux nœuds de stockage pour le stockage des données et des métadonnées.
 
 
-image::../media/forecast-metadata-usage.png[Prévision de l'utilisation des métadonnées par site]
+image:forecast-metadata-usage.png["Prévision de l'utilisation des métadonnées par site"]

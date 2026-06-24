@@ -42,7 +42,7 @@ CAUTION: L'exécution de certaines étapes et étapes d'extension sur un grand g
 La page d'extension de la grille s'affiche. La section nœuds en attente répertorie les nœuds prêts à être ajoutés.
 
 +
-image::../media/grid_expansion_page.png[Capture d'écran affichant la page d'extension de la grille]
+image:grid_expansion_page.png["Capture d'écran affichant la page d'extension de la grille"]
 
 . Sélectionnez *configurer l'extension*.
 +
@@ -60,7 +60,7 @@ La boîte de dialogue sélection du site s'affiche.
 Si nécessaire, vous pouvez placer votre curseur sur l'adresse *Grid Network MAC Address* d'un nœud pour afficher les détails sur ce nœud.
 
 +
-image::../media/grid_node_details.png[Capture d'écran des détails du nœud de grille]
+image:grid_node_details.png["Capture d'écran des détails du nœud de grille"]
 
 +
 

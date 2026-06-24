@@ -34,7 +34,7 @@ NOTE: Le script de réparation des données est obsolète et sera supprimé dans
 == Utilisez le `repair-data` script pour restaurer les données d'objet
 
 .Avant de commencer
-* Vous avez confirmé que le nœud de stockage récupéré a un état de connexion *Connecté*image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"] dans l'onglet *Nœuds* > *Aperçu* dans le Gestionnaire de grille.
+* Vous avez confirmé que le nœud de stockage récupéré a un état de connexion *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"] sur l’onglet *Nœuds* > *Vue d’ensemble* dans le Grid Manager.
 
 
 .Description de la tâche

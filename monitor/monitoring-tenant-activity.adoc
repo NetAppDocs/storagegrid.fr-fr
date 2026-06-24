@@ -35,10 +35,10 @@ L'espace logique utilisé, l'utilisation des quotas, le quota et le nombre d'obj
 NOTE: La taille logique de tous les objets appartenant à ce locataire inclut les téléchargements multipartites incomplets et en cours.  La taille n'inclut pas l'espace physique supplémentaire utilisé pour les politiques ILM.  Les valeurs de l'espace utilisé sont des estimations.  Ces estimations sont affectées par le moment des ingestions, la connectivité réseau et l’état du nœud.
 
 +
-image::../media/tenant_accounts_page.png[Page comptes de tenant]
+image:tenant_accounts_page.png["Page comptes de tenant"]
 
-. Vous pouvez également vous connecter à un compte locataire en sélectionnant le lien de connexion image:../media/icon_tenant_sign_in.png["Icône de connexion du locataire"]dans la colonne *se connecter/Copier l'URL*.
-. Vous pouvez également copier l'URL de la page d'ouverture de session d'un locataire en sélectionnant le lien Copier l'URL image:../media/icon_tenant_copy_url.png["Icône URL de copie du locataire"]dans la colonne *se connecter/Copier l'URL*.
+. Vous pouvez également vous connecter à un compte locataire en sélectionnant le lien Sign in image:icon_tenant_sign_in.png["Icône de connexion du locataire"] dans la colonne *Sign in/Copy URL*.
+. Vous pouvez également copier l'URL de la page de Sign in d'un locataire en sélectionnant le lien de copie d'URL image:icon_tenant_copy_url.png["Icône URL de copie du locataire"] dans la colonne *Sign in/Copier l'URL*.
 . Si vous le souhaitez, sélectionnez *Exporter au format CSV* pour afficher et exporter un `.csv` fichier contenant les valeurs d'utilisation de tous les locataires.
 +
 Vous êtes invité à ouvrir ou enregistrer le `.csv` fichier.
@@ -47,7 +47,7 @@ Vous êtes invité à ouvrir ou enregistrer le `.csv` fichier.
 Le contenu du `.csv` fichier ressemble à l'exemple suivant :
 
 +
-image::../media/tenant_accounts_example_csv.png[Exemple de comptes de locataires .csv]
+image:tenant_accounts_example_csv.png["Exemple de comptes de locataires .csv"]
 
 +
 Vous pouvez ouvrir `.csv` le fichier dans une feuille de calcul ou l'utiliser dans l'automatisation.
@@ -70,7 +70,7 @@ Vous pouvez afficher les détails d'un locataire spécifique.
 La page des détails du locataire s'affiche.
 
 +
-image::../media/tenant_usage_modal.png[Modal d'utilisation des locataires]
+image:tenant_usage_modal.png["Modal d'utilisation des locataires"]
 
 . Consultez la présentation du locataire en haut de la page.
 +
@@ -91,7 +91,7 @@ Si un quota a été défini pour ce tenant, le montant du quota utilisé et rest
 Vous pouvez placer le curseur sur le graphique à barres pour voir le stockage utilisé par chaque compartiment ou conteneur. Vous pouvez placer votre curseur sur le segment de l'espace libre pour voir la quantité de quota de stockage restant.
 
 +
-image::../media/tenant_bucket_space_consumption_GM.png[Tableau à barres de consommation du compartiment des locataires]
+image:tenant_bucket_space_consumption_GM.png["Tableau à barres de consommation du compartiment des locataires"]
 
 +
 
@@ -114,7 +114,7 @@ Ce tableau répertorie les compartiments S3 pour le locataire. L'espace utilisé
 Le contenu du fichier d'un locataire S3 `.csv` se présente comme suit :
 
 +
-image::../media/tenant_bucket_details_csv.png[Détails du compartiment locataire exemple CSV]
+image:tenant_bucket_details_csv.png["Détails du compartiment locataire exemple CSV"]
 
 +
 Vous pouvez ouvrir `.csv` le fichier dans une feuille de calcul ou l'utiliser dans l'automatisation.

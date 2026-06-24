@@ -39,7 +39,7 @@ La page grid federation s'affiche.
 
 
 +
-image::../media/grid-federation-connections-tab.png[Onglet Grid federation Connections]
+image:grid-federation-connections-tab.png["Onglet Grid federation Connections"]
 
 . Pour afficher les informations de base de tous les comptes de locataires de cette grille disposant de l'autorisation *utiliser la connexion de fédération de grille*, sélectionnez l'onglet *locataires autorisés*.
 +
@@ -51,7 +51,7 @@ image::../media/grid-federation-connections-tab.png[Onglet Grid federation Conne
 ** Sélectionnez un locataire autorisé et link:../admin/grid-federation-manage-tenants.html["supprimez l'autorisation"].
 ** Vérifiez la présence d'erreurs de réplication inter-grille et effacez la dernière erreur, le cas échéant. Voir link:../admin/grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
 +
-image::../media/grid-federation-permitted-tenants-tab.png[Onglet Grid federation permis tenants]
+image:grid-federation-permitted-tenants-tab.png["Onglet Grid federation permis tenants"]
 
 
 
@@ -82,7 +82,7 @@ Dans la page de détails de la connexion, vous pouvez :
 ** link:../admin/grid-federation-manage-tenants.html["Supprimer l'autorisation d'un locataire"] pour utiliser la connexion.
 ** Recherchez les erreurs de réplication inter-grille et effacez la dernière erreur. Voir link:../admin/grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
 +
-image::../media/grid-federation-permitted-tenants-tab-for-connection.png[grid-federation-permit-tenants-tab-for-connection]
+image:grid-federation-permitted-tenants-tab-for-connection.png["grid-federation-permit-tenants-tab-for-connection"]
 
 
 
@@ -94,7 +94,7 @@ image::../media/grid-federation-permitted-tenants-tab-for-connection.png[grid-fe
 ** link:../admin/grid-federation-manage-connection.html["Faire pivoter les certificats de connexion"].
 ** Sélectionnez *Server* ou *client* pour afficher ou télécharger le certificat associé ou copier le certificat PEM.
 +
-image::../media/grid-federation-certificates-tab.png[onglet-certificats-fédération-grid]
+image:grid-federation-certificates-tab.png["onglet-certificats-fédération-grid"]
 
 
 

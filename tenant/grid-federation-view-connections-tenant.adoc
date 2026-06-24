@@ -76,7 +76,7 @@ NOTE: Cette colonne affiche uniquement la dernière erreur de réplication inter
 Par exemple, cette erreur indique que le compartiment de destination de la réplication inter-grid était dans un état non valide, probablement parce que la gestion de version a été suspendue ou que le verrouillage d'objet S3 a été activé.
 
 +
-image::../media/grid-federation-cgr-object-example-last-error.png[grid-federation-cgr-object-example-last-error]
+image:grid-federation-cgr-object-example-last-error.png["grid-federation-cgr-object-example-last-error"]
 
 . Effectuez toutes les actions recommandées. Par exemple, si la gestion des versions a été suspendue dans le compartiment de destination pour la réplication inter-grid, réactivez la gestion des versions pour ce compartiment.
 . Sélectionnez la connexion dans le tableau.

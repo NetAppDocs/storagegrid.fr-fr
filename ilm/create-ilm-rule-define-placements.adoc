@@ -23,7 +23,7 @@ Chaque instruction de placement peut avoir plusieurs lignes si vous voulez crée
 
 Dans cet exemple, la règle ILM stocke une copie répliquée sur le site 1 et une copie répliquée sur le site 2 pour la première année. Après un an, une copie avec code d'effacement pour 2+1 est effectuée et enregistrée sur un seul site.
 
-image::../media/ilm_create_ilm_rule_wizard_2.png[Assistant de création de règles ILM étape 2]
+image:ilm_create_ilm_rule_wizard_2.png["Assistant de création de règles ILM étape 2"]
 
 .Étapes
 . Pour *temps de référence*, sélectionnez le type de temps à utiliser lors du calcul de l'heure de début d'une instruction de placement.
@@ -170,7 +170,7 @@ La section analyse des règles du diagramme de rétention indique :
 Reportez-vous à link:using-multiple-storage-pools-for-cross-site-replication.html["Activer la protection contre la perte de site."]
 
 +
-image::../media/ilm_rule_retention_diagram.png[Schéma de conservation des règles ILM]
+image:ilm_rule_retention_diagram.png["Schéma de conservation des règles ILM"]
 
 
 

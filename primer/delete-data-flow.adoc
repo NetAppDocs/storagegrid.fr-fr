@@ -43,7 +43,7 @@ Voir link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"] po
 
 == Flux de données pour les suppressions client
 
-image::../media/delete_data_flow.png[Le client supprime le flux de données]
+image:delete_data_flow.png["Le client supprime le flux de données"]
 
 . Le service LDR reçoit une requête de suppression de l'application cliente.
 . Le service LDR met à jour le magasin de métadonnées afin que l'objet soit supprimé des requêtes client et demande au moteur ILM de supprimer toutes les copies des données d'objet.
@@ -54,7 +54,7 @@ image::../media/delete_data_flow.png[Le client supprime le flux de données]
 
 == Flux de données pour les suppressions ILM
 
-image::../media/automatic_deletion_data_flow.png[Flux de données de suppression automatique]
+image:automatic_deletion_data_flow.png["Flux de données de suppression automatique"]
 
 . Le moteur ILM détermine que l'objet doit être supprimé.
 . Le moteur ILM informe le magasin de métadonnées. Le magasin de métadonnées met à jour les métadonnées d'objet afin que l'objet soit supprimé des requêtes client.

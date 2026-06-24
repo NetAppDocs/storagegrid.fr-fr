@@ -68,7 +68,7 @@ Si le compte de tenant dispose de l'autorisation *utiliser la connexion de féd�
 
 . Modifiez les paramètres du groupe selon vos besoins.  Se référer àlink:creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"] pour plus de détails sur ce qu'il faut saisir.
 +
-.. Dans la section vue d'ensemble, modifiez le nom d'affichage en sélectionnant le nom ou l'icône d'édition image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Dans la section Vue d'ensemble, modifiez le nom d'affichage en sélectionnant le nom ou l'icône de modification image:icon_edit_tm.png["Icône Modifier"].
 .. Dans l'onglet *autorisations de groupe*, mettez à jour les autorisations et sélectionnez *Enregistrer les modifications*.
 .. Dans l'onglet *Stratégie de groupe*, apportez les modifications nécessaires et sélectionnez *Enregistrer les modifications*.
 +
@@ -80,7 +80,7 @@ Sélectionnez éventuellement une autre stratégie de groupe S3 ou saisissez la 
 +
 .. Sélectionnez l'onglet utilisateurs.
 +
-image::../media/manage_users.png[Gérer les utilisateurs]
+image:manage_users.png["Gérer les utilisateurs"]
 
 .. Sélectionnez *Ajouter des utilisateurs*.
 .. Sélectionnez les utilisateurs existants que vous souhaitez ajouter, puis sélectionnez *Ajouter des utilisateurs*.

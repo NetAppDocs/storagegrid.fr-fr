@@ -17,7 +17,7 @@ StorageGRID offre un stockage sécurisé et durable pour les données non struct
 
 StorageGRID se compose de nœuds hétérogènes, redondants et répartis géographiquement, qui peuvent être intégrés aux applications client existantes et nouvelle génération.
 
-image::../media/storagegrid_system_diagram.png[Image avec plusieurs clients]
+image:storagegrid_system_diagram.png["Image avec plusieurs clients"]
 
 
 NOTE: La prise en charge des nœuds d'archivage a été supprimée. Le déplacement d'objets d'un nœud d'archivage vers un système de stockage d'archives externe via l'API S3 a été remplacé par link:../ilm/what-cloud-storage-pool-is.html["Pools de stockage cloud ILM"], qui offre davantage de fonctionnalités.

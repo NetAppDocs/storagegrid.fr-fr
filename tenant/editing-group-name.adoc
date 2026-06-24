@@ -26,7 +26,7 @@ Vous pouvez modifier le nom d'affichage d'un groupe. Vous ne pouvez pas modifier
 La boîte de dialogue Modifier le nom du groupe s'affiche.
 
 +
-image::../media/edit_group_name.png[Modifier le nom du groupe]
+image:edit_group_name.png["Modifier le nom du groupe"]
 
 . Si vous modifiez un groupe local, mettez à jour le nom d'affichage selon vos besoins.
 +

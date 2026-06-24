@@ -18,7 +18,7 @@ TIP: Pour modifier les unités des valeurs de stockage affichées dans le Gestio
 
 Votre tableau de bord peut varier en fonction de la configuration du système.
 
-image::../media/grid_manager_dashboard.png[Tableau de bord de Grid Manager]
+image:grid_manager_dashboard.png["Tableau de bord de Grid Manager"]
 
 
 
@@ -69,7 +69,7 @@ Nœuds
 Utilisation du CPU, des données et de la mémoire par nœud. Opérations S3 par nœud. Distribution nœud à site.
 
 |===
-Certaines cartes peuvent être agrandies pour faciliter la visualisation. Sélectionnez l'icône Agrandir image:../media/icon_dashboard_card_maximize.png["Icône Agrandir"]dans le coin supérieur droit de la carte. Pour fermer une carte agrandie, sélectionnez l'icône réduire image:../media/icon_dashboard_card_minimize.png["Icône réduire"]ou sélectionnez *Fermer*.
+Certaines cartes peuvent être agrandies pour une meilleure lisibilité. Sélectionnez l’icône d’agrandissement image:icon_dashboard_card_maximize.png["Icône Agrandir"] dans le coin supérieur droit de la carte. Pour fermer une carte agrandie, sélectionnez l’icône de réduction image:icon_dashboard_card_minimize.png["Icône réduire"] ou sélectionnez *Fermer*.
 
 
 
@@ -91,7 +91,7 @@ NOTE: Si vous disposez d'une autre autorisation que l'accès racine, vous ne pou
 
 Pour gérer les tableaux de bord, sélectionnez *actions* > *gérer les tableaux de bord*.
 
-image::../media/dashboard_manage.png[Gestion des tableaux de bord]
+image:dashboard_manage.png["Gestion des tableaux de bord"]
 
 
 
@@ -112,4 +112,4 @@ Lors de la configuration d'un tableau de bord, vous pouvez :
 * Sélectionnez la taille des cartes individuelles en sélectionnant *S*, *M*, *L* ou *XL* en haut de la carte
 
 
-image::../media/dashboard_configure.png[Configurer le tableau de bord]
+image:dashboard_configure.png["Configurer le tableau de bord"]

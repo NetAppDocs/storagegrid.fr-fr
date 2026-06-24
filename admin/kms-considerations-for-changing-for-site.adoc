@@ -20,15 +20,15 @@ Par exemple :
 . Vous configurez initialement un KMS par défaut qui s'applique à tous les sites qui ne disposent pas d'un KMS dédié.
 . Lorsque le KMS est enregistré, tous les nœuds de l'appliance dont le paramètre *Node Encryption* est activé se connectent au KMS et demandent la clé de chiffrement. Cette clé est utilisée pour chiffrer les nœuds de l'appliance sur tous les sites. Cette même clé doit également être utilisée pour décrypter ces dispositifs.
 +
-image::../media/kms_default_key.png[Clé par défaut DES KMS]
+image:kms_default_key.png["Clé par défaut DES KMS"]
 
 . Vous décidez d'ajouter un KMS spécifique au site pour un site (Data Center 3 dans la figure). Toutefois, les nœuds d'appliance sont déjà chiffrés. Une erreur de validation se produit lorsque vous tentez d'enregistrer la configuration du KMS spécifique au site. L'erreur se produit car le KMS spécifique au site ne dispose pas de la clé correcte pour décrypter les nœuds de ce site.
 +
-image::../media/kms_wrong_key.png[Clé KMS erronée]
+image:kms_wrong_key.png["Clé KMS erronée"]
 
 . Pour résoudre ce problème, vous copiez la version actuelle de la clé de chiffrement à partir du KMS par défaut vers le nouveau KMS. (Techniquement, vous copiez la clé d'origine dans une nouvelle clé avec le même alias. La clé d'origine devient une version antérieure de la nouvelle clé.) Le KMS spécifique au site dispose désormais de la clé appropriée pour décrypter les nœuds de l'appliance sur le data Center 3, afin que ces nœuds puissent être enregistrés dans StorageGRID.
 +
-image::../media/kms_copied_key.png[Clé copiée DE KMS]
+image:kms_copied_key.png["Clé copiée DE KMS"]
 
 
 

@@ -201,8 +201,8 @@ Lorsque vous définissez le filtrage avancé, vous pouvez spécifier plusieurs t
 * La seconde valeur de métadonnées spécifie des objets inférieurs ou égaux à 100 Mo.
 
 
-image::../media/advanced_filtering_size_between.png[Exemple de filtrage avancé pour la taille d'objet]
+image:advanced_filtering_size_between.png["Exemple de filtrage avancé pour la taille d'objet"]
 
 L'utilisation de plusieurs entrées vous permet d'avoir un contrôle précis sur les objets à associer. Dans l'exemple suivant, la règle s'applique aux objets dont la marque A ou la marque B est la valeur des métadonnées de l'utilisateur camera_type. Toutefois, la règle s'applique uniquement aux objets de marque B dont la taille est inférieure à 10 Mo.
 
-image::../media/advanced_filtering_multiple_rows.png[Exemple de filtrage avancé pour les métadonnées utilisateur]
+image:advanced_filtering_multiple_rows.png["Exemple de filtrage avancé pour les métadonnées utilisateur"]

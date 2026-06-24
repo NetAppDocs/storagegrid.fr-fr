@@ -27,7 +27,7 @@ NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut pre
 .Étapes
 . Sélectionnez *Locataires*.
 +
-image::../media/tenant_accounts_page.png[Page comptes de tenant]
+image:tenant_accounts_page.png["Page comptes de tenant"]
 
 . Recherchez le compte de locataire à modifier.
 +

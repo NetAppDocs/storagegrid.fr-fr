@@ -17,7 +17,7 @@ Lorsque vous configurez une règle ILM pour créer des copies répliquées, vous
 
 L'exemple de règle ILM décrit deux copies répliquées de chaque objet placées dans un pool de stockage contenant trois nœuds de stockage.
 
-image::../media/ilm_replication_make_2_copies.png[Règle de création de 2 copies]
+image:ilm_replication_make_2_copies.png["Règle de création de 2 copies"]
 
 Lorsque StorageGRID met les objets en correspondance avec cette règle, elle crée deux copies de l'objet, en plaçant chaque copie sur un autre nœud de stockage du pool. Les deux copies peuvent être placées sur deux des trois nœuds de stockage disponibles. Dans ce cas, la règle a placé des copies d'objet sur les nœuds de stockage 2 et 3. Comme il existe deux copies, l'objet peut être récupéré en cas de défaillance de l'un des nœuds du pool de stockage.
 

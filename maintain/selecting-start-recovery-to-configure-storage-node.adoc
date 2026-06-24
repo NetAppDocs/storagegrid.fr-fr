@@ -37,7 +37,7 @@ Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pa
 . Saisissez la phrase de passe de provisionnement *.
 . Cliquez sur *Démarrer la récupération*.
 +
-image::../media/4b_select_recovery_node.png[Capture d'écran affichant la page Maintenance > récupération]
+image:4b_select_recovery_node.png["Capture d'écran affichant la page Maintenance > Récupération"]
 
 . Surveiller la progression de la récupération dans le tableau de noeuds de grille de récupération.
 +
@@ -45,7 +45,7 @@ image::../media/4b_select_recovery_node.png[Capture d'écran affichant la page M
 NOTE: Pendant l'exécution de la procédure de récupération, vous pouvez cliquer sur *Réinitialiser* pour lancer une nouvelle restauration. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
 
 +
-image::../media/recovery_reset_warning.gif[capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration]
+image:recovery_reset_warning.gif["capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration"]
 
 +
 Si vous souhaitez relancer la restauration après avoir réinitialisé la procédure, vous devez restaurer l'état pré-installé du nœud, comme suit :
@@ -57,6 +57,6 @@ Si vous souhaitez relancer la restauration après avoir réinitialisé la procé
 
 . Lorsque le nœud de stockage atteint l'étape « en attente des étapes manuelles », passez à link:remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]l' .
 +
-image::../media/recovery_reset_button.gif[capture d'écran indiquant l'étape « attente des étapes manuelles »]
+image:recovery_reset_button.gif["capture d'écran indiquant l'étape « attente des étapes manuelles »"]
 
 

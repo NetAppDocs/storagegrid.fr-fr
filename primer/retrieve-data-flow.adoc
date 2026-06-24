@@ -18,7 +18,7 @@ Le service LDR du nœud de stockage interroge le magasin de métadonnées afin d
 
 NOTE: Si la seule copie d'objet se trouve sur le stockage AWS Glacier ou sur le niveau Azure Archive, l'application client doit émettre une requête S3 RestoreObject pour restaurer une copie récupérable vers le pool de stockage cloud.
 
-image::../media/retrieve_data_flow.png[Récupérer]
+image:retrieve_data_flow.png["Récupérer"]
 
 . Le service LDR reçoit une requête de récupération de l'application cliente.
 . Le service LDR interroge le magasin de métadonnées afin d'obtenir l'emplacement des données et des métadonnées d'objet.

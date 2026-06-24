@@ -429,7 +429,7 @@ Vous pouvez afficher les détails des noeuds finaux existants de l'équilibreur 
 * Pour afficher les informations de base de tous les noeuds finaux de l'équilibreur de charge, consultez les tableaux de la page noeuds finaux de l'équilibreur de charge.
 * Pour afficher tous les détails sur un noeud final spécifique, y compris les métadonnées du certificat, sélectionnez le nom du noeud final dans le tableau. Les informations affichées varient en fonction du type de noeud final et de sa configuration.
 +
-image::../media/load_balancer_endpoint_details.png[Détails du terminal de l'équilibreur de charge]
+image:load_balancer_endpoint_details.png["Détails du terminal de l'équilibreur de charge"]
 
 * Pour modifier un noeud final, utilisez le menu *actions* de la page noeuds finaux du répartiteur de charge.
 +
@@ -456,7 +456,7 @@ Modifier le nom du point final
 
  a| 
 .. Sélectionnez le nom du noeud final pour afficher les détails.
-.. Sélectionnez l'icône Modifier image:../media/icon_edit_tm.png["Icône Modifier"].
+.. Sélectionnez l’icône de modification image:icon_edit_tm.png["Icône Modifier"].
 .. Saisissez le nouveau nom.
 .. Sélectionnez *Enregistrer*.
 

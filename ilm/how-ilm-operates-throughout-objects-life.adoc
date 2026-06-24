@@ -29,4 +29,4 @@ NOTE: Les objets d'un compartiment pour lequel le verrouillage objet S3 est acti
 
 Le diagramme résume le fonctionnement de ILM tout au long du cycle de vie d'un objet.
 
-image::../media/overview_of_object_lifecycle.png[Présentation du cycle de vie des objets]
+image:overview_of_object_lifecycle.png["Présentation du cycle de vie des objets"]

@@ -29,6 +29,6 @@ Le graphique présente les taux d'ingestion et de récupération S3 pour l'ensem
 Le graphique présente les taux d'ingestion et de récupération du nœud. L'onglet inclut également des mesures pour le nombre d'objets, les requêtes de métadonnées et les opérations de vérification.
 
 +
-image::../media/nodes_storage_node_objects_help.png[Capture d'écran de noeuds > _Storage Node_ > objets > aide sur les attributs]
+image:nodes_storage_node_objects_help.png["Capture d'écran de Nodes > _Storage Node_ > Objects > aide sur les attributs"]
 
 

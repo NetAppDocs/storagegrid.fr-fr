@@ -62,7 +62,7 @@ Le script Python appellera ensuite le script Node.js correspondant pour effectue
 
 . Lorsque vous y êtes invité, saisissez le mot de passe et soyez prêt à fournir une autorisation MFA à Entra ID si demandé.
 +
-image::../media/sso_api_password_mfa.png[Invite de saisie du mot de passe et de l'authentification multifacteur]
+image:sso_api_password_mfa.png["Invite de saisie du mot de passe et de l'authentification multifacteur"]
 
 +
 

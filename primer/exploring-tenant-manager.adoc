@@ -28,7 +28,7 @@ Le tableau de bord du gestionnaire de locataires permet aux utilisateurs locatai
 
 La valeur affichée au-dessus du graphique à barres est une somme de l'espace utilisé pour tous les compartiments ou conteneurs du locataire. Si le nombre maximal de gigaoctets, de téraoctets ou de pétaoctets disponibles pour le locataire a été spécifié lors de la création du compte, le volume de quota utilisé et restant est également affiché.
 
-image::../media/tenant_dashboard_with_buckets.png[Tableau de bord du gestionnaire des locataires]
+image:tenant_dashboard_with_buckets.png["Tableau de bord du gestionnaire des locataires"]
 
 
 

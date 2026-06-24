@@ -27,19 +27,19 @@ CAUTION: Si vous désaffectez un site, la règle ILM ne permet pas de déplacer 
 .Étapes
 . À partir de l'étape 2 (Afficher les détails), passez en revue tous les avertissements relatifs au site que vous avez sélectionné pour le supprimer.
 +
-image::../media/decommission_site_step_2_site_warnings.png[Mise hors service du site étape 2 Avertissements du site]
+image:decommission_site_step_2_site_warnings.png["Mise hors service du site étape 2 Avertissements du site"]
 
 +
 Un avertissement apparaît dans ces cas :
 
 +
 ** Le site inclut un nœud de passerelle. Si les clients S3 se connectent actuellement à ce nœud, vous devez configurer un nœud équivalent sur un autre site. Assurez-vous que les clients peuvent se connecter au nœud de remplacement avant de poursuivre la procédure de mise hors service.
-** Le site contient un mélange de nœuds connectés (image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"]) et déconnectés (image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] ou image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]). Avant de pouvoir supprimer ce site, vous devez remettre tous les nœuds hors ligne en ligne.
+** Le site contient un mélange de nœuds connectés (image:icon_alert_green_checkmark.png["Icône alerte verte coche"]) et de nœuds déconnectés (image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] ou image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"]). Avant de pouvoir supprimer ce site, vous devez remettre en ligne tous les nœuds hors ligne.
 
 
 . Examinez les détails du site que vous avez sélectionné pour le supprimer.
 +
-image::../media/decommission_site_step_2_view_details.png[Désaffectez le site étape 2 Afficher les détails]
+image:decommission_site_step_2_view_details.png["Désaffectez le site étape 2 Afficher les détails"]
 
 +
 Les informations suivantes sont incluses pour le site sélectionné :
@@ -54,9 +54,9 @@ Les informations suivantes sont incluses pour le site sélectionné :
 
 ** Noms, types et États de connexion des nœuds :
 +
-*** image:../media/icon_alert_green_checkmark.png["Icône alerte verte coche"] (Connecté)
-*** image:../media/icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] (Arrêt administratif)
-*** image:../media/icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] (Inconnu)
+*** image:icon_alert_green_checkmark.png["Icône alerte verte coche"] (Connecté)
+*** image:icon_alarm_gray_administratively_down.png["Icône alarme grise - Arrêt administratif"] (Administrativement désactivé)
+*** image:icon_alarm_blue_unknown.png["Icône alarme bleue inconnue"] (Inconnu)
 
 
 ** Détails sur chaque nœud :
@@ -69,7 +69,7 @@ Les informations suivantes sont incluses pour le site sélectionné :
 
 . Dans la section Détails des autres sites de la page, évaluez la quantité d'espace disponible sur les autres sites de votre grille.
 +
-image::../media/decommission_site_step_2_view_details_for_other_sites.png[Désaffectez le site étape 2 Afficher les détails pour les autres sites]
+image:decommission_site_step_2_view_details_for_other_sites.png["Désaffectez le site étape 2 Afficher les détails pour les autres sites"]
 
 +
 Si vous désaffectez un site connecté et que vous prévoyez d'utiliser ILM pour déplacer les données d'objet depuis le site sélectionné (au lieu de simplement les supprimer), vous devez vous assurer que les autres sites disposent de la capacité suffisante pour prendre en charge les données déplacées et que la capacité adéquate reste adaptée à la croissance future.

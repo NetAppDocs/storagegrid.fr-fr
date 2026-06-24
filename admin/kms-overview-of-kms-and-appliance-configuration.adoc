@@ -15,7 +15,7 @@ Avant d'utiliser un serveur de gestion des clés (KMS) afin de sécuriser les do
 
 L'organigramme présente les étapes générales permettant d'utiliser un KMS pour sécuriser les données StorageGRID sur les nœuds du dispositif.
 
-image::../media/kms_configuration_overview.png[Workflow de configuration du système KM, décrit dans le texte suivant]
+image:kms_configuration_overview.png["Workflow de configuration du système KM, décrit dans le texte suivant"]
 
 L'organigramme présente la configuration du KMS et l'appliance en parallèle. Toutefois, vous pouvez configurer les serveurs de gestion des clés avant ou après avoir activé le chiffrement des nœuds pour les nouveaux nœuds d'appliance, selon vos besoins.
 

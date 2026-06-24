@@ -62,7 +62,7 @@ Dans un premier temps, accédez à la page de redémarrage en roulant et sélect
 . Consultez l'état de la connexion et les icônes d'alerte dans la colonne *Nom du nœud*.
 +
 
-TIP: Vous ne pouvez pas redémarrer un nœud s'il est déconnecté de la grille. Les cases à cocher sont désactivées pour les nœuds avec les icônes suivantes : image:../media/icon_alarm_gray_administratively_down.png["icône de point d'interrogation grise"] ou image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"].
+TIP: Vous ne pouvez pas redémarrer un nœud s'il est déconnecté du grid. Les cases à cocher sont désactivées pour les nœuds avec ces icônes : image:icon_alarm_gray_administratively_down.png["icône de point d'interrogation grise"] ou image:icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"].
 
 . Si des nœuds ont des alertes actives, consultez la liste des alertes dans la colonne *Alert summary*.
 +

@@ -58,6 +58,6 @@ Procédez comme suit pour supprimer une adresse IP d'un serveur DNS.
 
 .Étapes
 . Sélectionnez *Maintenance* > *Réseau* > *Serveurs DNS*.
-. Sélectionnez l'icône de suppression image:../media/icon-x-to-remove.png["icône supprimer"]en regard de l'adresse IP.
+. Sélectionnez l'icône de suppression image:icon-x-to-remove.png["icône supprimer"] à côté de l'adresse IP.
 . Sélectionnez *Enregistrer*.
 

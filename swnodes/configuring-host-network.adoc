@@ -104,7 +104,7 @@ Exemple de clonage MAC activé avec un hôte dont l'adresse MAC est 11:22:33:44:
 
 L'exemple 1 décrit un mappage d'interface physique simple qui nécessite peu ou pas de configuration côté hôte.
 
-image::../media/rhel_install_vlan_diag_1.gif[Installer le diagramme VLAN]
+image:rhel_install_vlan_diag_1.gif["Installer le diagramme VLAN"]
 
 Le système d’exploitation Linux crée le `ensXYZ` interfaces automatiquement lors de l'installation ou du démarrage, ou lorsque les interfaces sont ajoutées à chaud.  Aucune configuration n'est requise, si ce n'est de s'assurer que les interfaces sont configurées pour s'afficher automatiquement après le démarrage.  Vous devez déterminer quel ensXYZ correspond à quel réseau StorageGRID (Grid, Admin ou Client) afin de pouvoir fournir les mappages corrects plus tard dans le processus de configuration.
 
@@ -125,7 +125,7 @@ Pour comprendre cet exemple, supposons que vous ayez trois sous-réseaux distinc
 
 Si vous avez besoin de VLAN et de sous-réseaux distincts pour les réseaux de nœuds sur le même hôte, vous pouvez ajouter des interfaces VLAN sur la liaison et les mapper sur l'hôte (voir bond0,1004 dans l'illustration).
 
-image::../media/rhel_install_vlan_diag_2.gif[Interfaces VLAN]
+image:rhel_install_vlan_diag_2.gif["Interfaces VLAN"]
 
 .Étapes
 . Agréger toutes les interfaces réseau physiques qui seront utilisées pour la connectivité réseau StorageGRID en une seule liaison LACP.

@@ -70,4 +70,4 @@ La figure suivante montre comment StorageGRID redistribue les métadonnées d'ob
 
 La partie droite de la figure montre comment les métadonnées existantes sont redistribuées après deux nœuds de stockage ajoutés au site. La quantité de métadonnées sur chaque nœud a diminué, l'alerte *stockage de métadonnées faible* n'est plus déclenchée et l'espace disponible pour les métadonnées a augmenté.
 
-image::../media/metadata_space_after_expansion.png[Diagramme des métadonnées redistribuées après l'ajout de deux nœuds de stockage]
+image:metadata_space_after_expansion.png["Diagramme des métadonnées redistribuées après l'ajout de deux nœuds de stockage"]

@@ -15,4 +15,4 @@ L'onglet objets fournit des informations sur link:../s3/index.html["Taux d'inges
 
 L'onglet objets s'affiche pour chaque nœud de stockage, chaque site et la grille entière. Pour les nœuds de stockage, l'onglet objets fournit également le nombre d'objets et des informations sur les requêtes de métadonnées et la vérification en arrière-plan.
 
-image::../media/nodes_page_objects_tab.png[Onglet objets de la page noeuds]
+image:nodes_page_objects_tab.png["Onglet objets de la page noeuds"]

@@ -65,7 +65,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 Le menu principal s'affiche.
 
 +
-image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+image:change_ip_tool_main_menu.png["Capture d'écran affichant l'écran d'accueil de l'outil modifier IP"]
 
 . Dans le menu principal, sélectionnez l'option permettant de modifier les sous-réseaux du réseau Grid (option *4*).
 +
@@ -93,7 +93,7 @@ TIP: Vous pouvez réduire la quantité de saisie requise en utilisant la « flè
 
 L'exemple ci-dessous montre le paramétrage des sous-réseaux pour la liste de sous-réseaux du réseau Grid :
 
-image::../media/change_ip_tool_gnsl_sample_input.gif[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_gnsl_sample_input.gif["capture d'écran décrite par le texte environnant"]
 
 --
 . Lorsque vous êtes prêt, saisissez *q* pour revenir à l'écran du menu principal. Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou appliquées.
@@ -101,7 +101,7 @@ image::../media/change_ip_tool_gnsl_sample_input.gif[capture d'écran décrite p
 +
 ** Sélectionnez l'option *5* pour afficher les modifications dans la sortie qui sont isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple ci-dessous :
 +
-image::../media/change_ip_tool_gnsl_sample_output.gif[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_gnsl_sample_output.gif["capture d'écran décrite par le texte environnant"]
 
 ** Sélectionnez l'option *6* pour afficher les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions).
 +

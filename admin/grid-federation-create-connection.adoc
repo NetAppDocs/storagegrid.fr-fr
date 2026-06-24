@@ -15,7 +15,7 @@ Vous pouvez créer une connexion de fédération de grille entre deux systèmes 
 
 Comme illustré dans la figure, la création d'une connexion de fédération de grille inclut des étapes sur les deux grilles. Vous ajoutez la connexion sur une grille et la remplissez sur l'autre grille. Vous pouvez commencer à partir de n'importe quelle grille.
 
-image::../media/grid-federation-create-connection.png[présentation graphique des étapes de création d'une connexion sur deux grilles]
+image:grid-federation-create-connection.png["présentation graphique des étapes de création d'une connexion sur deux grilles"]
 
 .Avant de commencer
 * Vous avez examiné le link:grid-federation-overview.html["considérations et exigences"] pour configurer les connexions de fédération de grille.

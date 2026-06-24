@@ -75,7 +75,7 @@ StorageGRID vous empêche de désactiver un profil de code d'effacement si l'une
 Vous ne pouvez pas désactiver un profil de code d'effacement s'il est utilisé dans une règle ILM. Dans cet exemple, le profil Data Center 1 2+1 est utilisé dans au moins une règle ILM.
 
 +
-image::../media/ec_profile_used_in_ilm_rule.png[Profil EC utilisé dans la règle ILM]
+image:ec_profile_used_in_ilm_rule.png["Profil EC utilisé dans la règle ILM"]
 
 . Si le profil est utilisé dans une règle ILM, effectuez la procédure suivante :
 +

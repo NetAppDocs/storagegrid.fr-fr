@@ -69,7 +69,7 @@ Pour qu'un nœud de passerelle ou un nœud d'administration soit inclus dans un 
 Utilisez les en-têtes de colonne pour trier les lignes ou entrez un terme de recherche pour localiser les interfaces plus rapidement.
 
 +
-image::../media/ha_group_add_interfaces.png[Les groupes HAUTE DISPONIBILITÉ ajoutent des interfaces]
+image:ha_group_add_interfaces.png["Les groupes HAUTE DISPONIBILITÉ ajoutent des interfaces"]
 
 +
 
@@ -84,7 +84,7 @@ NOTE: Après avoir créé une interface VLAN, attendez jusqu'à 5 minutes que la
 ** Si vous sélectionnez des interfaces sur différents types de nœuds, une note d'information s'affiche. Il est rappelé que en cas de basculement, les services fournis par le nœud actif précédemment risquent de ne pas être disponibles sur le nouveau nœud actif. Par exemple, un nœud de passerelle de sauvegarde ne peut pas assurer la protection haute disponibilité des services du nœud d'administration. De même, un nœud d'administration des sauvegardes ne peut pas effectuer toutes les procédures de maintenance que le nœud d'administration principal peut fournir.
 ** Si vous ne pouvez pas sélectionner une interface, sa case à cocher est désactivée. L'info-bulle fournit plus d'informations.
 +
-image::../media/vlan_parent_interface_tooltip.png[Info-bulle de l'interface VLAN]
+image:vlan_parent_interface_tooltip.png["Info-bulle de l'interface VLAN"]
 
 ** Vous ne pouvez pas sélectionner d'interface si sa valeur de sous-réseau ou sa passerelle entre en conflit avec une autre interface sélectionnée.
 ** Vous ne pouvez pas sélectionner une interface configurée si elle ne possède pas d'adresse IP statique.
@@ -105,7 +105,7 @@ Si le groupe haute disponibilité comprend plusieurs interfaces, vous pouvez dé
 La première interface de la liste est l'interface principale. L'interface principale est l'interface active, sauf en cas de défaillance.
 
 +
-image::../media/ha_group_determine_failover.png[Les groupes HAUTE DISPONIBILITÉ déterminent l'ordre de priorité]
+image:ha_group_determine_failover.png["Les groupes HAUTE DISPONIBILITÉ déterminent l'ordre de priorité"]
 
 +
 
@@ -128,7 +128,7 @@ Aucun bit d'hôte ne doit être défini pour l'adresse réseau. Par exemple `192
 NOTE: Si vous utilisez un préfixe 32 bits, l'adresse réseau VIP sert également d'adresse de passerelle et d'adresse VIP.
 
 +
-image::../media/ha_group_select_virtual_ips.png[Les groupes HAUTE DISPONIBILITÉ entrent des VIP]
+image:ha_group_select_virtual_ips.png["Les groupes HAUTE DISPONIBILITÉ entrent des VIP"]
 
 . Si vous le souhaitez, si des clients d'administration ou de locataire S3 accèdent à ces adresses VIP à partir d'un sous-réseau différent, entrez l'adresse IP *Gateway*. L'adresse de la passerelle doit se trouver dans le sous-réseau VIP.
 +

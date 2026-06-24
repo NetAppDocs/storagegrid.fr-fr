@@ -48,7 +48,7 @@ Vous pouvez accéder aux informations relatives à tous les certificats StorageG
 .Étapes
 . Depuis Grid Manager, sélectionnez *Configuration* > *Sécurité* > *Certificats*.
 +
-image::security_certificates.png[Page certificats]
+image:security_certificates.png["Page certificats"]
 
 . Sélectionnez un onglet sur la page certificats pour obtenir des informations sur chaque catégorie de certificat et pour accéder aux paramètres du certificat. Vous pouvez accéder à un onglet si vous avez le link:admin-group-permissions.html["autorisation appropriée"].
 +

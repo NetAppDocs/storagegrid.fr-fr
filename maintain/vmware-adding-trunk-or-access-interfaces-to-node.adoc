@@ -34,7 +34,7 @@ Le nœud peut être indisponible durant une courte période lors de l'ajout d'in
 .Étapes
 . Dans vCenter, ajoutez une nouvelle carte réseau (de type VMXNET3) à un nœud d'administration et à une machine virtuelle de nœud de passerelle. Cochez les cases *connecté* et *se connecter à la mise sous tension*.
 +
-image::../media/vcenter.png[VCenter]
+image:vcenter.png["VCenter"]
 
 . Utilisez SSH pour vous connecter au nœud d'administration ou au nœud de passerelle.
 . Utilisez `ip link show` pour confirmer que le nouveau sens256 d'interface réseau est détecté.

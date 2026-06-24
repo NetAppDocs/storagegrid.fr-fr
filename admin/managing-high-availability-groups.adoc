@@ -68,7 +68,7 @@ Si l'onglet *Présentation* inclut une entrée pour *groupes HA*, le nœud est a
 
 Dans cet exemple, le nœud d'administration principal a été ajouté à deux groupes HA. Ce nœud est actuellement l'interface active du groupe clients Admin et une interface de sauvegarde pour le groupe clients FabricPool.
 
-image::../media/ha_group_primary_interface.png[Interface principale du groupe HAUTE DISPONIBILITÉ]
+image:ha_group_primary_interface.png["Interface principale du groupe HAUTE DISPONIBILITÉ"]
 
 
 

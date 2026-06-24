@@ -25,7 +25,7 @@ NOTE: Lorsque StorageGRID décompresse le site, il désactive automatiquement le
 . Modifier ou supprimer chaque règle inutilisée :
 +
 ** Pour modifier une règle, accédez à la page de règles ILM et mettez à jour tous les placements qui utilisent un profil de code d'effacement ou un pool de stockage faisant référence au site. Ensuite, revenez à *étape 4 (Supprimer les références ILM)*.
-** Pour supprimer une règle, sélectionnez l'icône de la corbeille image:../media/icon_trash_can.png["Corbeille des icônes"]et sélectionnez *OK*.
+** Pour supprimer une règle, sélectionnez l'icône de la corbeille image:icon_trash_can.png["Corbeille des icônes"] et sélectionnez *OK*.
 +
 
 NOTE: Vous devez supprimer la règle *make 2 copies* avant de pouvoir désaffecter un site.

@@ -24,7 +24,7 @@ Vous devrez peut-être désaffecter un nœud qui n'est pas actuellement connect�
 
 
 .Description de la tâche
-Vous pouvez identifier les nœuds déconnectés en recherchant l'icône bleue Inconnu image:../media/icon_alarm_blue_unknown.png["Icône inconnue"]ou l'icône grise administrative Down image:../media/icon_alarm_gray_administratively_down.png["Icône administrative vers le bas"]dans la colonne *Health*.
+Vous pouvez identifier les nœuds déconnectés en recherchant l’icône bleue Inconnu image:icon_alarm_blue_unknown.png["Icône inconnue"] ou l’icône grise Administrativement hors service image:icon_alarm_gray_administratively_down.png["Icône administrative vers le bas"] dans la colonne *Santé*.
 
 Avant de désaffecter un nœud déconnecté, notez ce qui suit :
 

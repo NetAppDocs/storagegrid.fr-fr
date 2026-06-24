@@ -36,7 +36,7 @@ Le nœud de remplacement doit être configuré en tant que nœud d'administratio
 
 . Cliquez sur *récupérer un noeud d'administration principal ayant échoué*.
 +
-image::../media/install_or_recover_primary_admin_node.png[Installez ou récupérez le nœud d'administration principal]
+image:install_or_recover_primary_admin_node.png["Installez ou récupérez le nœud d'administration principal"]
 
 . Téléchargez la sauvegarde la plus récente du package de récupération :
 +

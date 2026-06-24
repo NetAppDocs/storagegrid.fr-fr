@@ -79,15 +79,15 @@ Chaque règle peut définir plusieurs placements pour une période unique et dif
 
 L'exemple illustre deux instructions de positionnement sur la page Define stages de l'assistant Create ILM Rule.
 
-image::../media/ilm_rule_multiple_placements_in_single_time_period.png[Écran de placement ILM de Grid Manager]
+image:ilm_rule_multiple_placements_in_single_time_period.png["Écran de placement ILM de Grid Manager"]
 
-La première instruction de placement image:../media/icon_number_1.png["Icône numéro 1"]comporte deux lignes pour la première année :
+La première consigne de placement image:icon_number_1.png["Icône numéro 1"] comporte deux lignes pour la première année :
 
 * La première ligne crée deux copies d'objets répliquées sur deux sites de data Center.
 * La deuxième ligne crée une copie avec code d'effacement 6+3 sur tous les sites de data Center.
 
 
-La deuxième instruction de placement image:../media/icon_number_2.png["Icône numéro 1"]crée deux copies après un an et les conserve indéfiniment.
+La deuxième instruction de placement image:icon_number_2.png["Icône numéro 1"] crée deux copies après un an et les conserve indéfiniment.
 
 Lorsque vous définissez l'ensemble des instructions de placement pour une règle, vous devez vous assurer qu'au moins une instruction de placement commence au jour 0, qu'il n'y a pas d'écart entre les périodes que vous avez définies, et que l'instruction de placement final continue soit indéfiniment ou jusqu'à ce que vous n'ayez plus besoin de copies d'objet.
 

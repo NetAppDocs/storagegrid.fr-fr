@@ -21,7 +21,7 @@ Selon votre choix, StorageGRID effectue des copies intermédiaires et met les ob
 
 L'organigramme indique ce qui se passe lorsque les objets sont mis en correspondance par une règle ILM qui utilise chacune des trois options d'ingestion.
 
-image::../media/ingest_object_lifecycle.png[Diagramme montrant comment l'ingestion d'objet se produit pour chaque option d'ingestion]
+image:ingest_object_lifecycle.png["Diagramme montrant comment l'ingestion d'objet se produit pour chaque option d'ingestion"]
 
 
 

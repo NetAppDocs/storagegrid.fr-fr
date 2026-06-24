@@ -17,7 +17,7 @@ L'onglet ILM s'affiche pour chaque nœud de stockage, chaque site et la grille d
 
 Pour les nœuds de stockage, l'onglet ILM fournit des informations détaillées sur l'évaluation et la vérification en arrière-plan des objets avec code d'effacement.
 
-image::../media/nodes_page_ilm_tab.png[Onglet ILM de la page nœuds]
+image:nodes_page_ilm_tab.png["Onglet ILM de la page nœuds"]
 
 .Informations associées
 * link:monitoring-information-lifecycle-management.html["Contrôle la gestion du cycle de vie des informations"]

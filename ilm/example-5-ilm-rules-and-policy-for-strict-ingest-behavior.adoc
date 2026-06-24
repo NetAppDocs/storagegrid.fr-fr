@@ -84,7 +84,7 @@ Comportement d'ingestion
 Stricte. Utilisez toujours les placements de cette règle lors de l'entrée. L'ingestion échoue s'il est impossible de stocker deux copies de l'objet dans le data Center de Paris.
 
 |===
-image::../media/ilm_rule_1_example_5_strict_ingest.png[Règle ILM 1 exemple 5 ingestion stricte]
+image:ilm_rule_1_example_5_strict_ingest.png["Règle ILM 1 exemple 5 ingestion stricte"]
 
 
 

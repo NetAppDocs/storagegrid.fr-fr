@@ -19,13 +19,13 @@ Si une erreur se produit lorsque StorageGRID tente de communiquer avec un noeud 
 
 Si des erreurs de noeud final de services de plateforme se sont produites au cours des 7 derniers jours, le tableau de bord du gestionnaire de locataires affiche un message d'alerte. Vous pouvez accéder à la page noeuds finaux des services de plate-forme pour obtenir plus de détails sur l'erreur.
 
-image::../media/tenant_dashboard_endpoint_error.png[message d'erreur de point final sur le tableau de bord]
+image:tenant_dashboard_endpoint_error.png["message d'erreur de point final sur le tableau de bord"]
 
 La même erreur qui s'affiche sur le tableau de bord s'affiche également en haut de la page noeuds finaux Platform Services. Pour afficher un message d'erreur plus détaillé :
 
 .Étapes
 . Dans la liste des noeuds finaux, sélectionnez le noeud final qui contient l'erreur.
-. Sur la page des détails du noeud final, sélectionnez *connexion*. Cet onglet affiche uniquement l'erreur la plus récente pour un noeud final et indique il y a combien de temps l'erreur s'est produite. Des erreurs incluant l'icône X rouge image:../media/icon_alert_red_critical.png["Icône X rouge"]se sont produites au cours des 7 derniers jours.
+. Sur la page de détails du point de terminaison, sélectionnez *Connection*. Cet onglet affiche uniquement l’erreur la plus récente pour un point de terminaison et indique depuis combien de temps elle s’est produite. Les erreurs comportant l’icône X rouge image:icon_alert_red_critical.png["Icône X rouge"] se sont produites au cours des 7 derniers jours.
 
 
 

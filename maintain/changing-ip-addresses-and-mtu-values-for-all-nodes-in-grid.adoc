@@ -60,7 +60,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 Le menu principal s'affiche. Par défaut, le `Selected nodes` champ est défini sur `all`.
 
 +
-image::../media/change_ip_tool_main_menu.png[Capture d'écran affichant l'écran d'accueil de l'outil modifier IP]
+image:change_ip_tool_main_menu.png["Capture d'écran affichant l'écran d'accueil de l'outil modifier IP"]
 
 . Dans le menu principal, sélectionnez *2* pour modifier les informations IP/masque de sous-réseau, passerelle et MTU pour tous les nœuds.
 +
@@ -85,7 +85,7 @@ Vos modifications sont conservées jusqu'à ce qu'elles soient supprimées ou ap
 +
 ** *5* : affiche les modifications dans la sortie isolées pour afficher uniquement l'élément modifié. Les modifications sont mises en évidence en vert (ajouts) ou en rouge (suppressions), comme indiqué dans l'exemple de sortie :
 +
-image::../media/change_ip_tool_edit_ip_mask_sample_output.png[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_edit_ip_mask_sample_output.png["capture d'écran décrite par le texte environnant"]
 
 ** *6* : affiche les modifications en sortie qui affichent la configuration complète. Les modifications sont mises en surbrillance en vert (ajouts) ou en rouge (suppressions).
 +
@@ -102,13 +102,13 @@ Cette validation garantit que les règles du réseau Grid, telles que l'absence 
 Dans cet exemple, la validation a renvoyé des erreurs.
 
 +
-image::../media/change_ip_tool_validate_sample_error_messages.gif[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_validate_sample_error_messages.gif["capture d'écran décrite par le texte environnant"]
 
 +
 Dans cet exemple, la validation a réussi.
 
 +
-image::../media/change_ip_tool_validate_sample_passed_messages.gif[capture d'écran décrite par le texte environnant]
+image:change_ip_tool_validate_sample_passed_messages.gif["capture d'écran décrite par le texte environnant"]
 
 . Une fois la validation terminée, sélectionnez *10* pour appliquer la nouvelle configuration réseau.
 . Sélectionnez *stage* pour appliquer les modifications lors du prochain redémarrage des nœuds.

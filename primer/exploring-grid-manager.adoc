@@ -28,9 +28,9 @@ Lorsque vous vous connectez pour la première fois au Gestionnaire de grille, vo
 
 Le tableau de bord contient des informations sur l'état et les performances du système, l'utilisation du stockage, les processus ILM, les opérations S3 et les nœuds de la grille. Vous pouvez link:../monitor/viewing-dashboard.html["configurer le tableau de bord"]choisir parmi une collection de cartes contenant les informations dont vous avez besoin pour surveiller efficacement votre système.
 
-image::../media/grid_manager_dashboard_and_menu.png[Tableau de bord dans Grid Manager]
+image:grid_manager_dashboard_and_menu.png["Tableau de bord dans Grid Manager"]
 
-Pour une explication des informations affichées sur chaque carte, sélectionnez l'icône d'aide de image:../media/icon_nms_question.png["icône point d'interrogation"]cette carte.
+Pour obtenir une explication des informations affichées sur chaque carte, sélectionnez l'icône d'aide image:icon_nms_question.png["icône point d'interrogation"] pour cette carte.
 
 
 
@@ -44,7 +44,7 @@ Vous pouvez utiliser *Search* pour rechercher des entrées dans la barre latéra
 
 == Menu aide
 
-Le menu aide image:../media/icon-help-menu-bar.png["icône d'aide dans la barre de menus"]permet d'accéder aux éléments suivants :
+Le menu d'aide image:icon-help-menu-bar.png["icône d'aide dans la barre de menus"] donne accès à :
 
 * Lelink:../fabricpool/use-fabricpool-setup-wizard.html["FabricPool"] etlink:../admin/use-s3-setup-wizard.html["Configuration de S3"] sorciers
 * Le site de documentation StorageGRID pour la version actuelle

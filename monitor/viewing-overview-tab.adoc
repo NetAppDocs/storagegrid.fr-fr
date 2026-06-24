@@ -21,7 +21,7 @@ L'onglet vue d'ensemble s'affiche pour tous les nœuds.
 
 La section informations sur les nœuds de l'onglet vue d'ensemble répertorie les informations de base sur le nœud.
 
-image::../media/nodes_page_overview_tab.png[Onglet vue d'ensemble de la page noeuds]
+image:nodes_page_overview_tab.png["Onglet vue d'ensemble de la page noeuds"]
 
 Les informations de présentation d'un nœud incluent les éléments suivants :
 
@@ -31,13 +31,13 @@ Les informations de présentation d'un nœud incluent les éléments suivants :
 * *ID* : identificateur unique du noeud, qui est également appelé UUID.
 * *Etat de connexion* : l'un des trois États. L'icône de l'état le plus grave est affichée.
 +
-** *Inconnu* image:../media/icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"]: pour une raison inconnue, le nœud n'est pas connecté à la grille ou un ou plusieurs services sont arrêtés de façon inattendue. Par exemple, la connexion réseau entre les nœuds a été perdue, l'alimentation est en panne ou un service est en panne. L'alerte *Impossible de communiquer avec le noeud* peut également être déclenchée. D'autres alertes peuvent également être actives. Cette situation exige une attention immédiate.
+** *Inconnu* image:icon_alarm_blue_unknown.png["icône bleue du point d'interrogation"] : Pour une raison inconnue, le nœud n’est pas connecté à la grille, ou un ou plusieurs services sont indisponibles de façon inattendue. Par exemple, la connexion réseau entre les nœuds a été perdue, il y a une coupure de courant ou un service est indisponible. L’alerte *Unable to communicate with node* peut également être déclenchée. D’autres alertes peuvent également être actives. Cette situation requiert une attention immédiate.
 +
 
 NOTE: Un nœud peut apparaître comme inconnu lors des opérations d'arrêt géré. Dans ces cas, vous pouvez ignorer l'état Inconnu.
 
-** *Administrativement arrêté* image:../media/icon_alarm_gray_administratively_down.png["icône questionmark grise"]: le nœud n'est pas connecté à la grille pour une raison prévue. Par exemple, le nœud ou les services du nœud ont été normalement arrêtés, le nœud est en cours de redémarrage ou le logiciel est mis à niveau. Une ou plusieurs alertes peuvent également être actives.
-** *Connecté* image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"]: le nœud est connecté à la grille.
+** *Hors service administrativement* image:icon_alarm_gray_administratively_down.png["icône questionmark grise"] : Le nœud n’est pas connecté au réseau pour une raison prévue. Par exemple, le nœud ou les services sur le nœud ont été arrêtés correctement, le nœud est en cours de redémarrage ou le logiciel est en cours de mise à niveau. Une ou plusieurs alertes peuvent également être actives.
+** *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"]: Le nœud est connecté au réseau.
 
 
 * *Stockage utilisé* : pour les nœuds de stockage uniquement.
@@ -57,6 +57,6 @@ NOTE: Un nœud peut apparaître comme inconnu lors des opérations d'arrêt gér
 
 La section alertes de l'onglet vue d'ensemble répertorie tous les link:monitoring-system-health.html#view-current-and-resolved-alerts["alertes affectant actuellement ce nœud qui n'ont pas été neutralisées"]. Sélectionnez le nom de l'alerte pour afficher des détails supplémentaires et les actions recommandées.
 
-image::../media/nodes_page_alerts_table.png[Tableau des alertes de la page nœuds]
+image:nodes_page_alerts_table.png["Tableau des alertes de la page nœuds"]
 
 Des alertes sont également incluses pour link:monitoring-system-health.html#monitor-node-connection-states["états de connexion de nœud"].

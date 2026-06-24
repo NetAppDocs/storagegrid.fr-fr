@@ -67,7 +67,7 @@ Les valeurs suivantes sont affichées :
 
 
 +
-image::../media/nodes_page_storage_used_object_data.png[Nœuds stockage de page données d'objet utilisées]
+image:nodes_page_storage_used_object_data.png["Nœuds stockage de page données d'objet utilisées"]
 
 . Sélectionnez les commandes de temps au-dessus du graphique pour afficher l'utilisation du stockage sur différentes périodes.
 +

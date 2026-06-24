@@ -18,13 +18,13 @@ NOTE: Le Gestionnaire de grille est mis à jour avec chaque version et peut ne p
 
 L'onglet matériel s'affiche pour tous les nœuds.
 
-image::../media/nodes_page_hardware_tab_graphs.png[Onglet matériel de la page nœuds]
+image:nodes_page_hardware_tab_graphs.png["Onglet matériel de la page nœuds"]
 
 Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
 
 Pour afficher des détails sur l'utilisation du CPU et de la mémoire, placez votre curseur sur chaque graphique.
 
-image::../media/nodes_page_memory_usage_details.png[Page noeuds > matériel > Détails de l'utilisation de la mémoire]
+image:nodes_page_memory_usage_details.png["Page des nœuds > Matériel > Détails d'utilisation de la mémoire"]
 
 Si le nœud est un nœud d'appliance, cet onglet inclut également une section contenant des informations supplémentaires sur le matériel de l'appliance.
 
@@ -45,7 +45,7 @@ La section informations sur le nœud de l'onglet Présentation affiche un récap
 ** *Hic* : un des ports physiques 10, 25 ou 100 GbE de l'appareil. Ces ports peuvent être liés ensemble et connectés au réseau StorageGRID Grid Network (eth0) et au réseau client (eth2).
 ** *mtc* : l'un des ports physiques 1 GbE de l'appareil. Une ou plusieurs interfaces mtc sont liées pour former l'interface réseau d'administration StorageGRID (eth1). Vous pouvez laisser d'autres interfaces mtc disponibles pour une connectivité locale temporaire pour un technicien du centre de données.
 +
-image::../media/nodes_page_overview_tab_extended.png[Vue d'ensemble de la page nœuds étendue]
+image:nodes_page_overview_tab_extended.png["Vue d'ensemble de la page nœuds étendue"]
 
 +
 La section alertes de l'onglet Overview affiche toutes les alertes actives du nœud.
@@ -56,7 +56,7 @@ La section alertes de l'onglet Overview affiche toutes les alertes actives du n�
 +
 .. Affichez les graphiques d'utilisation de l'UC et de la mémoire pour déterminer les pourcentages d'utilisation de l'UC et de la mémoire au fil du temps. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
 +
-image::../media/nodes_page_hardware_tab_graphs.png[Graphiques de matériel]
+image:nodes_page_hardware_tab_graphs.png["Graphiques de matériel"]
 
 .. Faites défiler vers le bas pour afficher le tableau des composants de l'appareil. Ce tableau contient des informations telles que le nom du modèle de l'appliance, les noms des contrôleurs, les numéros de série et les adresses IP, ainsi que l'état de chaque composant.
 +
@@ -67,7 +67,7 @@ NOTE: Certains champs, tels que le contrôleur de calcul BMC IP et le matériel 
 Les composants des tiroirs de stockage et des tiroirs d'extension s'ils font partie de l'installation apparaissent dans un tableau séparé sous le tableau de l'appliance.
 
 +
-image::../media/nodes_page_hardware_tab_for_appliance.png[Page noeuds onglet matériel de l'appliance]
+image:nodes_page_hardware_tab_for_appliance.png["Page noeuds onglet matériel de l'appliance"]
 
 +
 [cols="1a,2a"]
@@ -375,12 +375,12 @@ Si un état n'est pas « nominal », passez en revue les alertes actuelles. Vous
 Le graphique trafic réseau fournit un récapitulatif du trafic réseau global.
 
 +
-image::../media/nodes_page_network_traffic_graph.png[Courbes de trafic réseau de la page noeuds]
+image:nodes_page_network_traffic_graph.png["Courbes de trafic réseau de la page noeuds"]
 
 +
 .. Consultez la section interfaces réseau.
 +
-image::../media/nodes_page_network_interfaces.png[Nœuds page interfaces réseau]
+image:nodes_page_network_interfaces.png["Nœuds page interfaces réseau"]
 
 +
 Utilisez le tableau suivant avec les valeurs de la colonne *Speed* du tableau interfaces réseau pour déterminer si les ports réseau 10/25-GbE de l'appliance ont été configurés pour utiliser le mode actif/sauvegarde ou le mode LACP.
@@ -468,16 +468,16 @@ Pour plus d'informations sur la configuration des ports 10/25-GbE, reportez-vous
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
 
 +
-image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
+image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
 
 
 
 . Sélectionnez *Storage* pour afficher les graphiques qui affichent les pourcentages de stockage utilisés dans le temps pour les données d'objet et les métadonnées d'objet, ainsi que des informations sur les unités de disque, les volumes et les magasins d'objets.
 +
-image::../media/nodes_page_storage_used_object_data.png[Stockage utilisé : données d'objet]
+image:nodes_page_storage_used_object_data.png["Stockage utilisé : données d'objet"]
 
 +
-image::../media/storage_used_object_metadata.png[Stockage utilisé : métadonnées d'objet]
+image:storage_used_object_metadata.png["Stockage utilisé : métadonnées d'objet"]
 
 +
 .. Faites défiler vers le bas pour afficher les quantités de stockage disponibles pour chaque volume et magasin d'objets.
@@ -488,7 +488,7 @@ Le nom mondial de chaque disque correspond à l'identifiant universel (WWID) du 
 Pour vous aider à interpréter les statistiques de lecture et d'écriture du disque relatives aux points de montage du volume, la première partie du nom affichée dans la colonne *Name* de la table Disk Devices (c'est-à-dire _sdc_, _sdd_, _sde_, etc.) correspond à la valeur indiquée dans la colonne *Device* de la table volumes.
 
 +
-image::../media/nodes_page_storage_tables.png[Nœuds tables de stockage des pages]
+image:nodes_page_storage_tables.png["Nœuds tables de stockage des pages"]
 
 
 
@@ -512,7 +512,7 @@ La section informations sur le nœud de l'onglet Présentation affiche un récap
 ** *Hic* : un des ports physiques 10, 25 ou 100 GbE de l'appareil. Ces ports peuvent être liés ensemble et connectés au réseau StorageGRID Grid Network (eth0) et au réseau client (eth2).
 ** *mtc* : l'un des ports physiques 1 GbE de l'appareil. Une ou plusieurs interfaces mtc sont liées pour former l'interface réseau Admin (eth1). Vous pouvez laisser d'autres interfaces mtc disponibles pour une connectivité locale temporaire pour un technicien du centre de données.
 +
-image::../media/nodes_page_overview_tab_services_appliance.png[Onglet de présentation de la page nœuds pour l'appliance de services]
+image:nodes_page_overview_tab_services_appliance.png["Onglet de présentation de la page nœuds pour l'appliance de services"]
 
 
 
@@ -523,11 +523,11 @@ La section alertes de l'onglet Overview affiche toutes les alertes actives du n�
 +
 .. Affichez les graphiques d'utilisation de l'UC et de la mémoire pour déterminer les pourcentages d'utilisation de l'UC et de la mémoire au fil du temps. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
 +
-image::../media/nodes_page_hardware_tab_graphs_services_appliance.png[Page noeuds onglet matériel graphiques de l'appareil de services]
+image:nodes_page_hardware_tab_graphs_services_appliance.png["Page noeuds onglet matériel graphiques de l'appareil de services"]
 
 .. Faites défiler vers le bas pour afficher le tableau des composants de l'appareil. Ce tableau contient des informations telles que le nom du modèle, le numéro de série, la version du micrologiciel du contrôleur et l'état de chaque composant.
 +
-image::../media/nodes_page_hardware_tab_services_appliance.png[Page noeuds onglet matériel de l'appliance de services]
+image:nodes_page_hardware_tab_services_appliance.png["Page noeuds onglet matériel de l'appliance de services"]
 
 +
 [cols="1a,2a"]
@@ -624,12 +624,12 @@ Si un état n'est pas « nominal », passez en revue les alertes actuelles.
 Le graphique trafic réseau fournit un récapitulatif du trafic réseau global.
 
 +
-image::../media/nodes_page_network_traffic_graph.png[Courbes de trafic réseau de la page noeuds]
+image:nodes_page_network_traffic_graph.png["Courbes de trafic réseau de la page noeuds"]
 
 +
 .. Consultez la section interfaces réseau.
 +
-image::../media/nodes_page_hardware_tab_network_services_appliance.png[Page noeuds onglet matériel serveur de services réseau]
+image:nodes_page_hardware_tab_network_services_appliance.png["Page noeuds onglet matériel serveur de services réseau"]
 
 +
 Utilisez le tableau suivant avec les valeurs de la colonne *Speed* du tableau interfaces réseau pour déterminer si les quatre ports réseau 40/100-GbE de l'appliance ont été configurés pour utiliser le mode actif/sauvegarde ou le mode LACP.
@@ -714,12 +714,12 @@ Actif/sauvegarde
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
 
 +
-image::../media/nodes_page_network_communication.png[Nœuds page réseau Comm]
+image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
 
 
 
 . Sélectionnez *Storage* pour afficher des informations sur les unités de disque et les volumes de l'appliance de services.
 +
-image::../media/nodes_page_storage_tab_services_appliance.png[Nœuds page stockage onglet Services Appliance]
+image:nodes_page_storage_tab_services_appliance.png["Nœuds page stockage onglet Services Appliance"]
 
 

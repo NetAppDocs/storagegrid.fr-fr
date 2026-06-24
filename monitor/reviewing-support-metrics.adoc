@@ -30,7 +30,7 @@ NOTE: Les outils disponibles sur la page métriques sont destinés au support te
 Voici un exemple de la page métriques :
 
 +
-image::../media/metrics_page.png[Page mesures]
+image:metrics_page.png["Page mesures"]
 
 . Pour interroger les valeurs actuelles des metrics StorageGRID et afficher les graphiques des valeurs dans le temps, cliquez sur le lien de la section Prometheus.
 +
@@ -45,6 +45,6 @@ NOTE: Les indicateurs qui incluent _private_ dans leurs noms sont destinés à u
 L'interface Grafana pour le lien que vous avez sélectionné s'affiche.
 
 +
-image::../media/metrics_page_grafana.png[Metrics page Grafana]
+image:metrics_page_grafana.png["Metrics page Grafana"]
 
 

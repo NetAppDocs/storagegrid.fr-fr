@@ -31,14 +31,14 @@ Le correctif est d'abord appliqué automatiquement au nœud d'administration pri
 La page mise à jour du logiciel s'affiche.
 
 +
-image::../media/software_update_landing.png[Page d'accueil de mise à jour de logiciels]
+image:software_update_landing.png["Page d'accueil de mise à jour de logiciels"]
 
 . Sélectionnez *appliquer le correctif*.
 +
 La page correctif StorageGRID s'affiche.
 
 +
-image::../media/hotfix_choose_file.png[Correctif Choisissez fichier]
+image:hotfix_choose_file.png["Correctif Choisissez fichier"]
 
 . Sélectionnez le fichier correctif que vous avez téléchargé à partir du site de support NetApp.
 +
@@ -81,7 +81,7 @@ Ce tableau affiche tous les nœuds de votre grille et l'étape actuelle de l'ins
 
 .. La barre de progression atteint la fin, puis le nœud d'administration principal est affiché comme « terminé ».
 +
-image::../media/hotfix_progress_table.png[Tableau de progression du correctif]
+image:hotfix_progress_table.png["Tableau de progression du correctif"]
 
 
 
@@ -108,7 +108,7 @@ NOTE: Vous devez effectuer le correctif StorageGRID avant de lancer une autre mi
 Lorsque la phase progresse au-delà de « mise en file d'attente », le bouton *Supprimer* est masqué et vous ne pouvez plus supprimer le nœud du processus de correctif.
 
 +
-image::../media/approve_all_progresstable.png[Progression du correctif avec le bouton Supprimer]
+image:approve_all_progresstable.png["Progression du correctif avec le bouton Supprimer"]
 
 
 

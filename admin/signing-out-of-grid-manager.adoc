@@ -16,7 +16,7 @@ Lorsque vous avez terminé de travailler avec le Gestionnaire de grille, vous de
 .Étapes
 . Sélectionnez votre nom d'utilisateur dans le coin supérieur droit.
 +
-image::../media/sign_out.png[Lien de déconnexion]
+image:sign_out.png["Lien de déconnexion"]
 
 . Sélectionnez *Déconnexion*.
 +

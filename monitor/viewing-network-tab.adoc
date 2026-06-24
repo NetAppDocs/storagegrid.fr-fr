@@ -19,7 +19,7 @@ Pour afficher un intervalle de temps différent, sélectionnez l'une des command
 
 Pour les nœuds, le tableau interfaces réseau fournit des informations sur les ports réseau physiques de chaque nœud. Le tableau des communications réseau fournit des détails sur les opérations de réception et de transmission de chaque nœud et sur tout compteur d'erreurs signalé par le pilote.
 
-image::../media/nodes_page_network_tab.png[Page noeuds onglet réseau]
+image:nodes_page_network_tab.png["Page noeuds onglet réseau"]
 
 .Informations associées
 link:monitoring-network-connections-and-performance.html["Contrôle des connexions réseau et des performances"]

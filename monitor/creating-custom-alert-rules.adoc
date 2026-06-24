@@ -48,7 +48,7 @@ La page règles d'alerte s'affiche.
 La boîte de dialogue Créer une règle personnalisée s'affiche.
 
 +
-image::../media/alerts_create_custom_rule.png[Alertes > Créer une règle personnalisée]
+image:alerts_create_custom_rule.png["Alertes > Créer une règle personnalisée"]
 
 . Cochez ou décochez la case *activé* pour déterminer si cette règle d'alerte est actuellement activée.
 +
@@ -98,7 +98,7 @@ Cette expression déclenche une alerte si la quantité de RAM installée pour un
 `node_memory_MemTotal_bytes < 24000000000`
 
 +
-Pour afficher les metrics disponibles et tester les expressions Prometheus, sélectionnez l'icône d'aide image:../media/icon_nms_question.png["icône point d'interrogation"]et suivez le lien vers la section Metrics de l'API de gestion de grille.
+Pour consulter les indicateurs disponibles et tester les expressions Prometheus, sélectionnez l'icône d'aide image:icon_nms_question.png["icône point d'interrogation"] et suivez le lien vers la section Metrics de l'API de gestion de la grille.
 
 . Dans le champ *durée*, entrez la durée pendant laquelle une condition doit rester en vigueur en continu avant le déclenchement de l'alerte et sélectionnez une unité de temps.
 +

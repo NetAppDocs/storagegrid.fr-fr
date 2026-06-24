@@ -386,7 +386,7 @@ Si vous ne parvenez pas à résoudre le problème par vous-même, contactez le s
 
 [cols="1a,2a,4a"]
 |===
-| image:../media/feature_checkmark.gif["coche"] | Élément | Remarques 
+| image:feature_checkmark.gif["coche"] | Élément | Remarques 
 
 
  a| 

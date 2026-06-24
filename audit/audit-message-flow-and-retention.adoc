@@ -27,7 +27,7 @@ De son tour, chaque service ADC agit comme un relais et envoie sa collection de 
 
 Chaque nœud d'administration stocke les messages d'audit dans des fichiers journaux texte ; le fichier journal actif est nommé `audit.log`.
 
-image::../media/audit_message_flow.gif[Schéma qui résume le flux des messages d'audit à travers les relais]
+image:audit_message_flow.gif["Schéma qui résume le flux des messages d'audit à travers les relais"]
 
 
 
@@ -37,7 +37,7 @@ StorageGRID utilise un processus de copie et de suppression pour garantir qu'auc
 
 Lorsqu'un nœud génère ou relaie un message d'audit, le message est stocké dans une file d'attente de messages d'audit sur le disque système du nœud de grille.  Une copie du message est toujours conservée dans une file d'attente de messages d'audit jusqu'à ce que le message soit écrit dans le fichier journal d'audit du nœud d'administration. `/var/local/audit/export` annuaire.  Cela permet d’éviter la perte d’un message d’audit pendant le transport.
 
-image::../media/audit_message_retention.gif[Schéma qui résume la réception du message d'audit à l'AMS]
+image:audit_message_retention.gif["Schéma qui résume la réception du message d'audit à l'AMS"]
 
 La file d'attente des messages d'audit peut augmenter temporairement en raison de problèmes de connectivité réseau ou d'une capacité d'audit insuffisante.  À mesure que les files d'attente augmentent, elles consomment davantage d'espace disponible dans chaque nœud. `/var/local/` annuaire.  Si le problème persiste et que le répertoire des messages d'audit d'un nœud devient trop plein, les nœuds individuels donnent la priorité au traitement de leur arriéré et deviennent temporairement indisponibles pour les nouveaux messages.
 

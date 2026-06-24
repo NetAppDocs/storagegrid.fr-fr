@@ -20,7 +20,7 @@ Vous devez créer au moins un site lorsque vous installez StorageGRID. Vous pouv
 Ajoutez autant de sites supplémentaires que nécessaire pour votre topologie de grille. Vous pouvez ajouter jusqu'à 16 sites.
 
 +
-image::../media/3_gmi_installer_sites_page.gif[Cette image est expliquée par le texte qui l'entoure.]
+image:3_gmi_installer_sites_page.gif["Cette image est expliquée par le texte qui l'entoure."]
 
 . Cliquez sur *Suivant*.
 

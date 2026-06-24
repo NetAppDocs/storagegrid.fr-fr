@@ -20,7 +20,7 @@ Vous pouvez restaurer les données d'objet d'un volume de stockage ou d'un nœud
 ** link:../maintain/remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]
 
 
-* Vous avez confirmé que le nœud de stockage sur lequel vous restaurez les objets a un état de connexion *Connecté*image:../media/icon_alert_green_checkmark.png["icône alerte verte coche"] dans l'onglet *Nœuds* > *Aperçu* dans le Gestionnaire de grille.
+* Vous avez confirmé que le nœud de stockage sur lequel vous restaurez des objets a un état de connexion *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"] dans l’onglet *Nœuds* > *Vue d’ensemble* du Grid Manager.
 * Vous avez confirmé ce qui suit :
 +
 ** Une extension de grille pour ajouter un nœud de stockage n'est pas en cours.
