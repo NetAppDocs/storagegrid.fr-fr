@@ -21,6 +21,7 @@ Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configur
 
 
 
+[[optional-tasks]]
 == Tâches facultatives
 
 * link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Mettre à jour les adresses IP des nœuds de la grille"]s'ils ont changé depuis que vous avez planifié votre déploiement et généré le package de récupération.

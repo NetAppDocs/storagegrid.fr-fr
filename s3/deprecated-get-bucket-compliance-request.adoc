@@ -26,6 +26,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:GetBuc
 
 
 
+[[request-example]]
 == Exemple de demande
 
 Cet exemple de demande vous permet de déterminer les paramètres de conformité du compartiment nommé `mybucket`.
@@ -39,6 +40,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == Exemple de réponse
 
 Dans le XML de réponse, `<SGCompliance>` répertorie les paramètres de conformité en vigueur pour le compartiment. Cet exemple de réponse montre les paramètres de conformité d'un compartiment dans lequel chaque objet sera conservé pendant un an (525,600 minutes), à partir de l'ingestion de l'objet dans la grille. Il n'y a actuellement aucune retenue légale sur ce godet. Chaque objet sera automatiquement supprimé après un an.
@@ -90,6 +92,7 @@ Suppression automatique
 |===
 
 
+[[error-responses]]
 == Réponses d'erreur
 
 Si le compartiment n'a pas été créé pour être conforme, le code d'état HTTP de la réponse est `404 Not Found`, avec un code d'erreur S3 de `XNoSuchBucketCompliance`.

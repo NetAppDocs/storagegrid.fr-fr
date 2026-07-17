@@ -22,6 +22,7 @@ Vous pouvez gérer les autorisations des groupes d'utilisateurs S3 en important 
 
 
 
+[[access-the-create-group-wizard]]
 == Accédez à l'assistant de création de groupe
 
 Pour la première étape, accédez à l'assistant de création de groupe.
@@ -37,6 +38,7 @@ image:grid-federation-tenant-group-banner.png["Image de la bannière bleue sur l
 
 
 
+[[choose-a-group-type]]
 == Choisissez un type de groupe
 
 Vous pouvez créer un groupe local ou importer un groupe fédéré.
@@ -61,6 +63,7 @@ NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connex
 
 
 
+[[manage-group-permissions]]
 == Gérer les autorisations de groupe
 
 Les autorisations de groupe contrôlent les tâches que les utilisateurs peuvent effectuer dans le Gestionnaire de locataires et l'API de gestion des locataires.
@@ -85,6 +88,7 @@ Voir link:../tenant/tenant-management-permissions.html["Autorisations de gestion
 
 
 
+[[set-s3-group-policy]]
 == Définissez la règle de groupe S3
 
 La stratégie de groupe détermine les autorisations d'accès S3 dont disposent les utilisateurs.
@@ -142,6 +146,7 @@ Pour plus d'informations sur les stratégies de groupe, notamment la syntaxe de 
 
 
 
+[[add-users-local-groups-only]]
 == Ajouter des utilisateurs (groupes locaux uniquement)
 
 Vous pouvez enregistrer le groupe sans ajouter d'utilisateurs, ou vous pouvez éventuellement ajouter des utilisateurs locaux qui existent déjà.

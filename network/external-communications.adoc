@@ -15,6 +15,7 @@ Les clients doivent communiquer avec les nœuds du grid pour ingérer et récup�
 
 
 
+[[restricted-access-to-ports]]
 == Accès restreint aux ports
 
 Si les stratégies de mise en réseau d'entreprise limitent l'accès à l'un des ports, vous pouvez effectuer l'une des opérations suivantes :
@@ -33,6 +34,7 @@ NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée
 
 
 
+[[ports-used-for-external-communications]]
 == Ports utilisés pour les communications externes
 
 Le tableau suivant indique les ports utilisés pour le trafic dans les nœuds.

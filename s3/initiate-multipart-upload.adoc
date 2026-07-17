@@ -49,6 +49,7 @@ NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'obj
 
 
 
+[[supported-request-headers]]
 == En-têtes de demande pris en charge
 
 Les en-têtes de requête suivants sont pris en charge :
@@ -114,6 +115,7 @@ NOTE: Pour plus d'informations sur la façon dont StorageGRID traite les caract�
 
 
 
+[[request-headers-for-server-side-encryption]]
 == Demander des en-têtes pour le cryptage côté serveur
 
 Vous pouvez utiliser les en-têtes de demande suivants pour crypter un objet partitionné avec un cryptage côté serveur. Les options SSE et SSE-C sont mutuellement exclusives.
@@ -137,6 +139,7 @@ CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. 
 
 
 
+[[unsupported-request-headers]]
 == En-têtes de requête non pris en charge
 
 L'en-tête de demande suivant n'est pas pris en charge :
@@ -149,6 +152,7 @@ L' `x-amz-website-redirect-location`en-tête renvoie `XNotImplemented`.
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.

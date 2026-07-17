@@ -24,6 +24,7 @@ NOTE: Le contrôle de version ne peut être activé que pour les compartiments c
 
 
 
+[[ilm-and-versioning]]
 == ILM et gestion des versions
 
 Les règles ILM sont appliquées à chaque version d'un objet. Un processus d'analyse ILM analyse en continu tous les objets, puis les évalue à nouveau en fonction de la règle ILM actuelle. Toute modification apportée aux règles ILM est appliquée à tous les objets précédemment ingérées. Ceci inclut les versions préalablement ingérées si la gestion des versions est activée. L'analyse ILM applique les modifications de l'ILM aux objets précédemment ingérées.

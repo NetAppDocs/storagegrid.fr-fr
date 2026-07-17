@@ -15,6 +15,7 @@ Vous pouvez effectuer plusieurs tâches pour déterminer la source des problème
 
 
 
+[[422-unprocessable-entity-errors]]
 == Erreurs « 422 : entité non traitable »
 
 L'erreur 422 : entité détraitable peut se produire pour différentes raisons. Consultez le message d'erreur pour déterminer la cause de votre problème.
@@ -77,6 +78,7 @@ Vérifiez les chiffrements proposés par le système externe. Le système doit u
 |===
 
 
+[[troubleshootmtualertgrid-network-mtu-mismatch-alert]]
 == [[Troubleshoot_MTU_ALERT]]alerte de non-concordance MTU du réseau de la grille
 
 L'alerte *Grid Network MTU mismatch* est déclenchée lorsque le paramètre MTU (maximum transmission Unit) de l'interface réseau Grid (eth0) diffère considérablement sur les nœuds de la grille.
@@ -154,6 +156,7 @@ Le nœud. La valeur par défaut est le nœud local.
 
 
 
+[[node-network-reception-frame-error-alert]]
 == Alerte d'erreur de trame de réception réseau de nœud
 
 *Erreur de trame de réception réseau de nœud* les alertes peuvent être causées par des problèmes de connectivité entre StorageGRID et votre matériel réseau. Cette alerte disparaît toute seule une fois le problème sous-jacent résolu.
@@ -240,6 +243,7 @@ La mémoire tampon annulaire peut être surchargée lorsque le système StorageG
 
 
 
+[[time-synchronization-errors]]
 == Erreurs de synchronisation de l'heure
 
 Des problèmes de synchronisation de l'heure peuvent s'afficher dans votre grille.
@@ -251,12 +255,14 @@ NOTE: Lorsqu'link:../maintain/configuring-ntp-servers.html["Spécification de la
 
 
 
+[[linux-network-connectivity-issues]]
 == Linux : problèmes de connectivité réseau
 
 Des problèmes de connectivité réseau peuvent survenir pour les nœuds StorageGRID hébergés sur des hôtes Linux.
 
 
 
+[[mac-address-cloning]]
 === Clonage d'adresses MAC
 
 Dans certains cas, les problèmes de réseau peuvent être résolus en utilisant le clonage d'adresse MAC.  Si vous utilisez des hôtes virtuels, définissez la valeur de la clé de clonage d'adresse MAC pour chacun de vos réseaux sur « true » dans votre fichier de configuration de nœud.  Ce paramètre oblige l'adresse MAC du conteneur StorageGRID à utiliser l'adresse MAC de l'hôte.  Consultez les instructions pourlink:../swnodes/creating-node-configuration-files.html["créer des fichiers de configuration de nœud"] .
@@ -268,6 +274,7 @@ Pour plus d'informations, consultez les instructions pourlink:../swnodes/configu
 
 
 
+[[promiscuous-mode]]
 === Mode promiscueux
 
 Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et que vous préférez autoriser toutes les interfaces à recevoir et transmettre des données pour les adresses MAC autres que celles attribuées par l'hyperviseur, Assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accept* pour le mode promiscuous, les modifications d'adresse MAC et les transmissions forgées. Les valeurs définies sur le commutateur virtuel peuvent être remplacées par les valeurs au niveau du groupe de ports, de sorte que les paramètres soient les mêmes aux deux endroits.
@@ -276,6 +283,7 @@ Pour plus d'informations sur l'utilisation du mode Promiscuous, consultez les in
 
 
 
+[[linux-node-status-is-orphaned]]
 == Linux : l'état du nœud est « orphelin »
 
 Un nœud Linux à l'état orphelin indique généralement que le service StorageGRID ou le démon du nœud StorageGRID contrôlant le conteneur du nœud est décédé de façon inattendue.
@@ -322,6 +330,7 @@ storagegrid node start DC1-S1-172-16-1-172
 
 
 
+[[linux-troubleshoot-ipv6-support]]
 == Linux : dépannage de la prise en charge IPv6
 
 Vous devrez peut-être activer la prise en charge IPv6 dans le noyau si vous avez installé des nœuds StorageGRID sur des hôtes Linux et que vous remarquez que les adresses IPv6 n'ont pas été attribuées aux conteneurs de nœuds comme prévu.

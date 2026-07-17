@@ -18,6 +18,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[ilm-rule-1-for-example-3-use-ec-for-image-files-greater-than-1-mb]]
 == Règle ILM 1 par exemple 3 : utilisez EC pour les fichiers image de plus de 1 Mo
 
 Cet exemple de règle ILM utilise un filtrage avancé pour code d'effacement de tous les fichiers image de plus de 1 Mo.
@@ -72,6 +73,7 @@ image:policy_3_rule_1_ec_images_adv_filtering.png["Règle ILM 1 par exemple 3 : 
 
 
 
+[[ilm-rule-2-for-example-3-create-2-replicated-copies-for-all-remaining-image-files]]
 == Règle ILM 2, par exemple 3 : création de 2 copies répliquées pour tous les fichiers d'images restants
 
 Cet exemple de règle ILM utilise un filtrage avancé pour spécifier la réplication de fichiers d'images plus petits. Comme la première règle de la stratégie a déjà mis en correspondance des fichiers d'image de plus de 1 Mo, cette règle s'applique aux fichiers d'image de 1 Mo ou moins.
@@ -112,6 +114,7 @@ Créez 2 copies répliquées dans deux pools de stockage
 |===
 
 
+[[ilm-policy-for-example-3-better-protection-for-image-files]]
 == Règle ILM, par exemple 3 : meilleure protection des fichiers image
 
 Cet exemple de règle ILM comprend trois règles :

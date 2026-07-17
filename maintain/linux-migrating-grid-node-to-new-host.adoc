@@ -31,6 +31,7 @@ D'autres types de nœuds, tels que les nœuds d'administration ou les nœuds de 
 ====
 
 
+[[export-node-from-source-host]]
 == Nœud d'exportation à partir de l'hôte source
 
 Dans un premier temps, arrêtez le nœud grid et exportez-le depuis l'hôte Linux source.
@@ -91,6 +92,7 @@ Vous allez exécuter cette commande sur l'hôte cible à l'étape suivante.
 
 
 
+[[import-node-on-target-host]]
 == Importer le nœud sur l'hôte cible
 
 Après avoir exporté le nœud à partir de l'hôte source, vous importez et validez le nœud sur l'hôte cible. La validation confirme que le nœud a accès aux mêmes périphériques d'interface réseau et de stockage bloc que sur l'hôte source.
@@ -133,6 +135,7 @@ Pour obtenir des informations de dépannage, consultez StorageGRIDlink:../swnode
 
 
 
+[[start-migrated-node]]
 == Démarrer le nœud migré
 
 Après avoir validé le nœud migré, vous démarrez le nœud en exécutant une commande sur l'hôte _cible_.

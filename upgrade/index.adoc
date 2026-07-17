@@ -20,6 +20,7 @@ CAUTION: Ne démarrez pas la mise à niveau si vous avez un besoin urgent d’é
 
 
 
+[[before-you-upgrade]]
 == Avant de procéder à la mise à niveau
 
 Consultez ces rubriques pour en savoir plus sur les nouvelles fonctionnalités et améliorations de StorageGRID 12.0, déterminer si des fonctionnalités ont été obsolètes ou supprimées et découvrir les modifications apportées aux API StorageGRID .

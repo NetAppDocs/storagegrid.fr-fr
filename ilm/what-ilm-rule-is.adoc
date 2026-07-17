@@ -20,6 +20,7 @@ NOTE: Les métadonnées de l'objet ne sont pas gérées par des règles ILM. Les
 
 
 
+[[elements-of-an-ilm-rule]]
 == Éléments d'une règle ILM
 
 Une règle ILM comporte trois éléments :
@@ -31,6 +32,7 @@ Une règle ILM comporte trois éléments :
 
 
 
+[[ilm-rule-filtering]]
 == Filtrage de règles ILM
 
 Lorsque vous créez une règle ILM, vous spécifiez des filtres pour identifier les objets auxquels la règle s'applique.
@@ -60,6 +62,7 @@ Vous pouvez combiner des filtres selon vos besoins dans une seule règle. Par ex
 
 
 
+[[ilm-rule-placement-instructions]]
 == Instructions de placement des règles ILM
 
 Les instructions de placement déterminent l'emplacement, le moment et le mode de stockage des données objet. Une règle ILM peut inclure une ou plusieurs instructions de placement. Chaque instruction de placement s'applique à une seule période de temps.
@@ -95,6 +98,7 @@ Lorsque vous définissez l'ensemble des instructions de placement pour une règl
 
 
 
+[[ilm-rule-ingest-behavior]]
 == Comportement d'ingestion des règles ILM
 
 Le comportement d'ingestion détermine si les copies d'objet sont immédiatement placées conformément aux instructions de la règle, ou si des copies intermédiaires sont effectuées et que les instructions de placement sont appliquées ultérieurement. Les comportements d'ingestion suivants sont disponibles pour les règles ILM :
@@ -112,6 +116,7 @@ Le comportement d'ingestion détermine si les copies d'objet sont immédiatement
 
 
 
+[[example-ilm-rule]]
 == Exemple de règle ILM
 
 À titre d'exemple, une règle ILM peut spécifier les éléments suivants :

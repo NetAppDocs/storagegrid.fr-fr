@@ -43,6 +43,7 @@ Lorsque tous les nœuds ont été déployés, utilisez Grid Manager pour link:na
 
 
 
+[[automate-the-installation]]
 == Automatisez l'installation
 
 

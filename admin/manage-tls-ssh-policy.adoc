@@ -25,6 +25,7 @@ NOTE: Certains services StorageGRID n'ont pas été mis à jour pour utiliser le
 
 
 
+[[select-a-security-policy]]
 == Sélectionnez une stratégie de sécurité
 
 .Étapes
@@ -111,6 +112,7 @@ Une coche verte apparaît en regard de *police actuelle* sur la mosaïque de pol
 
 
 
+[[create-a-custom-security-policy]]
 == Créez une stratégie de sécurité personnalisée
 
 Vous pouvez créer une stratégie personnalisée si vous devez appliquer vos propres chiffrements.
@@ -132,6 +134,8 @@ Une coche verte apparaît en regard de *politique actuelle* sur la mosaïque de 
 
 
 
+[[temporarily-revert-to-the-default-security-policy]]
+[[temporarily-revert-to-default-security-policy]]
 == Rétablir temporairement la stratégie de sécurité par défaut
 
 Si vous avez configuré une stratégie de sécurité personnalisée, il se peut que vous ne puissiez pas vous connecter à Grid Manager si la stratégie TLS configurée est incompatible avec link:global-certificate-types.html["certificat de serveur configuré"].

@@ -15,12 +15,14 @@ Vous pouvez utiliser la fédération de grid pour cloner les locataires et répl
 
 
 
+[[what-is-a-grid-federation-connection]]
 == Qu'est-ce qu'une connexion de fédération de grille ?
 
 Une connexion de fédération grid est une connexion bidirectionnelle, fiable et sécurisée entre les nœuds d'administration et de passerelle dans deux systèmes StorageGRID.
 
 
 
+[[workflow-for-grid-federation]]
 == Flux de travail pour la fédération de grille
 
 Le diagramme de flux de travail récapitule les étapes de configuration d'une connexion de fédération de grille entre deux grilles.
@@ -29,6 +31,7 @@ image:grid-federation-workflow.png["Flux de travail de connexion de fédération
 
 
 
+[[considerations-and-requirements-for-grid-federation-connections]]
 == Considérations et conditions requises pour les connexions de fédération de grille
 
 * Les grilles utilisées pour la fédération de grille doivent exécuter des versions StorageGRID identiques ou ne doivent pas avoir plus d'une différence de version majeure entre elles.
@@ -42,6 +45,7 @@ Pour plus de détails sur les exigences de version, consultez  https://library.n
 
 
 
+[[networking-and-ip-address-requirements]]
 === Exigences en matière de mise en réseau et d'adresse IP
 
 * Les connexions de fédération de grille peuvent se produire sur le réseau de grille, le réseau d'administration ou le réseau client.
@@ -53,6 +57,7 @@ Pour plus de détails sur les exigences de version, consultez  https://library.n
 
 
 
+[[use-fqdns-to-load-balance-the-connection]]
 === Utilisez des FQDN pour équilibrer la charge de la connexion
 
 Pour un environnement de production, utilisez des noms de domaine complets (FQDN) pour identifier chaque grille de la connexion. Créez ensuite les entrées DNS appropriées, comme suit :
@@ -69,6 +74,7 @@ Lorsque vous utilisez plusieurs entrées DNS, les demandes d'utilisation de la c
 
 
 
+[[port-requirements]]
 === Configuration requise pour les ports
 
 Lors de la création d'une connexion de fédération de grille, vous pouvez spécifier tout numéro de port inutilisé compris entre 23000 et 23999. Les deux grilles de cette connexion utilisent le même port.
@@ -77,6 +83,7 @@ Vous devez vous assurer qu'aucun nœud d'une grille n'utilise ce port pour d'aut
 
 
 
+[[certificate-requirements]]
 === Exigences en matière de certificat
 
 Lorsque vous configurez une connexion de fédération de grille, StorageGRID génère automatiquement quatre certificats SSL :

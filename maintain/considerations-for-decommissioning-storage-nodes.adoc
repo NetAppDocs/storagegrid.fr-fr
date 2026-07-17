@@ -15,6 +15,7 @@ Avant de désaffecter un nœud de stockage, déterminez si vous pouvez le cloner
 
 
 
+[[when-to-clone-a-node-instead-of-decommissioning-it]]
 == Quand cloner un nœud au lieu de le désaffecter
 
 Si vous souhaitez remplacer un nœud de stockage d'appliance plus ancien par une appliance plus récente ou plus grande, envisagez de cloner le nœud d'appliance au lieu d'ajouter une nouvelle appliance à une extension, puis de désaffecter l'ancienne appliance.
@@ -33,6 +34,7 @@ Voir https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-app
 
 
 
+[[considerations-for-connected-storage-nodes]]
 == Considérations relatives aux nœuds de stockage connectés
 
 Consultez les considérations relatives à la désaffectation d'un nœud de stockage connecté.
@@ -57,6 +59,8 @@ NOTE: Le bouton *Pause* n'est activé que lorsque les étapes d'évaluation ILM 
 
 
 
+[[considerations-for-disconnected-storage-nodes]]
+[[considerations-disconnected-storage-nodes]]
 == Considérations relatives aux nœuds de stockage déconnectés
 
 Consultez les considérations relatives à la désaffectation d'un nœud de stockage déconnecté.

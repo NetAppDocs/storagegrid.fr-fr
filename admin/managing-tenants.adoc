@@ -34,6 +34,7 @@ Pour plus d'informations, voir link:../tenant/index.html["Utilisez un compte de 
 
 
 
+[[how-do-i-create-a-tenant-account]]
 == Comment créer un compte de locataire ?
 
 Utilisez le gestionnaire de grille pour créer un compte de locataire. Lorsque vous créez un compte de locataire, vous spécifiez les informations suivantes :
@@ -47,6 +48,7 @@ En outre, vous pouvez activer le paramètre de verrouillage des objets S3 pour l
 
 
 
+[[what-is-tenant-manager-used-for]]
 == À quoi sert le gestionnaire de locataires ?
 
 Une fois le compte de tenant créé, les utilisateurs de tenant peuvent se connecter au gestionnaire de tenant pour effectuer les tâches suivantes :

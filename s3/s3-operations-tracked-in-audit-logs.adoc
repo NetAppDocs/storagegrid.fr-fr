@@ -15,6 +15,7 @@ Les messages d'audit sont générés par les services StorageGRID et stockés da
 
 
 
+[[bucket-operations-tracked-in-the-audit-logs]]
 == Les opérations des compartiments sont suivies dans les journaux d'audit
 
 * CreateBucket
@@ -32,6 +33,7 @@ Les messages d'audit sont générés par les services StorageGRID et stockés da
 
 
 
+[[object-operations-tracked-in-the-audit-logs]]
 == Opérations d'objet suivies dans les journaux d'audit
 
 * CompleteMultipartUpload

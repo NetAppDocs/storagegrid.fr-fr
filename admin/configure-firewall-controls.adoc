@@ -35,6 +35,8 @@ Pour plus d'informations sur les pare-feu externes et la sécurité réseau, rep
 
 
 
+[[access-firewall-controls]]
+[[Access-firewall-controls]]
 == Accès aux contrôles de pare-feu
 
 .Étapes
@@ -50,6 +52,7 @@ Vous pouvez utiliser ces onglets dans n'importe quel ordre. Les configurations q
 
 
 
+[[privileged-address-list]]
 == Liste d'adresses privilégiées
 
 Vous utilisez l'onglet liste d'adresses privilégiées pour accorder aux hôtes l'accès aux ports fermés par défaut ou fermés par des paramètres de l'onglet gérer l'accès externe.
@@ -76,6 +79,7 @@ TIP: Cette option supprime certaines protections pour les services internes. Lai
 
 
 
+[[manage-external-access]]
 == Gérer l'accès externe
 
 Lorsqu'un port est fermé dans l'onglet gérer l'accès externe, il est impossible d'accéder au port par une adresse IP non grille à moins que vous n'ajoutiez l'adresse IP à la liste d'adresses privilégiées. Vous ne pouvez fermer que les ports ouverts par défaut et vous ne pouvez ouvrir que les ports que vous avez fermés.
@@ -105,6 +109,7 @@ NOTE: Utilisez la barre de défilement située à droite du tableau pour vous as
 
 
 
+[[untrusted-client-network]]
 == Réseau client non fiable
 
 Si le réseau client d'un nœud n'est pas approuvé, le nœud accepte uniquement le trafic entrant sur les ports configurés comme points finaux de l'équilibreur de charge et, éventuellement, les ports supplémentaires que vous sélectionnez dans cet onglet. Vous pouvez également utiliser cet onglet pour spécifier le paramètre par défaut pour les nouveaux nœuds ajoutés dans une extension.

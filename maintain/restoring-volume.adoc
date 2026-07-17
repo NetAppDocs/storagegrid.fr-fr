@@ -82,6 +82,7 @@ NOTE: La restauration des volumes dépend de la disponibilité des ressources da
 
 
 
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
 == [[activer-mode-restauration-auto]]Active le mode de restauration automatique
 
 Lorsque vous activez le mode de restauration automatique, la restauration des volumes démarre automatiquement lorsque les volumes sont prêts à être restaurés.
@@ -108,6 +109,7 @@ Vous pouvez désactiver le mode de restauration automatique à tout moment.
 
 
 
+[[manually-restoremanually-restore-failed-volume-or-node]]
 == [[restauration manuelle]]restaurez manuellement un volume ou un nœud défaillant
 
 Procédez comme suit pour restaurer un volume ou un nœud défaillant.
@@ -137,6 +139,7 @@ Si une restauration de volume ne peut pas être démarrée, le nœud revient à 
 
 
 
+[[view-restoration-progressview-restoration-progress]]
 == [[View-restoration-progress]]Afficher la progression de la restauration
 
 L'onglet *progression de la restauration* affiche l'état du processus de restauration du volume et des informations sur les volumes d'un nœud restauré.
@@ -166,6 +169,7 @@ La section tâches de restauration affiche des informations sur les restauration
 
 
 
+[[view-restoration-historyview-restoration-history]]
 == [[View-restoration-history]]Afficher l'historique de restauration
 
 L'onglet *Historique de restauration* affiche des informations sur toutes les restaurations de volume effectuées avec succès.

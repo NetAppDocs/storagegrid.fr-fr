@@ -17,6 +17,7 @@ Pour une vue d'ensemble des options d'acquisition, reportez-vous à la section l
 
 
 
+[[advantages-of-the-balanced-and-strict-options]]
 == Avantages des options équilibrées et strictes
 
 Par rapport à la double allocation qui crée des copies intermédiaires lors de l'ingestion, les deux options de placement synchrone offrent plusieurs avantages :
@@ -29,6 +30,7 @@ Par rapport à la double allocation qui crée des copies intermédiaires lors de
 
 
 
+[[disadvantages-of-the-balanced-and-strict-options]]
 == Inconvénients des options équilibrées et strictes
 
 Par rapport à Dual commit, les options équilibrées et strictes présentent quelques inconvénients :
@@ -46,6 +48,7 @@ Par rapport à Dual commit, les options équilibrées et strictes présentent qu
 
 
 
+[[limitations-on-object-placements-with-the-balanced-and-strict-options]]
 == Limitations sur les placements d'objets avec les options équilibrées et strictes
 
 Les options équilibrées ou strictes ne peuvent pas être utilisées pour les règles ILM avec l'une des instructions de positionnement suivantes :
@@ -58,6 +61,7 @@ Ces restrictions existent, car StorageGRID ne peut pas effectuer de copies synch
 
 
 
+[[how-ilm-rules-and-consistency-interact-to-affect-data-protection]]
 == Impact des règles ILM et de la cohérence sur la protection des données
 
 La règle ILM et la cohérence que vous choisissez affectent la protection des objets. Ces paramètres peuvent interagir.
@@ -96,6 +100,7 @@ NOTE: Avant de sélectionner une valeur de cohérence,link:../s3/consistency.htm
 
 
 
+[[example-of-how-consistency-and-ilm-rules-can-interact]]
 == Exemple de l'interaction des règles de cohérence et des règles ILM
 
 Supposons que vous ayez une grille à trois sites avec la règle ILM suivante et la cohérence suivante :

@@ -15,36 +15,42 @@ Si un problème se produit lors de la mise à niveau, vous pouvez résoudre le p
 
 
 
+[[upgrade-does-not-complete]]
 == La mise à niveau n'est pas terminée
 
 Les sections suivantes décrivent comment effectuer une restauration à partir de situations où la mise à niveau a partiellement échoué.
 
 
 
+[[upgrade-precheck-errors]]
 === Erreurs de contrôle préalable de mise à niveau
 
 Pour détecter et résoudre les problèmes, vous pouvez exécuter manuellement les contrôles préalables à la mise à niveau avant de démarrer la mise à niveau réelle. La plupart des erreurs de précontrôle fournissent des informations sur la façon de résoudre le problème.
 
 
 
+[[provisioning-failures]]
 === Défaillances de provisionnement
 
 Si le processus de provisionnement automatique échoue, contactez le support technique.
 
 
 
+[[grid-node-crashes-or-fails-to-start]]
 === Le nœud de la grille tombe en panne ou ne parvient pas à démarrer
 
 Si un nœud de la grille tombe en panne lors du processus de mise à niveau ou ne parvient pas à démarrer avec succès une fois la mise à niveau terminée, contactez le support technique pour rechercher et corriger les problèmes sous-jacents.
 
 
 
+[[ingest-or-data-retrieval-is-interrupted]]
 === L'ingestion ou la récupération des données est interrompue
 
 Si l'ingestion ou la récupération des données est interrompue de manière inattendue alors que vous ne mettez pas à niveau un nœud de grid, contactez le support technique.
 
 
 
+[[database-upgrade-errors]]
 === Erreurs de mise à niveau de base de données
 
 Si la mise à niveau de la base de données échoue avec une erreur, essayez à nouveau la mise à niveau. En cas d'échec à nouveau, contactez le support technique.
@@ -54,12 +60,14 @@ link:checking-systems-condition-before-upgrading-software.html["Vérification de
 
 
 
+[[user-interface-issues]]
 == Problèmes liés à l'interface utilisateur
 
 Vous pourriez rencontrer des problèmes avec le gestionnaire de grille ou le gestionnaire de locataires pendant ou après la mise à niveau.
 
 
 
+[[grid-manager-displays-multiple-error-messages-during-upgrade]]
 === Grid Manager affiche plusieurs messages d'erreur lors de la mise à niveau
 
 Si vous actualisez votre navigateur ou accédez à une autre page Grid Manager pendant la mise à niveau du nœud d'administration principal, vous pouvez voir plusieurs messages « 503 : service indisponible » et « problème de connexion au serveur ». Vous pouvez ignorer ces messages en toute sécurité ; ils ne s'affichent plus dès que le nœud est mis à niveau.
@@ -68,6 +76,7 @@ Si ces messages s'affichent pendant plus d'une heure après le démarrage de la 
 
 
 
+[[web-interface-does-not-respond-as-expected]]
 === L'interface Web ne répond pas comme prévu
 
 Le gestionnaire de grid ou le gestionnaire de locataires peut ne pas répondre comme prévu après la mise à niveau du logiciel StorageGRID.
@@ -87,6 +96,7 @@ L'effacement du cache supprime les ressources obsolètes utilisées par la versi
 
 
 
+[[docker-image-availability-check-error-messages]]
 == Messages d'erreur « Docker image Availability check »
 
 Lorsque vous tentez de démarrer le processus de mise à niveau, vous pouvez recevoir un message d'erreur indiquant que « les problèmes suivants ont été identifiés par la suite de validation de vérification de disponibilité d'image Docker ». Tous les problèmes doivent être résolus avant que vous puissiez terminer la mise à niveau.

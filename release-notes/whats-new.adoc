@@ -17,6 +17,7 @@ Pour plus de détails sur les problèmes résolus et les problèmes connus dans 
 
 
 
+[[appliances]]
 == Appliances
 
 * La capacité de stockage et la rentabilité ont considérablement augmenté.
@@ -25,6 +26,7 @@ Pour plus de détails sur les problèmes résolus et les problèmes connus dans 
 
 
 
+[[artificial-intelligence-ai-and-machine-learning-ml]]
 == Intelligence artificielle (IA) et apprentissage automatique (ML)
 
 * link:../tenant/what-is-branch-bucket.html["Godets de branches"]autoriser des versions ponctuelles de buckets qui facilitent une récupération plus rapide des ransomwares et des ensembles de données isolés pour les tests et l'expérimentation.
@@ -33,12 +35,14 @@ Pour plus de détails sur les problèmes résolus et les problèmes connus dans 
 
 
 
+[[capacity]]
 == Capacité
 
 StorageGRID prend désormais en charge mille milliards d’objets, soit plus du double de la limite précédente.  Reportez-vous à la https://fusion.netapp.com/["Outil NetApp Fusion"^] pour dimensionner et concevoir StorageGRID.
 
 
 
+[[cassandra-updates]]
 == Mises à jour de Cassandra
 
 StorageGRID utilise désormais une version plus récente de Cassandra pour le stockage des métadonnées.  Cette version de Cassandra utilise l'espace disque plus efficacement pour stocker davantage de métadonnées.
@@ -49,6 +53,7 @@ link:../upgrade/performing-upgrade.html#upgrade-other-nodes["Mise à niveau des 
 
 
 
+[[federation]]
 == Fédération
 
 * Vous pouvez désormaislink:../admin/managing-users.html#import-federated-users["importer jusqu'à 100 utilisateurs fédérés"] dans StorageGRID.
@@ -61,6 +66,7 @@ NetApp recommande d'utiliser cette fonctionnalité uniquement entre les buckets 
 
 
 
+[[manageability]]
 == Facilité de gestion
 
 * Améliorélink:../maintain/decommission-procedure.html["procédure de déclassement"] réduit le temps et la complexité pour améliorer l'efficacité opérationnelle.
@@ -85,6 +91,7 @@ NOTE: Si vous devez revenir au comportement précédent pour une cohérence glob
 
 
 
+[[security]]
 == Sécurité
 
 * Un cryptage des données renforcé et une protection de l’intégrité offrent une sécurité et des performances améliorées.
@@ -94,6 +101,7 @@ NOTE: Si vous devez revenir au comportement précédent pour une cohérence glob
 
 
 
+[[tenant-groups]]
 == Groupes de locataires
 
 * Vous pouvez désormaislink:../tenant/manage-groups.html["configurer une nouvelle politique de confiance S3"] pour prendre en charge l'API AssumeRole.  La fonction AssumeRole fournit des informations d'identification à court terme pour une sécurité renforcée et un contrôle d'accès flexible.
@@ -102,6 +110,7 @@ NOTE: Si vous devez revenir au comportement précédent pour une cohérence glob
 
 
 
+[[user-interface]]
 == Interface utilisateur
 
 * Les paramètres du thème sombre et du thème système sont disponibles dans le menu Utilisateur du gestionnaire de grille et du gestionnaire de locataires.

@@ -22,6 +22,8 @@ Si des volumes de stockage en blocs ont été préservés à partir de l'hôte p
 
 
 
+[[restore-and-validate-grid-nodes]]
+[[restore-validate-grid-nodes]]
 == Restaurez et validez les nœuds de la grille
 
 Vous devez restaurer les fichiers de configuration de la grille de tout nœud de grille ayant échoué, puis valider les fichiers de configuration de la grille et résoudre les erreurs éventuelles.
@@ -96,6 +98,7 @@ Vous devez corriger toute erreur ou avertissement avant de démarrer le service 
 
 
 
+[[fix-missing-network-interface-errors]]
 === Corrigez les erreurs d'interface réseau manquantes
 
 Si le réseau hôte n'est pas configuré correctement ou si un nom est mal orthographié, une erreur se produit lorsque StorageGRID vérifie le mappage spécifié dans le `/etc/storagegrid/nodes/_node-name_.conf` fichier.
@@ -118,6 +121,8 @@ Assurez-vous que l'interface hôte donne accès au port réseau physique ou au V
 
 
 
+[[fix-missing-block-device-errors]]
+[[fix-block-errors]]
 === Corrigez les erreurs de périphérique de bloc manquantes
 
 Le système vérifie que chaque nœud récupéré est associé à un fichier spécial de périphérique de bloc valide ou à un lien logiciel valide vers un fichier spécial de périphérique de bloc. Si StorageGRID trouve un mappage non valide dans le `/etc/storagegrid/nodes/_node-name_.conf` fichier, une erreur de périphérique de bloc manquant s'affiche.
@@ -152,6 +157,7 @@ Exécutez la commande suivante uniquement pour les nouveaux périphériques de s
 ====
 
 
+[[start-storagegrid-host-service]]
 == Démarrez le service d'hôte StorageGRID
 
 Pour démarrer vos nœuds StorageGRID et s'assurer qu'ils redémarrent après un redémarrage de l'hôte, vous devez activer et démarrer le service hôte StorageGRID.
@@ -186,6 +192,8 @@ sudo systemctl reload-or-restart storagegrid
 
 
 
+[[recover-nodes-that-fail-to-start-normally]]
+[[recover-nodes-fail-start]]
 == Restaurez les nœuds qui ne démarrent pas normalement
 
 Si un nœud StorageGRID ne rejoint pas la grille normalement et qu'il n'apparaît pas comme récupérable, il est possible qu'il soit corrompu. Vous pouvez forcer le nœud en mode de récupération.

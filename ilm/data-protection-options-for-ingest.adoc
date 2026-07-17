@@ -17,6 +17,7 @@ Selon votre choix, StorageGRID effectue des copies intermédiaires et met les ob
 
 
 
+[[flowchart-of-ingest-options]]
 == Organigramme des options d'ingestion
 
 L'organigramme indique ce qui se passe lorsque les objets sont mis en correspondance par une règle ILM qui utilise chacune des trois options d'ingestion.
@@ -25,6 +26,7 @@ image:ingest_object_lifecycle.png["Diagramme montrant comment l'ingestion d'obje
 
 
 
+[[dual-commit]]
 == Double allocation
 
 Lorsque vous sélectionnez l'option Dual Commit, StorageGRID réalise immédiatement des copies d'objet provisoires sur deux nœuds de stockage différents et renvoie un message d'« acquisition réussie » au client. L'objet est placé dans la file d'attente pour l'évaluation ILM et les copies correspondant aux instructions de placement de la règle sont créées ultérieurement. Si la règle ILM ne peut pas être traitée immédiatement après la double allocation, la protection contre la perte de site pourrait prendre du temps.
@@ -42,6 +44,7 @@ Utilisez l'option Dual commit dans l'un des cas suivants :
 
 
 
+[[balanced-default]]
 == Équilibré (par défaut)
 
 Lorsque vous sélectionnez l'option équilibrée, StorageGRID utilise également le placement synchrone lors de l'ingestion et immédiatement toutes les copies spécifiées dans les instructions de placement de la règle. Contrairement à l'option la plus stricte, si StorageGRID ne peut pas immédiatement effectuer toutes les copies, il utilise la fonction Dual commit. Si la politique ILM utilise des placements sur plusieurs sites et qu'il est impossible d'obtenir une protection immédiate contre la perte de site, l'alerte *ILM placement unatteignable* est déclenchée.
@@ -50,6 +53,7 @@ Utilisez l'option équilibrée afin de bénéficier de la meilleure combinaison 
 
 
 
+[[strict]]
 == Stricte
 
 Lorsque vous sélectionnez une option stricte, StorageGRID utilise le placement synchrone pour l'ingestion et immédiatement toutes les copies d'objet spécifiées dans les instructions de placement de la règle. L'ingestion échoue si StorageGRID ne peut pas créer toutes les copies, par exemple, car l'emplacement de stockage requis est temporairement indisponible. Le client doit recommencer l'opération.

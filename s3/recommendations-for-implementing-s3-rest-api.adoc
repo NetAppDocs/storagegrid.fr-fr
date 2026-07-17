@@ -15,6 +15,7 @@ Suivez ces recommandations lors de l'implémentation de l'API REST S3 pour une u
 
 
 
+[[recommendations-for-heads-to-non-existent-objects]]
 == Recommandations pour les têtes à des objets inexistants
 
 Si votre application vérifie régulièrement si un objet existe dans un chemin où vous ne vous attendez pas à ce que l'objet existe réellement, vous devez utiliser l'option « Disponible ».link:consistency.html["la cohérence"] .  Par exemple, vous devez utiliser la cohérence « Disponible » si votre application HEAD un emplacement avant d'y effectuer un PUT.
@@ -25,6 +26,7 @@ Vous pouvez définir la cohérence « disponible » pour chaque compartiment à 
 
 
 
+[[recommendations-for-object-keys]]
 == Recommandations pour les clés d'objet
 
 Suivez ces recommandations pour les noms de clés d'objet, en fonction de la date de création du compartiment.
@@ -51,6 +53,7 @@ TIP: À cela s'exception près un workload S3 qui supprime en continu tous les o
 
 
 
+[[recommendations-for-range-reads]]
 == Recommandations pour les « lectures de plage »
 
 Si link:../admin/configuring-stored-object-compression.html["option globale pour compresser les objets stockés"]est activé, les applications client S3 doivent éviter d'effectuer des opérations GetObject qui spécifient une plage d'octets. Ces opérations de « lecture de plage » sont inefficaces car StorageGRID doit décompresser efficacement les objets pour accéder aux octets demandés. Les opérations GetObject qui demandent une petite plage d'octets à partir d'un objet très volumineux sont particulièrement inefficaces ; par exemple, il est inefficace de lire une plage de 10 Mo à partir d'un objet compressé de 50 Go.

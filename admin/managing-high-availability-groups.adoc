@@ -24,6 +24,7 @@ Chaque groupe HA permet d'accéder aux services partagés sur les nœuds sélect
 
 
 
+[[how-do-you-create-an-ha-group]]
 == Comment créer un groupe haute disponibilité ?
 
 . Vous sélectionnez une interface réseau pour un ou plusieurs nœuds d'administration ou de passerelle. Vous pouvez utiliser une interface Grid Network (eth0), une interface réseau client (eth2), une interface VLAN ou une interface d'accès que vous avez ajoutée au nœud.
@@ -40,6 +41,7 @@ Pour obtenir des instructions, reportez-vous à la section link:configure-high-a
 
 
 
+[[what-is-the-active-interface]]
 == Qu'est-ce que l'interface active ?
 
 En fonctionnement normal, toutes les adresses VIP du groupe haute disponibilité sont ajoutées à l'interface principale, qui est la première interface dans l'ordre prioritaire. Tant que l'interface principale reste disponible, elle est utilisée lorsque les clients se connectent à n'importe quelle adresse VIP pour le groupe. C'est-à-dire, pendant le fonctionnement normal, l'interface principale est l'interface « active » du groupe.
@@ -48,6 +50,7 @@ De même, pendant le fonctionnement normal, toute interface de priorité inféri
 
 
 
+[[view-the-current-ha-group-status-of-a-node]]
 == Afficher l'état actuel du groupe haute disponibilité d'un nœud
 
 Pour voir si un nœud est affecté à un groupe HA et déterminer son état actuel, sélectionnez *Nœuds* > *_node_*.
@@ -72,6 +75,7 @@ image:ha_group_primary_interface.png["Interface principale du groupe HAUTE DISPO
 
 
 
+[[what-happens-when-the-active-interface-fails]]
 == Que se passe-t-il lorsque l'interface active tombe en panne ?
 
 L'interface qui héberge actuellement les adresses VIP est l'interface active. Si le groupe haute disponibilité inclut plusieurs interfaces et que l'interface active tombe en panne, les adresses VIP sont transférées vers la première interface de sauvegarde disponible dans l'ordre de priorité. Si cette interface échoue, les adresses VIP passent à la prochaine interface de sauvegarde disponible, etc.

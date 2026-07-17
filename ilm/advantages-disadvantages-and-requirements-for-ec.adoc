@@ -15,6 +15,7 @@ Avant de décider s'il est nécessaire d'utiliser la réplication ou le codage d
 
 
 
+[[advantages-of-erasure-coding]]
 == Avantages du code d'effacement
 
 Par rapport à la réplication, le codage d'effacement assure une fiabilité, une disponibilité et une efficacité du stockage supérieures.
@@ -35,6 +36,7 @@ NOTE: L'espace disque des objets avec code d'effacement est calculé selon la ta
 
 
 
+[[disadvantages-of-erasure-coding]]
 == Inconvénients du code d'effacement
 
 Par rapport à la réplication, le code d'effacement présente les inconvénients suivants :
@@ -49,6 +51,7 @@ Par rapport à la réplication, le code d'effacement présente les inconvénient
 
 
 
+[[when-to-use-erasure-coding]]
 == Quand utiliser le code d'effacement
 
 Utilisez le codage d’effacement pour les exigences suivantes :

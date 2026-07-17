@@ -15,6 +15,7 @@ La réplication inter-grid est la réplication automatique des objets entre des 
 
 
 
+[[workflow-for-cross-grid-replication]]
 == Flux de production pour la réplication entre les grilles
 
 Le diagramme de flux de travail résume les étapes de configuration de la réplication inter-grille entre les buckets sur deux grilles.
@@ -23,6 +24,7 @@ image:grid-federation-cgr-workflow.png["Flux de production de réplication entre
 
 
 
+[[requirements-for-cross-grid-replication]]
 == Conditions requises pour la réplication entre les grilles
 
 Si un compte locataire dispose de l'autorisation *Utiliser la connexion à la fédération de grille* pour utiliser une ou plusieurslink:grid-federation-overview.html["connexions de fédération de grille"] , un utilisateur locataire avec l'autorisation d'accès root peut créer des buckets dans les comptes locataires correspondants sur chaque grille.  Ces seaux :
@@ -40,12 +42,14 @@ link:../tenant/grid-federation-manage-cross-grid-replication.html["Gérer la ré
 
 
 
+[[how-cross-grid-replication-works]]
 == Fonctionnement de la réplication entre les grilles
 
 Vous pouvez configurer la réplication inter-grille pour qu'elle se produise dans un sens ou dans les deux sens.
 
 
 
+[[replication-in-one-direction]]
 === Réplication dans une direction
 
 Si vous activez la réplication inter-grille pour un bucket sur une seule grille, les objets ajoutés à ce bucket (le bucket source) sont répliqués vers le bucket correspondant sur l'autre grille (le bucket de destination).  Cependant, les objets ajoutés au bucket de destination ne sont pas répliqués vers la source.  Dans la figure, la réplication inter-grille est activée pour `my-bucket` de la grille 1 à la grille 2, mais ce n'est pas activé dans l'autre sens.
@@ -54,6 +58,7 @@ image:grid-federation-cross-grid-replication-one-direction.png["image montrant l
 
 
 
+[[replication-in-both-directions]]
 === Réplication dans les deux sens
 
 Si vous activez la réplication inter-grid pour le même compartiment sur les deux grilles, les objets ajoutés à l'un des compartiments sont répliqués sur l'autre grille. Dans la figure, la réplication inter-grille est activée pour `my-bucket` dans les deux sens.
@@ -62,6 +67,7 @@ image:grid-federation-cross-grid-replication.png["image montrant la réplication
 
 
 
+[[what-happens-when-objects-are-ingested]]
 === Que se passe-t-il lorsque des objets sont ingérés ?
 
 Lorsqu'un client S3 ajoute un objet à un compartiment pour lequel la réplication inter-grid est activée, les événements suivants se produisent :
@@ -101,6 +107,7 @@ NOTE: StorageGRID ne prend pas en charge le `x-amz-replication-status` en-tête.
 
 
 
+[[what-happens-when-objects-are-deleted]]
 === Que se passe-t-il lorsque des objets sont supprimés ?
 
 Comme décrit dans link:../primer/delete-data-flow.html["Supprimer le flux de données"], StorageGRID peut supprimer un objet pour l'une des raisons suivantes :
@@ -144,6 +151,7 @@ NOTE: Si vous souhaitez que les suppressions d'objets restent synchronisées ent
 
 
 
+[[how-encrypted-objects-are-replicated]]
 === Mode de réplication des objets chiffrés
 
 Lorsque vous répliquez les objets entre les grilles à l'aide de la réplication multigrille, vous pouvez chiffrer des objets individuels, utiliser le chiffrement de compartiment par défaut ou configurer le chiffrement au niveau de la grille. Vous pouvez ajouter, modifier ou supprimer les paramètres de chiffrement de compartiment ou de grille par défaut avant ou après l'activation de la réplication entre plusieurs grilles pour un compartiment.
@@ -178,6 +186,8 @@ Pour déterminer comment chiffrer les objets répliqués, StorageGRID applique l
 
 
 
+[[cross-grid-replication-with-s3-object-lock]]
+[[cgr-with-ol]]
 === Réplication inter-grille avec S3 Object Lock
 
 Vous pouvez configurer la réplication inter-grille entre les buckets StorageGRID avec S3 Object Lock activé dans les circonstances suivantes.
@@ -230,6 +240,7 @@ Lorsque le verrouillage d’objet S3 sur le bucket source est désactivé :
 
 
 
+[[putobjecttagging-and-deleteobjecttagging-arent-supported]]
 === PutObjectTagging et DeleteObjectTagging ne sont pas pris en charge
 
 Les requêtes PutObjectTagging et DeleteObjectTagging ne sont pas prises en charge pour les objets dans les compartiments pour lesquels la réplication inter-grid est activée.
@@ -238,6 +249,7 @@ Si un client S3 émet une requête PutObjectTagging ou DeleteObjectTagging, `501
 
 
 
+[[putobjectretention-and-putobjectlegalhold-arent-supported]]
 === PutObjectRetention et PutObjectLegalHold ne sont pas pris en charge
 
 Les requêtes PutObjectRetention et PutObjectLegalHold ne sont pas entièrement prises en charge pour les objets dans les buckets pour lesquels la réplication inter-grille est activée.
@@ -246,6 +258,7 @@ Si un client S3 émet une demande PutObjectRetention ou PutObjectLegalHold, les 
 
 
 
+[[how-segmented-objects-are-replicated]]
 === Comment les objets segmentés sont répliqués
 
 La taille de segment maximale de la grille source s'applique aux objets répliqués sur la grille de destination.  Lorsque des objets sont répliqués sur une autre grille, le paramètre *Taille maximale du segment* (*Configuration* > *Système* > *Options de stockage*) de la grille source est utilisé sur les deux grilles.  Par exemple, supposons que la taille maximale du segment pour la grille source soit de 1 Go, tandis que la taille maximale du segment de la grille de destination soit de 50 Mo.  Si vous ingérez un objet de 2 Go sur la grille source, cet objet est enregistré sous forme de deux segments de 1 Go.  Il est également répliqué sur la grille de destination sous forme de deux segments de 1 Go, même si la taille de segment maximale de cette grille est de 50 Mo.

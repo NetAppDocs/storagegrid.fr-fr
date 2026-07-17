@@ -22,12 +22,14 @@ Voir lelink:../swnodes/index.html["instructions d'installation"] .
 
 
 
+[[host-network-configuration-for-container-engine-deployments]]
 == Configuration réseau de l'hôte pour les déploiements de moteurs de conteneurs
 
 Avant de démarrer votre déploiement StorageGRID sur une plateforme de moteur de conteneurs, déterminez les réseaux (Grid, Admin, client) que chaque nœud utilisera. Vous devez vous assurer que l'interface réseau de chaque nœud est configurée sur l'interface hôte physique ou virtuelle appropriée, et que chaque réseau dispose de suffisamment de bande passante.
 
 
 
+[[physical-hosts]]
 === Hôtes physiques
 
 Si vous utilisez des hôtes physiques pour prendre en charge les nœuds grid :
@@ -52,6 +54,7 @@ NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian. 
 
 
 
+[[minimum-bandwidth-recommendations]]
 === Recommandations minimales sur la bande passante
 
 Le tableau suivant présente les recommandations minimales de bande passante pour chaque type de nœud StorageGRID et chaque type de réseau. Vous devez provisionner chaque hôte physique ou virtuel avec une bande passante réseau suffisante pour répondre aux besoins de bande passante minimale de l'agrégat pour le nombre et le type de nœuds StorageGRID que vous prévoyez d'exécuter sur cet hôte.

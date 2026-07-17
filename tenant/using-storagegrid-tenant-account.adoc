@@ -30,6 +30,7 @@ NOTE: Si vous utilisez le protocole client S3, vous pouvez également utiliser d
 
 
 
+[[create-tenant-accounts]]
 == Créer des comptes de tenant
 
 Les comptes de locataires sont créés par un administrateur grid StorageGRID à l'aide de Grid Manager. Lors de la création d'un compte de locataire, l'administrateur du grid spécifie les informations suivantes :
@@ -46,6 +47,7 @@ En outre, les administrateurs du grid peuvent activer le paramètre de verrouill
 
 
 
+[[configure-s3-tenants]]
 == Configurez les locataires S3
 
 Une fois le compte de locataire S3 créé, vous pouvez accéder au Gestionnaire des locataires pour effectuer les tâches suivantes :

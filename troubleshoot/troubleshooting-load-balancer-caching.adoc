@@ -15,6 +15,7 @@ Découvrez les problèmes possibles liés à la mise en cache de l’équilibreu
 
 
 
+[[determine-if-a-request-was-a-cache-hit]]
 == Déterminer si une requête a été un succès dans le cache
 
 * L'en-tête X-Cache est défini dans la réponse aux requêtes traitées par le service de cache.  Codes possibles :
@@ -31,6 +32,7 @@ Découvrez les problèmes possibles liés à la mise en cache de l’équilibreu
 
 
 
+[[low-cache-hit-rate]]
 == Faible taux de réussite du cache
 
 * Des taux de réussite de cache faibles peuvent être attendus lorsqu'une nouvelle charge de travail est ajoutée ou que l'ensemble de travail auquel accède une charge de travail change.  Dans ces situations, le taux de réussite devrait augmenter au fil du temps.
@@ -41,6 +43,7 @@ Découvrez les problèmes possibles liés à la mise en cache de l’équilibreu
 
 
 
+[[low-performance]]
 == Faible performance
 
 * Évaluer le taux de réussite du cache.  Des taux de réussite du cache faibles peuvent entraîner de faibles performances globales.

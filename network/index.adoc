@@ -15,6 +15,7 @@ Utilisez ces instructions pour en savoir plus sur l'architecture StorageGRID et 
 
 
 
+[[about-these-instructions]]
 == À propos de ces instructions
 
 Ces instructions fournissent des informations permettant de créer l'infrastructure réseau StorageGRID avant de déployer et de configurer des nœuds StorageGRID. Utilisez ces directives pour vous assurer que la communication peut se produire entre tous les nœuds de la grille et entre la grille et les clients et services externes.
@@ -38,6 +39,7 @@ Le réseau StorageGRID doit être configuré de manière appropriée pour gérer
 
 
 
+[[before-you-begin]]
 == Avant de commencer
 
 La configuration de la mise en réseau d'un système StorageGRID nécessite un haut niveau d'expérience en matière de commutation Ethernet, de mise en réseau TCP/IP, de sous-réseaux, de routage réseau et de pare-feu.

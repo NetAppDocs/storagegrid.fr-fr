@@ -17,6 +17,7 @@ Tous les messages d’audit générés lors d’une transaction de récupératio
 
 
 
+[[s3-retrieval-audit-messages]]
 == Messages d'audit de récupération S3
 
 [cols="1a,1a,2a,1a,1a"]
@@ -38,6 +39,7 @@ link:sget-s3-get.html["SGET : OBTENEZ S3"]
 |===
 
 
+[[example-s3-object-retrieval]]
 == Exemple : récupération d'objets S3
 
 Lorsqu'un client S3 récupère un objet à partir d'un nœud de stockage (service LDR), un message d'audit est généré et enregistré dans le journal d'audit.
@@ -46,6 +48,7 @@ Notez que tous les messages d'audit générés pendant une transaction ne sont p
 
 
 
+[[sget-s3-get]]
 === SGET : OBTENEZ S3
 
 La récupération d'objet commence lorsque le client envoie une requête GetObject à un service LDR. Le message contient le compartiment à partir duquel vous pouvez récupérer l'objet ainsi que la clé S3 de l'objet, qui permet d'identifier l'objet.
@@ -64,6 +67,7 @@ Dans l'exemple de message suivant, le client envoie une requête GetObject pour 
 ----
 
 
+[[example-s3-select-on-an-object]]
 == Exemple : S3 Select sur un objet
 
 Lorsqu'un client S3 émet une requête S3 Select sur un objet, des messages d'audit sont générés et enregistrés dans le journal d'audit.

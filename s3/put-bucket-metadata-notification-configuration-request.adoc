@@ -17,6 +17,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:PutBuc
 
 
 
+[[request]]
 == Demande
 
 La demande doit inclure la configuration de notification de métadonnées dans l'organisme de demande. Chaque configuration de notification de métadonnées comprend une ou plusieurs règles. Chaque règle spécifie les objets à lesquels elle s'applique, ainsi que la destination vers laquelle StorageGRID doit envoyer les métadonnées d'objet.
@@ -146,6 +147,7 @@ Oui
 |===
 
 
+[[request-examples]]
 == Exemples de demandes
 
 Cet exemple montre l'activation de l'intégration de la recherche pour un compartiment. Dans cet exemple, les métadonnées d'objet de tous les objets sont envoyées vers la même destination.
@@ -198,6 +200,7 @@ Host: _host_
 ----
 
 
+[[json-generated-by-the-search-integration-service]]
 == JSON généré par le service d'intégration de la recherche
 
 Lorsque vous activez le service d'intégration de la recherche pour un compartiment, un document JSON est généré et envoyé au terminal de destination à chaque ajout, mise à jour ou suppression de métadonnées d'objet.
@@ -224,6 +227,7 @@ Cet exemple montre un exemple de fichier JSON qui pourrait être généré lors 
 ----
 
 
+[[object-metadata-included-in-metadata-notifications]]
 == Métadonnées d'objet incluses dans les notifications de métadonnées
 
 Le tableau répertorie tous les champs inclus dans le document JSON qui est envoyé au noeud final de destination lorsque l'intégration de la recherche est activée.

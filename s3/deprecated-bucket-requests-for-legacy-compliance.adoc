@@ -15,6 +15,7 @@ Vous devrez peut-être utiliser l'API REST StorageGRID S3 pour gérer les compar
 
 
 
+[[compliance-feature-deprecated]]
 == Fonction de conformité obsolète
 
 La fonctionnalité de conformité StorageGRID disponible dans les versions précédentes d'StorageGRID est obsolète et a été remplacée par le verrouillage d'objet S3.

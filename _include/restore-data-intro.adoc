@@ -4,6 +4,7 @@
 
 
 
+[[which-procedure-should-i-use]]
 == Quelle procédure dois-je utiliser ?
 
 Dans la mesure du possible, restaurez les données d'objet à l'aide de la page *Restauration de volume* du gestionnaire de grille.
@@ -20,6 +21,7 @@ NOTE: Le script de réparation des données est obsolète et sera supprimé dans
 
 
 
+[[use-the-repair-data-script-to-restore-object-data]]
 == Utilisez le `repair-data` script pour restaurer les données d'objet
 
 .Avant de commencer
@@ -37,6 +39,7 @@ Notez ce qui suit :
 
 
 
+[[about-the-repair-data-script]]
 == A propos du `repair-data` script
 
 Pour restaurer les données d'objet, exécutez le `repair-data` script. Ce script commence le processus de restauration des données d'objet et fonctionne avec l'analyse ILM pour s'assurer que les règles ILM sont respectées.

@@ -15,6 +15,7 @@ Après avoir restauré des volumes de stockage sur un nœud de stockage non appl
 
 
 
+[[which-procedure-should-i-use]]
 == Quelle procédure dois-je utiliser ?
 
 Dans la mesure du possible, restaurez les données d'objet à l'aide de la page *Restauration de volume* du gestionnaire de grille.
@@ -31,6 +32,7 @@ NOTE: Le script de réparation des données est obsolète et sera supprimé dans
 
 
 
+[[use-the-repair-data-script-to-restore-object-data]]
 == Utilisez le `repair-data` script pour restaurer les données d'objet
 
 .Avant de commencer
@@ -48,6 +50,7 @@ Notez ce qui suit :
 
 
 
+[[about-the-repair-data-script]]
 == A propos du `repair-data` script
 
 Pour restaurer les données d'objet, exécutez le `repair-data` script. Ce script commence le processus de restauration des données d'objet et fonctionne avec l'analyse ILM pour s'assurer que les règles ILM sont respectées.
@@ -97,6 +100,7 @@ NOTE: Le travail de réparation EC réserve temporairement une grande quantité 
 ====
 
 
+[[find-hostname-for-storage-node]]
 == Rechercher le nom d'hôte pour le noeud de stockage
 
 . Connectez-vous à n’importe quel nœud d’administration :
@@ -115,6 +119,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 
 
+[[repair-data-if-all-volumes-have-failed]]
 == Réparez les données si tous les volumes ont échoué
 
 Si tous les volumes de stockage sont en panne, réparez l'intégralité du nœud. Suivez les instructions pour les données *répliquées*, *codées par effacement (EC)*, ou les deux, selon que vous utilisez ou non des données répliquées, des données codées par effacement (EC), ou les deux.
@@ -154,6 +159,7 @@ Les réparations des données codées peuvent commencer alors que certains nœud
 ====
 
 
+[[repair-data-if-only-some-volumes-have-failed]]
 == Réparer les données si seulement certains volumes ont échoué
 
 Si seulement certains volumes ont échoué, réparez les volumes affectés. Suivez les instructions pour les données *répliquées*, *codées par effacement (EC)*, ou les deux, selon que vous utilisez ou non des données répliquées, des données codées par effacement (EC), ou les deux.
@@ -211,6 +217,7 @@ NOTE: Les réparations des données codées peuvent commencer alors que certains
 ====
 
 
+[[monitor-repairs]]
 == Surveiller les réparations
 
 Surveiller l'état des travaux de réparation, en fonction de l'utilisation ou non des données *répliquées*, *données codées par effacement (EC)*, ou des deux.

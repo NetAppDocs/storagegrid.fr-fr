@@ -15,6 +15,7 @@ Le `/etc/network/interfaces` fichier comprend trois sections qui définissent le
 
 
 
+[[physical-interfaces]]
 == Interfaces physiques
 
 Notez que les switchs à l'autre extrémité des liaisons doivent également traiter les quatre ports comme une seule jonction ou un canal de port LACP et doivent passer au moins les trois VLAN référencés avec des balises.
@@ -48,6 +49,7 @@ iface ens256 inet manual
 ----
 
 
+[[bond-interface]]
 == Interface de liaison
 
 [listing]
@@ -61,6 +63,7 @@ iface bond0 inet manual
 ----
 
 
+[[vlan-interfaces]]
 == Interfaces VLAN
 
 [listing]

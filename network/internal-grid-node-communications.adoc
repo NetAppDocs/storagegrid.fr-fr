@@ -20,6 +20,7 @@ Outre ICMP et les ports répertoriés dans le tableau, StorageGRID utilise le pr
 
 
 
+[[guidelines-for-linux-based-nodes]]
 == Instructions pour les nœuds basés sur Linux
 
 Si les stratégies de réseau d’entreprise restreignent l’accès à l’un de ces ports, vous pouvez remapper les ports au moment du déploiement à l’aide d’un paramètre de configuration de déploiement.  Pour plus d'informations sur le remappage des ports et les paramètres de configuration de déploiement, consultezlink:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
@@ -29,6 +30,7 @@ NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée
 
 
 
+[[guidelines-for-vmware-based-nodes]]
 == Instructions pour les nœuds VMware
 
 Configurez les ports suivants uniquement si vous devez définir des restrictions de pare-feu externes à la mise en réseau VMware.
@@ -40,6 +42,7 @@ NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée
 
 
 
+[[guidelines-for-appliance-nodes]]
 == Consignes pour les nœuds d'appliance
 
 Si les stratégies de réseau d'entreprise limitent l'accès à l'un de ces ports, vous pouvez remappage les ports à l'aide du programme d'installation de l'appliance StorageGRID. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-remapping-network-ports-for-appliance.html["Facultatif : remappage des ports réseau pour l'appliance"^].
@@ -49,6 +52,7 @@ NOTE: La prise en charge du remappage des ports est obsolète et sera supprimée
 
 
 
+[[storagegrid-internal-ports]]
 == Ports internes StorageGRID
 
 [cols="1a,1a,1a,1a,4a"]

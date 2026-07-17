@@ -107,6 +107,7 @@ Lorsque la tâche *étapes finales de mise à niveau* est terminée, vous pouvez
 |===
 
 
+[[estimate-time-to-upgrade]]
 == Estimer le temps de mise à niveau
 
 .Étapes
@@ -125,6 +126,7 @@ En règle générale, les nœuds d'appliance sont plus longs à mettre à niveau
 
 
 
+[[example-estimated-time-to-upgrade-to-storagegrid-12-0]]
 == Exemple : Temps estimé pour la mise à niveau vers StorageGRID 12.0
 
 Supposons que votre système dispose de 14 nœuds de grille, dont 8 sont des nœuds Linux.

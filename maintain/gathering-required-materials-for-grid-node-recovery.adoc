@@ -77,6 +77,7 @@ Pour connaître les versions de votre plate-forme actuellement prises en charge,
 |===
 
 
+[[download-and-extract-storagegrid-installation-files]]
 == Téléchargez et extrayez les fichiers d'installation StorageGRID
 
 .[[download-and-extract-install-files-recover]]

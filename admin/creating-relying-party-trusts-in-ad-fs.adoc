@@ -31,6 +31,7 @@ Ces instructions s'appliquent à Windows Server 2016 AD FS. Si vous utilisez une
 
 
 
+[[create-a-relying-party-trust-using-windows-powershell]]
 == Créez une confiance en vous appuyant sur Windows PowerShell
 
 Vous pouvez utiliser Windows PowerShell pour créer rapidement une ou plusieurs approbations de parties qui font confiance.
@@ -93,6 +94,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 
+[[create-a-relying-party-trust-by-importing-federation-metadata]]
 == Créez une confiance de partie de confiance en vous important des métadonnées de fédération
 
 Vous pouvez importer les valeurs de chaque confiance de fournisseur en accédant aux métadonnées SAML de chaque nœud d'administration.
@@ -144,6 +146,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 
+[[create-a-relying-party-trust-manually]]
 == Créer une confiance de partie de confiance manuellement
 
 Si vous choisissez de ne pas importer les données pour les approbations de pièces de confiance, vous pouvez entrer les valeurs manuellement.

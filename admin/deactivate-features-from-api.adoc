@@ -36,6 +36,7 @@ Une fois la demande terminée, la fonction de modification du mot de passe racin
 
 
 
+[[reactivate-deactivated-features]]
 == Réactiver les fonctions désactivées
 
 Par défaut, vous pouvez utiliser l'API Grid Management pour réactiver une fonction qui a été désactivée. Toutefois, si vous souhaitez empêcher la réactivation des fonctions désactivées, vous pouvez désactiver la fonction *activeFeatures* elle-même.

@@ -17,6 +17,7 @@ Les stratégies de groupe spécifient les autorisations d'accès pour le groupe 
 
 
 
+[[example-set-group-policy-using-tenant-manager]]
 == Exemple : définissez la stratégie de groupe à l'aide du Gestionnaire de locataires
 
 Lorsque vous ajoutez ou modifiez un groupe dans le Gestionnaire de locataires, vous pouvez sélectionner une stratégie de groupe pour déterminer les autorisations d'accès S3 dont les membres de ce groupe auront accès. Voir link:../tenant/creating-groups-for-s3-tenant.html["Créez des groupes pour un locataire S3"].
@@ -33,6 +34,7 @@ Les utilisateurs du Gestionnaire de locataires disposant de l'autorisation gére
 
 
 
+[[example-allow-group-full-access-to-all-buckets]]
 == Exemple : autoriser l'accès complet du groupe à toutes les rubriques
 
 Dans cet exemple, tous les membres du groupe sont autorisés à accéder à tous les compartiments appartenant au compte du locataire, sauf s'ils sont explicitement refusés par la politique de compartiment.
@@ -51,6 +53,7 @@ Dans cet exemple, tous les membres du groupe sont autorisés à accéder à tous
 ----
 
 
+[[example-allow-group-read-only-access-to-all-buckets]]
 == Exemple : autoriser l'accès en lecture seule du groupe à tous les compartiments
 
 Dans cet exemple, tous les membres du groupe ont un accès en lecture seule aux ressources S3, à moins qu'ils ne soient explicitement refusés par la règle de compartiment. Par exemple, les utilisateurs de ce groupe peuvent afficher la liste des objets et lire les données d'objet, les métadonnées et les balises.
@@ -78,6 +81,7 @@ Dans cet exemple, tous les membres du groupe ont un accès en lecture seule aux 
 ----
 
 
+[[example-allow-group-members-full-access-to-only-their-folder-in-a-bucket]]
 == Exemple : autorisez les membres du groupe à accéder entièrement à leur « dossier » uniquement dans un compartiment
 
 Dans cet exemple, les membres du groupe ne sont autorisés qu'à répertorier et accéder à leur dossier spécifique (préfixe de clé) dans le compartiment spécifié. Notez que les autorisations d'accès à partir d'autres stratégies de groupes et de la règle de compartiment doivent être prises en compte lors de la détermination de la confidentialité de ces dossiers.

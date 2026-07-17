@@ -17,6 +17,7 @@ Reportez-vous  à la section link:configuring-client-connections.html["Configure
 
 
 
+[[default-storagegrid-networks]]
 == Réseaux StorageGRID par défaut
 
 Par défaut, StorageGRID prend en charge trois interfaces réseau par nœud grid, ce qui vous permet de configurer le réseau pour chaque nœud grid en fonction de vos besoins de sécurité et d'accès.
@@ -25,24 +26,28 @@ Pour plus d'informations sur la topologie réseau, reportez-vous à la section l
 
 
 
+[[grid-network]]
 === Réseau Grid
 
 Obligatoire. Le réseau Grid est utilisé pour l'ensemble du trafic StorageGRID interne. Il assure la connectivité entre tous les nœuds de la grille, sur tous les sites et sous-réseaux.
 
 
 
+[[admin-network]]
 === Réseau d'administration
 
 Facultatif. Le réseau d'administration est généralement utilisé pour l'administration et la maintenance du système. Il peut également être utilisé pour l'accès au protocole client. Le réseau Admin est généralement un réseau privé et n'a pas besoin d'être routable entre les sites.
 
 
 
+[[client-network]]
 === Réseau client
 
 Facultatif. Le réseau client est un réseau ouvert généralement utilisé pour fournir un accès aux applications client S3, de sorte que le réseau Grid peut être isolé et sécurisé. Le réseau client peut communiquer avec tout sous-réseau accessible via la passerelle locale.
 
 
 
+[[guidelines]]
 == Directives
 
 * Chaque nœud StorageGRID requiert une interface réseau, une adresse IP, un masque de sous-réseau et une passerelle dédiés pour chaque réseau auquel il est attribué.
@@ -83,6 +88,7 @@ eth2
 
 
 
+[[optional-interfaces]]
 == Interfaces en option
 
 Vous pouvez également ajouter des interfaces supplémentaires à un nœud. Par exemple, vous pouvez ajouter une interface de jonction à un noeud Admin ou Gateway, de sorte que vous pouvez utiliser link:../admin/configure-vlan-interfaces.html["Interfaces VLAN"] pour isoler le trafic appartenant à différentes applications ou locataires. Vous pouvez également ajouter une interface d'accès à utiliser dans un link:../admin/configure-high-availability-group.html["Groupe haute disponibilité (HA)"].

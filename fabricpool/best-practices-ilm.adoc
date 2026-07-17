@@ -18,6 +18,7 @@ CAUTION: FabricPool ne connaît pas les règles ou les règles ILM de StorageGRI
 
 
 
+[[guidelines-for-using-ilm-with-fabricpool]]
 == Règles d'utilisation d'ILM avec FabricPool
 
 Lorsque vous utilisez l'assistant d'installation FabricPool, il crée automatiquement une règle ILM pour chaque compartiment S3 que vous créez, puis l'ajoute à une règle inactive. Vous êtes invité à activer la stratégie. La règle automatiquement créée respecte les bonnes pratiques recommandées : elle utilise un code d'effacement 2+1 sur un seul site.

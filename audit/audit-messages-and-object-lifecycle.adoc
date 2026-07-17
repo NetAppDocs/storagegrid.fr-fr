@@ -35,6 +35,7 @@ CBID (identifiant interne de l'objet)
 |===
 
 
+[[timing-of-audit-messages]]
 == Calendrier des messages d'audit
 
 En raison de facteurs tels que les différences de synchronisation entre les nœuds de la grille, la taille de l'objet et les retards réseau, l'ordre des messages d'audit générés par les différents services peut varier de celui présenté dans les exemples de cette section.

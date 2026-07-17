@@ -21,12 +21,14 @@ Vous pouvez créer des groupes d'administration pour gérer les autorisations de
 
 
 
+[[create-an-admin-group]]
 == Créer un groupe d'administration
 
 Les groupes Admin vous permettent de déterminer quels utilisateurs peuvent accéder aux fonctions et opérations du gestionnaire de grille et de l'API Grid Management.
 
 
 
+[[access-the-wizard]]
 === Accéder à l'assistant
 
 .Étapes
@@ -36,6 +38,7 @@ Les groupes Admin vous permettent de déterminer quels utilisateurs peuvent acc�
 
 
 
+[[choose-a-group-type]]
 === Choisissez un type de groupe
 
 Vous pouvez créer un groupe local ou importer un groupe fédéré.
@@ -74,6 +77,7 @@ Vous pouvez créer un groupe local ou importer un groupe fédéré.
 ====
 
 
+[[manage-group-permissions]]
 === Gérer les autorisations de groupe
 
 .Étapes
@@ -96,6 +100,7 @@ Vous devez attribuer au moins une autorisation à chaque groupe ; sinon, les uti
 
 
 
+[[add-users-local-groups-only]]
 === Ajouter des utilisateurs (groupes locaux uniquement)
 
 .Étapes
@@ -108,6 +113,7 @@ Si vous n'avez pas encore créé d'utilisateurs locaux, vous pouvez enregistrer 
 
 
 
+[[view-and-edit-admin-groups]]
 == Afficher et modifier les groupes d'administration
 
 Vous pouvez afficher les détails des groupes existants, modifier un groupe ou dupliquer un groupe.
@@ -169,6 +175,7 @@ Modifier le mode d'accès ou les autorisations
 
 
 
+[[duplicate-a-group]]
 == Dupliquer un groupe
 
 .Étapes
@@ -179,6 +186,7 @@ Modifier le mode d'accès ou les autorisations
 
 
 
+[[delete-a-group]]
 == Supprimer un groupe
 
 Vous pouvez supprimer un groupe d'administration lorsque vous souhaitez supprimer le groupe du système et supprimer toutes les autorisations associées au groupe. La suppression d'un groupe admin supprime tous les utilisateurs du groupe, mais ne les supprime pas.

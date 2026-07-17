@@ -20,6 +20,7 @@ NOTE: Les filigranes du volume de stockage ne s'appliquent qu'à l'espace utilis
 
 
 
+[[what-is-the-soft-read-only-watermark]]
 == Qu'est-ce que le filigrane logiciel en lecture seule ?
 
 Le filigrane *soft read-only du volume de stockage* est le premier filigrane qui indique que l'espace utilisable d'un nœud de stockage pour les données d'objet est saturé.
@@ -30,6 +31,7 @@ Supposons, par exemple, que chaque volume d'un nœud de stockage possède un fil
 
 
 
+[[what-is-the-hard-read-only-watermark]]
 == Qu'est-ce que le filigrane en lecture seule ?
 
 Le filigrane *en lecture seule du volume de stockage* est le filigrane suivant pour indiquer que l'espace utilisable d'un nœud pour les données d'objet est saturé.
@@ -42,6 +44,7 @@ Le filigrane en lecture seule est toujours inférieur au filigrane en lecture se
 
 
 
+[[what-is-the-read-write-watermark]]
 == Qu'est-ce que le filigrane de lecture-écriture ?
 
 Le filigrane *lecture-écriture du volume de stockage* ne s'applique qu'aux nœuds de stockage qui sont passés en mode lecture seule. Il détermine quand le nœud peut redevenir lecture-écriture. Lorsque l'espace libre sur un volume de stockage d'un nœud de stockage est supérieur au filigrane de lecture-écriture de ce volume, le nœud revient automatiquement à l'état de lecture-écriture.
@@ -52,6 +55,7 @@ Le filigrane en lecture-écriture est toujours plus grand que le filigrane en le
 
 
 
+[[view-storage-volume-watermarks]]
 == Afficher les filigranes du volume de stockage
 
 Vous pouvez afficher les paramètres actuels du filigrane ainsi que les valeurs optimisées par le système. Si les filigranes optimisés ne sont pas utilisés, vous pouvez déterminer si vous pouvez ou devez régler les paramètres.
@@ -64,6 +68,7 @@ Vous pouvez afficher les paramètres actuels du filigrane ainsi que les valeurs 
 
 
 
+[[view-current-watermark-settings]]
 === Afficher les paramètres actuels du filigrane
 
 Vous pouvez afficher les paramètres actuels du filigrane de stockage dans Grid Manager.
@@ -86,6 +91,7 @@ Lorsque vous spécifiez des paramètres de filigrane personnalisés, vous devez 
 
 
 
+[[view-optimized-storage-watermarksview-optimized-storage-watermarks]]
 === [[filigranes-stockage-optimisé-vue]]Afficher les filigranes de stockage optimisés
 
 StorageGRID utilise deux metrics Prometheus pour afficher les valeurs optimisées qu'il a calculées pour le seuil en lecture seule souple du volume de stockage. Vous pouvez afficher les valeurs minimale et maximale optimisées pour chaque nœud de stockage de la grille.

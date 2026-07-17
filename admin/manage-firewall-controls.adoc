@@ -38,6 +38,7 @@ Pour plus d'informations sur les pare-feu externes et la sécurité réseau, rep
 
 
 
+[[privileged-address-list-and-manage-external-access-tabs]]
 == Liste d'adresses privilégiées et onglets gérer les accès externes
 
 L'onglet liste d'adresses privilégiées vous permet d'enregistrer une ou plusieurs adresses IP qui ont accès aux ports de la grille fermés. L'onglet gérer l'accès externe vous permet de fermer l'accès externe aux ports externes sélectionnés ou à tous les ports externes ouverts (les ports externes sont des ports accessibles par défaut par les nœuds non-grid). Ces deux onglets peuvent souvent être utilisés ensemble pour personnaliser l'accès réseau exact dont vous avez besoin pour votre grille.
@@ -47,6 +48,7 @@ NOTE: Par défaut, les adresses IP privilégiées n'ont pas d'accès au port de 
 
 
 
+[[example-1-use-a-jump-host-for-maintenance-tasks]]
 === Exemple 1 : utilisez un hôte de secours pour les tâches de maintenance
 
 Supposons que vous souhaitiez utiliser un hôte de secours (un hôte renforcé par la sécurité) pour l'administration du réseau. Vous pouvez utiliser les étapes générales suivantes :
@@ -62,6 +64,7 @@ Après avoir enregistré votre configuration, tous les ports externes du nœud d
 
 
 
+[[example-2-lock-down-sensitive-ports]]
 === Exemple 2 : verrouiller les ports sensibles
 
 Supposons que vous souhaitiez verrouiller les ports sensibles et le service sur ce port.  Vous pouvez utiliser les étapes générales suivantes :
@@ -77,12 +80,14 @@ Une fois votre configuration enregistrée, le port sensible et le service sur ce
 
 
 
+[[example-3-disable-access-to-unused-services]]
 === Exemple 3 : désactiver l'accès aux services inutilisés
 
 Au niveau du réseau, vous pouvez désactiver certains services que vous n'avez pas l'intention d'utiliser. Par exemple, pour bloquer le trafic client HTTP S3, vous pouvez utiliser la bascule de l'onglet gérer l'accès externe pour bloquer le port 18084.
 
 
 
+[[untrusted-client-networks-tab]]
 == Onglet réseaux de clients non approuvés
 
 Si vous utilisez un réseau client, vous pouvez protéger StorageGRID des attaques hostiles en acceptant le trafic client entrant uniquement sur les noeuds finaux configurés explicitement.
@@ -93,6 +98,7 @@ Vous pouvez réduire la menace d'attaques hostiles sur votre système StorageGRI
 
 
 
+[[example-1-gateway-node-only-accepts-https-s3-requests]]
 === Exemple 1 : le nœud de passerelle n'accepte que les requêtes HTTPS S3
 
 Supposons que vous souhaitiez qu'un nœud de passerelle refuse tout trafic entrant sur le réseau client, à l'exception des requêtes HTTPS S3. Vous devez effectuer les étapes générales suivantes :
@@ -105,6 +111,7 @@ Après avoir enregistré votre configuration, tout le trafic entrant sur le rés
 
 
 
+[[example-2-storage-node-sends-s3-platform-services-requests]]
 === Exemple 2 : le nœud de stockage envoie des demandes de services de plateforme S3
 
 Supposons que vous souhaitiez activer le trafic sortant des services de la plateforme S3 à partir d'un nœud de stockage, mais que vous souhaitiez empêcher toute connexion entrante à ce nœud de stockage sur le réseau client. Vous devez effectuer cette étape générale :
@@ -116,6 +123,7 @@ Une fois la configuration enregistrée, le nœud de stockage n'accepte plus le t
 
 
 
+[[example-3-limiting-access-to-grid-manager-to-a-subnet]]
 === Exemple 3 : limitation de l'accès à Grid Manager à un sous-réseau
 
 Supposons que vous souhaitiez autoriser l'accès à Grid Manager uniquement sur un sous-réseau spécifique. Procédez comme suit :

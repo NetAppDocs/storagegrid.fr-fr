@@ -27,6 +27,7 @@ Les paramètres de demande suivants sont pris en charge :
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.

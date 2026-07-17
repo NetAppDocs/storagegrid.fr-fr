@@ -24,6 +24,7 @@ NOTE: Si l'authentification unique (SSO) est activée pour votre système Storag
 
 
 
+[[create-usercreate-a-local-user]]
 == [[create-user]]Créez un utilisateur local
 
 Vous pouvez créer un utilisateur local et l'affecter à un ou plusieurs groupes locaux pour contrôler leurs autorisations d'accès.
@@ -32,6 +33,7 @@ Les utilisateurs S3 qui n'appartiennent à aucun groupe ne disposent pas d'autor
 
 
 
+[[access-the-create-user-wizard]]
 === Accédez à l'assistant de création d'utilisateur
 
 .Étapes
@@ -47,6 +49,7 @@ image:grid-federation-tenant-user-banner.png["Image de la bannière bleue sur la
 
 
 
+[[enter-credentials]]
 === Entrez les informations d'identification
 
 .Étapes
@@ -93,6 +96,7 @@ Par exemple, sélectionnez *Oui* pour suspendre temporairement la capacité d'un
 
 
 
+[[assign-to-groups]]
 === Affecter à des groupes
 
 .Étapes
@@ -112,6 +116,7 @@ Si votre compte locataire dispose de l'autorisation *utiliser la connexion de f�
 
 
 
+[[view-or-edit-local-user]]
 == Afficher ou modifier un utilisateur local
 
 .Étapes
@@ -172,6 +177,7 @@ Vous ne pouvez pas modifier le nom d'utilisateur.
 
 
 
+[[import-federated-users]]
 == Importer des utilisateurs fédérés
 
 Vous pouvez importer un ou plusieurs utilisateurs fédérés, jusqu'à un maximum de 100 utilisateurs, directement dans la page Utilisateurs.
@@ -199,6 +205,7 @@ Après avoir fermé la boîte de dialogue *Importer les utilisateurs fédérés*
 
 
 
+[[duplicate-local-user]]
 == Dupliquer l'utilisateur local
 
 Vous pouvez dupliquer un utilisateur local pour créer un nouvel utilisateur plus rapidement.
@@ -216,6 +223,7 @@ NOTE: Si votre compte locataire dispose de l'autorisation *utiliser la connexion
 
 
 
+[[clone-usersretry-user-clone]]
 == [[clone-users]]Réessayez le clone utilisateur
 
 Pour réessayer un clone qui a échoué :
@@ -229,6 +237,7 @@ Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner d
 
 
 
+[[delete-one-or-more-local-users]]
 == Supprimez un ou plusieurs utilisateurs locaux
 
 Vous pouvez supprimer définitivement un ou plusieurs utilisateurs locaux qui n'ont plus besoin d'accéder au compte de locataire StorageGRID.

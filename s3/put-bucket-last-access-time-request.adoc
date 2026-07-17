@@ -28,6 +28,7 @@ Si les dernières mises à jour de temps d'accès sont désactivées pour un com
 
 
 
+[[request-examples]]
 == Exemples de demandes
 
 Cet exemple permet d'activer le temps du dernier accès pour un compartiment.

@@ -21,6 +21,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:ListAl
 
 
 
+[[request-example]]
 == Exemple de demande
 
 [listing, subs="specialcharacters,quotes"]
@@ -32,6 +33,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == Exemple de réponse
 
 Cet exemple montre un compte qui contient quatre objets et 12 octets de données dans deux compartiments. Chaque compartiment contient deux objets et six octets de données.
@@ -67,6 +69,7 @@ Content-Type: application/xml
 ----
 
 
+[[versioning]]
 == Gestion des versions
 
 Chaque version d'objet stockée contribuera aux `ObjectCount` valeurs et `DataBytes` dans la réponse. Les marqueurs de suppression ne sont pas ajoutés au `ObjectCount` total.

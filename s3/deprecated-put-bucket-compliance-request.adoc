@@ -28,6 +28,7 @@ Vous devez spécifier une valeur pour chaque champ des paramètres de conformit�
 
 
 
+[[request-example]]
 == Exemple de demande
 
 Cet exemple de demande modifie les paramètres de conformité du compartiment nommé `mybucket`. Dans cet exemple, les objets dans `mybucket` seront conservés pendant deux ans (1,051,200 minutes) au lieu d'un an, à partir de la date d'ingestion de l'objet dans la grille. Il n'y a pas de retenue légale sur ce godet. Chaque objet sera automatiquement supprimé après deux ans.
@@ -79,6 +80,7 @@ Suppression automatique
 |===
 
 
+[[consistency-for-compliance-settings]]
 == Cohérence pour les paramètres de conformité
 
 Lorsque vous mettez à jour les paramètres de conformité d'un compartiment S3 avec une demande DE conformité PUT bucket, StorageGRID tente de mettre à jour les métadonnées du compartiment dans la grille. Par défaut, StorageGRID utilise la cohérence *strong-global* pour garantir que tous les sites de data Center et tous les nœuds de stockage contenant des métadonnées de compartiment disposent d'une cohérence de lecture après écriture pour les paramètres de conformité modifiés.
@@ -101,6 +103,7 @@ Consistency-Control: strong-site
 ----
 
 
+[[error-responses]]
 == Réponses d'erreur
 
 * Si le compartiment n'a pas été créé pour être conforme, le code d'état HTTP de la réponse est `404 Not Found`.

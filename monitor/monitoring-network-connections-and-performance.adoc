@@ -15,6 +15,7 @@ L'intégrité et la bande passante du réseau entre les nœuds et les sites, ain
 
 
 
+[[monitor-network-connections-and-performance]]
 == Contrôle des connexions réseau et des performances
 
 La connectivité réseau et la bande passante sont d'autant plus importantes si votre stratégie de gestion du cycle de vie des informations (ILM) copie les objets répliqués entre des sites ou stocke des objets avec code d'effacement au moyen d'un système qui assure la protection contre la perte de site. Si le réseau entre les sites n'est pas disponible, que la latence du réseau est trop élevée ou que la bande passante du réseau est insuffisante, certaines règles ILM risquent de ne pas pouvoir placer les objets là où prévu. Cela peut entraîner des échecs d'ingestion (lorsque l'option d'ingestion stricte est sélectionnée pour les règles ILM) ou de mauvaises performances d'ingestion et de journalisation des règles ILM.
@@ -77,6 +78,7 @@ Si une politique de classification du trafic est conçue pour limiter le trafic 
 
 
 
+[[monitor-node-level-resources]]
 == Contrôle des ressources au niveau des nœuds
 
 Surveiller les nœuds de grid individuels pour vérifier leurs niveaux d'utilisation des ressources. Si les nœuds sont constamment surchargés, un nombre plus élevé de nœuds peut être requis pour une efficacité optimale des opérations.

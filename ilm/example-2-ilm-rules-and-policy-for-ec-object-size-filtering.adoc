@@ -18,6 +18,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[ilm-rule-1-for-example-2-use-ec-for-objects-greater-than-1-mb]]
 == Règle ILM 1, par exemple 2 : utilise ce pour les objets de plus de 1 Mo
 
 Cet exemple de règle ILM code des objets dont le nombre est supérieur à 1 Mo.
@@ -61,6 +62,7 @@ image:policy_2_rule_1_ec_objects_adv_filtering.png["Règle ILM 1, par exemple 2 
 
 
 
+[[ilm-rule-2-for-example-2-two-replicated-copies]]
 == Règle ILM 2, par exemple 2 : deux copies répliquées
 
 Cet exemple de règle ILM crée deux copies répliquées, sans filtrer par taille d'objet. Cette règle est la règle par défaut de la règle. Étant donné que la première règle filtre tous les objets de plus de 1 Mo, cette règle s'applique uniquement aux objets de 1 Mo ou plus.
@@ -99,6 +101,7 @@ Du jour 0 à l'infini, conservez une copie répliquée sur le site 1 et une copi
 |===
 
 
+[[ilm-policy-for-example-2-use-ec-for-objects-greater-than-1-mb]]
 == Règle ILM par exemple 2 : utilisez l'effacement pour des objets supérieurs à 1 Mo
 
 Cet exemple de règle ILM inclut deux règles ILM :

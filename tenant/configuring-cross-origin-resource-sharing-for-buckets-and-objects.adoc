@@ -25,6 +25,7 @@ Le partage de ressources d'origine croisée (CORS) est un mécanisme de sécurit
 
 
 
+[[enable-cors-for-a-bucket]]
 == Activer le CORS pour un godet
 
 .Étapes
@@ -70,6 +71,7 @@ La page des détails du compartiment s'affiche.
 
 
 
+[[modify-cors-setting]]
 == Modifier le paramètre CORS
 
 .Étapes
@@ -79,6 +81,7 @@ La page des détails du compartiment s'affiche.
 
 
 
+[[disable-cors-setting]]
 == Désactiver le paramètre CORS
 
 .Étapes

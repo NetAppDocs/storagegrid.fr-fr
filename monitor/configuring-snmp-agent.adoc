@@ -25,6 +25,7 @@ Tous les nœuds de la grille utilisent la même configuration SNMP.
 
 
 
+[[specify-basic-configuration]]
 == Spécifiez la configuration de base
 
 Dans un premier temps, activez l'agent SMNP StorageGRID et fournissez des informations de base.
@@ -79,6 +80,7 @@ Si cette option est sélectionnée, l'agent SNMP StorageGRID envoie des interrup
 
 
 
+[[enter-community-strings]]
 == Entrez des chaînes de communauté
 
 Si vous utilisez SNMPv1 ou SNMPv2c, complétez la section chaînes de communauté.
@@ -102,6 +104,7 @@ Jusqu'à cinq chaînes sont autorisées.
 
 
 
+[[selecttrapdestinationcreate-trap-destinations]]
 == [[Select_trap_destination]]Créer des destinations de déroutement
 
 Utilisez l'onglet destinations d'interruption de la section autres configurations pour définir une ou plusieurs destinations pour les notifications d'interruption ou d'information StorageGRID. Lorsque vous activez l'agent SNMP et sélectionnez *Enregistrer*, StorageGRID envoie des notifications à chaque destination définie lorsque des alertes sont déclenchées. Les notifications standard sont également envoyées pour les entités MIB-II prises en charge (par exemple, ifdown et coldStart).
@@ -277,6 +280,7 @@ La destination de la trappe est créée et ajoutée à la table.
 
 
 
+[[create-agent-addresses]]
 == Créez des adresses d'agent
 
 Vous pouvez également utiliser l'onglet adresses des agents de la section autres configurations pour spécifier une ou plusieurs « adresses d'écoute ». Il s'agit des adresses StorageGRID sur lesquelles l'agent SNMP peut recevoir des requêtes.
@@ -344,6 +348,7 @@ L'adresse de l'agent est créée et ajoutée à la table.
 
 
 
+[[create-usm-userscreate-usm-users]]
 == [[create-usm-users]]Créez des utilisateurs USM
 
 Si vous utilisez SNMPv3, utilisez l'onglet utilisateurs USM de la section autres configurations pour définir les utilisateurs USM autorisés à interroger la MIB ou à recevoir des interruptions et des informations.

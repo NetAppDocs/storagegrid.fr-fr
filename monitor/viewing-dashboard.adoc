@@ -22,6 +22,7 @@ image:grid_manager_dashboard.png["Tableau de bord de Grid Manager"]
 
 
 
+[[view-the-dashboard]]
 == Afficher le tableau de bord
 
 Le tableau de bord se compose d'onglets contenant des informations spécifiques sur le système StorageGRID. Chaque onglet contient des catégories d'informations affichées sur les cartes.
@@ -73,6 +74,7 @@ Certaines cartes peuvent être agrandies pour une meilleure lisibilité. Sélect
 
 
 
+[[manage-dashboards]]
 == Gestion des tableaux de bord
 
 Si vous disposez d'un accès racine (voir link:../admin/admin-group-permissions.html["Autorisations de groupe d'administration"]), vous pouvez effectuer les tâches de gestion suivantes pour les tableaux de bord :
@@ -95,6 +97,7 @@ image:dashboard_manage.png["Gestion des tableaux de bord"]
 
 
 
+[[configure-dashboards]]
 == Configurer les tableaux de bord
 
 Pour créer un nouveau tableau de bord en clonant le tableau de bord actif, sélectionnez *actions* > *Cloner le tableau de bord actif*.

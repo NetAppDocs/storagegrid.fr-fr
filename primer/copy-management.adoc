@@ -19,6 +19,7 @@ Les données d'objet sont gérées par le service LDR.
 
 
 
+[[content-protection-replication]]
 == Protection du contenu : réplication
 
 Si les instructions de placement de contenu d'une règle ILM nécessitent des copies répliquées des données d'objet, des copies sont créées et stockées sur le disque par les nœuds de stockage qui constituent le pool de stockage configuré.
@@ -36,6 +37,7 @@ image:replication_data_flow.png["schéma illustrant le processus décrit dans le
 
 
 
+[[content-protection-erasure-coding]]
 == Protection du contenu : code d'effacement
 
 Si une règle ILM contient des instructions pour effectuer des copies avec code d'effacement des données d'objet, le schéma de code d'effacement applicable casse les données d'objet en fragments de données et de parité, puis distribue ces fragments entre les nœuds de stockage configurés dans le profil de code d'effacement.
@@ -54,6 +56,7 @@ image:erasure_coding_data_flow.png["Codage d'effacement des flux de données"]
 
 
 
+[[content-protection-cloud-storage-pool]]
 == Protection du contenu : pool de stockage cloud
 
 Si les instructions de placement de contenu d'une règle ILM requièrent qu'une copie répliquée des données d'objet soit stockée dans un pool de stockage cloud, les données d'objet sont dupliquées dans le compartiment S3 externe ou dans le conteneur de stockage Azure Blob spécifié pour le pool de stockage cloud.

@@ -15,6 +15,7 @@ StorageGRID propose plusieurs options pour le chiffrement des données. Consulte
 
 Le tableau fournit un récapitulatif détaillé des méthodes de cryptage disponibles dans StorageGRID.
 
+[[bucket-encryption-table]]
 [cols="1a,1a,1a"]
 |===
 | Option de chiffrement | Comment cela fonctionne | S'applique à 
@@ -135,6 +136,7 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html["
 |===
 
 
+[[use-multiple-encryption-methods]]
 == Utilisez plusieurs méthodes de chiffrement
 
 Selon vos besoins, vous pouvez utiliser plusieurs méthodes de chiffrement à la fois. Par exemple :

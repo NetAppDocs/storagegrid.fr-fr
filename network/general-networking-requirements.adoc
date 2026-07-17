@@ -37,6 +37,7 @@ Si vous n'êtes pas prêt à configurer les réseaux optionnels Admin et client 
 
 
 
+[[connections-for-admin-nodes-and-gateway-nodes]]
 == Connexions pour les nœuds d'administration et les nœuds de passerelle
 
 Les nœuds d'administration doivent toujours être sécurisés par des clients non fiables, comme ceux sur Internet ouvert. Vous devez vous assurer qu'aucun client non approuvé ne peut accéder à un nœud d'administration sur le réseau Grid, le réseau Admin ou le réseau client.
@@ -45,6 +46,7 @@ Les nœuds d'administration et les nœuds de passerelle que vous prévoyez d'ajo
 
 
 
+[[using-network-address-translation-nat]]
 == Utilisation de la traduction d'adresses réseau (NAT)
 
 N'utilisez pas la traduction d'adresses réseau (NAT) sur le réseau de grille entre les nœuds de grille ou entre les sites StorageGRID. Lorsque vous utilisez des adresses IPv4 privées pour le réseau Grid, ces adresses doivent être directement routables à partir de chaque nœud de la grille sur chaque site. Toutefois, vous pouvez utiliser NAT entre des clients externes et des nœuds de grille, par exemple pour fournir une adresse IP publique pour un nœud de passerelle. L'utilisation de la fonction NAT pour relier un segment de réseau public n'est prise en charge que lorsque vous utilisez une application de tunneling transparente pour tous les nœuds de la grille, ce qui signifie que les nœuds de la grille ne nécessitent aucune connaissance des adresses IP publiques.

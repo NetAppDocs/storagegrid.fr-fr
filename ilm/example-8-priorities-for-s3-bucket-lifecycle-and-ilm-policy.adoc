@@ -15,6 +15,7 @@ Selon la configuration du cycle de vie, les objets suivent les paramètres de co
 
 
 
+[[example-of-bucket-lifecycle-taking-priority-over-ilm-policy]]
 == Exemple de cycle de vie du compartiment qui est prioritaire sur la règle ILM
 
 Politique ILM::
@@ -50,6 +51,7 @@ Résultat::
 
 
 
+[[example-of-bucket-lifecycle-implicitly-keeping-forever]]
 == Exemple de cycle de vie de compartiment permettant implicitement de conserver indéfiniment
 
 Politique ILM::
@@ -85,6 +87,7 @@ Les marqueurs de suppression commençant par « docs/ » sont supprimés lorsqu'
 
 
 
+[[example-of-using-bucket-lifecycle-to-duplicate-ilm-and-clean-up-expired-delete-markers]]
 == Exemple d'utilisation du cycle de vie du compartiment pour dupliquer la règle ILM et nettoyer les marqueurs de suppression expirés
 
 Politique ILM::

@@ -19,6 +19,7 @@ L'utilisation de plusieurs règles ILM actives vous permet d'appliquer les règl
 
 
 
+[[create-an-ilm-policy]]
 == Créer une règle ILM
 
 .Description de la tâche
@@ -172,6 +173,8 @@ NOTE: Vous devez confirmer que les règles ILM sont dans l'ordre correct. Lorsqu
 
 
 
+[[simulate-a-policy]]
+[[simulate-ilm-policy]]
 == Simuler une règle
 
 Simulez une stratégie sur des objets test avant d'activer la stratégie et de l'appliquer à vos données de production.
@@ -201,6 +204,8 @@ link:simulating-ilm-policy-examples.html["Exemples de simulations de règles ILM
 
 
 
+[[activate-a-policy]]
+[[activate-ilm-policy]]
 == Activer une stratégie
 
 Lorsque vous activez une seule nouvelle règle ILM, les objets existants et les nouveaux objets ingérés sont gérés par cette règle. Lorsque vous activez plusieurs règles, les balises de règles ILM attribuées aux compartiments déterminent les objets à gérer.

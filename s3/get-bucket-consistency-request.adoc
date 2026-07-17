@@ -19,6 +19,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:GetBuc
 
 
 
+[[request-example]]
 == Exemple de demande
 
 [listing, subs="specialcharacters,quotes"]
@@ -30,6 +31,7 @@ Host: _host_
 ----
 
 
+[[response]]
 == Réponse
 
 Dans le XML de réponse, `<Consistency>` renvoie l'une des valeurs suivantes :
@@ -75,6 +77,7 @@ Assure la cohérence pour les nouveaux objets et les mises à jour d'objets. Pou
 |===
 
 
+[[response-example]]
 == Exemple de réponse
 
 [listing]

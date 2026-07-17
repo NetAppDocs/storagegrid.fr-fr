@@ -39,6 +39,7 @@ NOTE: N'utilisez pas de périphérique de liaison ou de pont directement comme i
 
 
 
+[[considerations-and-recommendations-for-mac-address-cloning]]
 == Considérations et recommandations relatives au clonage d'adresses MAC
 
 .[[mac_address_cloning]]
@@ -46,6 +47,7 @@ Le clonage d'adresses MAC fait en sorte que le conteneur utilise l'adresse MAC d
 
 
 
+[[enabling-mac-cloning]]
 === Activation du clonage MAC
 
 Dans certains environnements, la sécurité peut être améliorée grâce au clonage d'adresses MAC car il vous permet d'utiliser une carte réseau virtuelle dédiée pour le réseau d'administration, le réseau Grid et le réseau client. Le fait d'utiliser le conteneur l'adresse MAC du NIC dédié sur l'hôte vous permet d'éviter d'utiliser des configurations réseau en mode promiscuous.
@@ -72,6 +74,7 @@ NOTE: L'activation du clonage MAC sur un hôte virtuel sans activer également l
 
 
 
+[[mac-cloning-use-cases]]
 === Cas d'utilisation du clonage MAC
 
 Il existe deux cas d'utilisation à prendre en compte pour le clonage MAC :
@@ -87,6 +90,7 @@ Pour activer le clonage MAC, reportez-vous au link:creating-node-configuration-f
 
 
 
+[[mac-cloning-example]]
 === Exemple de clonage MAC
 
 Exemple de clonage MAC activé avec un hôte dont l'adresse MAC est 11:22:33:44:55:66 pour le groupe d'interface 256 et les clés suivantes dans le fichier de configuration de nœud :
@@ -100,6 +104,7 @@ Exemple de clonage MAC activé avec un hôte dont l'adresse MAC est 11:22:33:44:
 
 
 
+[[example-1-1-to-1-mapping-to-physical-or-virtual-nics]]
 == Exemple 1 : mappage 1-à-1 sur des cartes réseau physiques ou virtuelles
 
 L'exemple 1 décrit un mappage d'interface physique simple qui nécessite peu ou pas de configuration côté hôte.
@@ -114,6 +119,7 @@ Si le commutateur 1 est un commutateur physique, vous devez configurer les ports
 
 
 
+[[example-2-lacp-bond-carrying-vlans]]
 == Exemple 2 : liaison LACP avec les VLAN
 
 L'exemple 2 suppose que vous êtes familier avec les interfaces réseau de liaison et avec la création d'interfaces VLAN sur la distribution Linux que vous utilisez.

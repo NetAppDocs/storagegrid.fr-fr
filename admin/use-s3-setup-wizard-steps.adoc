@@ -20,6 +20,7 @@ L'assistant d'installation de S3 vous permet de configurer StorageGRID pour une 
 
 
 
+[[access-the-wizard]]
 == Accéder à l'assistant
 
 .Étapes
@@ -33,6 +34,7 @@ image:help_menu.png["menu aide"]
 
 
 
+[[step-1-of-6-configure-ha-group]]
 == Étape 1 sur 6 : configuration du groupe haute disponibilité
 
 Un groupe haute disponibilité est un ensemble de nœuds qui contiennent chacun le service StorageGRID Load Balancer. Un groupe haute disponibilité peut contenir des nœuds de passerelle, des nœuds d'administration, ou les deux.
@@ -135,6 +137,7 @@ Au moins une adresse doit être IPv4. Vous pouvez éventuellement spécifier des
 
 
 
+[[step-2-of-6-configure-load-balancer-endpoint]]
 == Étape 2 sur 6 : configuration du terminal de l'équilibreur de charge
 
 StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir des applications client. L'équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.
@@ -334,6 +337,7 @@ Copiez le certificat du serveur pour l'équilibreur de charge externe et collez-
 ====
 
 
+[[step-3-of-6-create-tenant-and-bucket]]
 == Étape 3 sur 6 : création d'un locataire et d'un compartiment
 
 Un locataire est une entité qui peut utiliser les applications S3 pour stocker et récupérer des objets dans StorageGRID. Chaque locataire dispose de ses propres utilisateurs, clés d'accès, compartiments, objets et un ensemble spécifique de fonctionnalités.
@@ -401,6 +405,7 @@ Utilisez la région par défaut (`us-east-1`) à moins d'utiliser ILM à l'aveni
 
 
 
+[[download-datastep-4-of-6-download-data]]
 == [[download-data]]étape 4 sur 6 : télécharger les données
 
 Dans l'étape de téléchargement des données, vous pouvez télécharger un ou deux fichiers pour enregistrer les détails de ce que vous venez de configurer.
@@ -424,6 +429,7 @@ CAUTION: Ne fermez pas cette page tant que vous n'avez pas copié les deux clés
 
 
 
+[[step-5-of-6-review-ilm-rule-and-ilm-policy-for-s3]]
 == Étape 5 sur 6 : examen de la règle ILM et de la règle ILM pour S3
 
 Les règles de gestion du cycle de vie des informations (ILM) contrôlent le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID. La règle ILM incluse à StorageGRID effectue deux copies répliquées de tous les objets. Cette stratégie est en vigueur jusqu'à ce que vous activiez au moins une nouvelle police.
@@ -438,6 +444,7 @@ Les règles de gestion du cycle de vie des informations (ILM) contrôlent le pla
 
 
 
+[[step-6-of-6-review-summary]]
 == Étape 6 sur 6 : passez en revue le résumé
 
 .Étapes

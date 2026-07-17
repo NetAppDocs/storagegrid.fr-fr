@@ -20,6 +20,7 @@ La gestion des connexions de fédération de grille entre les systèmes StorageG
 
 
 
+[[editgridfedconnectionedit-a-grid-federation-connection]]
 == [[edit_grid_fed_connection]]modifiez une connexion de fédération de grille
 
 Vous pouvez modifier une connexion de fédération de grille en vous connectant au nœud d'administration principal sur l'une des grilles de la connexion. Après avoir apporté des modifications à la première grille, vous devez télécharger un nouveau fichier de vérification et le télécharger sur l'autre grille.
@@ -29,6 +30,7 @@ NOTE: Pendant la modification de la connexion, les demandes de réplication de c
 
 
 
+[[start-editing-the-connection]]
 === Commencez à modifier la connexion
 
 .Étapes
@@ -85,6 +87,7 @@ NOTE: Si l'état de la connexion était autre que *connecté* lorsque vous avez 
 
 
 
+[[finish-editing-the-connection]]
 === Terminer la modification de la connexion
 
 Terminez la modification de la connexion en téléchargeant le fichier de vérification sur l'autre grille.
@@ -107,6 +110,7 @@ Si la connexion peut être établie à l'aide des valeurs modifiées, un message
 
 
 
+[[testgridfedconnectiontest-a-grid-federation-connection]]
 == [[test_GRID_fed_connection]]Tester une connexion de fédération de grille
 
 .Étapes
@@ -177,6 +181,7 @@ La connexion est dans un état inconnu, probablement en raison d'un problème de
 
 
 
+[[rotategridfedcertificatesrotate-connection-certificates]]
 == [[rotate_grid_fed_certificates]]faire pivoter les certificats de connexion
 
 Chaque connexion de fédération de grille utilise quatre certificats SSL générés automatiquement pour sécuriser la connexion. Lorsque les deux certificats de chaque grille sont proches de leur date d'expiration, l'alerte *expiration du certificat de fédération GRID* vous rappelle de faire pivoter les certificats.
@@ -201,6 +206,7 @@ En général, utilisez le même nombre de jours pour les certificats des deux c�
 
 
 
+[[removegridfedconnectionremove-a-grid-federation-connection]]
 == [[remove_grid_fed_connection]]supprime une connexion de fédération de grille
 
 Vous pouvez supprimer une connexion de fédération de grille de l'une des grilles de la connexion. Comme indiqué dans la figure, vous devez effectuer les étapes préalables sur les deux grilles pour confirmer que la connexion n'est pas utilisée par un locataire sur l'une ou l'autre des grilles.
@@ -215,6 +221,7 @@ Avant de supprimer une connexion, notez les points suivants :
 
 
 
+[[disable-replication-for-all-tenant-buckets]]
 === Désactivez la réplication pour tous les compartiments de locataires
 
 .Étapes
@@ -231,6 +238,7 @@ TIP: Vous ne pouvez pas supprimer l'autorisation *utiliser la connexion de féd�
 
 
 
+[[remove-permission-for-each-tenant]]
 === Supprimer l'autorisation pour chaque locataire
 
 Une fois la réplication multigrille désactivée pour tous les compartiments de tenant, supprimez l'autorisation *utiliser la fédération de grid* de tous les locataires sur les deux grilles.
@@ -244,6 +252,7 @@ Une fois la réplication multigrille désactivée pour tous les compartiments de
 
 
 
+[[remove-connection]]
 === Déposer la connexion
 
 .Étapes
@@ -263,6 +272,7 @@ Une fois la réplication multigrille désactivée pour tous les compartiments de
 
 
 
+[[force-removegridfedconnectionremove-a-grid-federation-connection-by-force]]
 == [[force-remove_grid_fed_connection]]supprime une connexion de fédération de grille par force
 
 Si nécessaire, vous pouvez forcer la suppression d'une connexion qui n'a pas l'état *Connected*.

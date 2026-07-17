@@ -71,6 +71,7 @@ Ports S3 par défaut :
 |===
 
 
+[[example-urls]]
 == Exemples d'URL
 
 Pour connecter une application client au point de terminaison Load Balancer d'un groupe haute disponibilité de nœuds de passerelle, utilisez une URL structurée comme indiqué ci-dessous :
@@ -83,6 +84,7 @@ Par exemple, si l'adresse IP virtuelle du groupe haute disponibilité est 192.0.
 
 
 
+[[where-to-find-ip-addresses]]
 == Où trouver les adresses IP
 
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].

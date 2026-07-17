@@ -17,6 +17,7 @@ L'accès aux services de plateforme est activé par locataire par administrateur
 
 
 
+[[what-is-a-platform-services-endpoint]]
 == Qu'est-ce qu'un terminal de services de plateforme ?
 
 Un terminal de services de plateforme spécifie les informations dont StorageGRID a besoin pour accéder à la destination externe.
@@ -29,12 +30,14 @@ Vous pouvez utiliser le même point final que la destination pour plusieurs comp
 
 
 
+[[endpoints-for-cloudmirror-replication]]
 == Terminaux pour la réplication CloudMirror
 
 StorageGRID prend en charge les terminaux de réplication qui représentent des compartiments S3. Ces compartiments peuvent être hébergés sur Amazon Web Services, sur le même déploiement StorageGRID, sur un autre service ou sur un autre déploiement à distance.
 
 
 
+[[endpoints-for-notifications]]
 == Terminaux pour les notifications
 
 StorageGRID prend en charge les points de terminaison Amazon SNS, Kafka et webhook.  Les points de terminaison Simple Queue Service (SQS) et AWS Lambda ne sont pas pris en charge.
@@ -43,6 +46,7 @@ Pour les points de terminaison Kafka, Mutual TLS n'est pas pris en charge.  Par 
 
 
 
+[[endpoints-for-the-search-integration-service]]
 == Points d'extrémité du service d'intégration de la recherche
 
 StorageGRID prend en charge des terminaux d'intégration de recherche représentant les clusters Elasticsearch. Ces clusters Elasticsearch peuvent se trouver dans un data Center local ou être hébergés dans un cloud AWS ou ailleurs.

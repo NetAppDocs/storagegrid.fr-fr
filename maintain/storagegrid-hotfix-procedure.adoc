@@ -17,6 +17,7 @@ Les correctifs StorageGRID contiennent des modifications logicielles qui sont di
 
 
 
+[[considerations-for-applying-a-hotfix]]
 == Considérations relatives à l'application d'un correctif
 
 Vous ne pouvez pas appliquer un correctif StorageGRID lorsqu'une autre procédure de maintenance est en cours d'exécution. Par exemple, vous ne pouvez pas appliquer un correctif lorsqu'une procédure de mise hors service, d'extension ou de récupération est en cours d'exécution.
@@ -32,6 +33,7 @@ Lorsque les nœuds de grille sont mis à jour avec la nouvelle version de correc
 
 
 
+[[how-hotfixes-are-applied-for-recovery-and-expansion]]
 == Application des correctifs pour la restauration et l'extension
 
 Une fois qu'un correctif a été appliqué à votre grille, le nœud d'administration principal installe automatiquement la même version de correctif sur tous les nœuds restaurés par les opérations de reprise ou ajoutés dans une extension.

@@ -15,6 +15,7 @@ Suivez ces étapes de dépannage pour résoudre les erreurs que vous pouvez renc
 
 
 
+[[determine-if-an-error-has-occurred]]
 == Déterminez si une erreur s'est produite
 
 StorageGRID effectue un simple contrôle de l'état de santé de chaque pool de stockage cloud en lisant l'objet connu `x-ntap-sgws-cloud-pool-uuid` pour s'assurer que le pool de stockage cloud est accessible et qu'il fonctionne correctement. Lorsque StorageGRID rencontre une erreur sur le noeud final, il vérifie l'état de santé toutes les minutes depuis chaque noeud de stockage. Une fois l'erreur résolue, les vérifications de l'état de santé s'arrêtent. Si une vérification de l'état de santé détecte un problème, un message s'affiche dans la colonne dernière erreur du tableau pools de stockage cloud de la page pools de stockage cloud.
@@ -25,6 +26,7 @@ En outre, une alerte *erreur* de connectivité de pool de stockage cloud est dé
 
 
 
+[[check-if-an-error-has-been-resolved]]
 == Vérifiez si une erreur a été résolue
 
 Après avoir résolu les problèmes sous-jacents, vous pouvez déterminer si l'erreur a été résolue. Sur la page Cloud Storage Pool, sélectionnez le noeud final, puis sélectionnez *Clear error*. Un message de confirmation indique que StorageGRID a résolu l'erreur pour le pool de stockage cloud.
@@ -33,6 +35,7 @@ Si le problème sous-jacent a été résolu, le message d'erreur ne s'affiche pl
 
 
 
+[[error-health-check-failed-error-from-endpoint]]
 == Erreur : échec de la vérification de l'état de santé. Erreur du noeud final
 
 Cette erreur peut se produire lorsque vous activez le verrouillage objet S3 avec conservation par défaut pour votre compartiment Amazon S3 après avoir commencé à utiliser ce compartiment pour un pool de stockage cloud. Cette erreur se produit lorsque l'opération PUT ne possède pas d'en-tête HTTP avec une valeur de somme de contrôle de charge telle que `Content-MD5`. Cette valeur d'en-tête est requise par AWS pour les opérations PUT dans des compartiments avec le verrouillage objet S3 activé.
@@ -41,6 +44,7 @@ Pour corriger ce problème, suivez les étapes de la section link:editing-cloud-
 
 
 
+[[error-this-cloud-storage-pool-contains-unexpected-content]]
 == Erreur : ce pool de stockage cloud contient du contenu inattendu
 
 Cette erreur peut se produire lorsque vous tentez de créer, modifier ou supprimer un pool de stockage cloud. Cette erreur se produit si le compartiment ou le conteneur inclut le `x-ntap-sgws-cloud-pool-uuid` fichier de marqueur, mais que ce fichier ne possède pas le champ de métadonnées avec l'UUID attendu.
@@ -60,6 +64,7 @@ Si ces étapes ne s'appliquent pas à votre scénario, contactez l'assistance.
 
 
 
+[[error-could-not-create-or-update-cloud-storage-pool-error-from-endpoint]]
 == Erreur : impossible de créer ou de mettre à jour le pool de stockage cloud. Erreur du noeud final
 
 Vous pouvez rencontrer cette erreur dans les circonstances suivantes :
@@ -85,6 +90,7 @@ Pour corriger le problème, consultez le message d'erreur du noeud final.
 
 
 
+[[error-failed-to-parse-ca-certificate]]
 == Erreur : échec de l'analyse du certificat CA
 
 Cette erreur peut se produire lorsque vous tentez de créer ou de modifier un pool de stockage cloud. L'erreur se produit si StorageGRID n'a pas pu analyser le certificat que vous avez saisi lors de la configuration du pool de stockage cloud.
@@ -93,6 +99,7 @@ Pour corriger le problème, vérifiez si le certificat CA que vous avez fourni n
 
 
 
+[[error-a-cloud-storage-pool-with-this-id-was-not-found]]
 == Erreur : un pool de stockage cloud associé à cet ID est introuvable
 
 Cette erreur peut se produire lorsque vous essayez de modifier ou de supprimer un pool de stockage cloud. Cette erreur se produit si le noeud final renvoie une réponse 404, ce qui peut signifier l'un des éléments suivants :
@@ -110,6 +117,7 @@ Essayez une ou plusieurs des étapes suivantes pour corriger le problème :
 
 
 
+[[error-could-not-check-the-content-of-the-cloud-storage-pool-error-from-endpoint]]
 == Erreur : impossible de vérifier le contenu du pool de stockage cloud. Erreur du noeud final
 
 Cette erreur peut se produire lorsque vous tentez de supprimer un pool de stockage cloud. Cette erreur indique qu'un problème de connectivité ou de configuration empêche StorageGRID de lire le contenu du compartiment Cloud Storage Pool.
@@ -118,6 +126,7 @@ Pour corriger le problème, consultez le message d'erreur du noeud final.
 
 
 
+[[error-objects-have-already-been-placed-in-this-bucket]]
 == Erreur : les objets ont déjà été placés dans ce compartiment
 
 Cette erreur peut se produire lorsque vous tentez de supprimer un pool de stockage cloud. Vous ne pouvez pas supprimer un pool de stockage cloud s'il contient des données qui y ont été déplacées par ILM, des données qui se trouvait dans le compartiment avant la configuration du pool de stockage cloud, ou des données qui ont été placées dans le compartiment par une autre source après la création du pool de stockage cloud.
@@ -134,6 +143,7 @@ NOTE: Ne supprimez jamais manuellement d'objets d'un pool de stockage cloud qui 
 
 
 
+[[error-proxy-encountered-an-external-error-while-trying-to-reach-the-cloud-storage-pool]]
 == Erreur : le proxy a rencontré une erreur externe lors de la tentative d'accès au pool de stockage cloud
 
 Cette erreur peut se produire si vous avez configuré un proxy de stockage non transparent entre les nœuds de stockage et le terminal S3 externe utilisé pour le pool de stockage cloud. Cette erreur se produit si le serveur proxy externe ne parvient pas à atteindre le terminal Cloud Storage Pool. Par exemple, il se peut que le serveur DNS ne puisse pas résoudre le nom d'hôte ou qu'il existe un problème de réseau externe.
@@ -146,6 +156,7 @@ Essayez une ou plusieurs des étapes suivantes pour corriger le problème :
 
 
 
+[[error-x-509-certificate-is-out-of-validity-period]]
 == Erreur : le certificat X.509 est hors période de validité
 
 Cette erreur peut se produire lorsque vous tentez de supprimer un pool de stockage cloud. Cette erreur se produit lorsque l'authentification nécessite un certificat X.509 pour s'assurer que le pool de stockage cloud externe correct est validé et que le pool externe est vide avant la suppression de la configuration du pool de stockage cloud.

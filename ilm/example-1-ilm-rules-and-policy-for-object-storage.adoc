@@ -18,6 +18,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[ilm-rule-1-for-example-1-copy-object-data-to-two-sites]]
 == Règle ILM 1, exemple 1 : copie des données d'objet vers deux sites
 
 Cet exemple de règle ILM copie les données d'objet dans des pools de stockage de deux sites.
@@ -64,6 +65,7 @@ image:ilm_rule_two_copies_two_data_centers.png["Règle ILM 1, exemple 1 : copie 
 
 
 
+[[ilm-rule-2-for-example-1-erasure-coding-profile-with-bucket-matching]]
 == Règle ILM 2, exemple 1 : profil de code d'effacement avec mise en correspondance des compartiments
 
 Cet exemple de règle ILM utilise un profil de code d'effacement et un compartiment S3 pour déterminer l'emplacement et la durée de stockage de l'objet.
@@ -106,6 +108,7 @@ image:ilm_rule_ec_for_s3_bucket_finance_records.png["Règle ILM 2, exemple 1 : p
 
 
 
+[[ilm-policy-for-example-1]]
 == Règle ILM, par exemple 1
 
 Dans la pratique, la plupart des règles ILM sont simples, même si le système StorageGRID vous permet de concevoir des règles ILM complexes et sophistiquées.

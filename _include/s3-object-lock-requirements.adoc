@@ -4,6 +4,7 @@
 
 
 
+[[requirements-for-buckets-with-s3-object-lock-enabled]]
 == Conditions requises pour les compartiments avec verrouillage objet S3 activé
 
 * Si le paramètre global de verrouillage objet S3 est activé pour le système StorageGRID, vous pouvez utiliser le gestionnaire de locataires, l'API de gestion des locataires ou l'API REST S3 pour créer des compartiments avec le verrouillage objet S3 activé.
@@ -16,6 +17,7 @@
 
 
 
+[[requirements-for-objects-in-buckets-with-s3-object-lock-enabled]]
 == Exigences relatives aux objets dans les compartiments avec le verrouillage d'objet S3 activé
 
 * Pour protéger une version d'objet, vous pouvez spécifier les paramètres de conservation par défaut du compartiment ou les paramètres de conservation pour chaque version d'objet. Les paramètres de conservation au niveau objet peuvent être spécifiés à l'aide de l'application client S3 ou de l'API REST S3.
@@ -24,6 +26,7 @@
 
 
 
+[[lifecycle-of-objects-in-buckets-with-s3-object-lock-enabled]]
 == Cycle de vie des objets dans des compartiments avec verrouillage objet S3 activé
 
 Chaque objet enregistré dans un compartiment lorsque le verrouillage objet S3 est activé passe par les étapes suivantes :

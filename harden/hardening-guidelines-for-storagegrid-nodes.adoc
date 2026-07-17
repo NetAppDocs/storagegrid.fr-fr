@@ -15,6 +15,7 @@ Les nœuds StorageGRID peuvent être déployés sur des machines virtuelles VMwa
 
 
 
+[[block-remote-ipmicontrol-remote-ipmi-access-to-bmc]]
 == [[block-remote-ipmi]]Contrôler l'accès IPMI à distance au BMC
 
 Vous pouvez activer ou désactiver l'accès IPMI à distance pour tous les dispositifs contenant un contrôleur BMC. L'interface IPMI distante permet à toute personne disposant d'un compte BMC et d'un mot de passe d'accéder à votre matériel de bas niveau à vos appliances StorageGRID. Si vous n'avez pas besoin d'un accès IPMI à distance au contrôleur BMC, désactivez cette option.
@@ -31,6 +32,7 @@ Pour plus d'informations sur le renforcement du BMC , consultez le https://media
 
 
 
+[[firewall-configuration]]
 == Configuration du pare-feu
 
 Dans le cadre du processus de renforcement du système, vous devez examiner les configurations de pare-feu externes et les modifier afin que le trafic soit accepté uniquement à partir des adresses IP et sur les ports à partir desquels il est strictement nécessaire.
@@ -50,24 +52,28 @@ Pour une liste de tous les ports internes et externes utilisés par StorageGRID,
 
 
 
+[[disable-unused-services]]
 == Désactiver les services inutilisés
 
 Pour tous les nœuds StorageGRID , vous devez désactiver ou bloquer l’accès aux services inutilisés.  Par exemple, si vous ne prévoyez pas d’utiliser DHCP, utilisez le gestionnaire de grille pour fermer le port 68.  Sélectionnez *Configuration* > *Contrôle du pare-feu* > *Gérer l'accès externe*.  Modifiez ensuite le statut du port 68 de *Ouvert* à *Fermé*.
 
 
 
+[[virtualization-containers-and-shared-hardware]]
 == Virtualisation, conteneurs et matériel partagé
 
 Pour tous les nœuds StorageGRID, évitez d'exécuter StorageGRID sur le même matériel physique que les logiciels non fiables. Ne supposez pas que les protections de l'hyperviseur empêchent les logiciels malveillants d'accéder aux données protégées par StorageGRID si StorageGRID et le logiciel malveillant existent sur le même matériel physique. Par exemple, les attaques Meltdown et Specter exploitent des vulnérabilités critiques dans les processeurs modernes et permettent aux programmes de voler des données en mémoire sur le même ordinateur.
 
 
 
+[[protect-nodes-during-installation]]
 == Protéger les nœuds pendant l'installation
 
 N'autorisez pas les utilisateurs non approuvés à accéder aux nœuds StorageGRID sur le réseau lors de l'installation des nœuds. Les nœuds ne sont pas entièrement sécurisés tant qu'ils n'ont pas rejoint la grille.
 
 
 
+[[limit-physical-access-to-hardware]]
 == Limiter l'accès physique au matériel
 
 Vous devez limiter l'accès physique aux nœuds de l'appliance matérielle StorageGRID ainsi qu'aux hôtes de machines virtuelles VMware et aux hôtes Linux exécutant StorageGRID aux seuls administrateurs autorisés.  Certains exemples de contrôles d’accès physiques comprennent les serrures, les gardes, les barrières physiques et la vidéosurveillance.
@@ -76,6 +82,7 @@ Les nœuds d’appareils matériels sont conçus pour être installés et exploi
 
 
 
+[[guidelines-for-admin-nodes]]
 == Instructions pour les nœuds d'administration
 
 Des nœuds d'administration qui assurent les services de gestion tels que la configuration du système, la surveillance et la journalisation. Lorsque vous vous connectez à Grid Manager ou au Gestionnaire de locataires, vous vous connectez à un noeud d'administration.
@@ -95,6 +102,7 @@ Pour plus d'informations, reportez-vous aux instructions link:../admin/index.htm
 
 
 
+[[guidelines-for-storage-nodes]]
 == Consignes relatives aux nœuds de stockage
 
 Des nœuds de stockage gèrent et stockent les données et les métadonnées d'objets. Suivez ces instructions pour sécuriser les nœuds de stockage dans votre système StorageGRID.
@@ -108,6 +116,7 @@ Des nœuds de stockage gèrent et stockent les données et les métadonnées d'o
 
 
 
+[[guidelines-for-gateway-nodes]]
 == Instructions pour les nœuds de passerelle
 
 Les nœuds de passerelle fournissent une interface d'équilibrage de la charge facultative que les applications client peuvent utiliser pour se connecter à StorageGRID. Pour sécuriser tous les nœuds de passerelle de votre système StorageGRID, procédez comme suit :
@@ -119,6 +128,7 @@ Les nœuds de passerelle fournissent une interface d'équilibrage de la charge f
 
 
 
+[[guidelines-for-hardware-appliance-nodes]]
 == Consignes pour les nœuds d'appliances matérielles
 
 Les appliances matérielles StorageGRID sont spécialement conçues pour une utilisation dans un système StorageGRID. Certaines appliances peuvent être utilisées comme nœuds de stockage. Les autres appliances peuvent être utilisées comme nœuds d'administration ou nœuds de passerelle. Vous pouvez associer des nœuds d'appliance à des nœuds basés sur logiciel ou déployer des grilles 100 % appliance entièrement conçues.

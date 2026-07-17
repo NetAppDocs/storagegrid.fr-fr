@@ -15,6 +15,7 @@ Avant d'activer la signature unique (SSO) pour un système StorageGRID, consulte
 
 
 
+[[identity-provider-requirements]]
 == Exigences du fournisseur d'identités
 
 StorageGRID prend en charge les fournisseurs d'identités SSO suivants :
@@ -49,6 +50,7 @@ ID d'entrée
 |===
 
 
+[[ad-fs-requirements]]
 === Exigences AD FS
 
 Vous pouvez utiliser l'une des versions suivantes d'AD FS :
@@ -63,6 +65,7 @@ NOTE: Windows Server 2016 doit utiliser le https://support.microsoft.com/en-us/h
 
 
 
+[[additional-requirements]]
 === Supplémentaires requise
 
 * TLS (transport Layer Security) 1.2 ou 1.3
@@ -71,12 +74,14 @@ NOTE: Windows Server 2016 doit utiliser le https://support.microsoft.com/en-us/h
 
 
 
+[[considerations-for-entra-id]]
 === Considérations pour Entra ID
 
 Si vous utilisez Entra ID comme type SSO et que les utilisateurs ont des noms d'utilisateur principaux qui n'utilisent pas sAMAccountName comme préfixe, des problèmes de connexion peuvent survenir si StorageGRID perd sa connexion avec le serveur LDAP.  Pour permettre aux utilisateurs de se connecter, vous devez restaurer la connexion au serveur LDAP.
 
 
 
+[[server-certificate-requirements]]
 == Configuration requise pour le certificat de serveur
 
 Par défaut, StorageGRID utilise un certificat d'interface de gestion sur chaque nœud d'administration pour sécuriser l'accès au gestionnaire de grille, au gestionnaire de locataires, à l'API de gestion de grille et à l'API de gestion de locataires.  Lorsque vous configurez des approbations de parties de confiance (AD FS), des applications d'entreprise (Entra ID) ou des connexions de fournisseurs de services (PingFederate) pour StorageGRID, vous utilisez le certificat du serveur comme certificat de signature pour les demandes StorageGRID .
@@ -90,6 +95,7 @@ Vous pouvez accéder au certificat de serveur d'un nœud d'administration en vou
 
 
 
+[[port-requirements]]
 == Configuration requise pour les ports
 
 L'authentification unique (SSO) n'est pas disponible sur les ports du gestionnaire de grille restreinte ou du gestionnaire de locataires. Vous devez utiliser le port HTTPS par défaut (443) si vous souhaitez que les utilisateurs s'authentifient avec une connexion unique. Voir link:controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].

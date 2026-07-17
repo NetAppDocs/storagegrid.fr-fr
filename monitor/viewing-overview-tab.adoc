@@ -17,6 +17,7 @@ L'onglet vue d'ensemble s'affiche pour tous les nœuds.
 
 
 
+[[node-information]]
 == Informations sur le nœud
 
 La section informations sur les nœuds de l'onglet vue d'ensemble répertorie les informations de base sur le nœud.
@@ -53,6 +54,7 @@ NOTE: Un nœud peut apparaître comme inconnu lors des opérations d'arrêt gér
 
 
 
+[[alerts]]
 == Alertes
 
 La section alertes de l'onglet vue d'ensemble répertorie tous les link:monitoring-system-health.html#view-current-and-resolved-alerts["alertes affectant actuellement ce nœud qui n'ont pas été neutralisées"]. Sélectionnez le nom de l'alerte pour afficher des détails supplémentaires et les actions recommandées.

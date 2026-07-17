@@ -17,6 +17,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:Delete
 
 
 
+[[request-example]]
 == Exemple de demande
 
 Cet exemple montre la désactivation du service d'intégration de recherche pour un compartiment.

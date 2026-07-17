@@ -15,6 +15,7 @@ summary: 'À l"aide des pools de stockage cloud, vous pouvez sauvegarder ou hié
 
 
 
+[[back-up-storagegrid-data-to-external-location]]
 == Sauvegardez les données StorageGRID dans un emplacement externe
 
 Vous pouvez utiliser un pool de stockage cloud pour sauvegarder des objets StorageGRID dans un emplacement externe.
@@ -32,6 +33,7 @@ Pour implémenter une solution de sauvegarde :
 
 
 
+[[tier-data-from-storagegrid-to-external-location]]
 == Déplacez les données de StorageGRID vers un emplacement externe
 
 Vous pouvez utiliser un pool de stockage cloud pour stocker des objets en dehors du système StorageGRID. Supposons par exemple que vous disposez d'un grand nombre d'objets que vous devez conserver, mais que vous prévoyez d'accéder rarement à ces objets. Un pool de stockage cloud permet de classer les objets en fonction de leur coût de stockage et de libérer de l'espace dans StorageGRID.
@@ -45,6 +47,7 @@ Pour implémenter une solution de hiérarchisation :
 
 
 
+[[maintain-multiple-cloud-endpoints]]
 == Possibilité de gérer plusieurs terminaux cloud
 
 Vous pouvez configurer plusieurs terminaux de pool de stockage cloud si vous souhaitez effectuer le Tiering ou la sauvegarde des données d'objet vers plusieurs clouds. Les filtres de vos règles ILM permettent de spécifier les objets qui sont stockés dans chaque pool de stockage cloud. Par exemple, vous pouvez stocker des objets de certains locataires ou compartiments dans Amazon S3 Glacier et des objets d'autres locataires ou compartiments dans le stockage Azure Blob. Vous pouvez également déplacer des données entre Amazon S3 Glacier et le stockage Azure Blob.

@@ -17,6 +17,7 @@ Pour plus d'informations sur S3, reportez-vous à link:../s3/index.html["UTILISE
 
 
 
+[[overview-of-platform-services]]
 == Présentation des services de plateforme
 
 Les services de plateforme StorageGRID vous aident à mettre en œuvre une stratégie de cloud hybride en vous permettant d'envoyer des notifications d'événements et des copies d'objets S3 et de métadonnées d'objet à des destinations externes.
@@ -30,6 +31,7 @@ TIP: L'utilisation des services de la plateforme doit être activée pour chaque
 
 
 
+[[how-platform-services-are-configured]]
 == Configuration des services de plate-forme
 
 Les services de plateforme communiquent avec des points de terminaison externes que vous configurez à l'aide de l'link:configuring-platform-services-endpoints.html["Gestionnaire de locataires"] ou lelink:understanding-tenant-management-api.html["API de gestion des locataires"] .  Chaque point de terminaison représente une destination externe, telle qu'un bucket StorageGRID S3, un bucket Amazon Web Services, une rubrique Amazon SNS, un point de terminaison webhook ou un cluster Elasticsearch hébergé localement, sur AWS ou ailleurs.
@@ -90,6 +92,7 @@ Intégration de la recherche
 |===
 
 
+[[considerations-for-using-platform-services]]
 == Considérations relatives à l'utilisation des services de plate-forme
 
 [cols="1a,3a"]
@@ -150,6 +153,7 @@ L'authentification des terminaux Kafka utilise les types d'authentification suiv
 |===
 
 
+[[considerations-for-using-cloudmirror-replication-service]]
 == Considérations relatives à l'utilisation du service de réplication CloudMirror
 
 [cols="1a,3a"]

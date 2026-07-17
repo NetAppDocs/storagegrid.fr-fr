@@ -28,12 +28,14 @@ Ces instructions résument comment configurer PingFederate Server version 10.3 e
 
 
 
+[[complete-prerequisites-in-pingfederate]]
 == Remplir les conditions préalables dans PingFederate
 
 Avant de pouvoir créer les connexions SP que vous utiliserez pour StorageGRID, vous devez effectuer les tâches préalables dans PingFederate. Vous utiliserez les informations de ces prérequis lors de la configuration des connexions du processeur de service.
 
 
 
+[[create-data-storedata-store]]
 === Créer un magasin de données[[data-store]]
 
 Si ce n'est pas déjà fait, créez un magasin de données pour connecter PingFederate au serveur LDAP AD FS. Utilisez les valeurs que vous avez utilisées link:../admin/using-identity-federation.html["configuration de la fédération des identités"]dans StorageGRID.
@@ -45,6 +47,7 @@ Si ce n'est pas déjà fait, créez un magasin de données pour connecter PingFe
 
 
 
+[[create-password-credential-validatorpassword-validator]]
 === Créer un validateur d'informations d'identification de mot de passe[[password-validateur]]
 
 Si ce n'est pas déjà fait, créez un validateur pour les informations d'identification du mot de passe.
@@ -58,6 +61,7 @@ Si ce n'est pas déjà fait, créez un validateur pour les informations d'identi
 
 
 
+[[create-idp-adapter-instanceadapter-instance]]
 === Créer une instance d'adaptateur IDP[[instance-adaptateur]]
 
 Si ce n'est déjà fait, créez une instance de carte IDP.
@@ -74,6 +78,7 @@ Si ce n'est déjà fait, créez une instance de carte IDP.
 
 
 
+[[create-or-import-signing-certificatesigning-certificate]]
 === Créer ou importer un certificat de signature[[signature-certificat]]
 
 Si ce n'est déjà fait, créez ou importez le certificat de signature.
@@ -85,6 +90,7 @@ Si ce n'est déjà fait, créez ou importez le certificat de signature.
 
 
 
+[[create-an-sp-connection-in-pingfederate]]
 == Créer une connexion SP dans PingFederate
 
 Lorsque vous créez une connexion SP dans PingFederate, vous importez les métadonnées SAML téléchargées depuis StorageGRID pour le noeud d'administration. Le fichier de métadonnées contient la plupart des valeurs spécifiques dont vous avez besoin.
@@ -94,6 +100,7 @@ TIP: Vous devez créer une connexion SP pour chaque nœud d'administration de vo
 
 
 
+[[choose-sp-connection-type]]
 === Choisissez le type de connexion SP
 
 .Étapes
@@ -105,6 +112,7 @@ TIP: Vous devez créer une connexion SP pour chaque nœud d'administration de vo
 
 
 
+[[import-sp-metadata]]
 === Importation des métadonnées SP
 
 .Étapes
@@ -119,6 +127,7 @@ L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de co
 
 
 
+[[configure-idp-browser-sso]]
 === Configurer SSO du navigateur IDP
 
 .Étapes
@@ -137,6 +146,7 @@ L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de co
 
 
 
+[[map-adapter-instance]]
 === Mapper l'instance de l'adaptateur
 
 .Étapes
@@ -163,6 +173,7 @@ L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de co
 
 
 
+[[configure-protocol-settings]]
 === Configurer les paramètres de protocole
 
 .Étapes
@@ -178,6 +189,7 @@ L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de co
 
 
 
+[[configure-credentials]]
 === Configurer les informations d'identification
 
 .Étapes
@@ -195,6 +207,7 @@ L'ID d'entité du partenaire et le nom de connexion sont définis sur l'ID de co
 
 
 
+[[create-additional-sp-connections]]
 === Créer des connexions SP supplémentaires
 
 Vous pouvez copier la première connexion du processeur de service pour créer les connexions du processeur de service dont vous avez besoin pour chaque nœud d'administration de votre grille. Vous téléchargez de nouvelles métadonnées pour chaque copie.

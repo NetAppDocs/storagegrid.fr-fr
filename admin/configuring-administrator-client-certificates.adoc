@@ -44,6 +44,7 @@ NOTE: Si vous utilisez un serveur de gestion des clés (KMS) pour protéger les 
 
 
 
+[[add-client-certificates]]
 == Ajouter des certificats client
 
 Pour ajouter le certificat client, utilisez l'une des procédures suivantes :
@@ -55,6 +56,7 @@ Pour ajouter le certificat client, utilisez l'une des procédures suivantes :
 
 
 
+[[management-interface-certificate-already-configured]]
 === Certificat d'interface de gestion déjà configuré
 
 Utilisez cette procédure pour ajouter un certificat client si un certificat d'interface de gestion est déjà configuré à l'aide d'une autorité de certification fournie par le client, d'un certificat client et d'une clé privée.
@@ -85,6 +87,7 @@ Le nouveau certificat apparaît sur l'onglet client.
 
 
 
+[[ca-issued-client-certificate]]
 === CERTIFICAT client émis
 
 Utilisez cette procédure pour ajouter un certificat client d'administrateur si un certificat d'interface de gestion n'a pas été configuré et que vous prévoyez d'ajouter un certificat client pour Prometheus qui utilise un certificat client émis par l'autorité de certification et une clé privée.
@@ -116,6 +119,7 @@ Les nouveaux certificats apparaissent sur l'onglet client.
 
 
 
+[[generated-certificate-from-grid-manager]]
 === Certificat généré par Grid Manager
 
 Utilisez cette procédure pour ajouter un certificat client d'administrateur si un certificat d'interface de gestion n'a pas été configuré et que vous prévoyez d'ajouter un certificat client pour Prometheus qui utilise la fonction générer certificat dans Grid Manager.
@@ -185,6 +189,7 @@ Le nouveau certificat apparaît sur la page de certificat de l'interface de gest
 
 
 
+[[configure-external-monitoring-toolconfigure-an-external-monitoring-tool]]
 === [[configure-external-monitoring-tool]]configurez un outil de surveillance externe
 
 .Étapes
@@ -223,6 +228,7 @@ Pour plus d'informations sur les mesures, reportez-vous au link:../monitor/index
 
 
 
+[[edit-client-certificates]]
 == Modifier les certificats client
 
 Vous pouvez modifier un certificat de client d'administrateur pour changer son nom, activer ou désactiver l'accès Prometheus, ou télécharger un nouveau certificat lorsque le certificat actuel a expiré.
@@ -244,6 +250,7 @@ Le certificat mis à jour s'affiche dans l'onglet client.
 
 
 
+[[attach-new-client-certificate]]
 == Joindre un nouveau certificat client
 
 Vous pouvez télécharger un nouveau certificat lorsque celui actuel a expiré.
@@ -338,6 +345,7 @@ Le nouveau certificat apparaît sur l'onglet client.
 
 
 
+[[download-or-copy-client-certificates]]
 == Téléchargez ou copiez les certificats client
 
 Vous pouvez télécharger ou copier un certificat client pour l'utiliser ailleurs.
@@ -379,6 +387,7 @@ Par exemple : `storagegrid_certificate.pem`
 
 
 
+[[remove-client-certificates]]
 == Supprimer les certificats client
 
 Si vous n'avez plus besoin d'un certificat de client administrateur, vous pouvez le supprimer.

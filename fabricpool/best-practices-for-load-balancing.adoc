@@ -17,12 +17,14 @@ Pour plus d'informations générales sur l'équilibreur de charge StorageGRID et
 
 
 
+[[best-practices-for-tenant-access-to-the-load-balancer-endpoint-used-for-fabricpool]]
 == Bonnes pratiques pour l'accès du locataire au terminal d'équilibrage de la charge utilisé pour FabricPool
 
 Vous pouvez contrôler les locataires qui peuvent utiliser un terminal d'équilibrage de la charge spécifique pour accéder à leurs compartiments. Vous pouvez autoriser tous les locataires, autoriser certains locataires ou bloquer certains locataires. Lors de la création d'un noeud final d'équilibrage de charge pour l'utilisation de FabricPool, sélectionnez *Autoriser tous les locataires*. ONTAP chiffre les données qui sont placées dans des compartiments StorageGRID. Cette couche de sécurité supplémentaire ne fournit donc que peu de sécurité supplémentaire.
 
 
 
+[[best-practices-for-the-security-certificate]]
 == Meilleures pratiques pour le certificat de sécurité
 
 Lorsque vous créez un terminal d'équilibrage de charge StorageGRID pour une utilisation avec FabricPool, vous fournissez le certificat de sécurité qui permettra à ONTAP de s'authentifier auprès de StorageGRID.
@@ -38,12 +40,14 @@ Pour en savoir plus sur le certificat de serveur pour un point final d'équilibr
 
 
 
+[[add-certificate-to-ontap]]
 === Ajouter le certificat à ONTAP
 
 Lorsque vous ajoutez StorageGRID en tant que niveau de cloud FabricPool, vous devez installer le même certificat sur le cluster ONTAP, y compris le certificat racine et tout certificat d'autorité de certification subordonnée.
 
 
 
+[[manage-certificate-expiration]]
 === Gérer l'expiration des certificats
 
 

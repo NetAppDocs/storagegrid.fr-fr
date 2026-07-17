@@ -15,6 +15,7 @@ Suivez ces instructions pour configurer et administrer un système StorageGRID.
 
 
 
+[[about-these-instructions]]
 == À propos de ces instructions
 
 Les principales tâches de configuration et d'administration de StorageGRID vous permettent de :
@@ -28,6 +29,7 @@ Les principales tâches de configuration et d'administration de StorageGRID vous
 
 
 
+[[before-you-begin]]
 == Avant de commencer
 
 * Vous disposez d'une compréhension générale du système StorageGRID.

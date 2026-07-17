@@ -15,6 +15,7 @@ Utilisez StorageGRID dans une configuration de cloud hybride en implémentant la
 
 
 
+[[cloud-storage-pools]]
 == Pools de stockage cloud
 
 Vous pouvez stocker des objets en dehors du système StorageGRID grâce aux pools de stockage cloud. Par exemple, vous pouvez déplacer les objets rarement consultés vers un stockage cloud moins coûteux, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le Tier d'accès Archive dans le stockage Microsoft Azure Blob. Vous pouvez également conserver une sauvegarde dans le cloud d'objets StorageGRID qui peuvent être utilisés pour restaurer des données perdues en raison d'un volume de stockage ou d'une défaillance du nœud de stockage.
@@ -26,6 +27,7 @@ NOTE: L'utilisation de pools de stockage cloud avec FabricPool n'est pas prise e
 
 
 
+[[s3-platform-services]]
 == Services de plateforme S3
 
 Les services de plateforme S3 vous permettent d'utiliser des services distants comme terminaux pour la réplication d'objets, les notifications d'événements ou l'intégration de la recherche. Les services de plateforme fonctionnent indépendamment des règles ILM du grid et sont activés pour les compartiments S3 individuels. Les services suivants sont pris en charge :
@@ -39,6 +41,7 @@ Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en mi
 
 
 
+[[ontap-data-tiering-using-fabricpool]]
 == Tiering des données ONTAP avec FabricPool
 
 Vous pouvez réduire le coût du stockage ONTAP grâce au Tiering des données vers StorageGRID à l'aide de FabricPool. FabricPool permet le Tiering automatisé des données vers des tiers de stockage objet à faible coût, sur site ou hors site.

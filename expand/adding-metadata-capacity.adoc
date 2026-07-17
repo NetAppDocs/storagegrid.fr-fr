@@ -27,6 +27,7 @@ Pour plus d'informations, reportez-vous aux sections suivantes :
 
 
 
+[[guidelines-for-increasing-metadata-capacity]]
 == Instructions d'augmentation de la capacité des métadonnées
 
 Avant d'ajouter des nœuds de stockage pour augmenter la capacité des métadonnées, consultez les directives et les limites suivantes :
@@ -62,6 +63,7 @@ Voir la link:../admin/managing-object-metadata-storage.html["Description de l'es
 
 
 
+[[how-metadata-is-redistributed-when-you-add-storage-nodes]]
 == Comment les métadonnées sont redistribuées lorsque vous ajoutez des nœuds de stockage
 
 Lorsque vous ajoutez des nœuds de stockage dans une extension, StorageGRID redistribue les métadonnées de l'objet vers les nouveaux nœuds de chaque site, ce qui augmente la capacité globale des métadonnées de la grille. Aucune action de l'utilisateur n'est requise.

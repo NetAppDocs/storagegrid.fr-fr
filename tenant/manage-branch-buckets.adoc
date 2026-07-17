@@ -32,6 +32,7 @@ CAUTION: Après avoir configuré et créé un bucket de branche, vous ne pouvez 
 
 
 
+[[create-branch-bucket]]
 == Créer un bucket de branche
 
 .Étapes
@@ -45,6 +46,7 @@ Le bouton *Créer un bucket de branche* est désactivé si le contrôle de versi
 
 
 
+[[enter-details]]
 == Entrez les détails
 
 .Étapes
@@ -106,6 +108,7 @@ Type de godet de branche
 
 
 
+[[manage-object-settings-optional]]
 == Gérer les paramètres de l'objet (facultatif)
 
 Les paramètres d'objet pour un bucket de branche n'affectent pas les versions d'objet dans le bucket de base.

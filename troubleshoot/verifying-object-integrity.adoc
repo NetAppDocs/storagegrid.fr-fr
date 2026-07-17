@@ -17,6 +17,7 @@ Il existe deux processus de vérification : la vérification des antécédents e
 
 
 
+[[what-is-background-verification]]
 == Qu'est-ce que la vérification des antécédents ?
 
 Le processus de vérification en arrière-plan vérifie automatiquement et en continu les nœuds de stockage pour détecter des copies corrompues de données d'objet et tente automatiquement de résoudre les problèmes qu'il trouve.
@@ -39,6 +40,7 @@ La vérification des antécédents s'exécute à un taux continu conçu pour ne 
 
 
 
+[[alerts-related-to-background-verification]]
 == Alertes liées à la vérification des antécédents
 
 Si le système détecte un objet corrompu qu'il ne peut pas corriger automatiquement (parce que la corruption empêche l'objet d'être identifié), l'alerte *objet corrompu non identifié détecté* est déclenchée.
@@ -47,6 +49,7 @@ Si la vérification en arrière-plan ne peut pas remplacer un objet corrompu car
 
 
 
+[[what-is-object-existence-check]]
 == Qu'est-ce que la vérification de l'existence d'objet ?
 
 Le contrôle d'existence d'objet vérifie si toutes les copies répliquées attendues d'objets et de fragments avec code d'effacement existent sur un nœud de stockage. La vérification de l'existence des objets ne vérifie pas les données de l'objet lui-même (la vérification en arrière-plan le fait) ; elle permet plutôt de vérifier l'intégrité des périphériques de stockage, en particulier si un problème matériel récent pouvait affecter l'intégrité des données.
@@ -61,6 +64,7 @@ Le contrôle d'existence des objets lit les métadonnées de chaque objet stock�
 
 
 
+[[run-object-existence-check]]
 == Exécutez la vérification de l'existence d'objet
 
 Vous créez et exécutez un travail de vérification de l'existence d'un objet à la fois. Lorsque vous créez un travail, vous sélectionnez les nœuds de stockage et les volumes à vérifier. Vous sélectionnez également la cohérence du travail.

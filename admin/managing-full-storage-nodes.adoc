@@ -15,18 +15,21 @@ Lorsque les nœuds de stockage atteignent leur capacité maximale, ils doivent �
 
 
 
+[[add-storage-volumes]]
 == Ajout de volumes de stockage
 
 Chaque nœud de stockage prend en charge un nombre maximal de volumes de stockage. Le maximum défini varie selon la plate-forme. Si un nœud de stockage contient moins de volumes de stockage que le nombre maximum, vous pouvez ajouter des volumes pour augmenter sa capacité. Voir les instructions pour link:../expand/index.html["Extension d'un système StorageGRID"].
 
 
 
+[[add-storage-expansion-shelves]]
 == Ajout de tiroirs d'extension de stockage
 
 Certains nœuds de stockage d'appliance StorageGRID, tels que SG6060 ou SG6160, peuvent prendre en charge des tiroirs de stockage supplémentaires. Si vos appliances StorageGRID bénéficient de fonctionnalités d'extension qui n'ont pas encore été étendues à leur capacité maximale, vous pouvez ajouter des tiroirs de stockage pour augmenter la capacité. Voir les instructions pour link:../expand/index.html["Extension d'un système StorageGRID"].
 
 
 
+[[add-storage-nodes]]
 == Ajouter des nœuds de stockage
 
 L'ajout de nœuds de stockage permet d'augmenter la capacité de stockage. L'ajout de stockage nécessite de prendre en compte les règles ILM et les exigences de capacité actuellement actives. Voir les instructions pour link:../expand/index.html["Extension d'un système StorageGRID"].

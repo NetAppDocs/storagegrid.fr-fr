@@ -17,6 +17,7 @@ Après avoir passé en revue ces considérations, effectuez l'extension, puis pa
 
 
 
+[[what-is-ec-rebalancing]]
 == Qu'est-ce que le rééquilibrage EC ?
 
 Le rééquilibrage EC est une procédure StorageGRID qui peut être requise après l'extension d'un nœud de stockage. La procédure est exécutée en tant que script de ligne de commande à partir du nœud d'administration principal. Lorsque vous exécutez la procédure de rééquilibrage EC, StorageGRID redistribue des fragments avec code d'effacement entre les nœuds de stockage existants et nouvellement ajoutés sur un site.
@@ -52,6 +53,7 @@ image:used_space_with_larger_node.png["Espace utilisé avant extension"]
 
 
 
+[[when-to-rebalance-erasure-coded-data]]
 == Quand rééquilibrer les données avec code d'effacement
 
 La procédure de rééquilibrage EC redistribue les données codées par effacement existantes pour garantir que les nœuds ne deviennent pas ou ne restent pas pleins.  La procédure permet de garantir que le codage EC peut continuer sur le site.
@@ -70,6 +72,7 @@ image:used_space_before_expansion.png["Espace utilisé avant extension"]
 
 
 
+[[rebalance-is-not-required-if-you-add-enough-nodes]]
 === Le rééquilibrage n'est pas requis si vous ajoutez suffisamment de nœuds
 
 Pour savoir quand le rééquilibrage EC n'est pas nécessaire, supposons que vous ayez ajouté trois (ou plus) nouveaux nœuds de stockage. Dans ce cas, vous n'avez pas besoin d'effectuer le rééquilibrage EC. Les nœuds de stockage d'origine resteront pleins, mais les nouveaux objets utiliseront désormais les trois nouveaux nœuds pour le code d'effacement 2+1&#8212;les deux fragments de données et le fragment de parité peuvent chacun être stockés sur un nœud différent.
@@ -81,6 +84,7 @@ CAUTION: Dans ce cas, vous pouvez exécuter la procédure de rééquilibrage de 
 
 
 
+[[rebalance-is-required-if-you-cant-add-enough-nodes]]
 === Vous devez rééquilibrer la capacité si vous ne pouvez pas ajouter suffisamment de nœuds
 
 Pour savoir quand un rééquilibrage EC est nécessaire, supposons que vous ne pouvez ajouter que deux nœuds de stockage au lieu de trois. Étant donné que le modèle 2+1 requiert au moins trois nœuds de stockage pour disposer d'espace disponible, les nœuds vides ne peuvent pas être utilisés pour les nouvelles données avec code d'effacement.
@@ -93,6 +97,7 @@ image:used_space_after_ec_rebalance.png["Rééquilibrage EC de l'espace utilisé
 
 
 
+[[recommendations-for-ec-rebalancing]]
 == Recommandations pour le rééquilibrage de la ce
 
 NetApp exige un rééquilibrage de l'EC si _l'ensemble_ des affirmations suivantes est vrai :
@@ -107,6 +112,7 @@ Vous pouvez éventuellement exécuter la procédure de rééquilibrage EC si vou
 
 
 
+[[how-ec-rebalance-procedure-interacts-with-other-maintenance-tasks]]
 == Interaction entre la procédure de rééquilibrage EC et d'autres tâches de maintenance
 
 Vous ne pouvez pas effectuer certaines procédures de maintenance en même temps que vous exécutez la procédure de rééquilibrage EC.
@@ -184,6 +190,7 @@ Vous devez arrêter la procédure de rééquilibrage EC avant d'exécuter d'autr
 |===
 
 
+[[how-ec-rebalance-procedure-interacts-with-ilm]]
 == La façon dont ce rééquilibrage interagit avec ILM
 
 Pendant l'exécution de la procédure de rééquilibrage EC, évitez d'apporter des modifications au ILM susceptibles de modifier l'emplacement des objets avec code d'effacement existants. Par exemple, ne commencez pas à utiliser une règle ILM dont le profil de code d'effacement est différent. Si vous devez effectuer de telles modifications ILM, vous devez mettre fin à la procédure de rééquilibrage EC.

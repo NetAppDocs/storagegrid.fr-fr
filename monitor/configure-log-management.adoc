@@ -26,6 +26,7 @@ En option, vous pouvezlink:../monitor/considerations-for-external-syslog-server.
 
 
 
+[[change-audit-message-levels]]
 == Modifier les niveaux des messages d'audit
 
 Vous pouvez définir un niveau d'audit différent pour chacune des catégories de messages suivantes dans le journal d'audit :
@@ -148,6 +149,7 @@ NOTE: Si vous n'avez pas besoin d'un enregistrement détaillé des opérations d
 
 
 
+[[define-http-request-headers]]
 == Définissez les en-têtes de requête HTTP
 
 Vous pouvez éventuellement définir les en-têtes de requête HTTP que vous souhaitez inclure dans les messages d'audit de lecture et d'écriture du client.
@@ -170,6 +172,7 @@ NOTE: Les en-têtes de demande du protocole d'audit sont enregistrés uniquement
 
 
 
+[[configure-log-location]]
 == Configurer l'emplacement du journal
 
 Par défaut, les messages d’audit et les journaux sont enregistrés sur les nœuds où ils sont générés.  Ils sont périodiquement tournés et finalement supprimés pour éviter qu'ils ne consomment trop d'espace disque.  Si vous souhaitez enregistrer les messages d’audit et un sous-ensemble de journaux en externe,<<use-external-syslog-server,utiliser un serveur syslog externe>> .
@@ -178,6 +181,7 @@ Si vous souhaitez enregistrer les fichiers journaux en interne, choisissez un lo
 
 
 
+[[use-external-syslog-serveruse-an-external-syslog-server]]
 === [[use-external-syslog-Server]]utilisez un serveur syslog externe
 
 Vous pouvez également configurer un serveur syslog externe pour enregistrer les journaux d'audit, les journaux d'application et les journaux d'événements de sécurité dans un emplacement en dehors de votre grille.
@@ -579,6 +583,7 @@ NOTE: Les informations d'audit StorageGRID ne sont pas envoyées au serveur Sysl
 
 
 
+[[select-log-location]]
 === Sélectionnez l'emplacement du journal
 
 Vous pouvez spécifier où se trouvent les journaux d'audit, les journaux d'événements de sécurité,link:../monitor/storagegrid-software-logs.html["Journaux d'application StorageGRID"] , et les journaux d'accès sont envoyés.
@@ -650,6 +655,7 @@ Les nouveaux journaux sont envoyés aux destinations que vous avez sélectionné
 
 
 
+[[use-bucketuse-a-bucket]]
 === [[use-bucket]]Utiliser un seau
 
 Les journaux sont périodiquement tournés.  Utilisez un bucket S3 dans la même grille pour stocker les journaux pendant une période prolongée.

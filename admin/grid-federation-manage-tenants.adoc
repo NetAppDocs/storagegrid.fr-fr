@@ -23,6 +23,7 @@ Vous pouvez autoriser les comptes de locataires S3 à utiliser une connexion de 
 
 
 
+[[create-a-permitted-tenant]]
 == Créez un locataire autorisé
 
 Si vous souhaitez autoriser un compte de locataire nouveau ou existant à utiliser une connexion de fédération de grille pour le clone de compte et la réplication inter-grille, suivez les instructions générales à link:creating-tenant-account.html["Créer un locataire S3"] ou link:editing-tenant-account.html["modifier un compte de locataire"] et notez les points suivants :
@@ -47,6 +48,7 @@ TIP: Pour qu'un utilisateur root local puisse se connecter au tenant répliqué 
 
 
 
+[[view-a-permitted-tenant]]
 == Afficher un locataire autorisé
 
 Vous pouvez afficher les détails d'un locataire autorisé à utiliser une connexion de fédération de grille.
@@ -65,6 +67,7 @@ image:grid-federation-tenant-detail.png["onglet grid federation de la page de d�
 
 
 
+[[edit-a-permitted-tenant]]
 == Modifier un locataire autorisé
 
 Si vous devez modifier un locataire doté de l'autorisation *utiliser la connexion de fédération de grille*, suivez les instructions générales pour link:editing-tenant-account.html["modification d'un compte de locataire"] et notez ce qui suit :
@@ -76,6 +79,7 @@ Si vous devez modifier un locataire doté de l'autorisation *utiliser la connexi
 
 
 
+[[delete-a-permitted-tenant]]
 == Supprimer un locataire autorisé
 
 Si vous devez supprimer un locataire doté de l'autorisation *utiliser la connexion de fédération de grille*, suivez les instructions générales pour link:deleting-tenant-account.html["suppression d'un compte de locataire"] et notez ce qui suit :
@@ -92,6 +96,7 @@ Pour éviter ces erreurs, supprimez l'autorisation du locataire d'utiliser la co
 
 
 
+[[remove-grid-federation-connection-permissionremove-use-grid-federation-connection-permission]]
 == [[remove-grid-federation-connection-permission]]Supprimer l'autorisation de connexion utiliser la fédération de grille
 
 Pour empêcher un locataire d'utiliser une connexion de fédération de grille, vous devez supprimer l'autorisation *utiliser la connexion de fédération de grille*.
@@ -115,6 +120,7 @@ NOTE: La réactivation de l'autorisation *utiliser la connexion de fédération 
 
 
 
+[[disable-replication-for-tenant-buckets]]
 === Désactivez la réplication pour les compartiments de locataires
 
 Dans un premier temps, désactivez la réplication inter-grid pour tous les compartiments de locataires.
@@ -133,6 +139,7 @@ TIP: Vous ne pouvez pas supprimer l'autorisation *utiliser la connexion de féd�
 
 
 
+[[remove-permission-for-tenant]]
 === Supprimer l'autorisation pour le locataire
 
 Une fois la réplication multigrille désactivée pour les compartiments de tenant, vous pouvez supprimer l'autorisation du locataire d'utiliser la connexion de fédération GRID.
@@ -184,6 +191,7 @@ Vous pouvez effectuer l'une des opérations suivantes :
 
 
 
+[[forceremovepermissionremove-the-permission-by-force]]
 == [[force_remove_permission]]supprimez l'autorisation par la force
 
 Si nécessaire, vous pouvez forcer la suppression de l'autorisation d'un locataire à utiliser une connexion de fédération de grille, même si la réplication inter-grid est activée dans les compartiments de locataires.

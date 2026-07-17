@@ -15,12 +15,14 @@ Vous pouvez utiliser la requête CopyObject S3 pour créer une copie d'un objet 
 
 
 
+[[resolve-conflicts]]
 == Résoudre les conflits
 
 Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
 
 
 
+[[object-size]]
 == Taille de l'objet
 
 La taille _recommandée_ maximale pour une opération PutObject unique est de 5 Gio (5,368,709,120 octets). Si vous avez des objets dont la valeur est supérieure à 5 Gio, utilisez la link:operations-for-multipart-uploads.html["téléchargement partitionné"]valeur.
@@ -32,6 +34,7 @@ NOTE: Si vous avez mis à niveau à partir de StorageGRID 11.6 ou version antér
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == Caractères UTF-8 dans les métadonnées utilisateur
 
 Si une requête inclut (non échappé) les valeurs UTF-8 dans le nom de clé ou la valeur des métadonnées définies par l'utilisateur, le comportement StorageGRID n'est pas défini.
@@ -44,6 +47,7 @@ StorageGRID n'analyse ni n'interprète pas les caractères UTF-8 qui se sont éc
 
 
 
+[[supported-request-headers]]
 == En-têtes de demande pris en charge
 
 Les en-têtes de requête suivants sont pris en charge :
@@ -92,6 +96,7 @@ Voir <<Demander des en-têtes pour le cryptage côté serveur>>
 
 
 
+[[unsupported-request-headers]]
 == En-têtes de requête non pris en charge
 
 Les en-têtes de demande suivants ne sont pas pris en charge :
@@ -118,6 +123,7 @@ Lorsque vous copiez un objet, si celui-ci possède un checksum, StorageGRID ne c
 
 
 
+[[storage-class-options]]
 == Options de classe de stockage
 
 L' `x-amz-storage-class`en-tête de requête est pris en charge et affecte le nombre de copies d'objet créées par StorageGRID si la règle ILM correspondante utilise la fonction Dual commit ou Balanced link:../ilm/data-protection-options-for-ingest.html["option d'ingestion"].
@@ -138,6 +144,7 @@ NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'obj
 
 
 
+[[using-x-amz-copy-source-in-copyobject]]
 == Utilisation de x-amz-copy-source dans CopyObject
 
 Si le compartiment source et la clé, spécifiés dans l' `x-amz-copy-source`en-tête, sont différents du compartiment et de la clé de destination, une copie des données de l'objet source est écrite vers la destination.
@@ -153,6 +160,7 @@ En d'autres termes, si la règle ILM utilise l'option strict pour le comportemen
 
 
 
+[[request-headers-for-server-side-encryption]]
 == Demander des en-têtes pour le cryptage côté serveur
 
 Si vous link:using-server-side-encryption.html["utilisez le chiffrement côté serveur"], les en-têtes de requête que vous fournissez dépendent du cryptage de l'objet source et de l'intention de chiffrer l'objet cible.
@@ -188,6 +196,7 @@ NOTE: La `server-side-encryption` valeur de l'objet ne peut pas être mise à jo
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Si le compartiment source est versionné, vous pouvez utiliser l' `x-amz-copy-source`en-tête pour copier la dernière version d'un objet. Pour copier une version spécifique d'un objet, vous devez spécifier explicitement la version à copier à l'aide de la `versionId` sous-ressource. Si le compartiment de destination est versionné, la version générée est renvoyée dans l' `x-amz-version-id`en-tête de réponse. Si la gestion des versions est suspendue pour le compartiment cible, `x-amz-version-id` renvoie une valeur « null ».

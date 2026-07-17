@@ -19,6 +19,7 @@ Avant d'activer l'authentification unique (SSO), vérifiez comment les processus
 
 
 
+[[sign-in-when-sso-is-enabled]]
 == Connectez-vous lorsque SSO est activé
 
 Lorsque l'authentification SSO est activée et que vous vous connectez à StorageGRID, vous êtes redirigé vers la page SSO de votre entreprise afin de valider vos identifiants.
@@ -69,6 +70,7 @@ Il n'est pas nécessaire de saisir à nouveau vos informations d'identification 
 
 
 
+[[sign-out-when-sso-is-enabled]]
 == Déconnectez-vous lorsque SSO est activé
 
 Lorsque l'authentification SSO est activée pour StorageGRID, le processus de déconnexion dépend de ce que vous êtes connecté et de l'endroit où vous vous déconnectez.

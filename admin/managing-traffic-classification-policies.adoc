@@ -17,6 +17,7 @@ Les règles de classification du trafic sont appliquées aux terminaux du servic
 
 
 
+[[matching-rules]]
 == Règles de correspondance
 
 Chaque règle de classification de trafic contient une ou plusieurs règles de correspondance permettant d'identifier le trafic réseau lié à une ou plusieurs des entités suivantes :
@@ -31,6 +32,7 @@ StorageGRID surveille le trafic qui correspond à n'importe quelle règle de la 
 
 
 
+[[traffic-limiting]]
 == Limitation du trafic
 
 Vous pouvez également ajouter les types de limite suivants à une règle :
@@ -52,6 +54,7 @@ Dans Grid Manager, vous pouvez afficher les diagrammes de trafic et vérifier qu
 
 
 
+[[use-traffic-classification-policies-with-slas]]
 == Utilisez les stratégies de classification du trafic avec les contrats de niveau de service
 
 Vous pouvez utiliser des règles de classification du trafic en association avec les limites de capacité et la protection des données pour appliquer des accords de niveau de service (SLA) qui fournissent des spécificités en matière de capacité, de protection des données et de performances.

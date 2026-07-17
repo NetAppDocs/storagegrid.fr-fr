@@ -184,6 +184,7 @@ Si nécessaire, vous pouvez désactiver l'intégration de la recherche pour un c
 
 
 
+[[example-notification-configexample-metadata-notification-configuration-that-applies-to-all-objects]]
 == [[example-notification-config]]exemple : configuration de notification de métadonnées qui s'applique à tous les objets
 
 Dans cet exemple, les métadonnées d'objet de tous les objets sont envoyées vers la même destination.
@@ -203,6 +204,7 @@ Dans cet exemple, les métadonnées d'objet de tous les objets sont envoyées ve
 ----
 
 
+[[example-metadata-notification-configuration-with-two-rules]]
 == Exemple : configuration des notifications de métadonnées avec deux règles
 
 Dans cet exemple, les métadonnées d'objet des objets qui correspondent au préfixe `/images` sont envoyées à une destination, tandis que les métadonnées d'objet des objets correspondant au préfixe `/videos` sont envoyées à une seconde destination.
@@ -231,6 +233,7 @@ Dans cet exemple, les métadonnées d'objet des objets qui correspondent au pré
 ----
 
 
+[[metadata-notification-format]]
 == Format de notification des métadonnées
 
 Lorsque vous activez le service d'intégration de la recherche pour un compartiment, un document JSON est généré et envoyé au terminal de destination à chaque ajout, mise à jour ou suppression de métadonnées d'objet.
@@ -257,6 +260,7 @@ Cet exemple montre un exemple de fichier JSON qui pourrait être généré lors 
 ----
 
 
+[[fields-included-in-the-json-document]]
 === Champs inclus dans le document JSON
 
 Le nom du document inclut le nom du compartiment, le nom de l'objet et l'ID de version, le cas échéant.
@@ -301,6 +305,7 @@ Métadonnées d'utilisateur::
 
 
 
+[[how-to-view-results-in-elasticsearch]]
 === Affichage des résultats dans Elasticsearch
 
 Pour les balises et les métadonnées d'utilisateur, StorageGRID transmet des dates et des chiffres à Elasticsearch en tant que chaînes ou notifications d'événement S3. Pour configurer Elasticsearch afin d'interpréter ces chaînes comme des dates ou des chiffres, suivez les instructions Elasticsearch pour un mappage dynamique des champs et un mappage des formats de date. Activez les mappages de champs dynamiques sur l'index avant de configurer le service d'intégration de recherche. Une fois qu'un document est indexé, vous ne pouvez pas modifier les types de champ du document dans l'index.

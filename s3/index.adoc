@@ -17,6 +17,7 @@ La prise en charge de l'API REST S3 vous permet de connecter les applications or
 
 
 
+[[supported-versions]]
 == Versions prises en charge
 
 StorageGRID prend en charge les versions spécifiques suivantes de STS, S3 et HTTP :
@@ -56,6 +57,8 @@ https://datatracker.ietf.org/doc/html/rfc2616["IETF RFC 2616 : Protocole de tran
 |===
 
 
+[[updates-to-s3-rest-api-support]]
+[[updates-to-rest-api-support]]
 == Prise en charge des mises à jour de l'API REST S3
 
 [cols="1a,4a"]

@@ -27,6 +27,7 @@ Pour accéder à la documentation de swagger pour l'API de gestion des locataire
 
 
 
+[[api-operations]]
 == Opérations API
 
 L'API de gestion des locataires organise les opérations API disponibles dans les sections suivantes :
@@ -59,6 +60,7 @@ NOTE: Si l'authentification unique (SSO) est activée pour le système StorageGR
 
 
 
+[[operation-details]]
 == Détails de l'opération
 
 Lorsque vous développez chaque opération d'API, vous pouvez voir son action HTTP, son URL de point final, une liste de tous les paramètres obligatoires ou facultatifs, un exemple du corps de la demande (si nécessaire) et les réponses possibles.
@@ -67,6 +69,7 @@ image:tenant_api_swagger_example.gif["Exemple d'opération D'OBTENTION de groupe
 
 
 
+[[issue-api-requests]]
 == Émettre des requêtes API
 
 

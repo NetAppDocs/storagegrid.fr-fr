@@ -15,6 +15,7 @@ Avant de connecter StorageGRID en tant que Tier cloud FabricPool, découvrez les
 
 
 
+[[what-is-an-ha-group]]
 == Qu'est-ce qu'un groupe haute disponibilité ?
 
 Un groupe haute disponibilité est un ensemble d'interfaces issues de plusieurs nœuds de passerelle StorageGRID, nœuds d'administration ou les deux. Un groupe haute disponibilité contribue à maintenir les connexions de données des clients disponibles. En cas de défaillance de l'interface active du groupe haute disponibilité, une interface de sauvegarde peut gérer la charge de travail avec un faible impact sur les opérations FabricPool.
@@ -25,6 +26,7 @@ Pour en savoir plus sur les groupes haute disponibilité, consultez link:../admi
 
 
 
+[[using-ha-groups]]
 == À l'aide de groupes haute disponibilité
 
 Les bonnes pratiques de création de groupe haute disponibilité StorageGRID pour FabricPool dépendent de la charge de travail.

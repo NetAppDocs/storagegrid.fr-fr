@@ -20,6 +20,7 @@ Lorsque les utilisateurs locataires se connectent au Gestionnaire de locataires,
 
 
 
+[[tenant-manager-dashboard]]
 == Tableau de bord du gestionnaire des locataires
 
 Une fois qu'un administrateur du grid a créé un compte de locataire à l'aide de Grid Manager ou de l'API Grid Management, les locataires peuvent se connecter au Gestionnaire de locataires.
@@ -32,6 +33,7 @@ image:tenant_dashboard_with_buckets.png["Tableau de bord du gestionnaire des loc
 
 
 
+[[storage-menu-s3]]
 == Menu stockage (S3)
 
 Ce menu permet aux utilisateurs de S3 de :
@@ -44,6 +46,7 @@ Ce menu permet aux utilisateurs de S3 de :
 
 
 
+[[my-access-keys]]
 === Mes clés d'accès
 
 Les locataires S3 peuvent gérer les clés d'accès comme suit :
@@ -58,6 +61,7 @@ NOTE: La gestion des clés d'accès pour les autres utilisateurs s'effectue à p
 
 
 
+[[buckets]]
 === Seaux
 
 Les utilisateurs de locataires S3 disposant des autorisations appropriées peuvent effectuer les tâches suivantes pour leurs compartiments :
@@ -83,18 +87,21 @@ Si un administrateur du grid a activé l'utilisation de services de plateforme p
 
 
 
+[[platform-services-endpoints]]
 === Terminaux des services de plateforme
 
 Si un administrateur du grid a activé l'utilisation des services de plateforme pour le compte de locataire, un utilisateur locataire S3 disposant de l'autorisation gérer les terminaux peut configurer un terminal de destination pour chaque service de plateforme.
 
 
 
+[[grid-federation-connections]]
 === Connexions de fédération de grille
 
 Si un administrateur du grid a activé l'utilisation d'une connexion de fédération grid pour le compte de locataire, un utilisateur de locataire S3 disposant de l'autorisation d'accès racine peut afficher le nom de la connexion et accéder à la page d'informations sur le compartiment pour chaque compartiment pour lequel la réplication inter-grid est activée, et afficher l'erreur la plus récente à se produire lorsque les données de compartiment étaient répliquées sur l'autre grille de la connexion. Voir link:../tenant/grid-federation-view-connections-tenant.html["Afficher les connexions de fédération de grille"].
 
 
 
+[[access-management-menu]]
 == Accès au menu gestion
 
 Le menu gestion des accès permet aux locataires StorageGRID d'importer des groupes d'utilisateurs à partir d'un référentiel d'identité fédéré et d'attribuer des autorisations de gestion. Les locataires peuvent également gérer des groupes et des utilisateurs de locataires locaux, sauf si la connexion unique (SSO) est appliquée à l'ensemble du système StorageGRID.

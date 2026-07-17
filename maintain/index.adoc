@@ -18,6 +18,7 @@ NOTE: Dans ces instructions, « Linux » fait référence à un déploiement R
 
 
 
+[[before-you-begin]]
 == Avant de commencer
 
 * Vous avez une bonne compréhension du système StorageGRID.
@@ -28,6 +29,7 @@ NOTE: Dans ces instructions, « Linux » fait référence à un déploiement R
 
 
 
+[[maintenance-procedures-for-appliances]]
 == Procédures de maintenance des appareils
 
 Pour les procédures matérielles, voir https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["Instructions de maintenance pour votre appliance StorageGRID"^] .

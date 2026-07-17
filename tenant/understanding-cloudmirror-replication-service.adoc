@@ -20,18 +20,21 @@ NOTE: La réplication CloudMirror n'est pas prise en charge si le compartiment s
 
 
 
+[[cloudmirror-and-ilm]]
 == CloudMirror et ILM
 
 La réplication CloudMirror fonctionne indépendamment des règles ILM actives de la grille. Le service CloudMirror réplique les objets au fur et à mesure qu'ils sont stockés dans le compartiment source et les fournit au compartiment de destination dès que possible. La livraison des objets répliqués est déclenchée lors de la réussite de l'acquisition de l'objet.
 
 
 
+[[cloudmirror-and-cross-grid-replication]]
 == CloudMirror et réplication intergrille
 
 La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Reportez-vous à la link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
 
 
 
+[[cloudmirror-and-s3-buckets]]
 == Compartiments CloudMirror et S3
 
 La réplication CloudMirror est généralement configurée pour utiliser un compartiment S3 externe comme destination. Vous pouvez cependant également configurer la réplication afin d'utiliser un autre déploiement StorageGRID ou tout service compatible S3.
@@ -49,6 +52,7 @@ Compartiments avec ou sans version:: Vous pouvez configurer la réplication Clou
 
 
 
+[[deletion-replication-loops-and-events]]
 == Suppression, boucles de réplication et événements
 
 Comportement de suppression:: Est identique au comportement de suppression du service Amazon S3, réplication interrégionale (CRR). La suppression d'un objet dans un compartiment source ne supprime jamais un objet répliqué dans la destination. Si le compartiment source et le compartiment de destination sont multiversion, le marqueur de suppression est répliqué. Si le compartiment de destination n'est pas versionné, la suppression d'un objet dans le compartiment source ne réplique pas le marqueur de suppression dans le compartiment de destination ni ne supprime l'objet de destination.

@@ -15,6 +15,7 @@ Si vous avezlink:../admin/how-sso-works.html["Authentification unique (SSO) conf
 
 
 
+[[sign-in-to-the-api-if-single-sign-on-is-enabled]]
 == Connectez-vous à l'API si l'authentification unique est activée
 
 Ces instructions s'appliquent si vous utilisez PingFederate comme fournisseur d'identité SSO
@@ -204,6 +205,7 @@ Vous pouvez désormais utiliser `MYTOKEN` pour d'autres demandes, comme vous le 
 
 
 
+[[sign-out-of-the-api-if-single-sign-on-is-enabled]]
 == Déconnectez-vous de l'API si l'authentification unique est activée
 
 Si l'authentification unique (SSO) a été activée, vous devez émettre une série de requêtes API pour vous déconnecter de l'API de gestion Grid ou de l'API de gestion des locataires. Ces instructions s'appliquent si vous utilisez PingFederate comme fournisseur d'identité SSO

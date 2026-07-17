@@ -15,6 +15,7 @@ Vous devrez peut-être résoudre les problèmes liés aux alertes et aux erreurs
 
 
 
+[[grid-federation-errorsgrid-federation-connection-alerts-and-errors]]
 == [[Grid-federation-Errors]]alertes et erreurs de connexion de fédération de grille
 
 Vous pouvez recevoir des alertes ou rencontrer des erreurs avec vos connexions de fédération de grille.
@@ -23,6 +24,7 @@ Après avoir effectué des modifications pour résoudre un problème de connexio
 
 
 
+[[grid-federation-connection-failure-alert]]
 === Alerte d'échec de la connexion de fédération de grille
 
 .Problème
@@ -40,6 +42,7 @@ Cette alerte indique que la connexion de fédération de grille entre les grille
 
 
 
+[[expiration-of-grid-federation-certificate-alert]]
 === Expiration de l'alerte de certificat de fédération de grille
 
 .Problème
@@ -53,6 +56,7 @@ Reportez-vous aux instructions relatives à la rotation link:grid-federation-man
 
 
 
+[[error-editing-a-grid-federation-connection]]
 === Erreur lors de la modification d'une connexion de fédération de grille
 
 .Problème
@@ -69,10 +73,12 @@ Lorsque vous modifiez une connexion de fédération de grille, StorageGRID tente
 
 
 
+[[account-clone-errors]]
 == Erreurs de clonage de compte
 
 
 
+[[cant-sign-in-to-a-cloned-tenant-account]]
 === Impossible de se connecter à un compte de locataire cloné
 
 .Problème
@@ -88,6 +94,7 @@ Avant qu'un utilisateur local cloné puisse se connecter à la grille de destina
 
 
 
+[[tenant-created-without-a-clone]]
 === Locataire créé sans clone
 
 .Problème
@@ -110,10 +117,12 @@ image:grid-federation-retry-account-clone.png["Capture d'écran affichant un mes
 
 
 
+[[cross-grid-replication-alerts-and-errors]]
 == Alertes et erreurs de réplication intergrid
 
 
 
+[[last-error-shown-for-connection-or-tenant]]
 === Dernière erreur affichée pour la connexion ou le locataire
 
 .Problème
@@ -156,6 +165,7 @@ TIP: Après avoir dégagé l'erreur, une nouvelle *dernière erreur* peut appara
 
 
 
+[[cross-grid-replication-permanent-failure-alert]]
 === Alerte de défaillance permanente de la réplication multi-grid
 
 .Problème
@@ -204,6 +214,7 @@ NOTE: Une fois l'alerte résolue, il peut s'écouler jusqu'à un jour avant que 
 
 
 
+[[cross-grid-replication-resource-unavailable-alert]]
 === Alerte de ressource de réplication inter-grid indisponible
 
 .Problème

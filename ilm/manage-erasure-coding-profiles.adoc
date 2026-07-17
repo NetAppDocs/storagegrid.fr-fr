@@ -20,6 +20,7 @@ Vous pouvez afficher les détails d'un profil de code d'effacement et renommer u
 
 
 
+[[view-erasure-coding-profile-details]]
 == Afficher les détails du profil de code d'effacement
 
 Vous pouvez afficher les détails d'un profil de code d'effacement pour déterminer son état, le schéma de code d'effacement utilisé et d'autres informations.
@@ -33,6 +34,7 @@ Vous pouvez afficher les détails d'un profil de code d'effacement pour détermi
 
 
 
+[[rename-an-erasure-coding-profile]]
 == Renommer un profil de code d'effacement
 
 Vous pouvez renommer un profil de code d'effacement pour le rendre plus évident.
@@ -54,6 +56,7 @@ NOTE: Les noms des profils de code d'effacement doivent être uniques. Une erreu
 
 
 
+[[deactivate-an-erasure-coding-profile]]
 == Désactiver un profil de code d'effacement
 
 Vous pouvez désactiver un profil de code d'effacement si vous ne prévoyez plus de l'utiliser et si ce profil n'est pas utilisé dans les règles ILM.

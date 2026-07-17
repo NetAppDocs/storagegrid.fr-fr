@@ -27,6 +27,7 @@ Les en-têtes de requête suivants sont pris en charge :
 
 
 
+[[request-headers-for-server-side-encryption]]
 == Demander des en-têtes pour le cryptage côté serveur
 
 Si vous avez spécifié le cryptage SSE-C pour la demande CreateMultipartUpload, vous devez également inclure les en-têtes de requête suivants dans chaque demande UploadPartCopy :
@@ -48,6 +49,7 @@ CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. 
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.

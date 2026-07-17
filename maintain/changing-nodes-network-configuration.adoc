@@ -207,6 +207,7 @@ Une fois les modifications appliquées ou mises en scène, un nouveau package de
 
 
 
+[[temporarily-changing-the-lacp-pdu-rate]]
 == Modification temporaire du taux de PDU LACP
 
 Pour effectuer des opérations de maintenance sur les composants réseau installés sur votre appareil, comme la mise à niveau du micrologiciel de la carte réseau, vous pouvez vérifier que le paramètre de débit PDU LACP actuel répond aux exigences de synchronisation de communication de la carte réseau.  Vous pouvez basculer de manière non persistante le débit PDU LACP entre rapide (attente de 1 seconde) et lent (attente de 30 secondes), si nécessaire.

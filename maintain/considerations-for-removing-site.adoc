@@ -15,6 +15,7 @@ Avant d'utiliser la procédure de mise hors service du site pour supprimer un si
 
 
 
+[[what-happens-when-you-decommission-a-site]]
 == Que se passe-t-il lorsque vous désaffectez un site
 
 Lorsque vous désaffectez un site, StorageGRID supprime définitivement tous les nœuds du site et le site lui-même du système StorageGRID.
@@ -27,6 +28,7 @@ Lorsque la procédure de mise hors service du site est terminée :
 
 
 
+[[differences-between-connected-site-and-disconnected-site-decommission-procedures]]
 == Différences entre les procédures de mise hors service du site connecté et du site déconnecté
 
 Vous pouvez utiliser la procédure de mise hors service du site pour supprimer un site dans lequel tous les nœuds sont connectés à StorageGRID (appelé mise hors service du site connecté) ou pour supprimer un site dans lequel tous les nœuds sont déconnectés de StorageGRID (appelé mise hors service hors site déconnectée). Avant de commencer, vous devez comprendre les différences entre ces procédures.
@@ -48,6 +50,7 @@ CAUTION: Avant d'effectuer une procédure de mise hors service hors site déconn
 
 
 
+[[general-requirements-for-removing-a-connected-or-a-disconnected-site]]
 == Conditions générales requises pour supprimer un site connecté ou déconnecté
 
 Avant de supprimer un site connecté ou déconnecté, vous devez connaître les exigences suivantes :
@@ -74,6 +77,7 @@ NOTE: Si vous devez effectuer une autre procédure de maintenance pendant une mi
 
 
 
+[[requirements-for-information-lifecycle-management-ilm]]
 == Exigences relatives à la gestion du cycle de vie des informations (ILM)
 
 Dans le cadre de la suppression d'un site, vous devez mettre à jour votre configuration ILM. L'assistant dédié au site de désaffection vous guide à travers un certain nombre d'étapes préalables pour vous assurer que :
@@ -89,6 +93,7 @@ CAUTION: Avant de pouvoir supprimer un site, vous devrez peut-être créer de no
 
 
 
+[[considerations-for-the-object-data-at-a-connected-site]]
 == Considérations relatives aux données d'objet sur un site connecté
 
 Si vous effectuez la mise hors service d'un site connecté, vous devez décider ce que vous devez faire avec les données d'objet existantes sur le site lorsque vous créez de nouvelles règles ILM et une nouvelle règle ILM. Vous pouvez effectuer l'une des opérations suivantes ou les deux :
@@ -113,6 +118,7 @@ CAUTION: Ne créez jamais de règle ILM à copie unique pour la suppression d'un
 
 
 
+[[additional-requirements-for-a-connected-site-decommission]]
 == Exigences supplémentaires relatives à la mise hors service d'un site connecté
 
 Avant que StorageGRID puisse supprimer un site connecté, vous devez vous assurer que :
@@ -136,6 +142,7 @@ NOTE: Le déplacement ou la suppression de données d'objet depuis un site peut 
 
 
 
+[[additional-requirements-for-a-disconnected-site-decommission]]
 == Exigences supplémentaires relatives à la mise hors service d'un site déconnecté
 
 Avant que StorageGRID puisse supprimer un site déconnecté, vous devez vérifier ce qui suit :
@@ -162,6 +169,7 @@ NOTE: Si vos règles et règles ILM ont été conçues pour protéger contre la 
 
 
 
+[[considerations-for-consistency-when-you-remove-a-site]]
 == Considérations de cohérence lorsque vous supprimez un site
 
 La cohérence d'un compartiment S3 détermine si StorageGRID réplique entièrement les métadonnées d'objet sur tous les nœuds et sites avant de dire à un client que l'ingestion d'objet a abouti. La cohérence assure un équilibre entre la disponibilité des objets et la cohérence de ces objets entre plusieurs nœuds de stockage et sites.

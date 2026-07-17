@@ -36,12 +36,15 @@ NOTE: Les modifications apportées à un certificat de point final peuvent prend
 
 
 
+[[create-a-load-balancer-endpoint]]
+[[create-lb-endpoint]]
 == Créer un noeud final d'équilibreur de charge
 
 Chaque point de terminaison d'équilibrage de charge client S3 spécifie un port, un type de client (S3) et un protocole réseau (HTTP ou HTTPS).  Les points de terminaison de l'équilibreur de charge de l'interface de gestion spécifient un port, un type d'interface et un réseau client non approuvé.
 
 
 
+[[access-the-wizard]]
 === Accéder à l'assistant
 
 .Étapes
@@ -53,6 +56,7 @@ Chaque point de terminaison d'équilibrage de charge client S3 spécifie un port
 
 
 
+[[enter-endpoint-details]]
 === Saisissez les détails du point final
 
 .Étapes
@@ -163,6 +167,7 @@ Lorsque vous sélectionnez *Oui*, le port est ouvert sur tous les réseaux clien
 
 
 
+[[select-a-binding-mode]]
 === Sélectionnez un mode de reliure
 
 .Étapes
@@ -230,6 +235,7 @@ Si vous créez des terminaux d'interface de gestion, sélectionnez les VIP assoc
 
 
 
+[[control-tenant-access]]
 === Contrôle de l'accès des locataires
 
 
@@ -270,6 +276,7 @@ Les comptes de locataire sélectionnés ne peuvent pas utiliser ce terminal pour
 
 
 
+[[attach-certificate]]
 === Joindre un certificat
 
 .Étapes
@@ -396,6 +403,7 @@ Le noeud final de l'équilibreur de charge est créé. Le certificat personnalis
 
 
 
+[[after-you-finish]]
 === Une fois que vous avez terminé
 
 .Étapes
@@ -422,6 +430,7 @@ Vous devez également vous assurer que l'enregistrement DNS référence tous les
 
 
 
+[[view-and-edit-load-balancer-endpoints]]
 == Afficher et modifier les points finaux de l'équilibreur de charge
 
 Vous pouvez afficher les détails des noeuds finaux existants de l'équilibreur de charge, y compris les métadonnées de certificat d'un noeud final sécurisé. Vous pouvez modifier certains paramètres pour un point final.
@@ -532,6 +541,7 @@ Modifier l'accès du locataire
 
 
 
+[[remove-load-balancer-endpoints]]
 == Supprimez les points finaux de l'équilibreur de charge
 
 Vous pouvez supprimer un ou plusieurs noeuds finaux à l'aide du menu *actions*, ou vous pouvez supprimer un seul noeud final de la page de détails.

@@ -15,6 +15,7 @@ Si vous avezlink:../admin/how-sso-works.html["Authentification unique (SSO) conf
 
 
 
+[[sign-in-to-the-api-if-entra-id-single-sign-on-is-enabled]]
 == Sign in à l'API si l'authentification unique Entra ID est activée
 
 Ces instructions s'appliquent si vous utilisez Entra ID comme fournisseur d'identité SSO

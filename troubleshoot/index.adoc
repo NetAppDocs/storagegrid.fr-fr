@@ -17,6 +17,7 @@ Vous pouvez souvent résoudre vous-même certains problèmes, mais vous devrez p
 
 
 
+[[defineproblemdefine-the-problem]]
 == [[DEFINE_PROBLEME]]définir le problème
 
 La première étape pour résoudre un problème est de définir clairement le problème.
@@ -78,6 +79,7 @@ C'est la première fois que j'ai vu cette question.
 |===
 
 
+[[assess-the-risk-and-impact-on-the-system]]
 == Évaluez les risques et l'impact sur le système
 
 Une fois le problème défini, évaluez les risques et l'impact sur le système StorageGRID. Par exemple, la présence d'alertes critiques ne signifie pas nécessairement que le système ne fournit pas de services de base.
@@ -118,6 +120,7 @@ Oui, car les applications client ne peuvent pas stocker d'objets sur le système
 |===
 
 
+[[collect-data]]
 == Collecte de données
 
 Une fois que vous avez défini le problème et évalué ses risques et son impact, collectez des données pour analyse. Le type de données les plus utiles à recueillir dépend de la nature du problème.
@@ -206,6 +209,7 @@ L'assistance technique peut vous demander de collecter des données ou de passer
 |===
 
 
+[[createtimelinecreate-a-timeline-of-recent-changes]]
 === [[create_timeline]]Créez un calendrier des modifications récentes
 
 En cas de problème, vous devriez considérer ce qui a changé récemment et quand ces changements se sont produits.
@@ -274,6 +278,7 @@ Voici quelques exemples de changements potentiellement importants :
 
 
 
+[[establish-baselines]]
 === Établir les lignes de base
 
 Vous pouvez établir des lignes de base pour votre système en enregistrant les niveaux normaux de différentes valeurs opérationnelles. À l'avenir, vous pourrez comparer les valeurs actuelles à ces lignes de base afin de détecter et de résoudre les valeurs anormales.
@@ -367,6 +372,7 @@ Sélectionnez *Nœuds* > *_Nœud de stockage_* > *Objets*.  Dans la table Requê
 |===
 
 
+[[analyze-data]]
 == Analysez les données
 
 Utilisez les informations que vous recueillez pour déterminer la cause du problème et les solutions potentielles.
@@ -380,6 +386,7 @@ L'analyse dépend du problème, mais en général :
 
 
 
+[[escalation-information-checklist]]
 == Liste de contrôle des informations de réaffectation
 
 Si vous ne parvenez pas à résoudre le problème par vous-même, contactez le support technique. Avant de contacter le support technique, collectez les informations du tableau ci-dessous pour faciliter la résolution de votre problème.

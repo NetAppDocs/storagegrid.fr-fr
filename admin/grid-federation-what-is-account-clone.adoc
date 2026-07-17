@@ -17,6 +17,7 @@ Le clone de compte est requis pour link:grid-federation-what-is-cross-grid-repli
 
 
 
+[[workflow-for-account-clone]]
 == Workflow de clonage de compte
 
 Le schéma de workflow présente les étapes que les administrateurs du grid et les locataires autorisés doivent suivre pour configurer le clone de compte. Ces étapes sont effectuées après link:grid-federation-create-connection.html["la connexion de fédération de grille est configurée"].
@@ -25,12 +26,14 @@ image:grid-federation-account-clone-workflow.png["workflow de clonage de compte"
 
 
 
+[[grid-admin-workflow]]
 == Workflow d'administration du grid
 
 Les étapes que les administrateurs du grid effectuent dépendent du type d'authentification unique (SSO) ou de fédération des identités des systèmes StorageGRIDlink:grid-federation-overview.html["connexion de fédération de grille"].
 
 
 
+[[account-clone-ssoconfigure-sso-for-account-clone-optional]]
 === [[Account-clone-sso]]configurer SSO pour le clone de compte (facultatif)
 
 Si l'un des systèmes StorageGRID de la connexion de fédération de grille utilise SSO, les deux grilles doivent utiliser SSO. Avant de créer les comptes de tenant pour la fédération de grille, les administrateurs de grille pour les grilles source et de destination du locataire doivent effectuer ces étapes.
@@ -50,6 +53,7 @@ NOTE: Si ce groupe d'administration n'existe pas sur les deux grilles avant la c
 
 
 
+[[account-clone-identity-federationconfigure-grid-level-identity-federation-for-account-clone-optional]]
 === [[Account-clone-Identity-federation]]configurer la fédération des identités au niveau de la grille pour le clone de compte (facultatif)
 
 Si l'un ou l'autre des systèmes StorageGRID utilise la fédération des identités sans SSO, les deux grilles doivent utiliser la fédération des identités. Avant de créer les comptes de tenant pour la fédération de grille, les administrateurs de grille pour les grilles source et de destination du locataire doivent effectuer ces étapes.
@@ -66,6 +70,7 @@ NOTE: Si vous attribuez l'autorisation d'accès racine à un groupe fédéré qu
 
 
 
+[[create-permitted-s3-tenant-account]]
 === Créez un compte de locataire S3 autorisé
 
 Après avoir configuré éventuellement une SSO ou une fédération d'identités, un administrateur du grid effectue ces étapes pour déterminer quels locataires peuvent répliquer des objets de compartiment vers d'autres systèmes StorageGRID.
@@ -98,6 +103,7 @@ Pour plus de détails, voir link:grid-federation-manage-tenants.html["Gestion de
 
 
 
+[[permitted-tenant-account-workflow]]
 == Workflow de compte de locataire autorisé
 
 Après la réplication d'un locataire doté de l'autorisation *utiliser la connexion de fédération GRID* dans la grille de destination, les comptes de locataires autorisés peuvent effectuer ces étapes pour cloner des groupes de locataires, des utilisateurs et des clés d'accès S3.

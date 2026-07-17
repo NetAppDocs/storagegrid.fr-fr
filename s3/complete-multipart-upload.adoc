@@ -18,12 +18,14 @@ NOTE: StorageGRID prend en charge les valeurs non consécutives par ordre croiss
 
 
 
+[[resolve-conflicts]]
 == Résoudre les conflits
 
 Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». La chronologie de l'évaluation « derniers-victoires » repose sur la date à laquelle le système StorageGRID termine une demande donnée et non sur la date à laquelle les clients S3 commencent une opération.
 
 
 
+[[supported-request-headers]]
 == En-têtes de demande pris en charge
 
 Les en-têtes de requête suivants sont pris en charge :
@@ -55,6 +57,7 @@ NOTE: La `ETag` valeur renvoyée n'est pas une somme MD5 des données, mais suit
 
 
 
+[[unsupported-request-headers]]
 == En-têtes de requête non pris en charge
 
 Les en-têtes de demande suivants ne sont pas pris en charge :
@@ -73,6 +76,7 @@ Le  `If-None-Match header` est accepté mais non fonctionnel.
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Cette opération termine un téléchargement partitionné. Si la gestion des versions est activée pour un compartiment, la version de l'objet est créée une fois le téléchargement partitionné terminé.
@@ -86,6 +90,7 @@ NOTE: Lorsque le contrôle de version est activé pour un compartiment, le fait 
 
 
 
+[[failed-replication-notification-or-metadata-notification]]
 == Échec de la réplication, de la notification ou de la notification des métadonnées
 
 Si le compartiment dans lequel le téléchargement partitionné est configuré pour un service de plateforme, le téléchargement partitionné réussit même si l'action de réplication ou de notification associée échoue.

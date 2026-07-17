@@ -15,6 +15,7 @@ StorageGRID fournit aux administrateurs du grid et aux utilisateurs de locataire
 
 
 
+[[how-tenant-users-control-object-retention]]
 == Contrôle de la conservation des objets par les utilisateurs locataires
 
 Les utilisateurs locataires peuvent utiliser ces méthodes pour contrôler la durée de stockage de leurs objets dans StorageGRID :
@@ -33,6 +34,7 @@ Les utilisateurs locataires peuvent utiliser ces méthodes pour contrôler la du
 
 
 
+[[how-grid-administrators-control-object-retention]]
 == Comment les administrateurs du grid contrôlent-ils la conservation des objets
 
 Les administrateurs du grid peuvent utiliser ces méthodes pour contrôler la conservation des objets :
@@ -44,18 +46,21 @@ Les administrateurs du grid peuvent utiliser ces méthodes pour contrôler la co
 
 
 
+[[how-s3-bucket-lifecycle-and-ilm-interact]]
 == Interaction du cycle de vie des compartiments S3 et de la ILM
 
 Lorsqu'un cycle de vie d'un compartiment S3 est configuré, les actions d'expiration du cycle de vie remplacent la règle ILM pour les objets qui correspondent au filtre de cycle de vie. Par conséquent, un objet peut être conservé dans la grille même après l'expiration des instructions ILM de placement de l'objet.
 
 
 
+[[examples-for-object-retention]]
 == Exemples de conservation d'objets
 
 Pour mieux comprendre les interactions entre le verrouillage objet S3, les paramètres du cycle de vie des compartiments, les demandes de suppression de clients et la gestion des règles ILM, prenez en compte ces exemples.
 
 
 
+[[example-1-s3-bucket-lifecycle-keeps-objects-longer-than-ilm]]
 === Exemple 1 : le cycle de vie des compartiments S3 permet de conserver les objets plus longtemps que ILM
 
 ILM:: Stockez deux copies pendant 1 an (365 jours)
@@ -68,6 +73,7 @@ NOTE: Si le cycle de vie des compartiments précise que les objets doivent être
 
 
 
+[[example-2-s3-bucket-lifecycle-expires-objects-before-ilm]]
 === Exemple 2 : le cycle de vie des compartiments S3 expire les objets avant la gestion du cycle de vie des règles
 
 ILM:: Stockage de deux copies pendant 2 ans (730 jours)
@@ -77,6 +83,7 @@ Résultat:: StorageGRID supprime les deux copies de l'objet après le jour 365.
 
 
 
+[[example-3-client-delete-overrides-bucket-lifecycle-and-ilm]]
 === Exemple 3 : la suppression du client annule le cycle de vie du compartiment et la ILM
 
 ILM:: Stockage de deux copies sur des nœuds de stockage « à l'infini »
@@ -87,6 +94,7 @@ Résultat:: StorageGRID supprime les deux copies de l'objet le jour 400 en répo
 
 
 
+[[example-4-s3-object-lock-overrides-client-delete-request]]
 === Exemple 4 : le verrouillage d'objet S3 remplace la demande de suppression du client
 
 Verrouillage d'objet S3:: Conserver jusqu'à ce jour pour une version d'objet : 2026-03-31. Une obligation légale n'est pas en vigueur.

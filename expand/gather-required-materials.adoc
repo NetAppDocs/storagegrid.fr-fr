@@ -73,6 +73,7 @@ Pour connaître les versions prises en charge, consultez le https://imt.netapp.c
 |===
 
 
+[[download-and-extract-the-storagegrid-installation-files]]
 == Téléchargez et extrayez les fichiers d'installation de StorageGRID
 
 .[[download-and-extract-install-files]]
@@ -407,6 +408,7 @@ images-version-SHA.deb`.
 |===
 
 
+[[verify-hardware-and-networking]]
 == Vérification du matériel et de la mise en réseau
 
 Avant de commencer l'extension de votre système StorageGRID, vérifiez les points suivants :

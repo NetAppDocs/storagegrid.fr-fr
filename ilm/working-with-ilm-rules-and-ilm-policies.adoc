@@ -20,6 +20,7 @@ summary: À mesure que vos besoins en stockage évoluent, vous devrez peut-être
 
 
 
+[[view-ilm-policies]]
 == Afficher les règles ILM
 
 Pour afficher les règles ILM actives et inactives et l'historique d'activation des règles :
@@ -36,6 +37,8 @@ NOTE: Si vous affichez les détails d'une police dont le statut est modifié ou 
 
 
 
+[[edit-an-ilm-policy]]
+[[edit-ilm-policy]]
 == Modification d'une règle ILM
 
 Vous pouvez uniquement modifier une stratégie inactive. Si vous souhaitez modifier une règle active, désactivez-la ou créez un clone, puis modifiez le clone.
@@ -53,6 +56,8 @@ CAUTION: Une règle ILM mal configurée peut entraîner une perte de données ir
 
 
 
+[[clone-an-ilm-policy]]
+[[clone-ilm-policy]]
 == Cloner une règle ILM
 
 Pour cloner une règle ILM :
@@ -67,6 +72,8 @@ CAUTION: Une règle ILM mal configurée peut entraîner une perte de données ir
 
 
 
+[[remove-an-ilm-policy]]
+[[remove-ilm-policy]]
 == Suppression d'une règle ILM
 
 La suppression d'une règle ILM est uniquement possible si elle est inactive. Pour supprimer une stratégie :
@@ -78,6 +85,7 @@ La suppression d'une règle ILM est uniquement possible si elle est inactive. Po
 
 
 
+[[view-ilm-rule-details]]
 == Afficher le détail des règles ILM
 
 Pour afficher les détails d'une règle ILM, y compris le diagramme de conservation et les instructions de placement de la règle :
@@ -93,6 +101,8 @@ En outre, vous pouvez utiliser la page de détails pour cloner, modifier ou supp
 
 
 
+[[clone-an-ilm-rule]]
+[[clone-ilm-rule]]
 == Cloner une règle ILM
 
 Vous pouvez cloner une règle existante si vous souhaitez créer une nouvelle règle qui utilise certains des paramètres de la règle existante. Si vous devez modifier une règle utilisée dans une règle, vous devez la cloner à la place et modifier le clone. Après avoir modifié le clone, vous pouvez supprimer la règle d'origine de la règle et la remplacer par la version modifiée si nécessaire.
@@ -111,6 +121,7 @@ Lors du clonage d'une règle ILM, vous devez entrer un nouveau nom.
 
 
 
+[[edit-an-ilm-rule]]
 == Modifiez une règle ILM
 
 Vous devrez peut-être modifier une règle ILM pour modifier une instruction de filtre ou de placement.
@@ -132,6 +143,7 @@ Lors de la modification d'une règle ILM, vous ne pouvez pas en modifier le nom.
 
 
 
+[[remove-an-ilm-rule]]
 == Suppression d'une règle ILM
 
 Pour gérer la liste des règles ILM actuelles, supprimez toutes les règles ILM que vous ne serez pas susceptible d'utiliser.
@@ -162,6 +174,7 @@ Pour supprimer une règle ILM non utilisée actuellement :
 
 
 
+[[view-ilm-metrics]]
 == Afficher les metrics ILM
 
 Vous pouvez afficher les mesures de la règle ILM, telles que le nombre d'objets dans la file d'attente et la fréquence d'évaluation. Vous pouvez surveiller ces mesures afin de déterminer les performances du système. Une file d'attente ou un taux d'évaluation important peut indiquer que le système ne peut pas suivre le taux d'entrée, que la charge des applications clientes est excessive ou qu'il existe une condition anormale.

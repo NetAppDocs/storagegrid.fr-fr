@@ -17,6 +17,7 @@ Tous les messages d’audit générés lors d’une transaction d’ingestion ne
 
 
 
+[[s3-ingest-audit-messages]]
 == Ingestion des messages d'audit S3
 
 [cols="1a,1a,2a,1a,2a"]
@@ -51,6 +52,7 @@ link:orlm-object-rules-met.html["ORLM : règles d'objet respectées"]
 |===
 
 
+[[example-s3-object-ingest]]
 == Exemple : ingestion d'objet S3
 
 La série de messages d'audit ci-dessous est un exemple des messages d'audit générés et enregistrés dans le journal d'audit lorsqu'un client S3 ingère un objet à un nœud de stockage (LDR).
@@ -64,6 +66,7 @@ Dans cet exemple, un compartiment S3 a déjà été créé.
 
 
 
+[[sput-s3-put]]
 === SPUT : PUT S3
 
 Le message SPUT est généré pour indiquer qu'une transaction PUT S3 a été émise pour créer un objet dans un compartiment spécifique.
@@ -74,6 +77,7 @@ Le message SPUT est généré pour indiquer qu'une transaction PUT S3 a été é
 ----
 
 
+[[orlm-object-rules-met]]
 === ORLM : règles d'objet respectées
 
 Le message ORLM indique que la politique ILM a été satisfaite pour cet objet. Le message inclut le CBID de l'objet et le nom de la règle ILM appliquée.

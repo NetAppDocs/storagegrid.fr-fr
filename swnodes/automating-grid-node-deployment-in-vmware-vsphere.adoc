@@ -15,6 +15,7 @@ Vous pouvez utiliser l'outil VMware OVF pour automatiser le déploiement des nœ
 
 
 
+[[automate-grid-node-deployment]]
 == Automatisez le déploiement de nœuds grid
 
 Utilisez l'outil VMware OVF pour automatiser le déploiement des nœuds grid.
@@ -81,6 +82,7 @@ Exemple de fichier de configuration à utiliser avec le `deploy-vsphere-ovftool.
 |===
 
 
+[[define-the-configuration-file-for-your-deployment]]
 === Définissez le fichier de configuration pour votre déploiement
 
 Vous spécifiez les informations nécessaires pour déployer des nœuds de grille virtuelle pour StorageGRID dans un fichier de configuration utilisé par le `deploy-vsphere-ovftool.sh` script Bash. Vous pouvez modifier un exemple de fichier de configuration pour ne pas avoir à créer le fichier à partir de zéro.
@@ -97,6 +99,7 @@ Voir <<configuration-file-settings,Paramètres du fichier de configuration>> pou
 
 
 
+[[configuration-file-settings]]
 === Paramètres du fichier de configuration
 
 Le `deploy-vsphere-ovftool.ini` fichier de configuration contient les paramètres requis pour déployer les nœuds de grille virtuelle.
@@ -514,6 +517,7 @@ NOTE: Pour les nœuds Admin, LES INSTANCES doivent toujours être égales à 2.
 
 
 
+[[run-the-bash-script]]
 == Exécutez le script Bash
 
 Vous pouvez utiliser `deploy-vsphere-ovftool.sh` le script Bash et le fichier de configuration deploy-vsphere-ovftool.ini que vous avez modifié pour automatiser le déploiement des nœuds StorageGRID dans VMware vSphere.
@@ -581,6 +585,7 @@ Deployment Summary
 ----
 
 
+[[automate-the-configuration-of-storagegrid]]
 == Automatiser la configuration de StorageGRID
 
 Une fois les nœuds grid déployés, vous pouvez automatiser la configuration du système StorageGRID.

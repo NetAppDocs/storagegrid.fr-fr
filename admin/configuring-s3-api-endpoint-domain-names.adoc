@@ -52,6 +52,7 @@ NOTE: Si vous n'ajoutez pas de noms de domaine de terminaux S3 et que la liste e
 
 
 
+[[add-an-s3-endpoint-domain-name]]
 == Ajoutez un nom de domaine de terminal S3
 
 .Étapes
@@ -72,6 +73,7 @@ Maintenant, lorsque les clients utilisent le noeud final `_bucket.s3.company.com
 
 
 
+[[rename-an-s3-endpoint-domain-name]]
 == Renommer un nom de domaine de terminal S3
 
 Si vous modifiez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échouent.
@@ -85,6 +87,7 @@ Si vous modifiez un nom utilisé par les applications S3, les demandes de type h
 
 
 
+[[delete-an-s3-endpoint-domain-name]]
 == Supprimez un nom de domaine de terminal S3
 
 Si vous supprimez un nom utilisé par les applications S3, les demandes de type hébergement virtuel échoueront.

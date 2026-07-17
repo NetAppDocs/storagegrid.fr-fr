@@ -19,12 +19,14 @@ Pour plus d'informations sur la topologie du réseau StorageGRID , les exigences
 
 
 
+[[deployment-topologies]]
 == Topologies de déploiement
 
 Le système StorageGRID peut être déployé sur un seul site de centre de données ou sur plusieurs sites de centre de données.  Le nombre maximal de sites par déploiement est de 16.
 
 
 
+[[single-site]]
 === Sur un seul site
 
 Dans un déploiement avec un site unique, l'infrastructure et les opérations du système StorageGRID sont centralisées.
@@ -33,6 +35,7 @@ image:data_center_site_single.png["Un seul data Center site"]
 
 
 
+[[multiple-sites]]
 === Sites multiples
 
 Dans un déploiement sur plusieurs sites, il est possible d'installer différents types et quantités de ressources StorageGRID sur chaque site. Par exemple, un data Center peut nécessiter plus de stockage qu'un autre.
@@ -45,12 +48,14 @@ Plusieurs sites logiques peuvent également exister au sein d’un même centre 
 
 
 
+[[grid-node-redundancy]]
 === Redondance des nœuds du grid
 
 Dans un déploiement sur un ou plusieurs sites, vous pouvez éventuellement inclure plusieurs nœuds d'administration ou nœuds de passerelle afin d'assurer la redondance. Par exemple, vous pouvez installer plusieurs nœuds d'administration sur un seul site ou sur plusieurs sites. Cependant, chaque système StorageGRID ne peut avoir qu'un seul nœud d'administration principal.
 
 
 
+[[system-architecture]]
 == Architecture du système
 
 Ce schéma montre comment les nœuds grid sont organisés dans un système StorageGRID.

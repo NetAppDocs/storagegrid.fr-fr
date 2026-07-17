@@ -15,6 +15,7 @@ Les coûts de liaison vous permettent de définir la priorité du site de data C
 
 
 
+[[what-are-link-costs]]
 == Quels sont les coûts de liaison ?
 
 * Les coûts des liens permettent de classer par ordre de priorité la copie d'objet utilisée pour les récupérations d'objets.
@@ -62,6 +63,7 @@ Data centers logiques dans le même bâtiment physique ou campus connecté par u
 |===
 
 
+[[update-link-costs]]
 == Mettre à jour les coûts des liens
 
 Vous pouvez mettre à jour les coûts de liaison entre les sites de data Center afin de refléter la latence entre les sites.

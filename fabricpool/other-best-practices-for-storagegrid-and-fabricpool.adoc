@@ -15,6 +15,7 @@ Lors de la configuration d'un système StorageGRID pour une utilisation avec Fab
 
 
 
+[[audit-message-and-log-destinations]]
 == Vérifiez les destinations des messages et des journaux
 
 Les charges de travail FabricPool disposent souvent d'un taux élevé d'opérations de lecture, ce qui peut générer un grand nombre de messages d'audit.
@@ -25,30 +26,35 @@ Les charges de travail FabricPool disposent souvent d'un taux élevé d'opérati
 
 
 
+[[object-encryption]]
 == Chiffrement d'objet
 
 Lors de la configuration de StorageGRID, vous pouvez éventuellement activer le link:../admin/changing-network-options-object-encryption.html["option globale de chiffrement des objets stockés"] si le chiffrement des données est requis pour d'autres clients StorageGRID. Les données envoyées depuis FabricPool vers StorageGRID sont déjà chiffrées, ce qui signifie qu'il n'est pas nécessaire d'activer le paramètre StorageGRID. Les clés de chiffrement côté client sont la propriété de ONTAP.
 
 
 
+[[object-compression]]
 == Compression d'objet
 
 Lors de la configuration de StorageGRID, n'activez pas link:../admin/configuring-stored-object-compression.html["option globale pour compresser les objets stockés"]. Les données envoyées depuis FabricPool vers StorageGRID sont déjà compressées. L'utilisation de l'option StorageGRID ne réduira pas davantage la taille d'un objet.
 
 
 
+[[s3-object-lock]]
 == Verrouillage d'objet S3
 
 Si le paramètre global de verrouillage d'objet S3 est activé pour votre système StorageGRID , ne l'activez paslink:../s3/use-s3-api-for-s3-object-lock.html["Verrouillage d'objet S3"] lorsque vous créez des buckets FabricPool .  Le verrouillage d'objet S3 n'est pas pris en charge pour les buckets FabricPool .
 
 
 
+[[bucket-consistency]]
 == Cohérence du compartiment
 
 Pour les compartiments FabricPool, la cohérence de compartiment recommandée est *Read-After-New-write*, ce qui correspond à la cohérence par défaut d'un nouveau compartiment. Ne modifiez pas les compartiments FabricPool pour utiliser *disponible* ou *site fort*.
 
 
 
+[[fabricpool-tiering]]
 == Hiérarchisation FabricPool
 
 Si un nœud StorageGRID utilise du stockage attribué à un système NetApp ONTAP, vérifiez qu'aucune règle de hiérarchisation FabricPool n'est activée sur le volume. Par exemple, si un nœud StorageGRID s'exécute sur un hôte VMware, assurez-vous que la règle de hiérarchisation FabricPool n'est pas activée sur le volume qui sauvegarde le datastore pour le nœud StorageGRID. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.

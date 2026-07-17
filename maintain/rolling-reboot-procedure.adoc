@@ -47,12 +47,14 @@ Lorsque vous redémarrez le nœud d'administration principal, votre navigateur p
 
 
 
+[[perform-a-rolling-reboot]]
 == Effectuer un redémarrage en continu
 
 Sélectionnez les nœuds que vous souhaitez redémarrer, vérifiez vos sélections, démarrez la procédure de redémarrage et surveillez leur progression.
 
 
 
+[[select-nodes]]
 === Sélectionnez les nœuds
 
 Dans un premier temps, accédez à la page de redémarrage en roulant et sélectionnez les nœuds que vous souhaitez redémarrer.
@@ -79,6 +81,7 @@ Vous pouvez utiliser les options de filtre de la table pour afficher les sous-en
 
 
 
+[[review-selection]]
 === Revoir la sélection
 
 Cette étape vous permet de déterminer le temps nécessaire à la procédure de redémarrage total et de confirmer que vous avez sélectionné les nœuds appropriés.
@@ -96,6 +99,7 @@ NOTE: Le nœud d'administration principal sera le dernier nœud à redémarrer. 
 
 
 
+[[monitor-a-rolling-reboot]]
 === Surveiller un redémarrage en continu
 
 Pendant l'exécution de la procédure de redémarrage en continu, vous pouvez le surveiller depuis le nœud d'administration principal.
@@ -124,6 +128,7 @@ Les tableaux fournissent une barre de progression de l'opération sur chaque nœ
 
 
 
+[[stop-the-rolling-reboot-procedure]]
 == Arrêter la procédure de redémarrage en roulant
 
 Vous pouvez arrêter la procédure de redémarrage en continu à partir du nœud d'administration principal. Lorsque vous arrêtez la procédure, tous les nœuds dont l'état est « Arrêt des services », « redémarrage du système » ou « démarrage des services » complètent l'opération de redémarrage. Cependant, ces nœuds ne seront plus suivis dans le cadre de la procédure.

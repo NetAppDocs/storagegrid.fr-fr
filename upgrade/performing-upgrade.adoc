@@ -21,6 +21,7 @@ CAUTION: Ne démarrez pas la mise à niveau si vous avez un besoin urgent d’é
 
 
 
+[[access-storagegrid-upgrade-page]]
 == Accédez à la page mise à niveau StorageGRID
 
 Dans un premier temps, accédez à la page mise à niveau StorageGRID dans le Gestionnaire de grille.
@@ -33,6 +34,7 @@ Dans un premier temps, accédez à la page mise à niveau StorageGRID dans le Ge
 
 
 
+[[select-files]]
 == Sélectionnez fichiers
 
 Le chemin de mise à jour sur la page de mise à niveau de StorageGRID indique les versions principales (par exemple, 12.0.0) et les correctifs (par exemple, 12.0.0.1) que vous devez installer pour obtenir la dernière version de StorageGRID .  Vous devez installer les versions et les correctifs recommandés dans l'ordre indiqué.
@@ -60,6 +62,7 @@ Une fois le téléchargement et la vérification de la signature du code termin�
 
 
 
+[[run-prechecks]]
 == Exécutez des contrôles préalables
 
 L'exécution de contrôles préalables vous permet de détecter et de résoudre les problèmes de mise à niveau avant de commencer à mettre à niveau votre grille.
@@ -93,6 +96,7 @@ Si toutes les erreurs ont été résolues, vous êtes invité à démarrer la mi
 
 
 
+[[start-upgrade-and-upgrade-primary-admin-node]]
 == Démarrez la mise à niveau et mettez à niveau le nœud d'administration principal
 
 Lorsque vous démarrez la mise à niveau, les précontrôles de mise à niveau sont de nouveau exécutés et le nœud d'administration principal est automatiquement mis à niveau. Cette partie de la mise à niveau peut prendre jusqu'à 30 minutes.
@@ -119,6 +123,7 @@ Si la grille dispose d'un autre nœud d'administration en ligne et prêt, vous p
 
 
 
+[[upgrade-other-nodes]]
 == Mise à niveau des autres nœuds
 
 Vous devez mettre à niveau tous les nœuds de la grille, mais vous pouvez effectuer plusieurs sessions de mise à niveau et personnaliser la séquence de mise à niveau. Par exemple, vous pouvez préférer mettre à niveau les nœuds sur le site A en une session, puis mettre à niveau les nœuds sur le site B dans une session ultérieure. Si vous choisissez d'effectuer la mise à niveau dans plusieurs sessions, sachez que vous ne pouvez pas commencer à utiliser les nouvelles fonctionnalités tant que tous les nœuds n'ont pas été mis à niveau.
@@ -241,6 +246,7 @@ NOTE: Certains modèles d'appliance peuvent redémarrer plusieurs fois pour mett
 
 
 
+[[complete-upgrade]]
 == Mise à niveau terminée
 
 Lorsque tous les nœuds de grille ont terminé les étapes de mise à niveau, la tâche *mettre à niveau d'autres nœuds de grille* s'affiche comme terminée. Les tâches de mise à niveau restantes sont effectuées automatiquement en arrière-plan.

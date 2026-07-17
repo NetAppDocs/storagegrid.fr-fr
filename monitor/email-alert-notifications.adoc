@@ -161,6 +161,7 @@ Les paramètres de messagerie sont enregistrés.
 
 
 
+[[information-included-in-alert-email-notifications]]
 == Informations incluses dans les notifications par e-mail d'alerte
 
 Après avoir configuré le serveur de messagerie SMTP, des notifications par e-mail sont envoyées aux destinataires désignés lorsqu'une alerte est déclenchée, à moins que la règle d'alerte ne soit supprimée par un silence. Voir link:silencing-alert-notifications.html["Notifications d'alerte de silence"].
@@ -210,6 +211,7 @@ Nom d'hôte du nœud d'administration qui a envoyé la notification.
 |===
 
 
+[[how-alerts-are-grouped]]
 == Mode de regroupement des alertes
 
 Pour empêcher l'envoi d'un nombre excessif de notifications par e-mail lorsque des alertes sont déclenchées, StorageGRID tente de regrouper plusieurs alertes dans la même notification.
@@ -278,6 +280,7 @@ StorageGRID continue à envoyer des notifications par e-mail tous les 7 jours ju
 |===
 
 
+[[troubleshoot-alert-email-notifications]]
 == Dépanner les notifications d'alerte par e-mail
 
 Si l'alerte *échec de notification par e-mail* est déclenchée ou si vous ne parvenez pas à recevoir la notification par e-mail d'alerte de test, procédez comme suit pour résoudre le problème.

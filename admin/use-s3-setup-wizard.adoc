@@ -15,6 +15,7 @@ summary: 'À l"aide de l"assistant d"installation S3, vous pouvez configurer Sto
 
 
 
+[[when-to-use-the-s3-setup-wizard]]
 == Utilisation de l'assistant d'installation S3
 
 L'assistant d'installation S3 vous guide à chaque étape de la configuration d'StorageGRID pour une utilisation avec une application S3. Dans le cadre de l'assistant, vous téléchargez des fichiers que vous pouvez utiliser pour saisir des valeurs dans l'application S3. Utilisez l'assistant pour configurer votre système plus rapidement et pour vous assurer que vos paramètres sont conformes aux meilleures pratiques de StorageGRID.
@@ -23,6 +24,7 @@ Si vous disposez du link:admin-group-permissions.html["Autorisation d'accès rac
 
 
 
+[[before-using-the-wizard]]
 == Avant d'utiliser l'assistant
 
 Avant d'utiliser l'assistant, vérifiez que vous avez terminé ces conditions préalables.

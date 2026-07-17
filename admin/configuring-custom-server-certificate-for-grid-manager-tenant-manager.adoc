@@ -34,6 +34,7 @@ Si vous accédez à Grid Manager ou au Gestionnaire de locataires à l'aide d'un
 ====
 
 
+[[add-a-custom-management-interface-certificate]]
 == Ajoutez un certificat d'interface de gestion personnalisée
 
 Pour ajouter un certificat d'interface de gestion personnalisée, vous pouvez fournir votre propre certificat ou en générer un à l'aide de Grid Manager.
@@ -161,6 +162,7 @@ NOTE: Après avoir téléchargé ou généré un nouveau certificat, autorisez j
 
 
 
+[[restore-the-default-management-interface-certificate]]
 == Restaurez le certificat de l'interface de gestion par défaut
 
 Vous pouvez revenir à l'utilisation du certificat d'interface de gestion par défaut pour les connexions Grid Manager et tenant Manager.
@@ -177,6 +179,7 @@ Lorsque vous restaurez le certificat d'interface de gestion par défaut, les fic
 
 
 
+[[use-a-script-to-generate-a-new-self-signed-management-interface-certificate]]
 == Utilisez un script pour générer un nouveau certificat d'interface de gestion auto-signé
 
 Si une validation stricte du nom d'hôte est requise, vous pouvez utiliser un script pour générer le certificat de l'interface de gestion.
@@ -238,6 +241,7 @@ Incluez les étiquettes DE DÉBUT et DE FIN dans votre sélection.
 
 
 
+[[download-or-copy-the-management-interface-certificate]]
 == Téléchargez ou copiez le certificat de l'interface de gestion
 
 Vous pouvez enregistrer ou copier le contenu du certificat de l'interface de gestion pour l'utiliser ailleurs.

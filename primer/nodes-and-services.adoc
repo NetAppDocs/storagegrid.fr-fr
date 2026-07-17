@@ -15,6 +15,7 @@ L'élément de base d'un système StorageGRID est le nœud grid. Les nœuds cont
 
 
 
+[[types-of-grid-nodes]]
 == Types de nœuds grid
 
 Le système StorageGRID utilise trois types de nœuds de grille :
@@ -45,12 +46,14 @@ Voir link:what-gateway-node-is.html["Qu'est-ce qu'un nœud de passerelle ?"]
 
 
 
+[[hardware-and-software-nodes]]
 == Nœuds matériels et logiciels
 
 Les nœuds StorageGRID peuvent être déployés en tant que nœuds d’appliance StorageGRID ou en tant que nœuds logiciels.  Le nombre maximal de nœuds (y compris tous les types de nœuds) par système est de 220.
 
 
 
+[[storagegrid-appliance-nodes]]
 === Nœuds d'appliance StorageGRID
 
 Les appliances matérielles StorageGRID sont spécialement conçues pour une utilisation dans un système StorageGRID. Certaines appliances peuvent être utilisées comme nœuds de stockage. Les autres appliances peuvent être utilisées comme nœuds d'administration ou nœuds de passerelle. Vous pouvez combiner des nœuds d'appliance avec des nœuds basés sur des logiciels ou déployer des grilles 100 % appliance entièrement conçues sans dépendance vis-à-vis d'hyperviseurs, de systèmes de stockage ou de matériel de calcul externes.
@@ -63,6 +66,7 @@ Consultez les sections suivantes pour en savoir plus sur les dispositifs disponi
 
 
 
+[[software-based-nodes]]
 === Nœuds basés sur logiciel
 
 Les nœuds de grille basés sur des logiciels peuvent être déployés en tant que machines virtuelles VMware ou dans des moteurs de conteneurs sur un hôte Linux. Voir link:../swnodes/index.html["Installer StorageGRID sur des nœuds logiciels"] .
@@ -71,6 +75,7 @@ Utilisez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité
 
 
 
+[[storagegrid-services]]
 == Des services StorageGRID
 
 Voici la liste complète des services StorageGRID.

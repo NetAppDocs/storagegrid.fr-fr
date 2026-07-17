@@ -15,6 +15,7 @@ Si une erreur se produit lorsque StorageGRID tente de communiquer avec un noeud 
 
 
 
+[[determine-if-error-has-occurred]]
 == Déterminez si l'erreur s'est produite
 
 Si des erreurs de noeud final de services de plateforme se sont produites au cours des 7 derniers jours, le tableau de bord du gestionnaire de locataires affiche un message d'alerte. Vous pouvez accéder à la page noeuds finaux des services de plate-forme pour obtenir plus de détails sur l'erreur.
@@ -30,6 +31,7 @@ La même erreur qui s'affiche sur le tableau de bord s'affiche également en hau
 
 
 
+[[check-if-error-is-still-current]]
 == Vérifiez si l'erreur est toujours à jour
 
 Certaines erreurs peuvent continuer à s'afficher dans la colonne *dernière erreur*, même après leur résolution. Pour voir si une erreur est active ou pour forcer la suppression d'une erreur résolue du tableau :
@@ -46,6 +48,7 @@ La sélection de *Test Connection* permet à StorageGRID de valider l'existence 
 
 
 
+[[resolve-endpoint-errors]]
 == Résoudre les erreurs de point final
 
 Vous pouvez utiliser le message *dernière erreur* sur la page des détails du noeud final pour déterminer ce qui est à l'origine de l'erreur. Certaines erreurs peuvent vous obliger à modifier le noeud final pour résoudre le problème. Par exemple, une erreur CloudMirroring peut se produire si StorageGRID ne parvient pas à accéder au compartiment S3 de destination, car il ne dispose pas des autorisations d'accès correctes ou si la clé d'accès a expiré. Le message est "les informations d'identification du noeud final ou l'accès à la destination doivent être mis à jour" et les détails sont "AccessDenied" ou "InvalidAccessKeyId".
@@ -61,6 +64,7 @@ Si vous devez modifier le noeud final pour résoudre une erreur, la sélection d
 
 
 
+[[endpoint-credentials-with-insufficient-permissions]]
 == Identifiants de point de terminaison avec autorisations insuffisantes
 
 Lorsque StorageGRID valide un terminal de services de plateforme, il confirme que les identifiants du terminal peuvent être utilisés pour contacter la ressource de destination et il vérifie les autorisations de base. Cependant, StorageGRID ne valide pas toutes les autorisations requises pour certaines opérations de services de plateforme. Pour cette raison, si vous recevez une erreur lors de la tentative d'utilisation d'un service de plate-forme (tel que « 403 interdit »), vérifiez les autorisations associées aux informations d'identification du noeud final.

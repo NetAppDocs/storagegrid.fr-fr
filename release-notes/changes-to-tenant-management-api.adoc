@@ -20,6 +20,7 @@ Pour en savoir plus, rendez-vous sur link:../tenant/understanding-tenant-managem
 
 
 
+[[new-api-for-object-replication]]
 == Nouvelle API pour la réplication d'objets
 
 Vous pouvez utiliser le `/org/cross-grid-replication/{versionId}/replicate` API pour répliquer manuellement des objets sur un bucket existant dont la réplication inter-grille est nouvellement configurée.

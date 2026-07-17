@@ -18,6 +18,7 @@ CAUTION: Une règle ILM mal configurée peut entraîner une perte de données ir
 
 
 
+[[default-ilm-policy]]
 == Règle ILM par défaut
 
 Lorsque vous installez StorageGRID et ajoutez des sites, une politique ILM par défaut est automatiquement créée, comme suit :
@@ -30,12 +31,14 @@ Si la politique par défaut ne répond pas à vos besoins de stockage, vous pouv
 
 
 
+[[one-or-many-active-ilm-policies]]
 == Une ou plusieurs règles ILM actives ?
 
 Vous pouvez avoir une ou plusieurs règles ILM actives à la fois.
 
 
 
+[[one-policy]]
 === Une politique
 
 Si votre grid utilise un schéma de protection des données simple avec peu de règles spécifiques au locataire et au compartiment, utilisez une règle ILM active unique. Les règles ILM peuvent contenir des filtres pour gérer différents compartiments ou locataires.
@@ -46,6 +49,7 @@ Lorsque vous ne modifiez qu'une règle et que les exigences d'un locataire chang
 
 
 
+[[multiple-policies]]
 === Plusieurs règles
 
 Pour offrir différentes options de qualité de service aux locataires, vous pouvez avoir plusieurs règles actives à la fois. Chaque règle peut gérer des locataires, des compartiments S3 et des objets spécifiques. Lorsque vous appliquez ou modifiez une règle pour un ensemble spécifique de locataires ou d'objets, les règles appliquées aux autres locataires et objets ne sont pas affectées.
@@ -68,6 +72,7 @@ image:ilm-policies-tags-conceptual.png["Diagramme de règles ILM multiples"]
 
 
 
+[[how-does-an-ilm-policy-evaluate-objects]]
 == Comment une règle ILM évalue-t-elle les objets ?
 
 Une règle ILM active permet de contrôler le placement, la durée et la protection des données des objets.
@@ -81,6 +86,7 @@ Lorsque les clients enregistrent des objets dans StorageGRID, ils sont évalués
 
 
 
+[[example-ilm-policy]]
 == Exemple de règle ILM
 
 À titre d'exemple, une politique ILM peut contenir trois règles ILM pour spécifier :
@@ -110,6 +116,7 @@ image:ilm_policy_and_rules.png["Règles et règles ILM"]
 
 
 
+[[what-are-active-and-inactive-policies]]
 == Que sont les stratégies actives et inactives ?
 
 Chaque système StorageGRID doit disposer d'au moins une règle ILM active. Si vous souhaitez avoir plusieurs règles ILM actives, vous créez des balises de règles ILM et vous affectez une règle à chaque balise. Les locataires appliquent ensuite des balises aux compartiments S3. La règle par défaut s'applique à tous les objets des compartiments auxquels aucune balise de règle n'est attribuée.
@@ -124,6 +131,7 @@ Un système StorageGRID suit l'historique des stratégies qui ont été activée
 
 
 
+[[considerations-for-creating-an-ilm-policy]]
 == Facteurs à prendre en compte lors de la création d'une règle ILM
 
 * Utilisez uniquement la règle de base 2 copies fournie par le système dans les systèmes de test. Pour StorageGRID 11.6 et les versions antérieures, la règle Make 2 copies de cette règle utilise le pool de stockage All Storage Nodes, qui contient tous les sites. Si votre système StorageGRID dispose de plusieurs sites, il est possible de placer deux copies d'un objet sur le même site.

@@ -24,6 +24,7 @@ CAUTION: Lors de la configuration de votre déploiement StorageGRID pour la prot
 
 
 
+[[replication-example]]
 == Exemple de réplication
 
 Par défaut, un pool de stockage est créé pour chaque site lors de l'installation de StorageGRID. Avec des pools de stockage composés d'un seul site, vous pouvez configurer des règles ILM qui utilisent la réplication pour la protection contre la perte de site. Dans cet exemple :
@@ -48,6 +49,7 @@ Si un site est perdu, des copies des objets sont disponibles sur l'autre site.
 
 
 
+[[erasure-coding-example]]
 == Exemple de code d'effacement
 
 Les pools de stockage comprenant plusieurs sites par pool de stockage vous permettent de configurer des règles ILM qui utilisent le code d'effacement pour la protection contre la perte de site. Dans cet exemple :

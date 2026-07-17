@@ -15,6 +15,7 @@ Vous pouvez utiliser la procédure de désaffectation de nœud pour supprimer un
 
 
 
+[[when-to-decommission-a-node]]
 == Quand désaffecter un nœud
 
 Utilisez la procédure de mise hors service du nœud lorsque l'un des cas suivants est vrai :
@@ -33,6 +34,7 @@ TIP: Si vous souhaitez remplacer une ancienne appliance par une nouvelle, pensez
 
 
 
+[[how-to-decommission-a-node]]
 == Comment désaffecter un nœud
 
 Vous pouvez désaffecter les nœuds de grid connectés ou les nœuds de grid déconnectés.
@@ -53,6 +55,7 @@ Pour obtenir des instructions, reportez-vous à la section link:decommissioning-
 
 
 
+[[what-to-consider-before-decommissioning-a-node]]
 == Éléments à prendre en compte avant de désaffecter un nœud
 
 Avant d'effectuer l'une ou l'autre procédure, vérifiez les points à prendre en compte pour chaque type de nœud :

@@ -15,12 +15,14 @@ Découvrez les conséquences sur votre système StorageGRID lors de la mise à n
 
 
 
+[[external-ssh-access-is-allowed-until-upgrade-completes]]
 == L'accès SSH externe est autorisé jusqu'à la fin de la mise à niveau
 
 L'accès SSH externe est autorisé pendant la mise à niveau.  Une fois la mise à niveau terminée, l’accès SSH externe est bloqué par défaut.  Après la mise à niveau, vous pouvez utiliser l'onglet *Bloquer SSH* disponible sur la page *Gestionnaire de grille* > *Paramètres de sécurité* pourlink:../admin/manage-external-ssh-access.html["gérer l'accès SSH externe"] .  L'accès SSH entre les nœuds de la grille n'est pas affecté.
 
 
 
+[[storagegrid-upgrades-are-non-disruptive]]
 == Les mises à niveau de StorageGRID ne générant pas de perturbation
 
 Le système StorageGRID peut ingérer et récupérer les données depuis les applications client tout au long du processus de mise à niveau. Si vous approuvez la mise à niveau de tous les nœuds du même type (par exemple, nœuds de stockage), les nœuds sont arrêtés un par un. Ainsi, il n'y a pas de temps lorsque tous les nœuds de grid ou tous les nœuds de grid d'un certain type sont indisponibles.
@@ -35,6 +37,7 @@ Pour assurer une disponibilité continue, vérifiez que votre règle ILM contien
 
 
 
+[[client-applications-might-experience-short-term-disruptions]]
 == Les applications client peuvent subir des interruptions à court terme
 
 Le système StorageGRID peut ingérer et récupérer des données provenant des applications client tout au long du processus de mise à niveau. Toutefois, les connexions client vers des nœuds de passerelle ou de stockage individuels peuvent être interrompues temporairement si la mise à niveau doit redémarrer des services sur ces nœuds. La connectivité sera restaurée une fois le processus de mise à niveau terminé et les services reprendront sur les nœuds individuels.
@@ -46,12 +49,14 @@ NOTE: Vous pouvez utiliser plusieurs passerelles et groupes haute disponibilité
 
 
 
+[[background-repairs-wont-run-on-grids-with-mixed-version-nodes]]
 == Les réparations en arrière-plan ne s'exécuteront pas sur les grilles avec des nœuds de versions mixtes
 
 Les réparations en arrière-plan ne s'exécutent pas pendant la mise à niveau lorsque la grille contient des nœuds de versions mixtes.  Les incohérences qui surviennent lors d’une panne de site ne seront pas réparées tant que la mise à niveau n’est pas terminée.
 
 
 
+[[appliance-firmware-is-upgraded]]
 == Le micrologiciel de l'appliance est mis à niveau
 
 Pendant la mise à niveau vers StorageGRID 12.0 :
@@ -64,6 +69,7 @@ Pendant la mise à niveau vers StorageGRID 12.0 :
 
 
 
+[[ilm-policies-are-handled-differently-according-to-their-status]]
 == Les règles ILM sont gérées différemment en fonction de leur état
 
 * La stratégie active reste la même après la mise à niveau.
@@ -73,6 +79,7 @@ Pendant la mise à niveau vers StorageGRID 12.0 :
 
 
 
+[[alerts-might-be-triggered]]
 == Il est possible que des alertes soient déclenchées
 
 Des alertes peuvent être déclenchées lorsque les services démarrent et s'arrêtent, et lorsque le système StorageGRID fonctionne comme un environnement de version mixte (certains nœuds de grid exécutant une version antérieure, alors que d'autres ont été mis à niveau vers une version plus récente). D'autres alertes peuvent être déclenchées une fois la mise à niveau terminée.
@@ -85,6 +92,7 @@ Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes l
 
 
 
+[[configuration-changes-are-restricted]]
 == Les modifications de configuration sont restreintes
 
 

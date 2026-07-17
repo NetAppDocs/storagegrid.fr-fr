@@ -18,6 +18,7 @@ NOTE: Votre administrateur de grille doit vous donner l'autorisation d'utiliser 
 
 
 
+[[what-is-s3-object-lock]]
 == Qu'est-ce que le verrouillage objet S3 ?
 
 La fonctionnalité de verrouillage objet StorageGRID S3 est une solution de protection des objets équivalente au verrouillage objet S3 dans Amazon simple Storage Service (Amazon S3).
@@ -34,6 +35,7 @@ En effet, tous les objets nouvellement ingérés ont des paramètres de conserva
 
 
 
+[[retention-modes]]
 === Modes de rétention
 
 La fonction de verrouillage d'objet StorageGRID S3 prend en charge deux modes de conservation pour appliquer différents niveaux de protection aux objets. Ces modes sont équivalents aux modes de conservation Amazon S3.
@@ -56,6 +58,7 @@ La fonction de verrouillage d'objet StorageGRID S3 prend en charge deux modes de
 
 
 
+[[retention-settings-for-object-versions]]
 === Paramètres de conservation pour les versions d'objet
 
 Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisateurs peuvent utiliser l'application client S3 pour spécifier éventuellement les paramètres de conservation suivants pour chaque objet ajouté au compartiment :
@@ -74,6 +77,7 @@ Pour plus de détails sur les paramètres de l'objet, reportez-vous à la sectio
 
 
 
+[[default-retention-setting-for-buckets]]
 === Paramètre de rétention par défaut pour les compartiments
 
 Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisateurs peuvent spécifier les paramètres par défaut suivants pour le compartiment :
@@ -88,6 +92,7 @@ Voir link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link
 
 
 
+[[s3-object-lock-tasks]]
 == Tâches de verrouillage d'objet S3
 
 Les listes suivantes destinées aux administrateurs du grid et aux utilisateurs de locataires contiennent des tâches de haut niveau relatives à l'utilisation de la fonction S3 Object Lock.
@@ -127,6 +132,7 @@ Utilisateur locataire::
 
 
 
+[[requirements-for-buckets-with-s3-object-lock-enabled]]
 == Conditions requises pour les compartiments avec verrouillage objet S3 activé
 
 * Si le paramètre global de verrouillage objet S3 est activé pour le système StorageGRID, vous pouvez utiliser le gestionnaire de locataires, l'API de gestion des locataires ou l'API REST S3 pour créer des compartiments avec le verrouillage objet S3 activé.
@@ -139,6 +145,7 @@ Utilisateur locataire::
 
 
 
+[[requirements-for-objects-in-buckets-with-s3-object-lock-enabled]]
 == Exigences relatives aux objets dans les compartiments avec le verrouillage d'objet S3 activé
 
 * Pour protéger une version d'objet, vous pouvez spécifier les paramètres de conservation par défaut du compartiment ou les paramètres de conservation pour chaque version d'objet. Les paramètres de conservation au niveau objet peuvent être spécifiés à l'aide de l'application client S3 ou de l'API REST S3.
@@ -147,6 +154,7 @@ Utilisateur locataire::
 
 
 
+[[lifecycle-of-objects-in-buckets-with-s3-object-lock-enabled]]
 == Cycle de vie des objets dans des compartiments avec verrouillage objet S3 activé
 
 Chaque objet enregistré dans un compartiment lorsque le verrouillage objet S3 est activé passe par les étapes suivantes :
@@ -176,6 +184,7 @@ StorageGRID stocke plusieurs copies de chaque objet protégé pendant la périod
 
 
 
+[[can-i-still-manage-legacy-compliant-buckets]]
 == Est-il toujours possible de gérer des compartiments existants conformes ?
 
 La fonction de verrouillage d'objet S3 remplace la fonction de conformité disponible dans les versions StorageGRID précédentes. Si vous avez créé des compartiments conformes à l'aide d'une version précédente de StorageGRID, vous pouvez continuer à gérer les paramètres de ces compartiments. Toutefois, vous ne pouvez plus créer de compartiments conformes. Pour obtenir des instructions, reportez-vous à la section https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^].

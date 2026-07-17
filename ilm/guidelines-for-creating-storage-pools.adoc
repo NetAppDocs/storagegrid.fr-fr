@@ -17,6 +17,7 @@ Voir link:using-multiple-storage-pools-for-cross-site-replication.html["Exemples
 
 
 
+[[guidelines-for-all-storage-pools]]
 == Instructions pour tous les pools de stockage
 
 * Simplifiez au maximum les configurations de vos pools de stockage. Ne créez pas plus de pools de stockage que nécessaire.
@@ -27,6 +28,7 @@ Voir link:using-multiple-storage-pools-for-cross-site-replication.html["Exemples
 
 
 
+[[guidelines-for-storage-pools-used-for-replicated-copies]]
 == Instructions relatives aux pools de stockage utilisés pour les copies répliquées
 
 * Pour la protection contre la perte de site à l'aide de link:what-replication-is.html["la réplication"], spécifiez un ou plusieurs pools de stockage spécifiques au site dans le link:create-ilm-rule-define-placements.html["Instructions de placement pour chaque règle ILM"].
@@ -43,6 +45,7 @@ L'utilisation d'un pool de stockage pour chaque site permet de placer les copies
 
 
 
+[[guidelines-for-storage-pools-used-for-erasure-coded-copies]]
 == Instructions relatives aux pools de stockage utilisés pour les copies avec code d'effacement
 
 * Pour la protection contre les pertes de site à l'aide de link:what-erasure-coding-is.html["le code d'effacement"], créez des pools de stockage composés d'au moins trois sites. Si un pool de stockage ne comprend que deux sites, vous ne pouvez pas l'utiliser pour le code d'effacement. Aucun schéma de code d'effacement n'est disponible pour un pool de stockage possédant deux sites.

@@ -15,6 +15,7 @@ Un compte de locataire vous permet d'utiliser l'API REST simple Storage Service 
 
 
 
+[[what-is-a-tenant-account]]
 == Qu'est-ce qu'un compte de locataire ?
 
 Chaque compte de locataire dispose de ses propres groupes, utilisateurs, compartiments S3 et objets fédérés ou locaux.
@@ -31,6 +32,7 @@ NOTE: Si vous utilisez le protocole client S3, vous pouvez également utiliser d
 
 
 
+[[how-to-create-a-tenant-account]]
 == Comment créer un compte de locataire
 
 Les comptes de tenant sont créés par un link:../admin/managing-tenants.html["Administrateur du grid StorageGRID utilisant le gestionnaire de grille"]. Lors de la création d'un compte de locataire, l'administrateur de la grille spécifie ce qui suit :
@@ -44,6 +46,7 @@ En outre, les administrateurs du grid peuvent activer le paramètre de verrouill
 
 
 
+[[configure-s3-tenants]]
 === Configurez les locataires S3
 
 Après un link:../admin/creating-tenant-account.html["Le compte de locataire S3 est créé"], vous pouvez accéder au gestionnaire de locataires pour effectuer des tâches telles que :

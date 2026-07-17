@@ -19,6 +19,7 @@ Vous pouvez link:viewing-storage-tab.html["affichez des informations sur la capa
 
 
 
+[[monitor-storage-capacity-for-the-entire-grid]]
 == Surveiller la capacité de stockage pour l'ensemble de la grille
 
 Surveillez la capacité de stockage globale de votre grid afin de vous assurer qu'il reste un espace libre adéquat pour les données d'objet et les métadonnées d'objet. Pour mieux comprendre les variations de capacité de stockage dans le temps, vous pouvez planifier l'ajout de nœuds de stockage ou de volumes avant de consommer la capacité de stockage utilisable de la grille.
@@ -72,6 +73,7 @@ Pour plus d'informations sur la planification d'une extension de stockage, repor
 
 
 
+[[monitor-storage-capacity-for-each-storage-node]]
 == Surveillez la capacité de stockage de chaque nœud de stockage
 
 Surveillez l'espace total utilisable pour chaque nœud de stockage pour vous assurer que le nœud dispose de suffisamment d'espace pour les nouvelles données d'objet.
@@ -128,6 +130,7 @@ L'link:../troubleshoot/troubleshooting-low-object-data-storage-alert.html["Faibl
 
 
 
+[[monitor-object-metadata-capacity-for-each-storage-node]]
 == Surveillez la capacité des métadonnées d'objet pour chaque nœud de stockage
 
 Surveillez l'utilisation des métadonnées pour chaque nœud de stockage afin de garantir qu'un espace adéquat reste disponible pour les opérations essentielles de la base de données. Vous devez ajouter de nouveaux nœuds de stockage sur chaque site avant que les métadonnées d'objet dépassent 100 % de l'espace autorisé pour les métadonnées.
@@ -188,6 +191,7 @@ Lorsque vous ajoutez des nœuds, le système rééquilibre automatiquement les m
 
 
 
+[[monitor-space-usage-forecasts]]
 == Surveillez les prévisions d'utilisation de l'espace
 
 Surveillez les prévisions d'utilisation de l'espace pour les données utilisateur et les métadonnées afin d'estimer quand vous en aurez besoin link:../expand/index.html["développez une grille"].

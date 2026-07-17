@@ -18,6 +18,7 @@ NOTE: Il est plus efficace d'effectuer une seule installation de tous les nœuds
 
 
 
+[[vmware-information]]
 == Informations sur VMware
 
 Vous devez accéder à l'environnement de déploiement et collecter des informations sur l'environnement VMware, les réseaux créés pour les réseaux Grid, Admin et client, ainsi que les types de volume de stockage que vous envisagez d'utiliser pour les nœuds de stockage.
@@ -33,6 +34,7 @@ NOTE: VMware Live vMotion provoque l'augmentation de l'horloge de la machine vir
 
 
 
+[[grid-network-information]]
 == Informations sur le réseau
 
 Vous devez collecter des informations sur le réseau VMware créé pour le réseau StorageGRID Grid Network (obligatoire), notamment :
@@ -48,6 +50,7 @@ Vous devez collecter des informations sur le réseau VMware créé pour le rése
 
 
 
+[[admin-network-information]]
 == Informations sur le réseau d'administration
 
 Pour les nœuds qui seront connectés au réseau d'administration StorageGRID facultatif, vous devez collecter des informations sur le réseau VMware créé pour ce réseau, notamment :
@@ -64,6 +67,7 @@ Pour les nœuds qui seront connectés au réseau d'administration StorageGRID fa
 
 
 
+[[client-network-information]]
 == Informations sur le réseau client
 
 Pour les nœuds qui seront connectés au réseau client StorageGRID en option, vous devez collecter des informations sur le réseau VMware créé pour ce réseau, notamment :
@@ -75,6 +79,7 @@ Pour les nœuds qui seront connectés au réseau client StorageGRID en option, v
 
 
 
+[[information-about-additional-interfaces]]
 == Informations sur les interfaces supplémentaires
 
 Vous pouvez éventuellement ajouter une jonction ou des interfaces d'accès à la machine virtuelle dans vCenter après l'installation du nœud. Par exemple, vous pouvez ajouter une interface de jonction à un noeud d'administration ou de passerelle, de sorte que vous pouvez utiliser des interfaces VLAN pour isoler le trafic appartenant à différentes applications ou locataires. Vous pouvez également ajouter une interface d'accès à utiliser au sein d'un groupe de haute disponibilité (HA).
@@ -87,6 +92,7 @@ Les interfaces que vous ajoutez s'affichent sur la page des interfaces VLAN et s
 
 
 
+[[storage-volumes-for-virtual-storage-nodes]]
 == Volumes de stockage pour les nœuds de stockage virtuels
 
 Vous devez collecter les informations suivantes pour les nœuds de stockage basés sur des machines virtuelles :
@@ -96,6 +102,7 @@ Vous devez collecter les informations suivantes pour les nœuds de stockage bas�
 
 
 
+[[grid-configuration-information]]
 == Informations de configuration de la grille
 
 Vous devez collecter des informations pour configurer votre grille :

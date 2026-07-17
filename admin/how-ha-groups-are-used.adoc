@@ -69,6 +69,7 @@ Accès client S3 pour link:../admin/manage-s3-select-for-tenant-accounts.html["S
 |===
 
 
+[[limitations-of-using-ha-groups-with-grid-manager-or-tenant-manager]]
 == Restrictions liées à l'utilisation de groupes haute disponibilité avec Grid Manager ou tenant Manager
 
 En cas de défaillance d'un service Grid Manager ou tenant Manager, le basculement du groupe haute disponibilité n'est pas déclenché.

@@ -17,6 +17,7 @@ Pour effectuer cette opération, vous devez disposer de l'autorisation s3:GetBuc
 
 
 
+[[request-example]]
 == Exemple de demande
 
 Cette requête récupère la configuration de notification des métadonnées pour le compartiment nommé `bucket`.
@@ -30,6 +31,7 @@ Host: _host_
 ----
 
 
+[[response]]
 == Réponse
 
 L'organe de réponse inclut la configuration de notification des métadonnées pour le compartiment. La configuration de notification des métadonnées vous permet de déterminer la configuration du compartiment pour l'intégration de la recherche. En d'autres termes, il vous permet de déterminer les objets à indexer et à quels terminaux leurs métadonnées d'objet sont envoyées.
@@ -153,6 +155,7 @@ Oui
 |===
 
 
+[[response-example]]
 == Exemple de réponse
 
 Le XML inclus entre les  `<MetadataNotificationConfiguration></MetadataNotificationConfiguration>` balises montre comment l'intégration avec un noeud final d'intégration de recherche est configurée pour le compartiment. Dans cet exemple, les métadonnées d'objet sont envoyées à un index Elasticsearch nommé `current` et type nommé `2017` qui est hébergé dans un domaine AWS nommé `records`.

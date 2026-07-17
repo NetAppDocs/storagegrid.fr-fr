@@ -24,6 +24,7 @@ NOTE: La prise en charge des nœuds d'archivage a été supprimée. Le déplacem
 
 
 
+[[storagegrid-benefits]]
 == Avantages de StorageGRID
 
 La baie StorageGRID présente plusieurs avantages :

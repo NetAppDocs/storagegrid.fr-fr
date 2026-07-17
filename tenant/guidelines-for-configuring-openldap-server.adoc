@@ -15,12 +15,14 @@ Si vous souhaitez utiliser un serveur OpenLDAP pour la fédération des identit�
 
 
 
+[[memberof-and-refint-overlays]]
 == Recouvrements de memberOf et de raffint
 
 Les recouvrements de membre et de raffinage doivent être activés. Pour plus d'informations, reportez-vous aux instructions relatives à la maintenance de l'adhésion au groupe inverse dans le _OpenLDAP Software Administrator's Guide_.
 
 
 
+[[indexing]]
 == Indexation
 
 Vous devez configurer les attributs OpenLDAP suivants avec les mots-clés d'index spécifiés :

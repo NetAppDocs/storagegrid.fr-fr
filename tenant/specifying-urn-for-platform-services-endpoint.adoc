@@ -17,6 +17,7 @@ StorageGRID valide les terminaux de services de plateforme lors de leur créatio
 
 
 
+[[urn-elements]]
 == Éléments DE RETOUR
 
 L'URN d'un noeud final de services de plate-forme doit commencer par ou `urn:mysite` par `arn:aws` , comme suit :
@@ -92,6 +93,7 @@ Intégration de la recherche
 |===
 
 
+[[urns-for-services-hosted-on-aws-and-gcp]]
 == Urns pour les services hébergés sur AWS et GCP
 
 Pour les entités AWS et GCP, l'URN complet est un ARN AWS valide. Par exemple :
@@ -122,6 +124,7 @@ NOTE: Pour un terminal d'intégration de recherche AWS, le `domain-name` doit in
 
 
 
+[[urns-for-locally-hosted-services]]
 == Urnes pour des services hébergés localement
 
 Lors de l'utilisation de services hébergés localement au lieu de services cloud, vous pouvez spécifier l'URN de toute façon qui crée un URN valide et unique, tant que l'URN inclut les éléments requis dans les troisième et dernière positions. Vous pouvez laisser les éléments indiqués en blanc facultatif, ou vous pouvez les spécifier de quelque manière que ce soit pour vous aider à identifier la ressource et à rendre l'URN unique. Par exemple :

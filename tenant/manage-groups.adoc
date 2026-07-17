@@ -20,6 +20,7 @@ Gérez vos groupes de locataires selon vos besoins pour afficher, modifier ou du
 
 
 
+[[view-or-edit-group]]
 == Afficher ou modifier un groupe
 
 Vous pouvez afficher et modifier les informations de base et les détails de chaque groupe.
@@ -104,6 +105,7 @@ Un message de réussite s'affiche en haut à droite.
 
 
 
+[[duplicate-group]]
 == Dupliquer le groupe
 
 Vous pouvez dupliquer un groupe existant pour créer de nouveaux groupes plus rapidement.
@@ -121,6 +123,7 @@ NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connex
 
 
 
+[[clone-groupsretry-group-clone]]
 == [[clone-groups]]Réessayez le clone de groupe
 
 Pour réessayer un clone qui a échoué :
@@ -134,6 +137,7 @@ Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner d
 
 
 
+[[delete-one-or-more-groups]]
 == Supprimer un ou plusieurs groupes
 
 Vous pouvez supprimer un ou plusieurs groupes. Les utilisateurs qui appartiennent uniquement à un groupe supprimé ne pourront plus se connecter au gestionnaire de tenant ni utiliser le compte de tenant.
@@ -153,6 +157,7 @@ Une boîte de dialogue de confirmation s'affiche.
 
 
 
+[[set-up-assumerole]]
 == Configurer AssumeRole
 
 .Avant de commencer
@@ -176,6 +181,7 @@ Les informations d'identification de sécurité temporaires créées en supposan
 
 
 
+[[example-of-an-assumerole-s3-trust-policy]]
 === Exemple de politique de confiance S3 AssumeRole
 
 [listing]

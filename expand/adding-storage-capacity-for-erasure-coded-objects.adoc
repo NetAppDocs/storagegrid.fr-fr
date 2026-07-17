@@ -19,6 +19,7 @@ Le nombre de nœuds à ajouter dépend également de la totalité des nœuds exi
 
 
 
+[[general-recommendation-for-adding-storage-capacity-for-erasure-coded-objects]]
 == Recommandations générales pour l'ajout de capacité de stockage pour les objets avec code d'effacement
 
 Pour éviter les calculs détaillés, vous pouvez ajouter deux nœuds de stockage par site lorsque les nœuds de stockage existants atteignent 70 % de capacité.

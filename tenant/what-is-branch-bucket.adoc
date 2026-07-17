@@ -33,6 +33,7 @@ Notez les caractéristiques suivantes des compartiments de branche :
 
 
 
+[[examples-for-branch-bucket-usage]]
 == Exemples d'utilisation de compartiments de branchement
 
 * Vous pouvez utiliser un bucket de branche pour supprimer les objets corrompus en créant un bucket de branche à partir d'un moment antérieur à la corruption, puis en pointant les applications vers le bucket de branche au lieu du bucket de base qui contient les objets corrompus.
@@ -41,6 +42,7 @@ Notez les caractéristiques suivantes des compartiments de branche :
 
 
 
+[[operations-on-objects-in-branch-buckets]]
 == Opérations sur les objets dans les compartiments de branche
 
 * Une opération d’objet PUT sur un bucket de branche crée un objet dans la branche.

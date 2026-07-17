@@ -20,6 +20,7 @@ L'ingestion d'objets et d'autres activités liées aux objets peuvent dépasser 
 
 
 
+[[use-grid-manager-dashboard-tab]]
 == Utilisez l'onglet Tableau de bord de Grid Manager
 
 .Étapes
@@ -34,6 +35,7 @@ Des pics temporaires sont attendus dans la carte de la file d'attente ILM (objet
 
 
 
+[[use-the-nodes-page]]
 == Utiliser la page Nœuds
 
 .Étapes

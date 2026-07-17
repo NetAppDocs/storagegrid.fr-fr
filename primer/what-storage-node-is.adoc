@@ -17,6 +17,7 @@ Chaque site de votre système StorageGRID doit avoir au moins trois nœuds de st
 
 
 
+[[types-of-storage-nodes]]
 == Types de nœuds de stockage
 
 Pendant l'installation, vous pouvez sélectionner le type de nœud de stockage à installer. Ces types sont disponibles pour les nœuds de stockage logiciels et pour les nœuds de stockage basés sur l'appliance qui prennent en charge cette fonctionnalité :
@@ -34,12 +35,14 @@ Vous pouvez sélectionner le type de nœud de stockage dans les situations suiva
 
 
 
+[[data-and-metadata-storage-node-combined]]
 === Nœud de stockage des données et des métadonnées (combiné)
 
 Par défaut, tous les nouveaux nœuds de stockage stockent à la fois les données d'objet et les métadonnées. Ce type de noeud de stockage est appelé noeud de stockage _combiné_.
 
 
 
+[[metadata-only-storage-node]]
 === Nœud de stockage des métadonnées uniquement
 
 L'utilisation d'un nœud de stockage exclusivement pour les métadonnées peut être logique si votre grille stocke un très grand nombre de petits objets. L'installation d'une capacité de métadonnées dédiée assure un meilleur équilibre entre l'espace nécessaire pour un très grand nombre d'objets de petite taille et l'espace requis pour les métadonnées de ces objets. Par ailleurs, les nœuds de stockage de métadonnées uniquement hébergés sur des appliances haute performance peuvent améliorer les performances.
@@ -67,6 +70,7 @@ NOTE: Bien que les nœuds de stockage de métadonnées uniquement contiennent <<
 
 
 
+[[data-only-storage-node]]
 === Nœud de stockage des données uniquement
 
 Il est logique d'utiliser un nœud de stockage exclusivement pour les données si les performances de vos nœuds de stockage diffèrent. Par exemple, pour augmenter les performances, vous pouvez disposer de nœuds de stockage sur disque rotatif haute capacité uniquement en données et accompagnés de nœuds de stockage haute performance pour métadonnées uniquement.
@@ -77,6 +81,7 @@ Vous pouvez convertir un nœud de stockage qui ne contient pas le<<adc-service,S
 
 
 
+[[required-storage-nodes-per-grid-and-per-site]]
 == Nœuds de stockage requis par grille et par site
 
 Lors de la sélection des nœuds de stockage à utiliser dans votre topologie, gardez à l'esprit que la grille ou chaque site de la grille doit contenir les éléments suivants :
@@ -88,6 +93,7 @@ Lors de la sélection des nœuds de stockage à utiliser dans votre topologie, g
 
 
 
+[[primary-services-for-storage-nodes]]
 == Services primaires des nœuds de stockage
 
 Le tableau ci-dessous présente les services principaux pour les nœuds de stockage, mais ce tableau ne répertorie pas tous les services de nœuds.

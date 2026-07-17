@@ -17,6 +17,7 @@ Le système StorageGRID prend en charge les demandes de type hébergement virtue
 
 
 
+[[date-handling]]
 == Traitement de la date
 
 L'implémentation StorageGRID de l'API REST S3 ne prend en charge que les formats de date HTTP valides.
@@ -25,6 +26,7 @@ Le système StorageGRID prend uniquement en charge les formats de date HTTP vali
 
 
 
+[[common-request-headers]]
 == En-têtes de demande commune
 
 Le système StorageGRID prend en charge les en-têtes de requête communs définis par https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Référence de l'API Amazon simple Storage Service : en-têtes de demande communs"^], à une exception près.
@@ -47,6 +49,7 @@ Prise en charge de la signature AWS version 4, à l'exception des cas suivants :
 |===
 
 
+[[common-response-headers]]
 == En-têtes de réponse commune
 
 Le système StorageGRID prend en charge tous les en-têtes de réponse courants définis par l'API _simple Storage Service Reference_, à une exception près.

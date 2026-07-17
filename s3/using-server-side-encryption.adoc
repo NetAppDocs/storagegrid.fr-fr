@@ -32,6 +32,7 @@ NOTE: Si un objet est chiffré avec SSE ou SSE-C, tous les paramètres de chiffr
 
 
 
+[[use-sse]]
 == Utiliser SSE
 
 Pour chiffrer un objet avec une clé unique gérée par StorageGRID, utilisez l'en-tête de demande suivant :
@@ -47,6 +48,7 @@ L'en-tête de demande SSE est pris en charge par les opérations d'objet suivant
 
 
 
+[[use-sse-c]]
 == Utiliser SSE-C
 
 Pour crypter un objet avec une clé unique que vous gérez, vous utilisez trois en-têtes de requête :
@@ -89,6 +91,7 @@ Les en-têtes de demande SSE-C sont pris en charge par les opérations objet sui
 
 
 
+[[considerations-for-using-server-side-encryption-with-customer-provided-keys-sse-c]]
 == Considérations relatives au chiffrement côté serveur avec clés fournies par le client (SSE-C)
 
 Avant d'utiliser SSE-C, tenez compte des points suivants :

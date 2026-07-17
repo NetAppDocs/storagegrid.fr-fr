@@ -15,6 +15,7 @@ Le système StorageGRID prend en charge toutes les réponses d'erreur de l'API R
 
 
 
+[[supported-s3-api-error-codes]]
 == Codes d'erreur de l'API S3 pris en charge
 
 [cols="1a,1a"]
@@ -289,6 +290,7 @@ UserKeyMustBeSpecified
 |===
 
 
+[[storagegrid-custom-error-codes]]
 == Codes d'erreur personnalisés StorageGRID
 
 [cols="2a,2a,1a"]

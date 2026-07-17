@@ -23,6 +23,7 @@ Lorsque vous effectuez une mise à niveau vers StorageGRID 11.6 ou une version u
 
 
 
+[[understand-the-alert]]
 == Description de l'alerte
 
 Si vous utilisez des valeurs personnalisées pour les filigranes du volume de stockage, l'alerte *valeur de remplacement du filigrane en lecture seule faible* peut être déclenchée pour un ou plusieurs nœuds de stockage.
@@ -66,6 +67,7 @@ L'alerte *dépassement de seuil en lecture seule faible* est déclenchée pour l
 
 
 
+[[resolve-the-alert]]
 == Résolution de l'alerte
 
 Suivez ces étapes si une ou plusieurs alertes *prioritaire de filigrane en lecture seule basse* ont été déclenchées. Vous pouvez également utiliser ces instructions si vous utilisez actuellement des paramètres de filigrane personnalisés et souhaitez commencer à utiliser des paramètres optimisés, même si aucune alerte n'a été déclenchée.
@@ -81,6 +83,7 @@ Vous pouvez résoudre l'alerte *dépassement de filigrane en lecture seule* en m
 
 
 
+[[assess-object-data-usage-for-entire-grid]]
 === Évaluer l'utilisation des données d'objet pour l'ensemble de la grille
 
 .Étapes
@@ -100,6 +103,7 @@ image:nodes_page_object_data_used_with_alert.png["Page nœuds affichant les donn
 
 
 
+[[view-optimized-watermarksview-optimized-storage-watermarks]]
 === [[filigranes-optimisés-vue]]Afficher les filigranes de stockage optimisés
 
 StorageGRID utilise deux metrics Prometheus pour afficher les valeurs optimisées qu'il a calculées pour le seuil en lecture seule souple du volume de stockage. Vous pouvez afficher les valeurs minimale et maximale optimisées pour chaque nœud de stockage de la grille.
@@ -126,6 +130,7 @@ La dernière colonne affiche la valeur maximale optimisée du filigrane en lectu
 
 
 
+[[determine-optimized-watermarksdetermine-if-you-can-use-optimized-watermarks]]
 === [[Déterminez-filigranes-optimisés]]Déterminez si vous pouvez utiliser des filigranes optimisés
 
 .Étapes
@@ -150,6 +155,7 @@ NOTE: Les mêmes valeurs de filigrane personnalisées sont appliquées à chaque
 
 
 
+[[use-optimized-watermarksuse-optimized-watermarks]]
 === [[utiliser-filigranes-optimisés]]utiliser des filigranes optimisés
 
 .Étapes

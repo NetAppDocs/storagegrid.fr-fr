@@ -22,6 +22,7 @@ Le moyen le plus efficace d'empêcher le redémarrage de tous les services est d
 
 
 
+[[add-donotstart-file-for-service]]
 == Ajouter le fichier DoNotStart pour le service
 
 Vous pouvez empêcher le démarrage d'un service individuel en ajoutant un fichier DoNotStart au répertoire de ce service sur un nœud de grille.
@@ -61,6 +62,7 @@ Lorsque Server Manager ou le nœud de la grille est redémarré, Server Manager 
 
 
 
+[[remove-donotstart-file-for-service]]
 == Supprimez le fichier DoNotStart pour le service
 
 Lorsque vous supprimez un fichier DoNotStart qui empêche le démarrage d'un service, vous devez démarrer ce service.

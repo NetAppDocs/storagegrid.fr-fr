@@ -22,6 +22,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[how-changing-an-ilm-policy-affects-performance]]
 == Impact de la modification d'une règle ILM sur les performances
 
 Lorsque vous activez une nouvelle règle ILM, les performances de votre système StorageGRID peuvent être temporairement affectées, en particulier si les instructions de placement dans la nouvelle règle requièrent le déplacement d'un grand nombre d'objets existants vers de nouveaux emplacements.
@@ -43,6 +44,7 @@ NOTE: StorageGRID considère chaque profil de code d'effacement comme unique et 
 
 
 
+[[active-ilm-policy-for-example-6-data-protection-at-two-sites]]
 == Règle ILM active, par exemple 6 : protection des données sur deux sites
 
 Dans cet exemple, la politique ILM active a été initialement conçue pour un système StorageGRID à deux sites et utilise deux règles ILM.
@@ -53,6 +55,7 @@ Dans cette politique ILM, les objets appartenant au locataire A sont protégés 
 
 
 
+[[rule-1-one-site-erasure-coding-for-tenant-a]]
 === Règle 1 : code d'effacement sur un site pour le locataire A
 
 [cols="1a,2a"]
@@ -89,6 +92,7 @@ Code d'effacement 2+1 sur le site 1, du jour 0 à l'infini
 |===
 
 
+[[rule-2-two-site-replication-for-other-tenants]]
 === Règle 2 : réplication sur deux sites pour d'autres locataires
 
 [cols="1a,2a"]
@@ -125,6 +129,7 @@ Deux copies répliquées du jour 0 au jour toujours : une copie sur le site 1 et
 |===
 
 
+[[ilm-policy-for-example-6-data-protection-at-three-sites]]
 == Règle ILM, exemple 6 : protection des données sur trois sites
 
 Dans cet exemple, la politique ILM est remplacée par une nouvelle règle pour un système StorageGRID à trois sites.
@@ -135,6 +140,7 @@ Lors de l'activation de cette nouvelle politique ILM, les objets appartenant au 
 
 
 
+[[rule-1-three-site-erasure-coding-for-tenant-a]]
 === Règle 1 : code d'effacement à trois sites pour le locataire A
 
 [cols="1a,2a"]
@@ -171,6 +177,7 @@ Code d'effacement 2+1 sur les 3 sites, du jour 0 à l'infini
 |===
 
 
+[[rule-2-three-site-replication-for-other-tenants]]
 === Règle 2 : réplication sur trois sites pour d'autres locataires
 
 [cols="1a,2a"]
@@ -207,6 +214,7 @@ Trois copies répliquées du jour 0 au jour toujours : une copie sur le site 1, 
 |===
 
 
+[[activating-the-ilm-policy-for-example-6]]
 == Activation de la stratégie ILM, par exemple 6
 
 Lorsque vous activez une nouvelle règle ILM, les objets existants peuvent être déplacés vers de nouveaux emplacements ou de nouvelles copies d'objets peuvent être créées pour des objets existants, en fonction des instructions de placement dans les règles nouvelles ou mises à jour.
@@ -219,6 +227,7 @@ CAUTION: Lorsque vous activez une nouvelle règle ILM, StorageGRID l'utilise pou
 
 
 
+[[what-happens-when-erasure-coding-instructions-change]]
 === Que se passe-t-il en cas de modification des instructions de code d'effacement
 
 Dans cet exemple de règle ILM active, les objets appartenant au locataire A sont protégés par un code d'effacement 2+1 sur le site 1. Dans la nouvelle politique ILM, les objets appartenant au locataire A seront protégés par un code d'effacement 2+1 sur les sites 1, 2 et 3.
@@ -235,6 +244,7 @@ NOTE: Les fragments 2+1 existants au site 1 ne sont pas réutilisés. StorageGRI
 
 
 
+[[what-happens-when-replication-instructions-change]]
 === Ce qui se passe lorsque les instructions de réplication changent
 
 Dans cet exemple de règle ILM active, les objets appartenant à d'autres locataires sont protégés par deux copies répliquées dans les pools de stockage des sites 1 et 2. Dans la nouvelle règle ILM, les objets appartenant à d'autres locataires seront protégés par trois copies répliquées dans les pools de stockage des sites 1, 2 et 3.
@@ -247,6 +257,7 @@ Lorsque la nouvelle règle ILM est activée, les opérations ILM suivantes se pr
 
 
 
+[[performance-impact-of-activating-this-policy]]
 === Impact sur les performances de l'activation de cette stratégie
 
 Lorsque la politique ILM de cet exemple est activée, les performances globales de ce système StorageGRID seront temporairement affectées. Des niveaux de ressources de grid supérieurs à la normale seront nécessaires pour créer de nouveaux fragments avec code d'effacement pour les objets existants du locataire A et pour les nouvelles copies répliquées sur le site 3 pour les objets existants des autres locataires.

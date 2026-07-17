@@ -20,6 +20,7 @@ Vous pouvez surveiller des informations de base sur tous link:../admin/grid-fede
 
 
 
+[[view-all-connections]]
 == Afficher toutes les connexions
 
 La page Grid federation affiche des informations de base sur toutes les connexions de fédération de grille et sur tous les comptes de locataire autorisés à utiliser les connexions de fédération de grille.
@@ -59,6 +60,7 @@ image:grid-federation-permitted-tenants-tab.png["Onglet Grid federation permis t
 
 
 
+[[view-specific-connectionview-a-specific-connection]]
 == [[View-specific-connection]]permet d'afficher une connexion spécifique
 
 Vous pouvez afficher les détails d'une connexion de fédération de grille spécifique.
@@ -102,6 +104,7 @@ image:grid-federation-certificates-tab.png["onglet-certificats-fédération-grid
 
 
 
+[[review-cross-grid-replication-metrics]]
 == Examinez les metrics de réplication entre les grilles
 
 Vous pouvez utiliser le tableau de bord de réplication Cross-Grid de Grafana pour afficher les metrics Prometheus sur les opérations de réplication cross-grid sur votre grille.

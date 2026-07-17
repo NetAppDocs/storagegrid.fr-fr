@@ -17,6 +17,7 @@ La récupération de nœud est terminée si vous n'avez pas besoin d'effectuer d
 
 
 
+[[corrective-actions-and-next-steps]]
 == Actions correctives et étapes suivantes
 
 Lors du remplacement d'un nœud, vous devrez peut-être effectuer l'une des actions correctives suivantes :

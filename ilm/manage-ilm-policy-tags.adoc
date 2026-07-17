@@ -20,6 +20,7 @@ Vous pouvez afficher les détails des balises de règles ILM, modifier une balis
 
 
 
+[[view-ilm-policy-tag-details]]
 == Afficher le détail des balises de règles ILM
 
 Pour afficher les détails d'une étiquette :
@@ -32,6 +33,7 @@ Pour afficher les détails d'une étiquette :
 
 
 
+[[edit-ilm-policy-tag]]
 == Modifiez la balise de règle ILM
 
 
@@ -50,6 +52,7 @@ Vous pouvez également sélectionner le nom de la balise. La page de détails de
 
 
 
+[[remove-ilm-policy-tag]]
 == Suppression de la balise de règle ILM
 
 Lorsque vous supprimez une balise de règle, la règle par défaut s'applique à tous les compartiments affectés à cette balise.

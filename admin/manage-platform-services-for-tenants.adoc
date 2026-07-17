@@ -19,6 +19,7 @@ Les services de plateforme ne sont pas pris en charge pourlink:../tenant/what-is
 
 
 
+[[cloudmirror-replication]]
 == Réplication CloudMirror
 
 Le service de réplication StorageGRID CloudMirror est utilisé pour mettre en miroir des objets spécifiques d'un compartiment StorageGRID vers une destination externe spécifiée.
@@ -32,6 +33,7 @@ NOTE: La réplication CloudMirror n'est pas prise en charge si le verrouillage d
 
 
 
+[[notifications]]
 == Notifications
 
 Les notifications d'événements par compartiment sont utilisées pour envoyer des notifications sur des actions spécifiques effectuées sur des objets à un cluster Kafka externe spécifié, à un point de terminaison webhook ou à Amazon Simple Notification Service.
@@ -43,6 +45,7 @@ NOTE: Bien que la notification d'événement puisse être configurée sur un com
 
 
 
+[[search-integration-service]]
 == Service d'intégration de la recherche
 
 Le service d'intégration de la recherche permet d'envoyer des métadonnées d'objet S3 à un index Elasticsearch spécifié pour une recherche ou une analyse des métadonnées à l'aide du service externe.
@@ -56,6 +59,7 @@ Les services de plateforme permettent aux locataires d'utiliser des ressources d
 
 
 
+[[recommendations-for-using-platform-services]]
 == Recommandations relatives à l'utilisation des services de plate-forme
 
 Avant d'utiliser les services de plate-forme, tenez compte des recommandations suivantes :

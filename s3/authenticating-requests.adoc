@@ -21,12 +21,14 @@ Le système StorageGRID prend en charge deux méthodes d'authentification : l'en
 
 
 
+[[use-the-http-authorization-header]]
 == Utilisez l'en-tête HTTP Authorization
 
 L'en-tête HTTP `Authorization` est utilisé par toutes les opérations de l'API S3, à l'exception des requêtes anonymes lorsque cela est autorisé par la stratégie de compartiment. L' `Authorization`en-tête contient toutes les informations de signature requises pour authentifier une demande.
 
 
 
+[[use-query-parameters]]
 == Utiliser les paramètres de requête
 
 Vous pouvez utiliser les paramètres de requête pour ajouter des informations d'authentification à une URL. Il s'agit de la présignature de l'URL, qui peut être utilisée pour accorder un accès temporaire à des ressources spécifiques. Les utilisateurs avec l'URL présignée n'ont pas besoin de connaître la clé d'accès secrète pour accéder à la ressource, ce qui vous permet de fournir un accès limité tiers à une ressource.

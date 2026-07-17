@@ -15,6 +15,7 @@ Vous pouvez utiliser la requête S3 HeadObject pour extraire des métadonnées d
 
 
 
+[[headobject-and-multipart-objects]]
 == Objets en-tête et objets multipièces
 
 Vous pouvez utiliser `partNumber` le paramètre request pour extraire des métadonnées pour une partie spécifique d'un objet multipièce ou segmenté. L' `x-amz-mp-parts-count`élément de réponse indique le nombre de parties de l'objet.
@@ -23,12 +24,14 @@ Vous pouvez définir `partNumber` la valeur 1 pour les objets segmentés/multipi
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == Caractères UTF-8 dans les métadonnées utilisateur
 
 StorageGRID n'analyse ni n'interprète pas les caractères UTF-8 qui se sont échappés dans les métadonnées définies par l'utilisateur. Les demandes HEAD pour un objet avec des caractères UTF-8 échappés dans les métadonnées définies par l'utilisateur ne renvoient pas l' `x-amz-missing-meta`en-tête si le nom ou la valeur de la clé contient des caractères non imprimables.
 
 
 
+[[supported-request-header]]
 == En-tête de demande pris en charge
 
 L'en-tête de demande suivant est pris en charge :
@@ -41,6 +44,7 @@ Le `partNumber` paramètre et l' `Range`en-tête ne sont pas pris en charge avec
 
 
 
+[[unsupported-request-header]]
 == En-tête de demande non pris en charge
 
 L'en-tête de requête suivant n'est pas pris en charge et renvoie `XNotImplemented`:
@@ -50,12 +54,14 @@ L'en-tête de requête suivant n'est pas pris en charge et renvoie `XNotImplemen
 
 
 
+[[versioning]]
 == Gestion des versions
 
 Si aucune `versionId` sous-ressource n'est spécifiée, l'opération extrait la version la plus récente de l'objet dans un compartiment versionné. Si la version actuelle de l'objet est un marqueur de suppression, l'état « introuvable » est renvoyé avec l' `x-amz-delete-marker`en-tête de réponse défini sur `true`.
 
 
 
+[[request-headers-for-server-side-encryption-with-customer-provided-encryption-keys-sse-c]]
 == En-têtes de demande pour chiffrement côté serveur avec clés de chiffrement fournies par le client (SSE-C)
 
 Utilisez les trois en-têtes si l'objet est chiffré avec une clé unique que vous avez fournie.
@@ -70,6 +76,7 @@ CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. 
 
 
 
+[[headobject-responses-for-cloud-storage-pool-objects]]
 == HeadObject Responses for Cloud Storage Pool objects
 
 Si l'objet est stocké dans un link:../ilm/what-cloud-storage-pool-is.html["Pool de stockage cloud"], les en-têtes de réponse suivants sont renvoyés :
@@ -154,12 +161,14 @@ Le `expiry-date` indique quand l'objet du pool de stockage cloud sera renvoyé �
 |===
 
 
+[[multipart-or-segmented-objects-in-cloud-storage-pool]]
 === Objets partitionnés ou segmentés dans Cloud Storage Pool
 
 Si vous avez téléchargé un objet partitionné ou si StorageGRID le divise en segments, StorageGRID détermine si l'objet est disponible dans le pool de stockage cloud en échantillonant un sous-ensemble de parties ou de segments de l'objet. Dans certains cas, une requête HeadObject peut être renvoyée de manière incorrecte `x-amz-restore: ongoing-request="false"` lorsque certaines parties de l'objet ont déjà été transférées à un état non récupérable ou lorsque certaines parties de l'objet n'ont pas encore été restaurées.
 
 
 
+[[headobject-and-cross-grid-replication]]
 == HeadObject et réplication inter-grid
 
 Si vous utilisez link:../admin/grid-federation-overview.html["fédération des grilles"] et link:../tenant/grid-federation-manage-cross-grid-replication.html["réplication entre plusieurs grilles"] est activé pour un compartiment, le client S3 peut vérifier l'état de réplication d'un objet en émettant une requête HeadObject. La réponse inclut l'en-tête de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status`, qui aura l'une des valeurs suivantes :

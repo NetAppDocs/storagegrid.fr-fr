@@ -15,6 +15,7 @@ Les règles de gestion du cycle de vie des informations (ILM) indiquent à Stora
 
 
 
+[[about-these-instructions]]
 == À propos de ces instructions
 
 La conception et l'implémentation de règles et de règles ILM nécessitent une planification rigoureuse. Vous devez connaître vos exigences opérationnelles, la topologie de votre système StorageGRID, vos besoins en matière de protection des objets et les types de stockage disponibles. Ensuite, vous devez déterminer comment vous voulez que différents types d'objets soient copiés, distribués et stockés.
@@ -29,6 +30,7 @@ Suivez ces instructions pour :
 
 
 
+[[learn-more]]
 == En savoir plus >>
 
 Pour en savoir plus, consultez ces vidéos :

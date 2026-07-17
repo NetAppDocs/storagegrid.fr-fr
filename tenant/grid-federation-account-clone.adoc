@@ -19,6 +19,7 @@ Le clonage des informations de compte de locataire est requis pour les link:../a
 
 
 
+[[tenant-workflow-for-account-clone]]
 == Workflow des locataires pour le clone de compte
 
 Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, consultez le diagramme de flux de travail pour voir les étapes à suivre pour cloner des groupes, des utilisateurs et des clés d'accès S3.
@@ -57,12 +58,14 @@ Si vous avez besoin d'accéder à des compartiments avec les mêmes clés d'acc�
 
 
 
+[[how-are-groups-users-and-s3-access-keys-cloned]]
 == Comment les groupes, les utilisateurs et les clés d'accès S3 sont-ils clonés ?
 
 Dans cette section, vous apprendrez comment les groupes, les utilisateurs et les clés d'accès S3 sont clonés entre la grille source des locataires et la grille de destination des locataires.
 
 
 
+[[local-groups-created-on-source-grid-are-cloned]]
 === Les groupes locaux créés dans la grille source sont clonés
 
 Une fois qu'un compte de locataire est créé et répliqué sur la grille de destination, StorageGRID clone automatiquement tous les groupes locaux que vous ajoutez à la grille source du locataire dans la grille de destination du locataire.
@@ -76,6 +79,7 @@ NOTE: Tous les utilisateurs sélectionnés lors de la création d'un groupe loca
 
 
 
+[[local-users-created-on-source-grid-are-cloned]]
 === Les utilisateurs locaux créés dans la grille source sont clonés
 
 Lorsque vous créez un nouvel utilisateur local sur la grille source, StorageGRID clone automatiquement cet utilisateur sur la grille de destination.  L'utilisateur d'origine et son clone ont le même nom complet, le même nom d'utilisateur et le même paramètre *Refuser l'accès*.  Les deux utilisateurs appartiennent également aux mêmes groupes. Pour les instructions, voirlink:manage-users.html["Gérer les utilisateurs"] .
@@ -86,6 +90,7 @@ image:grid-federation-local-user-clone.png["image montrant que les utilisateurs 
 
 
 
+[[federated-groups-created-on-source-grid-are-cloned]]
 === Les groupes fédérés créés dans la grille source sont clonés
 
 En supposant que les conditions d'utilisation du clone de compte link:../admin/grid-federation-what-is-account-clone.html#account-clone-sso["authentification unique"] link:../admin/grid-federation-what-is-account-clone.html#account-clone-identity-federation["fédération des identités"]soient remplies, les groupes fédérés que vous créez (importez) pour le locataire sur la grille source sont automatiquement clonés dans le locataire de la grille de destination.
@@ -98,6 +103,7 @@ image:grid-federation-federated-group-clone.png["image montrant que les groupes 
 
 
 
+[[s3-access-keys-can-be-manually-cloned]]
 === Les clés d'accès S3 peuvent être clonées manuellement
 
 StorageGRID ne clone pas automatiquement les clés d'accès S3, car la sécurité est améliorée grâce à l'utilisation de clés différentes sur chaque grid.
@@ -115,6 +121,7 @@ NOTE: Lorsque vous clonez les clés d'accès S3 d'un utilisateur fédéré, ces 
 
 
 
+[[groups-and-users-added-to-destination-grid-arent-cloned]]
 === Les groupes et utilisateurs ajoutés à la grille de destination ne sont pas clonés
 
 Le clonage s'effectue uniquement depuis la grille source du locataire vers la grille de destination du locataire. Si vous créez ou importez des groupes et des utilisateurs sur la grille de destination du locataire, StorageGRID ne les clonez pas dans la grille source du locataire.
@@ -123,6 +130,7 @@ image:grid-federation-account-not-cloned.png["image montrant que les détails de
 
 
 
+[[edited-or-deleted-groups-users-and-access-keys-arent-cloned]]
 === Les groupes, utilisateurs et clés d'accès modifiés ou supprimés ne sont pas clonés
 
 Le clonage a lieu uniquement lorsque vous créez de nouveaux groupes et utilisateurs.

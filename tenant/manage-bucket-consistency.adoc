@@ -20,12 +20,14 @@ Les valeurs de cohérence peuvent être utilisées pour spécifier la disponibil
 
 
 
+[[bucket-consistency-guidelines]]
 == Instructions de cohérence des compartiments
 
 La cohérence des compartiments détermine la cohérence des applications client qui affectent les objets au sein de ce compartiment S3. En général, vous devez utiliser la cohérence *Read-After-New-write* pour vos compartiments.
 
 
 
+[[change-bucket-consistencychange-bucket-consistency]]
 == [[change-bucket-consistance]]modifiez la cohérence des compartiments
 
 Si la cohérence *Read-After-New-write* ne répond pas aux exigences de l'application client, vous pouvez modifier la cohérence en définissant la cohérence du compartiment ou en utilisant l' `Consistency-Control`en-tête. L' `Consistency-Control`en-tête remplace la cohérence du godet.
@@ -54,6 +56,7 @@ La page des détails du compartiment s'affiche.
 
 
 
+[[what-happens-when-you-change-bucket-settings]]
 == Que se passe-t-il lorsque vous modifiez les paramètres de compartiment
 
 Les compartiments ont plusieurs paramètres qui affectent le comportement des compartiments et des objets dans ces compartiments.

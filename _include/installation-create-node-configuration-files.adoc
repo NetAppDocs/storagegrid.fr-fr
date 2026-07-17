@@ -4,6 +4,7 @@
 
 
 
+[[location-for-node-configuration-files]]
 == Emplacement des fichiers de configuration de nœud
 
 Placez le fichier de configuration de chaque nœud StorageGRID dans le `/etc/storagegrid/nodes` répertoire de l'hôte sur lequel le nœud sera exécuté. Par exemple, si vous prévoyez d'exécuter un nœud d'administration, un nœud de passerelle et un nœud de stockage sur HostA, vous devez placer trois fichiers de configuration de nœud dans `/etc/storagegrid/nodes` sur HostA.
@@ -12,6 +13,7 @@ Vous pouvez créer les fichiers de configuration directement sur chaque hôte à
 
 
 
+[[naming-of-node-configuration-files]]
 == Dénomination des fichiers de configuration des nœuds
 
 Les noms des fichiers de configuration sont importants. Le format est `node-name.conf`, où `node-name` est un nom que vous attribuez au nœud. Ce nom apparaît dans le programme d'installation StorageGRID et sert aux opérations de maintenance de nœud, telles que la migration de nœud.
@@ -36,6 +38,7 @@ Par exemple, vous pouvez utiliser `dc1-adm1.conf` pour le premier nœud d'admini
 
 
 
+[[contents-of-a-node-configuration-file]]
 == Contenu d'un fichier de configuration de nœud
 
 Un fichier de configuration contient des paires clé/valeur, avec une clé et une valeur par ligne. Pour chaque paire clé/valeur, suivez les règles suivantes :
@@ -55,6 +58,7 @@ Le tableau suivant définit les valeurs de toutes les clés prises en charge. Ch
 
 
 
+[[admin-network-keys]]
 === Admin clés réseau
 
 
@@ -303,6 +307,7 @@ Facultatif autrement.
 |===
 
 
+[[block-device-keys]]
 === Bloquer les clés de périphérique
 
 
@@ -439,6 +444,7 @@ Obligatoire
 |===
 
 
+[[client-network-keys]]
 === Clés réseau du client
 
 
@@ -642,6 +648,7 @@ Et des meilleures pratiques
 |===
 
 
+[[grid-network-keys]]
 === Touches réseau de la grille
 
 
@@ -833,6 +840,7 @@ Et des meilleures pratiques
 |===
 
 
+[[installation-password-key-temporary]]
 === Clé de mot de passe d'installation (temporaire)
 
 
@@ -862,6 +870,7 @@ Et des meilleures pratiques
 |===
 
 
+[[interfaces-key]]
 === Clé d'interface
 
 
@@ -889,6 +898,7 @@ Facultatif
 |===
 
 
+[[maximum-ram-key]]
 === Clé RAM maximale
 
 
@@ -920,6 +930,7 @@ Facultatif
 |===
 
 
+[[node-type-keys]]
 === Clés de type de nœud
 
 
@@ -967,6 +978,7 @@ Facultatif
 |===
 
 
+[[port-remap-keys]]
 === Touches de remap de port
 
 

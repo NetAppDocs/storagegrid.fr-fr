@@ -15,6 +15,7 @@ L'équilibrage des charges vous permet de gérer les workloads d'ingestion et de
 
 
 
+[[what-is-load-balancing]]
 == Qu'est-ce que l'équilibrage de la charge ?
 
 Lorsqu'une application client enregistre ou récupère les données d'un système StorageGRID, StorageGRID utilise un équilibreur de charge pour gérer la charge de travail d'ingestion et de récupération. L'équilibrage de la charge optimise la vitesse et la capacité de connexion en répartissant la charge de travail sur plusieurs nœuds de stockage.
@@ -28,12 +29,14 @@ NOTE: Bien que le service StorageGRID Load Balancer soit le mécanisme d'équili
 
 
 
+[[how-many-load-balancing-nodes-do-i-need]]
 == De combien de nœuds d'équilibrage de charge ai-je besoin ?
 
 Dans le cadre des meilleures pratiques générales, chaque site de votre système StorageGRID doit inclure au moins deux nœuds avec le service Load Balancer. Par exemple, un site peut inclure deux nœuds de passerelle ou un nœud d'administration et un nœud de passerelle. Assurez-vous qu'il existe une infrastructure réseau, matérielle ou de virtualisation adéquate pour chaque nœud d'équilibrage de charge, que vous utilisiez des appliances de services, des nœuds bare Metal ou des nœuds basés sur des machines virtuelles.
 
 
 
+[[what-is-a-load-balancer-endpoint]]
 == Qu'est-ce qu'un terminal d'équilibrage de charge ?
 
 Un noeud final d'équilibrage de charge définit le port et le protocole réseau (HTTPS ou HTTP) utilisés par les demandes d'applications clientes entrantes et sortantes pour accéder aux noeuds qui contiennent le service d'équilibrage de charge. Le noeud final définit également le type de client (S3), le mode de liaison et éventuellement une liste de locataires autorisés ou bloqués.
@@ -47,6 +50,7 @@ Pour créer un point de terminaison d'équilibrage de charge, utilisez le gestio
 
 
 
+[[considerations-for-load-balancer-caching]]
 === Considérations relatives à la mise en cache de l'équilibreur de charge
 
 La mise en cache améliore considérablement les performances lorsqu'une charge de travail fonctionne sur un sous-ensemble de données et accède aux objets plusieurs fois.  De plus, la mise en cache fournit un accès à distance au stockage d’objets sans déploiement de grille complet.  La mise en cache de l'équilibreur de charge est disponible uniquement pour les nœuds de passerelle.
@@ -123,6 +127,7 @@ Toutes les demandes qui ne sont pas mises en cache sont transmises à un LDR en 
 
 
 
+[[considerations-for-the-port]]
 === Considérations relatives au port
 
 Par défaut, le port d'un noeud final d'équilibrage de charge est 10433 pour le premier noeud final que vous créez, mais vous pouvez spécifier tout port externe inutilisé compris entre 1 et 65535. Si vous utilisez le port 80 ou 443, le noeud final utilisera le service Load Balancer sur les noeuds passerelle uniquement. Ces ports sont réservés sur des nœuds d'administration. Si vous utilisez le même port pour plusieurs noeuds finaux, vous devez spécifier un mode de liaison différent pour chaque noeud final.
@@ -131,12 +136,14 @@ Les ports utilisés par d'autres services de grille ne sont pas autorisés. Voir
 
 
 
+[[considerations-for-the-network-protocol]]
 === Considérations relatives au protocole réseau
 
 Dans la plupart des cas, les connexions entre les applications clientes et StorageGRID doivent utiliser le chiffrement TLS (transport Layer Security). La connexion à StorageGRID sans chiffrement TLS est prise en charge, mais elle n'est pas recommandée, en particulier dans les environnements de production. Lorsque vous sélectionnez le protocole réseau pour le noeud final de l'équilibreur de charge StorageGRID, vous devez sélectionner *HTTPS*.
 
 
 
+[[considerations-for-load-balancer-endpoint-certificates]]
 === Considérations relatives aux certificats de terminaux d'équilibrage de charge
 
 Si vous sélectionnez *HTTPS* comme protocole réseau pour le noeud final de l'équilibreur de charge, vous devez fournir un certificat de sécurité. Lorsque vous créez le terminal de l'équilibreur de charge, vous pouvez utiliser l'une de ces trois options :
@@ -197,6 +204,7 @@ Pour éviter les problèmes d'expiration des certificats, suivez les bonnes prat
 
 
 
+[[considerations-for-the-binding-mode]]
 === Considérations relatives au mode de liaison
 
 Le mode de liaison vous permet de contrôler les adresses IP qui peuvent être utilisées pour accéder à un noeud final de l'équilibreur de charge. Si un noeud final utilise un mode de liaison, les applications clientes peuvent uniquement accéder au noeud final si elles utilisent une adresse IP autorisée ou son nom de domaine complet (FQDN) correspondant. Les applications clientes utilisant une autre adresse IP ou un autre nom de domaine complet ne peuvent pas accéder au point final.
@@ -211,6 +219,7 @@ Vous pouvez spécifier l'un des modes de reliure suivants :
 
 
 
+[[considerations-for-tenant-access]]
 === Considérations relatives à l'accès des locataires
 
 L'accès aux locataires est une fonction de sécurité facultative qui vous permet de contrôler quels comptes de locataires StorageGRID peuvent utiliser un terminal d'équilibrage des charges pour accéder à leurs compartiments. Vous pouvez autoriser tous les locataires à accéder à un noeud final (par défaut), ou vous pouvez spécifier une liste des locataires autorisés ou bloqués pour chaque noeud final.
@@ -239,6 +248,7 @@ Pour accéder au `top-secret.pdf`, un utilisateur du locataire *Top secret* peut
 
 
 
+[[cpu-availability]]
 == Disponibilité du processeur
 
 Le service Load Balancer sur chaque nœud d'administration et de passerelle fonctionne de manière indépendante lors du transfert du trafic S3 vers les nœuds de stockage. Par le biais d'un processus de pondération, le service Load Balancer achemine davantage de requêtes vers des nœuds de stockage avec une disponibilité de processeur supérieure. Les informations de charge de l'UC du nœud sont mises à jour toutes les quelques minutes, mais la pondération peut être mise à jour plus fréquemment. Tous les nœuds de stockage se voient attribuer une valeur de poids de base minimale, même si un nœud indique une utilisation de 100 % ou ne parvient pas à signaler son utilisation.

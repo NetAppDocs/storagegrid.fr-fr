@@ -9,12 +9,14 @@ CAUTION: Pour les sources d’identité qui ne sont pas Active Directory ou Micr
 
 
 
+[[memberof-and-refint-overlays]]
 === Recouvrements de memberOf et de raffint
 
 Les recouvrements de membre et de raffinage doivent être activés. Pour plus d'informations, reportez-vous aux instructions relatives à la maintenance des membres de groupe inversé dans le http://www.openldap.org/doc/admin24/index.html["Documentation OpenLDAP : version 2.4 - Guide de l'administrateur"^].
 
 
 
+[[indexing]]
 === Indexation
 
 Vous devez configurer les attributs OpenLDAP suivants avec les mots-clés d'index spécifiés :

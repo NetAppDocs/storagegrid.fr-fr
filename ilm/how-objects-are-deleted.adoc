@@ -66,6 +66,7 @@ Lorsque les clients S3 font des demandes de suppression, StorageGRID commence pa
 
 
 
+[[time-required-to-delete-objects]]
 == Temps nécessaire à la suppression des objets
 
 La façon dont StorageGRID supprime des objets peut avoir un impact sur le fonctionnement du système :
@@ -84,6 +85,8 @@ Le temps nécessaire pour libérer de l'espace après la suppression d'un objet 
 
 
 
+[[how-s3-versioned-objects-are-deleted]]
+[[delete-s3-versioned-objects]]
 == Suppression d'objets avec version S3
 
 Lorsque le contrôle de version est activé pour un compartiment S3, StorageGRID suit un comportement Amazon S3 pour répondre aux demandes de suppression, qu'elles proviennent d'un client S3, de l'expiration d'un cycle de vie d'un compartiment S3 ou des exigences de la règle ILM.

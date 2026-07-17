@@ -25,6 +25,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[ilm-rule-1-for-example-5-strict-ingest-to-guarantee-paris-data-center]]
 == La règle ILM 1, par exemple 5 : une ingestion stricte pour la garantie du data Center Paris
 
 Cet exemple de règle ILM utilise un comportement d'ingestion strict afin de garantir que les objets enregistrés par un locataire Paris dans des compartiments S3 avec la région UE-West-3 (Paris) ne sont jamais stockés dans le data Center des États-Unis.
@@ -88,6 +89,7 @@ image:ilm_rule_1_example_5_strict_ingest.png["Règle ILM 1 exemple 5 ingestion s
 
 
 
+[[ilm-rule-2-for-example-5-balanced-ingest-for-other-objects]]
 == La règle ILM 2, par exemple 5, « ingestion équilibrée » pour d'autres objets
 
 Cet exemple de règle ILM utilise le comportement d'ingestion équilibré pour offrir une efficacité ILM optimale pour tous les objets qui ne sont pas mis en correspondance avec la première règle. Deux copies de tous les objets correspondant à cette règle seront stockées : une dans le data Center des États-Unis et une dans le data Center de Paris. Si la règle ne peut pas être satisfaite immédiatement, les copies provisoires sont stockées à n'importe quel emplacement disponible.
@@ -149,6 +151,7 @@ Comportement d'ingestion
 |===
 
 
+[[ilm-policy-for-example-5-combining-ingest-behaviors]]
 == Règle ILM, par exemple 5 : combinaison de comportements d'ingestion
 
 L'exemple de règle ILM comprend deux règles ayant des comportements d'entrée différents.

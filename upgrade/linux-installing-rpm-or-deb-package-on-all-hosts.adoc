@@ -15,6 +15,7 @@ Si des nœuds StorageGRID sont déployés sur des hôtes Linux, téléchargez et
 
 
 
+[[download-upgrade-linux-and-hotfix-files]]
 == Téléchargez les fichiers de mise à niveau, Linux et de correctif
 
 Lorsque vous effectuez une mise à niveau StorageGRID à partir du Gestionnaire de grille, vous êtes invité à télécharger l'archive de mise à niveau et tout correctif requis dans la première étape. Cependant, si vous devez télécharger des fichiers pour mettre à niveau les hôtes Linux, vous pouvez gagner du temps en téléchargeant à l'avance tous les fichiers requis.
@@ -67,6 +68,7 @@ Vous serez invité à télécharger le fichier de correctif sur la page mise à 
 
 
 
+[[install-archive-on-all-linux-hosts]]
 == Installez l'archive sur tous les hôtes Linux
 
 Procédez comme suit avant de mettre à niveau le logiciel StorageGRID.
@@ -84,6 +86,7 @@ Les nouveaux packages sont installés en tant que modules supplémentaires.
 
 
 
+[[remove-installation-archives-for-previous-versions]]
 == Supprimer les archives d'installation des versions précédentes
 
 Pour libérer de l'espace sur les hôtes Linux, vous pouvez supprimer les archives d'installation des versions précédentes de StorageGRID dont vous n'avez plus besoin.

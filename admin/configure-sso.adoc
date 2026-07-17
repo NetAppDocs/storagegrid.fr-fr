@@ -60,6 +60,7 @@ Le mode Sandbox facilite l’exécution de cette configuration aller-retour et p
 
 
 
+[[access-the-wizard]]
 == Accéder à l'assistant
 
 .Étapes
@@ -73,6 +74,7 @@ NOTE: Si le bouton Configurer les paramètres SSO est désactivé, confirmez que
 
 
 
+[[provide-identity-provider-details]]
 == Fournir les détails du fournisseur d'identité
 
 .Étapes
@@ -101,6 +103,7 @@ CAUTION: Si vous modifiez le certificat de l'autorité de certification, testez 
 
 
 
+[[enter-sandbox-modeprovide-relying-party-identifier]]
 == [[enter-sandbox-mode]]Fournir l'identifiant de la partie de confiance
 
 . Remplissez les champs de la page Fournir l’identifiant de la partie de confiance en fonction du type SSO que vous avez sélectionné.
@@ -171,6 +174,7 @@ https://<Federation Service Name>:<port>/pf/federation_metadata.ping?PartnerSpId
 
 
 
+[[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
 == Configurez les approbations des parties utilisatrices, les applications d'entreprise ou les connexions SP
 
 Après avoir enregistré la configuration et être entré en mode sandbox, vous pouvez terminer et tester la configuration pour le type SSO que vous avez sélectionné.
@@ -231,6 +235,7 @@ Vous devez créer une connexion SP pour chaque nœud d'administration affiché d
 ====
 
 
+[[test-ssotest-configuration]]
 == [[test-sso]]Configuration de test
 
 Avant d’appliquer l’utilisation de l’authentification unique pour l’ensemble de votre système StorageGRID , vérifiez que l’authentification unique et la déconnexion unique sont correctement configurées pour chaque nœud d’administration.
@@ -294,6 +299,7 @@ Si un message page expirée s'affiche, sélectionnez le bouton *Retour* dans vot
 ====
 
 
+[[enable-single-sign-on]]
 == Activez l'authentification unique
 
 Une fois que vous avez confirmé que vous pouvez utiliser la fonctionnalité SSO pour vous connecter à chaque nœud d'administration, vous pouvez activer cette fonctionnalité pour l'ensemble du système StorageGRID.

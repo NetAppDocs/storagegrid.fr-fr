@@ -19,6 +19,7 @@ Consultez ce fichier pour voir s'il contient des messages d'erreur relatifs aux 
 
 
 
+[[service-with-an-error-state]]
 == Service avec un état d'erreur
 
 Si vous détectez qu'un service a entré un état d'erreur, essayez de redémarrer le service.

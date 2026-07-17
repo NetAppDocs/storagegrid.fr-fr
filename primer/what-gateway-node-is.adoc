@@ -21,6 +21,7 @@ Si nécessaire, vous pouvez regrouper les interfaces réseau de plusieurs nœuds
 
 
 
+[[primary-services-for-gateway-nodes]]
 == Services primaires pour les nœuds de passerelle
 
 Le tableau ci-dessous présente les services principaux pour les nœuds de passerelle ; toutefois, ce tableau ne répertorie pas tous les services de nœud.

@@ -30,6 +30,7 @@ Vous pouvez télécharger ou générer un certificat d'API S3 personnalisé.
 
 
 
+[[add-a-custom-s3-api-certificate]]
 == Ajoutez un certificat d'API S3 personnalisé
 
 .Étapes
@@ -159,6 +160,7 @@ NOTE: Après avoir téléchargé ou généré un nouveau certificat, autorisez j
 
 
 
+[[restore-the-default-s3-api-certificate]]
 == Restaurez le certificat d'API S3 par défaut
 
 Vous pouvez revenir à l'utilisation du certificat d'API S3 par défaut pour les connexions client S3 aux nœuds de stockage. Toutefois, vous ne pouvez pas utiliser le certificat d'API S3 par défaut pour un terminal d'équilibreur de charge.
@@ -179,6 +181,7 @@ Si vous disposez de l'autorisation d'accès racine et que le certificat d'API S3
 
 
 
+[[download-or-copy-the-s3-api-certificate]]
 == Téléchargez ou copiez le certificat d'API S3
 
 Vous pouvez enregistrer ou copier le contenu du certificat de l'API S3 pour l'utiliser ailleurs.

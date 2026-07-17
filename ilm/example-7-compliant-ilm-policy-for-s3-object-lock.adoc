@@ -26,6 +26,7 @@ CAUTION: Les règles et règles ILM suivantes ne sont que des exemples. Les règ
 
 
 
+[[bucket-and-objects-for-s3-object-lock-example]]
 == Exemple de compartiment et d'objets pour le verrouillage d'objet S3
 
 Dans cet exemple, un compte de locataire S3 nommé Bank of ABC a utilisé le gestionnaire de locataires pour créer un compartiment avec le verrouillage objet S3 activé pour stocker les enregistrements bancaires stratégiques.
@@ -81,6 +82,7 @@ Une mise en garde légale peut être placée ou levée sur n'importe quelle vers
 |===
 
 
+[[ilm-rule-1-for-s3-object-lock-example-erasure-coding-profile-with-bucket-matching]]
 == Règle ILM 1 pour S3 Object Lock exemple : profil de code d'effacement avec mise en correspondance des compartiments
 
 Cet exemple de règle ILM s'applique uniquement au compte de locataire S3 nommé Bank of ABC. Elle fait correspondre n'importe quel objet du `bank-records` compartiment, puis utilise le code d'effacement pour stocker l'objet sur les nœuds de stockage situés sur trois sites de data Center à l'aide d'un profil de code d'effacement 6+3. Cette règle satisfait aux exigences des compartiments avec S3 Object Lock activé : une copie est conservée sur les nœuds de stockage du jour 0 à l'infini, en utilisant l'heure d'ingestion comme heure de référence.
@@ -148,6 +150,7 @@ Profil de code d'effacement
 |===
 
 
+[[ilm-rule-2-for-s3-object-lock-example-non-compliant-rule]]
 == Règle ILM 2 pour exemple de verrouillage d'objet S3 : règle non compatible
 
 Cet exemple de règle ILM stocke au départ deux copies d'objet répliquées sur les nœuds de stockage. Après un an, il stocke une copie sur un pool de stockage cloud pour toujours. Cette règle utilise un pool de stockage cloud. Elle n'est pas conforme et ne s'applique pas aux objets des compartiments où le verrouillage des objets S3 est activé.
@@ -206,6 +209,7 @@ Placements
 |===
 
 
+[[ilm-rule-3-for-s3-object-lock-example-default-rule]]
 == Règle ILM 3 pour l'exemple de verrouillage d'objet S3 : règle par défaut
 
 Cet exemple de règle ILM copie les données d'objet vers les pools de stockage dans deux data centers. Cette règle conforme est conçue pour être la règle par défaut dans la politique ILM. Elle n'inclut aucun filtre, n'utilise pas l'heure de référence non actuelle et répond aux exigences des compartiments avec le verrouillage objet S3 activé : deux copies d'objet sont conservées sur les nœuds de stockage du jour 0 à l'infini, et l'ingestion comme heure de référence.
@@ -262,12 +266,14 @@ Dès le premier jour, conservez deux copies répliquées : une sur des nœuds de
 |===
 
 
+[[compliant-ilm-policy-for-s3-object-lock-example]]
 == Exemple de règle ILM conforme pour l'exemple de verrouillage d'objet S3
 
 Pour créer une règle ILM protégeant efficacement tous les objets de votre système, y compris ceux des compartiments avec le verrouillage objet S3 activé, vous devez sélectionner des règles ILM qui répondent aux besoins de stockage de tous les objets. Vous devez ensuite simuler et activer la règle.
 
 
 
+[[add-rules-to-the-policy]]
 === Ajouter des règles à la règle
 
 Dans cet exemple, la politique ILM inclut trois règles ILM, dans l'ordre suivant :
@@ -279,6 +285,7 @@ Dans cet exemple, la politique ILM inclut trois règles ILM, dans l'ordre suivan
 
 
 
+[[simulate-the-policy]]
 === Simuler la règle
 
 Après avoir ajouté des règles à votre stratégie, choisi une règle de conformité par défaut et organisé les autres règles, vous devez simuler la stratégie en testant les objets à partir du compartiment avec S3 Object Lock activé et à partir d'autres compartiments. Par exemple, lorsque vous simulez l'exemple de règle, vous attendez à ce que les objets test soient évalués comme suit :
@@ -295,6 +302,7 @@ Après avoir ajouté des règles à votre stratégie, choisi une règle de confo
 
 
 
+[[activate-the-policy]]
 === Activer la règle
 
 Si vous êtes pleinement satisfait de la nouvelle règle assurant la protection des données d'objet comme prévu, vous pouvez l'activer.

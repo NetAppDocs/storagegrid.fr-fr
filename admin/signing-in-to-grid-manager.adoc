@@ -17,18 +17,21 @@ Chaque système StorageGRID comprend un nœud d'administration principal et un n
 
 
 
+[[connect-to-ha-group]]
 === Se connecter au groupe haute disponibilité
 
 Si des nœuds admin sont inclus dans un groupe haute disponibilité (HA), vous vous connectez à l'aide de l'adresse IP virtuelle du groupe haute disponibilité ou d'un nom de domaine complet mappé sur l'adresse IP virtuelle. Le nœud d'administration principal doit être sélectionné comme interface principale du groupe, de sorte que lorsque vous accédez à Grid Manager, vous y accédez sur le nœud d'administration principal, sauf si le nœud d'administration principal n'est pas disponible. Voir link:managing-high-availability-groups.html["Gérez les groupes haute disponibilité"].
 
 
 
+[[use-sso]]
 === Utiliser SSO
 
 Les étapes de connexion sont légèrement différentes silink:how-sso-works.html["L'authentification unique (SSO) a été configurée"] .
 
 
 
+[[sign-in-to-grid-manager-on-first-admin-node]]
 == Connectez-vous à Grid Manager sur le premier nœud d'administration
 
 .Avant de commencer
@@ -100,6 +103,7 @@ Lorsque vous êtes connecté, la page d'accueil du Gestionnaire de grille s'affi
 
 
 
+[[sign-into-another-admin-node]]
 == Connectez-vous à un autre nœud d'administration
 
 Procédez comme suit pour vous connecter à un autre nœud d'administration.

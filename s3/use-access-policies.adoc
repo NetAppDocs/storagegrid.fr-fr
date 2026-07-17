@@ -15,6 +15,7 @@ StorageGRID utilise le langage de règles Amazon Web Services (AWS) pour permett
 
 
 
+[[access-policy-overview]]
 == Présentation de la stratégie d'accès
 
 StorageGRID prend en charge trois types de politiques d'accès :
@@ -137,6 +138,7 @@ La stratégie de compartiment a une taille limite de 20,480 octets et la straté
 
 
 
+[[consistency-for-policies]]
 == Cohérence au niveau des règles
 
 Par défaut, toutes les mises à jour apportées aux stratégies de groupe sont cohérentes. Lorsqu'une stratégie de groupe devient cohérente, les modifications peuvent prendre 15 minutes supplémentaires pour prendre effet en raison de la mise en cache des règles. Par défaut, toutes les mises à jour des règles de compartiment sont fortement cohérentes.
@@ -150,12 +152,14 @@ NOTE: Si vous définissez la cohérence sur une valeur différente pour contourn
 
 
 
+[[what-is-session-policy]]
 == Quelle est la politique de session ?
 
 Une politique de session est une politique d'accès qui restreint temporairement les autorisations disponibles pendant une session spécifique, par exemple lorsqu'un utilisateur assume un groupe.  Une politique de session ne peut autoriser qu’un sous-ensemble d’autorisations et ne peut pas accorder d’autorisations supplémentaires.  Le groupe lui-même pourrait avoir des autorisations plus larges.
 
 
 
+[[use-arn-in-policy-statements]]
 == Utilisez ARN dans les énoncés de politique
 
 Dans les instructions de politique, le ARN est utilisé dans les éléments principal et ressource.
@@ -193,6 +197,7 @@ Le corps de requête HTTP pour l'opération PutBucketPolicy doit être codé ave
 
 
 
+[[specify-resources-in-a-policy]]
 == Spécifiez les ressources dans une stratégie
 
 Dans les instructions de stratégie, vous pouvez utiliser l'élément ressource pour spécifier le compartiment ou l'objet pour lequel les autorisations sont autorisées ou refusées.
@@ -215,6 +220,7 @@ Dans les instructions de stratégie, vous pouvez utiliser l'élément ressource 
 
 
 
+[[specify-principals-in-a-policy]]
 == Spécifiez les entités de gestion dans une stratégie
 
 Utilisez l'élément principal pour identifier l'utilisateur, le groupe ou le compte locataire qui est autorisé/refusé l'accès à la ressource par l'instruction de stratégie.
@@ -272,6 +278,7 @@ Par exemple, supposons qu'Alex quitte l'organisation et que le nom d'utilisateur
 
 
 
+[[specify-permissions-in-a-policy]]
 == Spécifiez les autorisations dans une stratégie
 
 Dans une stratégie, l'élément action est utilisé pour autoriser/refuser des autorisations à une ressource. Il existe un ensemble d'autorisations que vous pouvez spécifier dans une stratégie, qui sont désignées par l'élément « action » ou par « NotAction » pour exclusion. Chacun de ces éléments est associé à des opérations spécifiques d'API REST S3.
@@ -286,6 +293,7 @@ NOTE: Une suppression est effectuée lorsqu'une entrée est utilisée pour rempl
 
 
 
+[[permissions-that-apply-to-buckets]]
 === Autorisations qui s'appliquent aux compartiments
 
 [cols="2a,2a,1a"]
@@ -624,6 +632,7 @@ Oui, des autorisations séparées pour PUT et DELETE
 |===
 
 
+[[permissions-that-apply-to-objects]]
 === Autorisations qui s'appliquent aux objets
 
 [cols="2a,2a,1a"]
@@ -825,6 +834,7 @@ Objet de restauration
 |===
 
 
+[[use-putoverwriteobject-permissionuse-putoverwriteobject-permission]]
 == [[use-putoverwriteobject-permission]]Utilisez l'autorisation PutOverwriteObject
 
 L'autorisation s3:PutOverwriteObject est une autorisation StorageGRID personnalisée qui s'applique aux opérations qui créent ou mettent à jour des objets. Le paramètre de cette autorisation détermine si le client peut remplacer les données d'un objet, les métadonnées définies par l'utilisateur ou le balisage d'objets S3.
@@ -852,6 +862,7 @@ NOTE: Si la stratégie S3 actuelle autorise l'écrasement et que l'autorisation 
 
 
 
+[[specify-conditions-in-a-policy]]
 == Spécifiez les conditions dans une stratégie
 
 Les conditions définissent le moment où une police sera en vigueur. Les conditions sont constituées d'opérateurs et de paires de clé-valeur.
@@ -877,6 +888,7 @@ Dans l'exemple suivant, la condition ipaddress utilise la clé condition SourceI
 ----
 
 
+[[supported-condition-operators]]
 === Opérateurs de condition pris en charge
 
 Les opérateurs de condition sont classés comme suit :
@@ -1013,6 +1025,7 @@ Ajouté à n'importe quel opérateur de condition, à l'exception de la conditio
 |===
 
 
+[[supported-condition-keys]]
 === Touches de condition prises en charge
 
 [cols="1a,1a,2a"]
@@ -1170,6 +1183,7 @@ Comparable à la `sse-customer-algorithm` ou à la `copy-source-sse-customer-alg
 |===
 
 
+[[specify-variables-in-a-policy]]
 == Spécifiez les variables d'une règle
 
 Vous pouvez utiliser des variables dans les règles pour remplir les informations relatives aux règles lorsqu'elles sont disponibles. Vous pouvez utiliser des variables de règles dans l' `Resource`élément et dans des comparaisons de chaînes dans l' `Condition`élément.
@@ -1246,6 +1260,7 @@ Caractère spécial. Utilise le caractère comme caractère littéral $.
 |===
 
 
+[[create-policies-requiring-special-handling]]
 == Créez des règles nécessitant une gestion spéciale
 
 Parfois, une politique peut accorder des autorisations dangereuses pour la sécurité ou dangereuses pour les opérations continues, telles que le verrouillage de l'utilisateur racine du compte. L'implémentation de l'API REST StorageGRID S3 est moins restrictive lors de la validation des règles qu'Amazon, mais tout aussi stricte lors de l'évaluation des règles.
@@ -1366,6 +1381,7 @@ Valide. Les objets sont la propriété du compte du propriétaire du compartimen
 |===
 
 
+[[write-once-read-many-worm-protection]]
 == Protection WORM (Write-once, Read-many)
 
 Vous pouvez créer des compartiments WORM (Write-once, Read-many) pour protéger les données, les métadonnées d'objet définies par l'utilisateur et le balisage d'objets S3. Vous configurez les compartiments WORM pour permettre la création de nouveaux objets et empêcher les écrasements ou la suppression de contenu existant. Utilisez l'une des approches décrites ici.

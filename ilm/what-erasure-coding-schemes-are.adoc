@@ -17,6 +17,7 @@ Lorsque vous créez ou modifiez une règle ILM, vous sélectionnez un schéma de
 
 
 
+[[data-protection]]
 == Protection des données
 
 Le système StorageGRID utilise l'algorithme de codage d'effacement Reed-Solomon. L'algorithme coupe un objet en `k` fragments de données et calcule les `m` fragments de parité.
@@ -31,6 +32,7 @@ La meilleure protection des données est assurée par le schéma de code d'effac
 
 
 
+[[storage-overhead]]
 == Surcharge du stockage
 
 La surcharge de stockage d'un schéma de code d'effacement est calculée en divisant le nombre de fragments de parité (`m`) par le nombre de fragments de données (`k`. Vous pouvez utiliser la surconsommation de stockage pour calculer la quantité d'espace disque requise par chaque objet avec code d'effacement :
@@ -48,6 +50,7 @@ Sélectionnez le schéma de code d'effacement dont la valeur totale est la plus 
 
 
 
+[[guidelines-for-storage-pools]]
 == Instructions relatives aux pools de stockage
 
 Lorsque vous sélectionnez le pool de stockage à utiliser pour une règle qui crée une copie avec code d'effacement, suivez les consignes suivantes pour les pools de stockage :
@@ -75,6 +78,7 @@ Le nombre minimal de nœuds de stockage requis est `k+m`. Toutefois, il est poss
 
 
 
+[[erasure-coding-schemes-for-storage-pools-containing-three-or-more-sites]]
 == Schémas de code d'effacement pour les pools de stockage contenant au moins trois sites
 
 Le tableau ci-dessous décrit les schémas de code d'effacement actuellement pris en charge par StorageGRID pour les pools de stockage incluant au moins trois sites. Tous ces programmes offrent une protection contre les pertes de site. Un site peut être perdu et l'objet sera toujours accessible.
@@ -238,6 +242,7 @@ NOTE: Si vous n'êtes pas certain du schéma à utiliser, sélectionnez 4+2 ou 6
 
 
 
+[[erasure-coding-schemes-for-one-site-storage-pools]]
 == Schémas de code d'effacement pour pools de stockage sur un site
 
 Un pool de stockage sur un site prend en charge tous les schémas de codage d'effacement définis pour trois sites ou plus, à condition que le site dispose de suffisamment de nœuds de stockage.

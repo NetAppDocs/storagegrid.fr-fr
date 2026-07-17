@@ -15,6 +15,7 @@ Si nécessaire, vous pouvez modifier les noms d'affichage affichés dans le Gest
 
 
 
+[[what-is-the-rename-procedure]]
 == Qu'est-ce que la procédure de renommage ?
 
 Lorsque vous installez StorageGRID au départ, vous spécifiez un nom pour la grille, chaque site et chaque nœud. Ces noms initiaux sont connus sous le nom de _System Names_, et ils sont les noms initialement affichés dans StorageGRID.
@@ -25,6 +26,7 @@ Utilisez la procédure de renommage pour corriger les fautes de frappe, mettre e
 
 
 
+[[where-do-system-and-display-names-appear]]
 == Où les noms du système et de l'affichage apparaissent-ils ?
 
 Le tableau suivant récapitule les emplacements où les noms des systèmes et les noms d'affichage sont affichés dans l'interface utilisateur de StorageGRID et dans les fichiers StorageGRID.
@@ -121,12 +123,14 @@ Vide, sauf si les éléments ont été renommés ; sinon, mappe les ID de grille
 |===
 
 
+[[display-name-requirements]]
 == Afficher les exigences relatives au nom
 
 Avant d'utiliser cette procédure, vérifiez les exigences relatives aux noms d'affichage.
 
 
 
+[[display-names-for-nodes]]
 === Afficher les noms des nœuds
 
 Les noms d'affichage des nœuds doivent respecter les règles suivantes :
@@ -144,6 +148,7 @@ Vous pouvez renommer un nœud avec un nom d'affichage précédemment utilisé pa
 
 
 
+[[display-names-for-grid-and-sites]]
 === Afficher les noms de la grille et des sites
 
 Les noms d'affichage de la grille et des sites suivent les mêmes règles avec les exceptions suivantes :
@@ -156,6 +161,7 @@ Les noms d'affichage de la grille et des sites suivent les mêmes règles avec l
 
 
 
+[[display-name-best-practices]]
 == Meilleures pratiques relatives aux noms d'affichage
 
 Si vous prévoyez de renommer plusieurs éléments, documentez votre schéma de dénomination général avant d'utiliser cette procédure. Trouvez un système qui garantit que les noms sont uniques, cohérents et faciles à comprendre d'un seul coup d'œil.
@@ -171,6 +177,7 @@ Réfléchissez deux fois avant d'ajouter des détails spécifiques aux noms susc
 
 
 
+[[example-display-names]]
 === Exemples de noms d'affichage
 
 Supposons que votre système StorageGRID dispose de trois data centers et que chaque data Center dispose de nœuds de différents types. Vos noms d'affichage peuvent être aussi simples que ceux-ci :

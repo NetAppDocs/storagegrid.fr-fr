@@ -99,6 +99,7 @@ Si vous sélectionnez ce paramètre, copiez et collez le certificat de sécurit�
 
 
 
+[[test-the-connection-and-save-the-configuration]]
 === Testez la connexion et enregistrez la configuration
 
 Après avoir saisi toutes les valeurs, vous devez tester la connexion avant de pouvoir enregistrer la configuration. StorageGRID vérifie les paramètres de connexion pour le serveur LDAP et le format de nom d'utilisateur BIND, si vous en avez fourni un.

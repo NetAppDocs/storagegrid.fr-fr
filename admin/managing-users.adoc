@@ -20,6 +20,7 @@ Vous pouvez afficher les utilisateurs locaux et fédérés. Vous pouvez égaleme
 
 
 
+[[create-a-local-user]]
 == Créez un utilisateur local
 
 Vous pouvez créer un ou plusieurs utilisateurs locaux et attribuer chaque utilisateur à un ou plusieurs groupes locaux. Les autorisations du groupe contrôlent les fonctionnalités de Grid Manager et de Grid Management auxquelles l'utilisateur peut accéder.
@@ -33,6 +34,7 @@ NOTE: Si l'authentification unique (SSO) est activée, les utilisateurs locaux n
 
 
 
+[[access-the-wizard]]
 === Accéder à l'assistant
 
 .Étapes
@@ -42,6 +44,7 @@ NOTE: Si l'authentification unique (SSO) est activée, les utilisateurs locaux n
 
 
 
+[[enter-user-credentials]]
 === Saisissez les informations d'identification de l'utilisateur
 
 .Étapes
@@ -52,6 +55,7 @@ NOTE: Si l'authentification unique (SSO) est activée, les utilisateurs locaux n
 
 
 
+[[assign-to-groups]]
 === Affecter à des groupes
 
 .Étapes
@@ -67,6 +71,7 @@ Si un utilisateur appartient à plusieurs groupes, les autorisations sont cumula
 
 
 
+[[view-and-edit-local-users]]
 == Afficher et modifier les utilisateurs locaux
 
 Vous pouvez afficher les détails des utilisateurs locaux et fédérés existants. Vous pouvez modifier un utilisateur local pour modifier son nom complet, son mot de passe ou son appartenance à un groupe. Vous pouvez également empêcher temporairement un utilisateur d'accéder au Grid Manager et à l'API Grid Management.
@@ -175,6 +180,7 @@ Modifier les groupes (utilisateurs locaux uniquement)
 
 
 
+[[import-federated-users]]
 == Importer des utilisateurs fédérés
 
 Vous pouvez importer un ou plusieurs utilisateurs fédérés, jusqu'à un maximum de 100 utilisateurs, directement dans la page Utilisateurs.
@@ -202,6 +208,7 @@ Après avoir fermé la boîte de dialogue *Importer les utilisateurs fédérés*
 
 
 
+[[duplicate-a-user]]
 == Dupliquer un utilisateur
 
 Vous pouvez dupliquer un utilisateur existant pour créer un nouvel utilisateur avec les mêmes autorisations.
@@ -214,6 +221,7 @@ Vous pouvez dupliquer un utilisateur existant pour créer un nouvel utilisateur 
 
 
 
+[[delete-a-user]]
 == Supprimer un utilisateur
 
 Vous pouvez supprimer un utilisateur local pour supprimer définitivement cet utilisateur du système.

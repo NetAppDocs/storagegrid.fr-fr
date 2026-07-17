@@ -24,6 +24,7 @@ NOTE: Si vous souhaitez configurer StorageGRID pour une utilisation avec une aut
 
 
 
+[[access-the-wizard]]
 == Accéder à l'assistant
 
 Vous pouvez exécuter l'assistant d'installation FabricPool lorsque vous commencez à utiliser le Gestionnaire de grille StorageGRID, ou vous pouvez accéder à l'assistant et l'exécuter ultérieurement.
@@ -42,6 +43,7 @@ image:help_menu.png["menu aide"]
 
 
 
+[[step-1-of-9-configure-ha-group]]
 == Étape 1 sur 9 : configuration du groupe haute disponibilité
 
 Un groupe haute disponibilité (HA) est un ensemble de nœuds qui contiennent chacun le service StorageGRID Load Balancer. Un groupe haute disponibilité peut contenir des nœuds de passerelle, des nœuds d'administration, ou les deux.
@@ -144,6 +146,7 @@ Au moins une adresse doit être IPv4. Vous pouvez éventuellement spécifier des
 
 
 
+[[step-2-of-9-configure-load-balancer-endpoint]]
 == Étape 2 sur 9 : configuration du terminal de l'équilibreur de charge
 
 StorageGRID utilise un équilibreur de charge pour gérer la charge de travail à partir d'applications client, telles qu'FabricPool. L'équilibrage de la charge optimise la vitesse et la capacité de connexion sur plusieurs nœuds de stockage.
@@ -347,6 +350,7 @@ Copiez le certificat du serveur pour l'équilibreur de charge externe et collez-
 
 
 
+[[step-3-of-9-tenant-and-bucket]]
 == Étape 3 sur 9 : locataire et compartiment
 
 Un locataire est une entité qui peut utiliser les applications S3 pour stocker et récupérer des objets dans StorageGRID. Chaque locataire dispose de ses propres utilisateurs, clés d'accès, compartiments, objets et un ensemble spécifique de fonctionnalités. Vous devez créer un locataire StorageGRID avant de pouvoir créer le compartiment que FabricPool utilisera.
@@ -427,6 +431,7 @@ NOTE: Ne sélectionnez pas un compartiment dans lequel le verrouillage d'objet S
 ====
 
 
+[[step-4-of-9-download-ontap-settings]]
 == Étape 4 sur 9 : télécharger les paramètres ONTAP
 
 Au cours de cette étape, vous téléchargez un fichier que vous pouvez utiliser pour saisir des valeurs dans ONTAP System Manager.
@@ -457,6 +462,7 @@ CAUTION: Ne fermez pas cette page tant que vous n'avez pas copié les deux clés
 
 
 
+[[step-5-of-9-select-a-storage-pool]]
 == Étape 5 sur 9 : sélectionnez un pool de stockage
 
 Un pool de stockage est un groupe de nœuds de stockage. Lorsque vous sélectionnez un pool de stockage, vous déterminez les nœuds que StorageGRID utilisera pour stocker les données hiérarchisées depuis ONTAP.
@@ -474,6 +480,7 @@ Le pool de stockage d'un site inclut tous les nœuds de stockage de ce site.
 
 
 
+[[step-6-of-9-review-ilm-rule-for-fabricpool]]
 == Étape 6 sur 9 : révision de la règle ILM pour FabricPool
 
 Les règles de gestion du cycle de vie des informations (ILM) contrôlent le placement, la durée et le comportement d'ingestion de tous les objets de votre système StorageGRID.
@@ -539,6 +546,7 @@ Utilisez le code d'effacement 2+1
 
 
 
+[[step-7-of-9-review-and-activate-ilm-policy]]
 == Étape 7 sur 9 : vérification et activation de la règle ILM
 
 Une fois que l'assistant d'installation de FabricPool a créé la règle ILM pour FabricPool, il crée une règle ILM. Vous devez soigneusement simuler et réviser cette stratégie avant de l'activer.
@@ -578,6 +586,8 @@ CAUTION: Les erreurs d'une règle ILM peuvent entraîner des pertes de données 
 
 
 
+[[step-8-of-9-create-traffic-classification-policy]]
+[[traffic-classification]]
 == Étape 8 de 9 : création d'une politique de classification du trafic
 
 L'assistant d'installation FabricPool peut également créer une règle de classification du trafic que vous pouvez utiliser pour contrôler la charge de travail FabricPool. La stratégie créée par le système utilise une règle de correspondance pour identifier tout le trafic réseau lié au compartiment que vous avez créé. Cette règle surveille uniquement le trafic ; elle ne limite pas le trafic pour FabricPool ou tout autre client.
@@ -595,6 +605,7 @@ Dès que FabricPool commence à hiérarchiser les données vers StorageGRID, vou
 
 
 
+[[step-9-of-9-review-summary]]
 == Étape 9 sur 9 : passez en revue le résumé
 
 Ce récapitulatif fournit des informations détaillées sur les éléments que vous avez configurés, notamment le nom de l'équilibreur de charge, le locataire et le compartiment, la règle de classification du trafic et la règle ILM active.
@@ -606,6 +617,7 @@ Ce récapitulatif fournit des informations détaillées sur les éléments que v
 
 
 
+[[next-steps]]
 == Étapes suivantes
 
 Une fois l'assistant FabricPool terminé, effectuez les étapes suivantes.

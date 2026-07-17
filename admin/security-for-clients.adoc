@@ -15,6 +15,7 @@ Les comptes de locataires StorageGRID utilisent les applications client S3 pour 
 
 
 
+[[summary]]
 == Récapitulatif
 
 La liste ci-dessous résume la mise en œuvre de la sécurité pour l'API REST S3 :
@@ -27,6 +28,7 @@ Autorisation du client:: Propriété des compartiments et toutes les règles de 
 
 
 
+[[how-storagegrid-provides-security-for-client-applications]]
 == Comment StorageGRID assure la sécurité des applications client
 
 Les applications client S3 peuvent se connecter au service Load Balancer sur des nœuds de passerelle ou des nœuds d'administration ou directement sur les nœuds de stockage.
@@ -52,6 +54,7 @@ HTTP fournit une communication non chiffrée moins sécurisée, mais peut être 
 
 
 
+[[security-certificates-and-client-applications]]
 === Certificats de sécurité et applications client
 
 Dans tous les cas, les applications client peuvent établir des connexions TLS à l'aide d'un certificat de serveur personnalisé chargé par l'administrateur de la grille ou d'un certificat généré par le système StorageGRID :
@@ -67,12 +70,14 @@ Les clients doivent être configurés pour approuver l'autorité de certificatio
 
 
 
+[[supported-hashing-and-encryption-algorithms-for-tls-libraries]]
 == Algorithmes de hachage et de cryptage pris en charge pour les bibliothèques TLS
 
 Le système StorageGRID prend en charge un ensemble de suites de chiffrement que les applications clientes peuvent utiliser lors de l'établissement d'une session TLS.  Pour configurer les chiffrements, accédez à *Configuration* > *Sécurité* > *Paramètres de sécurité* et sélectionnez *Politiques TLS et SSH*.
 
 
 
+[[supported-versions-of-tls]]
 === Versions supportées de TLS
 
 StorageGRID supporte TLS 1.2 et TLS 1.3.

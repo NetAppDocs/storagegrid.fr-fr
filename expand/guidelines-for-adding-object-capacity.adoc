@@ -15,6 +15,7 @@ Pour étendre la capacité de stockage objet de votre système StorageGRID, ajou
 
 
 
+[[guidelines-for-adding-storage-volumes]]
 == Instructions d'ajout de volumes de stockage
 
 Avant d'ajouter des volumes de stockage à des nœuds de stockage existants, consultez les consignes et limites suivantes :
@@ -38,6 +39,7 @@ Une fois que vous avez décidé d'ajouter des volumes de stockage et que vous av
 
 
 
+[[guidelines-for-adding-storage-nodes]]
 == Instructions sur l'ajout de nœuds de stockage
 
 Avant d'ajouter des nœuds de stockage à des sites existants, consultez les consignes et limites suivantes :
@@ -53,6 +55,7 @@ Avant d'ajouter des nœuds de stockage à des sites existants, consultez les con
 
 
 
+[[guidelines-for-adc-service-on-storage-nodes]]
 == Instructions relatives au service ADC sur les nœuds de stockage
 
 Lors de la configuration de l'extension, vous devez choisir d'inclure le service contrôleur de domaine d'administration (ADC) sur chaque nouveau nœud de stockage. Le service ADC conserve le suivi de l'emplacement et de la disponibilité des services de réseau.

@@ -33,6 +33,7 @@ NOTE: Une modification de la cohérence à l'échelle de la grille s'applique un
 
 
 
+[[consistency-values]]
 == Valeurs de cohérence
 
 La cohérence affecte la manière dont les métadonnées utilisées par StorageGRID pour suivre les objets sont distribuées entre les nœuds.  La cohérence affecte la disponibilité des objets pour les demandes des clients.
@@ -66,6 +67,7 @@ Si nécessaire, vous pouvez https://kb.netapp.com/hybrid/StorageGRID/Object_Mgmt
 
 
 
+[[use-read-after-new-write-and-available-consistency]]
 == Utilisez la cohérence « lecture après nouvelle écriture » et « disponible »
 
 Lorsqu'une opération HEAD ou GET utilise la cohérence « Read-after-New-write », StorageGRID effectue la recherche en plusieurs étapes, comme suit :
@@ -80,6 +82,7 @@ Si une opération HEAD ou GET utilise la cohérence « Read-after-New-write » m
 
 
 
+[[api-operation-consistency-controlspecify-consistency-for-api-operation]]
 == [[api-operation-Consistency-control]]Indiquez la cohérence du fonctionnement de l'API
 
 Pour définir la cohérence d'une opération d'API individuelle, les valeurs de cohérence doivent être prises en charge pour l'opération et vous devez spécifier la cohérence dans l'en-tête de la demande. Cet exemple définit la cohérence sur « site fort » pour une opération GetObject.
@@ -97,6 +100,7 @@ NOTE: Vous devez utiliser la même cohérence pour les opérations PutObject et 
 
 
 
+[[bucket-consistencyspecify-consistency-for-bucket]]
 == [[bucket-consistency]]Spécifier la cohérence du bucket
 
 Pour définir la cohérence du compartiment, vous pouvez utiliser la requête StorageGRIDlink:put-bucket-consistency-request.html["PRÉSERVER la cohérence du godet"]. Vous pouvez également link:../tenant/manage-bucket-consistency.html#change-bucket-consistency["modifier la cohérence d'un compartiment"]utiliser le Gestionnaire de locataires.
@@ -110,6 +114,7 @@ Lorsque vous définissez la cohérence d'un godet, tenez compte des points suiva
 
 
 
+[[how-consistency-and-ilm-rules-interacthow-consistency-and-ilm-rules-interact-to-affect-data-protection]]
 == [[how-consistency-and-ILM-rules-interact]]Comment les règles de cohérence et les règles ILM interagissent pour affecter la protection des données
 
 La cohérence et les règles ILM de votre choix affectent la protection des objets. Ces paramètres peuvent interagir.
@@ -125,6 +130,7 @@ Stricte:: Toutes les copies spécifiées dans la règle ILM doivent être effect
 
 
 
+[[example-of-how-the-consistency-and-ilm-rule-can-interact]]
 == Exemple d'interaction entre la règle de cohérence et la règle ILM
 
 Supposons que vous ayez une grille à trois sites avec la règle ILM suivante et la cohérence suivante :

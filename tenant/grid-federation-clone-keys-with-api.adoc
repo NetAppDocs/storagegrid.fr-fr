@@ -27,6 +27,7 @@ NOTE: Lorsque vous clonez les clés d'accès S3 d'un utilisateur fédéré, ces 
 
 
 
+[[clone-your-own-access-keys]]
 == Clonez vos propres clés d'accès
 
 Vous pouvez cloner vos propres clés d'accès si vous devez accéder aux mêmes compartiments sur les deux grilles.
@@ -56,6 +57,7 @@ image:grid-federation-clone-access-key.png["API du gestionnaire de locataires sa
 
 
 
+[[clone-another-users-access-keys]]
 == Cloner les clés d'accès d'un autre utilisateur
 
 Vous pouvez cloner les clés d'accès d'un autre utilisateur s'il doit accéder aux mêmes compartiments sur les deux grilles.
