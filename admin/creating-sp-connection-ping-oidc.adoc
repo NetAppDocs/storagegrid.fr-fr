@@ -1,0 +1,357 @@
+---
+permalink: admin/creating-sp-connection-ping-oidc.html 
+sidebar: sidebar 
+keywords: service provider, sp connection, pingfederate, ping, single sign on, sso 
+summary: 'Vous utilisez PingFederate pour créer une connexion de fournisseur de services (SP) pour chaque noeud d"administration de votre système. Pour accélérer le processus, vous importez les métadonnées SAML à partir de StorageGRID.' 
+---
+= Créez des connexions de fournisseur de services dans PingFederate pour OIDC dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez PingFederate pour créer une connexion de fournisseur de services (SP) pour chaque nœud d'administration pour OpenID Connect (OIDC) dans votre système.
+
+.Avant de commencer
+* Vous avez l'expérience de la création de connexions SP dans PingFederate Server.
+* Vous avez le https://docs.pingidentity.com/pingfederate/latest/administrators_reference_guide/pf_administrators_reference_guide.html["Guide de référence de l'administrateur"^]serveur for PingFederate. La documentation PingFederate fournit des instructions détaillées étape par étape et des explications.
+* Vous avez lelink:../admin/admin-group-permissions.html["Autorisation d'administrateur"] pour le serveur PingFederate.
+
+
+.Description de la tâche
+Ces instructions résument comment configurer le serveur PingFederate version 12.1.10 en tant que fournisseur SSO pour StorageGRID. Si vous utilisez une autre version de PingFederate, vous devrez peut-être adapter ces instructions. Consultez la documentation du serveur PingFederate pour obtenir des instructions détaillées concernant votre version.
+
+Utilisez les paramètres par défaut, sauf indication contraire. Dans certains cas, vous pouvez utiliser les paramètres requis par votre organisation, tels que les paramètres de méthode d'authentification.
+
+
+
+[[step-1-create-data-storedata-store-oidc]]
+== Étape 1 : Créez un magasin de données[[data-store-oidc]]
+
+Si vous ne l'avez pas déjà fait, créez un magasin de données pour connecter PingFederate au serveur LDAP AD FS.
+
+.Étapes
+. Accédez à *Système* > *Magasins de données et d'identifiants*.
+. Sélectionnez *New Data Store*.
+. Pour le type, sélectionnez *Directory (LDAP)*.
+. Sélectionnez *Suivant*.
+. Sous Configuration LDAP :
++
+** Saisissez les valeurs pour *Hostname*, *User DN* (username) et *Password*.
++
+Utilisez les valeurs que vous avez utilisées lors de link:../admin/using-identity-federation.html["configuration de la fédération des identités"] dans StorageGRID.
+
+** Pour Active Directory, sélectionnez *Type LDAP*.
+
+
+
+
+
+
+[[step-2-create-password-credential-validatorpassword-validator-oidc]]
+== Étape 2 : Créer un validateur d’identifiant de mot de passe[[password-validator-oidc]]
+
+Si ce n'est pas déjà fait, créez un validateur pour les informations d'identification du mot de passe.
+
+.Étapes
+. Sélectionnez *Password Credential Validators* > *Create New instance*.
+. Dans l'onglet Type, saisissez les informations suivantes :
++
+.. NOM DE L'INSTANCE et ID DE L'INSTANCE : Vous pouvez utiliser la même valeur pour les deux.
+.. Type : sélectionnez *LDAP Username Password Credential Validator*.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet Configuration de l'instance, saisissez les informations suivantes :
++
+** LDAP DATASTORE : Sélectionnez le <<data-store-oidc,magasin de données>> que vous avez créé.
+** BASE DE RECHERCHE : Saisissez les informations pour le <<data-store-oidc,Configuration LDAP>>.
+** FILTRE DE RECHERCHE : Saisissez *sAMAccountName=${username}*.
+** ÉTENDUE DE LA RECHERCHE : sélectionnez *Sous-arbre*.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet Contrat étendu, ajoutez les attributs suivants : `memberOf`, `objectGUID`, `sAMAccountName`, `sn`, et `userPrincipalName`
+. Sélectionnez *Suivant* > *Enregistrer*.
+
+
+
+
+[[step-3-create-idp-adapter-instanceadapter-instance-oidc]]
+== Étape 3 : Créez une instance d’adaptateur IdP[[adapter-instance-oidc]]
+
+Si vous ne l'avez pas déjà fait, créez une instance d'adaptateur IdP (identity provider).
+
+
+NOTE: Chaque nœud d'administration de votre StorageGRID doit avoir une connexion IdP. Cela garantit que les utilisateurs peuvent se connecter et se déconnecter en toute sécurité de n'importe quel nœud d'administration. Vous pouvez créer une seule connexion IdP pour tous les nœuds d'administration (recommandé) ou une connexion IdP différente pour chaque nœud d'administration.
+
+.Étapes
+. Accédez à *Authentication* > *Integration* > *IDP Adapters*.
+. Sélectionnez *Créer une nouvelle instance*.
+. Dans l'onglet Type, saisissez les informations suivantes :
++
+** NOM DE L'INSTANCE et ID DE L'INSTANCE : Vous pouvez utiliser la même valeur pour les deux.
+** TYPE : Sélectionnez *HTML Form IdP Adapter*.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet *Adaptateur IdP*, sélectionnez *Ajouter une nouvelle ligne à 'Credential Validators'*.
+. Sélectionnez <<password-validator-oidc,validateur des informations d'identification du mot de passe>> que vous avez créé.
+. Sélectionnez *Suivant*.
+. Dans l'onglet Contrat étendu, ajoutez les attributs que vous avez mappés pour le <<password-validator-oidc,validateur des informations d'identification du mot de passe>>.
+. Sélectionnez *Suivant*.
+. Dans l'onglet Attributs de l'adaptateur, sélectionnez l'attribut *username* pour Pseudonym.
+. Sélectionnez *Suivant* > *Suivant*.
+. Vérifiez le résumé et sélectionnez *Enregistrer*.
+
+
+
+
+[[step-4-configure-oauth-server-and-authorization-server-settings]]
+== Étape 4 : Configurer les paramètres du serveur OAuth et du serveur d’autorisation
+
+Configurez le serveur d'autorisation pour prendre en charge les types d'autorisation acceptés par StorageGRID.
+
+.Étapes
+. Accédez à *Système* > *Paramètres du serveur d'autorisation*.
+. Vérifiez que les options suivantes sont sélectionnées pour REUSE EXISTING PERSISTENT ACCESS GRANTS FOR GRANT TYPES :
++
+** IMPLICITE
+** CODE D'AUTORISATION
+** IDENTIFIANT DE MOT DE PASSE DU PROPRIÉTAIRE DE LA RESSOURCE
++
+
+NOTE: Si votre entreprise restreint l'utilisation des IDENTIFIANTS DE MOT DE PASSE DU PROPRIÉTAIRE DE LA RESSOURCE, vous ne pouvez utiliser que le CODE D'AUTORISATION.
+
+
+
+. Pour les paramètres des services Web administratifs OAuth, sélectionnez <<password-validator-oidc,validateur des informations d'identification du mot de passe>> que vous avez créé.
+
+
+
+
+[[step-5-define-scopes]]
+== Étape 5 : Définir les portées
+
+Définissez les portées dans PingFederate.
+
+.Étapes
+. Accédez à *Système* > *Paramètres OAuth* > *Gestion de l’étendue*.
+. Dans l'onglet Common Scopes, ajoutez les valeurs pour *openid*, *email* et *profile*, si elles n'existent pas déjà.
+
+
+
+
+[[step-6-configure-idp-adapter-mapping]]
+== Étape 6 : Configurer le mappage de l’adaptateur IdP
+
+Configurez le mappage de l'adaptateur IdP pour associer les attributs de l'IdP aux autorisations persistantes délivrées aux clients, telles que les jetons d'accès ou les jetons d'actualisation.
+
+.Étapes
+. Accédez à *Authentification* > *Mappage des contrats de stratégie d'autorisation*.
+. Sélectionnez *Mappage des autorisations de l'adaptateur IdP*.
+. Dans la liste déroulante INSTANCE D'ADAPTATEUR SOURCE, sélectionnez <<adapter-instance-oidc,Adaptateur de formulaire HTML>> celle que vous avez créée.
+. Sélectionnez *Ajouter un mappage* > *Contract Fulfillment*.
+. Sous Source, sélectionnez *Adapter* pour USER_KEY et USER_NAME.
+. Sous Valeur, sélectionnez *sAMAccountName* pour USER_KEY et *username* pour USER_NAME.
+. Sélectionnez *Suivant* > *Suivant* pour accéder à la page récapitulative.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[step-7-set-up-resource-owner-credentials-mapping]]
+== Étape 7 : Configurer le mappage des identifiants du propriétaire de la ressource
+
+Configurez le mappage des identifiants du propriétaire de la ressource pour garantir que les identifiants de l'utilisateur sont correctement validés lors de l'authentification.
+
+.Étapes
+. Accédez à *Authentification* > *Mappage des contrats de stratégie d'autorisation*.
+. Sélectionnez *Mappage des identifiants du propriétaire de la ressource*.
+. Dans la liste déroulante SOURCE PASSWORD VALIDATOR INSTANCE, sélectionnez <<password-validator-oidc,validateur des informations d'identification du mot de passe>> que vous avez créée.
+. Sélectionnez *Ajouter un mappage* > *Contract Fulfillment*.
+. Ajoutez le mappage pour USER_KEY :
++
+** Sous Source, sélectionnez *Password Credential Validator*.
+** Sous Valeur, sélectionnez *sAMAccountName*.
+
+
+. Sélectionnez *Suivant* > *Suivant* pour accéder à la page récapitulative.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[step-8-create-or-import-signing-certificatesigning-certificate-oidc]]
+== Étape 8 : Créer ou importer un certificat de signature[[signing-certificate-oidc]]
+
+Si ce n'est déjà fait, créez ou importez le certificat de signature.
+
+.Étapes
+. Accédez à *sécurité* > *clés de signature et de déchiffrement*.
+. Sélectionnez *Créer nouveau*, puis saisissez les informations suivantes :
++
+** Nom commun (CN) : Il doit s'agir du domaine complet (FQDN) du serveur.
+** Organisation (Org) : Saisissez le nom de votre organisation.
+** Pays : Indiquez le code pays à deux lettres, par exemple US pour les États-Unis.
+** Algorithme de clé : sélectionnez l’algorithme de clé approprié, tel que *RSA*.
+** Taille de la clé : définie sur *2048* bits.
+** Algorithme de signature : Sélectionnez *RSA avec SHA256* comme algorithme de signature pour garantir des opérations cryptographiques sécurisées.
+
+
+
+
+
+
+[[step-9-configure-access-token-managementaccess-token-oidc]]
+== Étape 9 : Configurer la gestion des jetons d’accès[[access-token-oidc]]
+
+StorageGRID utilise des jetons d'accès pour authentifier et autoriser les requêtes API dans PingFederate.
+
+.Étapes
+. Accédez à *Applications* > *Gestion des jetons d'accès*.
+. Sélectionnez *Créer une nouvelle instance*.
+. Dans l'onglet Type, saisissez les informations suivantes :
++
+** NOM DE L'INSTANCE et ID DE L'INSTANCE : Vous pouvez utiliser la même valeur pour les deux.
+** Type : Vérifiez que la valeur est *JSON Web Tokens*.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet Configuration de l'instance, saisissez les informations suivantes pour les certificats :
++
+** ID DE CLÉ : Saisissez un identifiant unique pour la clé.
+** Certificat : Ajoutez le <<signing-certificate-oidc,certificat>> que vous avez créé.
+** ALGORITHME JWS : sélectionnez *RSA using SHA256*.
+** ID DE CLÉ DU CERTIFICAT DE SIGNATURE ACTIF : Sélectionnez l’*ID DE CLÉ* que vous avez créé à cette étape.
+
+
+. Sélectionnez *Suivant* > *Suivant*.
+. Dans l'onglet Contrat d'attribut de jeton d'accès, sélectionnez *USER_KEY* pour Nom de l'attribut du sujet et *username* pour Étendre le contrat.
+. Sélectionnez *Ajouter*.
+. Sélectionnez *Suivant* > *Suivant* > *Suivant* pour accéder à la page récapitulative.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[step-10-configure-access-token-mapping]]
+== Étape 10 : Configurer le mappage des jetons d’accès
+
+Configurez le mappage des jetons d'accès pour utiliser le jeton d'accès que vous avez créé.
+
+.Étapes
+. Accédez à *Applications* > *Mappages de jetons d'accès*.
+. Sélectionnez *Mappages de jetons d'accès*.
+. Sélectionnez *Ajouter un mappage*.
+. Pour le contexte, sélectionnez *Default*.
+. Pour le Gestionnaire de jetons d'accès, sélectionnez le <<access-token-oidc,jeton d'accès>> que vous avez créé.
+. Sélectionnez *Suivant* > *Exécution du contrat* :
+. Sous Source, sélectionnez *Persistent Grant* pour le nom d'utilisateur.
+. Sous Valeur, sélectionnez *USER_KEY* pour le nom d'utilisateur.
+. Sélectionnez *Suivant* > *Enregistrer*.
+
+
+
+
+[[step-11-set-up-the-openid-connect-policy]]
+== Étape 11 : Configurer la politique OpenID Connect
+
+Définissez les politiques OpenID Connect pour l'accès client aux attributs qui sont mappés conformément aux spécifications OpenID.
+
+.Étapes
+. Accédez à *Applications* > *Clients OAuth*.
+. Sélectionnez *OpenId Connect Policy Management* > *Add Policy*.
+. Dans l'onglet Gérer la stratégie, saisissez les informations suivantes :
++
+** ID DE LA POLITIQUE : Un identifiant unique pour la politique.
+** NOM DE LA STRATÉGIE : Un nom descriptif pour la stratégie.
+** GESTIONNAIRE DE JETONS D'ACCÈS : Sélectionnez le <<access-token-oidc,jeton d'accès>> que vous avez créé.
+** DURÉE DE VIE DU JETON D'IDENTIFICATION : Définissez la durée de vie souhaitée pour le jeton d'identification, par exemple 60 minutes ou une heure.
+** INCLURE LES INFORMATIONS UTILISATEUR DANS LE JETON D'IDENTIFICATION : Cochez la case pour inclure les informations de l'utilisateur dans le jeton d'identification.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet Contrat d'attributs, supprimez tous les attributs existants qui ne sont pas nécessaires pour le <<data-store-oidc,magasin de données>> que vous avez créé. Ne conservez que les attributs que vous souhaitez transmettre de Ping Authentication à StorageGRID.
++
+
+NOTE: Il s'agit d'une étape cruciale. Elle détermine les valeurs d'attribut incluses dans le jeton d'identification. StorageGRID hérite de ces valeurs lors du processus d'authentification.
+
+. Sélectionnez *Suivant* > *Suivant*.
+. Dans l'onglet Source d'attributs et recherche d'utilisateurs, sélectionnez *Ajouter une source d'attributs*. Saisissez ensuite les informations suivantes :
++
+** ID DE LA SOURCE D'ATTRIBUT et DESCRIPTION DE LA SOURCE D'ATTRIBUT : Vous pouvez utiliser la même valeur pour les deux.
+** MAGASIN DE DONNÉES ACTIF : Sélectionnez le <<data-store-oidc,magasin de données>> que vous avez créé.
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet LDAP Directory Search :
++
+.. Saisissez le *DN de base*, qui doit correspondre exactement à la valeur que vous avez saisie dans StorageGRID pour le serveur LDAP.
+.. Dans la liste déroulante ROOT OBJECT CLASS, sélectionnez *objectClass*.
+.. Dans la liste déroulante ATTRIBUTE, ajoutez un attribut pour chaque classe d'objet que vous souhaitez mapper. Par exemple :
++
+*** InetOrgPerson : Ajoutez displayName, givenName ou HomePhone.
+*** utilisateur : Ajoutez LocalID ou userPrincipalName (upn).
+*** En haut : Ajoutez memberOf ou nom.
+*** person : Ajouter sn.
+
+
+
+
+. Sélectionnez *Suivant*.
+. Dans l'onglet filtre LDAP, entrez *sAMAccountName=${username}*.
++
+Vous devez personnaliser le filtre LDAP pour que StorageGRID récupère les attributs utilisateur en fonction de la structure Active Directory ou LDAP spécifique à votre organisation. Consultez votre administrateur LDAP/AD pour obtenir l'expression de filtre appropriée à votre configuration.
+
+. Sélectionnez *Enregistrer* et consultez le résumé.
+. Dans l'onglet Exécution du contrat, saisissez les informations suivantes :
++
+** Source : Sélectionnez le <<data-store-oidc,base de données LDAP>> que vous avez créé.
+** Valeur : Associez chaque contrat d’attribut à la valeur correspondante.
+
+
+. Sélectionnez *Suivant* > *Suivant*.
+. Vérifiez le résumé et sélectionnez *Enregistrer*.
+. Accédez à *Applications* > *Clients OAuth* > *Gestion des politiques OpenID Connect*.
+. Vérifiez que la stratégie que vous avez créée est définie comme stratégie par défaut.
+
+
+
+
+[[step-12-create-oauth-client-for-oauth-server]]
+== Étape 12 : Créer un client OAuth pour le serveur OAuth
+
+Créez un nouveau client OAuth pour configurer les informations d'identification client nécessaires et autoriser les connexions entre PingFederate et StorageGRID.
+
+.Étapes
+. Accédez à *Applications* > *Clients OAuth*.
+. Sélectionnez *Add Client*, puis saisissez les informations suivantes :
++
+** ID CLIENT : Saisissez une valeur unique.
+** AUTHENTIFICATION DU CLIENT : sélectionnez *Client Secret*.
+** SECRET CLIENT : Sélectionnez *MODIFIER LE SECRET* > *Générer le secret*.
++
+Cela génère la clé secrète du client. Conservez cette clé pour une utilisation ultérieure.
+
+** URI DE REDIRECTION : Indiquez les URL de retour StorageGRID dans la section *URI de redirection*. Ces URL doivent correspondre aux URL configurées dans StorageGRID pour OAuth : par exemple :
+** `\https://<Admin IP or Hostname>/api/v4/oidc-callback`
+** `\https://<Admin IP or Hostname>/api/v4/oidc-logged-out`
+** TYPES DE SUBVENTIONS AUTORISÉES : Sélectionnez les options suivantes :
++
+*** *Code d'autorisation* : Ceci lance le flux OAuth.
+*** *Jeton d'actualisation* : Obtenez un nouveau jeton lorsqu'un jeton d'accès expire.
+*** *Identifiants du propriétaire de la ressource* : Si vous avez besoin d’un accès direct aux identifiants de l’utilisateur pour l’authentification.
+
+
+** OPENID CONNECT : Sélectionnez *RSA using SHA-256* pour l’algorithme de signature du jeton d’identification.
+** Mode de déconnexion : sélectionnez *OIDC Back-Channel*.
+** URI de déconnexion du canal frontal, URI de déconnexion du canal dorsal et URI de redirection post-déconnexion : ajoutez l’URI de déconnexion StorageGRID : `\https://<Admin IP or Hostname>/api/v4/oidc-logged-out`
+
+
+. Sélectionnez *Enregistrer*.
+
+
+.Et ensuite
+Après avoir créé les connexions SP,link:configure-sso-oidc.html["Configurer l'authentification unique (SSO) à l'aide d'OIDC"].

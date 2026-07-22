@@ -22,14 +22,14 @@ Avant d'ajouter un site, vérifiez les exigences et limites suivantes :
 
 * Vous ne pouvez ajouter qu'un site par opération d'extension.
 * Vous ne pouvez pas ajouter de nœuds grid à un site existant dans le cadre d'une même extension.
-* Tous les sites doivent inclure au moins trois nœuds de stockage.
-* L'ajout d'un nouveau site n'augmente pas automatiquement le nombre d'objets que vous pouvez stocker. La capacité totale d'objet d'un grid dépend de la quantité de stockage disponible, de la règle ILM et de la capacité des métadonnées sur chaque site.
+* Chaque site doit comporter au moins trois nœuds de stockage. Il peut s'agir de n'importe quelle combinaison de nœuds de stockage combinés et de nœuds de stockage de métadonnées uniquement. S'il y a plus de trois nœuds de stockage, il peut s'agir de n'importe quelle combinaison de nœuds de stockage combinés, de nœuds de stockage de métadonnées uniquement et de nœuds de stockage de données uniquement, à condition que trois services ADC soient disponibles. Pour plus d'informations, consultez link:../primer/what-storage-node-is.html#required-storage-nodes-per-grid-and-per-site["Nœuds de stockage requis par grille et par site"].
+* L'ajout d'un nouveau site n'augmente pas automatiquement le nombre d'objets que vous pouvez stocker. La capacité totale d'objets d'une grille dépend de l'espace de stockage disponible, de la politique ILM et de la capacité de métadonnées de chaque site.
 * Lors du dimensionnement d'un nouveau site, vous devez vous assurer qu'il inclut suffisamment de capacité de métadonnées.
 +
-StorageGRID conserve une copie de toutes les métadonnées d'objet sur chaque site. Lorsque vous ajoutez un nouveau site, vous devez vous assurer qu'il inclut une capacité de métadonnées suffisante pour les métadonnées d'objet existantes et une capacité de métadonnées suffisante pour croître.
+StorageGRID conserve une copie de toutes les métadonnées des objets sur chaque site. Lorsque vous ajoutez un nouveau site, assurez-vous qu'il dispose d'une capacité de métadonnées suffisante pour les métadonnées des objets existants et pour la croissance future.
 
 +
-Pour plus d'informations, reportez-vous aux sections suivantes :
+Pour plus d'informations, veuillez consulter les documents suivants :
 
 +
 ** link:../admin/managing-object-metadata-storage.html["Gérer le stockage des métadonnées d'objet"]
@@ -37,11 +37,19 @@ Pour plus d'informations, reportez-vous aux sections suivantes :
 
 
 * Vous devez tenir compte de la bande passante réseau disponible entre les sites et du niveau de latence du réseau. Les mises à jour des métadonnées sont continuellement répliquées entre les sites, même si tous les objets sont stockés uniquement sur le site où ils sont ingéré.
-* Votre système StorageGRID reste opérationnel pendant son développement. Vous devez donc revoir les règles ILM avant de démarrer la procédure d'extension. Vous devez vous assurer que les copies d'objet ne sont pas stockées sur le nouveau site tant que la procédure d'extension n'est pas terminée.
 +
-Par exemple, avant de commencer l'extension, déterminez si des règles utilisent le pool de stockage par défaut (tous les nœuds de stockage). Le cas échéant, vous devez créer un nouveau pool de stockage contenant les nœuds de stockage existants et mettre à jour les règles ILM pour utiliser le nouveau pool de stockage. Sinon, les objets seront copiés sur le nouveau site dès que le premier nœud de ce site devient actif.
+Pour éviter les mauvaises performances dues à la latence :
 
 +
-Pour plus d'informations sur la modification d'ILM lors de l'ajout d'un nouveau site, reportez-vous au link:../ilm/example-6-changing-ilm-policy.html["Exemple de modification d'une règle ILM"].
+** Le codage par effacement n'est pas recommandé entre les sites présentant une latence supérieure à 100 ms.
+** Les sites de votre système StorageGRID ne doivent pas s'étendre sur de grandes distances géographiques, par exemple, sur plusieurs continents.
+
+
+* Votre système StorageGRID reste opérationnel pendant son développement. Vous devez donc revoir les règles ILM avant de démarrer la procédure d'extension. Vous devez vous assurer que les copies d'objet ne sont pas stockées sur le nouveau site tant que la procédure d'extension n'est pas terminée.
++
+Par exemple, avant de commencer l'extension, vérifiez si des règles utilisent le pool de stockage par défaut (All Storage Nodes). Si c'est le cas, créez un nouveau pool de stockage avec les Storage Nodes existants et mettez à jour vos règles ILM pour utiliser le nouveau pool de stockage. Sinon, les objets sont copiés sur le nouveau site dès que le premier nœud de ce site devient actif.
+
++
+Pour plus d'informations sur la modification d'une politique ILM lors de l'ajout d'un nouveau site, reportez-vous à la link:../ilm/example-6-changing-ilm-policy.html["Exemple de modification d'une règle ILM"].
 
 

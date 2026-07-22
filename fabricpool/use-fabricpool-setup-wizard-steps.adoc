@@ -31,10 +31,7 @@ Vous pouvez exécuter l'assistant d'installation FabricPool lorsque vous commenc
 
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-. Si la bannière *FabricPool and S3 setup Wizard* apparaît sur le tableau de bord, sélectionnez le lien dans la bannière. Si la bannière ne s'affiche plus, sélectionnez l'icône d'aide dans la barre d'en-tête du Gestionnaire de grille et sélectionnez *Assistant d'installation FabricPool et S3*.
-+
-image:help_menu.png["menu aide"]
-
+. Si la bannière *FabricPool and S3 setup wizard* apparaît sur le tableau de bord, sélectionnez le lien dans la bannière. Si la bannière n'apparaît plus, sélectionnez l'icône d'aide image:icon_help_menu_bar.png["Icône d'aide"] dans la barre d'en-tête du Grid Manager et sélectionnez *FabricPool and S3 setup wizard*.
 . Dans la section FabricPool de la page de l'assistant d'installation de FabricPool et S3, sélectionnez *configurer maintenant*.
 +
 *L'étape 1 sur 9 : configurer le groupe HA* s'affiche.

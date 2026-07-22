@@ -113,8 +113,8 @@ entries:
     url: "/ilm/workflow-for-s3-object-lock.html"
   - title: Conditions requises pour le verrouillage d'objet S3
     url: "/ilm/requirements-for-s3-object-lock.html"
-  - title: Activez le verrouillage global des objets S3
-    url: "/ilm/enabling-s3-object-lock-globally.html"
+  - title: Activer le verrouillage d'objet S3
+    url: "/ilm/enabling-s3-object-lock.html"
   - title: Résolvez les erreurs de cohérence lors de la mise à jour de la configuration
       du verrouillage d'objet S3 ou de la conformité héritée
     url: "/ilm/resolving-consistency-errors-when-updating-bucket-s3-object-lock-configuration.html"

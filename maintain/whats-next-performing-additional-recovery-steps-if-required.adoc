@@ -38,7 +38,9 @@ Si vous avez pris *l'une* de ces actions correctives, vous devez effectuer des �
  a| 
 Nœud d'administration principal
  a| 
-link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"]
+* link:selecting-start-recovery-to-configure-primary-admin-node.html["Sélectionnez Démarrer la récupération pour configurer le nœud Admin principal"]
+* link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Récupérez le nœud d'administration principal à l'aide d'un nœud d'administration non principal"]
+
 
 
 
@@ -74,6 +76,6 @@ Nœud de stockage (basé sur logiciel) :
 * Si, pour n'importe quel `<PURPOSE>`, la valeur de la `BLOCK_DEVICE_<PURPOSE>` variable de fichier de configuration fait référence à un périphérique de bloc qui ne contient pas les mêmes données qu'avant la défaillance de l'hôte.
 
  a| 
-link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact"]
+link:reviewing-warnings-about-storage-volume-recovery.html["Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact"]
 
 |===

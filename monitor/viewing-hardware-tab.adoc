@@ -55,7 +55,7 @@ La section alertes de l'onglet Overview affiche toutes les alertes actives du n�
 
 . Sélectionnez *matériel* pour plus d'informations sur l'appareil.
 +
-.. Affichez les graphiques d'utilisation de l'UC et de la mémoire pour déterminer les pourcentages d'utilisation de l'UC et de la mémoire au fil du temps. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
+.. Consultez les graphiques d'utilisation du processeur et de la mémoire pour connaître les pourcentages d'utilisation du processeur et de la mémoire au fil du temps. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes situées au-dessus du graphique. Vous pouvez afficher les informations pour des intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, ce qui vous permet de spécifier des plages de dates et d'heures.
 +
 image:nodes_page_hardware_tab_graphs.png["Graphiques de matériel"]
 
@@ -66,9 +66,6 @@ NOTE: Certains champs, tels que le contrôleur de calcul BMC IP et le matériel 
 
 +
 Les composants des tiroirs de stockage et des tiroirs d'extension s'ils font partie de l'installation apparaissent dans un tableau séparé sous le tableau de l'appliance.
-
-+
-image:nodes_page_hardware_tab_for_appliance.png["Page noeuds onglet matériel de l'appliance"]
 
 +
 [cols="1a,2a"]
@@ -261,6 +258,20 @@ Température du châssis du contrôleur de calcul
  a| 
 État de température du contrôleur de calcul.
 
+
+
+ a| 
+Alimentation du contrôleur de calcul A
+ a| 
+État de l'alimentation A du contrôleur de calcul.
+
+
+
+ a| 
+Alimentation du contrôleur de calcul B
+ a| 
+État de l'alimentation B du contrôleur de calcul.
+
 |===
 +
 [cols="1a,2a"]
@@ -379,12 +390,12 @@ Le graphique trafic réseau fournit un récapitulatif du trafic réseau global.
 image:nodes_page_network_traffic_graph.png["Courbes de trafic réseau de la page noeuds"]
 
 +
-.. Consultez la section interfaces réseau.
+.. Consultez la section Interfaces réseau.
 +
 image:nodes_page_network_interfaces.png["Nœuds page interfaces réseau"]
 
 +
-Utilisez le tableau suivant avec les valeurs de la colonne *Speed* du tableau interfaces réseau pour déterminer si les ports réseau 10/25-GbE de l'appliance ont été configurés pour utiliser le mode actif/sauvegarde ou le mode LACP.
+Utilisez le tableau suivant avec les valeurs de la colonne *Vitesse* du tableau des interfaces réseau pour déterminer si les ports réseau 10/25-GbE de l'appliance ont été configurés pour utiliser le mode actif/de secours ou le mode LACP.
 
 +
 
@@ -464,12 +475,9 @@ Actif/sauvegarde
 +
 Pour plus d'informations sur la configuration des ports 10/25-GbE, reportez-vous à la section https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-network-links.html["Configurer les liaisons réseau"^].
 
-.. Passez en revue la section communication réseau.
+.. Consultez la section sur la communication réseau.
 +
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
-
-+
-image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
 
 
 
@@ -488,9 +496,6 @@ Le nom mondial de chaque disque correspond à l'identifiant universel (WWID) du 
 +
 Pour vous aider à interpréter les statistiques de lecture et d'écriture du disque relatives aux points de montage du volume, la première partie du nom affichée dans la colonne *Name* de la table Disk Devices (c'est-à-dire _sdc_, _sdd_, _sde_, etc.) correspond à la valeur indiquée dans la colonne *Device* de la table volumes.
 
-+
-image:nodes_page_storage_tables.png["Nœuds tables de stockage des pages"]
-
 
 
 
@@ -504,7 +509,7 @@ La page nœuds répertorie les informations relatives à l'état des services et
 
 .Étapes
 . Sur la page nœuds, sélectionnez un nœud d'administration d'appliance ou un nœud de passerelle d'appliance.
-. Sélectionnez *vue d'ensemble*.
+. Sélectionnez l'onglet *Aperçu*.
 +
 La section informations sur le nœud de l'onglet Présentation affiche un récapitulatif des informations sur le nœud, telles que le nom, le type, l'ID et l'état de connexion du nœud. La liste des adresses IP inclut le nom de l'interface pour chaque adresse, comme suit :
 
@@ -521,16 +526,13 @@ image:nodes_page_overview_tab_services_appliance.png["Onglet de présentation de
 +
 La section alertes de l'onglet Overview affiche toutes les alertes actives du nœud.
 
-. Sélectionnez *matériel* pour plus d'informations sur l'appareil.
+. Sélectionnez l'onglet *Matériel* pour obtenir plus d'informations sur l'appareil.
 +
 .. Affichez les graphiques d'utilisation de l'UC et de la mémoire pour déterminer les pourcentages d'utilisation de l'UC et de la mémoire au fil du temps. Pour afficher un intervalle de temps différent, sélectionnez l'une des commandes au-dessus du graphique ou du graphique. Vous pouvez afficher les informations disponibles pour les intervalles de 1 heure, 1 jour, 1 semaine ou 1 mois. Vous pouvez également définir un intervalle personnalisé, qui vous permet de spécifier des plages de date et d'heure.
 +
 image:nodes_page_hardware_tab_graphs_services_appliance.png["Page noeuds onglet matériel graphiques de l'appareil de services"]
 
-.. Faites défiler vers le bas pour afficher le tableau des composants de l'appareil. Ce tableau contient des informations telles que le nom du modèle, le numéro de série, la version du micrologiciel du contrôleur et l'état de chaque composant.
-+
-image:nodes_page_hardware_tab_services_appliance.png["Page noeuds onglet matériel de l'appliance de services"]
-
+.. Faites défiler vers le bas pour consulter le tableau des composants de l'appareil. Ce tableau contient des informations telles que le nom du modèle, le numéro de série, la version du micrologiciel du contrôleur et l'état de chaque composant.
 +
 [cols="1a,2a"]
 |===
@@ -621,7 +623,7 @@ Si un état n'est pas « nominal », passez en revue les alertes actuelles.
 
 
 
-. Sélectionnez *réseau* pour afficher les informations de chaque réseau.
+. Sélectionnez l'onglet *Réseau* pour afficher les informations de chaque réseau.
 +
 Le graphique trafic réseau fournit un récapitulatif du trafic réseau global.
 
@@ -629,12 +631,9 @@ Le graphique trafic réseau fournit un récapitulatif du trafic réseau global.
 image:nodes_page_network_traffic_graph.png["Courbes de trafic réseau de la page noeuds"]
 
 +
-.. Consultez la section interfaces réseau.
+.. Consultez la section Interfaces réseau.
 +
-image:nodes_page_hardware_tab_network_services_appliance.png["Page noeuds onglet matériel serveur de services réseau"]
-
-+
-Utilisez le tableau suivant avec les valeurs de la colonne *Speed* du tableau interfaces réseau pour déterminer si les quatre ports réseau 40/100-GbE de l'appliance ont été configurés pour utiliser le mode actif/sauvegarde ou le mode LACP.
+Utilisez le tableau suivant avec les valeurs de la colonne *Vitesse* du tableau des interfaces réseau pour déterminer si les quatre ports réseau 40/100-GbE de l'appliance ont été configurés pour utiliser le mode actif/de secours ou le mode LACP.
 
 +
 
@@ -711,17 +710,11 @@ Actif/sauvegarde
 40
 
 |===
-.. Passez en revue la section communication réseau.
+.. Consultez la section sur la communication réseau.
 +
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
 
-+
-image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
 
 
-
-. Sélectionnez *Storage* pour afficher des informations sur les unités de disque et les volumes de l'appliance de services.
-+
-image:nodes_page_storage_tab_services_appliance.png["Nœuds page stockage onglet Services Appliance"]
-
+. Sélectionnez l'onglet *Stockage* pour afficher les informations relatives aux périphériques de disque et aux volumes de l'appliance de services.
 

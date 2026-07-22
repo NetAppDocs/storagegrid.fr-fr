@@ -64,6 +64,11 @@ L'archive du fichier journal StorageGRID contient les journaux décrits pour cha
 | Emplacement d'archivage | Description 
 
 
+| acct-tunnel.log  a| 
+Journal de l’assistant de tunnel de compte qui fonctionne avec le répartiteur de charge.
+
+
+
 | audit  a| 
 Messages d'audit générés pendant le fonctionnement normal du système.
 
@@ -114,6 +119,11 @@ Metrics et journaux pour les groupes de haute disponibilité.
 
 
 
+| internal-access.log  a| 
+Journal du trafic du proxy HTTP interne.
+
+
+
 | Lambda-arbitre  a| 
 Journaux associés à la demande de proxy S3 Select.
 
@@ -126,6 +136,11 @@ Journaux du service leakd.
 
 | lumberjack.log  a| 
 Messages de débogage liés à la collecte de journaux.
+
+
+
+| manage-audit.log  a| 
+`mgmt-api` accéder aux journaux d'audit.
 
 
 
@@ -174,6 +189,10 @@ Fichiers et journaux de configuration de l'équilibreur de charge et de la féd�
 
 
 * `nginx-gw-dns-check.log`: Lié à la nouvelle alerte de vérification DNS.
+* stream-access.log : sessions proxy de flux TCP/TLS (couche 4) pour le bloc de flux.
++
+*Remarque* : Ceci n’est pas un journal de requêtes HTTP.
+
 
 
 
@@ -220,6 +239,16 @@ Journaux de grappe raft utilisés dans les services de plate-forme.
 
 
 
+| revision_history.json  a| 
+Historique des révisions.
+
+
+
+| routed-s3-access.log.gz  a| 
+Journal d'accès pour le trafic de fédération de grille acheminé comme S3 (espace de noms global/URL de fédération).
+
+
+
 | ssh  a| 
 Journaux liés à la configuration et au service SSH.
 
@@ -235,6 +264,11 @@ Données des sockets pour le débogage réseau.
 
 
 
+| system-bucket.log  a| 
+`update-system-bucket-configuration.log` : Journaux du compartiment système.
+
+
+
 | system-commands.txt  a| 
 Résultat des commandes du conteneur StorageGRID. Contient des informations sur le système, telles que la mise en réseau et l'utilisation du disque.
 
@@ -242,5 +276,15 @@ Résultat des commandes du conteneur StorageGRID. Contient des informations sur 
 
 | synchroniser-package-récupération  a| 
 Lié au maintien de la cohérence du dernier package de récupération sur tous les nœuds d'administration et nœuds de stockage qui hébergent le service ADC.
+
+
+
+| update-cipher-configurations.log  a| 
+`update-cors-configurations.log`: Journaux de traces relatifs aux modifications TLS/chiffrements et CORS.
+
+
+
+| update-leakd-configurations.log  a| 
+Journal de configuration de la détection des orphelins.
 
 |===

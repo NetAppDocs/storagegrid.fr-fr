@@ -29,9 +29,6 @@ Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en mi
 La réplication CloudMirror présente des similarités et des différences importantes avec la fonction de réplication multigrille. Pour en savoir plus, voir link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["Comparez la réplication entre les grilles et la réplication CloudMirror"].
 
 
-NOTE: La réplication CloudMirror n'est pas prise en charge si le verrouillage d'objet S3 est activé sur le bucket source.
-
-
 
 [[notifications]]
 == Notifications

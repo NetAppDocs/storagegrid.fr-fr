@@ -66,6 +66,14 @@ Principal/notPrincipal
  a| 
 Vous pouvez autoriser les utilisateurs, groupes et comptes à accéder à des ressources spécifiques et à effectuer des actions spécifiques. Si aucune signature S3 n'est incluse dans la demande, l'accès anonyme est autorisé en spécifiant le caractère générique (*) comme principal. Par défaut, seul le root du compte peut accéder aux ressources qui lui sont propres.
 
+Le directeur :
+
+* `"Principal": "*"`Correspond à tout le monde, y compris aux requêtes anonymes (non signées)
+* `"Principal": { "AWS": "*" }` correspond à toute identité ou utilisateur authentifié (ne correspond pas aux requêtes anonymes)
+* S'applique uniquement aux stratégies de compartiment
+* Le principal est le ou les comptes/utilisateurs auxquels les autorisations sont accordées ou refusées
+
+
 Il vous suffit de spécifier l'élément principal dans une stratégie de rubrique. Pour les stratégies de groupe, le groupe auquel la stratégie est associée est l'élément principal implicite.
 
 
@@ -186,7 +194,7 @@ arn:aws:iam::account_id:federated-group/group_name
 Autres considérations :
 
 * Vous pouvez utiliser l'astérisque (*) comme caractère générique pour correspondre à zéro ou plus de caractères dans la clé d'objet.
-* Les caractères internationaux, qui peuvent être spécifiés dans la clé d'objet, doivent être codés à l'aide de JSON UTF-8 ou de séquences d'échappement JSON \u. Le codage pourcentage n'est pas pris en charge.
+* Les caractères internationaux, qui peuvent être spécifiés dans la clé de l'objet, doivent être encodés en JSON UTF-8 ou à l'aide des séquences d'échappement JSON \u. L'encodage en pourcentage n'est pas pris en charge.
 +
 https://www.ietf.org/rfc/rfc2141.txt["Syntaxe RFC 2141 URN"^]
 
@@ -215,7 +223,7 @@ Dans les instructions de stratégie, vous pouvez utiliser l'élément ressource 
 ----
 "Resource": "arn:aws:s3:::mybucket/home/${aws:username}/*"
 ----
-* La valeur de ressource peut spécifier un compartiment qui n'existe pas encore lorsqu'une stratégie de groupe est créée.
+* La valeur de la ressource peut spécifier un compartiment qui n'existe pas encore lors de la création d'une stratégie de groupe.
 
 
 
@@ -486,9 +494,10 @@ Oui, pour OBTENIR l'utilisation du stockage.
  a| 
 s3:ListBucket
  a| 
-* ListObjects
+* GetObject
 * Godet principal
-* Objet de restauration
+* Objet principal
+* ListObjects
 
  a| 
 
@@ -498,7 +507,6 @@ s3:ListBucket
 s3:ListBuckMultipartUploads
  a| 
 * ListMultipartUploads
-* Objet de restauration
 
  a| 
 
@@ -644,7 +652,6 @@ Oui, des autorisations séparées pour PUT et DELETE
 s3:AbortMultipartUpload
  a| 
 * AbortMultipartUpload
-* Objet de restauration
 
  a| 
 
@@ -666,7 +673,6 @@ s3:DeleteObject
  a| 
 * DeleteObject
 * DeleteObjects
-* Objet de restauration
 
  a| 
 
@@ -701,7 +707,6 @@ s3:GetObject
  a| 
 * GetObject
 * Objet principal
-* Objet de restauration
 * SelectObjectContent
 
  a| 
@@ -759,7 +764,7 @@ GetObject (une version spécifique de l'objet)
  a| 
 s3:ListMultipartUploadParts
  a| 
-ListParts, RestoreObject
+ListParts
  a| 
 
 
@@ -767,11 +772,10 @@ ListParts, RestoreObject
  a| 
 s3:PutObject
  a| 
-* PutObject
 * Objet de copie
-* Objet de restauration
-* CreateMultipartUpload
 * CompleteMultipartUpload
+* CreateMultipartUpload
+* PutObject
 * UploadPart
 * UploadPartCopy
 
@@ -814,11 +818,11 @@ PutObjectTagging (une version spécifique de l'objet)
  a| 
 s3:PutOverwriteObject
  a| 
-* PutObject
-* Objet de copie
-* Marquage PutObject
-* DeleteObjectTagging
 * CompleteMultipartUpload
+* Objet de copie
+* DeleteObjectTagging
+* PutObject
+* Marquage PutObject
 
  a| 
 Oui
@@ -851,10 +855,10 @@ Les paramètres possibles pour cette autorisation sont les suivants :
 *** Si la gestion des versions S3 est activée, le paramètre deny empêche les opérations PutObjectTagging ou DeleteObjectTagging de modifier le TagSet d'un objet et ses versions non actuelles.
 
 
-** Si aucun objet existant n'est trouvé, cette autorisation n'a aucun effet.
+** Si aucun objet existant n'est trouvé, cette autorisation est sans effet.
 
 
-* Lorsque cette autorisation n'est pas présente, l'effet est le même que si autorisation a été définie.
+* Lorsque cette autorisation est absente, l'effet est le même que si Allow était activé.
 
 
 
@@ -1020,7 +1024,7 @@ Vérifie si une clé condition est présente dans le contexte de demande actuel.
  a| 
 SiExiste
  a| 
-Ajouté à n'importe quel opérateur de condition, à l'exception de la condition Null, pour vérifier l'absence de cette clé de condition.  Renvoie VRAI si la clé de condition n'est pas présente.
+Ajouté à tout opérateur de condition, à l'exception de la condition Null, pour vérifier l'absence de cette clé de condition. Renvoie TRUE si la clé de condition n'est pas présente.
 
 |===
 
@@ -1038,11 +1042,11 @@ aws:SourceIp
  a| 
 Opérateurs IP
  a| 
-Compare à l'adresse IP à partir de laquelle la demande a été envoyée. Peuvent être utilisées pour les opérations de compartiment ou d'objet.
+Comparée à l'adresse IP à partir de laquelle la requête a été envoyée. Peut être utilisée pour les opérations sur les compartiments ou les objets.
 
-*Remarque :* si la requête S3 a été envoyée via le service Load Balancer sur les nœuds Admin et les passerelles, cela se compare à l'adresse IP en amont du service Load Balancer.
+*Remarque :* Si la requête S3 a été envoyée via le service Load Balancer sur les nœuds d’administration et les nœuds de passerelle, cela correspond à l’adresse IP en amont du service Load Balancer.
 
-*Remarque* : si un équilibreur de charge tiers non transparent est utilisé, il sera comparé à l'adresse IP de cet équilibreur de charge. N'importe quel `X-Forwarded-For` en-tête sera ignoré car sa validité ne peut pas être établie.
+*Remarque* : Si un équilibreur de charge tiers non transparent est utilisé, la comparaison porte sur l’adresse IP de cet équilibreur. Tout  `X-Forwarded-For` en-tête est ignoré car sa validité ne peut être vérifiée.
 
 
 
@@ -1051,7 +1055,7 @@ aws:nom d'utilisateur
  a| 
 Ressource/identité
  a| 
-Compare le nom d'utilisateur de l'expéditeur à partir duquel la demande a été envoyée. Peuvent être utilisées pour les opérations de compartiment ou d'objet.
+Comparé au nom d'utilisateur de l'expéditeur à partir duquel la requête a été envoyée. Peut être utilisé pour les opérations sur les compartiments ou les objets.
 
 
 
@@ -1062,7 +1066,7 @@ s3:ListBucket et
 
 s3:permissions ListBuckeVersions
  a| 
-Compare avec le paramètre délimiteur spécifié dans une demande ListObjects ou ListObjectVersions.
+Compare au paramètre délimiteur spécifié dans une requête ListObjects ou ListObjectVersions.
 
 
 
@@ -1093,7 +1097,7 @@ s3:PutObjectVersionAcl
 
 s3:PutObjectVersionTagging
  a| 
-Exige que l'objet existant ait la clé et la valeur de balise spécifiques.
+Nécessite que l'objet existant possède la clé et la valeur de balise spécifiques.
 
 
 
@@ -1104,7 +1108,7 @@ s3:ListBucket et
 
 s3:permissions ListBuckeVersions
  a| 
-Compare avec le paramètre max-keys spécifié dans une requête ListObjects ou ListObjectVersions.
+Se compare au paramètre max-keys spécifié dans une requête ListObjects ou ListObjectVersions.
 
 
 
@@ -1156,7 +1160,7 @@ s3:ListBucket et
 
 s3:permissions ListBuckeVersions
  a| 
-Compare avec le paramètre de préfixe spécifié dans une requête ListObjects ou ListObjectVersions.
+Se compare au paramètre de préfixe spécifié dans une requête ListObjects ou ListObjectVersions, ou à la clé spécifiée pour GetObject ou HeadObject.
 
 
 
@@ -1169,7 +1173,16 @@ s3:PutObjectTagging
 
 s3:PutObjectVersionTagging
  a| 
-Nécessitera une clé de balise et une valeur spécifiques lorsque la demande d'objet inclut le balisage.
+Nécessite une clé et une valeur de balise spécifiques lorsque la requête d'objet inclut un étiquetage.
+
+
+
+ a| 
+s3:x-amz-copy-source
+ a| 
+s3:PutObject
+ a| 
+Comparé à l'en-tête x-amz-copy-source développé à partir de l'en-tête de requête dans la requête PutObject et UploadPartCopy.
 
 
 
@@ -1374,7 +1387,7 @@ La stratégie accorde à un compte non propriétaire (y compris les comptes anon
  a| 
 Godet
  a| 
-Valide. Les objets sont détenus par le compte de créateur et la stratégie de compartiment ne s'applique pas. Le compte créateur doit accorder des autorisations d'accès à l'objet à l'aide des listes de contrôle d'accès d'objet.
+Valide. Les objets appartiennent au compte créateur et la stratégie du compartiment ne s'applique pas. Le compte créateur doit accorder les autorisations d'accès à l'objet à l'aide des listes de contrôle d'accès (ACL) d'objet.
  a| 
 Valide. Les objets sont la propriété du compte du propriétaire du compartiment. La politique de compartiment s'applique.
 
@@ -1399,7 +1412,7 @@ Pour vous assurer que les écrasements sont toujours refusés, vous pouvez :
 
 
 
-NOTE: La définition de DeleteObject sur REFUSER dans une règle S3 n'empêche pas ILM de supprimer des objets lorsqu'une règle telle que « zéro copie après 30 jours » existe.
+NOTE: Le fait de définir DeleteObject sur REFUSER dans une stratégie S3 n'empêche pas ILM de supprimer des objets lorsqu'une règle telle que « zéro copie après 30 jours » existe.
 
 
 NOTE: Même lorsque toutes ces règles et politiques sont appliquées, elles ne protègent pas contre les écritures simultanées (voir situation A). Ils protègent contre les écrasements séquentiels terminés (voir situation B).

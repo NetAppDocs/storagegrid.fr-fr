@@ -27,6 +27,17 @@ Vous devez connaître les exigences relatives à l'activation du paramètre glob
 
 
 
+[[requirements-for-allowing-s3-object-lock-to-be-enabled-on-existing-buckets]]
+[[s3-object-lock-existing-buckets]]
+== Conditions requises pour permettre l’activation du verrouillage d’objets S3 sur les compartiments existants
+
+Lorsque le verrouillage global des objets S3 est activé, vous pouvez, si vous le souhaitez, autoriser tous les comptes locataires S3 ou utilisateurs S3 disposant des autorisations nécessaires à activer le verrouillage des objets S3 sur les compartiments existants. Lorsqu'un compte locataire S3 ou un utilisateur S3 active le verrouillage des objets S3 sur un compartiment existant, cela peut entraîner une migration des données d'un pool de stockage cloud vers StorageGRID, selon vos règles ILM.
+
+
+CAUTION: Vous ne pouvez pas arrêter la migration des données non intentionnelle après son démarrage.
+
+
+
 [[requirements-for-compliant-ilm-rules]]
 == Exigences relatives aux règles ILM conformes
 
@@ -59,11 +70,9 @@ link:example-7-compliant-ilm-policy-for-s3-object-lock.html["Exemple de règle I
 == Conditions requises pour les compartiments avec verrouillage objet S3 activé
 
 * Si le paramètre global de verrouillage objet S3 est activé pour le système StorageGRID, vous pouvez utiliser le gestionnaire de locataires, l'API de gestion des locataires ou l'API REST S3 pour créer des compartiments avec le verrouillage objet S3 activé.
-* Si vous prévoyez d'utiliser le verrouillage d'objet S3, vous devez activer le verrouillage d'objet S3 lors de la création du compartiment. Vous ne pouvez pas activer le verrouillage objet S3 pour un compartiment existant.
 * Lorsque le verrouillage d'objet S3 est activé pour un compartiment, StorageGRID active automatiquement le contrôle de version pour ce compartiment. Vous ne pouvez pas désactiver le verrouillage objet S3 ou suspendre la gestion des versions pour le compartiment.
 * Vous pouvez également spécifier un mode de conservation et une période de conservation par défaut pour chaque compartiment à l'aide du gestionnaire des locataires, de l'API de gestion des locataires ou de l'API REST S3. Les paramètres de conservation par défaut du compartiment s'appliquent uniquement aux nouveaux objets ajoutés au compartiment qui ne disposent pas de leurs propres paramètres de conservation. Vous pouvez remplacer ces paramètres par défaut en spécifiant un mode de conservation et une date de conservation jusqu'à pour chaque version d'objet lors du téléchargement.
 * La configuration du cycle de vie des compartiments est prise en charge pour les compartiments avec le verrouillage objet S3 activé.
-* La réplication CloudMirror n'est pas prise en charge pour les compartiments avec le verrouillage objet S3 activé.
 
 
 

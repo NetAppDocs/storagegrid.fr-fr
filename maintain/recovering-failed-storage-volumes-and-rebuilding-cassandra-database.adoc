@@ -97,4 +97,5 @@ restore copies of data.
 
 
 
-Une fois les volumes de stockage reformatés et remontés et les opérations Cassandra nécessaires terminées, vous pouvez link:../maintain/restoring-volume.html["Restaurez les données d'objet à l'aide de Grid Manager"].
+.Et ensuite ?
+Une fois les volumes de stockage reformatés et remontés et les opérations Cassandra nécessaires terminées, vous pouvez link:../maintain/restoring-object-data-to-storage-volume-where-system-drive-is-intact.html["Restaurez les données d'objet à l'aide de Grid Manager"].

@@ -16,13 +16,14 @@ Vous pouvez récupérer les fichiers journaux StorageGRID et les données systè
 .Avant de commencer
 * Vous êtes connecté au gestionnaire de grille sur n'importe quel nœud d'administration à l'aide d'unlink:../admin/web-browser-requirements.html["navigateur web pris en charge"] .
 * Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
-* Vous avez la phrase secrète pour le provisionnement.
 
 
 .Description de la tâche
 Utilisez le gestionnaire de grille pour collecterlink:logs-files-reference.html["fichiers journaux"] , les données système et les données de configuration de n’importe quel nœud de grille pour la période que vous sélectionnez.  Les données sont collectées et archivées dans un `.tar.gz` fichier que vous pouvez ensuite télécharger sur votre ordinateur local ou envoyer au support technique.
 
 En option, vous pouvez modifier la destination des journaux d'audit et envoyer les informations d'audit à un serveur syslog externe.  Les journaux locaux des enregistrements d'audit continuent d'être générés et stockés lorsqu'un serveur syslog externe est configuré. Voir link:../monitor/configure-log-management.html["Configurer la gestion des journaux et le serveur syslog externe"] .
+
+Si le nœud d'administration utilisé pour lancer la collecte des journaux est mis hors ligne pendant celle-ci, StorageGRID ne conserve pas les résultats. Vous devez redémarrer le nœud et relancer la collecte des journaux une fois le redémarrage terminé.
 
 .Étapes
 . Sélectionnez *Support* > *Outils* > *Collecte de journaux*.  Un tableau de nœuds s'affiche.
@@ -47,7 +48,6 @@ Si vous sélectionnez une période très longue ou collectez les journaux de tou
 +
 Vous pouvez utiliser ces notes pour fournir des informations de support technique sur le problème qui vous a demandé de collecter les fichiers journaux. Vos notes sont ajoutées à un fichier appelé `info.txt`, ainsi qu'à d'autres informations sur la collection de fichiers journaux. Le `info.txt` fichier est enregistré dans le package d'archivage du fichier journal.
 
-. Dans la zone de texte *Phrase secrète de provisionnement*, saisissez la phrase secrète de provisionnement de votre système StorageGRID .
 . Sélectionnez *Collecter les journaux*.
 +
 Vous pouvez utiliser la page de collecte des journaux pour surveiller la progression de la collecte des fichiers journaux pour chaque nœud de grille.
@@ -57,9 +57,15 @@ Si vous recevez un message d'erreur sur la taille du journal, essayez de collect
 
 . Si la collecte des journaux échoue :
 +
+--
 ** Si un message « Échec de la collecte des journaux » s'affiche, vous pouvez réessayer la collecte des journaux ou terminer la session sans réessayer.
 ** Si un message « Échec partiel de la collecte des journaux » s'affiche, vous pouvez réessayer la collecte des journaux, terminer la session, télécharger le fichier journal partiel ou envoyer le fichier journal partiel à AutoSupport.
 
+
+--
++
+
+NOTE: Vous pouvez choisir de laisser le champ « phrase secrète de provisionnement » vide pour une nouvelle tentative standard, ou vous pouvez saisir la phrase secrète pour réessayer via SSH.
 
 . Une fois la collecte du fichier journal terminée :
 +

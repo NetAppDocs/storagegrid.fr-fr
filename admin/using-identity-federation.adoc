@@ -244,3 +244,6 @@ Vous devez configurer les attributs OpenLDAP suivants avec les mots-clés d'inde
 De plus, assurez-vous que les champs mentionnés dans l'aide pour le nom d'utilisateur sont indexés pour des performances optimales.
 
 Reportez-vous aux informations sur la maintenance de l'appartenance à http://www.openldap.org/doc/admin24/index.html["Documentation OpenLDAP : version 2.4 - Guide de l'administrateur"^]un groupe inversé dans le .
+
+.Informations associées
+link:../network/external-communications.html["Ports utilisés pour les communications externes"]

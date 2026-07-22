@@ -23,5 +23,5 @@ image:retrieve_data_flow.png["Récupérer"]
 . Le service LDR reçoit une requête de récupération de l'application cliente.
 . Le service LDR interroge le magasin de métadonnées afin d'obtenir l'emplacement des données et des métadonnées d'objet.
 . Le service LDR transmet la requête de récupération au service LDR source.
-. Le service LDR source renvoie les données d'objet du service LDR interrogé et le système renvoie l'objet à l'application client.
+. Le service LDR source renvoie les données de l'objet récupéré au service LDR interrogé, et le système renvoie l'objet à l'application cliente.
 

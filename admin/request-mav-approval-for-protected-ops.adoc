@@ -1,0 +1,40 @@
+---
+permalink: admin/request-mav-approval-for-protected-ops.html 
+sidebar: sidebar 
+keywords: multi-admin verification, mav 
+summary: 'En tant qu"administrateur ou utilisateur de StorageGRID, lorsque vous lancez une opération protégée par MAV dans StorageGRID, une demande est générée automatiquement. Un message vous informe que l"opération nécessite une approbation.' 
+---
+= Demande d'autorisation pour les opérations protégées par MAV dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur ou utilisateur de StorageGRID, lorsque vous lancez une opération protégée par MAV dans StorageGRID, une demande est générée automatiquement. Un message vous informe que l'opération nécessite une approbation.
+
+Le système StorageGRID définit les opérations protégées par MAV. Lorsque vous initiez une opération protégée par MAV, la requête est envoyée aux administrateurs MAV pour approbation.
+
+.Étapes
+Le système StorageGRID vous informe que vous avez lancé une opération protégée par MAV.
+
+. Au besoin, effectuez l'une des tâches suivantes :
++
+.. Vérifiez l'état de votre demande en sélectionnant *Configuration* > *Contrôle d'accès* > *Vérification multi-administrateur* > *Mes demandes*.
++
+*** *En attente*. La demande a été initiée.
+*** *Expiré*. La demande n'a pas été traitée dans les 30 jours. Ou un utilisateur disposant des droits d'accès Root a désactivé MAV, ce qui signifie que toutes les demandes en attente sont expirées.
+*** *Retiré*. Un utilisateur a retiré sa demande.
+*** *Approuvé*. Un administrateur MAV a approuvé la demande en attente.
+*** *Rejeté*. Un administrateur MAV a rejeté la requête en attente.
+
+
+.. Consultez les demandes en attente des autres utilisateurs en sélectionnant *Configuration* > *Contrôle d’accès* > *Vérification multi-administrateur* > *Autres demandes*.
+.. Pour annuler une opération, sélectionnez *Mes demandes* > *_la demande que vous souhaitez annuler_* > *Retirer*.
+
+
+
+
+Une fois la demande approuvée par un administrateur MAV, l'opération est effectuée automatiquement.
+
+Si votre demande est rejetée, l'opération n'est pas effectuée et vous pouvez soumettre une nouvelle demande si nécessaire.

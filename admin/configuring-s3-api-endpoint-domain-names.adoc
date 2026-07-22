@@ -94,7 +94,7 @@ Si vous supprimez un nom utilisé par les applications S3, les demandes de type 
 
 .Étapes
 . Sélectionnez *Configuration* > *Réseau* > *Noms de domaine de point de terminaison S3*.
-. Sélectionnez l'icône de suppression image:icon-x-to-remove.png["icône supprimer"] à côté du nom de domaine.
+. Sélectionnez l'icône de suppression image:icon_x_to_remove.png["icône supprimer"] à côté du nom de domaine.
 . Sélectionnez *Oui* pour confirmer la suppression.
 
 

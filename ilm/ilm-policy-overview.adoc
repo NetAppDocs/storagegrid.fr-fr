@@ -43,7 +43,7 @@ Vous pouvez avoir une ou plusieurs règles ILM actives à la fois.
 
 Si votre grid utilise un schéma de protection des données simple avec peu de règles spécifiques au locataire et au compartiment, utilisez une règle ILM active unique. Les règles ILM peuvent contenir des filtres pour gérer différents compartiments ou locataires.
 
-image:ilm-policies-single.png["Diagramme de règles ILM uniques"]
+image:ilm_policies_single.png["Diagramme de règles ILM uniques"]
 
 Lorsque vous ne modifiez qu'une règle et que les exigences d'un locataire changent, vous devez créer une nouvelle règle ILM ou cloner la règle existante pour appliquer les modifications, simuler, puis activer la nouvelle règle ILM. Toute modification de la règle ILM peut entraîner des déplacements d'objets pouvant prendre plusieurs jours et entraîner une latence du système.
 
@@ -68,7 +68,7 @@ NOTE: Tu peuxlink:../ilm/creating-ilm-policy.html#activate-ilm-policy["créer un
 Balise de règle ILM par défaut:: Une balise de règle ILM par défaut est automatiquement créée lors de l'installation de StorageGRID. Chaque grille doit avoir une règle active affectée à la balise par défaut. La règle par défaut s'applique à tous les compartiments S3 non balisés.
 
 
-image:ilm-policies-tags-conceptual.png["Diagramme de règles ILM multiples"]
+image:ilm_policies_tags_conceptual.png["Diagramme de règles ILM multiples"]
 
 
 

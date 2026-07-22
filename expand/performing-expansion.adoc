@@ -37,12 +37,9 @@ CAUTION: L'exécution de certaines étapes et étapes d'extension sur un grand g
 
 
 .Étapes
-. Sélectionnez *Maintenance* > *Tâches* > *Extension*.
+. Sélectionnez *Maintenance* > *Tâches* > *Grid expansion*.
 +
-La page d'extension de la grille s'affiche. La section nœuds en attente répertorie les nœuds prêts à être ajoutés.
-
-+
-image:grid_expansion_page.png["Capture d'écran affichant la page d'extension de la grille"]
+La page d'extension de la grille s'affiche. La section Nœuds en attente liste les nœuds prêts à être ajoutés.
 
 . Sélectionnez *configurer l'extension*.
 +
@@ -166,7 +163,7 @@ NOTE: Si possible, vous devez approuver toutes les notes de grille en attente et
 
 
 
-. Lorsque vous avez approuvé tous les nœuds de la grille, saisissez la phrase de passe de mise en service *, puis sélectionnez *développer*.
+. Une fois que vous avez approuvé tous les nœuds de la grille, saisissez la *phrase secrète de provisionnement* et sélectionnez *Expand*.
 +
 Au bout de quelques minutes, cette page se met à jour pour afficher l'état de la procédure d'extension. Lorsque des tâches qui affectent des nœuds de grille individuels sont en cours, la section Etat du nœud de grille répertorie l'état actuel de chaque nœud de grille.
 

@@ -1,0 +1,56 @@
+---
+permalink: maintain/replacing-primary-admin-node-using-npan.html 
+sidebar: sidebar 
+keywords: storagegrid, replace, primary admin node, non-primary admin node 
+summary: 'Remplacez un nœud d"administration principal défaillant en utilisant un nœud d"administration non principal.' 
+---
+= Remplacez le nœud d'administration principal StorageGRID à l'aide d'un nœud d'administration non principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour restaurer un noeud d'administration principal, vous devez d'abord remplacer le matériel physique ou virtuel.
+
+* Vous pouvez remplacer un nœud d'administration principal défaillant par un nœud d'administration principal fonctionnant sur la même plateforme.
+* Vous pouvez remplacer un nœud d'administration principal exécuté sur VMware ou un hôte Linux par un nœud d'administration principal hébergé sur une appliance de services StorageGRID.
+* Vous pouvez remplacer un nœud d'administration principal exécuté sur un hôte VMware par un appliance de services SG1000 ou SG100.
+
+
+Utilisez la procédure qui correspond à la plate-forme de remplacement que vous sélectionnez pour le nœud. Après avoir effectué la procédure de remplacement des nœuds (adaptée à tous les types de nœuds), cette procédure vous dirige vers l'étape suivante pour la restauration du nœud d'administration principal.
+
+[cols="1a,2a"]
+|===
+| Et de remplacement | Procédure 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["Remplacer un nœud VMware par un nœud de récupération"]
+
+link:replace-vmware-node-with-sg1000-sg100.html["Remplacez le nœud VMware par une appliance de services SG1000 ou SG100."]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Remplacer un noeud Linux"]
+
+
+
+ a| 
+Appliances de services
+ a| 
+link:replacing-failed-node-with-services-appliance.html["Remplacer une appliance de services"]
+
+
+
+ a| 
+OpenStack
+ a| 
+Les fichiers et scripts de disques de machine virtuelle fournis par NetApp pour OpenStack ne sont plus pris en charge pour les opérations de restauration. Si vous devez restaurer un nœud exécuté dans un déploiement OpenStack, téléchargez les fichiers du système d'exploitation Linux. Ensuite, suivez la procédure pour link:all-node-types-replacing-linux-node.html["Remplacement d'un nœud Linux"].
+
+|===

@@ -1,0 +1,212 @@
+---
+permalink: admin/configure-global-namespace.html 
+sidebar: sidebar 
+keywords: global namespace, grid federation, S3 endpoint domain names, default region, grid federation connection, multi-grid 
+summary: 'Configurez un espace de noms global pour permettre aux locataires d"accéder aux compartiments sur plusieurs systèmes StorageGRID.' 
+---
+= Configurer un espace de noms global pour la fédération de grilles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Configurez un espace de noms global pour permettre aux locataires d'accéder aux compartiments sur plusieurs systèmes StorageGRID.
+
+Pour plus d'informations sur l'espace de noms global, reportez-vous à link:learn-about-global-namespace.html["Découvrez l'espace de noms global pour la fédération de grid."].
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager sur chaque grille à l’aide d’un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"] pour chaque grille.
+* Vous avez examiné le link:../admin/grid-federation-overview.html["considérations et exigences"] pour les connexions de fédération de grille.
+
+
+
+
+[[requirements-for-configuring-global-namespace]]
+== Exigences pour la configuration de l'espace de noms global
+
+* Toutes les grilles de l'espace de noms global doivent avoir des connexions de fédération de grilles avec l'espace de noms global activé entre chaque paire de grilles.
+* Le nombre maximal de grilles pouvant participer à un seul espace de noms global est de 11 (la grille locale et 10 grilles distantes).
++
+
+CAUTION: La limite de 10 grilles est imposée par le nombre total maximal de connexions de fédération de grilles prises en charge par un déploiement StorageGRID. La limite totale de connexions s'applique à *toutes* les connexions de fédération de grilles du déploiement, y compris celles pour lesquelles l'espace de noms global n'est pas activé. Vous devez donc vous assurer que l'espace de noms global entièrement connecté et toutes les connexions de fédération de grilles supplémentaires ne dépassent pas cette limite globale.
+
+* Les clients S3 doivent utiliser l'authentification par signature version 4 (SigV4). Les requêtes anonymes et celles utilisant la signature version 2 ne sont pas prises en charge pour les opérations de routage d'espace de noms global.
++
+** Les requêtes signées normales sont spécifiées comme décrit à https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html["Authentification des requêtes : utilisation de l’en-tête d’autorisation (AWS Signature Version 4)"].
+** Les demandes pré-signées sont spécifiées comme décrit à https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html["Authentification des requêtes : utilisation des paramètres de requête (AWS Signature Version 4)"].
+
+
+
+
+
+
+[[number-of-required-connectionsnumber-of-required-connections]]
+== [[nombre-de-connexions-requises]]Nombre de connexions requises
+
+Dans un espace de noms global, chaque paire de grilles doit être connectée. Le nombre de connexions nécessaires dépend du nombre de grilles :
+
+[cols="1a,1a"]
+|===
+| Nombre de grilles | Nombre de connexions requises 
+
+
+ a| 
+2
+ a| 
+1
+
+
+
+ a| 
+3
+ a| 
+3
+
+
+
+ a| 
+4
+ a| 
+6
+
+
+
+ a| 
+5
+ a| 
+10
+
+
+
+ a| 
+_n_
+ a| 
+_n_ × (_n_ − 1) / 2
+
+|===
+
+
+[[step-1-set-a-unique-default-region-for-each-grid]]
+[[configure-default-region]]
+== Étape 1 : Définissez une région par défaut unique pour chaque grille
+
+Chaque grille de l'espace de noms global doit avoir une région par défaut unique. La région par défaut identifie la grille qui possède un compartiment.
+
+CreateBucket et ListBuckets les requêtes sont acheminées en fonction de cette région, et toutes les autres requêtes doivent correspondre à la région par défaut vers laquelle elles sont envoyées.
+
+Pour plus d'informations, consultez link:../ilm/configuring-regions-optional-and-s3-only.html["Configurer les régions S3"].
+
+.Étapes
+. Sur chaque grille, link:../ilm/configuring-regions-optional-and-s3-only.html["définissez la région par défaut sur une valeur unique"]. Par exemple, définissez la grille A sur  `us-east-1` et la grille B sur  `us-west-1`.
++
+
+NOTE: Vous pouvez toujours utiliser des régions non par défaut, définies à l'aide de l'élément  `LocationConstraint` dans link:../s3/operations-on-buckets.html["CreateBucket demandes"], à des fins de politique ILM. Les régions non par défaut ne sont pas validées pour leur unicité entre les grilles de l'espace de noms global.
+
+. Répétez l'opération pour chaque grille de l'espace de noms global. Chaque grille doit avoir une région par défaut différente.
+. Configurez des régions supplémentaires selon les besoins.
+
+
+
+
+[[step-2-configure-s3-global-namespace-settings]]
+== Étape 2 : configurez les paramètres d’espace de noms globaux S3
+
+Sur chaque grille de l'espace de noms global, vous ajoutez deux noms de domaine de point de terminaison S3 :
+
+* Un point de terminaison d'espace de noms global identique sur toutes les grilles
+* Un CNAME unique pour la grille
+
+
+Vous configurerez votre DNS externe de sorte que le point de terminaison de l'espace de noms global se résolve vers une ou plusieurs grilles, et que les points de terminaison CNAME uniques se résolvent vers la grille spécifique.
+
+
+CAUTION: Vous devez <<configure-default-region,configurer la région par défaut>> avant de configurer les paramètres de l'espace de noms global S3. Lorsque vous activez les paramètres de l'espace de noms global, les requêtes S3 échoueront si elles ne spécifient pas la région correcte. Toutes les requêtes S3 doivent être signées avec la région par défaut de la grille.
+
+.Étapes
+. Sur chaque grille, sélectionnez *Configuration* > *Réseau* > *Noms de domaine des S3 endpoint* > *Noms de domaine*.
+. Ajoutez un nom de domaine de point de terminaison d’espace de noms global identique sur toutes les grilles. Par exemple : `s3.example.com`.
+. Ajoutez un enregistrement CNAME unique pour la grille. Par exemple, `s3.company.com`.
+. Sélectionnez *Enregistrer*.
+. Sélectionnez *Paramètres d'espace de noms globaux*.
++
+.. Sélectionnez le point de terminaison de l'espace de noms global.
+.. Sélectionnez le nom de domaine CNAME unique de la grille.
+
+
+. Sélectionnez *Enregistrer*.
+. Assurez-vous que les certificats serveur utilisés par les clients incluent les nouveaux noms de domaine des endpoints S3.
++
+** Si les clients se connectent à un noeud final d'équilibreur de charge qui utilise son propre certificat, link:../admin/configuring-load-balancer-endpoints.html["mettez à jour le certificat associé au noeud final"].
+** Si les clients se connectent à un terminal d'équilibrage de charge qui utilise le certificat d'API S3 global ou directement aux nœuds de stockage, link:../admin/use-s3-setup-wizard-steps.html["Mettez à jour le certificat d'API S3 global"].
+
+
+. Répétez ces étapes sur chaque grille de l'espace de noms global.
+
+
+Pour plus de détails, consultez link:../admin/configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"].
+
+
+
+[[step-3-create-grid-federation-connections-with-global-namespace-enabled]]
+== Étape 3 : Créez des connexions de fédération de grille avec l’espace de noms global activé
+
+Une fois les noms de domaine des points de terminaison S3 et les régions par défaut configurés sur toutes les grilles, vous pouvez créer des connexions de fédération de grilles avec l'espace de noms global activé.
+
+.Description de la tâche
+Lorsque vous créez une connexion de fédération de grille et activez l'espace de noms global, les champs point de terminaison de l'espace de noms global, CNAME et région par défaut sont automatiquement renseignés avec les valeurs que vous avez configurées lors des étapes précédentes. Le Grid Manager empêche l'activation de l'espace de noms global si ces champs ne sont pas correctement définis.
+
+
+CAUTION: Une fois qu'une connexion de fédération de grilles avec un espace de noms global est créée, le point de terminaison de l'espace de noms global, le CNAME et la région par défaut des grilles de cette connexion ne peuvent pas être modifiés.
+
+.Étapes
+. Sur la première grille, suivez les étapes décrites dans link:../admin/grid-federation-create-connection.html["Créer des connexions de fédération de grille"].
+. Lors de la saisie des informations de connexion, sélectionnez *Activer l'espace de noms global*.
++
+Les champs relatifs au point de terminaison de l'espace de noms global, au CNAME et à la région par défaut sont automatiquement renseignés avec les valeurs que vous avez configurées lors des étapes précédentes. Si l'une de ces valeurs est manquante ou invalide, vous ne pourrez pas activer l'espace de noms global tant que vous n'aurez pas résolu ces problèmes.
+
+. Finalisez la connexion en téléchargeant le fichier de vérification et en le téléversant sur l'autre grille.
+. Répétez les étapes précédentes pour chaque paire de grilles dans l'espace de noms global.
++
+Par exemple, avec 3 grilles, vous avez besoin de 3 connexions (Grille A–Grille B, Grille A–Grille C, Grille B–Grille C). Avec 4 grilles, vous avez besoin de 6 connexions. Vous pouvez avoir un maximum de 10 grilles dans un espace de noms global. Reportez-vous à <<number-of-required-connections,Nombre de connexions requises>>.
+
+
+
+
+
+[[step-4-configure-load-balancer-endpoints]]
+== Étape 4 : Configurer les points de terminaison de l’équilibreur de charge
+
+link:../admin/configuring-load-balancer-endpoints.html["Configurer un point de terminaison d'équilibrage de charge"] pour chaque grid dans le global namespace. Utilisez le même port pour chacun de ces endpoints.
+
+
+NOTE: Assurez-vous de configurer les points de terminaison de l'équilibreur de charge avant de configurer la résolution DNS.
+
+
+
+[[config-dns-resolutionstep-5-configure-dns-resolution]]
+== [[config-dns-resolution]]Étape 5 : Configurer la résolution DNS
+
+StorageGRID ne fournit pas de résolveur DNS intégré pour l'espace de noms global. Vous devez configurer votre infrastructure DNS externe pour acheminer les requêtes S3 vers la grille appropriée.
+
+Votre résolveur DNS doit :
+
+. Résolvez le point de terminaison de l'espace de noms global (par exemple,  `s3.example.com`) vers les points de terminaison de l'équilibreur de charge d'une ou plusieurs grilles, généralement en utilisant le DNS round-robin.
+. Résolvez le CNAME unique de chaque grille (par exemple,  `s3.grid-a.example.com`) vers les points de terminaison de l’équilibreur de charge pour cette grille spécifique.
+. Pour les requêtes de compartiment de style hébergé virtuel (par exemple, `_bucket_.s3.example.com`), utilisez la politique de routage de votre organisation pour associer les noms de compartiment au CNAME de la grille appropriée.
++
+StorageGRID ne propose pas de mécanisme basé sur DNS pour découvrir quelle grille possède un bucket. Si vous avez besoin d’un routage automatique basé sur la propriété du bucket, utilisez la link:../tenant/understanding-tenant-management-api.html["API de gestion des locataires"] pour émettre des requêtes ListBucket afin d’obtenir les UUID des buckets. Maintenez une correspondance interne entre les UUID des buckets et les grilles. Votre DNS externe doit utiliser cette correspondance plutôt que d’interroger directement StorageGRID.
+
+
+
+
+
+[[related-information]]
+== Informations associées
+
+* link:grid-federation-overview.html["Qu'est-ce que la fédération de grille ?"]
+* link:grid-federation-create-connection.html["Créer des connexions de fédération de grille"]
+* link:configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"]
+* link:grid-federation-manage-connection.html["Gérer les connexions de fédération de grille"]
+

@@ -47,7 +47,7 @@ Vous pouvez utiliser *Search* pour rechercher des entrées dans la barre latéra
 [[help-menu]]
 == Menu aide
 
-Le menu d'aide image:icon-help-menu-bar.png["icône d'aide dans la barre de menus"] donne accès à :
+Le menu d'aide image:icon_help_menu_bar.png["icône d'aide dans la barre de menus"] donne accès à :
 
 * Lelink:../fabricpool/use-fabricpool-setup-wizard.html["FabricPool"] etlink:../admin/use-s3-setup-wizard.html["Configuration de S3"] sorciers
 * Le site de documentation StorageGRID pour la version actuelle
@@ -68,7 +68,7 @@ Dans le menu alertes, vous pouvez effectuer les opérations suivantes link:../mo
 * Examiner les alertes résolues
 * Configurez les silences pour supprimer les notifications d'alerte
 * Définissez des règles d'alerte pour les conditions qui déclenchent des alertes
-* Configurez le serveur de messagerie pour les notifications d'alerte
+* Configurer les notifications par e-mail pour les alertes StorageGRID
 
 
 
@@ -148,7 +148,7 @@ Les tâches de sécurité comprennent :
 
 Les tâches système incluent :
 
-* Utiliserlink:../admin/grid-federation-overview.html["fédération des grilles"] pour cloner les informations du compte locataire et répliquer les données d'objet entre deux systèmes StorageGRID
+* Utilisez link:../admin/grid-federation-overview.html["fédération des grilles"] pour synchroniser les informations des comptes locataires et répliquer les données d’objets entre deux systèmes StorageGRID
 * En option, activez lelink:../admin/configuring-stored-object-compression.html["Compresser les objets stockés"] option
 * En option, configurez lelink:../s3/consistency.html["paramètre de cohérence de compartiment par défaut"]
 * link:../ilm/managing-objects-with-s3-object-lock.html["Gérer le verrouillage des objets S3"]
@@ -163,6 +163,7 @@ Les tâches système incluent :
 
 Les tâches de surveillance incluent :
 
+* link:../monitor/configure-email-server.html["Configurer le serveur de messagerie"]
 * link:../monitor/configure-log-management.html["Configurer la gestion des journaux"]
 * link:../monitor/using-snmp-monitoring.html["Utiliser la surveillance SNMP"]
 
@@ -179,6 +180,7 @@ Les tâches de contrôle d'accès comprennent :
 * Changer lelink:../admin/changing-provisioning-passphrase.html["phrase secrète de provisionnement"] oulink:../admin/change-node-console-password.html["mots de passe de la console de nœuds"]
 * link:../admin/using-identity-federation.html["Utiliser la fédération des identités"]
 * link:../admin/how-sso-works.html["Configurer SSO"]
+* link:../admin/about-multi-admin-verify.html["Configurer la vérification multi-administrateur"]
 
 
 
@@ -201,7 +203,13 @@ Les tâches de maintenance sont les suivantes :
 * link:../maintain/rename-grid-site-node-overview.html["Renommer les procédures"] pour modifier les noms d'affichage de votre grille, de vos sites et de vos nœuds
 * link:../troubleshoot/verifying-object-integrity.html["Opérations de vérification de l'existence des objets"] pour vérifier l'existence (bien que ce ne soit pas l'exactitude) des données d'objet
 * Effectuer unelink:../maintain/rolling-reboot-procedure.html["redémarrage en continu"] pour redémarrer plusieurs nœuds de grille
-* link:../maintain/restoring-volume.html["Opérations de restauration de volumes"]
+* Restauration des données d'objet
++
+** link:../maintain/restoring-object-data-to-storage-volume-for-appliance.html["Restaurez les données d'objet vers un volume de stockage pour l'appliance"]
+** link:../maintain/restoring-object-data-to-storage-volume-where-system-drive-is-intact.html["Restaurez les données d'objet vers le volume de stockage sur lequel le disque système est intact"]
+** link:../maintain/restoring-object-data-to-storage-volume.html["Restauration des données d'objet sur le volume de stockage (panne de disque système)"]
+
+
 
 
 
@@ -249,7 +257,7 @@ Le menu support fournit des options qui vous aident à analyser et à dépanner 
 
 À partir de la section Outils du menu support, vous pouvez :
 
-* link:../admin/configure-autosupport-grid-manager.html["Configurez AutoSupport"]
+* link:../monitor/configure-autosupport-grid-manager.html["Configurez AutoSupport"]
 * link:../monitor/running-diagnostics.html["Exécuter les diagnostics"] sur l'état actuel de la grille
 * link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]
 * link:../monitor/reviewing-support-metrics.html["Examinez les metrics de support"]
@@ -267,7 +275,6 @@ NOTE: Les outils disponibles dans l'option *Metrics* sont destinés à être uti
 Dans la section autre du menu support, vous pouvez :
 
 * Configurelink:../monitor/manage-io-prioritization.html["Priorisation des E/S"]
-* Configurelink:../admin/configure-autosupport-grid-manager.html["Configuration de la messagerie AutoSupport (héritée)"]
 * Gérer link:../admin/manage-link-costs.html["coût du lien"]
 * Afficher les identifiants de service des nœuds
 * Gérer link:../admin/what-storage-volume-watermarks-are.html["filigranes de stockage"]

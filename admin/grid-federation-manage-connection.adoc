@@ -26,7 +26,7 @@ La gestion des connexions de fédération de grille entre les systèmes StorageG
 Vous pouvez modifier une connexion de fédération de grille en vous connectant au nœud d'administration principal sur l'une des grilles de la connexion. Après avoir apporté des modifications à la première grille, vous devez télécharger un nouveau fichier de vérification et le télécharger sur l'autre grille.
 
 
-NOTE: Pendant la modification de la connexion, les demandes de réplication de clone de compte ou de grille croisée continueront à utiliser les paramètres de connexion existants. Toutes les modifications apportées à la première grille sont enregistrées localement, mais ne sont utilisées qu'après avoir été téléchargées sur la deuxième grille, enregistrées et testées.
+NOTE: Pendant la modification de la connexion, les demandes de synchronisation de compte ou de réplication inter-grilles continueront d'utiliser les paramètres de connexion existants. Vous devez modifier une connexion à la fois et téléverser un fichier de vérification sur la grille distante pour chaque connexion. Les modifications sont appliquées après avoir été téléversées sur les grilles distantes.
 
 
 
@@ -211,7 +211,7 @@ En général, utilisez le même nombre de jours pour les certificats des deux c�
 
 Vous pouvez supprimer une connexion de fédération de grille de l'une des grilles de la connexion. Comme indiqué dans la figure, vous devez effectuer les étapes préalables sur les deux grilles pour confirmer que la connexion n'est pas utilisée par un locataire sur l'une ou l'autre des grilles.
 
-image:grid-federation-remove-connection.png["procédure de suppression de la connexion de fédération de grille"]
+image:grid_federation_remove_connection.png["procédure de suppression de la connexion de fédération de grille"]
 
 Avant de supprimer une connexion, notez les points suivants :
 

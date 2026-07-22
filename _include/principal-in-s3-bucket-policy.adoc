@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+* `"Principal": "*"`Correspond à tout le monde, y compris aux requêtes anonymes (non signées)
+* `"Principal": { "AWS": "*" }` correspond à toute identité ou utilisateur authentifié (ne correspond pas aux requêtes anonymes)
+* S'applique uniquement aux stratégies de compartiment
+* Le principal est le ou les comptes/utilisateurs auxquels les autorisations sont accordées ou refusées
+

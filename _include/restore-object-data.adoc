@@ -1,0 +1,156 @@
+= Activer le mode de restauration automatique
+:allow-uri-read: 
+
+
+.Avant de commencer
+* Si la procédure automatique n'a pas permis de remonter les volumes de stockage préservés et de reformater les volumes de stockage défaillants, vous avez effectué l'une des procédures suivantes :
++
+** link:../maintain/remounting-and-reformatting-appliance-storage-volumes.html["Remontage et reformatage des volumes de stockage de l'appliance (étapes manuelles)"]
+** link:../maintain/remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]
+
+
+* Vous avez confirmé que le nœud de stockage sur lequel vous restaurez des objets a un état de connexion *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"] sur l'onglet *Nœuds* > *Vue d'ensemble* dans le Grid Manager.
+* Vous avez confirmé ce qui suit :
++
+** L'extension de la grille pour ajouter un nœud de stockage n'est pas en cours.
+** La mise hors service d'un nœud de stockage n'est pas en cours ni échouée.
+** La récupération d'un volume de stockage défaillant n'est pas en cours.
+** La récupération d'un nœud de stockage dont le disque système est défaillant n'est pas en cours.
+** Aucune opération de rééquilibrage de l'EC n'est en cours.
+** Le clonage des nœuds d'appliance n'est pas en cours.
+
+
+
+
+.Description de la tâche
+Une fois les disques remplacés et les volumes formatés, Grid Manager affiche les volumes comme candidats à la restauration dans l’onglet *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*.
+
+Lorsque cela est possible, restaurez les données d'objet à l'aide de la page Restauration des volumes du Gestionnaire de grille. Vous pouvez soit <<enable-auto-restore-mode,activer le mode de restauration automatique>>lancer automatiquement la restauration du volume lorsque les volumes sont prêts à être restaurés, soit <<manually-restore,effectuez manuellement la restauration des volumes>>. Suivez ces instructions :
+
+* Si les volumes sont répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, restaurez les données de l'objet comme décrit dans les étapes ci-dessous.  Les volumes seront répertoriés si :
++
+** Certains volumes de stockage d'un nœud sont en panne, mais pas tous
+** Tous les volumes de stockage d'un nœud sont en panne et sont remplacés par le même nombre de volumes ou plus
++
+La page de restauration de volume dans le gestionnaire de grille vous permet également de <<view-restoration-progress,surveiller le processus de restauration des volumes>> et <<view-restoration-history,afficher l'historique de restauration>>.
+
+
+
++
+Si le nœud de stockage récupéré contient moins de volumes que le nœud qu'il remplace, contactez le support technique pour obtenir de l'aide.
+
+
+
+Vous pouvez restaurer deux types de données d'objet :
+
+* Les objets de données répliqués sont restaurés à partir d'autres emplacements, dans la mesure où les règles ILM de la grille ont été configurées de façon à rendre disponibles les copies objet.
++
+** Si une règle ILM a été configurée pour ne stocker qu'une seule copie répliquée et que cette copie se trouvait sur un volume de stockage défaillant, vous ne pourrez pas récupérer l'objet.
+** Si la seule copie restante d'un objet se trouve dans un pool de stockage cloud, StorageGRID doit émettre plusieurs demandes vers le terminal de pool de stockage cloud pour restaurer les données d'objet.
+
+
+* Les objets de données avec code d'effacement (EC) sont restaurés en réassemblez les fragments stockés. Les fragments corrompus ou perdus sont recréés par l'algorithme de code d'effacement à partir des fragments de données et de parité restants.
++
+Les réparations des données codées peuvent commencer alors que certains nœuds de stockage sont hors ligne. Toutefois, si toutes les données avec code d'effacement ne peuvent pas être prises en compte, la réparation ne peut pas être effectuée. La réparation s'effectuera une fois que tous les nœuds sont disponibles.
+
+
+
+
+NOTE: La restauration des volumes dépend de la disponibilité des ressources dans lesquelles les copies objet sont stockées. La progression de la restauration des volumes n'est pas linéaire et peut prendre des jours ou des semaines.
+
+
+
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
+== [[activer-mode-restauration-auto]]Active le mode de restauration automatique
+
+Lorsque vous activez le mode de restauration automatique, la restauration des volumes démarre automatiquement lorsque les volumes sont prêts à être restaurés.
+
+.Étapes
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
+. Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton bascule du *mode de restauration automatique* sur la position activé.
+. Lorsque la boîte de dialogue de confirmation s'affiche, vérifiez les détails.
++
+[NOTE]
+====
+** Vous ne pourrez pas lancer manuellement de tâches de restauration de volume sur aucun nœud.
+** Les restaurations de volume ne démarrent automatiquement que lorsqu'aucune autre procédure de maintenance n'est en cours.
+** Vous pouvez contrôler l'état du travail à partir de la page de surveillance de la progression.
+** StorageGRID relance automatiquement les restaurations de volume qui ne démarrent pas.
+
+
+====
+. Lorsque vous comprenez les résultats de l'activation du mode de restauration automatique, sélectionnez *Oui* dans la boîte de dialogue de confirmation.
++
+Vous pouvez désactiver le mode de restauration automatique à tout moment.
+
+
+
+
+
+[[manually-restoremanually-restore-failed-volume-or-node]]
+== [[restauration manuelle]]restaurez manuellement un volume ou un nœud défaillant
+
+Procédez comme suit pour restaurer un volume ou un nœud défaillant.
+
+.Étapes
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
+. Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton de *mode de restauration automatique* sur la position Désactivé.
++
+Le numéro de l'onglet indique le nombre de nœuds pour lesquels des volumes nécessitent une restauration.
+
+. Développez chaque nœud pour afficher les volumes qui nécessitent une restauration, ainsi que leur état.
+. Corrigez tous les problèmes empêchant la restauration de chaque volume. Les problèmes sont indiqués lorsque vous sélectionnez *en attente d'étapes manuelles*, s'il s'affiche comme état du volume.
+. Sélectionnez un nœud à restaurer où tous les volumes indiquent l'état prêt pour la restauration.
++
+Vous ne pouvez restaurer les volumes que pour un nœud à la fois.
+
++
+Chaque volume du nœud doit indiquer qu'il est prêt à être restauré.
+
+. Sélectionnez *Démarrer la restauration*.
+. Réglez les avertissements qui peuvent apparaître ou sélectionnez *Démarrer malgré tout* pour ignorer les avertissements et lancer la restauration.
+
+
+Les nœuds sont déplacés de l'onglet *nœuds à restaurer* vers l'onglet *progression de la restauration* au démarrage de la restauration.
+
+Si une restauration de volume ne peut pas être démarrée, le nœud revient à l'onglet *noeuds à restaurer*.
+
+
+
+[[view-restoration-progressview-restoration-progress]]
+== [[View-restoration-progress]]Afficher la progression de la restauration
+
+L'onglet *progression de la restauration* affiche l'état du processus de restauration du volume et des informations sur les volumes d'un nœud restauré.
+
+Les taux de réparation des données pour les objets répliqués et ceux dont le codage d'effacement est utilisé dans tous les volumes correspondent à des moyennes résumant toutes les restaurations en cours. Le pourcentage d'objets dans ces volumes qui sont intacts et ne nécessitent aucune restauration est également indiqué.
+
+
+NOTE: La restauration des données répliquées dépend de la disponibilité des ressources dans lesquelles les copies répliquées sont stockées. La progression de la restauration des données répliquées n'est pas linéaire et peut prendre des jours ou des semaines.
+
+La section tâches de restauration affiche des informations sur les restaurations de volume démarrées à partir du Gestionnaire de grille.
+
+* Le nombre indiqué dans l'en-tête de la section travaux de restauration indique le nombre de volumes en cours de restauration ou en file d'attente de restauration.
+* Le tableau affiche des informations sur chaque volume d'un nœud en cours de restauration ainsi que sa progression.
++
+** La progression de chaque nœud affiche le pourcentage pour chaque travail.
+** Développez la colonne Détails pour afficher l'heure de début de la restauration et l'ID du travail.
+
+
+* En cas d'échec de la restauration d'un volume :
++
+** La colonne État indique `failed (attempting retry)`, et sera réexécutée automatiquement.
+** Si plusieurs travaux de restauration ont échoué, le travail le plus récent sera automatiquement repassé en premier.
+** L'alerte *EC repair failure* est déclenchée si les tentatives continuent à échouer. Suivez les étapes de l'alerte pour résoudre le problème.
+
+
+
+
+
+
+[[view-restoration-historyview-restoration-history]]
+== [[View-restoration-history]]Afficher l'historique de restauration
+
+L'onglet *Historique de restauration* affiche des informations sur toutes les restaurations de volume effectuées avec succès.
+
+
+NOTE: Les tailles ne s'appliquent pas aux objets répliqués et apparaissent uniquement pour les restaurations contenant des objets de données avec code d'effacement (EC).

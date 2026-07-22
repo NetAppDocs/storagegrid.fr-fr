@@ -18,13 +18,33 @@ Avant d'activer la signature unique (SSO) pour un système StorageGRID, consulte
 [[identity-provider-requirements]]
 == Exigences du fournisseur d'identités
 
-StorageGRID prend en charge les fournisseurs d'identités SSO suivants :
+StorageGRID prend en charge plusieurs fournisseurs d'identité SSO (IdP).
+
+[role="tabbed-block"]
+====
+.OIDC
+--
+Les SSO suivants IdPs sont pris en charge pour OpenID Connect (OIDC) :
+
+* Service de fédération Active Directory (AD FS)
+* Identifiant Microsoft Entra
+* Keycloak
+* PingFederate
+* Okta
+
+
+--
+.SAML
+--
+Les SSO suivants IdPs sont pris en charge pour le langage de balisage d'assertion de sécurité 2.0 (SAML 2.0) :
 
 * Service de fédération Active Directory (AD FS)
 * Identifiant Microsoft Entra
 * PingFederate
 
 
+--
+====
 Vous devez configurer la fédération des identités de votre système StorageGRID avant de pouvoir configurer un fournisseur d'identités SSO. Le type de service LDAP que vous utilisez pour la fédération des identités contrôle le type de SSO que vous pouvez implémenter.
 
 [cols="1a,1a"]
@@ -36,6 +56,8 @@ Vous devez configurer la fédération des identités de votre système StorageGR
 Active Directory
  a| 
 * Active Directory
+* Keycloak
+* Okta
 * ID d'entrée
 * PingFederate
 

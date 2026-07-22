@@ -48,9 +48,6 @@ image:nodes_page_network_interfaces.png["Nœuds page interfaces réseau"]
 +
 Les tableaux de réception et de transmission indiquent le nombre d'octets et de paquets reçus et envoyés sur chaque réseau ainsi que d'autres mesures de réception et de transmission.
 
-+
-image:nodes_page_network_communication.png["Nœuds page réseau Comm"]
-
 
 
 . Utilisez les indicateurs associés à vos stratégies de classification de trafic pour surveiller le trafic réseau.
@@ -62,7 +59,7 @@ La page règles de classification du trafic s'affiche et les stratégies existan
 +
 image:traffic_classification_policies_main_screen_w_examples.png["Politique de trafic pour un exemple de graphique"]
 
-.. Pour afficher les graphiques présentant les mesures de réseau associées à une stratégie, sélectionnez le bouton radio à gauche de la stratégie, puis cliquez sur *métriques*.
+.. Pour afficher les graphiques présentant les indicateurs de réseau associés à une politique, sélectionnez le bouton radio situé à gauche de la politique, puis sélectionnez *Metrics*.
 .. Consultez les graphiques pour comprendre le trafic réseau associé à la stratégie.
 +
 Si une politique de classification du trafic est conçue pour limiter le trafic réseau, analysez la fréquence à laquelle le trafic est limité et déterminez si la politique continue de répondre à vos besoins. De temps en tempslink:../admin/managing-traffic-classification-policies.html["ajustez chaque stratégie de classification du trafic au besoin"], .

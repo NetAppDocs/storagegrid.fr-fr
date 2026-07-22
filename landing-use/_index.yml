@@ -42,8 +42,8 @@ indexpage:
       url: "../tenant/deleting-s3-bucket.html"
   - title: Utiliser les fonctions de tenant
     links:
-    - title: Clone de compte
-      url: "../tenant/grid-federation-account-clone.html"
+    - title: Synchronisation des comptes
+      url: "../tenant/grid-federation-account-sync.html"
     - title: Réplication entre plusieurs grilles
       url: "../tenant/grid-federation-manage-cross-grid-replication.html"
     - title: Services de plateforme

@@ -15,7 +15,7 @@ Un système StorageGRID se compose de plusieurs types de nœuds grid sur un ou p
 
 En savoir plus sur lelink:nodes-and-services.html["types de nœuds de grille"] .
 
-Pour plus d'informations sur la topologie du réseau StorageGRID , les exigences et les communications de grille, reportez-vous aulink:../network/index.html["Instructions de mise en réseau"] .
+Pour plus d'informations sur la topologie du réseau StorageGRID, les exigences et les communications de la grille, veuillez consulter link:../network/index.html["Instructions de mise en réseau"].
 
 
 
@@ -62,8 +62,8 @@ Ce schéma montre comment les nœuds grid sont organisés dans un système Stora
 
 image:grid_nodes_and_components.png["schéma décrit par le texte environnant"]
 
-Les clients S3 stockent et récupèrent des objets dans StorageGRID. D'autres clients sont utilisés pour envoyer des notifications par e-mail, pour accéder à l'interface de gestion StorageGRID et éventuellement pour accéder au partage d'audit.
+Les clients S3 stockent et récupèrent des objets dans StorageGRID. D'autres clients sont utilisés pour accéder à l'interface de gestion de StorageGRID et, en option, au partage d'audit. De plus, StorageGRID peut, en option, envoyer des alertes par e-mail via un serveur SMTP externe.
 
 Les clients S3 peuvent se connecter à un nœud de passerelle ou à un nœud d'administration pour utiliser l'interface d'équilibrage de la charge avec les nœuds de stockage. Les clients S3 peuvent également se connecter directement aux nœuds de stockage via HTTPS.
 
-Les objets peuvent être stockés dans StorageGRID sur des nœuds de stockage logiciels ou matériels, ou dans des pools de stockage cloud, constitués de buckets S3 externes ou de conteneurs de stockage Azure Blob.
+Les objets peuvent être stockés dans StorageGRID sur des nœuds de stockage logiciels ou matériels, ou dans des pools de stockage cloud, qui consistent en des compartiments S3 externes ou des conteneurs Azure Blob Storage.

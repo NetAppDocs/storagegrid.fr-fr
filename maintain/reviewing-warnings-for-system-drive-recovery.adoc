@@ -29,7 +29,7 @@ Lorsque Cassandra est reconstruit, le système utilise les informations provenan
 CAUTION: Si plusieurs nœuds de stockage sont en panne (ou sont hors ligne), contactez le support technique.  N'effectuez pas la procédure de récupération suivante.  Une perte de données pourrait survenir. Pour plus d'informations, reportez-vous à link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"] .
 
 
-CAUTION: Si ce nœud de stockage est en mode de maintenance en lecture seule pour permettre la récupération d'objets par un autre nœud de stockage avec des volumes de stockage défaillants, récupérez les volumes du nœud de stockage avec des volumes de stockage défaillants avant de récupérer ce noeud de stockage défaillant. Voir les instructions à link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["effectuez des restaurations après une panne du volume de stockage, là où le disque système est intact"].
+CAUTION: Si ce nœud de stockage est en mode de maintenance en lecture seule pour permettre la récupération d'objets par un autre nœud de stockage dont les volumes de stockage sont défaillants, récupérez les volumes sur le nœud de stockage dont les volumes de stockage sont défaillants avant de récupérer ce nœud de stockage défaillant. Consultez les instructions pour link:reviewing-warnings-about-storage-volume-recovery.html["effectuez des restaurations après une panne du volume de stockage, là où le disque système est intact"].
 
 
 CAUTION: Si les règles ILM sont configurées pour ne stocker qu'une seule copie répliquée, et si cette copie existe sur un volume de stockage défaillant, vous ne pourrez pas restaurer l'objet.

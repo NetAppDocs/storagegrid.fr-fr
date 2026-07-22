@@ -9,7 +9,7 @@
 
 La fonctionnalité de verrouillage objet StorageGRID S3 est une solution de protection des objets équivalente au verrouillage objet S3 dans Amazon simple Storage Service (Amazon S3).
 
-Lorsque le paramètre de verrouillage objet S3 global est activé pour un système StorageGRID, un compte de locataire S3 peut créer des compartiments avec ou sans verrouillage objet S3 activé. Si le verrouillage objet S3 est activé pour un compartiment, la gestion des versions de compartiment est requise et elle est automatiquement activée.
+Lorsque le paramètre global de verrouillage d'objets S3 est activé pour un système StorageGRID, un compte locataire S3 peut créer des compartiments avec ou sans le verrouillage d'objets S3 activé. Lorsque l'option permettant d'autoriser le verrouillage d'objets S3 pour les compartiments existants est activée, un compte locataire S3 peut activer le verrouillage d'objets S3 pour un compartiment existant. Si un compartiment a le verrouillage d'objets S3 activé, le versionnage du compartiment est requis et est activé automatiquement. Après qu'un compte locataire S3 a activé le verrouillage d'objets S3 pour un compartiment nouveau ou existant, il ne peut plus être désactivé.
 
 *Un compartiment sans S3 Object Lock* ne peut contenir que des objets sans paramètres de rétention spécifiés. Aucun objet ingéré ne possède de paramètres de conservation.
 
@@ -57,7 +57,7 @@ Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisa
 NOTE: Si un objet fait l'objet d'une conservation légale, personne ne peut le supprimer, quel que soit son mode de conservation.
 
 +
-Pour plus de détails sur les paramètres de l'objet, reportez-vous à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+Pour plus de détails sur les paramètres de l'objet, reportez-vous à link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
 
 
 
@@ -74,4 +74,4 @@ Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisa
 
 Les paramètres de compartiment par défaut s'appliquent uniquement aux nouveaux objets qui ne disposent pas de leurs propres paramètres de conservation. Les objets de compartiment existants ne sont pas affectés lorsque vous ajoutez ou modifiez ces paramètres par défaut.
 
-Voir link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link:../tenant/update-default-retention-settings.html["Mettre à jour la conservation par défaut du verrouillage d'objet S3"].
+Reportez-vous à link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link:../tenant/update-default-retention-settings.html["Mettre à jour la conservation par défaut du verrouillage d'objet S3"].

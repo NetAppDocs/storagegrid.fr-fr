@@ -33,10 +33,10 @@ La page nœuds de mise hors service s'affiche. À partir de cette page, vous pou
 ** Triez la liste par ordre croissant ou décroissant en fonction de *Nom*, *site*, *Type* ou *a ADC*.
 ** Entrez des termes de recherche pour trouver rapidement des nœuds spécifiques.
 +
-Dans cet exemple, la colonne désaffectation possible indique que vous pouvez désaffecter le nœud de passerelle et l'un des quatre nœuds de stockage.
+Dans cet exemple, une coche verte dans la colonne « Désactivation possible » indique que vous pouvez désactiver le nœud API Gateway et le nœud de stockage de données uniquement. Les autres nœuds ne peuvent pas être désactivés pour diverses raisons. Par exemple, le nœud d'administration principal ne peut pas être désactivé car la désactivation de ce type de nœud n'est pas prise en charge. Le nœud de stockage de métadonnées uniquement ne peut pas être désactivé car le site ne répondrait plus aux link:../maintain/understanding-adc-service-quorum.html["Quorum ADC"].
 
 +
-image:decommission_nodes_page_all_connected.png["Page Désaffectez les nœuds"]
+image:decommission_nodes_page.png["Page Désaffectez les nœuds"]
 
 
 
@@ -106,11 +106,11 @@ Modifiez le groupe haute disponibilité pour supprimer l'interface du nœud ou s
 
 
  a| 
-Non, site _x_ nécessite au moins _n_ nœuds de stockage avec services ADC.
+Non, le site _x_ nécessite au moins 3 nœuds de stockage avec services ADC ou des nœuds non-ADC disponibles pour y transférer les services ADC. La mise hors service d'un nœud ADC n'est pas disponible si des nœuds sont hors ligne.
  a| 
-*Nœuds de stockage uniquement* (nœuds de stockage combinés ou de métadonnées uniquement).  Vous ne pouvez pas mettre hors service un nœud de stockage si le nombre de nœuds restant sur le site est insuffisant pour prendre en charge les exigences de quorum ADC.  Cependant, vous pouvez déplacer le service ADC vers un autre nœud de stockage.
+*Nœuds de stockage uniquement* (nœuds de stockage combinés ou de métadonnées uniquement). Vous ne pouvez pas mettre hors service un nœud de stockage si le nombre de nœuds restants sur le site est insuffisant pour respecter les exigences de quorum de l'ADC et si le service ADC ne peut pas être déplacé automatiquement. Le déplacement automatique nécessite la présence de plus de deux nœuds de stockage ADC en ligne sur la grille et de nœuds de stockage non-ADC disponibles sur le même site.
  a| 
-link:../maintain/move-adc-service.html["Déplacer le service ADC vers un autre nœud de stockage sur le même site"], ou effectuez une extension en ajoutant un nouveau nœud de stockage au site et en spécifiant qu'il doit disposer d'un service ADC. link:understanding-adc-service-quorum.html["Quorum ADC"] .
+Assurez-vous que les conditions pour le déplacement automatique du service ADC sont remplies (voir link:../maintain/understanding-adc-service-quorum.html["Quorum ADC"]), ou link:../maintain/move-adc-service.html["déplacer manuellement le service ADC"] vers un autre nœud de stockage sur le même site. Vous pouvez également effectuer une extension en ajoutant un nouveau nœud de stockage au site et en spécifiant qu'il doit avoir un service ADC. Voir link:../expand/adding-grid-nodes-to-existing-site-or-adding-new-site.html["Résumé du workflow d'ajout de nœuds de grille à StorageGRID"].
 
 
 

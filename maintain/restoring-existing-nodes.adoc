@@ -26,6 +26,8 @@ Si des volumes de stockage en blocs ont été préservés à partir de l'hôte p
 [[restore-validate-grid-nodes]]
 == Restaurez et validez les nœuds de la grille
 
+Si vous récupérez un nœud à partir d'un nœud d'administration non principal, définissez ADMIN_IP sur l'adresse IP du réseau Grid de ce nœud d'administration non principal, afin que le nœud récupéré s'enregistre auprès du nœud d'administration non principal plutôt qu'auprès du nœud d'administration principal. Pour consulter les règles relatives aux clés du réseau d'administration, reportez-vous à link:../swnodes/creating-node-configuration-files.html["Créer des fichiers de configuration de nœud StorageGRID pour les déploiements Linux"].
+
 Vous devez restaurer les fichiers de configuration de la grille de tout nœud de grille ayant échoué, puis valider les fichiers de configuration de la grille et résoudre les erreurs éventuelles.
 
 .Description de la tâche

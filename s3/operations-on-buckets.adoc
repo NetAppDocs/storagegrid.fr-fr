@@ -2,7 +2,7 @@
 permalink: s3/operations-on-buckets.html 
 sidebar: sidebar 
 keywords: bucket, buckets, operations on buckets 
-summary: Le système StorageGRID prend en charge un maximum de 5,000 compartiments pour chaque compte de locataire S3. 
+summary: Le système StorageGRID prend en charge un maximum de 20 000 compartiments pour chaque compte locataire S3. 
 ---
 = Opérations sur les compartiments S3 et détails d’implémentation dans StorageGRID
 :allow-uri-read: 
@@ -11,15 +11,15 @@ summary: Le système StorageGRID prend en charge un maximum de 5,000 compartimen
 
 
 [role="lead"]
-Le système StorageGRID prend en charge un maximum de 5,000 compartiments pour chaque compte de locataire S3.
+Le système StorageGRID prend en charge un maximum de 20 000 compartiments pour chaque compte locataire S3.
 
 Chaque grille peut contenir un maximum de 100,000 compartiments.
 
-Pour prendre en charge 5,000 compartiments, chaque nœud de stockage de la grille doit disposer d'au moins 64 Go de RAM.
+Si plusieurs locataires disposent chacun de jusqu'à 5 000 compartiments, chaque nœud de stockage de la grille doit avoir un minimum de 64 Go de RAM.
 
-Les restrictions relatives aux noms de compartiment respectent les restrictions régionales standard AWS, mais vous devez les restreindre à une nomenclature DNS pour prendre en charge les demandes de type hébergement virtuel S3.
+Les restrictions relatives aux noms de compartiments suivent les restrictions de la région standard AWS US, mais vous devez les restreindre davantage aux conventions de nommage DNS pour prendre en charge les requêtes de type virtual-hosted-style S3.
 
-Pour plus d'informations, reportez-vous aux sections suivantes :
+Pour plus d'informations, veuillez consulter les documents suivants :
 
 * https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html["Guide de l'utilisateur d'Amazon simple Storage Service : quotas de compartiments, restrictions et limites"^]
 * link:../admin/configuring-s3-api-endpoint-domain-names.html["Configuration des noms de domaine de terminaux S3"]
@@ -27,7 +27,7 @@ Pour plus d'informations, reportez-vous aux sections suivantes :
 
 Les opérations ListObjects (GET Bucket) et ListObjectVersions (versions d'objet GET Bucket) prennent en charge StorageGRIDlink:consistency.html["valeurs de cohérence"] .
 
-Vous pouvez vérifier si les mises à jour de l'heure du dernier accès sont activées ou désactivées pour les compartiments individuels. Voir link:get-bucket-last-access-time-request.html["HEURE du dernier accès au compartiment"].
+Vous pouvez vérifier si la mise à jour du temps d'accès est activée ou désactivée pour chaque compartiment. Consultez link:get-bucket-last-access-time-request.html["HEURE du dernier accès au compartiment"].
 
 Le tableau suivant décrit la façon dont StorageGRID implémente les opérations des compartiments de l'API REST S3. Pour effectuer l'une de ces opérations, les informations d'identification d'accès nécessaires doivent être fournies pour le compte.
 
@@ -41,6 +41,8 @@ CreateBucket
  a| 
 Crée un nouveau compartiment. C'est en créant le compartiment que vous devenez le propriétaire.
 
+*Remarque* : Les compartiments de répertoire S3 ne sont pas pris en charge.
+
 * Les noms de compartiment doivent être conformes aux règles suivantes :
 +
 ** Il doit être unique sur chaque système StorageGRID (et pas seulement au sein du compte du locataire).
@@ -53,11 +55,14 @@ Crée un nouveau compartiment. C'est en créant le compartiment que vous devenez
 
 * Par défaut, les compartiments sont créés dans la `us-east-1` région ; vous pouvez cependant utiliser `LocationConstraint` l'élément de demande du corps de la demande pour spécifier une région différente. Lorsque vous utilisez l' `LocationConstraint`élément, vous devez spécifier le nom exact d'une région qui a été définie à l'aide du Gestionnaire de grille ou de l'API de gestion de grille. Contactez votre administrateur système si vous ne connaissez pas le nom de région que vous devez utiliser.
 +
-*Remarque* : une erreur se produit si votre requête CreateBucket utilise une région qui n'a pas été définie dans StorageGRID.
+*Remarque* : Une erreur se produira si votre requête CreateBucket utilise une région qui n’a pas été définie dans StorageGRID.
 
-* Vous pouvez inclure l' `x-amz-bucket-object-lock-enabled`en-tête de demande pour créer un compartiment lorsque le verrouillage objet S3 est activé. Voir link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+* Vous pouvez inclure l' `x-amz-bucket-object-lock-enabled`en-tête de requête pour créer un compartiment avec S3 Object Lock activé. Reportez-vous à link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
 +
-Vous devez activer le verrouillage d'objet S3 lors de la création du compartiment. Une fois un compartiment créé, vous ne pouvez ni ajouter ni désactiver le verrouillage objet S3. Le verrouillage objet S3 requiert la gestion des versions de compartiment, qui est activée automatiquement lors de la création du compartiment.
+Le verrouillage d'objets S3 nécessite le versionnage des compartiments, qui est activé automatiquement lorsque vous créez le compartiment avec le verrouillage d'objets S3 activé.
+
++
+Vous pouvez activer le verrouillage des objets S3 lors de la création du compartiment ou à un moment ultérieur.
 
 
 
@@ -87,7 +92,7 @@ Supprime le chiffrement par défaut du compartiment. Les objets chiffrés exista
  a| 
 DeleteBuckeLifecycle
  a| 
-Supprime la configuration du cycle de vie du compartiment. Voir link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"].
+Supprime la configuration du cycle de vie du compartiment. Reportez-vous à link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"].
 
 
 
@@ -110,7 +115,7 @@ DeleteBucketTagging
  a| 
 Utilise la `tagging` sous-ressource pour supprimer toutes les balises d'un compartiment.
 
-*Attention* : si une balise de stratégie ILM non définie par défaut est définie pour ce compartiment, une balise de compartiment sera affectée à cette `NTAP-SG-ILM-BUCKET-TAG` variable. N'émettez pas de demande DeleteBucketTagging s'il existe une `NTAP-SG-ILM-BUCKET-TAG` balise de compartiment. À la place, lancez une demande PutBucketTagging avec uniquement la `NTAP-SG-ILM-BUCKET-TAG` balise et sa valeur attribuée pour supprimer toutes les autres balises du compartiment. Ne pas modifier ou retirer l' `NTAP-SG-ILM-BUCKET-TAG`étiquette de godet.
+*Attention* : Si une balise de stratégie ILM non standard est définie pour ce compartiment, il y aura une balise de compartiment  `NTAP-SG-ILM-BUCKET-TAG` avec une valeur qui lui est attribuée. N'émettez pas de requête DeleteBucketTagging s'il existe une balise de compartiment  `NTAP-SG-ILM-BUCKET-TAG`. Émettez plutôt une requête PutBucketTagging contenant uniquement la balise  `NTAP-SG-ILM-BUCKET-TAG` et sa valeur attribuée pour supprimer toutes les autres balises du compartiment. Ne modifiez pas et ne supprimez pas la balise de compartiment  `NTAP-SG-ILM-BUCKET-TAG`.
 
 
 
@@ -140,14 +145,14 @@ GetBucketLifecycleConfiguration
 
 (Anciennement appelé cycle de vie du compartiment GET)
  a| 
-Renvoie la configuration du cycle de vie du compartiment. Voir link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"].
+Renvoie la configuration du cycle de vie du compartiment. Reportez-vous à link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"].
 
 
 
  a| 
 GetBuckeLocation
  a| 
-Renvoie la région définie à l'aide de l' `LocationConstraint`élément dans la requête CreateBucket. Si la région du compartiment est, une chaîne vide est `us-east-1` renvoyée pour la région.
+Renvoie la région qui a été définie à l'aide de l'élément  `LocationConstraint` dans la requête CreateBucket. Si la région du compartiment est  `us-east-1` (par défaut), une valeur vide est renvoyée pour  `LocationConstraint`.
 
 
 
@@ -179,7 +184,7 @@ GetBucketTagging
  a| 
 Utilise la `tagging` sous-ressource pour renvoyer toutes les balises d'un compartiment.
 
-*Attention* : si une balise de stratégie ILM non définie par défaut est définie pour ce compartiment, une balise de compartiment sera affectée à cette `NTAP-SG-ILM-BUCKET-TAG` variable. Ne modifiez pas et ne supprimez pas cette balise.
+*Attention* : Si une étiquette de stratégie ILM non standard est définie pour ce compartiment, il y aura une  `NTAP-SG-ILM-BUCKET-TAG` étiquette de compartiment avec une valeur qui lui sera attribuée. Ne modifiez ni ne supprimez cette étiquette.
 
 
 
@@ -200,7 +205,7 @@ GetObjectLockConfiguration
  a| 
 Renvoie le mode de conservation par défaut du compartiment et la période de conservation par défaut, si elle est configurée.
 
-Voir link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+Consultez link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
 
 
 
@@ -285,7 +290,7 @@ StorageGRID ne prend pas en charge les actions suivantes :
 * Transition
 
 
-Voir link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"]. Pour comprendre comment l'action expiration d'un cycle de vie de compartiment interagit avec les instructions de placement ILM, reportez-vous à la section link:../ilm/how-ilm-operates-throughout-objects-life.html["Fonctionnement de ILM tout au long de la vie d'un objet"].
+Reportez-vous à link:create-s3-lifecycle-configuration.html["Création de la configuration du cycle de vie S3"]. Pour comprendre comment l'action d'expiration dans le cycle de vie d'un compartiment interagit avec les instructions de placement ILM, reportez-vous à link:../ilm/how-ilm-operates-throughout-objects-life.html["Fonctionnement de ILM tout au long de la vie d'un objet"].
 
 *Remarque* : la configuration du cycle de vie des compartiments peut être utilisée avec des compartiments avec le verrouillage d'objet S3 activé, mais la configuration du cycle de vie des compartiments n'est pas prise en charge pour les compartiments conformes hérités.
 
@@ -336,7 +341,7 @@ non inclus
  a| 
 PutBuckePolicy
  a| 
-Définit la politique attachée au bucket. Voir link:use-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"] .
+Définit la politique associée au compartiment. Reportez-vous à link:use-access-policies.html["Utilisez les règles d'accès au compartiment et au groupe"].
 
 
 
@@ -345,10 +350,10 @@ PutBuckeReplication
  a| 
 Configure link:../tenant/understanding-cloudmirror-replication-service.html["Réplication StorageGRID CloudMirror"] pour le compartiment à l'aide du fichier XML de configuration de réplication fourni dans le corps de la demande. Pour la réplication CloudMirror, vous devez connaître les détails d'implémentation suivants :
 
-* StorageGRID ne prend en charge que le V1 de la configuration de la réplication. Cela signifie que StorageGRID ne prend pas en charge l'utilisation de `Filter` l'élément pour les règles et respecte les conventions V1 pour la suppression des versions d'objet. Pour plus de détails, voir https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html["Guide de l'utilisateur d'Amazon simple Storage Service : configuration de la réplication"^].
+* StorageGRID ne prend en charge que la V1 de la configuration de réplication. Cela signifie que StorageGRID ne prend pas en charge l’utilisation de l’ `Filter` élément pour les règles et suit les conventions de la V1 pour la suppression des versions d’objets. Pour plus de détails, consultez  https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html["Guide de l'utilisateur d'Amazon simple Storage Service : configuration de la réplication"^].
 * La réplication des compartiments peut être configurée sur les compartiments avec ou sans version.
 * Vous pouvez spécifier un compartiment de destination différent dans chaque règle du XML de configuration de réplication. Un compartiment source peut être répliqué sur plusieurs compartiments de destination.
-* Les compartiments de destination doivent être spécifiés en tant que URN des terminaux StorageGRID, tel que spécifié dans le Gestionnaire de locataires ou l'API de gestion des locataires. Voir link:../tenant/configuring-cloudmirror-replication.html["Configurez la réplication CloudMirror"].
+* Les compartiments de destination doivent être spécifiés sous la forme de l’URN des points de terminaison StorageGRID, tels que définis dans le Tenant Manager ou l’API de gestion des locataires. Voir link:../tenant/configuring-cloudmirror-replication.html["Configurez la réplication CloudMirror"].
 +
 Le noeud final doit exister pour que la configuration de réplication réussisse. Si le noeud final n'existe pas, la demande échoue en tant que `400 Bad Request` . le message d'erreur indique : `Unable to save the replication policy. The specified endpoint URN does not exist: _URN_.`
 
@@ -375,7 +380,7 @@ Utilise la `tagging` sous-ressource pour ajouter ou mettre à jour un ensemble d
 * Les clés et les valeurs sont sensibles à la casse
 
 
-*Attention* : si une balise de stratégie ILM non définie par défaut est définie pour ce compartiment, une balise de compartiment sera affectée à cette `NTAP-SG-ILM-BUCKET-TAG` variable. Assurez-vous que la `NTAP-SG-ILM-BUCKET-TAG` balise de compartiment est incluse avec la valeur attribuée dans toutes les demandes PutBucketTagging. Ne modifiez pas et ne supprimez pas cette balise.
+*Attention* : Si une balise de stratégie ILM non standard est définie pour ce compartiment, il y aura une balise  `NTAP-SG-ILM-BUCKET-TAG` de compartiment avec une valeur qui lui est attribuée. Assurez-vous que la balise  `NTAP-SG-ILM-BUCKET-TAG` de compartiment est incluse avec la valeur attribuée dans toutes les requêtes PutBucketTagging. Ne modifiez ni ne supprimez cette balise.
 
 *Remarque* : cette opération écrasera les balises actuelles du compartiment. Si des balises existantes sont omises de l'ensemble, ces balises seront supprimées pour le compartiment.
 
@@ -395,10 +400,12 @@ Utilise la `versioning` sous-ressource pour définir l'état de gestion des vers
  a| 
 PutObjectLockConfiguration
  a| 
-Configure ou supprime le mode de conservation par défaut du compartiment et la période de conservation par défaut.
+* Configure ou supprime le mode de conservation par défaut du compartiment et la période de conservation par défaut.
+* Si l'administrateur de la grille a donné son autorisation, active le verrouillage des objets S3 sur les compartiments existants.
 
-Si la période de conservation par défaut est modifiée, la conservation jusqu'à la date des versions d'objet existantes reste la même et n'est pas recalculée en utilisant la nouvelle période de conservation par défaut.
 
-Voir link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"] pour plus d'informations.
+Si la période de conservation par défaut est modifiée, la date limite de conservation des versions d'objets existantes reste la même et n'est pas recalculée en fonction de la nouvelle période de conservation par défaut.
+
+Veuillez consulter link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"] pour des informations détaillées.
 
 |===

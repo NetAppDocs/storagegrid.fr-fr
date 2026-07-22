@@ -18,6 +18,7 @@ Les étapes générales de restauration d'un nœud d'administration principal ou
 Suivez toujours la procédure de récupération correcte pour le nœud d'administration que vous restaurez. Les procédures semblent identiques à un niveau élevé, mais diffèrent dans les détails.
 
 .Choix
-* link:recovering-from-primary-admin-node-failures.html["Restaurez vos données après une panne de nœud d'administration principal"]
+* link:recovering-from-primary-admin-node-failures.html["Récupérez le nœud d'administration principal en utilisant le même nœud d'administration principal"]
+* link:recovering-from-primary-admin-node-failures-using-npan.html["Récupérez après des défaillances du nœud d'administration principal à l'aide d'un nœud d'administration non principal"]
 * link:recovering-from-non-primary-admin-node-failures.html["Restaurez vos données en cas de défaillance d'un nœud d'administration non principal"]
 

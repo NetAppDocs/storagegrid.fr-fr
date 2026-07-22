@@ -186,7 +186,7 @@ Vous pouvez :
 *** link:grid-federation-manage-connection.html#rotate-connection-certificates["Faire pivoter les certificats de connexion de fédération de grille"]
 *** link:using-identity-federation.html["Afficher et modifier un certificat de fédération d'identités"]
 *** link:kms-adding.html["Télécharger les certificats du serveur de gestion des clés (KMS) et du client"]
-*** link:creating-relying-party-trusts-in-ad-fs.html#create-a-relying-party-trust-manually["Spécifiez manuellement un certificat SSO pour une confiance de partie utilisatrice"]
+*** link:creating-relying-party-trusts-in-ad-fs-saml.html#create-a-relying-party-trust-manually["Spécifiez manuellement un certificat SSO pour une confiance de partie utilisatrice"]
 
 
 --
@@ -317,7 +317,7 @@ Vous pouvez également utiliser une version personnalisée du certificat global 
  a| 
 Serveur
  a| 
-Authentifie la connexion à partir d'un pool de stockage cloud StorageGRID vers un emplacement de stockage externe, tel que S3 Glacier ou Microsoft Azure Blob Storage. Un certificat différent est requis pour chaque type de fournisseur cloud.
+Authentifie la connexion d'un StorageGRID Cloud Storage Pool à un emplacement de stockage externe, tel que S3 Glacier ou Microsoft Azure Blob Storage. Un certificat différent est requis pour chaque type de fournisseur de cloud.
  a| 
 *ILM* > *pools de stockage*
  a| 

@@ -133,7 +133,7 @@ Lors de l'utilisation de services hébergés localement au lieu de services clou
 +
 [listing]
 ----
-urn:mysite:s3:optional:optional:bucket-name
+urn:mysite:s3:::bucket-name
 ----
 +
 Pour un noeud final CloudMirror hébergé sur StorageGRID, vous pouvez spécifier un URN valide commençant par `urn:sgws`:
@@ -141,7 +141,7 @@ Pour un noeud final CloudMirror hébergé sur StorageGRID, vous pouvez spécifie
 +
 [listing]
 ----
-urn:sgws:s3:optional:optional:bucket-name
+urn:sgws:s3:::bucket-name
 ----
 * Notifications :
 +
@@ -150,7 +150,7 @@ Spécifiez un point de terminaison Amazon simple notification Service :
 +
 [listing]
 ----
-urn:mysite:sns:optional:optional:sns-topic-name
+urn:aws:sns:region:account-id:sns-topic-name
 ----
 +
 Spécifiez un terminal Kafka :
@@ -158,21 +158,25 @@ Spécifiez un terminal Kafka :
 +
 [listing]
 ----
-urn:mysite:kafka:optional:optional:kafka-topic-name
+urn::kafka:::kafka-topic-name
 ----
++
+
+NOTE: Vous pouvez également inclure `mysite` lors de la spécification d’un point de terminaison Kafka : `urn:mysite:kafka:::kafka-topic-name`
+
 +
 Spécifiez un point de terminaison de webhook :
 
 +
 [listing]
 ----
-urn:mysite:webhook:optional:optional:webhook-name
+urn:mysite:webhook:::webhook-name
 ----
 * Intégration de la recherche :
 +
 [listing]
 ----
-urn:mysite:es:optional:optional:domain-name/index-name/type-name
+urn:mysite:es:::domain-name/index-name/type-name
 ----
 +
 

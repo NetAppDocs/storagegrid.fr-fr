@@ -60,7 +60,7 @@ Si vous êtes certain que l'hôte VM dispose de ressources suffisantes pour chaq
 .. Sélectionnez *mémoire*, puis utilisez le curseur réservation pour régler le Mo réservé pour cette machine virtuelle.
 
 
-. Cliquez sur *OK*.
+. Sélectionnez *OK*.
 . Répétez cette procédure si nécessaire pour les autres machines virtuelles hébergées sur le même hôte VM.
 
 

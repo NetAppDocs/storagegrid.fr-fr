@@ -77,17 +77,17 @@ NOTE: Les utilisateurs doivent disposer de l'autorisation *Autre configuration d
 
 Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser les options suivantes :
 
-* *Configuration* > *Contrôle d'accès*:
+* *Configuration* > *Contrôle d'accès*
 +
 ** Mots de passe de grille
 
 
-* *Configuration* > *Réseau*:
+* *Configuration* > *Réseau*
 +
 ** Noms de domaine de terminaux S3
 
 
-* *Maintenance* > *Tâches*:
+* *Maintenance* > *Tâches*
 +
 ** Désaffectation
 ** De développement
@@ -95,13 +95,13 @@ Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser le
 ** Reprise après incident
 
 
-* *Maintenance* > *Système*:
+* *Maintenance* > *Système*
 +
 ** Package de restauration
 ** Mise à jour logicielle
 
 
-* *Support* > *Outils*:
+* *Assistance* > *Outils*
 +
 ** Journaux
 
@@ -110,29 +110,29 @@ Les utilisateurs doivent disposer de l'autorisation Maintenance pour utiliser le
 
 Les utilisateurs qui ne disposent pas de l'autorisation Maintenance peuvent afficher, mais pas modifier, les pages suivantes :
 
-* *Maintenance* > *Réseau*:
+* *Maintenance* > *Réseau*
 +
 ** Serveurs DNS
 ** Réseau Grid
 ** Serveurs NTP
 
 
-* *Maintenance* > *Système*:
+* *Maintenance* > *Système*
 +
 ** Licence
 
 
-* *Configuration* > *Réseau*:
+* *Configuration* > *Réseau*
 +
 ** Noms de domaine de terminaux S3
 
 
-* *Configuration* > *Sécurité*:
+* *Configuration* > *Sécurité*
 +
 ** Certificats
 
 
-* *Configuration* > *Surveillance*:
+* *Configuration* > *Surveillance*
 +
 ** Serveur d'audit et syslog
 
@@ -172,18 +172,23 @@ Cette autorisation permet d'accéder à la page *ILM* > *recherche de métadonn�
 
 Cette autorisation donne accès à ces options de configuration de grille supplémentaires :
 
-* *ILM* :
+* *ILM*
 +
 ** Niveaux de stockage
 
 
-* *Configuration* > *Système*:
-* *Support* > *Autre*:
+* *Configuration* > *Système*
+* *Assistance* > *Autre*
 +
-** Coût des liens
+** Priorisation des E/S
+** Services de nœud
+** Seuils de stockage
 
 
 
+
+
+NOTE: Le coût du lien nécessite un accès root.
 
 
 

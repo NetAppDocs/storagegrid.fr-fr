@@ -13,6 +13,7 @@ summary: Vous devez vérifier que le système est prêt à prendre en charge le 
 [role="lead"]
 Vous devez vérifier que le système est prêt à prendre en charge le correctif.
 
+.Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 . Si possible, assurez-vous que le système fonctionne normalement et que tous les nœuds de la grille sont connectés à la grille.
 +

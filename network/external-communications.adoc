@@ -315,6 +315,21 @@ Les demandes de pools de stockage cloud sont envoyées aux cibles AWS qui utilis
 
 
  a| 
+636
+ a| 
+TCP/UDP
+ a| 
+LDAP
+ a| 
+Nœuds de stockage avec ADC
+ a| 
+Active Directory/LDAP
+ a| 
+Utilisé pour la connexion à un serveur Active Directory ou LDAP pour la fédération des identités.
+
+
+
+ a| 
 5353
  a| 
 UDP

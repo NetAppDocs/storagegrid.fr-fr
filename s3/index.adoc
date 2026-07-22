@@ -67,10 +67,37 @@ https://datatracker.ietf.org/doc/html/rfc2616["IETF RFC 2616 : Protocole de tran
 
 
  a| 
+12.1.0
+ a| 
+* `If-Match`
++
+L' `If-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut renvoyer un message d'erreur (501 Not Implemented). Si l' `If-Match`en-tête est accepté mais non fonctionnel, une alerte peut être déclenchée avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
+
+* `If-None-Match`
++
+L' `If-None-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut entraîner un message d'erreur (501 Not Implemented). Si l' `If-None-Match`en-tête est accepté mais non fonctionnel, une alerte peut s'afficher avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
+
+* Ajout de la prise en charge des valeurs de somme de contrôle précalculées pour les requêtes et en-têtes suivants :
++
+** CompleteMultipartUpload: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, et `x-amz-checksum-crc64nvme`
+** CreateMultipartUpload: `CRC32`, `CRC32C` et  `CRC64NVME` pour  `x-amz-checksum-algorithm`
+** CopyObject: `CRC32`, `CRC32C`, `CRC64NVME`, et `SHA256` pour `x-amz-checksum-algorithm`
+** PutObject: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c` et `x-amz-checksum-crc64nvme`
+** UploadPart: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c` et `x-amz-checksum-crc64nvme`
+
+
+* Ajout de la prise en charge de  `x-amz-checksum-type` pour CreateMultipartUpload et CompleteMultipartUpload.
+* Ajout de la prise en charge de la clé de condition de stratégie  `s3:x-amz-copy-source`.
+* Autoriser l'activation du verrouillage d'objets S3 sur les compartiments existants.
+
+
+
+
+ a| 
 12,0
  a| 
 * Ajout de la prise en charge du partage de ressources inter-origines (CORS) pour une interface de gestion, qui permet à un autre domaine d'accéder aux données dans StorageGRID à l'aide des API de gestion. link:../admin/enable-cross-origin-resource-sharing-for-management-interface.html["En savoir plus >>"] .
-* Ajout de la prise en charge de STS AssumeRole et de la politique de session. Voir link:example-session-policies.html["un exemple de politique de session"] .  Vous pouvez configurer AssumeRole sous les groupes de locataires.
+* Ajout de la prise en charge de STS AssumeRole et de la stratégie de session. Voir link:../s3/example-session-policies.html["un exemple de politique de session"]. Vous pouvez configurer AssumeRole dans les groupes de locataires.
 
 
 
@@ -115,7 +142,7 @@ Mise à jour des noms des opérations S3 pour qu'ils correspondent aux noms util
  a| 
 11,7
  a| 
-* Ajouté link:quick-reference-support-for-aws-apis.html["Référence rapide : demandes d'API S3 prises en charge"].
+* Ajouté link:../s3/quick-reference-support-for-aws-apis.html["Référence rapide : demandes d'API S3 prises en charge"].
 * Ajout de la prise en charge du mode DE GOUVERNANCE avec S3 Object Lock.
 * Ajout de la prise en charge de l'en-TÊTE de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status` pour les requêtes GET Object et HEAD Object. Cet en-tête fournit l'état de réplication d'un objet pour la réplication inter-grid.
 * Les requêtes SelectObjectContent prennent désormais en charge les objets parquet.
@@ -215,7 +242,7 @@ Ajout de la prise en charge des règles d'accès de groupe et de compartiment, a
  a| 
 10,1
  a| 
-Ajout de la prise en charge du téléchargement partitionné, des demandes de type hébergement virtuel et de l'authentification v4.
+Ajout de la prise en charge du téléchargement en plusieurs parties, des requêtes de type hébergement virtuel et de l'authentification v4.
 
 
 

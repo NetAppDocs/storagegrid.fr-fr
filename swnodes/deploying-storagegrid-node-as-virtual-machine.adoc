@@ -180,10 +180,6 @@ NOTE: Le mot de passe d'installation temporaire n'est utilisé que lors de l'ins
 
 .. Dans le champ *IP d'administration principale*, entrez l'adresse IP du noeud d'administration principal pour le réseau de grille.
 +
-
-NOTE: Cette étape ne s'applique pas si le nœud que vous déployez est le nœud d'administration principal.
-
-+
 Si vous omettez l'adresse IP du nœud d'administration principal, l'adresse IP est automatiquement découverte si le nœud d'administration principal, ou au moins un autre nœud de la grille avec ADMIN_IP configuré, est présent sur le même sous-réseau. Cependant, il est recommandé de définir ici l'adresse IP du nœud d'administration principal.
 
 .. Dans la section *Admin Network (eth1)*, sélectionnez STATIQUE, DHCP ou DÉSACTIVÉ pour la configuration *Admin network IP*.
@@ -222,7 +218,7 @@ Notez les consignes importantes suivantes :
 
 . [[vmware-remap-ports]]si vous devez remmapper les ports utilisés par ce nœud, procédez comme suit.
 +
-Vous devrez peut-être remapper un port si les règles de réseau de votre entreprise limitent l'accès à un ou plusieurs ports utilisés par StorageGRID. Reportez-vous link:../network/index.html["instructions de mise en réseau"]à la pour connaître les ports utilisés par StorageGRID.
+Il peut être nécessaire de reconfigurer un port si les politiques réseau de votre entreprise restreignent l'accès à un ou plusieurs ports utilisés par StorageGRID. Consultez link:../network/index.html["Instructions de mise en réseau"] pour connaître les ports utilisés par StorageGRID.
 
 +
 

@@ -2,7 +2,7 @@
 permalink: release-notes/removed-or-deprecated-features.html 
 sidebar: sidebar 
 keywords:  
-summary: Découvrez les fonctionnalités et capacités qui ont été supprimées ou rendues obsolètes dans StorageGRID 12.0. Avant de procéder à la mise à niveau, vérifiez si les fonctionnalités supprimées ou obsolètes affectent vos applications clientes ou la configuration de votre grille. 
+summary: Découvrez les fonctionnalités et capacités qui ont été supprimées ou rendues obsolètes dans StorageGRID 12.1.0. Avant de procéder à la mise à niveau, vérifiez si des fonctionnalités supprimées ou rendues obsolètes affectent vos applications clientes ou la configuration de votre grid. 
 ---
 = Fonctionnalités et capacités supprimées ou obsolètes dans StorageGRID
 :allow-uri-read: 
@@ -11,14 +11,14 @@ summary: Découvrez les fonctionnalités et capacités qui ont été supprimées
 
 
 [role="lead"]
-Découvrez les fonctionnalités et capacités qui ont été supprimées ou rendues obsolètes dans StorageGRID 12.0. Avant de procéder à la mise à niveau, vérifiez si les fonctionnalités supprimées ou obsolètes affectent vos applications clientes ou la configuration de votre grille.
+Découvrez les fonctionnalités et capacités qui ont été supprimées ou rendues obsolètes dans StorageGRID 12.1.0. Avant de procéder à la mise à niveau, vérifiez si des fonctionnalités supprimées ou rendues obsolètes affectent vos applications clientes ou la configuration de votre grid.
 
 
 
 [[definitions]]
 == Définitions
 
-Obsolète:: La fonction *ne devrait pas* être utilisée dans les nouveaux environnements de production. Les environnements de production existants peuvent continuer à utiliser cette fonctionnalité.
+Obsolète:: Vous ne devez pas utiliser cette fonctionnalité dans les nouveaux environnements de production. Les environnements de production existants peuvent continuer à utiliser cette fonctionnalité.
 Fin de vie:: Dernière version livrée qui prend en charge cette fonctionnalité. Dans certains cas, la documentation de la fonction peut être supprimée à ce stade.
 Supprimé:: Première version que *ne prend pas* en charge la fonction.
 
@@ -38,6 +38,19 @@ NOTE: Dans certains cas, NetApp peut mettre fin à la prise en charge de certain
 [cols="2a,1a,1a,1a,3a"]
 |===
 | Fonction | Obsolète | Fin de vie | Supprimé | Liens vers la documentation précédente 
+
+
+ a| 
+Paramètre SSE global pour le chiffrement AES-128
+ a| 
+12,1
+ a| 
+12,2
+ a| 
+12,3
+ a| 
+À compter de StorageGRID 12.1.0, la prise en charge du chiffrement AES-128 des nouvelles données d'objet stockées au repos est obsolète. La prise en charge de la récupération des objets stockés initialement chiffrés avec AES-128 est maintenue.
+
 
 
  a| 
@@ -66,8 +79,8 @@ https://docs.netapp.com/us-en/storagegrid-118/maintain/considerations-for-decomm
 
 *Remarque* : avant de commencer votre mise à niveau, vous devez :
 
-. Désaffectation de tous les nœuds d'archivage. Voir https://docs.netapp.com/us-en/storagegrid-118/maintain/grid-node-decommissioning.html["Désaffectation du nœud grid (site du doc StorageGRID 11.8)"^].
-. Supprimer toutes les références de nœud d'archivage des pools de stockage et des règles ILM. Voir https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Base de connaissances NetApp : guide de résolution des mises à niveau logicielles StorageGRID 11.9"^].
+. Mettez hors service tous les nœuds d'archivage. Consultez  https://docs.netapp.com/us-en/storagegrid-118/maintain/grid-node-decommissioning.html["Désaffectation du nœud grid (site du doc StorageGRID 11.8)"^].
+. Supprimez toutes les références aux nœuds d'archivage des pools de stockage et des stratégies ILM. Consultez https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.9_software_upgrade_resolution_guide["Base de connaissances NetApp : guide de résolution des mises à niveau logicielles StorageGRID 11.9"^].
 
 
 

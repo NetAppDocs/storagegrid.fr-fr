@@ -11,15 +11,15 @@ summary: 'Vous pouvez créer des utilisateurs locaux et les affecter à des grou
 
 
 [role="lead"]
-Vous pouvez créer des utilisateurs locaux et les affecter à des groupes locaux pour déterminer les fonctionnalités auxquelles ces utilisateurs peuvent accéder.  Vous pouvez également importer des utilisateurs fédérés.  Le gestionnaire de locataires comprend un utilisateur local prédéfini, nommé « root ».  Bien que vous puissiez ajouter et supprimer des utilisateurs locaux, vous ne pouvez pas supprimer l'utilisateur root.
+Vous pouvez créer des utilisateurs locaux et les affecter à des groupes locaux afin de définir les fonctionnalités auxquelles ces utilisateurs peuvent accéder. Vous pouvez également importer des utilisateurs fédérés. Le Tenant Manager inclut un utilisateur local prédéfini, nommé _root_. Bien que vous puissiez ajouter et supprimer des utilisateurs locaux, vous ne pouvez pas supprimer l'utilisateur root.
 
 
-NOTE: Si l'authentification unique (SSO) est activée pour votre système StorageGRID, les utilisateurs locaux ne pourront pas se connecter au gestionnaire de locataires ou à l'API de gestion des locataires, bien qu'ils puissent utiliser des applications clientes pour accéder aux ressources du locataire, en fonction des autorisations de groupe.
+NOTE: Si l'authentification unique (SSO) est activée pour votre système StorageGRID, les utilisateurs locaux ne pourront pas se connecter au Tenant Manager ni à l'API de gestion des locataires, bien qu'ils puissent utiliser des applications clientes pour accéder aux ressources du locataire, en fonction des autorisations de groupe.
 
 .Avant de commencer
 * Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
-* Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous avez examiné le flux de travail et les considérations pour link:grid-federation-account-clone.html["clonage de groupes de locataires et d'utilisateurs"]et vous êtes connecté à la grille source du locataire.
+* Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille*, vous avez examiné le flux de travail et les considérations pour link:grid-federation-account-sync.html["synchronisation des groupes de locataires et des utilisateurs"], et vous êtes connecté à la grille source du locataire.
 
 
 
@@ -38,12 +38,6 @@ Les utilisateurs S3 qui n'appartiennent à aucun groupe ne disposent pas d'autor
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Utilisateurs*.
-+
-Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, une bannière bleue indique qu'il s'agit de la grille source du locataire. Tous les utilisateurs locaux que vous créez sur cette grille seront clonés dans l'autre grille de la connexion.
-
-+
-image:grid-federation-tenant-user-banner.png["Image de la bannière bleue sur la page utilisateur s'il s'agit de la grille source du locataire"]
-
 . Sélectionnez *Créer utilisateur*.
 
 
@@ -109,7 +103,7 @@ Les utilisateurs qui n'appartiennent à aucun groupe ne disposent d'aucune autor
 
 . Sélectionnez *Créer utilisateur*.
 +
-Si votre compte locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous êtes sur la grille source du locataire, le nouvel utilisateur local est cloné dans la grille de destination du locataire. *Succès* apparaît comme l'état *clonage* dans la section vue d'ensemble de la page de détails de l'utilisateur.
+Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grilles* et que vous êtes sur la grille source du locataire, le nouvel utilisateur local est synchronisé avec la grille de destination du locataire. *Réussi* apparaît comme *État de la synchronisation* dans la section Vue d'ensemble de la page de détails de l'utilisateur.
 
 . Sélectionnez *Terminer* pour revenir à la page utilisateurs.
 
@@ -122,14 +116,6 @@ Si votre compte locataire dispose de l'autorisation *utiliser la connexion de f�
 .Étapes
 . Sélectionnez *Gestion des accès* > *Utilisateurs*.
 . Consultez les informations fournies sur la page utilisateurs, qui répertorie les informations de base pour tous les utilisateurs locaux et fédérés pour ce compte de tenant.
-+
-Si le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous affichez l'utilisateur sur la grille source du locataire :
-
-+
-** Un message de bannière indique que si vous modifiez ou supprimez un utilisateur, vos modifications ne seront pas synchronisées avec l'autre grille.
-** Si nécessaire, un message de bannière indique si les utilisateurs n'ont pas été clonés dans le locataire sur la grille de destination. Vous pouvez <<clone-users,réessayez un clone utilisateur qui a échoué>>.
-
-
 . Si vous souhaitez modifier le nom complet de l'utilisateur :
 +
 .. Cochez la case de l'utilisateur.
@@ -152,12 +138,6 @@ Si le compte de tenant dispose de l'autorisation *utiliser la connexion de féd�
 ** Accès refusé
 ** Mode d'accès
 ** Appartenance à un groupe
-** Champs supplémentaires si le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous affichez l'utilisateur sur la grille source du locataire :
-+
-*** État de clonage, soit *succès* soit *échec*
-*** Une bannière bleue indiquant que si vous modifiez cet utilisateur, vos modifications ne seront pas synchronisées avec l'autre grille.
-
-
 
 
 . Modifiez les paramètres utilisateur selon vos besoins. Voir <<create-user,Créer un utilisateur local>> pour plus de détails sur ce que vous devez saisir.
@@ -211,7 +191,7 @@ Après avoir fermé la boîte de dialogue *Importer les utilisateurs fédérés*
 Vous pouvez dupliquer un utilisateur local pour créer un nouvel utilisateur plus rapidement.
 
 
-NOTE: Si votre compte locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous dupliquez un utilisateur de la grille source du locataire, l'utilisateur dupliqué sera cloné dans la grille de destination du locataire.
+NOTE: Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille* et que vous dupliquez un utilisateur à partir de la grille source du locataire, l'utilisateur dupliqué sera synchronisé avec la grille de destination du locataire.
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Utilisateurs*.
@@ -223,17 +203,22 @@ NOTE: Si votre compte locataire dispose de l'autorisation *utiliser la connexion
 
 
 
-[[clone-usersretry-user-clone]]
-== [[clone-users]]Réessayez le clone utilisateur
+[[sync-usersretry-user-sync]]
+== [[sync-users]]Réessayer la synchronisation des utilisateurs
 
-Pour réessayer un clone qui a échoué :
+Si la synchronisation échoue pour un utilisateur, la mention « Échec » s'affiche dans la colonne « État de la synchronisation » de cet utilisateur. Une bannière apparaît au-dessus du tableau pour indiquer qu'un ou plusieurs utilisateurs ont échoué à se synchroniser.
 
-. Sélectionnez chaque utilisateur qui indique _(échec du clonage)_ sous le nom d'utilisateur.
-. Sélectionnez *actions* > *Cloner les utilisateurs*.
-. Consultez l'état de l'opération de clonage sur la page de détails de chaque utilisateur que vous êtes en train de cloner.
+.Étapes
+Pour réessayer la synchronisation :
+
+. Sur la bannière, sélectionnez *Réessayer la synchronisation*. Cette opération relance la synchronisation pour tous les utilisateurs dont la synchronisation a échoué.
+. Pour réessayer la synchronisation d'un utilisateur, sélectionnez le nom de l'utilisateur. Sur la page des détails de l'utilisateur, sélectionnez *Réessayer la synchronisation*.
+. Consultez l'état de l'opération de synchronisation sur la page de détails de chaque utilisateur que vous synchronisez.
 
 
-Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner des groupes de locataires et des utilisateurs"].
+Si la nouvelle tentative réussit, « Réussi » apparaît dans la colonne « État de la synchronisation » pour chaque utilisateur synchronisé avec succès, et la bannière disparaît.
+
+Pour plus d'informations, voir link:grid-federation-account-sync.html["Synchroniser les groupes de locataires et les utilisateurs"].
 
 
 
@@ -243,10 +228,7 @@ Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner d
 Vous pouvez supprimer définitivement un ou plusieurs utilisateurs locaux qui n'ont plus besoin d'accéder au compte de locataire StorageGRID.
 
 
-NOTE: Si votre compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous supprimez un utilisateur local, StorageGRID ne supprimera pas l'utilisateur correspondant sur l'autre grille. Si vous devez conserver ces informations synchronisées, vous devez supprimer le même utilisateur des deux grilles.
-
-
-NOTE: Vous devez utiliser le référentiel d'identité fédéré pour supprimer des utilisateurs fédérés.
+NOTE: Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grilles* et que vous supprimez un utilisateur local, StorageGRID supprimera l'utilisateur correspondant sur les autres grilles de la connexion, sauf s'il s'agit d'un utilisateur fédéré sur une grille cible. Vous devez utiliser la source d'identité fédérée pour supprimer les utilisateurs fédérés.
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Utilisateurs*.

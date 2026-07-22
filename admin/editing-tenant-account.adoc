@@ -13,9 +13,6 @@ summary: 'Vous pouvez modifier un compte de locataire pour modifier le nom d"aff
 [role="lead"]
 Vous pouvez modifier un compte de locataire pour modifier le nom d'affichage, le quota de stockage ou les autorisations de locataire.
 
-
-TIP: Si un locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous pouvez modifier les détails du locataire à partir de l'une des grilles de la connexion. Toutefois, toute modification apportée à une grille dans la connexion ne sera pas copiée dans l'autre grille. Si vous souhaitez que les détails du locataire soient synchronisés exactement entre les grilles, effectuez les mêmes modifications sur les deux grilles. Voir link:grid-federation-manage-tenants.html["Gérez les locataires autorisés pour la connexion de fédération de grille"].
-
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine ou de comptes de locataires"].
@@ -62,7 +59,8 @@ Si *utiliser le propre référentiel d'identité* est :
 ** Sélectionnez ou désélectionnez l'autorisation *Autoriser S3 Select* selon les besoins. Voir link:manage-s3-select-for-tenant-accounts.html["Gérez S3 Select pour les comptes de locataires"].
 ** Pour supprimer l'autorisation *utiliser la connexion de fédération de grille* :
 +
-... Sélectionnez l'onglet *Grid federation*.
+... Sélectionnez l'onglet Fédération Grid sur la page des détails du locataire.
+... Sélectionnez la connexion que vous souhaitez supprimer.
 ... Sélectionnez *Supprimer l'autorisation*.
 
 
@@ -71,6 +69,10 @@ Si *utiliser le propre référentiel d'identité* est :
 ... Sélectionnez l'onglet *Grid federation*.
 ... Cochez la case *utiliser la connexion de fédération de grille*.
 ... Si vous le souhaitez, sélectionnez *Cloner les utilisateurs et groupes locaux existants* pour les cloner dans la grille distante. Si vous le souhaitez, vous pouvez arrêter le clonage en cours ou réessayer le clonage si certains utilisateurs ou groupes locaux n'ont pas pu être clonés après la dernière opération de clonage.
++
+
+TIP: Si nécessaire pour des raisons de sécurité ou de conformité, vous pouvez désélectionner *Activer la synchronisation des clés d'accès*.
+
 
 
 ** Pour définir une période de rétention maximale ou autoriser le mode de conformité :

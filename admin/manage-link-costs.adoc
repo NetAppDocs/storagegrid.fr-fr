@@ -20,12 +20,12 @@ Les coûts de liaison vous permettent de définir la priorité du site de data C
 
 * Les coûts des liens permettent de classer par ordre de priorité la copie d'objet utilisée pour les récupérations d'objets.
 * Les coûts des liaisons sont utilisés par l'API de gestion du grid et l'API de gestion des locataires pour déterminer quels services StorageGRID internes utiliser.
-* Les coûts de liaison sont utilisés par le service Load Balancer sur les nœuds d'administration et les nœuds de passerelle pour diriger les connexions client. Voir link:../admin/managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"].
+* Le service d'équilibrage de charge utilise les coûts de liaison sur les nœuds d'administration et les nœuds de passerelle pour diriger les connexions client. Reportez-vous à link:../admin/managing-load-balancing.html["Considérations relatives à l'équilibrage de charge"].
 
 
-Le schéma présente une grille de trois sites avec des coûts de liaison configurés entre les sites :
+Le diagramme montre une grille à trois sites avec des coûts de liaison configurés entre les sites :
 
-image:link_costs.gif["Schéma conceptuel des coûts de liaison entre les centres de données"]
+image:link_costs.png["Schéma conceptuel des coûts de liaison entre les centres de données"]
 
 * Le service Load Balancer sur les nœuds d'administration et les nœuds de passerelle répartit uniformément les connexions client vers tous les nœuds de stockage sur le même site de data Center et vers tous les sites de data Center, avec un coût de liaison de 0.
 +
@@ -70,20 +70,19 @@ Vous pouvez mettre à jour les coûts de liaison entre les sites de data Center 
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
-* Vous avez lelink:admin-group-permissions.html["Autre autorisation de configuration de grille"] .
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
 
 
 .Étapes
 . Sélectionnez *Assistance* > *Autre* > *Coût du lien*.
-+
-image:configuring_link_costs.png["Coût des liens"]
-
-. Sélectionnez un site sous *Link Source* et entrez une valeur de coût comprise entre 0 et 100 sous *Link destination*.
+. Pour chaque site listé dans la colonne Coût du site/lien, saisissez une valeur de coût de 0 à 100 pour les autres sites.
 +
 Vous ne pouvez pas modifier le coût du lien si la source est identique à la destination.
 
+. Annuler ou enregistrer les modifications :
 +
-Pour annuler les modifications, sélectionnez image:nms_revert.gif["icône annuler"]*Revert*.
+** Pour annuler les modifications, sélectionnez *Effacer les modifications*.
+** Pour enregistrer les modifications, sélectionnez *Enregistrer*.
 
-. Sélectionnez *appliquer les modifications*.
+
 

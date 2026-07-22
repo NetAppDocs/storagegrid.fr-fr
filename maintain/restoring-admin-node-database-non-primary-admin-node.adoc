@@ -24,7 +24,7 @@ Si vous souhaitez conserver les informations historiques relatives aux attributs
 En cas de défaillance d'un nœud d'administration, les informations historiques stockées dans sa base de données de nœud d'administration sont perdues. Cette base de données contient les informations suivantes :
 
 * Historique des alertes
-* Données d'attributs historiques, utilisées dans les graphiques de style hérité de la page nœuds
+* Données d'attributs historiques, utilisées dans les graphiques de la page Nœuds
 
 
 Lorsque vous restaurez un noeud d'administration, le processus d'installation du logiciel crée une base de données de noeud d'administration vide sur le noeud récupéré. Toutefois, la nouvelle base de données comprend uniquement les informations pour les serveurs et services qui font actuellement partie du système ou qui sont ajoutés ultérieurement.
@@ -60,11 +60,6 @@ NOTE: La copie de la base de données du nœud d'administration peut prendre plu
 .. Arrêtez le service mgmt-api : `service mgmt-api stop`
 .. Ajoutez la clé privée SSH à l'agent SSH. Entrer :``ssh-add``
 .. Entrez le mot de passe d'accès SSH indiqué dans le `Passwords.txt` fichier.
-.. Copiez la base de données du nœud d'administration source vers le nœud d'administration récupéré : `/usr/local/mi/bin/mi-clone-db.sh Source_Admin_Node_IP`
-.. Lorsque vous y êtes invité, confirmez que vous souhaitez remplacer la base DE données MI sur le nœud d'administration restauré.
-+
-La base de données et ses données historiques sont copiées dans le nœud d'administration restauré. Une fois l'opération de copie effectuée, le script démarre le nœud d'administration restauré.
-
 .. Lorsque vous n'avez plus besoin d'un accès sans mot de passe à d'autres serveurs, supprimez la clé privée de l'agent SSH. Entrer :``ssh-add -D``
 
 

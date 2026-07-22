@@ -245,7 +245,7 @@ CAUTION: Soyez prudent lorsque vous décidez de désactiver une règle d'alerte.
 +
 Une fenêtre contextuelle s'affiche, répertoriant l'expression Prometheus pour chaque gravité définie.
 
-.. Pour fermer la fenêtre contextuelle, cliquez n'importe où en dehors de la fenêtre contextuelle.
+.. Pour fermer la fenêtre contextuelle, sélectionnez n'importe quel emplacement en dehors de la fenêtre contextuelle.
 
 
 . Vous pouvez également sélectionner *Modifier la règle* pour modifier la règle d'alerte qui a déclenché cette alerte.

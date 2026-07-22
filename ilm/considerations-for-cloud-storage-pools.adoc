@@ -18,7 +18,7 @@ Si vous envisagez d'utiliser un pool de stockage cloud pour déplacer les objets
 [[general-considerations]]
 == Considérations générales
 
-* En général, le stockage d'archivage dans le cloud, comme Amazon S3 Glacier ou Azure Blob Storage, est un emplacement économique pour stocker les données d'objet. Mais le coût de la récupération des données à partir du stockage d'archivage dans le cloud est relativement élevé. Pour atteindre le coût global le plus bas, vous devez savoir quand et à quelle fréquence vous accéderez aux objets dans Cloud Storage Pool. L'utilisation d'un pool de stockage cloud est recommandée uniquement pour le contenu dont vous souhaitez accéder rarement.
+* En général, le stockage d'archives cloud, tel que Amazon S3 Glacier ou Azure Blob Storage, est un endroit peu coûteux pour stocker des données d'objets. Cependant, les coûts de récupération des données depuis le stockage d'archives cloud sont relativement élevés. Pour obtenir le coût global le plus bas, vous devez prendre en compte quand et à quelle fréquence vous accéderez aux objets dans le Cloud Storage Pool. L'utilisation d'un Cloud Storage Pool est recommandée uniquement pour le contenu auquel vous prévoyez d'accéder rarement.
 * L'utilisation de pools de stockage cloud avec FabricPool n'est pas prise en charge en raison de la latence ajoutée pour extraire un objet de la cible du pool de stockage cloud.
 * Les objets avec le verrouillage d'objet S3 activé ne peuvent pas être placés dans les pools de stockage cloud.
 * Les combinaisons de plateforme, d'authentification et de protocoles suivantes avec le verrouillage objet S3 ne sont pas prises en charge pour les pools de stockage cloud :
@@ -128,7 +128,7 @@ Lorsque vous configurez un compte de stockage Azure, vous pouvez définir le niv
 [[azure-lifecycle-management-not-supported]]
 == Azure : gestion du cycle de vie non prise en charge
 
-N'utilisez pas la gestion du cycle de vie du stockage Azure Blob pour le conteneur utilisé avec un pool de stockage cloud. Toute interférence entre les opérations du cycle de vie du système Cloud Storage Pool.
+N’utilisez pas la gestion du cycle de vie d’Azure Blob Storage pour le conteneur utilisé avec un Cloud Storage Pool. Les opérations de cycle de vie pourraient interférer avec les opérations du Cloud Storage Pool.
 
 .Informations associées
 link:creating-cloud-storage-pool.html["Création d'un pool de stockage cloud"]

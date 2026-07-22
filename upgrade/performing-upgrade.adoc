@@ -2,7 +2,7 @@
 permalink: upgrade/performing-upgrade.html 
 sidebar: sidebar 
 keywords: upgrade, how to perform a software upgrade 
-summary: Vous pouvez effectuer une mise à niveau vers StorageGRID 12.0 et appliquer le dernier correctif pour cette version en même temps.  La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées. 
+summary: Vous pouvez mettre à niveau vers StorageGRID 12.1 et appliquer le correctif le plus récent pour cette version en même temps. La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées. 
 ---
 = Effectuez une mise à niveau de StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Vous pouvez effectuer une mise à niveau vers StorageGRID 12.0 et appli
 
 
 [role="lead"]
-Vous pouvez effectuer une mise à niveau vers StorageGRID 12.0 et appliquer le dernier correctif pour cette version en même temps.  La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées.
+Vous pouvez mettre à niveau vers StorageGRID 12.1 et appliquer le correctif le plus récent pour cette version en même temps. La page de mise à niveau de StorageGRID fournit le chemin de mise à niveau recommandé et des liens directs vers les pages de téléchargement appropriées.
 
 .Avant de commencer
 Vous avez passé en revue toutes les considérations et terminé toutes les étapes de planification et de préparation.
@@ -37,7 +37,7 @@ Dans un premier temps, accédez à la page mise à niveau StorageGRID dans le Ge
 [[select-files]]
 == Sélectionnez fichiers
 
-Le chemin de mise à jour sur la page de mise à niveau de StorageGRID indique les versions principales (par exemple, 12.0.0) et les correctifs (par exemple, 12.0.0.1) que vous devez installer pour obtenir la dernière version de StorageGRID .  Vous devez installer les versions et les correctifs recommandés dans l'ordre indiqué.
+Le chemin de mise à jour sur la page de mise à niveau StorageGRID indique quelles versions majeures (par exemple, 12.1.0) et quels correctifs (par exemple, 12.1.0.1) vous devez installer pour obtenir la dernière version de StorageGRID. Vous devez installer les versions et les correctifs recommandés dans l'ordre indiqué.
 
 
 TIP: Si aucun chemin de mise à jour n'est affiché, il est possible que votre navigateur ne puisse pas accéder au site de support NetApp ou que la case à cocher *Rechercher les mises à jour logicielles* sur la page AutoSupport (*Support* > *Outils* > * AutoSupport* > *Paramètres*) soit désactivée.
@@ -52,7 +52,7 @@ Si aucun chemin de mise à jour n'est affiché, rendez-vous sur le https://mysup
 
 NOTE: Si vous avez besoin de télécharger et d'installer un package RPM ou DEB sur tous les hôtes Linux, il se peut que vous ayez déjà répertorié les fichiers de mise à niveau et de correctif StorageGRID dans le chemin de mise à jour.
 
-. Sélectionnez *Parcourir* pour télécharger le fichier de mise à niveau de version sur StorageGRID: `NetApp_StorageGRID_12.0.0_Software_uniqueID.upgrade`
+. Sélectionnez *Parcourir* pour télécharger le fichier de mise à niveau de version sur StorageGRID : `NetApp_StorageGRID_12.1.0_Software_uniqueID.upgrade`
 +
 Une fois le téléchargement et la vérification de la signature du code terminés, une coche verte apparaît à côté du nom du fichier.
 
@@ -80,7 +80,7 @@ Vous devez télécharger la copie actuelle du fichier du package de récupérati
 CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données du système StorageGRID .
 
 . Sélectionnez *Exécuter les précontrôles* et attendez que les précontrôles soient terminés.
-. Passez en revue les détails de chaque pré-vérification signalée et résolvez toutes les erreurs signalées.  Voir le https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.0_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version StorageGRID 12.0.
+. Examinez les détails de chaque vérification préalable signalée et corrigez toute erreur signalée. Consultez la  https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_12.1_software_upgrade_resolution_guide["Guide de résolution des mises à niveau logicielles StorageGRID"^] pour la version StorageGRID 12.1.
 +
 Vous devez résoudre tous les problèmes de vérification préalable _erreurs_ avant de pouvoir mettre à niveau votre système. Cependant, vous n'avez pas besoin de corriger les _avertissements_ de prévérification avant de procéder à la mise à niveau.
 
@@ -158,7 +158,7 @@ Un nœud de grille peut se trouver dans l'une des étapes suivantes lorsque les 
 . [[Approval-STEP]]lorsque vous êtes prêt à sélectionner des nœuds de grille pour la mise à niveau (ou si vous devez annuler l'approbation des nœuds sélectionnés), utilisez les instructions suivantes :
 +
 
-NOTE: Pour une mise à niveau vers StorageGRID 12.0, si vous souhaitez approuver des nœuds individuels au lieu de tous les nœuds, la meilleure pratique consiste à mettre à niveau un site entier avant de passer au site suivant.
+NOTE: Pour une mise à niveau de StorageGRID 12.1, si vous souhaitez approuver des nœuds individuels au lieu de tous les nœuds, la bonne pratique consiste à mettre à niveau un site entier avant de passer au site suivant.
 
 +
 [cols="1a,1a"]
@@ -252,9 +252,10 @@ NOTE: Certains modèles d'appliance peuvent redémarrer plusieurs fois pour mett
 Lorsque tous les nœuds de grille ont terminé les étapes de mise à niveau, la tâche *mettre à niveau d'autres nœuds de grille* s'affiche comme terminée. Les tâches de mise à niveau restantes sont effectuées automatiquement en arrière-plan.
 
 .Étapes
-. Dès que la tâche *Activer les fonctions* est terminée (ce qui se produit rapidement), vous pouvez commencer à utiliser link:whats-new.html["nouvelles fonctionnalités"]dans la version StorageGRID mise à niveau.
-. La mise à niveau de la base de données Cassandra démarre.  Cette mise à niveau se produira en arrière-plan pendant un à trois jours et le service Cassandra sera arrêté et redémarré sur chaque nœud de stockage.  Pendant cette période, certaines procédures de maintenance impliquant le streaming de métadonnées, telles que l'extension, seront désactivées.
-. Lorsque les *étapes finales de la mise à niveau* sont terminées, la mise à niveau est effectuée. La première étape, *Sélectionner les fichiers*, est réaffichée avec une bannière de succès verte.
+. Dès que la tâche *Activer les fonctionnalités* est terminée (jusqu'à une heure), vous pouvez commencer à utiliser la link:whats-new.html["nouvelles fonctionnalités"] dans la version mise à jour de StorageGRID.
++
+Lorsque les *étapes finales de la mise à niveau* sont terminées, la mise à niveau est effectuée. La première étape, *Sélectionner les fichiers*, est réaffichée avec une bannière de succès verte.
+
 . Vérifiez que les opérations de la grille sont à nouveau normales :
 +
 .. Vérifiez que les services fonctionnent normalement et qu'il n'y a pas d'alerte inattendue.

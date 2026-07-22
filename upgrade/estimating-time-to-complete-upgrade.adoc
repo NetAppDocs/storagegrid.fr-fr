@@ -72,26 +72,13 @@ Activer les fonctions
  a| 
 Les nouvelles fonctionnalités de la nouvelle version sont activées.
  a| 
-Moins de 5 minutes
+Jusqu'à 1 heure
  a| 
 * Ne modifiez pas la configuration de la grille.
 * Ne modifiez pas la configuration du niveau d'audit.
 * Ne mettez pas à jour la configuration ILM.
 * Vous ne pouvez pas effectuer une autre procédure de maintenance.
 
-
-
-
- a| 
-Mettre à niveau la base de données
- a| 
-Le processus de mise à niveau vérifie chaque nœud pour vérifier que la base de données Cassandra n'a pas besoin d'être mise à jour.
- a| 
-10 secondes par nœud ou quelques minutes pour l'ensemble du grid
- a| 
-La mise à niveau vers StorageGRID 12.0 inclut une mise à niveau de la base de données Cassandra.  Après la mise à niveau de StorageGRID 11.9 vers 12.0, une mise à jour du format des métadonnées se produit en arrière-plan pendant un à trois jours.  Pendant ce temps, certaines procédures de maintenance, telles que l'extension, seront désactivées.
-
-Pour les futures versions d'StorageGRID, l'étape de mise à jour de la base de données Cassandra peut prendre plusieurs jours.
 
 
 
@@ -126,8 +113,8 @@ En règle générale, les nœuds d'appliance sont plus longs à mettre à niveau
 
 
 
-[[example-estimated-time-to-upgrade-to-storagegrid-12-0]]
-== Exemple : Temps estimé pour la mise à niveau vers StorageGRID 12.0
+[[example-estimated-time-to-upgrade-to-storagegrid-12-1]]
+== Exemple : Temps estimé pour la mise à niveau vers StorageGRID 12.1
 
 Supposons que votre système dispose de 14 nœuds de grille, dont 8 sont des nœuds Linux.
 
@@ -142,7 +129,7 @@ La durée estimée de cette étape est de 2 heures.
 
 . Ajoutez les valeurs ensemble.
 +
-Vous devez prévoir jusqu'à 17 heures pour terminer la mise à niveau de votre système vers StorageGRID 12.0.0.
+Vous devriez prévoir jusqu'à 18 heures pour terminer la mise à niveau de votre système vers StorageGRID 12.1.0.
 
 
 

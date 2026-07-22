@@ -268,18 +268,9 @@ Des problèmes de connectivité réseau peuvent survenir pour les nœuds Storage
 Dans certains cas, les problèmes de réseau peuvent être résolus en utilisant le clonage d'adresse MAC.  Si vous utilisez des hôtes virtuels, définissez la valeur de la clé de clonage d'adresse MAC pour chacun de vos réseaux sur « true » dans votre fichier de configuration de nœud.  Ce paramètre oblige l'adresse MAC du conteneur StorageGRID à utiliser l'adresse MAC de l'hôte.  Consultez les instructions pourlink:../swnodes/creating-node-configuration-files.html["créer des fichiers de configuration de nœud"] .
 
 
-NOTE: Créez des interfaces réseau virtuelles distinctes pour le système d'exploitation hôte Linux. L'utilisation des mêmes interfaces réseau pour le système d'exploitation hôte Linux et le conteneur StorageGRID peut rendre le système d'exploitation hôte inaccessible si le mode promiscuous n'a pas été activé sur l'hyperviseur.
+NOTE: Créez des interfaces réseau virtuelles distinctes pour le système d'exploitation hôte Linux. L'utilisation des mêmes interfaces réseau pour le système d'exploitation hôte Linux et le conteneur StorageGRID pourrait rendre le système d'exploitation hôte inaccessible.
 
 Pour plus d'informations, consultez les instructions pourlink:../swnodes/configuring-host-network.html["activer le clonage MAC"] .
-
-
-
-[[promiscuous-mode]]
-=== Mode promiscueux
-
-Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et que vous préférez autoriser toutes les interfaces à recevoir et transmettre des données pour les adresses MAC autres que celles attribuées par l'hyperviseur, Assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accept* pour le mode promiscuous, les modifications d'adresse MAC et les transmissions forgées. Les valeurs définies sur le commutateur virtuel peuvent être remplacées par les valeurs au niveau du groupe de ports, de sorte que les paramètres soient les mêmes aux deux endroits.
-
-Pour plus d'informations sur l'utilisation du mode Promiscuous, consultez les instructions delink:../swnodes/configuring-host-network.html["comment configurer le réseau hôte"] .
 
 
 

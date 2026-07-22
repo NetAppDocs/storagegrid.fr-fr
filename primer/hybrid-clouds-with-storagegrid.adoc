@@ -18,7 +18,7 @@ Utilisez StorageGRID dans une configuration de cloud hybride en implémentant la
 [[cloud-storage-pools]]
 == Pools de stockage cloud
 
-Vous pouvez stocker des objets en dehors du système StorageGRID grâce aux pools de stockage cloud. Par exemple, vous pouvez déplacer les objets rarement consultés vers un stockage cloud moins coûteux, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le Tier d'accès Archive dans le stockage Microsoft Azure Blob. Vous pouvez également conserver une sauvegarde dans le cloud d'objets StorageGRID qui peuvent être utilisés pour restaurer des données perdues en raison d'un volume de stockage ou d'une défaillance du nœud de stockage.
+Les pools de stockage cloud vous permettent de stocker des objets en dehors du système StorageGRID. Par exemple, vous pourriez vouloir déplacer des objets rarement consultés vers un stockage cloud à moindre coût, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le niveau d'accès Archive dans Microsoft Azure Blob Storage. Ou, vous pourriez vouloir maintenir une sauvegarde cloud des objets StorageGRID, qui peut être utilisée pour récupérer des données perdues à la suite d'une défaillance d'un volume de stockage ou d'un nœud de stockage.
 
 Le stockage de partenaires tiers est également pris en charge, y compris le stockage sur disque et sur bande.
 
@@ -34,7 +34,7 @@ Les services de plateforme S3 vous permettent d'utiliser des services distants c
 
 * Le service de réplication CloudMirror met automatiquement en miroir les objets spécifiés dans un compartiment S3 cible, qui peut se trouver sur Amazon S3 ou sur un second système StorageGRID.
 * Le service de notification d'événements envoie des messages sur les actions spécifiées à un point de terminaison externe qui prend en charge la réception d'événements Simple Notification Service (Amazon SNS).
-* Le service d'intégration de recherche envoie les métadonnées d'objet à un service Elasticsearch externe, ce qui permet de rechercher, de visualiser et d'analyser les métadonnées à l'aide d'outils tiers.
+* Le service d'intégration de recherche envoie les métadonnées des objets à un service Elasticsearch externe, permettant ainsi de rechercher, visualiser et analyser ces métadonnées à l'aide d'outils tiers.
 
 
 Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en miroir des enregistrements client spécifiques dans Amazon S3, puis exploiter les services AWS pour analyser vos données.

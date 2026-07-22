@@ -13,288 +13,155 @@ summary: 'Après avoir restauré des volumes de stockage sur un nœud de stockag
 [role="lead"]
 Après avoir restauré des volumes de stockage sur un nœud de stockage non appliance, vous pouvez restaurer les données d'objet répliquées ou codées en effacement qui ont été perdues en cas de défaillance du nœud de stockage.
 
-
-
-[[which-procedure-should-i-use]]
-== Quelle procédure dois-je utiliser ?
-
-Dans la mesure du possible, restaurez les données d'objet à l'aide de la page *Restauration de volume* du gestionnaire de grille.
-
-* Si les volumes sont répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, restaurez les données de l'objet à l'aide de l'link:../maintain/restoring-volume.html["Page de restauration de volume dans le Gestionnaire de grille"] .
-* Si les volumes ne sont pas répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, suivez les étapes ci-dessous pour utiliser le `repair-data` script pour restaurer les données de l'objet.
-+
-Si le nœud de stockage restauré contient moins de volumes que le nœud qu'il remplace, vous devez utiliser `repair-data` le script.
-
-
-
-
-NOTE: Le script de réparation des données est obsolète et sera supprimé dans une version ultérieure. Si possible, utilisez le link:../maintain/restoring-volume.html["Procédure de restauration de volume dans Grid Manager"].
-
-
-
-[[use-the-repair-data-script-to-restore-object-data]]
-== Utilisez le `repair-data` script pour restaurer les données d'objet
-
 .Avant de commencer
-* Vous avez confirmé que le nœud de stockage récupéré a un état de connexion *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"] sur l’onglet *Nœuds* > *Vue d’ensemble* dans le Grid Manager.
+* Si la procédure automatique n'a pas permis de remonter les volumes de stockage préservés et de reformater les volumes de stockage défaillants, vous avez effectué l'une des procédures suivantes :
++
+** link:../maintain/remounting-and-reformatting-appliance-storage-volumes.html["Remontage et reformatage des volumes de stockage de l'appliance (étapes manuelles)"]
+** link:../maintain/remounting-and-reformatting-storage-volumes-manual-steps.html["Remontage et reformatage des volumes de stockage (étapes manuelles)"]
+
+
+* Vous avez confirmé que le nœud de stockage sur lequel vous restaurez des objets a un état de connexion *Connecté* image:icon_alert_green_checkmark.png["icône alerte verte coche"] sur l'onglet *Nœuds* > *Vue d'ensemble* dans le Grid Manager.
+* Vous avez confirmé ce qui suit :
++
+** L'extension de la grille pour ajouter un nœud de stockage n'est pas en cours.
+** La mise hors service d'un nœud de stockage n'est pas en cours ni échouée.
+** La récupération d'un volume de stockage défaillant n'est pas en cours.
+** La récupération d'un nœud de stockage dont le disque système est défaillant n'est pas en cours.
+** Aucune opération de rééquilibrage de l'EC n'est en cours.
+** Le clonage des nœuds d'appliance n'est pas en cours.
+
+
 
 
 .Description de la tâche
-Les données d'objet peuvent être restaurées à partir d'autres nœuds de stockage ou d'un pool de stockage cloud, à condition que les règles ILM de la grille aient été configurées de sorte que les copies en mode objet soient disponibles.
+Une fois les disques remplacés et les volumes formatés, Grid Manager affiche les volumes comme candidats à la restauration dans l’onglet *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*.
 
-Notez ce qui suit :
+Lorsque cela est possible, restaurez les données d'objet à l'aide de la page Restauration des volumes du Gestionnaire de grille. Vous pouvez soit <<enable-auto-restore-mode,activer le mode de restauration automatique>>lancer automatiquement la restauration du volume lorsque les volumes sont prêts à être restaurés, soit <<manually-restore,effectuez manuellement la restauration des volumes>>. Suivez ces instructions :
 
-* Si une règle ILM a été configurée pour stocker une seule copie répliquée, et que cette copie existait sur un volume de stockage défaillant, vous ne pourrez pas restaurer l'objet.
-* Si la seule copie restante d'un objet se trouve dans un pool de stockage cloud, StorageGRID doit émettre plusieurs demandes vers le terminal de pool de stockage cloud pour restaurer les données d'objet. Avant d'effectuer cette procédure, contactez le support technique pour obtenir de l'aide pour estimer le délai de restauration et les coûts associés.
-
-
-
-
-[[about-the-repair-data-script]]
-== A propos du `repair-data` script
-
-Pour restaurer les données d'objet, exécutez le `repair-data` script. Ce script commence le processus de restauration des données d'objet et fonctionne avec l'analyse ILM pour s'assurer que les règles ILM sont respectées.
-
-Sélectionnez *Replicated data* ou *Erasure-Coded (EC) data* ci-dessous pour connaître les différentes options du `repair-data` script, selon que vous restaurez des données répliquées ou des données avec code d'effacement. Si vous devez restaurer les deux types de données, vous devez exécuter les deux ensembles de commandes.
+* Si les volumes sont répertoriés dans *Maintenance* > *Restauration de volume* > *Nœuds à restaurer*, restaurez les données de l'objet comme décrit dans les étapes ci-dessous.  Les volumes seront répertoriés si :
++
+** Certains volumes de stockage d'un nœud sont en panne, mais pas tous
+** Tous les volumes de stockage d'un nœud sont en panne et sont remplacés par le même nombre de volumes ou plus
++
+La page de restauration de volume dans le gestionnaire de grille vous permet également de <<view-restoration-progress,surveiller le processus de restauration des volumes>> et <<view-restoration-history,afficher l'historique de restauration>>.
 
 
-NOTE: Pour plus d'informations sur le `repair-data` script, saisissez `repair-data --help` dans la ligne de commande du nœud d'administration principal.
+
++
+Si le nœud de stockage récupéré contient moins de volumes que le nœud qu'il remplace, contactez le support technique pour obtenir de l'aide.
 
 
-NOTE: Le script de réparation des données est obsolète et sera supprimé dans une version ultérieure. Si possible, utilisez le link:../maintain/restoring-volume.html["Procédure de restauration de volume dans Grid Manager"].
 
-[role="tabbed-block"]
+Vous pouvez restaurer deux types de données d'objet :
+
+* Les objets de données répliqués sont restaurés à partir d'autres emplacements, dans la mesure où les règles ILM de la grille ont été configurées de façon à rendre disponibles les copies objet.
++
+** Si une règle ILM a été configurée pour ne stocker qu'une seule copie répliquée et que cette copie se trouvait sur un volume de stockage défaillant, vous ne pourrez pas récupérer l'objet.
+** Si la seule copie restante d'un objet se trouve dans un pool de stockage cloud, StorageGRID doit émettre plusieurs demandes vers le terminal de pool de stockage cloud pour restaurer les données d'objet.
+
+
+* Les objets de données avec code d'effacement (EC) sont restaurés en réassemblez les fragments stockés. Les fragments corrompus ou perdus sont recréés par l'algorithme de code d'effacement à partir des fragments de données et de parité restants.
++
+Les réparations des données codées peuvent commencer alors que certains nœuds de stockage sont hors ligne. Toutefois, si toutes les données avec code d'effacement ne peuvent pas être prises en compte, la réparation ne peut pas être effectuée. La réparation s'effectuera une fois que tous les nœuds sont disponibles.
+
+
+
+
+NOTE: La restauration des volumes dépend de la disponibilité des ressources dans lesquelles les copies objet sont stockées. La progression de la restauration des volumes n'est pas linéaire et peut prendre des jours ou des semaines.
+
+
+
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
+== [[activer-mode-restauration-auto]]Active le mode de restauration automatique
+
+Lorsque vous activez le mode de restauration automatique, la restauration des volumes démarre automatiquement lorsque les volumes sont prêts à être restaurés.
+
+.Étapes
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
+. Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton bascule du *mode de restauration automatique* sur la position activé.
+. Lorsque la boîte de dialogue de confirmation s'affiche, vérifiez les détails.
++
+[NOTE]
 ====
-.Les données répliquées
---
-Deux commandes sont disponibles pour la restauration des données répliquées, et ce, selon que vous devez réparer le nœud entier ou uniquement certains volumes sur le nœud :
-
-`repair-data start-replicated-node-repair`
-
-`repair-data start-replicated-volume-repair`
-
-Vous pouvez suivre les réparations des données répliquées avec cette commande :
-
-`repair-data show-replicated-repair-status`
-
---
-.Données avec code d'effacement (EC)
---
-Deux commandes sont disponibles pour la restauration des données avec code d'effacement, selon que vous devez réparer le nœud entier ou uniquement certains volumes sur le nœud :
-
-`repair-data start-ec-node-repair`
-
-`repair-data start-ec-volume-repair`
-
-Vous pouvez suivre les réparations des données codées par effacement à l'aide de cette commande :
-
-`repair-data show-ec-repair-status`
+** Vous ne pourrez pas lancer manuellement de tâches de restauration de volume sur aucun nœud.
+** Les restaurations de volume ne démarrent automatiquement que lorsqu'aucune autre procédure de maintenance n'est en cours.
+** Vous pouvez contrôler l'état du travail à partir de la page de surveillance de la progression.
+** StorageGRID relance automatiquement les restaurations de volume qui ne démarrent pas.
 
 
-NOTE: Les réparations des données codées peuvent commencer alors que certains nœuds de stockage sont hors ligne. Toutefois, si toutes les données avec code d'effacement ne peuvent pas être prises en compte, la réparation ne peut pas être effectuée. La réparation s'effectuera une fois que tous les nœuds sont disponibles.
-
-
-NOTE: Le travail de réparation EC réserve temporairement une grande quantité de stockage. Les alertes de stockage peuvent être déclenchées, mais elles seront résolus une fois la réparation terminée. S'il n'y a pas assez de stockage pour la réservation, la tâche de réparation EC échouera. Les réservations de stockage sont libérées lorsque la tâche de réparation EC est terminée, que la tâche ait échoué ou a réussi.
-
---
 ====
-
-
-[[find-hostname-for-storage-node]]
-== Rechercher le nom d'hôte pour le noeud de stockage
-
-. Connectez-vous à n’importe quel nœud d’administration :
+. Lorsque vous comprenez les résultats de l'activation du mode de restauration automatique, sélectionnez *Oui* dans la boîte de dialogue de confirmation.
 +
-.. Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
-.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
-.. Entrez la commande suivante pour basculer en root : `su -`
-.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+Vous pouvez désactiver le mode de restauration automatique à tout moment.
+
+
+
+
+
+[[manually-restoremanually-restore-failed-volume-or-node]]
+== [[restauration manuelle]]restaurez manuellement un volume ou un nœud défaillant
+
+Procédez comme suit pour restaurer un volume ou un nœud défaillant.
+
+.Étapes
+. Dans Grid Manager, allez dans *Maintenance* > *Restauration du volume*.
+. Sélectionnez l'onglet *nœuds à restaurer*, puis faites glisser le bouton de *mode de restauration automatique* sur la position Désactivé.
 +
-Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+Le numéro de l'onglet indique le nombre de nœuds pour lesquels des volumes nécessitent une restauration.
 
-
-
-. Utilisez le `/etc/hosts` fichier pour trouver le nom d'hôte du nœud de stockage des volumes de stockage restaurés. Pour afficher la liste de tous les nœuds de la grille, entrez ce qui suit : `cat /etc/hosts`.
-
-
-
-
-[[repair-data-if-all-volumes-have-failed]]
-== Réparez les données si tous les volumes ont échoué
-
-Si tous les volumes de stockage sont en panne, réparez l'intégralité du nœud. Suivez les instructions pour les données *répliquées*, *codées par effacement (EC)*, ou les deux, selon que vous utilisez ou non des données répliquées, des données codées par effacement (EC), ou les deux.
-
-Si seuls certains volumes ont échoué, passez à <<Réparer les données si seulement certains volumes ont échoué>>l' .
-
-
-NOTE: Vous ne pouvez pas exécuter `repair-data` d'opérations pour plusieurs nœuds en même temps. Pour restaurer plusieurs nœuds, contactez le support technique.
-
-[role="tabbed-block"]
-====
-.Les données répliquées
---
-Si votre grille inclut des données répliquées, utilisez `repair-data start-replicated-node-repair` la commande avec `--nodes` l'option, où `--nodes` est le nom d'hôte (nom du système), pour réparer le nœud de stockage complet.
-
-Cette commande répare les données répliquées sur un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-replicated-node-repair --nodes SG-DC-SN3`
-
-
-NOTE: Lorsque les données d'objet sont restaurées, l'alerte *Objets perdus* est déclenchée si le système StorageGRID ne parvient pas à localiser les données d'objet répliquées.  Des alertes peuvent être déclenchées sur les nœuds de stockage dans tout le système.  Vous devez déterminer la cause de la perte et si une récupération est possible. Voir link:../troubleshoot/investigating-potentially-lost-objects.html["Enquêter sur les objets potentiellement perdus"] .
-
---
-.Données avec code d'effacement (EC)
---
-Si votre grille contient des données avec code d'effacement, utilisez `repair-data start-ec-node-repair` la commande avec `--nodes` l'option, où `--nodes` est le nom d'hôte (nom du système), pour réparer le nœud de stockage complet.
-
-Cette commande répare les données codées de l'effacement sur un nœud de stockage appelé SG-DC-SN3 :
-
-`repair-data start-ec-node-repair --nodes SG-DC-SN3`
-
-L'opération renvoie un unique `repair ID` identifiant cette `repair_data` opération. Utilisez cette `repair ID` option pour suivre la progression et le résultat de `repair_data` l'opération. Aucun autre retour n'est renvoyé à la fin du processus de récupération.
-
-Les réparations des données codées peuvent commencer alors que certains nœuds de stockage sont hors ligne. La réparation s'effectuera une fois que tous les nœuds sont disponibles.
-
---
-====
-
-
-[[repair-data-if-only-some-volumes-have-failed]]
-== Réparer les données si seulement certains volumes ont échoué
-
-Si seulement certains volumes ont échoué, réparez les volumes affectés. Suivez les instructions pour les données *répliquées*, *codées par effacement (EC)*, ou les deux, selon que vous utilisez ou non des données répliquées, des données codées par effacement (EC), ou les deux.
-
-Si tous les volumes ont échoué, passez à <<Réparez les données si tous les volumes ont échoué>>l' .
-
-Saisissez les ID de volume en hexadécimal. Par exemple, `0000` est le premier volume et `000F` est le seizième volume. Vous pouvez spécifier un volume, une plage de volumes ou plusieurs volumes qui ne sont pas dans une séquence.
-
-Tous les volumes doivent se trouver sur le même nœud de stockage. Si vous devez restaurer des volumes pour plusieurs nœuds de stockage, contactez le support technique.
-
-[role="tabbed-block"]
-====
-.Les données répliquées
---
-Si votre grille contient des données répliquées, utilisez `start-replicated-volume-repair` la commande avec `--nodes` l'option pour identifier le nœud (où `--nodes` est le nom d'hôte du nœud). Ajoutez ensuite l' `--volumes`option ou `--volume-range`, comme indiqué dans les exemples suivants.
-
-*Single volume* : cette commande restaure les données répliquées dans un volume `0002` sur un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-replicated-volume-repair --nodes SG-DC-SN3 --volumes 0002`
-
-*Plage de volumes* : cette commande restaure les données répliquées vers tous les volumes de la plage `0003` sur `0009` un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-replicated-volume-repair --nodes SG-DC-SN3 --volume-range 0003,0009`
-
-*Plusieurs volumes ne figurant pas dans une séquence* : cette commande restaure les données répliquées vers les volumes `0001`, `0005` et `0008` sur un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-replicated-volume-repair --nodes SG-DC-SN3 --volumes 0001,0005,0008`
-
-
-NOTE: Lorsque les données d'objet sont restaurées, l'alerte *objets perdus* est déclenchée si le système StorageGRID ne peut pas localiser les données d'objet répliquées. Des alertes peuvent être déclenchées sur les nœuds de stockage dans le système. Notez la description de l'alerte et les actions recommandées pour déterminer la cause de la perte et si la récupération est possible.
-
---
-.Données avec code d'effacement (EC)
---
-Si votre grille contient des données avec code d'effacement, utilisez `start-ec-volume-repair` la commande avec `--nodes` l'option pour identifier le nœud (où `--nodes` est le nom d'hôte du nœud). Ajoutez ensuite l' `--volumes`option ou `--volume-range`, comme indiqué dans les exemples suivants.
-
-*Single volume* : cette commande restaure les données avec code d'effacement sur un volume `0007` situé sur un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-ec-volume-repair --nodes SG-DC-SN3 --volumes 0007`
-
-*Plage de volumes* : cette commande restaure les données avec code d'effacement sur tous les volumes de la plage `0004` sur `0006` un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-ec-volume-repair --nodes SG-DC-SN3 --volume-range 0004,0006`
-
-*Plusieurs volumes qui ne sont pas dans une séquence* : cette commande restaure les données avec code d'effacement sur les volumes `000A`, `000C` et `000E` sur un nœud de stockage nommé SG-DC-SN3 :
-
-`repair-data start-ec-volume-repair --nodes SG-DC-SN3 --volumes 000A,000C,000E`
-
- `repair-data`L'opération renvoie un unique `repair ID` identifiant cette `repair_data` opération. Utilisez cette `repair ID` option pour suivre la progression et le résultat de `repair_data` l'opération. Aucun autre retour n'est renvoyé à la fin du processus de récupération.
-
-
-NOTE: Les réparations des données codées peuvent commencer alors que certains nœuds de stockage sont hors ligne. La réparation s'effectuera une fois que tous les nœuds sont disponibles.
-
---
-====
-
-
-[[monitor-repairs]]
-== Surveiller les réparations
-
-Surveiller l'état des travaux de réparation, en fonction de l'utilisation ou non des données *répliquées*, *données codées par effacement (EC)*, ou des deux.
-
-Vous pouvez également surveiller l'état des travaux de restauration de volume en cours de traitement et afficher un historique des travaux de restauration effectués dans link:../maintain/restoring-volume.html["Gestionnaire de grille"].
-
-[role="tabbed-block"]
-====
-.Les données répliquées
---
-* Pour obtenir une estimation du pourcentage d'achèvement de la réparation répliquée, ajoutez l' `show-replicated-repair-status`option à la commande repair-data.
+. Développez chaque nœud pour afficher les volumes qui nécessitent une restauration, ainsi que leur état.
+. Corrigez tous les problèmes empêchant la restauration de chaque volume. Les problèmes sont indiqués lorsque vous sélectionnez *en attente d'étapes manuelles*, s'il s'affiche comme état du volume.
+. Sélectionnez un nœud à restaurer où tous les volumes indiquent l'état prêt pour la restauration.
 +
-`repair-data show-replicated-repair-status`
-
-* Pour déterminer si les réparations sont terminées :
-+
-.. Sélectionnez *Nœuds* > *_Nœud de stockage en cours de réparation_* > *ILM*.
-.. Vérifiez les attributs dans la section évaluation. Lorsque les réparations sont terminées, l'attribut *attente - tous* indique 0 objets.
-
-
-* Pour surveiller la réparation plus en détail :
-+
-.. Sélectionnez *Nœuds*.
-.. Sélectionnez *_grid name_* > *ILM*.
-.. Placez votre curseur sur le graphique de la file d'attente ILM pour voir la valeur de l'attribut *Taux d'analyse (objets/sec)*, qui est le taux auquel les objets de la grille sont analysés et mis en file d'attente pour ILM.
-.. Dans la section File d’attente ILM, examinez les attributs suivants :
-+
-*** *Période d'analyse - estimation* : temps estimé pour effectuer une analyse ILM complète de tous les objets.
-+
-Une analyse complète ne garantit pas que l'ILM a été appliqué à tous les objets.
-
-*** *Réparations tentées* : Nombre total d'opérations de réparation d'objets tentées pour les données répliquées considérées comme à haut risque.  Les objets à haut risque sont tous les objets avec une copie restante, qu'elle soit spécifiée par la politique ILM ou à la suite de copies perdues.  Ce nombre augmente chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque.  Les réparations ILM à haut risque sont prioritaires si le réseau devient occupé.
-+
-La même réparation d'objet peut s'incrémenter à nouveau si la réplication échoue après la réparation.  + Ces attributs peuvent être utiles lorsque vous surveillez la progression de la récupération du volume du nœud de stockage.  Si le nombre de réparations tentées a cessé d'augmenter et qu'une analyse complète a été effectuée, la réparation est probablement terminée.
-
-
-
-.. Vous pouvez également soumettre une requête Prometheus pour `storagegrid_ilm_scan_period_estimated_minutes` et `storagegrid_ilm_repairs_attempted` .
-
-
-
-
---
-.Données avec code d'effacement (EC)
---
-Pour surveiller la réparation des données codées d'effacement et réessayer toute demande qui pourrait avoir échoué :
-
-. Déterminez l'état des réparations des données par code d'effacement :
-+
-** Sélectionnez *Support* > *Outils* > *Métriques* pour afficher le temps estimé jusqu'à l'achèvement et le pourcentage d'achèvement de la tâche en cours.  Ensuite, sélectionnez *EC Overview* dans la section Grafana.  Consultez les tableaux de bord *Temps estimé d'achèvement du travail EC de la grille* et *Pourcentage d'achèvement du travail EC de la grille*.
-** Utiliser cette commande pour voir le statut d'une opération spécifique `repair-data` :
-+
-`repair-data show-ec-repair-status --repair-id repair ID`
-
-** Utilisez cette commande pour lister toutes les réparations :
-+
-`repair-data show-ec-repair-status`
+Vous ne pouvez restaurer les volumes que pour un nœud à la fois.
 
 +
-Le résultat répertorie les informations, y compris `repair ID`, pour toutes les réparations en cours et antérieures.
+Chaque volume du nœud doit indiquer qu'il est prêt à être restauré.
+
+. Sélectionnez *Démarrer la restauration*.
+. Réglez les avertissements qui peuvent apparaître ou sélectionnez *Démarrer malgré tout* pour ignorer les avertissements et lancer la restauration.
+
+
+Les nœuds sont déplacés de l'onglet *nœuds à restaurer* vers l'onglet *progression de la restauration* au démarrage de la restauration.
+
+Si une restauration de volume ne peut pas être démarrée, le nœud revient à l'onglet *noeuds à restaurer*.
 
 
 
-. Si le résultat indique que l'opération de réparation a échoué, utilisez l' `--repair-id`option pour réessayer la réparation.
+[[view-restoration-progressview-restoration-progress]]
+== [[View-restoration-progress]]Afficher la progression de la restauration
+
+L'onglet *progression de la restauration* affiche l'état du processus de restauration du volume et des informations sur les volumes d'un nœud restauré.
+
+Les taux de réparation des données pour les objets répliqués et ceux dont le codage d'effacement est utilisé dans tous les volumes correspondent à des moyennes résumant toutes les restaurations en cours. Le pourcentage d'objets dans ces volumes qui sont intacts et ne nécessitent aucune restauration est également indiqué.
+
+
+NOTE: La restauration des données répliquées dépend de la disponibilité des ressources dans lesquelles les copies répliquées sont stockées. La progression de la restauration des données répliquées n'est pas linéaire et peut prendre des jours ou des semaines.
+
+La section tâches de restauration affiche des informations sur les restaurations de volume démarrées à partir du Gestionnaire de grille.
+
+* Le nombre indiqué dans l'en-tête de la section travaux de restauration indique le nombre de volumes en cours de restauration ou en file d'attente de restauration.
+* Le tableau affiche des informations sur chaque volume d'un nœud en cours de restauration ainsi que sa progression.
 +
-Cette commande relance une réparation de nœud ayant échoué à l'aide de l'ID de réparation 6949309319275667690 :
+** La progression de chaque nœud affiche le pourcentage pour chaque travail.
+** Développez la colonne Détails pour afficher l'heure de début de la restauration et l'ID du travail.
 
+
+* En cas d'échec de la restauration d'un volume :
 +
-`repair-data start-ec-node-repair --repair-id 6949309319275667690`
-
-+
-Cette commande relance une réparation de volume en échec à l'aide de l'ID de réparation 6949309319275667690 :
-
-+
-`repair-data start-ec-volume-repair --repair-id 6949309319275667690`
+** La colonne État indique `failed (attempting retry)`, et sera réexécutée automatiquement.
+** Si plusieurs travaux de restauration ont échoué, le travail le plus récent sera automatiquement repassé en premier.
+** L'alerte *EC repair failure* est déclenchée si les tentatives continuent à échouer. Suivez les étapes de l'alerte pour résoudre le problème.
 
 
 
---
-====
+
+
+
+[[view-restoration-historyview-restoration-history]]
+== [[View-restoration-history]]Afficher l'historique de restauration
+
+L'onglet *Historique de restauration* affiche des informations sur toutes les restaurations de volume effectuées avec succès.
+
+
+NOTE: Les tailles ne s'appliquent pas aux objets répliqués et apparaissent uniquement pour les restaurations contenant des objets de données avec code d'effacement (EC).

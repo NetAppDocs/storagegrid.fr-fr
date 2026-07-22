@@ -20,7 +20,7 @@ L'élément de base d'un système StorageGRID est le nœud grid. Les nœuds cont
 
 Le système StorageGRID utilise trois types de nœuds de grille :
 
-Nœuds d'administration:: Fournir des services de gestion tels que la configuration, la surveillance et la journalisation du système. Lorsque vous vous connectez à Grid Manager, vous vous connectez à un noeud d'administration. Chaque grid doit posséder un nœud d'administration principal et des nœuds d'administration non primaires supplémentaires pour assurer la redondance. Vous pouvez vous connecter à n'importe quel nœud d'administration et chaque nœud d'administration affiche une vue similaire du système StorageGRID. Cependant, les procédures de maintenance doivent être effectuées à l'aide du nœud d'administration principal.
+Nœuds d'administration:: Fournissez des services de gestion tels que la configuration système, la surveillance et la journalisation. Lorsque vous vous connectez à Grid Manager, vous vous connectez à un Admin Node. Chaque grid doit avoir un Admin Node principal et peut avoir des Admin Nodes non principaux supplémentaires pour la redondance. Vous pouvez vous connecter à n'importe quel Admin Node, et chaque Admin Node affiche une vue similaire du système StorageGRID. Cependant, vous devez effectuer la plupart des procédures de maintenance à l'aide de l'Admin Node principal.
 +
 --
 Les nœuds d'administration peuvent également être utilisés pour équilibrer la charge du trafic client S3.
@@ -31,7 +31,7 @@ Voir link:what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"]
 Nœuds de stockage:: Gestion et stockage des données d'objet et des métadonnées Chaque site de votre système StorageGRID doit avoir au moins trois nœuds de stockage.
 +
 --
-Lors de l'installation initiale d'un nouveau nœud de stockage, vous pouvez spécifier qu'il soit utilisé uniquement pourlink:../primer/what-storage-node-is.html#types-of-storage-nodes["et stocker les métadonnées"] .
+Lors de l'installation initiale d'un nouveau nœud de stockage, vous pouvez spécifier qu'il ne soit utilisé que pour link:../primer/what-storage-node-is.html#types-of-storage-nodes["stocker soit des métadonnées, soit des données"].
 
 Voir link:what-storage-node-is.html["Qu'est-ce qu'un nœud de stockage ?"]
 
@@ -107,15 +107,6 @@ Au moins trois nœuds de stockage contenant le service ADC sur chaque site
 AMS (Audit Management System)
  a| 
 Surveille et consigne tous les événements et transactions système audités dans un fichier journal texte.
- a| 
-Nœuds d'administration
-
-
-
- a| 
-Apache Tomcat
- a| 
-Serveur Web pour applications basées sur Java.
  a| 
 Nœuds d'administration
 
@@ -203,6 +194,15 @@ Tous les nœuds
 
 
  a| 
+gdu-server
+ a| 
+Le gestionnaire de tâches backend pour la maintenance et le provisionnement du grid. Accepte les requêtes provenant de  `mgmt-api` et d'autres scripts utilitaires, les valide et répartit chaque action vers le gestionnaire de tâches GDU approprié, comme le provisionnement, l'expansion, la mise hors service et les mises à niveau.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
 Grafana
  a| 
 Utilisé pour la visualisation des metrics dans Grid Manager.
@@ -214,7 +214,7 @@ Nœuds d'administration
  a| 
 Haute disponibilité
  a| 
-Gère les adresses IP virtuelles haute disponibilité sur les nœuds configurés sur la page groupes haute disponibilité. Ce service est également connu sous le nom de service keepalspé.
+Gère les adresses IP virtuelles à haute disponibilité sur les nœuds configurés sur la page Groupes à haute disponibilité. Ce service est également connu sous le nom de service _keepalived_.
  a| 
 Nœuds d'administration et de passerelle
 
@@ -241,7 +241,7 @@ Tous les nœuds
  a| 
 Équilibreur des charges (nginx-gw)
  a| 
-Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage Le service Load Balancer peut être configuré via la page de configuration des noeuds finaux Load Balancer. Ce service est également connu sous le nom de service nginx-gw.
+Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage
  a| 
 Nœuds d'administration et de passerelle
 
@@ -253,6 +253,15 @@ LDR (routeur de distribution locale)
 Gestion du stockage et du transfert de contenu au sein de la grille.
  a| 
 Nœuds de stockage
+
+
+
+ a| 
+mgmt-api
+ a| 
+L'API backend de Grid Manager. Expose des points de terminaison REST authentifiés pour l'administration de la grille (configuration, surveillance et maintenance), gère les validations et les autorisations, et orchestre les opérations de longue durée. Il s'agit de l'API principale du plan de contrôle utilisée par l'interface de Grid Manager et les clients d'automatisation.
+ a| 
+Nœuds d'administration
 
 
 
@@ -277,7 +286,7 @@ Tous les nœuds
  a| 
 Équilibreur de charge nginx-gw
  a| 
-Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage Le service Load Balancer peut être configuré via la page de configuration des noeuds finaux Load Balancer. Ce service est également connu sous le nom de service nginx-gw.
+Équilibrage de la charge du trafic S3 des clients vers les nœuds de stockage
  a| 
 Nœuds d'administration et de passerelle
 
@@ -302,7 +311,7 @@ Tous les nœuds
 
 
  a| 
-ntp
+NTP
  a| 
 Service de protocole de temps réseau (NTP).
  a| 

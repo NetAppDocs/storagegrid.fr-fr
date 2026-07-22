@@ -11,7 +11,7 @@ summary: 'Vous pouvez contrôler qui peut accéder à StorageGRID et quelles tâ
 
 
 [role="lead"]
-Vous pouvez contrôler qui peut accéder à StorageGRID et quelles tâches les utilisateurs peuvent effectuer en créant ou en important des groupes et des utilisateurs et en attribuant des autorisations à chaque groupe. Vous pouvez également activer l'authentification unique (SSO), créer des certificats client et modifier les mots de passe de la grille.
+Vous contrôlez qui peut accéder à StorageGRID et quelles tâches les utilisateurs peuvent effectuer en créant ou en important des groupes et des utilisateurs, puis en attribuant des permissions à chaque groupe. Vous pouvez également activer l'authentification unique (SSO), créer des certificats clients, modifier les mots de passe de la grille et utiliser la vérification multi-administrateurs.
 
 
 
@@ -34,7 +34,7 @@ Vous pouvez également configurer un groupe pour qu'il soit en lecture seule. Le
 [[enable-single-sign-on]]
 == Activez l'authentification unique
 
-Le système StorageGRID prend en charge l'authentification unique (SSO) à l'aide de la norme Security Assertion Markup Language 2.0 (SAML 2.0).  Après vouslink:how-sso-works.html["Configurer et activer SSO"] , tous les utilisateurs doivent être authentifiés par un fournisseur d'identité externe avant de pouvoir accéder au Grid Manager, au Tenant Manager, à l'API Grid Management ou à l'API Tenant Management.  Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.
+Le système StorageGRID prend en charge l’authentification unique (SSO) à l’aide de Security Assertion Markup Language 2.0 (SAML 2.0) ou de la norme OpenID Connect (OIDC). Après que vous link:how-sso-works.html["Configurer et activer SSO"], tous les utilisateurs doivent être authentifiés par un fournisseur d’identité externe avant de pouvoir accéder au Grid Manager, au Tenant Manager, à l’API de gestion du Grid ou à l’API de gestion du Tenant. Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.
 
 
 
@@ -49,3 +49,10 @@ La phrase secrète de provisionnement est requise pour de nombreuses procédures
 == Changer les mots de passe de la console du nœud
 
 Chaque nœud de votre grille possède un mot de passe de console de nœud, dont vous avez besoin pour vous connecter au nœud en tant qu'« admin » via SSH, ou en tant qu'utilisateur root sur une connexion VM/console physique.  Au besoin, vous pouvezlink:change-node-console-password.html["modifiez le mot de passe de la console du nœud"] pour chaque nœud.
+
+
+
+[[use-multi-admin-verification]]
+== Utilisez la vérification multi-administrateurs
+
+Vous pouvez utiliser la vérification multi-administrateurs (MAV) pour garantir que certaines opérations StorageGRID ne puissent être effectuées qu'après approbation des administrateurs désignés. La MAV empêche les administrateurs compromis, malveillants ou inexpérimentés d'apporter des modifications indésirables ou de supprimer des données.

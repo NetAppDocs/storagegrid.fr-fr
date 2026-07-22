@@ -54,6 +54,7 @@ NOTE: Si l'authentification unique (SSO) est activée pour le système StorageGR
 * *ilm* : opérations sur les paramètres de gestion du cycle de vie de l'information (ILM).
 * *Régions* : opérations permettant de déterminer quelles régions ont été configurées pour le système StorageGRID.
 * *s3* : opérations de gestion des clés d'accès S3 pour les utilisateurs locataires.
+* *configurations s3* : opérations permettant de récupérer les configurations globales S3.
 * *s3-object-lock* : opérations sur les paramètres globaux de verrouillage d'objet S3, utilisées pour prendre en charge la conformité réglementaire.
 * *Utilisateurs* : opérations pour afficher et gérer les utilisateurs locataires.
 

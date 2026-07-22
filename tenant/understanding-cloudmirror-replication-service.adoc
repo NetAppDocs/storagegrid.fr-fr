@@ -16,7 +16,7 @@ Vous pouvez activer la réplication CloudMirror pour un compartiment S3 si vous 
 Vous pouvez, par exemple, utiliser la réplication CloudMirror pour mettre en miroir des enregistrements client spécifiques dans Amazon S3, puis exploiter les services AWS pour analyser vos données.
 
 
-NOTE: La réplication CloudMirror n'est pas prise en charge si le compartiment source est activé pour le verrouillage objet S3.
+NOTE: CloudMirror replication est prise en charge uniquement si le compartiment source a le verrouillage d'objet S3 activé et si le point de terminaison est un compartiment Amazon ou StorageGRID S3. Les paramètres de verrouillage d'objet ne sont pas répliqués vers le point de terminaison du compartiment.
 
 
 

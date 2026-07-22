@@ -1,21 +1,21 @@
 ---
-permalink: admin/creating-relying-party-trusts-in-ad-fs.html 
+permalink: admin/creating-relying-party-trusts-in-ad-fs-saml.html 
 sidebar: sidebar 
 keywords: relying party trust, active directory, ad fs, single sign on, sso 
 summary: 'Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une confiance de partie de confiance pour chaque nœud d"administration de votre système. Vous pouvez créer des approbations tierces via les commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant manuellement les données.' 
 ---
-= Créer des approbations de parties de confiance dans AD FS pour StorageGRID
+= Créer des approbations de parties de confiance dans AD FS pour SAML dans StorageGRID
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Vous devez utiliser Active Directory Federation Services (AD FS) pour créer une confiance de partie de confiance pour chaque nœud d'administration de votre système. Vous pouvez créer des approbations tierces via les commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant manuellement les données.
+Vous devez utiliser les services de fédération Active Directory (AD FS) pour créer une approbation de partie de confiance pour chaque nœud d'administration pour SAML dans votre système. Vous pouvez créer des approbations de partie de confiance à l'aide de commandes PowerShell, en important les métadonnées SAML depuis StorageGRID ou en saisissant les données manuellement.
 
 .Avant de commencer
 * Vous avez configuré l'authentification unique pour StorageGRID et sélectionné *AD FS* comme type SSO.
-* Tu aslink:../admin/configure-sso.html["entré en mode bac à sable"] dans Grid Manager.
+* Vous avez link:../admin/configure-sso-saml.html["entré en mode bac à sable"] dans Grid Manager.
 * Vous connaissez le nom de domaine complet (ou l'adresse IP) et l'identifiant de la partie de confiance pour chaque nœud d'administration de votre système.  Vous pouvez trouver ces valeurs dans le tableau détaillé des nœuds d'administration sur la page Configurer SSO de StorageGRID .
 +
 
@@ -89,7 +89,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID etlink:../admin/configure-sso.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
+. Une fois que vous avez terminé, retournez sur StorageGRID et link:../admin/configure-sso-saml.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
 
 
 
@@ -141,7 +141,7 @@ Si les métadonnées sont manquantes, vérifiez que l'adresse des métadonnées 
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID etlink:../admin/configure-sso.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
+. Une fois que vous avez terminé, retournez sur StorageGRID link:../admin/configure-sso-saml.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
 
 
 
@@ -236,5 +236,5 @@ Les propriétés de la partie de confiance sont enregistrées et fermées.
 
 
 . Répétez ces étapes pour configurer une confiance de tiers pour tous les nœuds d'administration de votre système StorageGRID.
-. Lorsque vous avez terminé, revenez à StorageGRID etlink:../admin/configure-sso.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
+. Une fois que vous avez terminé, retournez sur StorageGRID link:../admin/configure-sso-saml.html#test-sso["tester toutes les fiducies des parties utilisatrices"] pour confirmer qu'ils sont correctement configurés.
 

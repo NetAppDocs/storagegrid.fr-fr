@@ -31,12 +31,12 @@ Pour accéder à la documentation de l'API, accédez à la page Web d'installati
 
 L'API d'installation de StorageGRID comprend les sections suivantes :
 
-* *Config* -- opérations liées à la version du produit et aux versions de l'API. Vous pouvez lister la version du produit ainsi que les versions principales de l'API prises en charge par cette version.
-* *Grid* -- opérations de configuration au niveau de la grille. Vous pouvez obtenir et mettre à jour les paramètres de la grille, y compris les détails de la grille, les sous-réseaux de la grille, les mots de passe de la grille et les adresses IP des serveurs NTP et DNS.
-* *Noeuds* -- opérations de configuration au niveau des noeuds. Vous pouvez récupérer une liste de nœuds de la grille, supprimer un nœud de la grille, configurer un nœud de la grille, afficher un nœud de la grille et réinitialiser la configuration d'un nœud de la grille.
-* *Provision* -- opérations de provisionnement. Vous pouvez démarrer l'opération de provisionnement et afficher l'état de cette opération.
-* *Recovery* -- opérations de restauration du noeud d'administration principal. Vous pouvez réinitialiser les informations, télécharger le progiciel de restauration, démarrer la récupération et afficher l'état de l'opération de récupération.
-* *Progiciel de récupération* -- opérations pour télécharger le progiciel de récupération.
-* *Sites* -- opérations de configuration au niveau du site. Vous pouvez créer, afficher, supprimer et modifier un site.
-* *Mot de passe temporaire* -- opérations sur le mot de passe temporaire pour sécuriser l'api de gestion pendant l'installation.
+* *config* : Opérations relatives à la version du produit et aux versions de l’API. Vous pouvez lister la version de la publication du produit et les versions majeures de l’API prises en charge par cette publication.
+* *grid* : Opérations de configuration au niveau de la grille. Vous pouvez obtenir et mettre à jour les paramètres de la grille, notamment les détails de la grille, les sous-réseaux du réseau de la grille, les mots de passe de la grille, ainsi que les adresses IP des serveurs NTP et des serveurs DNS.
+* *nœuds* : Opérations de configuration au niveau des nœuds. Vous pouvez récupérer une liste de nœuds de la grille, supprimer un nœud de la grille, configurer un nœud de la grille, afficher un nœud de la grille et réinitialiser la configuration d’un nœud de la grille.
+* *provisionnement* : Opérations de provisionnement. Vous pouvez démarrer l’opération de provisionnement et consulter son état.
+* *Récupération* : Opérations de récupération du nœud d’administration principal. Vous pouvez réinitialiser les informations, charger le Recovery Package, démarrer la récupération et consulter l’état de l’opération de récupération.
+* *recovery-package* : Opérations de téléchargement du Recovery Package.
+* *Sites* : Opérations de configuration au niveau du site. Vous pouvez créer, consulter, supprimer et modifier un site.
+* *mot-de-passe-temporaire* : Opérations sur le mot de passe temporaire pour sécuriser la mgmt-api pendant l’installation.
 

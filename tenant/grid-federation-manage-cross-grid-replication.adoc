@@ -20,7 +20,7 @@ Si l'autorisation *utiliser la connexion de fédération de grille* a été attr
 
 Le diagramme de flux de travail résume les étapes à suivre pour configurer la réplication inter-grille entre les buckets de deux grilles.  Ces étapes sont décrites plus en détail sous le diagramme.
 
-image:grid-federation-cgr-workflow.png["Flux de production de réplication entre les grilles"]
+image:grid_federation_cgr_workflow.png["Flux de production de réplication entre les grilles"]
 
 
 
@@ -74,8 +74,6 @@ TIP: Selon les besoins, chaque godet peut utiliser une région différente.
 [[enable-cross-grid-replication]]
 === Activer la réplication entre les grilles
 
-Vous devez effectuer ces étapes avant d'ajouter des objets à l'un ou l'autre compartiment.
-
 .Étapes
 . À partir d'une grille dont vous voulez répliquer les objets, activez link:../admin/grid-federation-what-is-cross-grid-replication.html["réplication multigrille dans une direction"]:
 +
@@ -90,7 +88,7 @@ Vous devez effectuer ces étapes avant d'ajouter des objets à l'un ou l'autre c
 *** *Yes* (par défaut) : un marqueur de suppression est ajouté au compartiment source et répliqué dans le compartiment de destination.
 *** *Non* : un marqueur de suppression est ajouté au bucket source mais n'est pas répliqué dans le bucket de destination.
 +
-image:grid-federation-cross-grid-replication-client-deletes.png["image montrant la suppression du client répliqué sur les deux grilles"]
+image:grid_federation_cross_grid_replication_client_deletes.png["image montrant la suppression du client répliqué sur les deux grilles"]
 
 +
 
@@ -107,7 +105,6 @@ Se référer àlink:../admin/grid-federation-what-is-cross-grid-replication.html
 *** *Normal* : toutes les demandes de réplication inter-grille sont incluses, ce qui augmente considérablement le volume de la sortie d'audit.
 
 
-.. Vérifiez vos sélections. Vous ne pouvez pas modifier ces paramètres à moins que les deux compartiments ne soient vides.
 .. Sélectionnez *Activer et tester*.
 +
 Après quelques instants, un message de réussite apparaît.  Les objets ajoutés à ce bucket sont désormais automatiquement répliqués sur l’autre grille.  La *réplication inter-grille* est affichée comme une fonctionnalité activée sur la page des détails du bucket.
@@ -153,11 +150,6 @@ Avant de désactiver la réplication multigrille, notez ce qui suit :
 * La désactivation de la réplication inter-grille ne supprime aucun objet qui a déjà été copié entre les grilles.  Par exemple, les objets dans `my-bucket` sur la grille 1 qui ont été copiés sur `my-bucket` sur la grille 2 ne sont pas supprimés si vous désactivez la réplication inter-grille pour ce bucket.  Si vous souhaitez supprimer ces objets, vous devez les supprimer manuellement.
 * Si la réplication inter-grid a été activée pour chacun des compartiments (c'est-à-dire si la réplication se produit dans les deux directions), vous pouvez désactiver la réplication inter-grid pour l'un ou les deux compartiments. Par exemple, vous pouvez désactiver la réplication d'objets de `my-bucket` sur la grille 1 vers `my-bucket` sur la grille 2, tout en continuant à répliquer des objets de `my-bucket` sur la grille 2 vers sur `my-bucket` la grille 1.
 * Vous devez désactiver la réplication inter-grille avant de pouvoir supprimer l'autorisation d'un locataire d'utiliser la connexion de fédération de grille. link:../admin/grid-federation-manage-tenants.html["Gérer les locataires autorisés"] .
-* Si vous désactivez la réplication inter-grille pour un bucket contenant des objets, vous ne pourrez pas réactiver la réplication inter-grille à moins de supprimer tous les objets des buckets source et de destination.
-+
-
-CAUTION: Vous ne pouvez pas réactiver la réplication sauf si les deux compartiments sont vides.
-
 
 
 .Avant de commencer

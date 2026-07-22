@@ -59,12 +59,12 @@ Les réparations en arrière-plan ne s'exécutent pas pendant la mise à niveau 
 [[appliance-firmware-is-upgraded]]
 == Le micrologiciel de l'appliance est mis à niveau
 
-Pendant la mise à niveau vers StorageGRID 12.0 :
+Lors de la mise à niveau de StorageGRID 12.1 :
 
-* Tous les nœuds d'appliance StorageGRID sont automatiquement mis à niveau vers la version 12.0 du micrologiciel du programme d'installation de l'appliance StorageGRID .
+* Tous les nœuds d'appliance StorageGRID sont automatiquement mis à niveau vers la version 12.1 du firmware StorageGRID Appliance Installer.
 * Les appareils SG6060 et SGF6024 sont automatiquement mis à niveau vers la version 3B08.EX du micrologiciel du BIOS et la version 4.01.07 du micrologiciel BMC .
 * Les appareils SG100 et SG1000 sont automatiquement mis à niveau vers la version 3B13.EC du micrologiciel du BIOS et la version 4.75.07 du micrologiciel BMC .
-* Les appareils SGF6112, SG6160, SG110 et SG1100 sont automatiquement mis à niveau vers la version 3A14.QD du micrologiciel BIOS et la version 3.19.07 du micrologiciel BMC .
+* Les appliances SGF6112, SG6160, SG110 et SG1100 sont automatiquement mises à niveau vers la version 3A14.QD du firmware BIOS et la version 3.21.07 du firmware BMC.
 
 
 
@@ -84,9 +84,9 @@ Pendant la mise à niveau vers StorageGRID 12.0 :
 
 Des alertes peuvent être déclenchées lorsque les services démarrent et s'arrêtent, et lorsque le système StorageGRID fonctionne comme un environnement de version mixte (certains nœuds de grid exécutant une version antérieure, alors que d'autres ont été mis à niveau vers une version plus récente). D'autres alertes peuvent être déclenchées une fois la mise à niveau terminée.
 
-Par exemple, vous pouvez voir l'alerte *Impossible de communiquer avec le nœud* lorsque les services sont arrêtés, ou vous pouvez voir l'alerte *Erreur de communication Cassandra* lorsque certains nœuds ont été mis à niveau vers StorageGRID 12.0 mais que d'autres nœuds exécutent toujours StorageGRID 11.9.  En général, ces alertes disparaissent une fois la mise à niveau terminée.
+Par exemple, l'alerte « Impossible de communiquer avec le nœud » peut s'afficher lorsque les services sont arrêtés, ou l'alerte « Erreur de communication Cassandra » peut apparaître lorsque certains nœuds ont été mis à niveau vers StorageGRID 12.0 ou une version ultérieure, tandis que d'autres exécutent encore une version antérieure de StorageGRID. En général, ces alertes disparaissent une fois la mise à niveau terminée.
 
-L'alerte *Placement ILM impossible* peut être déclenchée lorsque les nœuds de stockage sont arrêtés pendant la mise à niveau vers StorageGRID 12.0.  Cette alerte peut persister pendant 1 jour après la fin de la mise à niveau.
+L'alerte « Placement ILM impossible » peut être déclenchée lorsque des nœuds de stockage sont arrêtés pendant la mise à niveau vers StorageGRID 12.0 ou une version ultérieure. Cette alerte peut persister pendant 1 jour après la fin de la mise à niveau.
 
 Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes liées à la mise à niveau en sélectionnant *alertes récemment résolues* ou *alertes actuelles* dans le tableau de bord de Grid Manager.
 
@@ -96,7 +96,7 @@ Une fois la mise à niveau terminée, vous pouvez consulter toutes les alertes l
 == Les modifications de configuration sont restreintes
 
 
-NOTE: Cette liste s'applique spécifiquement aux mises à niveau de StorageGRID 11.9 vers StorageGRID 12.0.  Si vous effectuez une mise à niveau vers une autre version de StorageGRID , reportez-vous à la liste des modifications restreintes dans les instructions de mise à niveau de cette version.
+NOTE: Les restrictions relatives aux modifications de configuration sont spécifiques à chaque version. Si vous effectuez une mise à niveau vers une autre version de StorageGRID, veuillez consulter la liste des modifications interdites dans les instructions de mise à niveau de cette version.
 
 Jusqu'à la fin de la tâche *Activer la nouvelle fonction* :
 
@@ -108,8 +108,8 @@ Jusqu'à la fin de la tâche *Activer la nouvelle fonction* :
 
 NOTE: Contactez le support technique si vous avez besoin de restaurer un nœud pendant la mise à niveau.
 
-* Vous ne devez pas gérer les groupes HA, les interfaces VLAN ou les points de terminaison d'équilibrage de charge pendant la mise à niveau vers StorageGRID 12.0.
-* Ne supprimez aucun groupe HA tant que la mise à niveau vers StorageGRID 12.0 n'est pas terminée.  Les adresses IP virtuelles dans d’autres groupes HA peuvent devenir inaccessibles.
+* Vous ne devez pas gérer les groupes HA, les interfaces VLAN ou les points de terminaison d'équilibrage de charge pendant la mise à niveau.
+* Ne supprimez aucun groupe HA tant que la mise à niveau n'est pas terminée. Les adresses IP virtuelles des autres groupes HA pourraient devenir inaccessibles.
 
 
 Jusqu'à la fin de la tâche *étapes de mise à niveau finale* :

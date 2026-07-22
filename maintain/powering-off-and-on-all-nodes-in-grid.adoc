@@ -13,7 +13,7 @@ summary: 'Vous devrez peut-être arrêter l"intégralité de votre système Stor
 [role="lead"]
 Vous devrez peut-être arrêter l'intégralité de votre système StorageGRID, par exemple si vous déplacez un data Center. Ces étapes fournissent une vue d'ensemble de haut niveau de la séquence recommandée pour effectuer un arrêt et un démarrage contrôlés.
 
-Lorsque vous mettez tous les nœuds hors tension d'un site ou d'un grid, vous ne pourrez pas accéder aux objets ingérés pendant que les nœuds de stockage sont hors ligne.
+Lorsque vous mettez hors tension tous les nœuds d'un site ou d'une grille, vous ne pouvez pas accéder aux objets ingérés tant que les nœuds de stockage sont hors ligne.
 
 
 
@@ -151,9 +151,6 @@ La grille StorageGRID est maintenant arrêtée.
 [[start-up-grid-nodes]]
 == Démarrer les nœuds grid
 
-
-CAUTION: Si l'ensemble du grid a été arrêté pendant plus de 15 jours, vous devez contacter le support technique avant de démarrer un nœud de grid. Ne tentez pas les procédures de restauration qui reconstruisent les données Cassandra. Cela peut entraîner une perte de données.
-
 Si possible, mettez les nœuds grid sous tension dans l'ordre suivant :
 
 * Mettez d'abord les nœuds d'administration sous tension.
@@ -161,13 +158,13 @@ Si possible, mettez les nœuds grid sous tension dans l'ordre suivant :
 
 
 
-NOTE: Si un hôte inclut plusieurs nœuds grid, les nœuds sont reconnectés automatiquement lorsque vous mettez l'hôte sous tension.
+NOTE: Si un hôte comprend plusieurs nœuds de grid, ces nœuds se remettent automatiquement en ligne lorsque vous mettez l'hôte sous tension.
 
 .Étapes
 . Mettez les hôtes sous tension pour le nœud d'administration principal et tous les nœuds d'administration non primaires.
 +
 
-NOTE: Vous ne pourrez pas vous connecter aux nœuds d'administration tant que les nœuds de stockage n'ont pas été redémarrés.
+NOTE: Vous ne pouvez pas vous connecter aux nœuds d'administration tant que les nœuds de stockage n'ont pas été redémarrés.
 
 . Mettez les hôtes sous tension pour tous les nœuds de stockage.
 +

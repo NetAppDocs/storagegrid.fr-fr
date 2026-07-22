@@ -2,7 +2,7 @@
 permalink: maintain/remounting-and-reformatting-appliance-storage-volumes.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, appliance storage volume, appliance volume, remount appliance storage volume, remount volume, remounting appliance storage volume, remounting volume, reformat appliance storage volume, reformat volume, reformatting appliance storage volume, reformatting volume 
-summary: Vous devez exécuter manuellement deux scripts pour remonter les volumes de stockage conservés et reformater les volumes de stockage défaillants. Le premier script monte les volumes au format approprié en tant que volumes de stockage StorageGRID. Le deuxième script reformate tous les volumes démontés, reconstruit la base de données Cassandra si nécessaire et démarre les services. 
+summary: Si la procédure automatique ne parvient pas à remonter les volumes de stockage préservés et à reformater les volumes de stockage défaillants, vous devez exécuter manuellement deux scripts pour effectuer ces opérations. Le premier script remonte les volumes correctement formatés en tant que volumes de stockage StorageGRID. Le second script reformate les volumes non montés, reconstruit la base de données Cassandra si nécessaire et démarre les services. 
 ---
 = Remonter et reformater les volumes de stockage de l'appliance StorageGRID (étapes manuelles)
 :allow-uri-read: 
@@ -11,7 +11,9 @@ summary: Vous devez exécuter manuellement deux scripts pour remonter les volume
 
 
 [role="lead"]
-Vous devez exécuter manuellement deux scripts pour remonter les volumes de stockage conservés et reformater les volumes de stockage défaillants. Le premier script monte les volumes au format approprié en tant que volumes de stockage StorageGRID. Le deuxième script reformate tous les volumes démontés, reconstruit la base de données Cassandra si nécessaire et démarre les services.
+Si la procédure automatique ne parvient pas à remonter les volumes de stockage préservés et à reformater les volumes de stockage défaillants, vous devez exécuter manuellement deux scripts pour effectuer ces opérations. Le premier script remonte les volumes correctement formatés en tant que volumes de stockage StorageGRID. Le second script reformate les volumes non montés, reconstruit la base de données Cassandra si nécessaire et démarre les services.
+
+Lors de la récupération d'un nœud de stockage, si le message « En attente d'instructions manuelles » s'affiche dans le Gestionnaire de grille, suivez ces étapes pour remonter et reformater les volumes de stockage. Si ce message ne s'affiche pas, les opérations de remontage et de reformatage se sont terminées automatiquement, et vous pouvez ignorer _cette_ procédure et link:../maintain/restoring-object-data-to-storage-volume-for-appliance.html["restaurer les données de l'objet"].
 
 .Avant de commencer
 * Vous avez déjà remplacé le matériel de tous les volumes de stockage défectueux que vous savez avoir besoin d'être remplacé.
@@ -173,9 +175,6 @@ CAUTION: Si un volume de stockage est signalé comme appartenant à un autre nœ
 
 NOTE: Vous devez réparer ou remplacer tout périphérique de stockage qui n'a pas pu être monté.
 
-+
-Vous allez utiliser le nom de l'unité pour rechercher l'ID du volume, qui est obligatoire lorsque vous exécutez le `repair-data` script pour restaurer les données de l'objet sur le volume (procédure suivante).
-
 .. Après avoir réparé ou remplacé tous les périphériques unmountable, exécutez à nouveau le `sn-remount-volumes` script pour confirmer que tous les volumes de stockage pouvant être remontés ont été remontés.
 +
 
@@ -219,24 +218,11 @@ image:recovering_cassandra.png["Capture d'écran montrant la progression de la r
 
 . Une fois que le `sn-recovery-postinstall.sh` script a démarré les services sur le nœud, vous pouvez restaurer les données d'objet sur tous les volumes de stockage formatés par le script.
 +
-Le script vous demande si vous souhaitez utiliser le processus de restauration du volume Grid Manager.
+Le script vous demande si vous souhaitez utiliser le processus de restauration de volume de Grid Manager pour restaurer les données des objets.
 
 +
-** Dans la plupart des cas, vous devriez link:../maintain/restoring-volume.html["Restaurez les données d'objet à l'aide de Grid Manager"]. Réponse `y` pour utiliser le Gestionnaire de grille.
-** Dans de rares cas, par exemple lorsque le support technique vous y invite, ou lorsque vous savez que le nœud de remplacement dispose de moins de volumes pour le stockage objet que le nœud d'origine, vous devez link:restoring-object-data-to-storage-volume-for-appliance.html["restaurez les données d'objet manuellement"] utiliser `repair-data` le script. Si l'un de ces cas s'applique, répondez `n`.
-+
-[NOTE]
-====
-Si vous répondez `n` à l'utilisation du processus de restauration de volume Grid Manager (restaurez manuellement les données d'objet) :
-
-*** Vous ne pouvez pas restaurer les données d'objet à l'aide de Grid Manager.
-*** Vous pouvez surveiller la progression des travaux de restauration manuelle à l'aide de Grid Manager.
-
-
-====
-+
-Une fois votre sélection effectuée, le script se termine et les étapes suivantes pour récupérer les données d'objet s'affichent. Après avoir passé en revue ces étapes, appuyez sur n'importe quelle touche pour revenir à la ligne de commande.
-
+** Dans la plupart des cas, vous devriez link:../maintain/restoring-object-data-to-storage-volume-for-appliance.html["Restaurez les données d'objet à l'aide de Grid Manager"]. Répondez `y` pour utiliser le Gestionnaire de grille.
+** Dans de rares cas, par exemple si le nœud de remplacement dispose de moins de volumes disponibles pour le stockage d'objets que le nœud d'origine, contactez le support technique pour restaurer manuellement les données d'objets. Si l'un de ces cas s'applique, répondez `n` et appuyez sur n'importe quelle touche pour revenir à la ligne de commandes.
 
 
 

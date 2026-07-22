@@ -17,7 +17,7 @@ Vous pouvez supprimer un compte de tenant si vous souhaitez supprimer définitiv
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
 * Vous avez supprimé tous les compartiments S3 et tous les objets associés au compte de locataire.
-* Si le locataire est autorisé à utiliser une connexion de fédération de grille, vous avez examiné les considérations relatives à link:grid-federation-manage-tenants.html["Suppression d'un locataire avec l'autorisation utiliser la connexion de fédération de grille"].
+* Si le locataire est autorisé à utiliser les connexions de fédération de grilles, vous avez pris connaissance des points à prendre en link:../admin/grid-federation-manage-tenants.html["Suppression d'un locataire avec l'autorisation utiliser la connexion de fédération de grille"] compte. Les suppressions sont synchronisées, donc si un locataire est supprimé sur une grille, il sera supprimé sur toutes les grilles sélectionnées.
 
 
 .Étapes

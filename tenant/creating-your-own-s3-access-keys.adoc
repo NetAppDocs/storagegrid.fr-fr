@@ -59,5 +59,4 @@ CAUTION: Ne fermez pas cette boîte de dialogue tant que vous n'avez pas copié 
 +
 La nouvelle clé apparaît sur la page Mes clés d'accès.
 
-. Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération grid*, vous pouvez utiliser l'API de gestion des locataires pour cloner manuellement les clés d'accès S3 du locataire de la grille source vers le locataire de la grille de destination. Voir link:grid-federation-clone-keys-with-api.html["Cloner les clés d'accès S3 à l'aide de l'API"].
 

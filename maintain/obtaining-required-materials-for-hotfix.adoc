@@ -35,7 +35,7 @@ Vous devez télécharger le fichier de correctif StorageGRID.
 
 
  a| 
-plan de relance(`.zip` ) déposer
+Fichier de package de récupération (`.zip`
  a| 
 Avant d'appliquer un correctif,link:downloading-recovery-package.html["télécharger le fichier du package de récupération le plus récent"] au cas où des problèmes surviendraient pendant le correctif.  Ensuite, une fois le correctif appliqué, téléchargez une nouvelle copie du fichier du package de récupération et enregistrez-le dans un endroit sûr.  Le fichier de package de récupération mis à jour vous permet de restaurer le système en cas de panne.
 

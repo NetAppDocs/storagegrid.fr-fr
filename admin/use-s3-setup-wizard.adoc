@@ -39,7 +39,7 @@ Configurer la fédération des identités et SSO:: Si vous prévoyez d'utiliser 
 Obtenir et configurer des noms de domaine:: Vous savez quel nom de domaine complet (FQDN) utiliser pour StorageGRID. Les entrées de serveur de noms de domaine (DNS) mapperont ce FQDN aux adresses IP virtuelles (VIP) du groupe haute disponibilité que vous créez à l'aide de l'assistant.
 +
 --
-Si vous prévoyez d'utiliser des requêtes de type hébergement virtuel S3, vous devriez avoir link:../admin/configuring-s3-api-endpoint-domain-names.html["Noms de domaine de terminaux S3 configurés"]. Il est recommandé d'utiliser des demandes de type hébergement virtuel.
+Si vous prévoyez d'utiliser des requêtes de type hébergement virtuel S3, vous devriez avoir link:../admin/configuring-s3-api-endpoint-domain-names.html["Noms de domaine de terminaux S3 configurés"]. L'utilisation de requêtes de type hébergement virtuel est recommandée.
 
 --
 Examinez les exigences en matière d'équilibreur de charge et de certificat de sécurité:: Si vous envisagez d'utiliser l'équilibreur de charge StorageGRID, vous avez examiné les considérations générales relatives à l'équilibrage de la charge. Vous disposez des certificats que vous allez télécharger ou des valeurs dont vous avez besoin pour générer un certificat.
@@ -48,7 +48,7 @@ Examinez les exigences en matière d'équilibreur de charge et de certificat de 
 Si vous prévoyez d'utiliser un noeud final externe (tiers) d'équilibreur de charge, vous disposez du nom de domaine complet (FQDN), du port et du certificat pour cet équilibreur de charge.
 
 --
-Configurez toutes les connexions de fédération de grille:: Si vous souhaitez permettre au locataire S3 de cloner les données de compte et de répliquer les objets de compartiment vers une autre grille à l'aide d'une connexion de fédération de grille, vérifiez les points suivants avant de démarrer l'assistant :
+Configurez toutes les connexions de fédération de grille:: Si vous souhaitez autoriser le locataire S3 à synchroniser les données du compte et à répliquer les objets du compartiment vers une autre grille à l'aide d'une connexion de fédération de grilles, confirmez les points suivants avant de démarrer l'assistant :
 +
 --
 * Vous avez link:grid-federation-manage-connection.html["configurez la connexion de fédération de grille - effectué"].

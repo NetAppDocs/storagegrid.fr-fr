@@ -44,10 +44,14 @@ Restrictions::
 +
 --
 * L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
-* Les  `If-None` et  `If-None-Match` en-têtes sont acceptés mais non fonctionnels.
+* Les en-têtes  `If-Match` et  `If-None-Match` se comportent différemment selon la configuration de votre StorageGRID. Fournir ces en-têtes peut entraîner un message d’erreur (501 Not Implemented). Si les en-têtes  `If-Match` ou  `If-None-Match` sont acceptés mais non fonctionnels, une alerte peut être déclenchée avec des instructions concernant l’activation du comportement d’erreur 501 Not Implemented plus strict.
 
 
 --
+
+
+L' `x-amz-bypass-governance-retention`en-tête n'a aucun effet sur les objets sans S3 Object Lock.
+
 Gestion des versions:: Pour supprimer une version spécifique, le demandeur doit être le propriétaire du compartiment et utiliser la `versionId` sous-ressource. L'utilisation de cette sous-ressource supprime définitivement la version. Si le `versionId` correspond à un marqueur de suppression, l'en-tête de réponse `x-amz-delete-marker` est renvoyé à `true`.
 +
 --
@@ -73,6 +77,8 @@ DeleteObjects
 L'authentification multifacteur (MFA) et l'en-tête de réponse `x-amz-mfa` ne sont pas pris en charge.
 
 Plusieurs objets peuvent être supprimés dans le même message de demande.
+
+L' `x-amz-bypass-governance-retention`en-tête n'a aucun effet sur les objets sans S3 Object Lock.
 
 Reportez-vous  à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"] pour savoir comment supprimer des versions d'objets en mode GOUVERNANCE.
 

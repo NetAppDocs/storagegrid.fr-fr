@@ -111,7 +111,7 @@ Procédez comme suit pour entrer un nom d'affichage pour chaque élément à ren
 +
 Reportez-vous  à la section link:../maintain/rename-grid-site-node-overview.html["Renommez la grille, les sites et les nœuds"] pour connaître les exigences de nommage.
 
-. Pour supprimer les éléments que vous ne souhaitez pas renommer, sélectionnez image:icon-x-to-remove.png["Icône X."] dans la colonne *Supprimer de la liste*.
+. Pour supprimer les éléments que vous ne souhaitez pas renommer, sélectionnez image:icon_x_to_remove.png["Icône X."] dans la colonne *Supprimer de la liste*.
 +
 Si vous ne proposez pas de nouveau nom pour un élément, vous devez le supprimer de la table.
 
@@ -135,12 +135,12 @@ L'aperçu *Renommer* inclut tous les éléments affichés pour l'étape *propose
 +
 Au fur et à mesure que vous tapez, votre texte est mis en surbrillance à l'endroit où il se trouve dans les noms à gauche.
 
-. Sélectionnez image:icon-x-to-remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas renommer avec cet outil.
+. Sélectionnez image:icon_x_to_remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas renommer avec cet outil.
 +
-Par exemple, supposons que vous souhaitiez renommer tous les nœuds contenant la chaîne `Data-Center-1`, mais que vous ne vouliez pas renommer le `Data-Center-1` site lui-même. Sélectionnez image:icon-x-to-remove.png["Icône X."] pour retirer le site de l’aperçu du renommage.
+Par exemple, supposons que vous souhaitiez renommer tous les nœuds contenant la chaîne `Data-Center-1`, mais que vous ne vouliez pas renommer le `Data-Center-1` site lui-même. Sélectionnez image:icon_x_to_remove.png["Icône X."] pour retirer le site de l’aperçu du renommage.
 
 +
-image:rename-bulk-rename-tool.png["Renommer l'outil en bloc avant"]
+image:rename_bulk_rename_tool.png["Renommer l'outil en bloc avant"]
 
 . Dans le champ *Nouvelle chaîne*, entrez la chaîne de remplacement que vous souhaitez utiliser. Par exemple, entrez *DC1*.
 +
@@ -150,10 +150,10 @@ Reportez-vous  à la section link:../maintain/rename-grid-site-node-overview.htm
 Lorsque vous entrez la chaîne de remplacement, les noms à gauche sont mis à jour, ce qui vous permet de vérifier que les nouveaux noms seront corrects.
 
 +
-image:rename-bulk-rename-tool-after.png["Outil de renommage en bloc après"]
+image:rename_bulk_rename_tool_after.png["Outil de renommage en bloc après"]
 
 . Lorsque vous êtes satisfait des noms affichés dans l'aperçu, sélectionnez *Ajouter des noms* pour ajouter les noms à la table pour l'étape *proposer de nouveaux noms*.
-. Apportez les modifications supplémentaires nécessaires ou sélectionnez image:icon-x-to-remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas renommer.
+. Apportez les modifications supplémentaires nécessaires ou sélectionnez image:icon_x_to_remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas renommer.
 . Lorsque vous êtes prêt à renommer tous les éléments de la table, sélectionnez *Renommer*.
 +
 Un message de réussite s'affiche. Les nouveaux noms d'affichage sont maintenant utilisés dans le Gestionnaire de grille.
@@ -201,7 +201,7 @@ Vous pouvez rétablir le nom d'origine d'une grille, d'un site ou d'un nœud ren
 ====
 .Revenir aux noms de système individuellement
 --
-.. Copiez le nom système d'origine de chaque élément et collez-le dans le champ *Nom d'affichage*, ou sélectionnez image:icon-x-to-remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas rétablir.
+.. Copiez le nom système d'origine de chaque élément et collez-le dans le champ *Nom d'affichage*, ou sélectionnez image:icon_x_to_remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas rétablir.
 +
 Pour rétablir un nom d'affichage, le nom du système doit apparaître dans le champ *Nom d'affichage*, mais le nom n'est pas sensible à la casse.
 
@@ -218,7 +218,7 @@ Un message de réussite s'affiche. Les noms d'affichage de ces éléments ne son
 .. Dans le champ *existing string*, entrez la chaîne de nom d'affichage que vous souhaitez remplacer.
 .. Dans le champ *Nouvelle chaîne*, entrez la chaîne de nom système que vous souhaitez utiliser.
 .. Sélectionnez *Ajouter des noms* pour ajouter les noms à la table pour l'étape *proposer de nouveaux noms*.
-.. Vérifiez que chaque entrée du champ *Nom d'affichage* correspond au nom du champ *Nom système*. Apportez les modifications nécessaires ou sélectionnez image:icon-x-to-remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas rétablir.
+.. Vérifiez que chaque entrée du champ *Nom d'affichage* correspond au nom du champ *Nom système*. Apportez les modifications nécessaires ou sélectionnez image:icon_x_to_remove.png["Icône X."] pour supprimer les éléments que vous ne souhaitez pas rétablir.
 +
 Pour rétablir un nom d'affichage, le nom du système doit apparaître dans le champ *Nom d'affichage*, mais le nom n'est pas sensible à la casse.
 

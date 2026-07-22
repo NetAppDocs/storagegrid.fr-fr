@@ -129,7 +129,12 @@ Emplacements = 0
  a| 
 S'il n'y a aucun emplacement répertorié dans la sortie, l'objet est potentiellement manquant.  Contactez le support technique.
 
-L'assistance technique peut vous demander si une procédure de restauration du stockage est en cours. Voir les informations sur link:../maintain/restoring-volume.html["Restauration des données d'objet à l'aide de Grid Manager"] et link:../maintain/restoring-object-data-to-storage-volume.html["restauration des données d'objet vers un volume de stockage"].
+L'assistance technique pourrait vous demander de vérifier si une procédure de récupération de stockage est en cours. Consultez :
+
+*** link:../maintain/restoring-object-data-to-storage-volume-for-appliance.html["Restaurez les données d'objet vers un volume de stockage pour l'appliance"]
+*** link:../maintain/restoring-object-data-to-storage-volume-where-system-drive-is-intact.html["Restaurez les données d'objet vers le volume de stockage sur lequel le disque système est intact"]
+*** link:../maintain/restoring-object-data-to-storage-volume.html["Restauration des données d'objet sur le volume de stockage (panne de disque système)"]
+
 
 |===
 

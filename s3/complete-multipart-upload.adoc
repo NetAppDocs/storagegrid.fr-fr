@@ -30,7 +30,21 @@ Les demandes contradictoires des clients, telles que deux clients qui écrivent 
 
 Les en-têtes de requête suivants sont pris en charge :
 
-* `x-amz-checksum-sha256`
+* En-têtes de requête de somme de contrôle :
++
+--
+** `x-amz-checksum-crc32`
+** `x-amz-checksum-crc32c`
+** `x-amz-checksum-crc64nvme`
+** `x-amz-checksum-sha256`
+** `x-amz-checksum-type`
+
+
+--
++
+
+NOTE: Si une requête CreateMultipartUpload ne spécifie pas de somme de contrôle, StorageGRID ne calcule pas de somme de contrôle CRC-64/NVME par défaut pour un objet.
+
 * `x-amz-storage-class`
 +
 L' `x-amz-storage-class`en-tête affecte le nombre de copies objet créées par StorageGRID si la règle ILM correspondante spécifie le link:../ilm/data-protection-options-for-ingest.html["Double allocation ou option d'ingestion équilibrée"].
@@ -64,14 +78,18 @@ Les en-têtes de demande suivants ne sont pas pris en charge :
 
 * `If-Match`
 +
-Le  `If-Match header` est accepté mais non fonctionnel.
+L' `If-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut renvoyer un message d'erreur (501 Not Implemented). Si l' `If-Match`en-tête est accepté mais non fonctionnel, une alerte peut être déclenchée avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
 
 * `If-None-Match`
 +
-Le  `If-None-Match header` est accepté mais non fonctionnel.
+L' `If-None-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut entraîner un message d'erreur (501 Not Implemented). Si l' `If-None-Match`en-tête est accepté mais non fonctionnel, une alerte peut s'afficher avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
 
-* `x-amz-sdk-checksum-algorithm`
-* `x-amz-trailer`
+* `x-amz-checksum-md5`
+* `x-amz-checksum-sha1`
+* `x-amz-checksum-sha512`
+* `x-amz-checksum-xxhash3`
+* `x-amz-checksum-xxhash64`
+* `x-amz-checksum-xxhash128`
 
 
 

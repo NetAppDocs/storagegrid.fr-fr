@@ -16,7 +16,13 @@ Pour installer un nœud de passerelle ou un nœud d'administration sur une appli
 .Avant de commencer
 * L'appliance est installée dans un rack, connectée à vos réseaux et sous tension.
 * Les liaisons réseau et les adresses IP sont configurées pour l'appliance à l'aide du programme d'installation de l'appliance StorageGRID.
-* Si vous installez un nœud de passerelle ou un nœud d'administration non primaire, vous connaissez l'adresse IP du nœud d'administration principal de la grille StorageGRID.
+* Si vous installez un nœud de passerelle ou un nœud d'administration non principal, vous connaissez l'adresse IP de l'un des nœuds d'administration suivants :
++
+** Le nœud d'administration principal de la grille StorageGRID
+** Un nœud d'administration non principal, s'il en existe un et s'il est utilisé pour récupérer le nœud
+
+
+* Si vous récupérez un nœud (y compris le nœud d'administration principal) en utilisant un nœud d'administration non principal, vous pouvez spécifier l'adresse IP de ce nœud d'administration.
 * Tous les sous-réseaux de réseau de la grille répertoriés sur la page Configuration IP du programme d'installation de l'appliance StorageGRID sont définis dans la liste de sous-réseaux de réseau de la grille sur le nœud d'administration principal.
 +
 Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Démarrage rapide pour l'installation du matériel"^].
@@ -33,7 +39,7 @@ NOTE: Une version récente du logiciel StorageGRID est préchargée sur l'applia
 .Description de la tâche
 Pour installer le logiciel StorageGRID sur une appliance de services :
 
-* Pour un nœud d'administration principal, vous spécifiez le nom du nœud, puis téléchargez les packs logiciels appropriés (le cas échéant).
+* Pour un nœud d'administration principal, vous spécifiez le nom du nœud, puis vous téléchargez les paquets logiciels appropriés (si nécessaire). Si vous restaurez le nœud d'administration principal et que vous disposez d'un nœud d'administration non principal dans votre grid, vous avez la possibilité soit de restaurer le nœud à l'aide d'un nœud d'administration non principal en spécifiant l'adresse IP de ce nœud d'administration, soit d'installer ou de restaurer le nœud en utilisant votre configuration actuelle.
 * Pour un noeud d'administration non primaire ou un noeud de passerelle, vous spécifiez ou confirmez l'adresse IP du noeud d'administration principal et le nom du noeud.
 * Vous démarrez l'installation et attendez que les volumes soient configurés et que le logiciel soit installé.
 * Partway tout au long du processus, l'installation se met en pause. Pour reprendre l'installation, vous devez vous connecter à Grid Manager et configurer le nœud en attente en remplacement du nœud ayant échoué.
@@ -51,26 +57,38 @@ La page d'accueil du programme d'installation de l'appliance StorageGRID s'affic
 . Pour installer un nœud d’administration principal :
 +
 .. Dans la section noeud, pour *Type de noeud*, sélectionnez *Administrateur principal*.
-.. Dans le champ *Nom du noeud*, entrez le même nom que celui utilisé pour le noeud que vous êtes en train de récupérer, puis cliquez sur *Enregistrer*.
-.. Dans la section installation, vérifiez la version du logiciel répertoriée sous l'état actuel
+.. Dans le champ *Nom du nœud*, saisissez le même nom que celui utilisé pour le nœud que vous récupérez, puis sélectionnez *Enregistrer*.
+.. Choisissez le mode approprié parmi les deux disponibles dans la section Mode d'installation. Vous pouvez sélectionner soit la méthode « Install a node or recover this node using current configuration », soit la méthode « Recover this node using a non-primary Admin Node ».
 +
-Si la version du logiciel prêt à être installée est correcte, passez directement à l' <<installation_section_step,Étape d'installation>>.
+[role="tabbed-block"]
+====
+.Méthode de configuration actuelle
+--
+Installez un nœud ou récupérez ce nœud en utilisant la configuration actuelle.
 
-.. Si vous devez télécharger une autre version du logiciel, dans le menu *Avancé*, sélectionnez *Télécharger le logiciel StorageGRID*.
-+
-La page Télécharger le logiciel StorageGRID s'affiche.
+... Dans la section Installation, vérifiez la version du logiciel indiquée sous État actuel. Si la version du logiciel prêt à être installé est correcte, passez à la <<installation_section_step,Étape d'installation>>.
+... Si vous devez charger une autre version du logiciel, dans le menu *Avancé*, sélectionnez *Charger le logiciel StorageGRID*. La page Charger le logiciel StorageGRID s'affiche.
+... Sélectionnez *Parcourir* pour télécharger le *package logiciel* et le *fichier de somme de contrôle* pour le logiciel StorageGRID. Les fichiers sont automatiquement téléchargés après que vous les avez sélectionnés.
+... Sélectionnez *Accueil* pour revenir à la page d'accueil de l'installateur StorageGRID Appliance.
 
-.. Cliquez sur *Parcourir* pour télécharger le *progiciel* et le *fichier de somme de contrôle* pour le logiciel StorageGRID.
-+
-Les fichiers sont automatiquement chargés après leur sélection.
 
-.. Cliquez sur *Accueil* pour revenir à la page d'accueil du programme d'installation de l'appliance StorageGRID.
+--
+.Méthode du nœud d'administration non principal
+--
+Récupérez ce nœud à l'aide d'un nœud d'administration non principal.
+
+... Dans le champ Adresse IP du nœud d'administration non principal, saisissez l'adresse IP du réseau de la grille du nœud d'administration non principal que vous souhaitez utiliser pour la récupération, puis sélectionnez *Enregistrer*.
+... Si la version du logiciel prêt à être installée est correcte, passez directement à l' <<installation_section_step,Étape d'installation>>.
+
+
+--
+====
 
 
 . Pour installer un nœud de passerelle ou un nœud d’administration non principal :
 +
 .. Dans la section noeud, pour *Type de noeud*, sélectionnez *passerelle* ou *non-administrateur principal*, selon le type de noeud que vous restaurez.
-.. Dans le champ *Nom du noeud*, entrez le même nom que celui utilisé pour le noeud que vous êtes en train de récupérer, puis cliquez sur *Enregistrer*.
+.. Dans le champ *Nom du nœud*, saisissez le même nom que celui utilisé pour le nœud que vous récupérez, puis sélectionnez *Enregistrer*.
 .. Dans la section connexion au noeud d'administration principal, déterminez si vous devez spécifier l'adresse IP du noeud d'administration principal.
 +
 Le programme d'installation de l'appliance StorageGRID peut détecter automatiquement cette adresse IP, en supposant que le nœud d'administration principal, ou au moins un autre nœud de grille avec ADMIN_IP configuré, soit présent sur le même sous-réseau.
@@ -89,7 +107,7 @@ Entrée IP manuelle
  a| 
 .. Décochez la case *Activer la découverte du noeud d'administration*.
 .. Saisissez l'adresse IP manuellement.
-.. Cliquez sur *Enregistrer*.
+.. Sélectionnez *Enregistrer*.
 .. Patientez pendant que l'état de connexion de la nouvelle adresse IP devient « prêt ».
 
 
@@ -100,7 +118,7 @@ Détection automatique de tous les nœuds d'administration principaux connectés
  a| 
 .. Cochez la case *Activer la découverte du noeud d'administration*.
 .. Dans la liste des adresses IP découvertes, sélectionnez le nœud d'administration principal de la grille sur lequel cette appliance de services sera déployée.
-.. Cliquez sur *Enregistrer*.
+.. Sélectionnez *Enregistrer*.
 .. Patientez pendant que l'état de connexion de la nouvelle adresse IP devient « prêt ».
 
 
@@ -109,12 +127,12 @@ Détection automatique de tous les nœuds d'administration principaux connectés
 +
 Si le bouton *Démarrer l'installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres du port.  Reportez-vous aux instructions d'entretien de votre appareil.
 
-. Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, cliquez sur *Démarrer l'installation*.
+. Depuis la page d'accueil de l'installateur d'appliance StorageGRID, sélectionnez *Démarrer l'installation*.
 +
-L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
+L'état actuel passe à « Installation en cours », et la page d'installation du moniteur s'affiche.
 
 +
 
-NOTE: Si vous devez accéder manuellement à la page installation du moniteur, cliquez sur *installation du moniteur* dans la barre de menus.
+NOTE: Si vous devez accéder manuellement à la page d'installation du moniteur, sélectionnez *Monitor installation* dans la barre de menu.
 
 

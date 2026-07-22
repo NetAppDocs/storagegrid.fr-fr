@@ -48,9 +48,9 @@ Les valeurs limites sont appliquées par équilibreur de charge. Si le trafic es
 
 NOTE: Vous pouvez créer des règles pour limiter la bande passante agrégée ou limiter la bande passante par requête. Cependant, StorageGRID ne peut pas limiter les deux types de bande passante en même temps. Les limites de bande passante globales peuvent imposer un impact mineur supplémentaire sur les performances du trafic non limité.
 
-Pour les limites de bande passante globale ou par requête, les demandes sont envoyées vers l'intérieur ou vers l'extérieur au débit défini. StorageGRID ne peut appliquer qu'une seule vitesse. La correspondance des règles la plus spécifique, par type de contrôleur, est donc la plus appliquée. La bande passante consommée par la requête n'est pas prise en compte par rapport à d'autres stratégies de correspondance moins spécifiques contenant des règles de limite de bande passante de l'agrégat. Pour tous les autres types de limite, les demandes des clients sont retardées de 250 millisecondes et reçoivent une réponse lente de 503 pour les demandes dépassant toute limite de stratégie correspondante.
+Pour les limites de bande passante de l'agrégat ou par requête, les requêtes sont traitées au débit que vous avez défini. StorageGRID ne peut imposer qu'une seule vitesse, donc la règle la plus spécifique, selon le type de correspondance, est celle qui est appliquée. La bande passante consommée par la requête n'est pas prise en compte dans le calcul des autres règles de correspondance moins spécifiques contenant des politiques de limite de bande passante de l'agrégat. Pour tous les autres types de limites, les requêtes client sont retardées de 250 millisecondes et reçoivent une réponse 503 Slow Down pour les requêtes qui dépassent une limite définie par une règle correspondante.
 
-Dans Grid Manager, vous pouvez afficher les diagrammes de trafic et vérifier que les stratégies appliquent les limites de trafic que vous attendez.
+Dans le Gestionnaire de grille, vous pouvez consulter les graphiques de trafic et vérifier que les politiques appliquent bien les limites de trafic attendues.
 
 
 

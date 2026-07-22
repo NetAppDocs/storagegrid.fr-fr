@@ -1,0 +1,125 @@
+---
+permalink: tenant/grid-federation-account-sync.html 
+sidebar: sidebar 
+keywords: account sync, tenant sync, grid federation, cross-grid replication 
+summary: 'Si un locataire a été créé ou modifié pour utiliser des connexions de fédération de grilles, ce locataire est répliqué d"un système StorageGRID (le locataire source) vers tous les autres systèmes StorageGRID connectés (les locataires répliqués). Après la réplication du locataire, les groupes de locataires, les utilisateurs et les clés d"accès S3 sont synchronisés entre les grilles connectées.' 
+---
+= Synchronisez les groupes de locataires et les utilisateurs dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un locataire a été créé ou modifié pour utiliser des connexions de fédération de grilles, ce locataire est répliqué d'un système StorageGRID (le locataire source) vers tous les autres systèmes StorageGRID connectés (les locataires répliqués). Après la réplication du locataire, les groupes de locataires, les utilisateurs et les clés d'accès S3 sont synchronisés entre les grilles connectées.
+
+Le système StorageGRID dans lequel le locataire est initialement créé est la _grille source_ du locataire. Le locataire est répliqué sur une ou plusieurs _grilles de destination_. Les comptes locataires sur toutes les grilles connectées possèdent les mêmes ID de compte, nom, description, quota de stockage, autorisations attribuées et mot de passe de l'utilisateur root. Pour plus de détails, reportez-vous à link:../admin/grid-federation-what-is-account-sync.html["Découvrez la synchronisation des comptes pour la fédération de grilles"] et link:../admin/grid-federation-manage-tenants.html["Gérer les locataires autorisés"].
+
+La synchronisation des informations des comptes locataires est nécessaire pour link:../admin/grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"] des objets de compartiment. Avoir les mêmes groupes de locataires et les mêmes utilisateurs sur toutes les grilles garantit que vous pouvez accéder aux compartiments et objets correspondants sur n'importe quelle grille connectée.
+
+
+
+[[tenant-workflow-for-account-sync]]
+== Flux de travail du locataire pour la synchronisation des comptes
+
+Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille*, consultez le diagramme de flux de travail pour voir les étapes que vous effectuerez pour synchroniser les groupes, les utilisateurs et les clés d'accès S3.
+
+image:grid_federation_account_sync_workflow_tm.png["Processus de synchronisation des comptes du locataire. Les étapes sont décrites dans le texte suivant."]
+
+Voici les principales étapes du flux de travail :
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Une seule"] Connectez-vous au locataire
+[role="quick-margin-para"]
+Connectez-vous au compte locataire sur n'importe quelle grille connectée.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Vous pouvez également configurer la fédération des identités
+[role="quick-margin-para"]
+Si votre compte locataire dispose de l'autorisation *Utiliser sa propre source d'identité* pour utiliser les groupes et utilisateurs fédérés, configurez la même source d'identité (avec les mêmes paramètres) pour le compte source et un ou plusieurs comptes locataires de destination. Les groupes fédérés sont clonés lors de leur création et les utilisateurs fédérés sont clonés lors de la création d'une clé. Pour que le clonage ait lieu, la même source d'identité doit être configurée sur toutes les grilles. Pour obtenir des instructions, consultez link:using-identity-federation.html["Utiliser la fédération des identités"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Créer des groupes et des utilisateurs
+[role="quick-margin-para"]
+Vous pouvez créer des groupes et des utilisateurs depuis n'importe quelle grille connectée. Lorsque vous ajoutez un nouveau groupe local, StorageGRID le synchronise automatiquement avec toutes les grilles connectées. Les modifications des groupes locaux (modification, suppression) sont également synchronisées en continu. Les groupes fédérés sont clonés une seule fois lors de leur création.
+
+[role="quick-margin-list"]
+* Si la fédération des identités est configurée pour l'ensemble du système StorageGRID ou pour votre compte de locataire, link:creating-groups-for-s3-tenant.html["créer de nouveaux groupes de locataires"] en important des groupes fédérés à partir du référentiel d'identité.
+
+
+[role="quick-margin-list"]
+* Si vous n'utilisez pas la fédération d'identité,link:creating-groups-for-s3-tenant.html["créer de nouveaux groupes locaux"] et puislink:manage-users.html["créer des utilisateurs locaux"] .
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Création de clés d'accès S3
+[role="quick-margin-para"]
+Vous pouvez link:creating-your-own-s3-access-keys.html["créez vos propres clés d'accès"] ou link:creating-another-users-s3-access-keys.html["créez les clés d'accès d'un autre utilisateur"] sur n'importe quelle grille pour accéder aux compartiments sur toutes les grilles connectées.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] Synchroniser les clés d'accès S3
+[role="quick-margin-para"]
+Si vous devez accéder à des compartiments avec les mêmes clés d'accès sur toutes les grilles, créez les clés d'accès sur l'une des grilles. Pour les utilisateurs locaux, les clés d'accès sont synchronisées automatiquement par défaut. Pour les utilisateurs fédérés, vous devez créer les clés d'accès S3 sur la grille source et sélectionner *Activer la synchronisation des clés d'accès* pour que les clés soient synchronisées avec toutes les grilles de destination.
+
+
+
+[[how-are-groups-users-and-s3-access-keys-synced]]
+== Comment les groupes, les utilisateurs et les clés d'accès S3 sont-ils synchronisés ?
+
+Consultez cette section pour comprendre comment les groupes, les utilisateurs et les clés d'accès S3 sont synchronisés entre les grilles connectées.
+
+
+
+[[local-groups-are-continuously-synced]]
+=== Les groupes locaux sont synchronisés en permanence
+
+Une fois le compte locataire créé et répliqué sur la grille de destination, StorageGRID synchronise en continu les groupes locaux sur toutes les grilles connectées. Toutes les modifications apportées aux groupes locaux, y compris les opérations de création, de modification et de suppression, effectuées sur une grille sont automatiquement répliquées sur toutes les autres grilles connectées.
+
+Le groupe d'origine et ses copies synchronisées possèdent le même mode d'accès, les mêmes autorisations de groupe et la même stratégie de groupe S3. Pour obtenir des instructions, consultez link:creating-groups-for-s3-tenant.html["Créez des groupes pour les locataires S3"].
+
+
+
+[[local-users-are-continuously-synced]]
+=== Les utilisateurs locaux sont synchronisés en continu
+
+Lorsque vous créez un nouvel utilisateur local sur une grille connectée, StorageGRID synchronise automatiquement cet utilisateur avec toutes les autres grilles connectées. Les modifications ultérieures, y compris les éditions, suppressions et réinitialisations de mot de passe, sont également synchronisées en continu. L'utilisateur d'origine et ses copies synchronisées possèdent le même nom complet, le même nom d'utilisateur et le même paramètre *Refuser l'accès*. Les mêmes utilisateurs sur chaque grille appartiennent également aux mêmes groupes. Pour obtenir des instructions, consultez link:manage-users.html["Gérer les utilisateurs"].
+
+
+
+[[federated-groups-are-synced-once-at-creation]]
+=== Les groupes fédérés sont synchronisés une seule fois lors de leur création
+
+Si les conditions requises pour utiliser la synchronisation des comptes avec link:../admin/grid-federation-what-is-account-sync.html#account-sync-sso["authentification unique"] et link:../admin/grid-federation-what-is-account-sync.html#account-sync-identity-federation["fédération des identités"] ont été remplies, les groupes fédérés que vous créez (importez) pour le locataire sur une grille sont automatiquement synchronisés avec le locataire sur toutes les autres grilles connectées.
+
+Les deux groupes ont le même mode d'accès, les mêmes autorisations de groupe et la même stratégie de groupe S3.
+
+Une fois les groupes fédérés créés pour le locataire source et synchronisés avec les autres grilles, les utilisateurs fédérés peuvent se connecter au locataire depuis n'importe quelle grille connectée. Les modifications ultérieures apportées aux groupes fédérés ne sont pas automatiquement synchronisées entre les grilles.
+
+
+
+[[s3-access-keys-can-be-automatically-or-manually-synced]]
+=== Les clés d'accès S3 peuvent être synchronisées automatiquement ou manuellement
+
+Par défaut, StorageGRID synchronise automatiquement les clés d'accès S3. Pour des raisons de sécurité, vous pouvez désactiver la synchronisation automatique des clés d'accès S3 pour chaque tenant et utiliser des clés différentes pour chaque tenant sur chaque grille.
+
+Pour gérer les clés d'accès sur les réseaux connectés, vous pouvez procéder de l'une des manières suivantes :
+
+* Si vous n'avez pas besoin d'utiliser les mêmes clés pour chaque grid, vous pouvez désactiver la synchronisation automatique des clés d'accès et link:creating-your-own-s3-access-keys.html["créez vos propres clés d'accès"] ou link:creating-another-users-s3-access-keys.html["créez les clés d'accès d'un autre utilisateur"] sur chaque grid.
+
+
+
+NOTE: Lorsque vous synchronisez les clés d'accès S3 pour un utilisateur fédéré, l'utilisateur et les clés d'accès S3 sont synchronisés avec les locataires de destination.
+
+
+NOTE: Les clés d'accès S3 appartenant aux utilisateurs locaux sont synchronisées en continu entre les grilles connectées, y compris lors de la suppression des clés. Les clés d'accès S3 appartenant aux utilisateurs fédérés sont synchronisées une seule fois lors de leur création ; les modifications ultérieures, y compris les suppressions, ne sont pas répliquées. Vous pouvez activer ou désactiver la synchronisation des clés d'accès pour chaque connexion de locataire.
+
+
+
+[[groups-and-users-added-to-destination-grid-are-synced]]
+=== Les groupes et les utilisateurs ajoutés à la grille de destination sont synchronisés
+
+Les modifications apportées à n'importe quelle grille connectée, y compris la création ou l'importation de groupes et d'utilisateurs locaux, sont automatiquement synchronisées avec toutes les autres grilles connectées.
+
+
+
+[[edited-or-deleted-local-groups-users-and-access-keys-are-synced]]
+=== Les groupes locaux, les utilisateurs et les clés d'accès modifiés ou supprimés sont synchronisés
+
+Les modifications apportées aux groupes locaux, aux utilisateurs locaux et aux clés d'accès S3 appartenant à des utilisateurs locaux sont synchronisées en continu sur toutes les grilles connectées. Les opérations synchronisées comprennent les modifications, les suppressions et les réinitialisations de mot de passe.
+
+Les modifications apportées aux groupes fédérés et aux clés d'accès S3 appartenant aux utilisateurs fédérés ne sont pas synchronisées après leur création initiale.

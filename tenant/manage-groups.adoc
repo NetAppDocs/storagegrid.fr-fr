@@ -32,8 +32,7 @@ Vous pouvez afficher et modifier les informations de base et les détails de cha
 Si le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous affichez des groupes sur la grille source du locataire :
 
 +
-** Un message de bannière indique que si vous modifiez ou supprimez un groupe, vos modifications ne seront pas synchronisées avec l'autre grille.
-** Si nécessaire, un message de bannière indique si les groupes n'ont pas été clonés dans le locataire sur la grille de destination. Vous pouvez <<clone-groups,réessayez un clone de groupe>> que cela a échoué.
+** Si certains groupes n'ont pas été synchronisés avec le locataire sur la grille de destination, suivez les étapes pour <<sync-groups,Réessayer une synchronisation de groupe>>.
 
 
 . Si vous souhaitez modifier le nom du groupe :
@@ -61,8 +60,8 @@ Si le compte de tenant dispose de l'autorisation *utiliser la connexion de féd�
 ** Nombre d'utilisateurs dans ce groupe
 ** Champs supplémentaires si le compte de tenant dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous affichez le groupe sur la grille source du locataire :
 +
-*** État de clonage, soit *succès* soit *échec*
-*** Une bannière bleue indiquant que si vous modifiez ou supprimez ce groupe, vos modifications ne seront pas synchronisées avec l'autre grille.
+*** État de la synchronisation, soit *Réussie* soit *Échec*
+*** Pour les groupes fédérés, une bannière bleue indique que si vous modifiez ou supprimez ce groupe, vos modifications ne seront pas synchronisées avec l'autre grille.
 
 
 
@@ -111,7 +110,7 @@ Un message de réussite s'affiche en haut à droite.
 Vous pouvez dupliquer un groupe existant pour créer de nouveaux groupes plus rapidement.
 
 
-NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous dupliquez un groupe à partir de la grille source du locataire, le groupe dupliqué sera cloné dans la grille de destination du locataire.
+NOTE: Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille* et que vous dupliquez un groupe à partir de la grille source du locataire, le groupe dupliqué sera synchronisé avec la grille de destination du locataire.
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Groupes*.
@@ -123,17 +122,22 @@ NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connex
 
 
 
-[[clone-groupsretry-group-clone]]
-== [[clone-groups]]Réessayez le clone de groupe
+[[sync-groupsretry-group-sync]]
+== [[sync-groups]]Réessayer la synchronisation des groupes
 
-Pour réessayer un clone qui a échoué :
+Si la synchronisation d'un groupe échoue, la mention « Échec » s'affiche dans la colonne « État de la synchronisation » du groupe. Une bannière apparaît au-dessus du tableau pour indiquer qu'un ou plusieurs groupes ont échoué à se synchroniser.
 
-. Sélectionnez chaque groupe indiquant _(échec du clonage)_ sous le nom du groupe.
-. Sélectionnez *actions* > *groupes de clones*.
-. Consultez l'état de l'opération de clonage dans la page de détails de chaque groupe que vous êtes en train de cloner.
+.Étapes
+Pour réessayer la synchronisation :
+
+. Sur la bannière, sélectionnez *Réessayer la synchronisation*. Cette opération relance la synchronisation pour tous les groupes qui n'ont pas pu être synchronisés.
+. Pour réessayer la synchronisation d'un groupe, sélectionnez le nom du groupe. Sur la page des détails du groupe, sélectionnez *Réessayer la synchronisation*.
+. Consultez l'état de l'opération de synchronisation sur la page de détails de chaque groupe que vous synchronisez.
 
 
-Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner des groupes de locataires et des utilisateurs"].
+Si la nouvelle tentative réussit, la mention « Succeeded » apparaît dans la colonne « Sync status » pour chaque groupe synchronisé avec succès, et la bannière disparaît.
+
+Pour plus d'informations, voir link:grid-federation-account-sync.html["Synchroniser les groupes de locataires et les utilisateurs"].
 
 
 
@@ -141,9 +145,6 @@ Pour plus d'informations, voir link:grid-federation-account-clone.html["Cloner d
 == Supprimer un ou plusieurs groupes
 
 Vous pouvez supprimer un ou plusieurs groupes. Les utilisateurs qui appartiennent uniquement à un groupe supprimé ne pourront plus se connecter au gestionnaire de tenant ni utiliser le compte de tenant.
-
-
-NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous supprimez un groupe, StorageGRID ne supprimera pas le groupe correspondant sur l'autre grille. Si vous devez conserver ces informations synchronisées, vous devez supprimer le même groupe des deux grilles.
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Groupes*.
@@ -170,7 +171,7 @@ Les informations d'identification de sécurité temporaires créées en supposan
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Groupes*.
-. Cliquez sur le nom du groupe.
+. Sélectionnez le nom du groupe.
 . Sélectionnez l’onglet *Politique de confiance S3*.
 . Ajoutez votre politique de confiance S3, y compris une liste d’utilisateurs pouvant exécuter AssumeRole.
 . Sélectionnez *Enregistrer les modifications*.
@@ -201,4 +202,12 @@ Les informations d'identification de sécurité temporaires créées en supposan
     ]
 }
 ----
+Le directeur :
+
+* `"Principal": "*"`Correspond à tout le monde, y compris aux requêtes anonymes (non signées)
+* `"Principal": { "AWS": "*" }` correspond à toute identité ou utilisateur authentifié (ne correspond pas aux requêtes anonymes)
+* S'applique uniquement aux stratégies de compartiment
+* Le principal est le ou les comptes/utilisateurs auxquels les autorisations sont accordées ou refusées
+
+
 Une fois la configuration terminée, les utilisateurs répertoriés dans la politique de confiance S3 peuvent exécuter AssumeRole et recevoir des informations d’identification.  Les autorisations finales sont déterminées par la politique de groupe, la politique de compartiment et la politique de session. link:../s3/use-access-policies.html["Utiliser les politiques d'accès"] .

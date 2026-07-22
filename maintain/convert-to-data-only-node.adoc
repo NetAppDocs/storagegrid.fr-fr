@@ -22,9 +22,8 @@ Lors de la conversion de nœuds de données uniquement, la grille doit contenir 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
-* Le nœud de stockage que vous souhaitez convertir ne contient pas le service ADC ou vous avezlink:../maintain/move-adc-service.html["déplacé le service ADC"] vers un autre nœud.
 * Le nœud de stockage n’est pas un nœud de métadonnées uniquement ou un nœud de données uniquement.
-* Le nœud de stockage que vous souhaitez convertir ne contient pas le service ADC ou vous avezlink:../maintain/move-adc-service.html["déplacé le service ADC"] vers un autre nœud.
+* Si le nœud de stockage contient le service ADC, plus de deux nœuds de stockage ADC sont en ligne sur la grille, et des nœuds de stockage non-ADC sont disponibles sur le même site pour héberger le service ADC.
 * Il y a suffisamment d'espace de métadonnées sur d'autres nœuds du site (ou vous avezlink:../expand/index.html["élargi votre grille"] ) pour héberger les métadonnées qui migreront à partir du nœud de stockage que vous convertissez.
 +
 [CAUTION]
@@ -37,12 +36,15 @@ Lors de la conversion de nœuds de données uniquement, la grille doit contenir 
 
 
 .Description de la tâche
-Utilisez cette procédure pour convertir un ou plusieurs nœuds de stockage combinés qui ne contiennent pas le service ADC en nœuds de données uniquement.
+Utilisez cette procédure pour convertir un ou plusieurs nœuds de stockage combinés en nœuds de données uniquement. Si un nœud de stockage contient le service ADC, le service est automatiquement déplacé vers un autre nœud de stockage du même site lors de la conversion.
 
 En plus de convertir le nœud de stockage, cette procédure désaffecte Cassandra du nœud.  Toutes les métadonnées seront migrées vers des nœuds de stockage combinés ou contenant uniquement des métadonnées.  Selon la quantité de métadonnées à migrer, cette procédure peut prendre jusqu'à plusieurs jours par nœud.
 
 
 TIP: En règle générale, vous pouvez convertir jusqu'à 10 nœuds à la fois si l'utilisation des métadonnées par nœud est inférieure à 1 To.  Si l'utilisation des métadonnées par nœud est supérieure à 1 To, convertissez jusqu'à 5 nœuds par procédure à la place.
+
+
+NOTE: StorageGRID déplace le service ADC vers les nœuds de stockage les plus récents qui répondent aux exigences d’hébergement du service.
 
 .Étapes
 . Enregistrez les ID de nœud des nœuds de stockage non ADC que vous souhaitez convertir.

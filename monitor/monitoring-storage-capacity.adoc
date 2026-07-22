@@ -106,10 +106,7 @@ image:nodes_page_storage_used_object_data.png["Nœuds stockage de page données 
 . Passez en revue les valeurs disponibles dans les tableaux volumes et magasins d'objets, sous les graphiques.
 +
 
-NOTE: Pour visualiser les graphiques de ces valeurs, cliquez sur les icônes de graphique image:icon_chart_new_for_11_5.png["Icône de graphique"] dans les colonnes disponibles.
-
-+
-image:nodes_page_storage_tables.png["Les tables de stockage d'objets sont stockées"]
+NOTE: Pour visualiser les graphiques de ces valeurs, sélectionnez les icônes de graphique dans les colonnes disponibles.
 
 . Surveillez les valeurs dans le temps pour estimer le taux de consommation de l'espace de stockage utilisable.
 . Pour préserver le fonctionnement normal du système, ajoutez des nœuds de stockage, ajoutez des volumes de stockage ou archivez les données d'objet avant de consommer l'espace utilisable.
@@ -206,4 +203,4 @@ Si vous disposez d'une nouvelle installation StorageGRID, autorisez l'accumulati
 . Utilisez ces valeurs pour déterminer quand ajouter de nouveaux nœuds de stockage pour le stockage des données et des métadonnées.
 
 
-image:forecast-metadata-usage.png["Prévision de l'utilisation des métadonnées par site"]
+image:forecast_metadata_usage.png["Prévision de l'utilisation des métadonnées par site"]

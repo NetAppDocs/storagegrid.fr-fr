@@ -59,7 +59,6 @@ NOTE: La copie de la base de données du nœud d'administration peut prendre plu
 .. Arrêtez le service mgmt-api : `service mgmt-api stop`
 .. Ajoutez la clé privée SSH à l'agent SSH. Entrer :``ssh-add``
 .. Entrez le mot de passe d'accès SSH indiqué dans le `Passwords.txt` fichier.
-.. Copiez la base de données du nœud d'administration source vers le nœud d'administration récupéré : `/usr/local/mi/bin/mi-clone-db.sh Source_Admin_Node_IP`
 .. Lorsque vous y êtes invité, confirmez que vous souhaitez remplacer la base DE données MI sur le nœud d'administration restauré.
 +
 La base de données et ses données historiques sont copiées dans le nœud d'administration restauré. Une fois l'opération de copie effectuée, le script démarre le nœud d'administration restauré.

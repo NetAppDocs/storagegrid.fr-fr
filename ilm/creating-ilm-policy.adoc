@@ -29,7 +29,7 @@ Avant de créer votre propre stratégie, vérifiez que le link:ilm-policy-overvi
 NOTE: Utilisez uniquement les stratégies fournies par le système, la règle de 2 copies (pour les grilles à un site) ou une copie par site (pour les grilles à plusieurs sites), dans les systèmes de test. Pour StorageGRID 11.6 et les versions antérieures, la règle par défaut de cette règle utilise le pool de stockage tous les nœuds de stockage, qui contient tous les sites. Si votre système StorageGRID dispose de plusieurs sites, il est possible de placer deux copies d'un objet sur le même site.
 
 
-NOTE: Si l' link:enabling-s3-object-lock-globally.html["Le paramètre de verrouillage d'objet S3 global a été activé"], vous devez vous assurer que la stratégie ILM est conforme aux exigences des compartiments pour lesquels le verrouillage d'objet S3 est activé. Dans cette section, suivez les instructions qui mentionnent que le verrouillage d'objet S3 est activé.
+NOTE: Si link:enabling-s3-object-lock.html["Le paramètre de verrouillage d'objet S3 global a été activé"], vous devez vous assurer que la stratégie ILM est conforme aux exigences des compartiments pour lesquels le verrouillage d'objets S3 est activé. Dans cette section, suivez les instructions qui mentionnent l'activation du verrouillage d'objets S3.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -47,7 +47,7 @@ NOTE: Si l' link:enabling-s3-object-lock-globally.html["Le paramètre de verroui
 --
 .Verrouillage objet S3 activé
 --
-** link:enabling-s3-object-lock-globally.html["Le paramètre de verrouillage d'objet S3 global est déjà activé"]Pour le système StorageGRID.
+** Le link:enabling-s3-object-lock.html["Le paramètre de verrouillage d'objet S3 global est déjà activé"] pour le système StorageGRID.
 ** Vous link:what-ilm-rule-is.html["Vous avez créé des règles ILM conformes et non conformes"]souhaitez ajouter à la stratégie. Si nécessaire, vous pouvez enregistrer une stratégie, créer des règles supplémentaires, puis modifier la stratégie pour ajouter les nouvelles règles.
 ** Vous avez link:creating-default-ilm-rule.html["Une règle ILM par défaut a été créée"] pour la politique qui est conforme.
 
@@ -180,8 +180,7 @@ NOTE: Vous devez confirmer que les règles ILM sont dans l'ordre correct. Lorsqu
 Simulez une stratégie sur des objets test avant d'activer la stratégie et de l'appliquer à vos données de production.
 
 .Avant de commencer
-* Vous connaissez le compartiment S3/clé-objet pour chaque objet à tester.
-
+Vous connaissez le compartiment S3/clé-objet pour chaque objet à tester.
 
 .Étapes
 . À l'aide d'un client S3 ou du link:../tenant/use-s3-console.html["Console S3"], ingérer les objets requis pour tester chaque règle.
@@ -197,7 +196,7 @@ Simulez une stratégie sur des objets test avant d'activer la stratégie et de l
 CAUTION: Vérifiez toutes les modifications apportées au placement des objets répliqués et soumis au code d'effacement. La modification de l'emplacement d'un objet existant peut entraîner des problèmes de ressources temporaires lorsque les nouveaux placements sont évalués et implémentés.
 
 .Résultats
-Toute modification apportée aux règles de la stratégie sera prise en compte dans les résultats de la simulation et affichera la nouvelle correspondance ainsi que la correspondance précédente. La fenêtre de simulation de stratégie conserve les objets testés jusqu'à ce que vous sélectionniez *Tout effacer* ou l'icône de suppression image:icon-x-to-remove.png["Supprimer l'icône"] pour chaque objet dans la liste des résultats de la simulation.
+Toute modification apportée aux règles de la stratégie sera prise en compte dans les résultats de la simulation et affichera la nouvelle correspondance ainsi que la correspondance précédente. La fenêtre de simulation de stratégie conserve les objets testés jusqu'à ce que vous sélectionniez *Tout effacer* ou l'icône de suppression image:icon_x_to_remove.png["Supprimer l'icône"] pour chaque objet dans la liste des résultats de la simulation.
 
 .Informations associées
 link:simulating-ilm-policy-examples.html["Exemples de simulations de règles ILM"]

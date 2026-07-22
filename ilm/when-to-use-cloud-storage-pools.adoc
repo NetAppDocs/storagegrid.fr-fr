@@ -50,7 +50,7 @@ Pour implémenter une solution de hiérarchisation :
 [[maintain-multiple-cloud-endpoints]]
 == Possibilité de gérer plusieurs terminaux cloud
 
-Vous pouvez configurer plusieurs terminaux de pool de stockage cloud si vous souhaitez effectuer le Tiering ou la sauvegarde des données d'objet vers plusieurs clouds. Les filtres de vos règles ILM permettent de spécifier les objets qui sont stockés dans chaque pool de stockage cloud. Par exemple, vous pouvez stocker des objets de certains locataires ou compartiments dans Amazon S3 Glacier et des objets d'autres locataires ou compartiments dans le stockage Azure Blob. Vous pouvez également déplacer des données entre Amazon S3 Glacier et le stockage Azure Blob.
+Vous pouvez configurer plusieurs points de terminaison de Cloud Storage Pool si vous souhaitez hiérarchiser ou sauvegarder des données d'objets sur plusieurs clouds. Les filtres de vos règles ILM vous permettent de spécifier quels objets sont stockés dans chaque Cloud Storage Pool. Par exemple, vous pouvez stocker des objets de certains locataires ou compartiments dans Amazon S3 Glacier et des objets d'autres locataires ou compartiments dans Azure Blob Storage. Ou, vous pouvez déplacer des données entre Amazon S3 Glacier et Azure Blob Storage.
 
 
 NOTE: Lors de l'utilisation de plusieurs terminaux Cloud Storage Pool, n'oubliez pas qu'un objet ne peut être stocké que dans un seul pool de stockage cloud à la fois.

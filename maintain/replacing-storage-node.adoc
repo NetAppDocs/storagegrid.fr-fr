@@ -20,7 +20,7 @@ NOTE: Cette procédure s'applique uniquement aux nœuds de stockage basés sur l
 
 *Linux:* si vous n'êtes pas sûr que votre lecteur système est en panne, suivez les instructions pour remplacer le nœud afin de déterminer les étapes de récupération requises.
 
-[cols="1a,2a"]
+[cols="1a,3a"]
 |===
 | Plateforme | Procédure 
 

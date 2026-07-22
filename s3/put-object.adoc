@@ -77,11 +77,11 @@ Les en-têtes de requête suivants sont pris en charge :
 * `Content-Disposition`
 * `Content-Encoding`
 +
-Lorsque vous spécifiez `aws-chunked` pour ``Content-Encoding``StorageGRID, ne vérifie pas les éléments suivants :
+Lorsque vous spécifiez  `aws-chunked` pour  `Content-Encoding`, StorageGRID ne vérifie pas les éléments suivants :
 
 +
-** StorageGRID ne vérifie pas le `chunk-signature` par rapport aux données de bloc.
-** StorageGRID ne vérifie pas la valeur que vous fournissez pour `x-amz-decoded-content-length` l'objet.
+** StorageGRID ne vérifie pas le  `chunk-signature` par rapport aux données des blocs.
+** StorageGRID ne vérifie pas la valeur que vous fournissez pour `x-amz-decoded-content-length` par rapport à l'objet.
 
 
 * `Content-Language`
@@ -93,7 +93,20 @@ Lorsque vous spécifiez `aws-chunked` pour ``Content-Encoding``StorageGRID, ne v
 +
 Le codage de transfert avec chunked est pris en charge si `aws-chunked` la signature de charge est également utilisée.
 
-* `x-amz-checksum-sha256`
+* En-têtes de requête de somme de contrôle :
++
+--
+** `x-amz-checksum-crc32`
+** `x-amz-checksum-crc32c`
+** `x-amz-checksum-crc64nvme`
+** `x-amz-checksum-sha256`
+
+
+--
++
+
+NOTE: Si une requête PutObject ne spécifie pas de somme de contrôle, StorageGRID ne calcule pas de somme de contrôle CRC-64/NVME par défaut pour un objet.
+
 * `x-amz-meta-`, suivi d'une paire nom-valeur contenant des métadonnées définies par l'utilisateur.
 +
 Lorsque vous spécifiez la paire nom-valeur pour les métadonnées définies par l'utilisateur, utilisez le format général suivant :
@@ -151,13 +164,19 @@ Les en-têtes de demande suivants ne sont pas pris en charge :
 
 * `If-Match`
 +
-Le  `If-Match header` est accepté mais non fonctionnel.
+L' `If-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut renvoyer un message d'erreur (501 Not Implemented). Si l' `If-Match`en-tête est accepté mais non fonctionnel, une alerte peut être déclenchée avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
 
 * `If-None-Match`
 +
-Le  `If-None-Match header` est accepté mais non fonctionnel.
+L' `If-None-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut entraîner un message d'erreur (501 Not Implemented). Si l' `If-None-Match`en-tête est accepté mais non fonctionnel, une alerte peut s'afficher avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
 
 * `x-amz-acl`
+* `x-amz-checksum-md5`
+* `x-amz-checksum-sha1`
+* `x-amz-checksum-sha512`
+* `x-amz-checksum-xxhash3`
+* `x-amz-checksum-xxhash64`
+* `x-amz-checksum-xxhash128`
 * `x-amz-sdk-checksum-algorithm`
 * `x-amz-trailer`
 * `x-amz-website-redirect-location`

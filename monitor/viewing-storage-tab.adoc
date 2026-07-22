@@ -13,14 +13,10 @@ summary: 'L"onglet stockage récapitule la disponibilité du stockage et d"autre
 [role="lead"]
 L'onglet stockage récapitule la disponibilité du stockage et d'autres mesures de stockage.
 
-L'onglet stockage s'affiche pour tous les nœuds, chaque site et la grille complète.
+L'onglet Stockage s'affiche pour tous les nœuds, chaque site et l'ensemble de la grille. Cet onglet contient les informations suivantes :
 
+Graphiques utilisés pour le stockage:: Pour les nœuds de stockage, chaque site et la grille dans son intégralité, l'onglet stockage contient des graphiques indiquant la quantité de stockage utilisée par les données d'objet et les métadonnées d'objet au fil du temps.
 
-
-[[storage-used-graphs]]
-== Graphiques utilisés pour le stockage
-
-Pour les nœuds de stockage, chaque site et la grille dans son intégralité, l'onglet stockage contient des graphiques indiquant la quantité de stockage utilisée par les données d'objet et les métadonnées d'objet au fil du temps.
 
 
 NOTE: Lorsqu'un nœud n'est pas connecté à la grille, comme lors de la mise à niveau ou lorsqu'il est déconnecté, certains metrics peuvent être indisponibles ou exclus des totaux site et grid. Après qu'un nœud se reconnecte à la grille, attendez plusieurs minutes que les valeurs se stabilisent.

@@ -1,8 +1,8 @@
 ---
 permalink: maintain/changing-nodes-network-configuration.html 
 sidebar: sidebar 
-keywords: storagegrid, network configuration, node network configuration 
-summary: 'Vous pouvez modifier la configuration réseau d"un ou plusieurs nœuds à l"aide de l"outil Modifier IP. Vous pouvez modifier la configuration du réseau Grid ou ajouter, modifier ou supprimer les réseaux d"administration ou de client.' 
+keywords: storagegrid, network configuration, node network configuration, bmc ip 
+summary: 'Vous pouvez modifier la configuration réseau d"un ou plusieurs nœuds à l"aide de l"outil Modifier l"adresse IP. Vous pouvez modifier la configuration du réseau Grid, ou ajouter, modifier ou supprimer les réseaux Admin ou Client. Vous pouvez également modifier les paramètres IP LAN d"un nœud BMC.' 
 ---
 = Modifier la configuration réseau du nœud dans StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Vous pouvez modifier la configuration réseau d"un ou plusieurs nœuds
 
 
 [role="lead"]
-Vous pouvez modifier la configuration réseau d'un ou plusieurs nœuds à l'aide de l'outil Modifier IP. Vous pouvez modifier la configuration du réseau Grid ou ajouter, modifier ou supprimer les réseaux d'administration ou de client.
+Vous pouvez modifier la configuration réseau d'un ou plusieurs nœuds à l'aide de l'outil Modifier l'adresse IP. Vous pouvez modifier la configuration du réseau Grid, ou ajouter, modifier ou supprimer les réseaux Admin ou Client. Vous pouvez également modifier les paramètres IP LAN d'un nœud BMC.
 
 .Avant de commencer
 Vous avez le `Passwords.txt` fichier.
@@ -36,7 +36,7 @@ Impossible de supprimer des nœuds du réseau Grid.
 NOTE: Les échanges d'adresses IP ne sont pas autorisés. Si vous devez échanger des adresses IP entre des noeuds de grille, vous devez utiliser une adresse IP intermédiaire temporaire.
 
 
-NOTE: Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que vous modifiez l'adresse IP d'un nœud d'administration, sachez que toute approbation de partie de confiance configurée à l'aide de l'adresse IP du nœud d'administration (au lieu de son nom de domaine complet, comme recommandé) deviendra invalide.  Vous ne pourrez plus vous connecter au nœud.  Immédiatement après avoir modifié l'adresse IP, vous devez mettre à jour ou reconfigurer la partie de confiance du nœud dans Active Directory Federation Services (AD FS) avec la nouvelle adresse IP.  Voir les instructions pourlink:../admin/configure-sso.html["Configuration de SSO"] .
+NOTE: Si l’authentification unique (SSO) est activée pour votre système StorageGRID et que vous modifiez l’adresse IP d’un nœud d’administration, sachez que toute approbation de partie de confiance configurée à l’aide de l’adresse IP du nœud d’administration (au lieu de son nom de domaine complet, comme recommandé) deviendra invalide. Vous ne pourrez plus vous connecter au nœud. Immédiatement après la modification de l’adresse IP, vous devez mettre à jour ou reconfigurer l’approbation de partie de confiance du nœud dans Active Directory Federation Services (AD FS) avec la nouvelle adresse IP. Consultez les instructions de configuration de l’authentification unique (SSO) à l’aide de link:../admin/learn-about-setting-up-sso-oidc.html["OIDC"] ou link:../admin/learn-about-setting-up-sso-saml.html["SAML"].
 
 
 NOTE: Toutes les modifications que vous apportez au réseau à l'aide de l'outil Modifier IP sont propagées au micrologiciel du programme d'installation des appliances StorageGRID. Ainsi, si le logiciel StorageGRID est réinstallé sur une appliance ou si une appliance est placée en mode de maintenance, la configuration réseau est correcte.
@@ -246,3 +246,18 @@ où `_<speed>_` est `fast` ou `slow` .
 
 
 Le débit PDU LACP reviendra à son paramètre précédent lors du prochain redémarrage de l'appareil.
+
+
+
+[[change-appliance-node-bmc-lan-ip-settings]]
+== Modifier les paramètres IP LAN du BMC du nœud de l'appliance
+
+Vous pouvez modifier les paramètres IP LAN d'un nœud BMC.
+
+. Dans Grid Manager, accédez à *Nœuds* > *_grid node_* > *Paramètres BMC*.
+. Dans la section des paramètres IP du réseau local, sélectionnez un type d’attribution d’adresse IP *Statique* ou *DHCP*.
+. Saisissez l'adresse MAC, l'adresse IPv4 (CIDR) et la passerelle par défaut du BMC.
+. Sélectionnez *Enregistrer*.
+
+
+Vous pouvez également modifier ou consulter les paramètres IP LAN du BMC à l'aide de l' `PUT /bmc-configuration/root-password` ou de l' `GET /bmc-configuration/root-password`API.

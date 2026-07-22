@@ -10,8 +10,10 @@ settings:
     harmony_enabled: false
     hide_language_selector: false
   versions:
-  - version-number: '12.0'
+  - version-number: '12.1'
     url: "/storagegrid"
+  - version-number: '12.0'
+    url: "/storagegrid-120"
   - version-number: '11.9'
     url: "/storagegrid-119"
   - version-number: '11.8'
@@ -25,13 +27,13 @@ settings:
   langs: fr-fr,us-en,de-de,es-es,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
 sidebar:
   entries:
-  - title: Logiciel StorageGRID 12.0
+  - title: Logiciel StorageGRID 12.1
     url: "/index.html"
   - title: Appliances StorageGRID
     url: "/swnodes/storagegrid-hardware.html"
   - title: Notes de mise à jour
     entries:
-    - title: Quoi de neuf dans StorageGRID 12.0
+    - title: Nouveautés de StorageGRID 12.1
       url: "/release-notes/whats-new.html"
     - title: Fonctionnalités supprimées ou obsolètes
       url: "/release-notes/removed-or-deprecated-features.html"
@@ -39,6 +41,8 @@ sidebar:
       url: "/release-notes/changes-to-grid-management-api.html"
     - title: Modifications apportées à l'API de gestion des locataires
       url: "/release-notes/changes-to-tenant-management-api.html"
+    - title: Modifications apportées à la prise en charge de l'API REST S3
+      url: "/release-notes/changes-to-s3-rest-api.html"
   - title: Commencez
     url: "/landing-get-started/index.html"
     entries:
@@ -274,18 +278,16 @@ sidebar:
         - title: Remontage et reformatage des volumes de stockage de l'appliance (étapes
             manuelles)
           url: "/maintain/remounting-and-reformatting-appliance-storage-volumes.html"
-        - title: Restaurez les données d'objet vers un volume de stockage pour l'appliance
+        - title: Restaurez les données de l'objet sur le volume de stockage de l'appliance
           url: "/maintain/restoring-object-data-to-storage-volume-for-appliance.html"
         - title: Vérifiez l'état de stockage après la récupération du nœud de stockage
             de l'appliance
           url: "/maintain/checking-storage-state-after-recovering-sga.html"
       - title: Restaurez le disque d'après la panne du volume de stockage là où le
           disque du système est intact
+        pdf-filename: Restaurez le disque d'après la panne du volume de stockage là
+          où le disque du système est intact
         entries:
-        - title: Tâches de restauration
-          pdf-filename: Restaurez le disque d'après la panne du volume de stockage
-            là où le disque du système est intact
-          url: "/maintain/recovering-from-storage-volume-failure-where-system-drive-is-intact.html"
         - title: Avertissements pour la restauration du volume de stockage
           url: "/maintain/reviewing-warnings-about-storage-volume-recovery.html"
         - title: Identifiez et démontez les volumes de stockage défectueux
@@ -293,8 +295,8 @@ sidebar:
         - title: Restaurez des volumes de stockage défaillants et reconstruisez la
             base de données Cassandra
           url: "/maintain/recovering-failed-storage-volumes-and-rebuilding-cassandra-database.html"
-        - title: Restaurez les données d'objet vers le volume de stockage sur lequel
-            le disque système est intact
+        - title: Restaurez les données d'objet sur le volume StorageGRID où le lecteur
+            système est intact
           url: "/maintain/restoring-object-data-to-storage-volume-where-system-drive-is-intact.html"
         - title: Vérifier l'état du stockage après la récupération des volumes de
             stockage
@@ -311,26 +313,23 @@ sidebar:
           url: "/maintain/selecting-start-recovery-to-configure-storage-node.html"
         - title: Remontage et reformatage des volumes de stockage (étapes manuelles)
           url: "/maintain/remounting-and-reformatting-storage-volumes-manual-steps.html"
-        - title: Restauration des données d'objet sur le volume de stockage (panne
-            de disque système)
+        - title: Restaurez les données de l'objet sur le volume de stockage
           url: "/maintain/restoring-object-data-to-storage-volume.html"
         - title: Vérifiez l'état du stockage après avoir restauré le lecteur système
             du nœud de stockage
           url: "/maintain/checking-storage-state-after-recovering-storage-node-system-drive.html"
-      - title: Restaurez les données d'objet à l'aide de Grid Manager
-        url: "/maintain/restoring-volume.html"
-      - title: Surveiller les tâches de réparation des données
-        url: "/maintain/monitor-repairs.html"
     - title: Restaurez vos données après une panne de nœud d'administration
       entries:
       - title: Nœud d'administration principal ou non principal
         pdf-filename: Restaurez vos données après une panne de nœud d'administration
         url: "/maintain/recovering-from-admin-node-failures.html"
-      - title: Restaurez vos données après une panne de nœud d'administration principal
+      - title: Récupérez après une défaillance du nœud d'administration principal
+          en utilisant le même nœud d'administration principal
         entries:
-        - title: Restaurer le nœud d'administration principal
-          pdf-filename: Restaurez vos données après une panne de nœud d'administration
-            principal
+        - title: Récupérez le nœud d'administration principal en utilisant le même
+            nœud d'administration principal
+          pdf-filename: Récupérez le nœud d'administration principal en utilisant
+            le même nœud d'administration principal
           url: "/maintain/recovering-from-primary-admin-node-failures.html"
         - title: La copie des journaux d'audit à partir d'un nœud d'administration
             principal a échoué
@@ -351,6 +350,31 @@ sidebar:
         - title: Restaurez les metrics Prometheus lors de la récupération du nœud
             d'administration principal
           url: "/maintain/restoring-prometheus-metrics-primary-admin-node.html"
+      - title: Récupérez après des défaillances du nœud d'administration principal
+          à l'aide d'un nœud d'administration non principal
+        entries:
+        - title: Récupérez le nœud d'administration principal à l'aide d'un nœud d'administration
+            non principal
+          pdf-filename: Récupérez le nœud d'administration principal à l'aide d'un
+            nœud d'administration non principal
+          url: "/maintain/recovering-from-primary-admin-node-failures-using-npan.html"
+        - title: La copie des journaux d'audit à partir d'un nœud d'administration
+            principal a échoué
+          url: "/maintain/copying-audit-logs-from-failed-primary-admin-node-using-npan.html"
+        - title: Remplacez le nœud d'administration principal
+          url: "/maintain/replacing-primary-admin-node-using-npan.html"
+        - title: Sélectionnez Démarrer la récupération pour configurer le nœud Admin
+            principal
+          url: "/maintain/selecting-start-recovery-to-configure-primary-admin-node.html"
+        - title: Déterminez les exigences de correctif pour le nœud d'administration
+            principal
+          url: "/maintain/assess-hotfix-requirement-during-primary-admin-node-recovery-using-npan.html"
+        - title: Restaurez le journal d'audit sur le nœud d'administration principal
+            restauré
+          url: "/maintain/restoring-audit-log-on-recovered-primary-admin-node-using-npan.html"
+        - title: Restaurez les metrics Prometheus lors de la récupération du nœud
+            d'administration principal
+          url: "/maintain/restoring-prometheus-metrics-primary-admin-node-using-npan.html"
       - title: Restaurez vos données en cas de défaillance d'un nœud d'administration
           non principal
         entries:
@@ -398,8 +422,10 @@ sidebar:
       - title: 'Qu''est-ce qui suit : effectuez des étapes de récupération supplémentaires,
           si nécessaire'
         url: "/maintain/whats-next-performing-additional-recovery-steps-if-required.html"
-    - title: Remplacer le nœud VMware
+    - title: Remplacer le nœud VMware par un nœud de récupération
       url: "/maintain/all-node-types-replacing-vmware-node.html"
+    - title: Remplacez le nœud VMware par SG1000 ou SG100
+      url: "/maintain/replace-vmware-node-with-sg1000-sg100.html"
     - title: Remplacez le nœud défectueux par l'appliance de services
       entries:
       - title: Instructions de remplacement

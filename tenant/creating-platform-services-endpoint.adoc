@@ -363,9 +363,9 @@ Utilisez le certificat d'autorité de certification Grid par défaut installé s
 
 |===
 --
-.Points de terminaison Webhook uniquement
+.Points de terminaison Webhook et Kafka
 --
-Vérifiez la connexion TLS pour les points de terminaison webhook.
+Vérifiez la connexion TLS pour les points de terminaison webhook ou Kafka.
 
 [cols="1a,2a"]
 |===
@@ -397,6 +397,15 @@ La vérification du certificat est désactivée.  Cette option n'est pas sécuri
 Utiliser un certificat d'autorité de certification personnalisé
  a| 
 Le certificat CA personnalisé est utilisé pour vérifier l’identité du serveur lors de la connexion au point de terminaison.
+
+
+
+ a| 
+Utiliser le certificat CA du système d'exploitation
+ a| 
+Utilisez le certificat d'autorité de certification Grid par défaut installé sur le système d'exploitation pour sécuriser les connexions.
+
+*Remarque* : Les points de terminaison Webhook ne disposent pas de cette option.
 
 |===
 Lorsque vous sélectionnez *mTLS*, ces options deviennent disponibles.
@@ -454,4 +463,5 @@ Après avoir configuré un noeud final, vous pouvez utiliser son URN pour config
 * link:configuring-cloudmirror-replication.html["Configurez la réplication CloudMirror"]
 * link:configuring-event-notifications.html["Configurer les notifications d'événements"]
 * link:configuring-search-integration-service.html["Configurez le service d'intégration de la recherche"]
+* link:../network/external-communications.html["Ports utilisés pour les communications externes"]
 

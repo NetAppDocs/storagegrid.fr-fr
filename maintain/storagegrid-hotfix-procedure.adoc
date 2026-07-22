@@ -36,11 +36,11 @@ Lorsque les nœuds de grille sont mis à jour avec la nouvelle version de correc
 [[how-hotfixes-are-applied-for-recovery-and-expansion]]
 == Application des correctifs pour la restauration et l'extension
 
-Une fois qu'un correctif a été appliqué à votre grille, le nœud d'administration principal installe automatiquement la même version de correctif sur tous les nœuds restaurés par les opérations de reprise ou ajoutés dans une extension.
+Une fois un correctif appliqué à votre grille, le nœud d'administration principal ou un nœud d'administration secondaire installe automatiquement la même version du correctif sur tout nœud restauré par des opérations de récupération ou ajouté lors d'une extension. Vous pouvez récupérer n'importe quel nœud (y compris le nœud d'administration principal) lorsque vous êtes connecté à un nœud d'administration secondaire. Si vous récupérez un nœud à partir d'un nœud d'administration secondaire, ce nœud d'administration applique le correctif au nœud récupéré.
 
-Cependant, si vous devez restaurer le noeud d'administration principal, vous devez installer manuellement la version correcte de StorageGRID, puis appliquer le correctif. La version StorageGRID finale du nœud d'administration principal doit correspondre à la version des autres nœuds de la grille.
+Si vous devez restaurer le nœud d'administration principal à partir de son propre programme d'installation StorageGRID, vous devez installer manuellement la version appropriée de StorageGRID, puis appliquer le correctif. La version finale de StorageGRID du nœud d'administration principal doit correspondre à celle des autres nœuds de la grille.
 
-L'exemple suivant illustre comment appliquer un correctif lors de la restauration du noeud d'administration principal :
+L'exemple suivant illustre comment appliquer un correctif lors de la récupération du nœud d'administration principal lorsque vous êtes connecté au nœud d'administration secondaire :
 
 . Supposons que la grille exécute une version StorageGRID 11._A.B_ avec le dernier correctif. La « version GRID » est 11._A.B.y_.
 . Le nœud d'administration principal tombe en panne.
@@ -51,5 +51,3 @@ NOTE: Si nécessaire pour correspondre à la version de grille, vous pouvez util
 
 . Vous appliquez ensuite le correctif 11._A.B.y_ au nœud d'administration principal.
 
-
-Pour plus d'informations, voir link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"].

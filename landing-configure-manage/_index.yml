@@ -15,10 +15,12 @@ indexpage:
   tiles:
   - title: Commencez
     links:
+    - title: Navigateurs Web pris en charge
+      url: "../admin/web-browser-requirements.html"
     - title: Connectez-vous au Grid Manager
       url: "../admin/signing-in-to-grid-manager.html"
-    - title: Configurez AutoSupport
-      url: "../admin/configure-autosupport-grid-manager.html"
+    - title: Déconnectez-vous du Grid Manager
+      url: "../admin/signing-out-of-grid-manager.html"
     - title: Utilisez l'API de gestion du grid
       url: "../admin/using-grid-management-api.html"
   - title: Gestion des groupes et utilisateurs d'administration
@@ -27,8 +29,8 @@ indexpage:
       url: "../admin/using-identity-federation.html"
     - title: Gérez les groupes d'administration
       url: "../admin/managing-admin-groups.html"
-    - title: Autorisations de groupe d'administration
-      url: "../admin/admin-group-permissions.html"
+    - title: Découvrez la vérification multi-administrateurs
+      url: "../admin/about-multi-admin-verify.html"
     - title: Configurer l'authentification unique
       url: "../admin/how-sso-works.html"
   - title: Utiliser la fédération de grille
@@ -41,6 +43,8 @@ indexpage:
       url: "../admin/grid-federation-create-connection.html"
     - title: Gérer les locataires autorisés
       url: "../admin/grid-federation-manage-tenants.html"
+    - title: Configurer l'espace de noms global
+      url: "../admin/configure-global-namespace.html"
   - title: Gérez les connexions client et les locataires
     links:
     - title: Configuration des noms de domaine de terminaux S3

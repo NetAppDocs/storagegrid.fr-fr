@@ -13,7 +13,7 @@ summary: 'Lorsque l"authentification unique (SSO) est activée, les utilisateurs
 [role="lead"]
 Lorsque l'authentification unique (SSO) est activée, les utilisateurs peuvent accéder à Grid Manager, Tenant Manager, Grid Management API ou Tenant Management API uniquement si leurs informations d'identification sont autorisées à l'aide du processus de connexion SSO mis en œuvre par votre organisation.  Les utilisateurs locaux ne peuvent pas se connecter à StorageGRID.
 
-Le système StorageGRID prend en charge la fonctionnalité SSO (Single Sign-on) en utilisant la 2.0 norme SAML 2.0 (Security assertion Markup Language).
+Le système StorageGRID prend en charge l’authentification unique (SSO) à l’aide de la norme Security Assertion Markup Language 2.0 (SAML 2.0) ou OpenID Connect.
 
 Avant d'activer l'authentification unique (SSO), vérifiez comment les processus de connexion et de déconnexion StorageGRID sont affectés lorsque l'authentification SSO est activée.
 

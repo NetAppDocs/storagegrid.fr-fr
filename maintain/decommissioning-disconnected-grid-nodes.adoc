@@ -58,15 +58,15 @@ CAUTION: Soyez prudent lorsque vous choisissez de désaffecter plusieurs nœuds 
 +
 Le bouton *Start Decommission* est activé.
 
-. Cliquez sur *Start Decommission*.
+. Sélectionnez *Démarrer la mise hors service*.
 +
 Un avertissement apparaît, indiquant que vous avez sélectionné un nœud déconnecté et que ces données d'objet seront perdues si le nœud possède la seule copie d'un objet.
 
-. Consultez la liste des nœuds et cliquez sur *OK*.
+. Examinez la liste des nœuds, puis sélectionnez *OK*.
 +
 La procédure de mise hors service démarre et la progression est affichée pour chaque nœud.  Au cours de la procédure, un nouveau package de récupération est généré contenant la modification de la configuration de la grille.
 
-. Dès que le nouveau package de récupération est disponible, cliquez sur le lien ou sélectionnez *Maintenance* > *Système* > *Pack de récupération* pour accéder à la page du package de récupération.  Ensuite, téléchargez le `.zip` déposer.
+. Dès que le nouveau package de récupération est disponible, sélectionnez le lien ou sélectionnez *Maintenance* > *System* > *Recovery package* pour accéder à la page du package de récupération. Téléchargez ensuite le  `.zip` fichier.
 +
 Voir les instructions pourlink:downloading-recovery-package.html["téléchargement du package de récupération"] .
 
@@ -87,41 +87,36 @@ La désaffectation des nœuds de stockage peut prendre plusieurs jours ou semain
 
 CAUTION: N'effectuez pas cette étape tant que les nœuds ne s'arrêtent pas automatiquement.
 
-. Si vous désaffecez un nœud de stockage, surveillez l'état des tâches de réparation *données répliquées* et *données codées d'effacement (EC)* qui sont automatiquement lancées pendant le processus de mise hors service.
-
-
+. Si vous mettez hors service un nœud de stockage, surveillez l'état des tâches de réparation des *données répliquées* et des *données à codage d'effacement (EC)* qui sont automatiquement lancées pendant le processus de mise hors service.
++
 [role="tabbed-block"]
 ====
 .Les données répliquées
 --
-* Pour obtenir une estimation du pourcentage d'achèvement de la réparation répliquée, ajoutez l' `show-replicated-repair-status`option à la commande repair-data.
+** Pour déterminer si les réparations sont terminées :
 +
-`repair-data show-replicated-repair-status`
-
-* Pour déterminer si les réparations sont terminées :
-+
-.. Sélectionnez *Nœuds* > *_Nœud de stockage en cours de réparation_* > *ILM*.
-.. Vérifiez les attributs dans la section évaluation. Lorsque les réparations sont terminées, l'attribut *attente - tous* indique 0 objets.
+... Sélectionnez *Nœuds* > *_Nœud de stockage en cours de réparation_* > *ILM*.
+... Vérifiez les attributs dans la section évaluation. Lorsque les réparations sont terminées, l'attribut *attente - tous* indique 0 objets.
 
 
-* Pour surveiller la réparation plus en détail :
+** Pour surveiller la réparation plus en détail :
 +
-.. Sélectionnez *Nœuds*.
-.. Sélectionnez *_grid name_* > *ILM*.
-.. Placez votre curseur sur le graphique de la file d'attente ILM pour voir la valeur de l'attribut *Taux d'analyse (objets/sec)*, qui est le taux auquel les objets de la grille sont analysés et mis en file d'attente pour ILM.
-.. Dans la section File d’attente ILM, examinez les attributs suivants :
+... Sélectionnez *Nœuds*.
+... Sélectionnez *_grid name_* > *ILM*.
+... Placez votre curseur sur le graphique de la file d'attente ILM pour voir la valeur de l'attribut *Taux d'analyse (objets/sec)*, qui est le taux auquel les objets de la grille sont analysés et mis en file d'attente pour ILM.
+... Dans la section File d’attente ILM, examinez les attributs suivants :
 +
-*** *Période d'analyse - estimation* : temps estimé pour effectuer une analyse ILM complète de tous les objets.
+**** *Période d'analyse - estimation* : temps estimé pour effectuer une analyse ILM complète de tous les objets.
 +
 Une analyse complète ne garantit pas que l'ILM a été appliqué à tous les objets.
 
-*** *Réparations tentées* : Nombre total d'opérations de réparation d'objets tentées pour les données répliquées considérées comme à haut risque.  Les objets à haut risque sont tous les objets avec une copie restante, qu'elle soit spécifiée par la politique ILM ou à la suite de copies perdues.  Ce nombre augmente chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque.  Les réparations ILM à haut risque sont prioritaires si le réseau devient occupé.
+**** *Réparations tentées* : Nombre total d'opérations de réparation d'objets tentées pour les données répliquées considérées comme à haut risque.  Les objets à haut risque sont tous les objets avec une copie restante, qu'elle soit spécifiée par la politique ILM ou à la suite de copies perdues.  Ce nombre augmente chaque fois qu'un nœud de stockage tente de réparer un objet à haut risque.  Les réparations ILM à haut risque sont prioritaires si le réseau devient occupé.
 +
 La même réparation d'objet peut s'incrémenter à nouveau si la réplication échoue après la réparation.  + Ces attributs peuvent être utiles lorsque vous surveillez la progression de la récupération du volume du nœud de stockage.  Si le nombre de réparations tentées a cessé d'augmenter et qu'une analyse complète a été effectuée, la réparation est probablement terminée.
 
 
 
-.. Vous pouvez également soumettre une requête Prometheus pour `storagegrid_ilm_scan_period_estimated_minutes` et `storagegrid_ilm_repairs_attempted` .
+... Vous pouvez également soumettre une requête Prometheus pour `storagegrid_ilm_scan_period_estimated_minutes` et `storagegrid_ilm_repairs_attempted` .
 
 
 
@@ -129,41 +124,12 @@ La même réparation d'objet peut s'incrémenter à nouveau si la réplication �
 --
 .Données avec code d'effacement (EC)
 --
-Pour surveiller la réparation des données codées d'effacement et réessayer toute demande qui pourrait avoir échoué :
-
-. Déterminez l'état des réparations des données par code d'effacement :
-+
-** Sélectionnez *Support* > *Outils* > *Métriques* pour afficher le temps estimé jusqu'à l'achèvement et le pourcentage d'achèvement de la tâche en cours.  Ensuite, sélectionnez *EC Overview* dans la section Grafana.  Consultez les tableaux de bord *Temps estimé d'achèvement du travail EC de la grille* et *Pourcentage d'achèvement du travail EC de la grille*.
-** Utiliser cette commande pour voir le statut d'une opération spécifique `repair-data` :
-+
-`repair-data show-ec-repair-status --repair-id repair ID`
-
-** Utilisez cette commande pour lister toutes les réparations :
-+
-`repair-data show-ec-repair-status`
-
-+
-Le résultat répertorie les informations, y compris `repair ID`, pour toutes les réparations en cours et antérieures.
-
-
-
-. Si le résultat indique que l'opération de réparation a échoué, utilisez l' `--repair-id`option pour réessayer la réparation.
-+
-Cette commande relance une réparation de nœud ayant échoué à l'aide de l'ID de réparation 6949309319275667690 :
-
-+
-`repair-data start-ec-node-repair --repair-id 6949309319275667690`
-
-+
-Cette commande relance une réparation de volume en échec à l'aide de l'ID de réparation 6949309319275667690 :
-
-+
-`repair-data start-ec-volume-repair --repair-id 6949309319275667690`
-
-
+Pour surveiller la réparation des données à code d'effacement et relancer toute requête qui aurait pu échouer, sélectionnez *Support* > *Outils* > *Métriques* pour afficher le temps estimé jusqu'à l'achèvement et le pourcentage d'achèvement de la tâche en cours. Ensuite, sélectionnez *EC Overview* dans la section Grafana. Consultez les tableaux de bord *Grid EC Job Estimated Time to Completion* et *Grid EC Job Percentage Completed*.
 
 --
 ====
+
+
 .Une fois que vous avez terminé
 Dès que les nœuds déconnectés ont été désaffectés et que toutes les tâches de réparation de données ont été effectuées, vous pouvez désaffecter tous les nœuds de la grille connectés si nécessaire.
 

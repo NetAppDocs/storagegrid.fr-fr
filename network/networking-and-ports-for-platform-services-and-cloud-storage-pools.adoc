@@ -31,7 +31,7 @@ Les services de plateforme requièrent l'accès depuis des nœuds de stockage qu
 [[networking-for-cloud-storage-pools]]
 == Mise en réseau pour les pools de stockage cloud
 
-Les pools de stockage cloud nécessitent également l'accès des nœuds de stockage aux terminaux fournis par le service externe utilisé, comme Amazon S3 Glacier ou Microsoft Azure Blob Storage. Pour plus d'informations, voir link:../ilm/what-cloud-storage-pool-is.html["Qu'est-ce qu'un pool de stockage cloud"].
+Les pools de stockage cloud nécessitent également un accès depuis les nœuds de stockage aux points de terminaison fournis par le service externe utilisé, tel qu'Amazon S3 Glacier ou Microsoft Azure Blob Storage. Pour plus d'informations, voir link:../ilm/what-cloud-storage-pool-is.html["Qu'est-ce qu'un pool de stockage cloud"].
 
 
 

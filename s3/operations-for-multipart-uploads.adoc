@@ -33,7 +33,14 @@ Les conditions et notes suivantes s'appliquent à toutes les opérations de tél
 * Toutes les opérations de téléchargement en plusieurs parties prennent en charge StorageGRIDlink:consistency.html["valeurs de cohérence"] .
 * Lorsqu'un objet est ingéré à l'aide d'un téléchargement partitionné, le link:../admin/what-object-segmentation-is.html["Seuil de segmentation d'objet (1 Gio)"]n'est pas appliqué.
 * Si nécessaire, vous pouvez l'utiliser link:using-server-side-encryption.html["chiffrement côté serveur"] avec les téléchargements partitionnés. Pour utiliser SSE (chiffrement côté serveur avec des clés gérées par StorageGRID), vous incluez l'en- `x-amz-server-side-encryption`tête de requête dans la requête CreateMultipartUpload uniquement. Pour utiliser SSE-C (chiffrement côté serveur avec des clés fournies par le client), vous devez spécifier les trois mêmes en-têtes de requête de clé de chiffrement dans la demande CreateMultipartUpload et dans chaque demande UploadPart suivante.
-* Un objet téléchargé en plusieurs parties est inclus dans unlink:../tenant/what-is-branch-bucket.html["seau de branche"] si l'ingestion a été initiée avant l'horodatage Avant du bucket de base, quel que soit le moment où le téléchargement est terminé.
+* Qu’un objet téléchargé en plusieurs parties soit inclus dans un link:../tenant/what-is-branch-bucket.html["seau de branche"] dépend de l’heure à laquelle l’ingestion a été initiée et du filtre temporel du compartiment de branche :
++
+** *Avant*. Si l’ingestion a été initiée avant l’horodatage _Before_ du compartiment de branche, l’objet téléchargé en plusieurs parties est inclus, quelle que soit la date de fin du téléchargement.
+** *Après*. Si l'ingestion a été initiée après l'horodatage _After_ du compartiment de branche, l'objet téléchargé en plusieurs parties est inclus.
+** *Entre*. Si l'ingestion a été initiée entre les horodatages _From_ et _To_ du compartiment de branche, l'objet téléchargé en plusieurs parties est inclus, quelle que soit la date et l'heure de fin du téléchargement.
+** *Exclure*. Si l’ingestion a été initiée avant l’heure _Exclude from_ du compartiment de branche ou après l’heure _Exclude to_, l’objet téléchargé en plusieurs parties est inclus.
+
+
 
 
 [cols="2a,3a"]

@@ -82,7 +82,7 @@ Au bout de quelques minutes :
 
 
 +
-image:delete-bucket-objects-in-progress.png["capture d'écran montrant la suppression d'objets de compartiment"]
+image:delete_bucket_objects_in_progress.png["capture d'écran montrant la suppression d'objets de compartiment"]
 
 . Si nécessaire pendant l'exécution de l'opération, sélectionnez *Arrêter la suppression d'objets* pour arrêter le processus. Sélectionnez ensuite *Supprimer les objets dans le compartiment* pour reprendre le processus.
 +
@@ -93,7 +93,7 @@ Lorsque vous sélectionnez *Arrêter la suppression d'objets*, le compartiment e
 Lorsque le compartiment est vide, la bannière d'état est mise à jour, mais le compartiment reste en lecture seule.
 
 +
-image:delete-bucket-objects-complete.png["capture d'écran montrant tous les objets de compartiment supprimés"]
+image:delete_bucket_objects_complete.png["capture d'écran montrant tous les objets de compartiment supprimés"]
 
 . Effectuez l'une des opérations suivantes :
 +

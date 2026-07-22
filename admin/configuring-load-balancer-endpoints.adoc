@@ -86,6 +86,8 @@ Port StorageGRID que vous souhaitez utiliser pour l'équilibrage de charge. Ce c
 
 Si vous entrez *80* ou *8443*, le noeud final est configuré uniquement sur les noeuds passerelle, sauf si vous avez libéré le port 8443. Vous pouvez ensuite utiliser le port 8443 en tant que terminal S3 et le port sera configuré à la fois sur les nœuds de passerelle et d'administration.
 
+Si vous configurez des points de terminaison d’équilibrage de charge pour un link:../admin/configure-global-namespace.html["espace de noms global"], utilisez le même port pour chaque point de terminaison.
+
 
 
  a| 

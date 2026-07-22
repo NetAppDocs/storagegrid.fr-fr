@@ -60,3 +60,5 @@ Cette documentation n'octroie aucune licence ni aucun autre droit sur l'API REST
 Les fichiers de notification fournissent des informations sur les droits d'auteur et les licences de tiers utilisés dans le logiciel NetApp.
 
 https://library.netapp.com/ecm/ecm_download_file/ECMLP3351268[]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMLP3373066[]

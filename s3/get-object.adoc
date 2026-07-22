@@ -31,10 +31,14 @@ StorageGRID n'analyse ni n'interprète pas les caractères UTF-8 qui se sont éc
 
 
 
-[[supported-request-header]]
-== En-tête de demande pris en charge
+[[supported-request-headers]]
+== En-têtes de demande pris en charge
 
-L'en-tête de demande suivant est pris en charge :
+Les en-têtes de requête suivants sont pris en charge :
+
+* `Accept-Encoding`
++
+Lorsqu’un objet ne possède pas d’ `Content-Encoding` stocké, une requête GET avec  `Accept-Encoding: gzip` applique une compression à la volée à la réponse. Seul  `gzip` affecte l’encodage de la réponse GET ;  `deflate`,  `br` et  `identity` n’ont aucun effet. Pour les objets qui possèdent déjà un  `Content-Encoding` stocké, StorageGRID renvoie l’encodage stocké et n’applique pas de compression supplémentaire à la volée en fonction de  `Accept-Encoding`. StorageGRID ne prend pas en charge les opérations de lecture par plage pour les requêtes GET avec  `Accept-Encoding: gzip`.
 
 * `x-amz-checksum-mode`: Spécifiez `ENABLED`
 +

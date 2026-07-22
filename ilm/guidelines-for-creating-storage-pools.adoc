@@ -13,7 +13,7 @@ summary: 'Configurez et utilisez les pools de stockage pour vous protéger contr
 [role="lead"]
 Configurez et utilisez les pools de stockage pour vous protéger contre les pertes de données, en distribuant les données entre plusieurs sites. Les copies répliquées et les copies avec code d'effacement nécessitent différentes configurations de pool de stockage.
 
-Voir link:using-multiple-storage-pools-for-cross-site-replication.html["Exemples d'activation de la protection contre la perte sur site à l'aide de la réplication et du code d'effacement"].
+Consultez link:using-multiple-storage-pools-for-cross-site-replication.html["Exemples d'activation de la protection contre la perte sur site à l'aide de la réplication et du code d'effacement"].
 
 
 
@@ -54,7 +54,7 @@ L'utilisation d'un pool de stockage pour chaque site permet de placer les copies
 * Distribuez les nœuds de stockage sur tous les sites de façon aussi homogène que possible. Par exemple, pour prendre en charge un schéma de code d'effacement 6+3, configurez un pool de stockage qui inclut au moins trois nœuds de stockage sur trois sites.
 * Si vos besoins en débit sont élevés, il n'est pas recommandé d'utiliser un pool de stockage comprenant plusieurs sites si la latence réseau entre les sites est supérieure à 100 ms. Au fur et à mesure que la latence augmente, la vitesse à laquelle StorageGRID peut créer, placer et récupérer des fragments d'objet diminue considérablement en raison de la diminution du débit du réseau TCP.
 +
-La diminution du débit affecte les taux maximaux d'entrée et de récupération d'objets (lorsqu'un comportement d'ingestion est sélectionné pour être équilibré ou strict) ou peut entraîner des retards de file d'attente ILM (lorsque la double validation est sélectionnée comme comportement d'ingestion). Voir link:what-ilm-rule-is.html#ilm-rule-ingest-behavior["Comportement d'ingestion des règles ILM"].
+La diminution du débit affecte les taux maximaux d'ingestion et de récupération d'objets (lorsque les modes Équilibré ou Strict sont sélectionnés comme comportement d'ingestion) ou peut entraîner des engorgements de la file d'attente ILM (lorsque le mode Double validation est sélectionné comme comportement d'ingestion). Voir link:what-ilm-rule-is.html#ilm-rule-ingest-behavior["Comportement d'ingestion des règles ILM"].
 
 +
 

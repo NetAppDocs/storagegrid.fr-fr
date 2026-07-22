@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, restore audit log, non-primary admin node 
 summary: 'Si vous avez pu conserver le journal d"audit à partir du noeud d"administration non primaire défaillant, de sorte que les informations du journal d"audit historique soient conservées, vous pouvez le copier sur le noeud d"administration non primaire que vous êtes en train de récupérer.' 
 ---
-= Restaurer le journal des audits sur le nœud d'administration StorageGRID non principal récupéré
+= Restaurer le journal des audits sur le nœud d'administration non principal StorageGRID récupéré
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

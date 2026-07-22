@@ -38,6 +38,7 @@ Notez les caractéristiques suivantes des compartiments de branche :
 
 * Vous pouvez utiliser un bucket de branche pour supprimer les objets corrompus en créant un bucket de branche à partir d'un moment antérieur à la corruption, puis en pointant les applications vers le bucket de branche au lieu du bucket de base qui contient les objets corrompus.
 * Vous enregistrez des données dans un bucket versionné.  Une vulnérabilité accidentelle a provoqué l'ingestion de nombreux objets indésirables après le temps _T_.  Vous pouvez créer un compartiment de branche pour la valeur Avant l'heure, _T_, et rediriger les opérations client vers ce compartiment de branche.  Ensuite, seuls les objets ingérés avant l’heure Avant _T_ sont exposés aux clients.
+* Vous enregistrez des données dans un compartiment versionné. Une vulnérabilité accidentelle a entraîné l'ingestion de nombreux objets indésirables entre les instants _T1_ et _T2_. Vous pouvez créer un compartiment de branche pour les valeurs temporelles _Exclude_, _T1_ et _T2_, et rediriger les opérations client vers ce compartiment de branche. Ainsi, seuls les objets ingérés avant _T1_ et après _T2_ sont exposés aux clients.
 
 
 

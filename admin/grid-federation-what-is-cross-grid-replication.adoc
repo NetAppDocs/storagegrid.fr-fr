@@ -2,7 +2,7 @@
 permalink: admin/grid-federation-what-is-cross-grid-replication.html 
 sidebar: sidebar 
 keywords: cross-grid replication, cgr, disaster recovery, grid federation 
-summary: La réplication inter-grid est la réplication automatique des objets entre des compartiments S3 sélectionnés dans deux systèmes StorageGRID connectés dans une connexion de fédération de grid. Le clone du compte est requis pour la réplication entre les grilles. 
+summary: 'La réplication inter-grilles est la réplication automatique d"objets entre des compartiments S3 sélectionnés dans deux systèmes StorageGRID connectés par une fédération de grilles. La synchronisation des comptes est requise pour la réplication inter-grilles.' 
 ---
 = Découvrez la réplication inter-grilles dans StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: La réplication inter-grid est la réplication automatique des objets e
 
 
 [role="lead"]
-La réplication inter-grid est la réplication automatique des objets entre des compartiments S3 sélectionnés dans deux systèmes StorageGRID connectés dans un link:grid-federation-overview.html["connexion de fédération de grille"]. link:grid-federation-what-is-account-clone.html["Clone de compte"] est nécessaire pour la réplication entre les grilles.
+La réplication inter-grilles est la réplication automatique d'objets entre des compartiments S3 sélectionnés dans deux systèmes StorageGRID connectés dans un link:grid-federation-overview.html["connexion de fédération de grille"]. link:grid-federation-what-is-account-sync.html["Synchronisation des comptes"] est requis pour la réplication inter-grilles.
 
 
 
@@ -20,22 +20,28 @@ La réplication inter-grid est la réplication automatique des objets entre des 
 
 Le diagramme de flux de travail résume les étapes de configuration de la réplication inter-grille entre les buckets sur deux grilles.
 
-image:grid-federation-cgr-workflow.png["Flux de production de réplication entre les grilles"]
+image:grid_federation_cgr_workflow.png["Flux de production de réplication entre les grilles"]
 
 
 
 [[requirements-for-cross-grid-replication]]
 == Conditions requises pour la réplication entre les grilles
 
-Si un compte locataire dispose de l'autorisation *Utiliser la connexion à la fédération de grille* pour utiliser une ou plusieurslink:grid-federation-overview.html["connexions de fédération de grille"] , un utilisateur locataire avec l'autorisation d'accès root peut créer des buckets dans les comptes locataires correspondants sur chaque grille.  Ces seaux :
+Si un compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille* pour utiliser une ou plusieurs link:grid-federation-overview.html["connexions de fédération de grille"], un utilisateur locataire disposant de l'autorisation d'accès Root peut créer des compartiments (« source » et « destination ») dans les comptes locataires correspondants sur chaque grille. Ces compartiments :
 
 * Peuvent avoir des noms différents les uns des autres
 * Peut avoir différentes régions
 * La gestion des versions doit être activée
-* Doit être vide
+* Doit disposer de l'une des configurations de verrouillage d'objet S3 suivantes :
++
+** source : *désactivé*, destination : *désactivé*
+** source : *activée*, destination : *activée*
+** source : *désactivé*, destination : *activé*
 
 
-Une fois les deux compartiments créés, la réplication inter-grid peut être configurée pour l'un ou l'autre des compartiments, ou pour les deux.
+
+
+Une fois que vous avez créé les deux compartiments, vous pouvez configurer la réplication inter-grilles pour l’un ou les deux compartiments.
 
 .En savoir plus >>
 link:../tenant/grid-federation-manage-cross-grid-replication.html["Gérer la réplication entre les grilles"]
@@ -54,7 +60,7 @@ Vous pouvez configurer la réplication inter-grille pour qu'elle se produise dan
 
 Si vous activez la réplication inter-grille pour un bucket sur une seule grille, les objets ajoutés à ce bucket (le bucket source) sont répliqués vers le bucket correspondant sur l'autre grille (le bucket de destination).  Cependant, les objets ajoutés au bucket de destination ne sont pas répliqués vers la source.  Dans la figure, la réplication inter-grille est activée pour `my-bucket` de la grille 1 à la grille 2, mais ce n'est pas activé dans l'autre sens.
 
-image:grid-federation-cross-grid-replication-one-direction.png["image montrant la connexion de fédération de grille dans une direction"]
+image:grid_federation_cross_grid_replication_one_direction.png["image montrant la connexion de fédération de grille dans une direction"]
 
 
 
@@ -63,7 +69,7 @@ image:grid-federation-cross-grid-replication-one-direction.png["image montrant l
 
 Si vous activez la réplication inter-grid pour le même compartiment sur les deux grilles, les objets ajoutés à l'un des compartiments sont répliqués sur l'autre grille. Dans la figure, la réplication inter-grille est activée pour `my-bucket` dans les deux sens.
 
-image:grid-federation-cross-grid-replication.png["image montrant la réplication dans une direction par rapport à la réplication dans les deux directions"]
+image:grid_federation_cross_grid_replication.png["image montrant la réplication dans une direction par rapport à la réplication dans les deux directions"]
 
 
 
@@ -144,7 +150,7 @@ Lorsqu'un client S3 supprime un objet d'un compartiment pour lequel la réplicat
 
 Dans la figure, *Répliquer les marqueurs de suppression* était défini sur *Oui* lorsquelink:../tenant/grid-federation-manage-cross-grid-replication.html["la réplication inter-grid a été activée"] .  Les demandes de suppression pour le bucket source qui incluent un ID de version ne suppriment pas les objets du bucket de destination.  Les demandes de suppression pour le bucket source qui n'incluent pas d'ID de version semblent supprimer des objets dans le bucket de destination.
 
-image:grid-federation-cross-grid-replication-delete.png["image montrant la suppression du client répliqué sur les deux grilles"]
+image:grid_federation_cross_grid_replication_delete.png["image montrant la suppression du client répliqué sur les deux grilles"]
 
 
 NOTE: Si vous souhaitez que les suppressions d'objets restent synchronisées entre les grilles, créez les compartiments correspondants link:../s3/create-s3-lifecycle-configuration.html["Configurations de cycle de vie S3"]sur les deux grilles.
@@ -210,6 +216,12 @@ Désactivées
 Activé
 
 |===
+
+CAUTION: Vous pouvez activer le verrouillage d'objets S3 sur des compartiments existants, ce qui pourrait entraîner une mauvaise configuration ultérieure.
+
+
+NOTE: Lorsque le verrouillage d'objets S3 est activé sur le compartiment source, assurez-vous qu'il l'est également sur le compartiment de destination. Si le verrouillage d'objets S3 est désactivé sur le compartiment de destination, une erreur se produit lors de la réplication. Consultez link:../admin/grid-federation-troubleshoot.html#cross-grid-replication-alerts-and-errors["Alertes et erreurs de réplication intergrid"].
+
 Lorsque le verrouillage d’objet S3 sur le bucket source est activé :
 
 * Les objets sont verrouillés avec des paramètres de rétention à la destination dans cet ordre :

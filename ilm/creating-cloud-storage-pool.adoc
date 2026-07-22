@@ -2,7 +2,7 @@
 permalink: ilm/creating-cloud-storage-pool.html 
 sidebar: sidebar 
 keywords: how to create cloud storage pool 
-summary: Un pool de stockage cloud désigne un compartiment Amazon S3 externe unique, un autre fournisseur compatible avec S3 ou un conteneur de stockage Azure Blob. 
+summary: Un pool de stockage cloud spécifie un seul compartiment Amazon S3 externe, un autre fournisseur compatible S3 ou un conteneur Azure Blob Storage. 
 ---
 = Créez un Cloud Storage Pool dans StorageGRID
 :allow-uri-read: 
@@ -11,9 +11,9 @@ summary: Un pool de stockage cloud désigne un compartiment Amazon S3 externe un
 
 
 [role="lead"]
-Un pool de stockage cloud désigne un compartiment Amazon S3 externe unique, un autre fournisseur compatible avec S3 ou un conteneur de stockage Azure Blob.
+Un pool de stockage cloud spécifie un seul compartiment Amazon S3 externe, un autre fournisseur compatible S3 ou un conteneur Azure Blob Storage.
 
-Lorsque vous créez un pool de stockage cloud, vous spécifiez le nom et l'emplacement du compartiment ou conteneur externe que StorageGRID utilisera pour stocker les objets, le type de fournisseur cloud (Amazon S3/GCP ou Azure Blob Storage), ainsi que les informations dont StorageGRID a besoin pour accéder au compartiment ou conteneur externe.
+Lorsque vous créez un Cloud Storage Pool, vous spécifiez le nom et l'emplacement du compartiment ou du conteneur externe que StorageGRID utilisera pour stocker les objets, le type de fournisseur de cloud (Amazon S3/GCP ou Azure Blob Storage), ainsi que les informations dont StorageGRID a besoin pour accéder au compartiment ou au conteneur externe.
 
 StorageGRID valide le pool de stockage cloud dès que vous le sauvegardez. Vous devez donc vous assurer que le compartiment ou le conteneur spécifié dans le pool de stockage cloud est accessible et qu'il existe.
 
@@ -227,3 +227,6 @@ Si la validation du pool de stockage cloud échoue, un message d'erreur s'affich
 
 . Si une erreur se produit, consultez le link:troubleshooting-cloud-storage-pools.html["Instructions de dépannage des pools de stockage cloud"], résolvez les problèmes, puis essayez à nouveau d'enregistrer le pool de stockage cloud.
 
+
+.Informations associées
+link:../network/external-communications.html["Ports utilisés pour les communications externes"]

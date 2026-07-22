@@ -21,16 +21,15 @@ Utilisez ce tableau pour sélectionner la procédure de restauration d'un noeud 
 
 
  a| 
-* Plusieurs nœuds de stockage ont échoué.
-
+Plusieurs nœuds de stockage ont échoué.
  a| 
 Contactez l'assistance technique.
  a| 
-La récupération de plusieurs nœuds de stockage peut affecter l’intégrité de la base de données Cassandra, ce qui peut entraîner une perte de données.
+En cas de défaillance de plusieurs nœuds de stockage, l'assistance technique doit intervenir pour la récupération afin d'éviter les incohérences de la base de données Cassandra susceptibles d'entraîner une perte de données. Une procédure de restauration du site peut s'avérer nécessaire.
 
-Le support technique peut déterminer quand il est possible de commencer la restauration d'un second nœud de stockage.
+Le support technique peut déterminer à quel moment il est sûr de commencer la récupération d'un deuxième nœud de stockage.
 
-*Remarque* : si plusieurs nœuds de stockage contenant le service ADC échouent sur un site, vous perdez toute demande de service de plate-forme en attente pour ce site.
+*Remarque* : Si plusieurs nœuds de stockage contenant le service ADC tombent en panne sur un site, toutes les demandes de service de plateforme en attente pour ce site seront perdues.
 
 
 
@@ -55,7 +54,7 @@ La procédure de restauration des nœuds de stockage de l'appliance est la même
  a| 
 Un ou plusieurs volumes de stockage sont en panne, mais le lecteur système est intact
  a| 
-link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact"]
+link:reviewing-warnings-about-storage-volume-recovery.html["Restaurez le disque d'après la panne du volume de stockage là où le disque du système est intact"]
  a| 
 Cette procédure est utilisée pour les nœuds de stockage basés sur logiciel.
 

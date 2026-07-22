@@ -20,13 +20,18 @@ Les messages d'audit sont générés par les services StorageGRID et stockés da
 
 * CreateBucket
 * DeleteBucket
+* DeleteBucketPolicy
 * DeleteBucketTagging
 * DeleteObjects
+* GetBucketLifecycleConfiguration
+* GetBucketPolicy
 * GetBucketTagging
 * Godet principal
 * ListObjects
 * ListObjectVersions
 * METTEZ le godet en conformité
+* PutBucketLifecycleConfiguration
+* PutBuckePolicy
 * Étiquetage PutBucketTagging
 * PutBuckeVersioning
 

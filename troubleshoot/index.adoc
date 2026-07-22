@@ -202,7 +202,7 @@ Collecte de données pour le support technique
 L'assistance technique peut vous demander de collecter des données ou de passer en revue des informations spécifiques pour résoudre les problèmes.
  a| 
 * link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"]
-* link:../monitor/manually-triggering-autosupport-message.html["Déclencher manuellement un package AutoSupport"]
+* link:../monitor/manually-triggering-autosupport-package.html["Déclencher manuellement un package AutoSupport"]
 * link:../monitor/reviewing-support-metrics.html["Examinez les metrics de support"]
 
 

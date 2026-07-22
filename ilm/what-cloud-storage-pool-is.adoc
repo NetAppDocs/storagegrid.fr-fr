@@ -2,7 +2,7 @@
 permalink: ilm/what-cloud-storage-pool-is.html 
 sidebar: sidebar 
 keywords: what is a cloud storage pool 
-summary: 'Un pool de stockage cloud permet d"utiliser des règles ILM pour déplacer des données d"objet en dehors de votre système StorageGRID. Par exemple, vous pouvez déplacer les objets rarement consultés vers un stockage cloud moins coûteux, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le Tier d"accès Archive dans le stockage Microsoft Azure Blob. Vous pouvez également conserver une sauvegarde dans le cloud des objets StorageGRID pour améliorer la reprise d"activité.' 
+summary: 'Un pool de stockage cloud vous permet d"utiliser ILM pour déplacer les données d"objets en dehors de votre système StorageGRID. Par exemple, vous pourriez vouloir déplacer des objets rarement consultés vers un stockage cloud à moindre coût, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le niveau d"accès Archive dans Microsoft Azure Blob Storage. Ou, vous pourriez vouloir maintenir une sauvegarde cloud des objets StorageGRID afin d"améliorer la reprise après sinistre.' 
 ---
 = Découvrez les Cloud Storage Pools dans StorageGRID
 :allow-uri-read: 
@@ -11,9 +11,9 @@ summary: 'Un pool de stockage cloud permet d"utiliser des règles ILM pour dépl
 
 
 [role="lead"]
-Un pool de stockage cloud permet d'utiliser des règles ILM pour déplacer des données d'objet en dehors de votre système StorageGRID. Par exemple, vous pouvez déplacer les objets rarement consultés vers un stockage cloud moins coûteux, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le Tier d'accès Archive dans le stockage Microsoft Azure Blob. Vous pouvez également conserver une sauvegarde dans le cloud des objets StorageGRID pour améliorer la reprise d'activité.
+Un pool de stockage cloud vous permet d'utiliser ILM pour déplacer les données d'objets en dehors de votre système StorageGRID. Par exemple, vous pourriez vouloir déplacer des objets rarement consultés vers un stockage cloud à moindre coût, comme Amazon S3 Glacier, S3 Glacier Deep Archive, Google Cloud ou le niveau d'accès Archive dans Microsoft Azure Blob Storage. Ou, vous pourriez vouloir maintenir une sauvegarde cloud des objets StorageGRID afin d'améliorer la reprise après sinistre.
 
-Le pool de stockage cloud est similaire à celui d'un pool de stockage du point de vue ILM. Pour stocker des objets à l'un ou l'autre des emplacements, sélectionnez le pool lors de la création des instructions de placement pour une règle ILM. Cependant, même si les pools de stockage sont constitués de nœuds de stockage dans le système StorageGRID, un pool de stockage cloud comprend un compartiment externe (S3) ou un conteneur (stockage Azure Blob).
+Du point de vue de la gestion du cycle de vie des informations (ILM), un pool de stockage cloud est similaire à un pool de stockage. Pour stocker des objets à l’un ou l’autre emplacement, vous sélectionnez le pool lors de la création des instructions de placement d’une règle ILM. Cependant, alors que les pools de stockage sont constitués de nœuds de stockage au sein du système StorageGRID, un pool de stockage cloud est constitué d’un compartiment externe (S3) ou d’un conteneur (Azure Blob Storage).
 
 Le tableau compare les pools de stockage aux pools de stockage cloud et montre les similarités et les différences de haut niveau.
 
@@ -47,7 +47,7 @@ Où sont stockés les objets ?
  a| 
 Sur un ou plusieurs nœuds de stockage dans StorageGRID.
  a| 
-Dans un compartiment Amazon S3, un conteneur de stockage Azure Blob ou Google Cloud externe au système StorageGRID.
+Dans un compartiment Amazon S3, un conteneur Azure Blob Storage ou un Google Cloud externe au système StorageGRID.
 
 Si le pool de stockage cloud est un compartiment Amazon S3 :
 
@@ -55,9 +55,9 @@ Si le pool de stockage cloud est un compartiment Amazon S3 :
 * Vous pouvez créer des pools de stockage cloud à utiliser avec AWS commercial Cloud Services (C2S), qui prend en charge la région secrète AWS.
 
 
-Si le pool de stockage cloud est un conteneur de stockage Azure Blob, StorageGRID transfère l'objet vers le Tier d'archivage.
+Si le pool de stockage cloud est un conteneur Azure Blob Storage, StorageGRID transfère l'objet vers le niveau Archive.
 
-*Remarque :* en général, ne configurez pas la gestion du cycle de vie du stockage Azure Blob pour le conteneur utilisé pour un pool de stockage cloud. Les opérations RestoreObject sur les objets du pool de stockage cloud peuvent être affectées par le cycle de vie configuré.
+*Remarque :* En général, ne configurez pas la gestion du cycle de vie d’Azure Blob Storage pour le conteneur utilisé pour un pool de stockage cloud. RestoreObject opérations sur les objets dans le pool de stockage cloud peuvent être affectées par le cycle de vie configuré.
 
 
 

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replace VMware node 
 summary: Lorsque vous restaurez un nœud StorageGRID en panne hébergé sur VMware, vous supprimez le nœud en panne et déployez un nœud de restauration. 
 ---
-= Remplacer un nœud VMware dans StorageGRID
+= Remplacez un nœud VMware dans StorageGRID par un nœud de récupération
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -49,16 +49,9 @@ NOTE: Après le déploiement du nouveau nœud, vous pouvez ajouter de nouveaux d
 
 
  a| 
-Nœud d'administration principal
+Nœuds d'administration
  a| 
-link:configuring-replacement-primary-admin-node.html["Configurez le nœud d'administration principal de remplacement"]
-
-
-
- a| 
-Nœud d'administration non primaire
- a| 
-link:selecting-start-recovery-to-configure-non-primary-admin-node.html["Sélectionnez Démarrer la restauration pour configurer un noeud d'administration non primaire"]
+link:recovering-from-admin-node-failures.html["Récupération du nœud d'administration principal ou non principal dans StorageGRID"]
 
 
 

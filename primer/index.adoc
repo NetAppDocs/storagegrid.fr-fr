@@ -37,7 +37,7 @@ La baie StorageGRID présente plusieurs avantages :
 * Haute disponibilité du stockage de données et certaines fonctions de gestion, avec équilibrage de la charge intégré pour optimiser la charge de données sur les ressources StorageGRID.
 * Prise en charge de plusieurs comptes de locataires de stockage pour isoler les objets stockés sur votre système par des entités différentes.
 * De nombreux outils de contrôle de l'état de santé de votre système StorageGRID, notamment un système d'alertes complet, un tableau de bord graphique et des États détaillés pour tous les nœuds et sites.
-* Prise en charge des déploiements logiciels ou matériels. Vous pouvez déployer StorageGRID sur l'un des éléments suivants :
+* Prise en charge du déploiement logiciel ou matériel. Vous pouvez déployer StorageGRID sur l'une des plateformes suivantes :
 +
 ** Ordinateurs virtuels exécutés dans VMware.
 ** Moteurs de mise en conteneurs sur hôtes Linux.
@@ -57,5 +57,5 @@ La baie StorageGRID présente plusieurs avantages :
 
 
 * Les opérations de mise à niveau et de maintenance sans interruption. Maintenez l'accès au contenu lors des procédures de mise à niveau, d'extension, de déclassement et de maintenance.
-* Gestion fédérée des identités. S'intègre à Active Directory, OpenLDAP ou Oracle Directory Service pour l'authentification des utilisateurs. Prise en charge de l'authentification unique (SSO) à l'aide de la norme SAML 2.0 (Security assertion Markup Language 2.0) pour échanger les données d'authentification et d'autorisation entre StorageGRID et Active Directory Federation Services (AD FS).
+* Gestion fédérée des identités. S’intègre à Active Directory, OpenLDAP ou Oracle Directory Service pour l’authentification des utilisateurs. Prend en charge l’authentification unique (SSO) à l’aide du protocole Security Assertion Markup Language 2.0 (SAML 2.0) ou OpenID Connect (OIDC) pour l’échange de données d’authentification et d’autorisation entre StorageGRID et un fournisseur d’identité externe tel que Active Directory Federation Services (AD FS).
 

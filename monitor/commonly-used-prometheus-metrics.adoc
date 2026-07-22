@@ -15,7 +15,7 @@ Consultez cette liste de metrics Prometheus les plus utilisés pour mieux compre
 
 Vous pouvez également <<obtain-all-metrics,obtenez une liste complète de toutes les mesures>>.
 
-Pour plus de détails sur la syntaxe des requêtes Prometheus, voir https://prometheus.io/docs/prometheus/latest/querying/basics/["Interrogation de Prometheus"^].
+Pour plus de détails sur la syntaxe des requêtes Prometheus, voir https://prometheus.io/docs/prometheus/latest/querying/basics/["Principes de base des requêtes"^].
 
 
 

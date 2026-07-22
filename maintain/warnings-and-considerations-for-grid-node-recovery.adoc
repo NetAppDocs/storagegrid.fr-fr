@@ -39,7 +39,7 @@ Les conditions suivantes sont réunies lors de la récupération des nœuds de l
 
 * Le matériel physique ou virtuel en panne a été remplacé et configuré.
 * La version du programme d'installation de l'appliance StorageGRID installée sur l'appliance de remplacement correspond à la version logicielle de votre système StorageGRID, comme décrit à la section https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/verifying-and-upgrading-storagegrid-appliance-installer-version.html["Vérifiez et mettez à niveau la version du programme d'installation de l'appliance StorageGRID"^].
-* Si vous récupérez un nœud de grille autre que le nœud d'administration principal, il existe une connectivité entre le nœud de grille en cours de récupération et le nœud d'administration qui gère la procédure de récupération.
+* Si vous récupérez un nœud de grille autre que le nœud d'administration principal, une connectivité doit exister entre le nœud de grille en cours de récupération et le nœud d'administration gérant la procédure de récupération.
 * Si vous récupérez un nœud de stockage d'appliance, vous devez spécifier le même type de stockage que l'appliance d'origine (combiné, métadonnées uniquement ou données uniquement) lors de l'installation de l'appliance.  Si vous spécifiez un type de stockage différent, la récupération échouera et nécessitera la réinstallation de l'appliance avec le type de stockage correct spécifié.
 
 
@@ -48,7 +48,7 @@ Les conditions suivantes sont réunies lors de la récupération des nœuds de l
 [[order-of-node-recovery-if-a-server-hosting-more-than-one-grid-node-fails]]
 == Ordre de restauration de nœud en cas de défaillance d'un serveur hébergeant plusieurs nœuds de la grille
 
-Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Cependant, si le serveur défaillant héberge le nœud d’administration principal, vous devez d’abord récupérer ce nœud.
+Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez restaurer les nœuds dans n'importe quel ordre. Cependant, si le serveur défaillant héberge le nœud d'administration principal et qu'aucun nœud d'administration non principal n'existe, vous devez restaurer le nœud d'administration principal en premier.
 
 
 

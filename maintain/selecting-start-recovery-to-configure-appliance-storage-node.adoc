@@ -22,31 +22,28 @@ Vous devez sélectionner Démarrer la restauration dans Grid Manager pour config
 
 
 .Étapes
-. Depuis le Gestionnaire de grille, sélectionnez *Maintenance* > *Tâches* > *Récupération*.
+. Dans le Grid Manager, sélectionnez *Maintenance* > *Tasks* > *Node recovery*.
 . Sélectionnez le nœud de grille à récupérer dans la liste nœuds en attente.
 +
 Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pas sélectionner un nœud tant qu'il n'a pas été réinstallé et qu'il est prêt pour la restauration.
 
-. Saisissez la phrase de passe de provisionnement *.
-. Cliquez sur *Démarrer la récupération*.
+. Saisissez la *phrase secrète de provisionnement*.
+. Sélectionnez *Démarrer la récupération*.
 +
 image:4b_select_recovery_node.png["Capture d'écran affichant la page Maintenance > Récupération"]
 
 . Surveiller la progression de la récupération dans le tableau de noeuds de grille de récupération.
 +
-Lorsque le nœud de grille atteint l'étape « en attente des étapes manuelles », passez à la rubrique suivante et suivez les étapes manuelles pour remonter et reformater les volumes de stockage de l'appliance.
+** Si le nœud de la grille atteint l'étape « En attente d'étapes manuelles », vous devez link:../maintain/remounting-and-reformatting-appliance-storage-volumes.html["Remontez et reformatez manuellement les volumes de stockage de l'appliance"].
+** Si le message « En attente d’étapes manuelles » n’apparaît pas, cela signifie que les volumes de stockage ont été automatiquement remontés et reformatés, et que vous pouvez link:../maintain/restoring-object-data-to-storage-volume-for-appliance.html["restaurer les données d'objet sur les volumes"].
 
-+
-image:recovery_reset_button.gif["capture d'écran indiquant l'étape en attente des étapes manuelles"]
 
-+
 
-NOTE: À tout moment pendant la récupération, vous pouvez cliquer sur *Réinitialiser* pour démarrer une nouvelle restauration. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
 
-+
-image:recovery_reset_warning.gif["capture d'écran affichant la boîte de dialogue d'avertissement de réinitialisation de la restauration"]
+[NOTE]
+====
+À tout moment pendant la récupération, vous pouvez sélectionner *Réinitialiser* pour lancer une nouvelle récupération. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
 
-+
 Si vous souhaitez réessayer la restauration après la réinitialisation de la procédure, vous devez restaurer le nœud de l'appliance à l'état pré-installé en exécutant `sgareinstall` sur le nœud.
 
-
+====

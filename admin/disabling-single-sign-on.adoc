@@ -23,7 +23,7 @@ Vous pouvez désactiver l'authentification unique (SSO) si vous ne souhaitez plu
 +
 La page authentification unique s'affiche.
 
-. Sélectionnez *Désactiver SSO*.
+. Sélectionnez *Désactiver*.
 . Sélectionnez *Oui*.
 +
 Un message d'avertissement s'affiche pour indiquer que les utilisateurs locaux pourront maintenant se connecter.

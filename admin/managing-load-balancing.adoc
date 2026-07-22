@@ -176,7 +176,7 @@ Subject DN: /C=Country/ST=State/O=Company,Inc./CN=s3.storagegrid.example.com
 ----
 Si nécessaire, le certificat peut utiliser des caractères génériques pour représenter les noms de domaine complets de tous les nœuds d'administration et nœuds de passerelle exécutant le service Load Balancer. Par exemple, `*.storagegrid._example_.com` utilise le caractère générique * pour représenter `adm1.storagegrid._example_.com` et `gn1.storagegrid._example_.com`.
 
-Si vous prévoyez d'utiliser des requêtes de type hébergement virtuel S3, le certificat doit également inclure une entrée *alternative Name* pour chaque link:../admin/configuring-s3-api-endpoint-domain-names.html["Nom du domaine du terminal S3"] que vous avez configuré, y compris les noms génériques. Par exemple :
+Si vous prévoyez d'utiliser des requêtes de type hébergement virtuel S3, le certificat doit également inclure une entrée *Nom alternatif* pour chaque link:../admin/configuring-s3-api-endpoint-domain-names.html["Nom du domaine du terminal S3"] que vous avez configuré, y compris tout nom générique. Par exemple :
 
 [listing]
 ----

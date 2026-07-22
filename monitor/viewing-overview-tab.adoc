@@ -49,7 +49,7 @@ NOTE: Un nœud peut apparaître comme inconnu lors des opérations d'arrêt gér
 
 * *Version du logiciel* : la version de StorageGRID installée sur le nœud.
 * *Groupes HA* : pour les nœuds d'administration et de passerelle uniquement. Indique si une interface réseau sur le nœud est incluse dans un groupe haute disponibilité et si cette interface est l'interface principale.
-* *Adresses IP* : adresses IP du nœud. Cliquez sur *Afficher des adresses IP supplémentaires* pour afficher les adresses IPv4 et IPv6 du nœud ainsi que les mappages d'interface.
+* *Adresses IP* : Les adresses IP du nœud. Sélectionnez *Afficher les adresses IP supplémentaires* pour afficher les adresses IPv4 et IPv6 du nœud ainsi que les mappages d’interface.
 
 
 

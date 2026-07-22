@@ -47,13 +47,9 @@ Si l'erreur n'est pas résolue automatiquement, passez à l'étape suivante.
 
 
 . Déterminez si le matériel du nœud est hors ligne.
-. Si l'authentification unique (SSO) est activée pour votre système StorageGRID , reportez-vous aux étapes pourlink:../admin/configure-sso.html["configuration de l'authentification unique"] .
+. Si l'authentification unique (SSO) est activée pour votre système StorageGRID, reportez-vous à la configuration de l'authentification unique à l'aide de link:../admin/learn-about-setting-up-sso-oidc.html["OIDC"] ou link:../admin/learn-about-setting-up-sso-saml.html["SAML"].
 +
 Pour résoudre ces problèmes, il peut être nécessaire de désactiver et de réactiver temporairement l'authentification SSO pour un nœud d'administration unique.
-
-+
-
-NOTE: Si SSO est activé, vous ne pouvez pas vous connecter à l'aide d'un port restreint. Vous devez utiliser le port 443.
 
 . Déterminez si le compte que vous utilisez appartient à un utilisateur fédéré.
 +
@@ -64,7 +60,7 @@ Si le compte d'utilisateur fédéré ne fonctionne pas, essayez de vous connecte
 +
 ... Consultez les alertes.
 ... Sélectionnez *Configuration* > *Contrôle d'accès* > *Fédération d'identité*.
-... Cliquez sur *Tester la connexion* pour valider vos paramètres de connexion pour le serveur LDAP.
+... Sélectionnez *Tester la connexion* pour valider vos paramètres de connexion au serveur LDAP.
 ... Si le test échoue, corrigez toute erreur de configuration.
 
 

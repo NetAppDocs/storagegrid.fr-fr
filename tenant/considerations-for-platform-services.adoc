@@ -24,7 +24,7 @@ Les services de plateforme StorageGRID vous aident à mettre en œuvre une strat
 
 L'emplacement cible des services de plateforme étant généralement externe à votre déploiement StorageGRID, les services de plateforme vous offrent la puissance et la flexibilité offertes par l'utilisation de ressources de stockage externes, de services de notification et de services de recherche ou d'analyse pour vos données.
 
-Toute combinaison de services de plateforme peut être configurée pour un seul compartiment S3. Par exemple, vous pouvez configurer à la fois le link:../tenant/understanding-cloudmirror-replication-service.html["Service CloudMirror"] et le link:../tenant/understanding-notifications-for-buckets.html["notifications"] dans un compartiment StorageGRID S3 afin de mettre en miroir des objets spécifiques vers Amazon simple Storage Service (S3), tout en envoyant une notification sur chacun de ces objets à une application de surveillance tierce pour vous aider à suivre vos dépenses AWS.
+Il est possible de configurer n'importe quelle combinaison de services de plateforme pour un seul compartiment S3. Par exemple, vous pouvez configurer à la fois link:../tenant/understanding-cloudmirror-replication-service.html["Service CloudMirror"] et link:../tenant/understanding-notifications-for-buckets.html["notifications"] sur un compartiment StorageGRID S3 afin de mettre en miroir des objets spécifiques vers Amazon Simple Storage Service (S3), tout en envoyant une notification concernant chaque objet à une application de surveillance tierce pour vous aider à suivre vos dépenses AWS.
 
 
 TIP: L'utilisation des services de la plateforme doit être activée pour chaque compte de locataire par un administrateur StorageGRID à l'aide de Grid Manager ou de l'API de gestion du grid.
@@ -139,8 +139,6 @@ Au contraire, les demandes d'intégration de la recherche sont envoyées lorsque
  a| 
 À l'aide des terminaux Kafka
  a| 
-Pour les terminaux Kafka, le protocole TLS mutuel n'est pas pris en charge. Par conséquent, si vous avez `ssl.client.auth` défini sur `required` dans la configuration de votre courtier Kafka, cela peut entraîner des problèmes de configuration du terminal Kafka.
-
 L'authentification des terminaux Kafka utilise les types d'authentification suivants. Ces types sont différents de ceux utilisés pour l'authentification d'autres terminaux, tels qu'Amazon SNS, et nécessitent des informations d'identification de nom d'utilisateur et de mot de passe.
 
 * SASL/SIMPLE
@@ -182,7 +180,7 @@ Gestion des versions du compartiment et ID de version
  a| 
 Si le compartiment S3 source de StorageGRID est activé pour la gestion des versions, vous devez également activer la gestion des versions pour le compartiment de destination.
 
-Lors de l'utilisation du contrôle de version, notez que l'ordre des versions d'objet dans le compartiment de destination est meilleur effort et n'est pas garanti par le service CloudMirror, en raison des limites du protocole S3.
+Lors de l'utilisation du versionnage, veuillez noter que l'ordre des versions d'objets dans le compartiment de destination est déterminé au mieux et n'est pas garanti par le service CloudMirror, en raison des limitations du protocole S3. De plus, les compartiments de destination conservent leurs propres paramètres et peuvent ne pas proposer de versionnage.
 
 *Remarque* : les ID de version du compartiment source dans StorageGRID ne sont pas liés aux ID de version du compartiment de destination.
 
@@ -214,6 +212,8 @@ Le service CloudMirror ne prend pas en charge les objets cryptés avec SSE-C. si
  a| 
 Compartiment avec verrouillage objet S3 activé
  a| 
-La réplication n'est pas prise en charge pour les compartiments source ou de destination lorsque le verrouillage d'objet S3 est activé.
+Si le compartiment S3 source dans StorageGRID a S3 Object Lock activé, vous devez également activer S3 Object Lock pour le compartiment de destination avec la rétention par défaut configurée.
+
+La réplication des _données d'objet_ est prise en charge pour les compartiments source et de destination avec S3 Object Lock activé. Toutefois, les compartiments de destination conserveront leurs propres paramètres de rétention des objets et peuvent ne pas proposer la conformité ou le versionnement.
 
 |===

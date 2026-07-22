@@ -13,10 +13,10 @@ summary: 'Cette page explique comment StorageGRID prend en charge les API Amazon
 [role="lead"]
 Cette page explique comment StorageGRID prend en charge les API Amazon simple Storage Service (S3).
 
-Cette page inclut uniquement les opérations S3 prises en charge par StorageGRID.
+Cette page répertorie uniquement les opérations S3 prises en charge par StorageGRID. Toute opération S3 non répertoriée peut  `501 Not Implemented` ou entraîner un comportement inattendu.
 
 
-NOTE: Pour afficher la documentation AWS pour chaque opération, sélectionnez le lien dans l'en-tête.
+TIP: Pour afficher la documentation AWS pour chaque opération, sélectionnez le lien dans l'en-tête.
 
 
 
@@ -73,12 +73,20 @@ link:operations-for-multipart-uploads.html["Opérations pour les téléchargemen
 StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes communs>>éléments de cette demande, plus ce paramètre de requête URI supplémentaire :
 
 * `uploadId`
+* `x-amz-checksum-crc32`
+* `x-amz-checksum-crc32c`
+* `x-amz-checksum-crc64nvme`
 * `x-amz-checksum-sha256`
+* `x-amz-checksum-type`
+* `x-amz-storage-class`
 
 
 .Demander des balises XML de corps
 StorageGRID prend en charge les balises XML de corps de requête suivantes :
 
+* `ChecksumCRC32`
+* `ChecksumCRC32C`
+* `ChecksumCRC64NVME`
 * `ChecksumSHA256`
 * `CompleteMultipartUpload`
 * `ETag`
@@ -97,6 +105,7 @@ link:complete-multipart-upload.html["CompleteMultipartUpload"]
 .Paramètres de requête URI et en-têtes de requête
 StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes communs>>éléments pour cette demande, plus les en-têtes supplémentaires suivants :
 
+* `x-amz-checksum-algorithm`
 * `x-amz-copy-source`
 * `x-amz-copy-source-if-match`
 * `x-amz-copy-source-if-modified-since`
@@ -156,6 +165,7 @@ StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes co
 * `Content-Language`
 * `Expires`
 * `x-amz-checksum-algorithm`
+* `x-amz-checksum-type`
 * `x-amz-server-side-encryption`
 * `x-amz-storage-class`
 * `x-amz-server-side-encryption-customer-algorithm`
@@ -898,6 +908,9 @@ StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes co
 * `Content-Encoding`
 * `Content-Language`
 * `Expires`
+* `x-amz-checksum-crc32`
+* `x-amz-checksum-crc32c`
+* `x-amz-checksum-crc64nvme`
 * `x-amz-checksum-sha256`
 * `x-amz-server-side-encryption`
 * `x-amz-storage-class`
@@ -938,10 +951,12 @@ link:use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer 
 == https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html["PutObjectLockConfiguration"^]
 
 .Paramètres de requête URI et en-têtes de requête
-StorageGRID prend en charge tous <<common-params,paramètres et en-têtes communs>>ces éléments pour cette demande.
+StorageGRID prend en charge la _plus grande partie_ <<common-params,paramètres et en-têtes communs>> pour cette requête.
 
 .Corps de la demande
-StorageGRID prend en charge tous les paramètres du corps de demande définis par l'API REST Amazon S3 au moment de l'implémentation.
+StorageGRID prend en charge la _plupart_ des paramètres de corps de requête définis par l'API REST Amazon S3 au moment de l'implémentation, à l'exception suivante :
+
+Vous ne pouvez pas utiliser PutObjectLockConfiguration pour activer le verrouillage d'objet S3 sur un compartiment existant, sauf si votre administrateur de grille vous y a autorisé.
 
 .Documentation StorageGRID
 link:use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"]
@@ -1017,6 +1032,9 @@ StorageGRID prend en charge tous les <<common-params,paramètres et en-têtes co
 
 Et ces en-têtes de demande supplémentaires :
 
+* `x-amz-checksum-crc32`
+* `x-amz-checksum-crc32c`
+* `x-amz-checksum-crc64nvme`
 * `x-amz-checksum-sha256`
 * `x-amz-server-side-encryption-customer-algorithm`
 * `x-amz-server-side-encryption-customer-key`

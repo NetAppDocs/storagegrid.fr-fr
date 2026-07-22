@@ -1,0 +1,285 @@
+---
+permalink: maintain/replace-vmware-node-with-sg1000-sg100.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, primary admin node, SG1000, SG100, appliance, services, prepare, installation, software 
+summary: 'Remplacez un nœud d"administration principal fonctionnant en tant que nœud VMware par une appliance de services SG1000 ou SG100.' 
+---
+= Remplacez le nœud VMware dans StorageGRID par SG1000 ou SG100
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si le nœud d'administration principal fonctionne en tant que nœud VMware, vous pouvez le remplacer par un appliance de services SG1000 ou SG100.
+
+
+CAUTION: Une fois le remplacement du nœud effectué et vérifié, vous devez supprimer le nœud VMware d'origine. Le maintien de l'ancien nœud en place risque une perturbation majeure du grid s'il est remis en ligne.
+
+.Avant de commencer
+* Vous avez déterminé que la machine virtuelle ne peut pas être restaurée et doit être remplacée.
+* Vous avez vérifié qu'aucune opération de maintenance du grid n'est en cours.
+* Vous avez confirmé que la version de l'installateur de l'appliance StorageGRID sur l'appliance de services SG1000 ou SG100 correspond à la version logicielle de votre système StorageGRID.
+* Vous disposez des informations suivantes concernant le nœud d'administration principal existant :
++
+*Nom du nœud* : Vous devez installer le dispositif de services en utilisant le même nom de nœud que le nœud d’administration principal existant. Le nom du nœud correspond au nom d’hôte (nom du système).
+
++
+*Adresse IP* : Vous pouvez attribuer au dispositif de services la même adresse IP que le nœud d’administration principal existant (recommandé), ou vous pouvez sélectionner une nouvelle adresse IP inutilisée sur chaque réseau.
+
+* Vous avez la phrase secrète pour le provisionnement.
+
+
+
+
+[[step-1-replace-the-vmware-node]]
+== Étape 1 : Remplacez le nœud VMware
+
+Commencez par supprimer le nœud d'administration principal existant dans le Grid Manager. Ensuite, vous installez l'appliance de services SG1000 ou SG100 comme nouveau nœud d'administration principal à l'aide de StorageGRID Appliance Installer, puis vous restaurez le nœud. Si vous utilisez une nouvelle adresse IP, vous pouvez installer l'appliance de services avant de supprimer le nœud d'administration principal existant.
+
+[role="tabbed-block"]
+====
+.Utiliser l'adresse IP existante
+--
+Remplacez le nœud d'administration principal en utilisant l'adresse IP du nœud d'administration principal existant.
+
+.Étapes
+. [[download-recovery-package-a]]Téléchargez le package de récupération depuis le Grid Manager :
++
+.. Sélectionnez *Maintenance* > *Recovery package*.
+.. Saisissez la phrase secrète de provisionnement et téléchargez le package.
+
+
+. Connectez-vous au nœud d'administration principal existant :
++
+.. Entrez la commande suivante : `ssh admin@grid_node_IP`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Passez en mode root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. link:copying-audit-logs-from-failed-primary-admin-node.html["Copiez les journaux d'audit du nœud d'administration principal existant"].
+. Arrêtez Server Manager et tous les services sur le nœud de la grille :
++
+[listing]
+----
+shutdown -h now
+----
++
+Veuillez prévoir jusqu'à 15 minutes pour l'arrêt des services.
+
+. link:https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/installing-appliance-in-cabinet-or-rack-sg100-and-sg1000.html["Installez l'appareil de services SG1000 ou SG100"^].
+. link:https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/deploying-services-appliance-node.html#deploy-services-appliance-as-primary-admin-node["Déployez l'appliance de services SG1000 ou SG100"^].
+. Après avoir sélectionné *Démarrer l'installation*, veuillez prévoir environ dix minutes pour que l'installation atteigne l'étape *Charger l'installateur StorageGRID*.
++
+Au bout de six à sept minutes, le navigateur redirige pour démarrer la récupération.
+
+. Vérifiez que l'horloge de l'appareil est correcte.
++
+.. Utilisez SSH pour vous connecter au port 8022 :
++
+... Saisissez la commande : `ssh -p 8022 admin@_grid_node_IP_`.
+... Passez en mode root : `su -`
+... Saisissez `netapp1!`.
+
+
+.. Vérifiez que l'horloge de l'appareil est à quelques minutes près de l'heure UTC actuelle. Si nécessaire, réglez la date et l'heure correctes.
++
+[listing]
+----
+date -s "DD Mon YYYY HH:MM:SS"
+----
+
+
+. Retournez dans votre navigateur Web et sélectionnez *Récupérer un nœud d'administration principal défaillant*.
+. Téléversez le <<download-recovery-package-a,package de récupération que vous avez téléchargé>>.
+. Saisissez la phrase secrète de provisionnement et sélectionnez *Démarrer la récupération*.
++
+La barre de progression de la récupération s'affiche. Prévoyez six à dix minutes pour que le processus de récupération se termine et que les services démarrent.
+
+. Connectez-vous à Grid Manager lorsque vous y êtes invité.
+
+
+--
+.Utiliser une nouvelle adresse IP
+--
+Remplacez le nœud d'administration principal en utilisant une nouvelle adresse IP.
+
+.Étapes
+. link:https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/installing-appliance-in-cabinet-or-rack-sg100-and-sg1000.html["Installez l'appareil de services SG1000 ou SG100"^].
+. Vérifiez que l'horloge de l'appareil est correcte afin d'éviter les erreurs NTP pendant la récupération.
++
+.. Utilisez SSH pour vous connecter au port 8022 :
++
+... Saisissez la commande : `ssh -p 8022 admin@_grid_node_IP_`.
+... Passez en mode root : `su -`
+... Saisissez `netapp1!`.
+
+
+.. Vérifiez que l'horloge de l'appareil est à quelques minutes près de l'heure UTC actuelle. Si nécessaire, réglez la date et l'heure correctes.
++
+[listing]
+----
+date -s "DD Mon YYYY HH:MM:SS"
+----
+
+
+. Accédez à *Upload StorageGRID Software* dans le StorageGRID Appliance Installer et vérifiez que la version du logiciel préinstallée sur l'appliance correspond à la version de StorageGRID en cours d'exécution sur la grille. Si les versions ne correspondent pas :
++
+.. Téléchargez le package d'installation Debian StorageGRID approprié depuis le link:https://mysupport.netapp.com/site/["Site de support NetApp"^].
+.. Sélectionnez *Supprimer* pour supprimer le logiciel d'installation.
+.. Téléversez les fichiers  `storagegrid-webscale-images-<sg-version>.deb` et  `storagegrid-webscale-images-<sgversion>.deb.md5`.
+
+
+. Dans l'onglet Accueil de l'installateur d'appliance StorageGRID, sélectionnez *Primary Admin (with Load Balancer)* comme type de nœud.
+. Saisissez le nom du nœud. Le nom du nœud doit correspondre au nom du nœud d'administration principal existant.
++
+
+IMPORTANT: Ne sélectionnez pas *Démarrer l'installation*.
+
+. Vérifiez si le sous-réseau de la nouvelle adresse IP est présent dans le réseau grid. Si le nouveau sous-réseau IP n'est pas présent, ajoutez-le au réseau grid :
++
+.. Dans Grid Manager, sélectionnez *Maintenance* > *Grid Network*.
+.. Saisissez la phrase secrète de provisionnement pour mettre à jour la liste des sous-réseaux.
+
+
+. [[download-recovery-package]]Téléchargez le package de récupération depuis GRID Manager :
++
+.. Sélectionnez *Maintenance* > *Recovery package*.
+.. Saisissez la phrase secrète de provisionnement, puis téléchargez le package.
+
+
+. Connectez-vous au nœud d'administration principal existant :
++
+.. Entrez la commande suivante : `ssh admin@grid_node_IP`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour basculer en root : `su -`
+.. Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+. link:copying-audit-logs-from-failed-primary-admin-node.html["Copiez les journaux d'audit du nœud d'administration principal existant"].
+. Arrêtez Server Manager et tous les services sur le nœud de la grille :
++
+[listing]
+----
+service servermanager stop
+----
++
+Veuillez prévoir jusqu'à 15 minutes pour l'arrêt des services.
+
+. Sur l’onglet Accueil de l’installateur d’appliance StorageGRID :
++
+.. Vérifiez les paramètres suivants :
++
+*** Le type de nœud est défini sur *Primary Admin (with Load Balancer)*
+*** Le nom du nœud correspond au nom du nœud d'administration principal existant
+
+
+.. Notez la nouvelle adresse IP.
+
+
+. Sélectionnez *Démarrer l'installation*.
++
+Prévoyez environ 10 minutes pour que l'installation atteigne l'étape *Load StorageGRID installer*.
+
++
+Au bout de six à sept minutes, le navigateur redirige pour commencer la procédure de récupération.
+
+. Vérifiez que l'horloge de l'appareil est correcte.
++
+.. Utilisez SSH pour vous connecter au port 8022 :
++
+... Saisissez la commande : `ssh -p 8022 admin@_grid_node_IP_`.
+... Passez en mode root : `su -`
+... Saisissez `netapp1!`.
+
+
+.. Vérifiez que l'horloge de l'appareil est à quelques minutes près de l'heure UTC actuelle. Si nécessaire, réglez la date et l'heure correctes.
++
+[listing]
+----
+date -s "DD Mon YYYY HH:MM:SS"
+----
+
+
+. Retournez au navigateur Web, puis sélectionnez *Récupérer un nœud d'administration principal défaillant*.
+. Téléversez le <<download-recovery-package,package de récupération que vous avez téléchargé>>.
+. Saisissez la phrase secrète de provisionnement et sélectionnez *Démarrer la récupération*.
++
+La page de récupération du nœud d'administration principal disparaît, puis réapparaît. Si vous sélectionnez *Démarrer la récupération* à nouveau, un `500: Internal Server Error` apparaît car la récupération a commencé mais ne peut pas envoyer la mise à jour au Grid Manager, qui utilise la nouvelle adresse IP. Résolvez ce problème en mettant à jour l'adresse IP du nœud d'administration principal dans le fichier `/etc/hosts` :
+
++
+.. Utilisez SSH pour vous connecter au port 8022 :
++
+... Saisissez la commande : `ssh -p 8022 admin@_grid_node_IP_`.
+... Passez en mode root : `su -`
+... Saisissez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+.. Accédez au journal :
++
+[listing]
+----
+tail /var/local/log/install.log
+----
++
+Vous devriez voir l'erreur suivante se répéter : `curl: (7) Failed to connect to <primary_Admin_Node_name> port9999: No route to host`
+
++
+Il s'agit du comportement attendu. StorageGRID tente d'envoyer la mise à jour au nœud d'administration principal en utilisant l'adresse IP existante du nœud d'administration principal.
+
+.. Vérifiez que le conteneur est en cours d'exécution :
++
+`storagegrid node status`
+
++
+`storagegrid node enter <primary_Admin_Node_name>`
+
+.. Dans le fichier  `/etc/hosts` à l'intérieur du conteneur, remplacez l'adresse IP du nœud d'administration principal existante par la nouvelle adresse IP.
+.. Enregistrez le fichier.
+.. Retournez au navigateur web. Après quelques secondes, la barre de progression de la récupération apparaît.
++
+Veuillez prévoir six à dix minutes pour que le processus de récupération soit terminé et que les services démarrent.
+
+
+
+. Connectez-vous à Grid Manager lorsque vous y êtes invité.
+. Mettre à jour le package de récupération :
++
+.. Connectez-vous au nœud d'administration principal :
++
+... Entrez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
+... Passez en mode root : `su -`
+... Saisissez la commande suivante : `change-ip`
+
+
+.. Sélectionnez l'option *3 – Modifier les listes de sous-réseaux du réseau d'administration*, puis ajoutez le nouveau sous-réseau.
+
+
++
+StorageGRID génère automatiquement un nouveau package de récupération avec la nouvelle adresse IP du nœud Admin principal.
+
+. Téléchargez le dernier package de récupération depuis le Grid Manager.
+
+
+--
+====
+
+
+[[step-2-complete-node-recovery]]
+== Étape 2 : Terminez la récupération du nœud
+
+Utilisez un nœud d'administration non principal existant comme nœud d'administration source pour les procédures de restauration (journal des audits, base de données du nœud d'administration et métriques Prometheus). Si la grille ne comporte aucun nœud d'administration non principal, vous pouvez utiliser le nœud VMware d'origine qui est remplacé, à condition qu'il s'exécute sur une adresse IP différente de celle du nœud d'administration principal restauré.
+
+.Étapes
+. link:restoring-audit-log-on-recovered-primary-admin-node.html["Restaurez le journal des audits"].
+. link:restoring-admin-node-database-primary-admin-node.html["Restaurez la base de données de l'Admin Node"].
+. link:restoring-prometheus-metrics-primary-admin-node-using-npan.html["Restaurer les métriques Prometheus"].
+. Vérifiez que le nouveau nœud d'administration principal fonctionne correctement. Ensuite, supprimez immédiatement le nœud de machine virtuelle ou le conteneur bare-metal d'origine.
+

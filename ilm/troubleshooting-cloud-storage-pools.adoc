@@ -38,9 +38,24 @@ Si le problème sous-jacent a été résolu, le message d'erreur ne s'affiche pl
 [[error-health-check-failed-error-from-endpoint]]
 == Erreur : échec de la vérification de l'état de santé. Erreur du noeud final
 
-Cette erreur peut se produire lorsque vous activez le verrouillage objet S3 avec conservation par défaut pour votre compartiment Amazon S3 après avoir commencé à utiliser ce compartiment pour un pool de stockage cloud. Cette erreur se produit lorsque l'opération PUT ne possède pas d'en-tête HTTP avec une valeur de somme de contrôle de charge telle que `Content-MD5`. Cette valeur d'en-tête est requise par AWS pour les opérations PUT dans des compartiments avec le verrouillage objet S3 activé.
+Vous pourriez rencontrer cette erreur dans l'un des cas suivants :
 
-Pour corriger ce problème, suivez les étapes de la section link:editing-cloud-storage-pool.html["Modifiez un pool de stockage cloud"] sans apporter de modifications. Cette action déclenche la validation de la configuration de pool de stockage cloud qui détecte et met à jour automatiquement l'indicateur de verrouillage d'objet S3 sur une configuration de terminal de pool de stockage cloud.
+* Lorsque vous activez le verrouillage d'objets S3 avec la rétention par défaut pour votre compartiment Amazon S3 après avoir commencé à utiliser ce compartiment comme pool de stockage cloud. Cette erreur se produit lorsque l'opération PUT ne comporte pas d'en-tête HTTP avec une valeur de somme de contrôle de la charge utile, telle que  `Content-MD5`. Cette valeur d'en-tête est requise par AWS pour les opérations PUT dans des compartiments avec le verrouillage d'objets S3 activé.
++
+Pour corriger ce problème, suivez les étapes dans link:../ilm/editing-cloud-storage-pool.html["Modifiez un pool de stockage cloud"] sans apporter de modifications. Cette action déclenche la validation de la configuration du Cloud Storage Pool qui détecte et met à jour automatiquement l'indicateur S3 Object Lock sur la configuration du point de terminaison du Cloud Storage Pool.
+
+* Lorsque vous activez le verrouillage d'objet S3 avec la rétention par défaut pour votre compartiment StorageGRID S3 après avoir commencé à utiliser ce compartiment pour un pool de stockage cloud.
++
+Pour corriger ce problème :
+
++
+** Si vous utilisez HTTP : les pools de stockage cloud avec S3 Object Lock activé ne sont pas pris en charge. Modifiez la connexion du point de terminaison pour utiliser HTTPS à la place.
+** Si vous utilisez HTTPS : suivez les étapes dans link:../ilm/editing-cloud-storage-pool.html["Modifiez un pool de stockage cloud"] sans apporter de modifications. Cette action déclenche la validation de la configuration du Cloud Storage Pool qui détecte et met à jour automatiquement l’indicateur S3 Object Lock sur la configuration du point de terminaison du Cloud Storage Pool.
+
+
+
+
+En cas de problème supplémentaire, contactez le support technique.
 
 
 

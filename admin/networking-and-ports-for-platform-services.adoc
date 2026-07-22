@@ -45,4 +45,6 @@ NOTE: Si un déploiement StorageGRID est utilisé comme destination pour la rép
 Si vous utilisez un serveur proxy non transparent, vous devez également link:configuring-storage-proxy-settings.html["configurez les paramètres du proxy de stockage"]autoriser l'envoi de messages à des points finaux externes, tels qu'un point de terminaison sur Internet.
 
 .Informations associées
-link:../tenant/index.html["Utilisez un compte de locataire"]
+* link:../tenant/index.html["Utilisez un compte de locataire"]
+* link:../network/external-communications.html["Ports utilisés pour les communications externes"]
+

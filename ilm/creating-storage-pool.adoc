@@ -14,7 +14,7 @@ summary: 'Vous créez des pools de stockage afin de déterminer où le système 
 Vous créez des pools de stockage afin de déterminer où le système StorageGRID stocke les données d'objet et le type de stockage utilisé. Chaque pool de stockage comprend un ou plusieurs sites et une ou plusieurs catégories de stockage.
 
 
-NOTE: Lorsque vous installez StorageGRID 12.0 sur une nouvelle grille, des pools de stockage sont automatiquement créés pour chaque site.  Cependant, si vous avez initialement installé StorageGRID 11.6 ou une version antérieure, les pools de stockage ne sont pas automatiquement créés pour chaque site.
+NOTE: Lors de l'installation de StorageGRID 12.0 ou version ultérieure sur une nouvelle grille, des pools de stockage sont automatiquement créés pour chaque site. En revanche, si vous avez initialement installé StorageGRID 11.6 ou une version antérieure, les pools de stockage ne sont pas créés automatiquement pour chaque site.
 
 Si vous souhaitez créer des pools de stockage cloud pour stocker des données d'objet en dehors de votre système StorageGRID, reportez-vous à la section link:what-cloud-storage-pool-is.html["Informations sur l'utilisation des pools de stockage cloud"].
 
@@ -64,7 +64,7 @@ Le niveau de stockage, _inclut tous les niveaux de stockage_, inclut tous les n�
 NOTE: Vous êtes averti si vous ajoutez plusieurs entrées avec différents niveaux de stockage pour un site.
 
 +
-Pour supprimer une entrée, sélectionnez l'icône de suppression image:icon-x-to-remove.png["icône supprimer"].
+Pour supprimer une entrée, sélectionnez l'icône de suppression image:icon_x_to_remove.png["icône supprimer"].
 
 . Lorsque vous êtes satisfait de vos sélections, sélectionnez *Enregistrer*.
 +

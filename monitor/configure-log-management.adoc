@@ -11,11 +11,11 @@ summary: Selon les besoins, configurez les niveaux d’audit, les en-têtes de p
 
 
 [role="lead"]
-Selon les besoins, configurez les niveaux d’audit, les en-têtes de protocole et l’emplacement des messages et des journaux d’audit.
+Configurez, selon les besoins, les niveaux d'audit, les en-têtes de protocole, l'emplacement des messages et des journaux d'audit, ainsi que la durée de conservation des journaux.
 
 Tous les nœuds StorageGRID génèrent des messages d’audit et des journaux pour suivre l’activité et les événements du système.  Les messages d’audit et les journaux sont des outils essentiels pour la surveillance et le dépannage.
 
-En option, vous pouvezlink:../monitor/considerations-for-external-syslog-server.html["configurer un serveur syslog externe"] pour enregistrer les informations d'audit à distance.  L’utilisation d’un serveur externe minimise l’impact sur les performances de la journalisation des messages d’audit sans réduire l’exhaustivité des données d’audit.  Un serveur syslog externe est particulièrement utile si vous disposez d'une grande grille, utilisez plusieurs types d'applications S3 ou souhaitez conserver toutes les données d'audit.
+Vous pouvez, si vous le souhaitez, link:../monitor/considerations-for-external-syslog-server.html["configurer un serveur syslog externe"] enregistrer les informations d'audit à distance. Vous pouvez minimiser l'impact sur les performances de la journalisation des messages d'audit sans réduire l'exhaustivité des données d'audit en utilisant un serveur externe. Un serveur syslog externe est particulièrement utile si vous disposez d'une grande grille, utilisez plusieurs types d'applications S3 ou souhaitez conserver toutes les données d'audit.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -161,7 +161,7 @@ Utilisez un astérisque (\*) comme caractère générique pour qu'il corresponde
 
 . Sélectionnez *Ajouter un autre en-tête* pour créer des en-têtes supplémentaires, si nécessaire.
 +
-Lorsque des en-têtes HTTP sont trouvés dans une requête, ils sont inclus dans le message d'audit sous le champ HTRH.
+Lorsque StorageGRID détecte des en-têtes HTTP dans une requête, il les inclut dans le message d'audit sous le champ HTRH.
 
 +
 
@@ -175,7 +175,7 @@ NOTE: Les en-têtes de demande du protocole d'audit sont enregistrés uniquement
 [[configure-log-location]]
 == Configurer l'emplacement du journal
 
-Par défaut, les messages d’audit et les journaux sont enregistrés sur les nœuds où ils sont générés.  Ils sont périodiquement tournés et finalement supprimés pour éviter qu'ils ne consomment trop d'espace disque.  Si vous souhaitez enregistrer les messages d’audit et un sous-ensemble de journaux en externe,<<use-external-syslog-server,utiliser un serveur syslog externe>> .
+Par défaut, les messages d'audit et les journaux sont enregistrés sur les nœuds où ils sont générés. StorageGRID effectue une rotation régulière et supprime finalement les messages d'audit et les journaux afin d'éviter qu'ils ne consomment un espace disque excessif. Pour enregistrer les messages d'audit et un sous-ensemble des journaux en externe, <<use-external-syslog-server,utiliser un serveur syslog externe>>.
 
 Si vous souhaitez enregistrer les fichiers journaux en interne, choisissez un locataire et un bucket pour le stockage des journaux et activez l'archivage des journaux.
 
@@ -262,7 +262,7 @@ La définition de la gravité et des valeurs de l'établissement peut vous aider
 +
 .. Pour *gravité*, sélectionnez *passe-système* ou sélectionnez une valeur de gravité comprise entre 0 et 7.
 +
-Si vous sélectionnez une valeur, la valeur sélectionnée sera appliquée à tous les messages de ce type. Les informations sur les différentes gravité seront perdues si vous remplacez la gravité par une valeur fixe.
+Si vous sélectionnez une valeur, StorageGRID l'applique à tous les messages de ce type. Vous perdez les informations relatives aux différents niveaux de gravité si vous remplacez un niveau de gravité par une valeur fixe.
 
 +
 [cols="1a,3a"]
@@ -547,7 +547,7 @@ local7
 
 ==== Envoyer des messages de test
 
-Avant de commencer à utiliser un serveur syslog externe, vous devez demander à tous les nœuds de votre grille d'envoyer des messages de test au serveur syslog externe. Ces messages de test vous aideront à valider l'intégralité de votre infrastructure de collecte de journaux avant de vous engager à envoyer des données au serveur syslog externe.
+Avant d'utiliser un serveur syslog externe, demandez à tous les nœuds de votre grille d'envoyer des messages de test au serveur syslog externe. Ces messages de test vous aident à valider l'ensemble de votre infrastructure de collecte de journaux avant de vous engager à envoyer des données au serveur syslog externe.
 
 
 CAUTION: N'utilisez pas la configuration du serveur syslog externe tant que vous n'avez pas confirmé que le serveur syslog externe a reçu un message test de chaque nœud de votre grille et que le message a été traité comme prévu.
@@ -704,3 +704,52 @@ Par exemple :
 system-logs/DC1-SN1/var/local/log/localaudit.log--2025-05-12_13:41:44.gz
 ----
 
+
+
+
+[[manage-log-retention]]
+== Gérer la conservation des journaux
+
+Vous pouvez gérer la durée pendant laquelle StorageGRID conserve les journaux en créant une règle ILM ou en configurant une politique de cycle de vie de compartiment S3.
+
+[role="tabbed-block"]
+====
+.Règle ILM
+--
+Créez une règle ILM pour le compartiment et ajoutez cette règle à la stratégie ILM active.
+
+.Étapes
+. Sélectionnez *ILM* > *règles*.
+. Sélectionnez *Créer*. link:../ilm/create-ilm-rule-enter-details.html["Étape 1 (entrer les détails)"] de l’assistant Créer une règle ILM s’affiche :
++
+.. Saisissez un nom unique pour la règle. Par exemple : Règle ILM pour les journaux archivés.
+.. Sélectionnez le compte locataire S3 d'archivage des journaux.
+.. Spécifiez le compartiment S3 d'archivage des journaux.
+
+
+. Continuez à link:../ilm/create-ilm-rule-define-placements.html["Étape 2 (définir les placements)"] et définissez l'emplacement pour la règle des journaux archivés. Par exemple, la règle ILM stocke une copie répliquée sur le site 1 et une copie répliquée sur le site 2 pendant la première année. Après un an, une copie à codage d'effacement 2+1 est créée et enregistrée sur un seul site.
+. Après avoir créé la règle, ajoutez-la à une stratégie ILM active.
+
+
+--
+.cycle de vie d'un compartiment S3
+--
+Configurez une stratégie de cycle de vie S3 sur le compartiment S3 d'archivage des journaux :
+
+[listing]
+----
+{
+      "Rules": [
+        {
+            "ID": "Retain logs forever",
+            "Filter": {},
+            "Status": "Enabled"，
+            "Expiration": {}
+        }
+      ]
+}
+----
+Lorsque vous configurez une stratégie de cycle de vie pour un compartiment S3 d'archivage des journaux, les actions d'expiration du cycle de vie prévalent sur la stratégie ILM pour les objets correspondant au filtre de cycle de vie du compartiment. Les objets qui ne correspondent pas au filtre de cycle de vie du compartiment utilisent les paramètres de rétention de la stratégie ILM. Si un objet correspond à un filtre de cycle de vie du compartiment et qu'aucune action d'expiration n'est explicitement spécifiée, les paramètres de rétention de la stratégie ILM ne sont pas utilisés et il est sous-entendu que les versions de l'objet sont conservées indéfiniment.
+
+--
+====

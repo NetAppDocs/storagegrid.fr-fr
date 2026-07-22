@@ -23,16 +23,17 @@ Vous pouvez déplacer le service ADC vers un autre nœud de stockage sur le mêm
 
 
 .Description de la tâche
-Utilisez la procédure Move ADC lorsque vous souhaitez :
-
-* Désactiver un nœud de stockage qui héberge le service ADC
-* Convertir un nœud de stockage hébergeant le service ADC en nœud de stockage de données uniquement
-
-
-Lorsque vous souhaitez mettre hors service un nœud de stockage oulink:../maintain/convert-to-data-only-node.html["convertir un nœud de stockage en nœud de données uniquement"] , vous devrez peut-être d’abord utiliser la procédure Move ADC.  Vous devrez vous assurer que lelink:../maintain/understanding-adc-service-quorum.html["Le quorum de l'ADC est maintenu"] .
+Utilisez la procédure Move ADC pour déplacer manuellement le service ADC entre les nœuds de stockage. Par exemple, vous pouvez redistribuer les services ADC entre les nœuds ou déplacer le service ADC vers un nœud plus performant.
 
 Cette procédure déplace les services ADC, IDNT, ACCT et RSM d'un nœud de stockage vers un autre sur le même site.  Les services RSM, IDNT et ACCT dépendent du service ADC, ils se déplacent donc automatiquement lorsque le service ADC se déplace.
 
+[NOTE]
+====
+* Il n'est pas nécessaire de déplacer manuellement le service ADC avant link:../maintain/convert-to-data-only-node.html["conversion d’un nœud de stockage en nœud de données uniquement"] ou de mettre hors service un nœud de stockage. Ces procédures déplacent automatiquement le service ADC lorsque cela est requis. Consultez link:../maintain/understanding-adc-service-quorum.html["Qu'est-ce que le quorum ADC ?"] pour plus de détails sur les exigences.
+* StorageGRID déplace le service ADC vers les nœuds de stockage les plus récents qui répondent aux exigences d’hébergement du service.
+
+
+====
 .Étapes
 . Enregistrez les ID de nœud des nœuds source et cible.
 +

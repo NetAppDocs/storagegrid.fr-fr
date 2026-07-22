@@ -259,6 +259,13 @@ La version du logiciel SANtricity est inférieure au minimum recommandé pour ce
 
 
  a| 
+Défaut SFP détecté sur l'appareil
+ a| 
+Une panne SFP a été détectée dans le contrôleur de calcul d'une appliance StorageGRID.
+
+
+
+ a| 
 Avertissement critique sur les disques SSD de l'appliance
  a| 
 Un SSD d'appliance signale un avertissement critique.
@@ -427,6 +434,13 @@ Un compartiment FabricPool utilise le niveau de cohérence disponible ou élevé
 Le compartiment FabricPool possède un paramètre de gestion des versions non pris en charge
  a| 
 La gestion des versions ou le verrouillage d'objet S3 d'un compartiment FabricPool est activé, ce qui n'est pas pris en charge.
+
+
+
+ a| 
+ListBucket vérification des autorisations pour Get/Head object désactivée
+ a| 
+ListBucket la vérification des autorisations pour GetObject/HeadObject sur des clés inexistantes est désactivée.
 
 |===
 
@@ -669,6 +683,13 @@ Au cours des 24 dernières heures, un utilisateur s'est connecté à la console 
 
 
  a| 
+Nombre élevé de goroutines du service de chunk
+ a| 
+Le service de chunk présente un nombre anormalement élevé de goroutines, ce qui pourrait indiquer un deadlock ou une fuite de ressources.
+
+
+
+ a| 
 Défaillance du rééquilibrage EC
  a| 
 La procédure de rééquilibrage EC a échoué ou a été arrêtée.
@@ -693,6 +714,13 @@ Un travail de réparation pour les données EC est bloqué.
 Erreur de vérification de fragment avec code d'effacement
  a| 
 Les fragments avec code d'effacement ne peuvent plus être vérifiés. Des fragments corrompus peuvent ne pas être réparés.
+
+
+
+ a| 
+Groupes à codage d'effacement en état Needs Repair
+ a| 
+Un ou plusieurs groupes codés par effacement sont dans l’état « Nécessite une réparation » alors qu’aucune réparation de données codées par effacement n’est en cours.
 
 |===
 
@@ -807,13 +835,6 @@ La connexion de fédération de grille entre la grille locale et la grille dista
 [cols="1a,2a"]
 |===
 | Nom de l'alerte | Description 
-
-
- a| 
-Utilisation du segment de mémoire Java élevée
- a| 
-Un pourcentage élevé d'espace de tas Java est utilisé.
-
 
 
  a| 
@@ -1309,9 +1330,30 @@ Des objets orphelins ont été détectés.
 
 
  a| 
+La taille de la partie de l’envoi multipart S3 est trop grande
+ a| 
+Un client tente une opération de téléchargement en plusieurs parties qui dépasse la limite de taille des parties.
+
+
+
+ a| 
 S3 PLACEZ la taille de l'objet trop grande
  a| 
 Un client tente une opération PUT Object qui dépasse les limites de taille S3.
+
+
+
+ a| 
+Requêtes S3 utilisant des en-têtes conditionnels non pris en charge
+ a| 
+Un client S3 utilise des en-têtes conditionnels non pris en charge (If-Match ou If-None-Match) pour certaines opérations.
+
+
+
+ a| 
+Requêtes S3 utilisant une région incorrecte avec l'espace de noms global activé
+ a| 
+Un client S3 utilise la mauvaise région de signature pour accéder aux compartiments de cette grille.
 
 
 

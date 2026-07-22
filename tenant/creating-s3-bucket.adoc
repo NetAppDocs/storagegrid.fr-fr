@@ -21,10 +21,10 @@ Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiment
 NOTE: Les autorisations permettant de définir ou de modifier les propriétés de verrouillage d'objet S3 des compartiments ou des objets peuvent être accordées parlink:../s3/use-access-policies.html["politique de compartiment ou règle de groupe"] .
 
 * Si vous prévoyez d'activer le verrouillage objet S3 pour un compartiment, un administrateur du grid a activé le paramètre de verrouillage objet S3 global pour le système StorageGRID. Vous avez également passé en revue les exigences relatives aux compartiments et aux objets S3 Object Lock.
-* Si chaque locataire dispose de 5,000 compartiments, chaque nœud de stockage de la grille dispose d'au moins 64 Go de RAM.
+* Si plusieurs locataires disposent chacun de jusqu'à 5 000 compartiments, chaque nœud de stockage de la grille possède un minimum de 64 Go de RAM.
 +
 
-NOTE: Chaque grille peut contenir un maximum de 100 000 buckets, y comprislink:../tenant/what-is-branch-bucket.html["seaux de branches"] .
+NOTE: Le système StorageGRID prend en charge un maximum de 20 000 compartiments par compte locataire S3. Chaque grille peut contenir jusqu'à 100 000 compartiments, y compris link:../tenant/what-is-branch-bucket.html["seaux de branches"]. Il existe également une limite pour link:../tenant/manage-branch-buckets.html["profondeur du compartiment de branche"].
 
 
 
@@ -63,7 +63,7 @@ Nom du compartiment conforme aux règles suivantes :
 ** Ne doit pas contenir de périodes dans les demandes de type hébergement virtuel. Les périodes provoquera des problèmes avec la vérification du certificat générique du serveur.
 
 
-Pour plus d'informations, voir https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentation Amazon Web Services (AWS) sur les règles d'attribution de nom de compartiment"^].
+Pour plus d'informations, veuillez consulter la  https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentation Amazon Web Services (AWS) sur les règles d'attribution de nom de compartiment"^].
 
 *Remarque* : vous ne pouvez pas modifier le nom du compartiment après avoir créé le compartiment.
 

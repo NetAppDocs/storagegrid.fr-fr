@@ -73,18 +73,18 @@ Pour démarrer le cycle de vie, une application client stocke un objet dans Stor
 
 . *Objet déplacé vers Azure Cloud Storage Pool*
 +
-Lorsque l'objet est associé à une règle ILM utilisant un pool de stockage cloud Azure comme emplacement de placement, StorageGRID déplace l'objet vers le conteneur de stockage Azure Blob externe spécifié par le pool de stockage cloud.
+Lorsque l'objet correspond à une règle ILM qui utilise un pool de stockage cloud Azure comme emplacement de placement, StorageGRID déplace l'objet vers le conteneur Azure Blob Storage externe spécifié par le Cloud Storage Pool.
 
 . *L'objet a été transféré au niveau Archive (état non récupérable)*
 +
-Immédiatement après le déplacement de l'objet vers le pool de stockage cloud Azure, StorageGRID transfère automatiquement l'objet vers le Tier d'archivage du stockage Azure Blob.
+Immédiatement après le déplacement de l'objet vers le pool de stockage cloud Azure, StorageGRID transfère automatiquement l'objet vers le niveau d'archivage du stockage Blob Azure.
 
 . *Objet restauré à partir du niveau d'archive*
 +
 Si un objet a été transféré vers le niveau Archive, l'application client peut émettre une requête S3 RestoreObject pour restaurer une copie récupérable vers Azure Cloud Storage Pool.
 
 +
-Lorsque StorageGRID reçoit l'objet RestoreObject, il le transfère temporairement vers le Tier Azure Blob Storage Cool. Dès que la date d'expiration de la requête RestoreObject est atteinte, StorageGRID ramène l'objet au niveau Archive.
+Lorsque StorageGRID reçoit la requête RestoreObject, il transfère temporairement l'objet vers le niveau Cool d'Azure Blob Storage. Dès que la date d'expiration indiquée dans la requête RestoreObject est atteinte, StorageGRID transfère l'objet vers le niveau Archive.
 
 +
 

@@ -23,8 +23,27 @@ Utilisez le gestionnaire de locataires pour créer et afficher les détails des 
 .Description de la tâche
 Notez les informations suivantes pour les compartiments de branches :
 
-* Les autorisations permettant de définir les propriétés de verrouillage d'objet S3 des buckets ou des objets peuvent être accordées parlink:../s3/use-access-policies.html["politique de compartiment ou règle de groupe"] .
-* Si vous suspendez le contrôle de version sur le bucket de base, le contenu du bucket de base ne sera plus visible dans ses buckets de branche.
+Limite de profondeur du compartiment de branche:: Un compartiment de branche peut contenir jusqu'à 20 compartiments de base. À mesure que la profondeur des compartiments de branche augmente, la latence d'accès à S3 peut également augmenter, en particulier pour les appels ListObjectVersions.
++
+--
+* Si vous créez un compartiment de branche à partir d'un compartiment de base qui est un compartiment standard (un compartiment initialement créé comme compartiment de base), le nouveau compartiment de branche possède un seul compartiment de base.
+* Si le compartiment de base est lui-même un compartiment de branche, le nouveau compartiment de branche hérite de tous les compartiments de base de ce compartiment de branche. L'utilisateur ne spécifie directement qu'un seul compartiment de base ; les compartiments de base hérités sont implicites.
+* Le nombre total de compartiments de base (explicites et implicites) ne peut pas dépasser 20.
++
+Par exemple, supposons que le compartiment *A* soit un compartiment standard avec le versionnage activé :
+
++
+** Le compartiment de branche *B*, créé à partir de *A*, a un compartiment de base : *A*.
+** Le compartiment de branche *C*, créé à partir de *B*, possède deux compartiments de base : *B* (explicite) et *A* (implicite).
+** Le compartiment de branche *D*, créé à partir de *C*, possède trois compartiments de base : *C* (explicite), *B* (implicite) et *A* (implicite).
+** Ce schéma se poursuit jusqu'à une profondeur maximale de 20 seaux de base.
+
+
+
+
+--
+Autorisations de verrouillage d'objet S3:: Les autorisations permettant de définir les propriétés de verrouillage d'objets S3 des compartiments ou des objets peuvent être accordées par link:../tenant/using-s3-object-lock.html["politique de compartiment ou règle de groupe"].
+Versionnage suspendu:: Si vous suspendez le contrôle de version sur le bucket de base, le contenu du bucket de base ne sera plus visible dans ses buckets de branche.
 
 
 
@@ -85,15 +104,6 @@ La région du bucket de branche doit correspondre à la région du bucket de bas
 
 
  a| 
-Avant le temps
- a| 
-L'heure limite pour que les versions d'objet créées dans le bucket de base soient accessibles à partir du bucket de branche.  Le bucket de branche donne accès aux versions d'objet créées avant l'heure Before.
-
-Avant le temps, il doit y avoir une date et une heure qui sont passées.  Cela ne peut pas être une date future.
-
-
-
- a| 
 Type de godet de branche
  a| 
 ** *Lecture-écriture* : Vous pouvez ajouter ou supprimer des objets ou des versions d'objets dans le bucket de branche.
@@ -104,6 +114,24 @@ Type de godet de branche
 
 |===
 . Sélectionnez *Continuer*.
+
+
+
+
+[[time-filter]]
+== Filtre temporel
+
+Choisissez la plage horaire à inclure pour les versions d'objets du compartiment de base. Pour tout filtre temporel, sélectionnez une date dans la plage suivante :
+
+* Date minimale : 1er janvier 2010 (UTC)
+* Date maximale : cinq ans à compter d’aujourd’hui (UTC)
++
+Avant:: Le compartiment de branche permet d'accéder aux versions d'objets créées avant l'heure _Before_.
+Après:: Le compartiment de branche permet d'accéder aux versions d'objets créées après l'heure _After_.
+Entre:: Le compartiment de branche permet d'accéder aux versions d'objets créées entre les heures _From_ et _To_.
+Exclure:: Le compartiment de branche ne donne pas accès aux versions d'objets créées entre les heures _Exclude from_ et _Exclude to_.
+
+
 
 
 

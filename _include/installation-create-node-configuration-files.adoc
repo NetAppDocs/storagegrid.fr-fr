@@ -74,8 +74,6 @@ Le tableau suivant définit les valeurs de toutes les clés prises en charge. Ch
 Adresse IPv4 du réseau de grille du nœud d'administration que vous souhaitez utiliser pour installer le nœud basé sur Linux.  Pour la récupération, utilisez l'adresse IP du nœud d'administration principal si disponible ; sinon, utilisez l'adresse IP d'un nœud d'administration non principal.  Si vous omettez ce paramètre, le nœud tente de découvrir un nœud d’administration principal à l’aide de mDNS.
 
 link:how-grid-nodes-discover-primary-admin-node.html["Mode de détection des nœuds du grid sur le nœud d'administration principal"]
-
-*Remarque* : cette valeur est ignorée et peut être interdite sur le noeud d'administration principal.
  a| 
 Et des meilleures pratiques
 
@@ -260,7 +258,7 @@ Et des meilleures pratiques
 
 
  a| 
-Interface (il s'agit de la seule valeur prise en charge.)
+DedicatedInterface (Il s'agit de la seule valeur prise en charge.)
  a| 
 Facultatif
 
@@ -278,8 +276,6 @@ Facultatif
 Vrai ou faux
 
 Définissez la clé sur « true » pour que le conteneur StorageGRID utilise l'adresse MAC de l'interface hôte cible sur le réseau d'administration.
-
-*Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez la clé ADMIN_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
 Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 
@@ -620,7 +616,7 @@ Et des meilleures pratiques
 
 
  a| 
-Interface (cette valeur est uniquement prise en charge.)
+DedicatedInterface (Il s'agit de la seule valeur prise en charge.)
  a| 
 Facultatif
 
@@ -638,8 +634,6 @@ Facultatif
 Vrai ou faux
 
 Définissez la clé sur « true » pour que le conteneur StorageGRID utilise l'adresse MAC de l'interface cible hôte sur le réseau client.
-
-*Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez plutôt la clé CLIENT_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
 Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 
@@ -812,7 +806,7 @@ Obligatoire
 
 
  a| 
-Interface (il s'agit de la seule valeur prise en charge.)
+DedicatedInterface (Il s'agit de la seule valeur prise en charge.)
  a| 
 Facultatif
 
@@ -830,8 +824,6 @@ Facultatif
 Vrai ou faux
 
 Définissez la valeur de la clé sur « true » pour que le conteneur StorageGRID utilise l'adresse MAC de l'interface cible de l'hôte sur le réseau de la grille.
-
-*Meilleure pratique:* dans les réseaux où le mode promiscuous serait nécessaire, utilisez la clé GRID_NETWORK_TARGET_TYPE_INTERFACE_CLONE_MAC.
 
 Pour plus de détails sur le clonage MAC pour Linux, voirlink:../swnodes/configuring-host-network.html#considerations-and-recommendations-for-mac-address-cloning["Considérations et recommandations relatives au clonage d'adresses MAC"]
  a| 

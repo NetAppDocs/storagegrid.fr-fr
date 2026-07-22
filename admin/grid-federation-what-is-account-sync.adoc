@@ -1,0 +1,122 @@
+---
+permalink: admin/grid-federation-what-is-account-sync.html 
+sidebar: sidebar 
+keywords: account sync, tenant replication, disaster recovery, grid federation 
+summary: 'La synchronisation des comptes est la réplication automatique et continue d"un compte locataire, de groupes de locataires, d"utilisateurs locataires et de clés d"accès S3 entre les systèmes StorageGRID dans une ou plusieurs connexions de fédération de grille.' 
+---
+= Découvrez la synchronisation des comptes dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La synchronisation des comptes est la réplication automatique et continue d’un compte locataire, de groupes de locataires, d’utilisateurs locataires et, éventuellement, de clés d’accès S3 entre les systèmes StorageGRID dans un ou plusieurs link:grid-federation-overview.html["connexions de fédération de grille"].
+
+La synchronisation des comptes est requise pour link:grid-federation-what-is-cross-grid-replication.html["réplication entre plusieurs grilles"]. La synchronisation des informations de compte entre les systèmes StorageGRID garantit que les utilisateurs et les groupes locataires peuvent accéder aux compartiments et aux objets correspondants sur n'importe quelle grille connectée.
+
+
+
+[[workflow-for-account-sync]]
+== Flux de travail pour la synchronisation des comptes
+
+Le diagramme de flux de travail illustre les étapes que les administrateurs de grille et les locataires autorisés devront suivre pour configurer la synchronisation des comptes. Ces étapes sont effectuées après le link:grid-federation-create-connection.html["la connexion de fédération de grille est configurée"].
+
+image:grid_federation_account_sync_workflow.png["Flux de travail pour la synchronisation des comptes"]
+
+
+
+[[grid-admin-workflow]]
+== Workflow d'administration du grid
+
+Les étapes que les administrateurs du grid effectuent dépendent du type d'authentification unique (SSO) ou de fédération des identités des systèmes StorageGRIDlink:grid-federation-overview.html["connexion de fédération de grille"].
+
+
+
+[[account-sync-ssoconfigure-sso-for-account-sync-optional]]
+=== [[account-sync-sso]]Configurer l'authentification unique pour la synchronisation des comptes (facultatif)
+
+Si l'un des systèmes StorageGRID de la connexion de fédération de grille utilise SSO, les deux grilles doivent utiliser SSO. Avant de créer les comptes de tenant pour la fédération de grille, les administrateurs de grille pour les grilles source et de destination du locataire doivent effectuer ces étapes.
+
+.Étapes
+. Configurez le même référentiel d'identité pour les deux grilles. Voir link:using-identity-federation.html["Utiliser la fédération des identités"].
+. Configurez le même fournisseur d’identité SSO (IdP) pour les deux grilles. Voir link:how-sso-works.html["Configurer l'authentification unique"] .
+. link:managing-admin-groups.html["Créez le même groupe d'administration"] sur les deux grilles en important le même groupe fédéré.
++
+Lorsque vous créez le tenant, vous sélectionnez ce groupe pour obtenir l'autorisation d'accès racine initiale pour les comptes de tenant source et de destination.
+
++
+
+NOTE: Si ce groupe d'administration n'existe pas sur les deux grilles avant la création du tenant, celui-ci n'est pas répliqué vers la destination.
+
+
+
+
+
+[[account-sync-identity-federationconfigure-grid-level-identity-federation-for-account-sync-optional]]
+=== [[account-sync-identity-federation]]Configurer la fédération d'identités au niveau de la grille pour la synchronisation des comptes (facultatif)
+
+Si l'un ou l'autre des systèmes StorageGRID utilise la fédération des identités sans SSO, les deux grilles doivent utiliser la fédération des identités. Avant de créer les comptes de tenant pour la fédération de grille, les administrateurs de grille pour les grilles source et de destination du locataire doivent effectuer ces étapes.
+
+.Étapes
+. Configurez le même référentiel d'identité pour les deux grilles. Voir link:using-identity-federation.html["Utiliser la fédération des identités"].
+. Si un groupe fédéré dispose d'une autorisation d'accès racine initiale pour les comptes de tenant source et de destination, link:managing-admin-groups.html["créez le même groupe d'administration"] sur les deux grilles en important le même groupe fédéré.
++
+
+NOTE: Si vous attribuez l'autorisation d'accès racine à un groupe fédéré qui n'existe pas sur les deux grilles, le tenant n'est pas répliqué sur la grille de destination.
+
+. Si vous ne souhaitez pas qu'un groupe fédéré dispose d'une autorisation d'accès racine initiale pour les deux comptes, spécifiez un mot de passe pour l'utilisateur root local.
+
+
+
+
+[[create-permitted-s3-tenant-account]]
+=== Créez un compte de locataire S3 autorisé
+
+Après avoir configuré éventuellement une SSO ou une fédération d'identités, un administrateur du grid effectue ces étapes pour déterminer quels locataires peuvent répliquer des objets de compartiment vers d'autres systèmes StorageGRID.
+
+.Étapes
+. Déterminez la grille que vous souhaitez utiliser comme grille source du locataire pour les opérations de synchronisation des comptes.
++
+La grille dans laquelle le locataire est créé à l'origine est appelée _grille source_ du locataire. La grille dans laquelle le locataire est répliqué est appelée _grille de destination_ du locataire.
+
+. Dans cette grille, créez un compte de locataire S3 ou modifiez un compte existant.
+. Attribuez l'autorisation *utiliser la connexion de fédération de grille*.
+. Si le compte de tenant gère ses propres utilisateurs fédérés, attribuez l'autorisation *utiliser son propre référentiel d'identité*.
++
+Si cette autorisation est accordée, les comptes des locataires source et de destination doivent configurer la même source d'identité avant de créer des groupes fédérés. Les groupes fédérés ajoutés au locataire source ne peuvent être synchronisés avec le locataire de destination que si les deux grids utilisent la même source d'identité.
+
+. Sélectionnez une connexion de fédération de grille spécifique.
+. Enregistrez le nouveau locataire ou le locataire modifié.
++
+Lorsqu'un nouveau locataire avec l'autorisation *utiliser la connexion de fédération de grille* est enregistré, StorageGRID crée automatiquement une réplique de ce locataire sur l'autre grille, comme suit :
+
++
+** Les deux comptes de tenant possèdent les mêmes ID de compte, nom, quota de stockage et autorisations attribuées.
+** Si vous avez sélectionné un groupe fédéré disposant des droits d'accès Root pour le locataire, ce groupe est cloné dans le locataire de destination. Cependant, la synchronisation continue ne s'applique pas aux groupes et utilisateurs fédérés. Seul un clonage ponctuel a lieu.
+** Si vous avez sélectionné un utilisateur local pour disposer des droits d'accès Root pour le locataire, cet utilisateur est synchronisé avec le locataire de destination.
+
+
+
+
+Pour plus de détails, consultez link:grid-federation-manage-tenants.html["Gestion des locataires autorisés pour la fédération dans le grid"].
+
+
+
+[[permitted-tenant-account-workflow]]
+== Workflow de compte de locataire autorisé
+
+Après qu'un locataire disposant de l'autorisation *Use grid federation connection* a été répliqué sur la grille de destination, les comptes de locataires autorisés peuvent effectuer ces étapes pour synchroniser les groupes de locataires, les utilisateurs et les clés d'accès S3.
+
+.Étapes
+. Connectez-vous au compte locataire sur n'importe quelle grille connectée.
+. Si cela est autorisé, configurez la fédération d'identité sur les comptes locataires source et de destination.
+. Créez des groupes et des utilisateurs sur n'importe quelle grille connectée.
++
+Lorsque de nouveaux groupes ou utilisateurs sont créés sur un locataire, StorageGRID les synchronise automatiquement avec le locataire de destination.
+
+. Création de clés d'accès S3
+. Vous pouvez également synchroniser les clés d'accès S3 du locataire source vers le locataire de destination.
+
+
+Pour plus de détails sur le flux de travail des comptes locataires autorisés et pour savoir comment les groupes, les utilisateurs et les clés d'accès S3 sont synchronisés, reportez-vous à link:../tenant/grid-federation-account-sync.html["Synchroniser les groupes de locataires et les utilisateurs"].

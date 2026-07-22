@@ -1,0 +1,10 @@
+= 
+:allow-uri-read: 
+
+
+* *En attente*. La demande a été initiée.
+* *Expiré*. La demande n'a pas été traitée dans les 30 jours. Ou un utilisateur disposant des droits d'accès Root a désactivé MAV, ce qui signifie que toutes les demandes en attente sont expirées.
+* *Retiré*. Un utilisateur a retiré sa demande.
+* *Approuvé*. Un administrateur MAV a approuvé la demande en attente.
+* *Rejeté*. Un administrateur MAV a rejeté la requête en attente.
+

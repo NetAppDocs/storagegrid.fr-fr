@@ -1,0 +1,143 @@
+---
+permalink: admin/learn-about-global-namespace.html 
+sidebar: sidebar 
+keywords: global namespace, grid federation, S3 endpoint domain names, default region, grid federation connection, multi-grid 
+summary: 'Un espace de noms global permet aux locataires d"accéder aux compartiments sur plusieurs systèmes StorageGRID. Lorsque l"espace de noms global est activé sur les connexions de fédération de grilles, les requêtes S3 CreateBucket et ListBuckets ciblant le point de terminaison de l"espace de noms global peuvent être envoyées au point de terminaison d"équilibrage de charge de n"importe quelle grille et sont automatiquement acheminées vers la grille appropriée en fonction de la région de signature dans la requête.' 
+---
+= Découvrez l'espace de noms global pour la fédération de grid.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un espace de noms global permet aux locataires d'accéder aux compartiments sur plusieurs systèmes StorageGRID. Lorsque l'espace de noms global est activé sur les connexions de fédération de grilles, les requêtes S3 CreateBucket et ListBuckets ciblant le point de terminaison de l'espace de noms global peuvent être envoyées au point de terminaison d'équilibrage de charge de n'importe quelle grille et sont automatiquement acheminées vers la grille appropriée en fonction de la région de signature dans la requête.
+
+
+
+[[what-is-a-global-namespace]]
+== Qu'est-ce qu'un espace de noms global ?
+
+Un espace de noms global permet aux locataires d'accéder aux compartiments sur plusieurs systèmes StorageGRID. Lorsque l'espace de noms global est activé sur les connexions de fédération de grilles, les requêtes S3 CreateBucket et ListBuckets ciblant le point de terminaison de l'espace de noms global peuvent être envoyées au point de terminaison d'équilibrage de charge de n'importe quelle grille et sont automatiquement acheminées vers la grille appropriée en fonction de la région de signature dans la requête.
+
+
+NOTE: Vous devez configurer un résolveur DNS pour effectuer le mappage DNS des URL de compartiment vers une grille spécifique. Au besoin, consultez votre administrateur réseau pour vous assurer que le résolveur DNS est correctement configuré. Reportez-vous à link:../admin/configure-global-namespace.html#config-dns-resolution["Configurer la résolution DNS"].
+
+StorageGRID n'impose pas l'unicité des noms de compartiments entre les grilles de l'espace de noms global, ainsi des compartiments portant le même nom peuvent exister sur différentes grilles. La région de signature dans la requête est utilisée pour déterminer quelle grille possède le compartiment et doit recevoir la requête.
+
+Par exemple, si le grid A utilise la région `us-east-1` et que le grid B utilise la région `us-west-1`, une requête CreateBucket envoyée à n'importe quel grid avec la région `us-west-1` est automatiquement acheminée vers le grid B.
+
+Pour plus d'informations sur la fédération de grilles, consultez link:grid-federation-overview.html["Qu'est-ce que la fédération de grille ?"].
+
+
+
+[[gns-exampleglobal-namespace-example]]
+== [[gns-example]]Exemple d'espace de noms global
+
+.Grille 1
+* Région par défaut : `region-1`
+* CNAME par défaut : `s3.region-1.company.com`
+* Point de terminaison global : `s3.company.com`
+
+
+.Grille 2
+* Région par défaut : `region-2`
+* CNAME par défaut : `s3.region-2.company.com`
+* Point de terminaison global : `s3.company.com`
+
+
+.Grille 3
+* Région par défaut : `region-3`
+* CNAME par défaut : `s3.region-3.company.com`
+* Point de terminaison global : `s3.company.com`
+
+
+
+
+[[createbucket-and-listbuckets-operations]]
+=== CreateBucket et ListBuckets opérations
+
+Si vous créez un compartiment (`bucket123`) avec une région de signature `region-2` et ciblez le point de terminaison global `s3.company.com`, toute grille qui reçoit la requête créera le compartiment sur Grid 2.
+
+
+
+[[bucket-specific-and-general-object-operations]]
+=== Opérations spécifiques aux compartiments et opérations générales sur les objets
+
+Une fois un compartiment créé sur une grille donnée, votre résolveur DNS résoudra l'URL du compartiment vers le CNAME du compartiment et de la grille.
+
+Dans <<gns-example,exemple ci-dessus>>, le résolveur DNS doit résoudre  `bucket123.s3.company.com` en  `bucket123.s3.grid3.company.com` (CNAME du bucket et de la grille). Autrement dit, toutes les requêtes sont envoyées directement à cette grille sans routage supplémentaire.
+
+.Exemple
+`PutObject to bucket123.s3.company.com` se résout à  `bucket123.s3.grid3.company.com`
+
+
+
+[[s3-behavior-with-global-namespace]]
+== Comportement de S3 avec un espace de noms global
+
+Une fois l'espace de noms global entièrement configuré, le comportement S3 suivant s'applique.
+
+
+
+[[region-enforcement]]
+=== Application de la région
+
+Toutes les requêtes S3 adressées au point de terminaison d'espace de noms global, à l'exception de link:../s3/operations-on-buckets.html["CreateBucket"] et link:../s3/operations-on-the-service.html["Listseaux"], nécessitent que la région de signature dans l'en-tête d'authentification V4 corresponde à la région par défaut de la grille.
+
+* Si la région de signature ne correspond pas, la requête est refusée avec l'erreur suivante :
++
+[listing]
+----
+An error occurred (AuthorizationHeaderMalformed) when calling the <operation> operation: The authorization header is malformed; the region '<signing-region>' is wrong; expecting '<grid-default-region>'
+----
+* L'application des restrictions régionales s'applique à tous les compartiments de la grille, y compris ceux qui ont été créés avant l'activation de l'espace de noms global.
+* L'application des restrictions régionales ne concerne que les requêtes d'authentification V4. Les requêtes anonymes et V2 ne sont pas soumises à l'application des restrictions régionales.
+
+
+
+
+[[createbucket-routing]]
+=== Routage de CreateBucket
+
+CreateBucket requests envoyées au point de terminaison de l'espace de noms global (`s3.company.com` peuvent être dirigées vers le point de terminaison d'équilibrage de charge de n'importe quelle grille. La requête est automatiquement acheminée vers la grille dont la région par défaut correspond à la région de signature de la requête.
+
+Par exemple :
+
+* La grille A a une région par défaut `us-east-1` et la grille B a une région par défaut `us-west-1`.
+* Un client envoie une requête CreateBucket à  `s3.company.com` avec la région de signature  `us-west-1`.
+* Le DNS round-robin dirige la requête vers Grid A.
+* La grille A achemine la requête vers la grille B.
+* Le compartiment est créé sur Grid B.
+
+
+Considérations supplémentaires pour CreateBucket :
+
+* L’ `LocationConstraint`élément peut être défini sur n’importe quelle région par défaut ou non par défaut de la grille. Cela affecte uniquement la politique ILM, pas la grille qui crée le compartiment (contrairement au comportement d’AWS avec  `us-east-1`).
+* La région de signature dans la requête détermine quelle grille crée le compartiment (la région de signature doit correspondre à la région par défaut de la grille cible).
+* Les requêtes V4 pré-signées sont prises en charge.
+* Les requêtes anonymes et V2 ne sont pas prises en charge pour le routage global des espaces de noms.
+
+
+
+
+[[listbuckets-routing]]
+=== Routage ListBuckets
+
+ListBuckets les requêtes envoyées au point de terminaison de l’espace de noms global sont acheminées de la même manière que les requêtes CreateBucket, en utilisant la région de signature pour déterminer la grille appropriée.
+
+Ni les réponses HEAD Bucket ni ListBuckets n'incluent la région par défaut de la grille. La région par défaut est déduite de la région de signature, qui doit correspondre à la région par défaut de la grille.
+
+
+
+[[account-and-access-key-management]]
+=== Gestion des comptes et des clés d'accès
+
+Les comptes locataires et les clés d'accès S3 peuvent être synchronisés entre toutes les grilles à l'aide de link:grid-federation-what-is-account-sync.html["synchronisation des comptes"] l'espace de noms global, mais ce dernier fonctionne également lorsque chaque grille possède son propre ensemble de clés d'accès. Si vous utilisez des clés d'accès distinctes, assurez-vous que le client S3 utilise la clé d'accès appropriée lors de l'envoi de requêtes à chaque grille.
+
+
+
+[[whats-next]]
+== Et ensuite ?
+
+Vous êtes maintenant prêt à link:../admin/configure-global-namespace.html["configurer l'espace de noms global"].

@@ -90,7 +90,7 @@ Le tableau répertorie les interfaces disponibles pour tous les nœuds d'adminis
 Par exemple, il peut être nécessaire de connecter un VLAN à l'interface eth2 (client Network) pour un nœud de passerelle et un nœud d'administration.
 
 +
-image:vlan-create-parent-interfaces.png["VLAN create Wizard parent interfaces"]
+image:vlan_create_parent_interfaces.png["VLAN create Wizard parent interfaces"]
 
 . Sélectionnez *Continuer*.
 
@@ -105,7 +105,7 @@ image:vlan-create-parent-interfaces.png["VLAN create Wizard parent interfaces"]
 +
 ** Si vous devez modifier l'ID ou la description du VLAN, sélectionnez *entrer les détails du VLAN* en haut de la page.
 ** Si vous devez modifier une interface parent, sélectionnez *Choisissez les interfaces parent* en haut de la page ou sélectionnez *Précédent*.
-** Si vous devez supprimer une interface parente, sélectionnez l’icône de la corbeille image:icon-trash-can.png["icône de corbeille"].
+** Si vous devez supprimer une interface parente, sélectionnez l’icône de la corbeille image:icon_trash_can.png["icône de corbeille"].
 
 
 . Sélectionnez *Enregistrer*.

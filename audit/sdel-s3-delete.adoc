@@ -19,6 +19,28 @@ Lorsqu'un client S3 émet une transaction DE SUPPRESSION, une demande de suppres
 
 
  a| 
+ASRS
+ a| 
+URN de session de rôle assumé
+ a| 
+L'identifiant unique de la session de rôle assumé.
+
+Présent uniquement lorsque la requête S3 utilise des informations d'identification de sécurité temporaires provenant d'une requête AssumeRole.
+
+
+
+ a| 
+ASRU
+ a| 
+URN de rôle assumé
+ a| 
+L'identifiant unique du rôle assumé.
+
+Présent uniquement lorsque la requête S3 utilise des informations d'identification de sécurité temporaires provenant d'une requête AssumeRole.
+
+
+
+ a| 
 CBID
  a| 
 Identificateur du bloc de contenu

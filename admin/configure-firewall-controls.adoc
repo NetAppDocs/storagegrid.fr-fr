@@ -29,9 +29,9 @@ StorageGRID comprend un pare-feu interne sur chaque nœud qui vous permet d'ouvr
 
 Limiter le nombre de ports ouverts aux adresses IP en dehors de votre grille à ceux qui sont absolument nécessaires améliore la sécurité de votre grille. Vous utilisez les paramètres de chacun des trois onglets de contrôle du pare-feu pour vous assurer que seuls les ports nécessaires sont ouverts.
 
-Pour plus d'informations sur l'utilisation des contrôles de pare-feu, notamment des exemples, reportez-vous à la section link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
+Pour plus d'informations sur l'utilisation des contrôles de pare-feu, y compris des exemples, reportez-vous à link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"].
 
-Pour plus d'informations sur les pare-feu externes et la sécurité réseau, reportez-vous à la section link:../admin/controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].
+Pour plus d'informations sur les pare-feu externes et la sécurité réseau, consultez link:../admin/controlling-access-through-firewalls.html["Contrôler l'accès au niveau du pare-feu externe"].
 
 
 
@@ -60,16 +60,16 @@ Vous utilisez l'onglet liste d'adresses privilégiées pour accorder aux hôtes 
 Par défaut, les adresses IP privilégiées et les sous-réseaux ne disposent pas d'un accès au grid interne. En outre, les noeuds finaux d'équilibrage de charge et les ports supplémentaires ouverts dans l'onglet liste d'adresses privilégiées sont accessibles même si bloqués dans l'onglet gérer l'accès externe.
 
 
-NOTE: Les paramètres de l'onglet liste d'adresses privilégiées ne peuvent pas remplacer les paramètres de l'onglet réseau client non approuvé.
+NOTE: Les paramètres de l'onglet Liste d'adresses privilégiées peuvent remplacer ceux de l'onglet Réseau client non approuvé.
 
 .Étapes
 . Dans l'onglet liste d'adresses privilégiées, entrez l'adresse ou le sous-réseau IP que vous souhaitez accorder à l'accès aux ports fermés.
-. Si vous le souhaitez, sélectionnez *Ajouter une autre adresse IP ou un autre sous-réseau en notation CIDR* pour ajouter des clients privilégiés supplémentaires.
+. Vous pouvez également sélectionner *Ajouter une autre adresse IP ou un sous-réseau au format CIDR* pour ajouter des clients privilégiés supplémentaires.
 +
 
 TIP: Ajoutez autant d'adresses que possible à la liste privilégiée.
 
-. Vous pouvez également sélectionner *Autoriser les adresses IP privilégiées à accéder aux ports internes StorageGRID*. Voir link:../network/internal-grid-node-communications.html["Ports internes StorageGRID"].
+. Vous pouvez également sélectionner *Autoriser les adresses IP privilégiées à accéder aux ports internes de StorageGRID*. Reportez-vous à link:../network/internal-grid-node-communications.html["Ports internes StorageGRID"].
 +
 
 TIP: Cette option supprime certaines protections pour les services internes. Laissez-le désactivé si possible.
@@ -96,7 +96,7 @@ NOTE: Les paramètres de l'onglet gérer l'accès externe ne peuvent pas remplac
 ** Sélectionnez *Fermer tous les ports affichés* pour fermer tous les ports répertoriés dans le tableau.
 +
 
-CAUTION: Si vous fermez les ports Grid Manager 443 ou 8443, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager, sauf si leur adresse IP a été ajoutée à la liste d'adresses privilégiées.
+CAUTION: Si vous fermez les ports 443 ou 8443 de Grid Manager, tous les utilisateurs actuellement connectés sur un port bloqué, y compris vous, perdront l'accès à Grid Manager à moins que leur adresse IP ait été ajoutée à la liste des adresses privilégiées.
 
 +
 
@@ -150,6 +150,6 @@ NOTE: Utilisez la barre de défilement située à droite du tableau pour vous as
 
 . Sélectionnez *Enregistrer*.
 +
-Les nouveaux paramètres de pare-feu sont immédiatement appliqués et appliqués. Les connexions client existantes peuvent échouer si les points de terminaison de l'équilibreur de charge n'ont pas été configurés.
+Les nouveaux paramètres du pare-feu sont immédiatement appliqués et mis en œuvre. Les connexions client existantes peuvent échouer si les points de terminaison de l'équilibreur de charge n'ont pas été configurés.
 
 

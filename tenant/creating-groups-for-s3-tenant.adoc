@@ -17,7 +17,7 @@ Vous pouvez gérer les autorisations des groupes d'utilisateurs S3 en important 
 * Vous êtes connecté au gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous appartenez à un groupe d'utilisateurs qui possède le link:tenant-management-permissions.html["Autorisation d'accès racine"].
 * Si vous prévoyez d'importer un groupe fédéré, vous avez link:using-identity-federation.html["fédération des identités configurée"]et le groupe fédéré existe déjà dans le référentiel d'identité configuré.
-* Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vous avez examiné le flux de travail et les considérations pour link:grid-federation-account-clone.html["clonage de groupes de locataires et d'utilisateurs"]et vous êtes connecté à la grille source du locataire.
+* Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grille*, vous avez examiné le flux de travail et les considérations pour link:grid-federation-account-sync.html["synchronisation des groupes de locataires et des utilisateurs"], et vous êtes connecté à la grille source du locataire.
 
 
 
@@ -29,10 +29,6 @@ Pour la première étape, accédez à l'assistant de création de groupe.
 
 .Étapes
 . Sélectionnez *Gestion des accès* > *Groupes*.
-. Si votre compte locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, vérifiez qu'une bannière bleue s'affiche, indiquant que les nouveaux groupes créés sur cette grille seront clonés sur le même locataire sur l'autre grille de la connexion. Si cette bannière n'apparaît pas, vous pouvez être connecté à la grille de destination du locataire.
-+
-image:grid-federation-tenant-group-banner.png["Image de la bannière bleue sur la page groupes de la grille source des locataires"]
-
 . Sélectionnez *Créer groupe*.
 
 
@@ -151,9 +147,6 @@ Pour plus d'informations sur les stratégies de groupe, notamment la syntaxe de 
 
 Vous pouvez enregistrer le groupe sans ajouter d'utilisateurs, ou vous pouvez éventuellement ajouter des utilisateurs locaux qui existent déjà.
 
-
-NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connexion de fédération de grille*, tous les utilisateurs que vous sélectionnez lorsque vous créez un groupe local sur la grille source ne sont pas inclus lorsque le groupe est cloné dans la grille de destination. Pour cette raison, ne sélectionnez pas d'utilisateurs lorsque vous créez le groupe. Sélectionnez plutôt le groupe lorsque vous créez les utilisateurs.
-
 .Étapes
 . Vous pouvez également sélectionner un ou plusieurs utilisateurs locaux pour ce groupe.
 . Sélectionnez *Créer groupe* et *Terminer*.
@@ -161,6 +154,6 @@ NOTE: Si votre compte de locataire dispose de l'autorisation *utiliser la connex
 Le groupe que vous avez créé apparaît dans la liste des groupes.
 
 +
-Si votre compte locataire dispose de l'autorisation *utiliser la connexion de fédération de grille* et que vous êtes sur la grille source du locataire, le nouveau groupe est cloné dans la grille de destination du locataire. *Succès* apparaît comme l'état *clonage* dans la section vue d'ensemble de la page de détails du groupe.
+Si votre compte locataire dispose de l'autorisation *Utiliser la connexion de fédération de grilles* et que vous êtes sur la grille source du locataire, le nouveau groupe est synchronisé avec la grille de destination du locataire. *Réussi* apparaît comme statut de synchronisation dans la section Vue d'ensemble de la page de détails du groupe.
 
 

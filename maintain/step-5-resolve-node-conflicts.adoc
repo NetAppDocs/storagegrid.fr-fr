@@ -78,7 +78,7 @@ image:decommission_site_step_5_ha_groups.png["Désaffectation du site étape 5 g
 
 
 +
-Si tous les nœuds sont connectés et qu'aucun nœud du site sélectionné n'est utilisé dans un groupe HA, le champ *phrase de passe d'approvisionnement* est activé.
+Si tous les nœuds sont connectés et qu'aucun nœud du site sélectionné n'est utilisé dans un groupe HA, le champ *Provisioning passphrase* est activé.
 
 . Saisissez la phrase secrète pour le provisionnement.
 +

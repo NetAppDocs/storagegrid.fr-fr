@@ -50,8 +50,6 @@ entries:
     url: "/expand/configuring-expanded-storagegrid-system.html"
   - title: Vérifiez que les nœuds de stockage sont actifs
     url: "/expand/verifying-storage-node-is-active.html"
-  - title: Copiez la base de données du nœud d'administration
-    url: "/expand/copying-admin-node-database.html"
   - title: Copie des metrics Prometheus
     url: "/expand/copying-prometheus-metrics.html"
   - title: Copie des journaux d'audit

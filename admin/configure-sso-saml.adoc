@@ -1,17 +1,17 @@
 ---
-permalink: admin/configure-sso.html 
+permalink: admin/configure-sso-saml.html 
 sidebar: sidebar 
 keywords: use sandbox mode for sso, how to test single sign-on 
-summary: 'Vous pouvez suivre l"assistant de configuration SSO et accéder au mode sandbox pour configurer et tester l"authentification unique (SSO) avant de l"activer pour tous les utilisateurs de StorageGRID. Une fois SSO activé, vous pouvez revenir au mode sandbox si nécessaire pour modifier ou tester à nouveau la configuration.' 
+summary: 'Vous pouvez suivre l"assistant de configuration SSO pour SAML et accéder au mode sandbox pour configurer et tester l"authentification unique (SSO) avant de l"activer pour tous les utilisateurs de StorageGRID. Une fois l"authentification unique (SSO) activée, vous pouvez revenir au mode sandbox si nécessaire pour modifier ou tester à nouveau la configuration.' 
 ---
-= Configurer l'authentification unique (SSO) dans StorageGRID
+= Configurer l'authentification unique (SSO) dans StorageGRID à l'aide de SAML
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Vous pouvez suivre l'assistant de configuration de l'authentification unique (SSO) et accéder au mode sandbox pour configurer et tester l'authentification unique (SSO) avant de l'activer pour tous les utilisateurs de StorageGRID .  Une fois l'authentification unique activée, vous pouvez revenir au mode sandbox si nécessaire pour modifier ou retester la configuration.
+Suivez l'assistant de configuration SSO pour SAML et passez en mode sandbox pour configurer et tester l'authentification unique (SSO) avant de l'activer pour tous les utilisateurs StorageGRID. Après avoir activé SSO, vous pouvez revenir en mode sandbox si nécessaire pour modifier ou tester à nouveau la configuration.
 
 .Avant de commencer
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -49,7 +49,7 @@ Lorsque SSO est activé et qu'un utilisateur tente de se connecter à un nœud d
 * La réponse d'Entra ID inclut un nom d'utilisateur principal (UPN).
 
 
-Pour permettre à StorageGRID (le fournisseur de services) et au fournisseur d'identité SSO de communiquer en toute sécurité sur les demandes d'authentification des utilisateurs, vous devez effectuer ces tâches :
+Pour permettre à StorageGRID (le fournisseur de services) et au fournisseur d'identité SSO de communiquer de manière sécurisée au sujet des demandes d'authentification des utilisateurs, vous effectuez les tâches suivantes :
 
 . Configurer les paramètres dans StorageGRID.
 . Utilisez le logiciel du fournisseur d'identité SSO pour créer une approbation de partie de confiance (AD FS), une application d'entreprise (Entra ID) ou un fournisseur de services (PingFederate) pour chaque nœud d'administration.
@@ -60,24 +60,23 @@ Le mode Sandbox facilite l’exécution de cette configuration aller-retour et p
 
 
 
-[[access-the-wizard]]
-== Accéder à l'assistant
+[[step-1-provide-identity-provider-details]]
+== Étape 1 : Fournir les détails du fournisseur d’identité
+
+Accédez à l'assistant et complétez les champs de la page Fournir les détails du fournisseur d'identité.
 
 .Étapes
-. Sélectionnez *Configuration* > *Contrôle d'accès* > *Authentification unique*.  La page d’authentification unique apparaît.
+. Accédez à l'assistant :
++
+.. Sélectionnez *Configuration* > *Contrôle d'accès* > *Authentification unique*.  La page d’authentification unique apparaît.
 +
 
 NOTE: Si le bouton Configurer les paramètres SSO est désactivé, confirmez que vous avez configuré le fournisseur d’identité comme source d’identité fédérée. link:requirements-for-sso.html["Configuration requise et considérations pour l'authentification unique"] .
 
-. Sélectionnez *Configurer les paramètres SSO*.  La page Fournir les détails du fournisseur d’identité s’affiche.
+.. Sélectionnez *Configurer les paramètres SSO*.  La page Fournir les détails du fournisseur d’identité s’affiche.
 
 
-
-
-[[provide-identity-provider-details]]
-== Fournir les détails du fournisseur d'identité
-
-.Étapes
+. Sous *Protocole*, sélectionnez *SAML*.
 . Sélectionnez le *SSO type* dans la liste déroulante.
 . Si vous avez sélectionné Active Directory comme type SSO, saisissez le *Nom du service de fédération* pour le fournisseur d'identité, exactement tel qu'il apparaît dans Active Directory Federation Service (AD FS).
 +
@@ -91,7 +90,7 @@ NOTE: Pour localiser le nom du service de fédération, accédez à Windows Serv
 +
 Si vous sélectionnez ce paramètre, copiez le texte du certificat personnalisé et collez-le dans la zone de texte *certificat CA*.
 
-** *N'utilisez pas TLS*: N'utilisez pas de certificat TLS pour sécuriser la connexion.
+** *N'utilisez pas TLS* : N'utilisez pas de certificat TLS pour sécuriser la connexion.
 +
 
 CAUTION: Si vous modifiez le certificat de l'autorité de certification, testez immédiatement link:../maintain/starting-or-restarting-service.html["Redémarrez le service mgmt-api sur les nœuds d'administration"] et vérifiez si une authentification unique réussie est présente dans le gestionnaire de grille.
@@ -103,60 +102,69 @@ CAUTION: Si vous modifiez le certificat de l'autorité de certification, testez 
 
 
 
-[[enter-sandbox-modeprovide-relying-party-identifier]]
-== [[enter-sandbox-mode]]Fournir l'identifiant de la partie de confiance
+[[enter-sandbox-modestep-2-provide-relying-party-trusts-enterprise-applications-or-sp-connections]]
+== [[enter-sandbox-mode]]Étape 2 : Fournissez les relations d’approbation de parties de confiance, les applications d'entreprise ou les connexions SP
 
-. Remplissez les champs de la page Fournir l’identifiant de la partie de confiance en fonction du type SSO que vous avez sélectionné.
-+
+Remplissez les champs de l'étape 2 de l'assistant en fonction du type de SSO que vous avez sélectionné.
+
 [role="tabbed-block"]
 ====
 .Active Directory
 --
-.. Spécifiez l'*identifiant de la partie de confiance* pour StorageGRID.  Cette valeur contrôle le nom que vous utilisez pour chaque approbation de partie de confiance dans AD FS.
+Remplissez les champs de l’étape *Fournir l’identifiant de la partie de confiance*.
+
+.Étapes
+. Spécifiez l'*identifiant de la partie de confiance* pour StorageGRID.  Cette valeur contrôle le nom que vous utilisez pour chaque approbation de partie de confiance dans AD FS.
 +
-*** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
-*** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche l'identifiant de la partie de confiance pour chaque nœud d'administration dans la grille, en fonction du nom d'hôte du nœud.
+** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
+** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche l'identifiant de la partie de confiance pour chaque nœud d'administration dans la grille, en fonction du nom d'hôte du nœud.
 +
 
 NOTE: Vous devez créer une confiance en tiers pour chaque nœud d'administration de votre système StorageGRID. Le fait d'avoir une confiance de partie de confiance pour chaque nœud d'administration permet aux utilisateurs de se connecter et de se déconnecter en toute sécurité à n'importe quel nœud d'administration.
 
 
 
-.. Sélectionnez *Enregistrer et entrez en mode sandbox*.
+. Sélectionnez *Enregistrer et entrez en mode sandbox*.
 
 
 --
 .ID d'entrée
 --
-.. Dans la section Application d'entreprise, spécifiez le *Nom de l'application d'entreprise* pour StorageGRID.  Cette valeur contrôle le nom que vous utilisez pour chaque application d'entreprise dans Entra ID.
+Remplissez les champs de l’étape *Configurer les applications d’entreprise*.
+
+.Étapes
+. Dans la section Application d'entreprise, spécifiez le *Nom de l'application d'entreprise* pour StorageGRID.  Cette valeur contrôle le nom que vous utilisez pour chaque application d'entreprise dans Entra ID.
 +
-*** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
-*** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche un nom d'application d'entreprise pour chaque nœud d'administration de votre système, en fonction du nom d'hôte du nœud.
+** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
+** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche un nom d'application d'entreprise pour chaque nœud d'administration de votre système, en fonction du nom d'hôte du nœud.
 +
 
 NOTE: Vous devez créer une application d'entreprise pour chaque nœud d'administration de votre système StorageGRID. La présence d'une application d'entreprise pour chaque nœud d'administration garantit que les utilisateurs peuvent se connecter et se déconnecter en toute sécurité à n'importe quel nœud d'administration.
 
 
 
-.. Suivez les étapes danslink:../admin/creating-enterprise-application-entra-id.html["Créer des applications d'entreprise dans Entra ID"] pour créer une application d'entreprise pour chaque nœud d'administration répertorié dans le tableau.
-.. À partir d’Entra ID, copiez l’URL des métadonnées de la fédération pour chaque application d’entreprise.  Ensuite, collez cette URL dans le champ *URL des métadonnées de la fédération* correspondant dans StorageGRID.
-.. Après avoir copié et collé une URL de métadonnées de fédération pour tous les nœuds d'administration, sélectionnez *Enregistrer et passer en mode sandbox*.
+. Suivez les étapes décrites dans link:../admin/creating-enterprise-application-entra-id-saml.html["Créer des applications d'entreprise dans Entra ID"] pour créer une application d'entreprise pour chaque Admin Node répertorié dans le tableau.
+. À partir d’Entra ID, copiez l’URL des métadonnées de la fédération pour chaque application d’entreprise.  Ensuite, collez cette URL dans le champ *URL des métadonnées de la fédération* correspondant dans StorageGRID.
+. Après avoir copié et collé une URL de métadonnées de fédération pour tous les nœuds d'administration, sélectionnez *Enregistrer et passer en mode sandbox*.
 
 
 --
 .PingFederate
 --
-.. Dans la section SP (Service Provider), spécifiez l'ID de connexion *SP* pour StorageGRID. Cette valeur contrôle le nom que vous utilisez pour chaque connexion SP dans PingFederate.
+Remplissez les champs à l’étape *Fournir l’ID de connexion SP*.
+
+.Étapes
+. Dans la section SP (Service Provider), spécifiez l'ID de connexion *SP* pour StorageGRID. Cette valeur contrôle le nom que vous utilisez pour chaque connexion SP dans PingFederate.
 +
-*** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
-*** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche l'ID de connexion SP pour chaque nœud d'administration de votre système, en fonction du nom d'hôte du nœud.
+** Par exemple, si votre grid ne comporte qu'un seul nœud d'administration et que vous ne prévoyez pas d'ajouter d'autres nœuds d'administration à l'avenir, entrez `SG` ou `StorageGRID`.
+** Si votre grille comprend plusieurs nœuds d'administration, incluez la chaîne `[HOSTNAME]` dans l'identifiant. Par exemple :  `SG-[HOSTNAME]` .  L'inclusion de cette chaîne génère un tableau qui affiche l'ID de connexion SP pour chaque nœud d'administration de votre système, en fonction du nom d'hôte du nœud.
 +
 
 NOTE: Vous devez créer une connexion SP pour chaque nœud d'administration de votre système StorageGRID. La présence d'une connexion SP pour chaque nœud d'administration permet aux utilisateurs de se connecter et de se déconnecter en toute sécurité à n'importe quel nœud d'administration.
 
 
 
-.. Spécifiez l'URL des métadonnées de fédération pour chaque noeud d'administration dans le champ *URL des métadonnées de fédération*.
+. Spécifiez l'URL des métadonnées de fédération pour chaque noeud d'administration dans le champ *URL des métadonnées de fédération*.
 +
 Utilisez le format suivant :
 
@@ -165,17 +173,15 @@ Utilisez le format suivant :
 ----
 https://<Federation Service Name>:<port>/pf/federation_metadata.ping?PartnerSpId=<SP Connection ID>
 ----
-.. Sélectionnez *Enregistrer et entrez en mode sandbox*.
+. Sélectionnez *Enregistrer et entrez en mode sandbox*.
 
 
 --
 ====
 
 
-
-
-[[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
-== Configurez les approbations des parties utilisatrices, les applications d'entreprise ou les connexions SP
+[[step-3-configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
+== Étape 3 : Configurez les relations d’approbation des parties de confiance, les applications d'entreprise ou les connexions SP
 
 Après avoir enregistré la configuration et être entré en mode sandbox, vous pouvez terminer et tester la configuration pour le type SSO que vous avez sélectionné.
 
@@ -192,7 +198,7 @@ StorageGRID peut rester en mode sandbox aussi longtemps que nécessaire.  Cepend
 Vous devez créer une confiance pour chaque noeud d'administration indiqué dans le tableau.
 
 +
-Pour obtenir des instructions, rendez-vous sur link:../admin/creating-relying-party-trusts-in-ad-fs.html["Créer des fiducies de tiers de confiance dans AD FS"].
+Pour obtenir des instructions, rendez-vous sur link:../admin/creating-relying-party-trusts-in-ad-fs-saml.html["Créer des fiducies de tiers de confiance dans AD FS"].
 
 
 
@@ -209,7 +215,7 @@ Pour obtenir des instructions, rendez-vous sur link:../admin/creating-relying-pa
 
 
 . Accédez au portail Azure.
-. Suivez les étapes danslink:../admin/creating-enterprise-application-entra-id.html["Créer des applications d'entreprise dans Entra ID"] pour télécharger le fichier de métadonnées SAML pour chaque nœud d'administration dans son application d'entreprise Entra ID correspondante.
+. Suivez les étapes décrites link:../admin/creating-enterprise-application-entra-id-saml.html["Créer des applications d'entreprise dans Entra ID"] pour télécharger le fichier de métadonnées SAML pour chaque nœud d'administration dans son application d'entreprise Entra ID correspondante.
 
 
 --
@@ -225,7 +231,7 @@ Pour obtenir des instructions, rendez-vous sur link:../admin/creating-relying-pa
 
 
 . Accédez à PingFederate.
-. link:../admin/creating-sp-connection-ping.html["Créez une ou plusieurs connexions de fournisseur de services pour StorageGRID"] . Utilisez l’ID de connexion SP pour chaque nœud d’administration (affiché dans le tableau de la page Configurer SSO) et les métadonnées SAML que vous avez téléchargées pour ce nœud d’administration.
+. link:../admin/creating-sp-connection-ping-saml.html["Créez une ou plusieurs connexions de fournisseur de services pour StorageGRID"]. Utilisez l'ID de connexion SP pour chaque nœud d'administration (indiqué dans le tableau de la page Configurer SSO) et les métadonnées SAML que vous avez téléchargées pour ce nœud d'administration.
 +
 Vous devez créer une connexion SP pour chaque nœud d'administration affiché dans le tableau.
 
@@ -235,8 +241,8 @@ Vous devez créer une connexion SP pour chaque nœud d'administration affiché d
 ====
 
 
-[[test-ssotest-configuration]]
-== [[test-sso]]Configuration de test
+[[test-ssostep-4-test-configuration]]
+== [[test-sso]]Étape 4 : Tester la configuration
 
 Avant d’appliquer l’utilisation de l’authentification unique pour l’ensemble de votre système StorageGRID , vérifiez que l’authentification unique et la déconnexion unique sont correctement configurées pour chaque nœud d’administration.
 
@@ -299,10 +305,10 @@ Si un message page expirée s'affiche, sélectionnez le bouton *Retour* dans vot
 ====
 
 
-[[enable-single-sign-on]]
-== Activez l'authentification unique
+[[enable-sso-samlstep-5-enable-single-sign-on]]
+== [[enable-sso-saml]]Étape 5 : Activer l’authentification unique
 
-Une fois que vous avez confirmé que vous pouvez utiliser la fonctionnalité SSO pour vous connecter à chaque nœud d'administration, vous pouvez activer cette fonctionnalité pour l'ensemble du système StorageGRID.
+Une fois que vous avez confirmé que vous pouvez utiliser l'authentification unique (SSO) pour vous connecter à chaque nœud d'administration, vous pouvez activer l'authentification unique (SSO) pour l'ensemble de votre système StorageGRID.
 
 
 TIP: Lorsque l'authentification SSO est activée, tous les utilisateurs doivent utiliser l'authentification SSO pour accéder au Grid Manager, au tenant Manager, à l'API Grid Management et à l'API tenant Management. Les utilisateurs locaux ne peuvent plus accéder à StorageGRID.
@@ -319,3 +325,32 @@ L'authentification unique est désormais activée.  La page d’authentification
 
 
 TIP: Si vous utilisez le portail Azure et que vous accédez à StorageGRID à partir du même ordinateur que celui que vous utilisez pour accéder à Entra ID, assurez-vous que l'utilisateur du portail Azure est également un utilisateur StorageGRID autorisé (un utilisateur d'un groupe fédéré qui a été importé dans StorageGRID ou déconnectez-vous du portail Azure avant de tenter de vous connecter à StorageGRID.
+
+.Et ensuite ?
+Après avoir configuré l'authentification unique (SSO) à l'aide de SAML, configurez le fournisseur d'identité pour les Admin Nodes.
+
+[cols="1a,2a"]
+|===
+| Si votre fournisseur d'identité est... | Vous devez... 
+
+
+ a| 
+Active Directory
+ a| 
+link:creating-relying-party-trusts-in-ad-fs-saml.html["Créez un groupe d'applications pour chaque nœud d'administration"]
+
+
+
+ a| 
+ID d'entrée
+ a| 
+link:creating-enterprise-application-entra-id-saml.html["Créez une application pour chaque nœud d'administration"]
+
+
+
+ a| 
+PingFederate
+ a| 
+link:creating-sp-connection-ping-saml.html["Créez une connexion de fournisseur de services pour chaque nœud d'administration"]
+
+|===

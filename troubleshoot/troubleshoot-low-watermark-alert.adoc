@@ -138,7 +138,7 @@ La dernière colonne affiche la valeur maximale optimisée du filigrane en lectu
 . Répétez la procédure suivante pour chaque nœud de stockage en ligne :
 +
 .. Sélectionnez *_Storage Node_* > *Storage*.
-.. Faites défiler jusqu'au tableau magasins d'objets.
+.. Faites défiler vers le bas jusqu'au tableau des magasins d'objets.
 .. Comparez la valeur *disponible* pour chaque magasin d'objets (volume) au filigrane optimisé maximum que vous avez indiqué pour ce noeud de stockage.
 
 

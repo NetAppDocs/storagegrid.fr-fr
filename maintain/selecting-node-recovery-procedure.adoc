@@ -2,7 +2,7 @@
 permalink: maintain/selecting-node-recovery-procedure.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, procedure 
-summary: Vous devez sélectionner la procédure de restauration correcte pour le type de nœud qui a échoué. 
+summary: Sélectionnez la procédure de récupération appropriée au type de nœud qui a échoué. 
 ---
 = Sélectionnez la procédure de récupération du nœud StorageGRID
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Vous devez sélectionner la procédure de restauration correcte pour le
 
 
 [role="lead"]
-Vous devez sélectionner la procédure de restauration correcte pour le type de nœud qui a échoué.
+Sélectionnez la procédure de récupération appropriée au type de nœud qui a échoué.
 
 [cols="1a,2a"]
 |===
@@ -19,18 +19,9 @@ Vous devez sélectionner la procédure de restauration correcte pour le type de 
 
 
  a| 
-Plusieurs nœuds de stockage
+Nœud de stockage
  a| 
-Contactez l'assistance technique. Si plusieurs nœuds de stockage sont en panne, le support technique doit vous aider à effectuer la restauration afin d'éviter les incohérences de base de données pouvant entraîner la perte de données. Une procédure de restauration sur site peut être requise.
-
-link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"]
-
-
-
- a| 
-Un seul nœud de stockage
- a| 
-La procédure de restauration du nœud de stockage dépend du type et de la durée de l'échec.
+La procédure de récupération du nœud de stockage dépend du type de panne.
 
 link:recovering-from-storage-node-failures.html["Restaurez les données après une panne de nœud de stockage"]
 
@@ -59,4 +50,4 @@ https://docs.netapp.com/us-en/storagegrid-118/maintain/recovering-from-archive-n
 
 |===
 
-NOTE: Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez récupérer les nœuds dans n'importe quel ordre. Cependant, si le serveur défaillant héberge le nœud d’administration principal, vous devez d’abord récupérer ce nœud. La récupération du nœud d’administration principal en premier empêche les autres récupérations de nœuds de s’arrêter pendant qu’elles attendent de contacter le nœud d’administration principal.
+NOTE: Si un serveur hébergeant plusieurs nœuds de grille tombe en panne, vous pouvez restaurer les nœuds dans n'importe quel ordre. Cependant, si le serveur défaillant héberge le nœud d'administration principal et qu'aucun nœud d'administration non principal n'existe, vous devez d'abord restaurer le nœud d'administration principal. Restaurer d'abord le nœud d'administration principal empêche les autres restaurations de nœuds d'être bloquées lorsqu'elles tentent de contacter le nœud d'administration principal. Si un nœud d'administration non principal est disponible, vous pouvez également l'utiliser pour restaurer d'autres nœuds afin que ces restaurations puissent se poursuivre sans contacter le nœud d'administration principal.

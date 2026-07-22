@@ -62,7 +62,7 @@ Par exemple, entrez `10.96.104.0/22`.
 . Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
-.. Saisissez la phrase de passe de provisionnement *.
+.. Saisissez la *phrase secrète de provisionnement*.
 +
 
 CAUTION: Le fichier du package de récupération doit être sécurisé car il contient des clés de chiffrement et des mots de passe qui peuvent être utilisés pour obtenir des données à partir du système StorageGRID .  Il est également utilisé pour récupérer le nœud d’administration principal.
@@ -81,12 +81,12 @@ Les sous-réseaux que vous avez spécifiés sont automatiquement configurés pou
 .Étapes
 . Sélectionnez *Maintenance* > *Réseau* > *Réseau de grille*.
 . Sélectionnez le sous-réseau à modifier et apportez les modifications nécessaires.
-. Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
+. Saisissez le mot de passe de provisionnement et sélectionnez *Enregistrer*.
 . Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
 . Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
-.. Saisissez la phrase de passe de provisionnement *.
+.. Saisissez la *phrase secrète de provisionnement*.
 
 
 
@@ -98,13 +98,13 @@ Les sous-réseaux que vous avez spécifiés sont automatiquement configurés pou
 
 .Étapes
 . Sélectionnez *Maintenance* > *Réseau* > *Réseau de grille*.
-. Sélectionnez l'icône de suppression image:icon-x-to-remove.png["icône supprimer"] à côté du sous-réseau.
+. Sélectionnez l'icône de suppression image:icon_x_to_remove.png["icône supprimer"] à côté du sous-réseau.
 . Entrez la phrase de passe de provisionnement et sélectionnez *Enregistrer*.
 . Sélectionnez *Oui* dans la boîte de dialogue de confirmation.
 . Attendez que les modifications soient appliquées, puis téléchargez un nouveau package de récupération.
 +
 .. Sélectionnez *Maintenance* > *Système* > *Package de récupération*.
-.. Saisissez la phrase de passe de provisionnement *.
+.. Saisissez la *phrase secrète de provisionnement*.
 
 
 

@@ -1,119 +1,221 @@
 ---
 permalink: release-notes/whats-new.html 
 sidebar: sidebar 
-keywords: what is new in StorageGRID 12.0 
-summary: 'StorageGRID 12.0 étend la capacité de stockage d"objets, améliore la prise en charge des charges de travail d"IA/ML, renforce la fédération de grilles, simplifie la gestion du système et améliore la sécurité sur l"ensemble de la plateforme.' 
+keywords: what is new in StorageGRID 12.1 
+summary: Cette version de StorageGRID introduit les fonctionnalités et modifications fonctionnelles suivantes. 
 ---
-= Quoi de neuf dans StorageGRID 12.0
+= Nouveautés de StorageGRID 12.1
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-StorageGRID 12.0 étend la capacité de stockage d'objets, améliore la prise en charge des charges de travail d'IA/ML, renforce la fédération de grilles, simplifie la gestion du système et améliore la sécurité sur l'ensemble de la plateforme.
+StorageGRID 12.1 introduit les fonctionnalités et modifications fonctionnelles suivantes.
 
-Pour plus de détails sur les problèmes résolus et les problèmes connus dans les versions récentes de StorageGRID 12.0, consultez  https://library.netapp.com/ecm/ecm_download_file/ECMLP3351267["Notes de version de StorageGRID 12.0"^]. Vous devez vous connecter avec votre compte NetApp ou créer un compte pour accéder aux notes de version.
-
-
-
-[[appliances]]
-== Appliances
-
-* La capacité de stockage et la rentabilité ont considérablement augmenté.
-* Les mises à niveau automatisées du micrologiciel du lecteur améliorent la fiabilité du système et réduisent les frais de maintenance.
-
-
-
-
-[[artificial-intelligence-ai-and-machine-learning-ml]]
-== Intelligence artificielle (IA) et apprentissage automatique (ML)
-
-* link:../tenant/what-is-branch-bucket.html["Godets de branches"]autoriser des versions ponctuelles de buckets qui facilitent une récupération plus rapide des ransomwares et des ensembles de données isolés pour les tests et l'expérimentation.
-* Une couche de mise en cache S3 améliore les performances de la formation IA/ML.
-
+Pour plus de détails sur les problèmes résolus et les problèmes connus dans les versions récentes de StorageGRID 12.1, consultez  https://library.netapp.com/ecm/ecm_download_file/ECMLP3373065["Notes de version de StorageGRID 12.1"^]. Vous devez vous connecter avec votre compte NetApp ou en créer un pour accéder aux notes de version.
 
 
 
 [[capacity]]
 == Capacité
 
-StorageGRID prend désormais en charge mille milliards d’objets, soit plus du double de la limite précédente.  Reportez-vous à la https://fusion.netapp.com/["Outil NetApp Fusion"^] pour dimensionner et concevoir StorageGRID.
+
+
+[[ec-rebalance-now-uses-free-space]]
+=== Le rééquilibrage EC utilise désormais l'espace libre
+
+Le rééquilibrage EC utilise désormais l'espace libre au lieu de l'espace utilisé. Voir link:../expand/considerations-for-rebalancing-erasure-coded-data.html#what-is-ec-rebalancing["Découvrez le rééquilibrage EC après l'extension de StorageGRID."].
 
 
 
-[[cassandra-updates]]
-== Mises à jour de Cassandra
+[[metadata-allowed-space]]
+=== Espace autorisé pour les métadonnées
 
-StorageGRID utilise désormais une version plus récente de Cassandra pour le stockage des métadonnées.  Cette version de Cassandra utilise l'espace disque plus efficacement pour stocker davantage de métadonnées.
+Vous pouvez désormais augmenter la valeur maximale autorisée des métadonnées de 3,96 To à 7,92 To. Reportez-vous à link:../admin/managing-object-metadata-storage.html#allowed-metadata-space["Espace de métadonnées autorisé"].
 
-Après vouslink:../upgrade/index.html["mise à niveau de StorageGRID 11.9 vers 12.0"] , une mise à jour du format des métadonnées se produira en arrière-plan pendant un à trois jours.  Pendant cette période, certaines procédures de maintenance impliquant le streaming de métadonnées, telles que l'extension, seront désactivées.
 
-link:../upgrade/performing-upgrade.html#upgrade-other-nodes["Mise à niveau des autres nœuds"] .
+
+[[control-access]]
+== Contrôle d'accès
+
+
+
+[[sso-using-oidc]]
+=== SSO utilisant OIDC
+
+Vous pouvez maintenant link:../admin/learn-about-setting-up-sso-oidc.html["Configurer l'authentification unique (SSO) dans StorageGRID à l'aide d'OpenID Connect (OIDC)"].
 
 
 
 [[federation]]
 == Fédération
 
-* Vous pouvez désormaislink:../admin/managing-users.html#import-federated-users["importer jusqu'à 100 utilisateurs fédérés"] dans StorageGRID.
-* Vous pouvez désormaislink:../ilm/configuring-regions-optional-and-s3-only.html["modifier la région par défaut"] pour les compartiments S3.  Cette fonctionnalité offre une plus grande flexibilité dans la gestion des paramètres régionaux et de la conformité des données.
-* Vous pouvez désormais configurer la réplication inter-grille entre les buckets avec le verrouillage d'objet S3 activé. link:../admin/grid-federation-what-is-cross-grid-replication.html#cgr-with-ol["Réplication inter-grille avec S3 Object Lock"] .
-+
-NetApp recommande d'utiliser cette fonctionnalité uniquement entre les buckets source et de destination StorageGRID 12.0.  Cependant, cette fonctionnalité est prise en charge entre les buckets sources StorageGRID 11.9 avec S3 Object Lock désactivé et les buckets de destination StorageGRID 12.0 avec S3 Object Lock activé.
 
 
+[[global-namespace]]
+=== Espace de noms global
+
+Vous pouvez désormais configurer un espace de noms global pour permettre aux locataires d'accéder aux compartiments sur plusieurs systèmes StorageGRID. Consultez link:../admin/learn-about-global-namespace.html["Découvrez l'espace de noms global"].
 
 
 
 [[manageability]]
 == Facilité de gestion
 
-* Améliorélink:../maintain/decommission-procedure.html["procédure de déclassement"] réduit le temps et la complexité pour améliorer l'efficacité opérationnelle.
-* Le comportement amélioré pour une cohérence globale forte offre une tolérance aux pannes de site pour les demandes client lorsque les grilles comportent trois sites ou plus.
-+
-** Les nouvelles installations de StorageGRID 12.0 et versions ultérieures utiliseront par défaut la sémantique Quorum lorsquelink:../s3/consistency.html["cohérence globale forte"] est réglé.
-** Si vous effectuez une mise à niveau de StorageGRID 11.9 vers StorageGRID 12.0, les grilles mises à niveau conserveront le comportement précédent pour une cohérence globale forte.
+
+
+[[auto-move-adc-service]]
+=== Service ADC à déplacement automatique
+
+link:../maintain/understanding-adc-service-quorum.html["Lorsque cela est nécessaire pour atteindre le quorum de l'ADC"], le service ADC sera désormais déplacé automatiquement lorsque vous link:../maintain/convert-to-data-only-node.html["conversion d’un nœud de stockage en nœud de données uniquement"] ou link:../maintain/considerations-for-decommissioning-storage-nodes.html["mise hors service d'un nœud de stockage"].
 
 
 
+[[primary-admin-node-recovery]]
+=== Récupération du nœud d'administration principal
+
+Vous pouvez désormais récupérer n'importe quel nœud à partir d'un nœud d'administration non principal. Consultez link:../maintain/recovering-from-primary-admin-node-failures.html["Récupération après des défaillances du nœud d'administration principal"].
 
 
-NOTE: Si vous devez revenir au comportement précédent pour une cohérence globale forte, reportez-vous à https://kb.netapp.com/hybrid/StorageGRID/Object_Mgmt/Configuring_StorageGRID_quorum_semantics_for_strong-global_consistency["Configuration de la sémantique du quorum StorageGRID pour une cohérence globale forte"^] pour les instructions.
 
-* La possibilité d'initier des téléchargements de journaux verslink:../admin/configure-autosupport-grid-manager.html["AutoSupport"] contribue à améliorer la réactivité du support.
-* Réduit https://docs.netapp.com/us-en/storagegrid-appliances/index.html["appareil"^] le temps de redémarrage minimise les temps d'arrêt pour améliorer la disponibilité globale du système.
-* link:../maintain/move-adc-service.html["La possibilité de déplacer le service ADC"]vers un autre nœud de stockage augmente la flexibilité et la résilience dans la gestion des nœuds de stockage qui hébergent le service ADC.  Vous pouvez déplacer le service ADC avant de mettre hors service un nœud de stockage ou de convertir un nœud de stockage en nœud de données uniquement.
-* Pour maximiser la capacité de stockage des données, vous pouvezlink:../maintain/convert-to-data-only-node.html["convertir un nœud de stockage en nœud de données uniquement"] , ce qui entraîne la migration des métadonnées de ce nœud vers des nœuds de stockage combinés ou contenant uniquement des métadonnées.
-* La capacité de tout nœud d'administration àlink:../maintain/selecting-node-recovery-procedure.html["récupérer tout autre nœud"] (à l'exception du nœud d'administration principal) améliore la récupération du système et la tolérance aux pannes, améliorant ainsi la fiabilité globale.
-* Les utilisateurs peuvent désormais utiliser un bucket S3 pourlink:../monitor/configure-log-management.html#use-a-bucket["stocker les journaux d'audit pendant une longue période"] .
+[[s3]]
+== S3
 
+
+
+[[enable-s3-object-lock-on-existing-buckets]]
+=== Activer le verrouillage d'objets S3 sur les compartiments existants
+
+Lorsque l'option « Autoriser le verrouillage d'objets S3 pour les compartiments existants » est activée, un compte locataire S3 peut désormais activer le verrouillage d'objets S3 pour un compartiment existant. Après qu'un compte locataire S3 a activé le verrouillage d'objets S3 pour un compartiment existant, il ne peut plus être désactivé.
+
+
+
+[[replication-allowed-for-s3-object-lock-enabled-buckets]]
+=== Réplication autorisée pour les compartiments S3 avec Object Lock activé
+
+Vous pouvez désormais utiliser CloudMirror pour répliquer des objets dans des compartiments S3 avec Object Lock activé. Reportez-vous à link:../tenant/considerations-for-platform-services.html["Découvrez les services de plateforme"].
+
+
+
+[[enable-cross-grid-replication-for-non-empty-buckets]]
+=== Activer la réplication inter-grilles pour les compartiments non vides
+
+Vous pouvez désormais activer la réplication inter-grilles pour les compartiments non vides. Consultez link:../admin/grid-federation-what-is-cross-grid-replication.html#requirements-for-cross-grid-replication["Conditions requises pour la réplication entre les grilles"].
+
+
+
+[[s3-batch-operations-fpvr-only]]
+=== Opérations par lots S3 (FPVR uniquement)
+
+Vous pouvez utiliser les opérations par lots S3 pour répliquer des objets existants dans un compartiment avec le versionnage activé que vous prévoyez de configurer pour la réplication inter-grilles.
+
+Cette fonctionnalité nécessite l'approbation de FPVR pour StorageGRID 12.1. Pour utiliser cette fonctionnalité, contactez votre représentant commercial.
+
+
+
+[[non-functional-s3-rest-api-headers]]
+=== En-têtes S3 REST API non fonctionnels
+
+Les  `If-Match` et  `If-None-Match` en-têtes sont acceptés mais non fonctionnels pour l’API REST S3 link:../s3/put-object.html["PutObject"], link:../s3/complete-multipart-upload.html["CompleteMultipartUpload"], link:../s3/put-object-copy.html["Objet de copie"] et link:../s3/operations-on-objects.html["DeleteObject"].
+
+Pour plus d'informations, veuillez consulter link:../release-notes/changes-to-s3-rest-api.html["Modifications apportées à la prise en charge de l'API REST S3 de StorageGRID"].
+
+
+
+[[support-for-pre-calculated-checksum-values]]
+=== Prise en charge des valeurs de somme de contrôle précalculées
+
+L'interface SPI REST S3 prend désormais en charge les valeurs de somme de contrôle précalculées et l' `x-amz-checksum-type`en-tête de requête. Reportez-vous à link:../s3/index.html#updates-to-rest-api-support["Mises à jour de la prise en charge de l'API REST"].
 
 
 
 [[security]]
 == Sécurité
 
-* Un cryptage des données renforcé et une protection de l’intégrité offrent une sécurité et des performances améliorées.
-* La sécurité accrue des mots de passe stockés réduit le risque d’accès non autorisé.
-* link:../admin/manage-external-ssh-access.html["SSH est bloqué par défaut"]pour améliorer la sécurité tout en permettant un accès contrôlé.
+
+
+[[multi-admin-verification]]
+=== Vérification multi-administrateurs
+
+La vérification multi-administrateurs (MAV) contribue à prévenir les modifications accidentelles ou non autorisées de votre système StorageGRID. Consultez link:../admin/about-multi-admin-verify.html["Découvrez la vérification multi-administrateur de StorageGRID"].
 
 
 
+[[security-policy-updates-for-fips]]
+=== Mises à jour de la politique de sécurité pour FIPS
 
-[[tenant-groups]]
-== Groupes de locataires
+Les critères stricts de la politique FIPS ont été mis à jour. Voir link:../admin/manage-tls-ssh-policy.html#select-a-security-policy["Sélectionnez une stratégie de sécurité dans Gérer la stratégie TLS et SSH"].
 
-* Vous pouvez désormaislink:../tenant/manage-groups.html["configurer une nouvelle politique de confiance S3"] pour prendre en charge l'API AssumeRole.  La fonction AssumeRole fournit des informations d'identification à court terme pour une sécurité renforcée et un contrôle d'accès flexible.
-* Le quota de nombre d'objets par bucket permet un meilleur contrôle et une meilleure gestion des ressources de stockage.
 
+
+[[tenants]]
+== Locataires
+
+
+
+[[account-sync]]
+=== Synchronisation des comptes
+
+La fonctionnalité _account clone_ fait désormais référence à un clonage unique des informations d'un compte locataire spécifique.
+
+_La synchronisation des comptes_ est une nouvelle fonctionnalité qui vous permet de répliquer automatiquement et en continu les comptes de locataires, les groupes de locataires, les utilisateurs de locataires et les clés d'accès S3 entre les systèmes StorageGRID dans une ou plusieurs connexions de fédération de grilles. Reportez-vous à link:../admin/grid-federation-what-is-account-sync.html["Découvrez la synchronisation des comptes dans StorageGRID"].
+
+
+
+[[kafka-endpoints-and-mtls-authentication]]
+=== Points de terminaison Kafka et authentification mTLS
+
+Le protocole Mutual Transport Layer Security (mTLS) est désormais pris en charge pour les points de terminaison Kafka. Consultez link:../tenant/configuring-platform-services-endpoints.html["Configurer les terminaux des services de plateforme"].
+
+
+
+[[maximum-number-of-buckets]]
+=== Nombre maximal de compartiments
+
+Un système StorageGRID prend désormais en charge un maximum de 20 000 compartiments pour chaque compte locataire S3.
+
+
+
+[[upgrade]]
+== Mise à niveau
+
+
+
+[[time-to-enable-features-is-increased]]
+=== Le délai d'activation des fonctionnalités est augmenté
+
+Lors de la mise à niveau de StorageGRID vers la version 12.1, le temps d’activation des fonctionnalités est passé de moins de cinq minutes à une heure. Reportez-vous à link:../upgrade/estimating-time-to-complete-upgrade.html#estimate-time-to-upgrade["Estimez le temps nécessaire pour effectuer une mise à niveau de StorageGRID"].
 
 
 
 [[user-interface]]
 == Interface utilisateur
 
-* Les paramètres du thème sombre et du thème système sont disponibles dans le menu Utilisateur du gestionnaire de grille et du gestionnaire de locataires.
-* La page du serveur d'audit et de syslog, renomméelink:../monitor/configure-log-management.html["Gestion des journaux"] , a été refactorisé, avec des ajouts pour stocker les journaux dans un bucket système à des fins de sauvegarde.
-* L'ancienne page Topologie de grille a été supprimée.  Au cours des dernières versions de StorageGRID , les opérations et les mesures disponibles à partir de cette page ont été migrées vers d'autres pages du Grid Manager, en particulier vers lalink:../monitor/viewing-nodes-page.html["Page nœuds"] .
 
+
+[[bmc-settings-page]]
+=== Page des paramètres BMC
+
+Un nouvel onglet « Paramètres BMC » a été ajouté à la page « Nœuds » dans Grid Manager pour permettre la réinitialisation du mot de passe BMC et la modification des paramètres IP LAN du BMC. Consultez link:../harden/hardening-guidelines-for-storagegrid-nodes.html["Modifier le mot de passe BMC de l'appliance"] et link:../maintain/changing-nodes-network-configuration.html#change-appliance-node-bmc-lan-ip-settings["Modifier les paramètres IP LAN du BMC du nœud de l'appliance"]. De nouveaux points de terminaison API ont également été ajoutés pour prendre en charge ces fonctions. Consultez link:../release-notes/changes-to-grid-management-api.html["Nouveaux points de terminaison pour la modification du mot de passe BMC et des paramètres IP LAN"].
+
+
+
+[[email-notifications]]
+=== Notifications par e-mail
+
+Le Gestionnaire de grille dispose désormais d'une page de messagerie commune permettant de configurer et de gérer les notifications par e-mail pour les alertes, AutoSupport et la vérification multi-administrateurs (MAV). Reportez-vous à link:../monitor/configure-email-server.html["Configurer le serveur de messagerie"].
+
+
+
+[[link-cost-page-update]]
+=== Mise à jour de la page du coût des liens
+
+StorageGRID 12.1 fournit des informations et des paramètres plus détaillés sur les coûts des liens. Consultez link:../admin/manage-link-costs.html["Gérer les coûts de liaison"].
+
+
+
+[[usb-port-control]]
+=== Contrôle du port USB
+
+Vous pouvez désormais activer ou désactiver les ports USB via Grid Manager. Consultez link:../harden/hardening-guidelines-for-storagegrid-nodes.html#control-remote-access-through-usb-ports["Contrôlez l'accès à distance via les ports USB"].

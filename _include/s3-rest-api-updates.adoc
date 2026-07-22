@@ -1,0 +1,195 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,4a"]
+|===
+| Relâchez | Commentaires 
+
+
+ a| 
+12.1.0
+ a| 
+* `If-Match`
++
+L' `If-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut renvoyer un message d'erreur (501 Not Implemented). Si l' `If-Match`en-tête est accepté mais non fonctionnel, une alerte peut être déclenchée avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
+
+* `If-None-Match`
++
+L' `If-None-Match`en-tête se comporte différemment selon la configuration de votre StorageGRID. Fournir cet en-tête peut entraîner un message d'erreur (501 Not Implemented). Si l' `If-None-Match`en-tête est accepté mais non fonctionnel, une alerte peut s'afficher avec des instructions concernant l'activation du comportement d'erreur 501 Not Implemented plus strict.
+
+* Ajout de la prise en charge des valeurs de somme de contrôle précalculées pour les requêtes et en-têtes suivants :
++
+** CompleteMultipartUpload: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, et `x-amz-checksum-crc64nvme`
+** CreateMultipartUpload: `CRC32`, `CRC32C` et  `CRC64NVME` pour  `x-amz-checksum-algorithm`
+** CopyObject: `CRC32`, `CRC32C`, `CRC64NVME`, et `SHA256` pour `x-amz-checksum-algorithm`
+** PutObject: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c` et `x-amz-checksum-crc64nvme`
+** UploadPart: `x-amz-checksum-crc32`, `x-amz-checksum-crc32c` et `x-amz-checksum-crc64nvme`
+
+
+* Ajout de la prise en charge de  `x-amz-checksum-type` pour CreateMultipartUpload et CompleteMultipartUpload.
+* Ajout de la prise en charge de la clé de condition de stratégie  `s3:x-amz-copy-source`.
+* Autoriser l'activation du verrouillage d'objets S3 sur les compartiments existants.
+
+
+
+
+ a| 
+12,0
+ a| 
+* Ajout de la prise en charge du partage de ressources inter-origines (CORS) pour une interface de gestion, qui permet à un autre domaine d'accéder aux données dans StorageGRID à l'aide des API de gestion. link:../admin/enable-cross-origin-resource-sharing-for-management-interface.html["En savoir plus >>"] .
+* Ajout de la prise en charge de STS AssumeRole et de la stratégie de session. Voir link:../s3/example-session-policies.html["un exemple de politique de session"]. Vous pouvez configurer AssumeRole dans les groupes de locataires.
+
+
+
+
+ a| 
+11,9
+ a| 
+* Ajout de la prise en charge des valeurs de somme de contrôle SHA-256 pré-calculées pour les demandes suivantes et les en-têtes pris en charge. Vous pouvez utiliser cette fonction pour vérifier l'intégrité des objets téléchargés :
++
+** Téléchargement CompleteMultipartUpload : `x-amz-checksum-sha256`
+** CreateMultipartUpload : `x-amz-checksum-algorithm`
+** GetObject : `x-amz-checksum-mode`
+** Objet principal : `x-amz-checksum-mode`
+** ListParts
+** PutObject : `x-amz-checksum-sha256`
+** UploadPart : `x-amz-checksum-sha256`
+
+
+* Ajout de la possibilité pour l'administrateur du grid de contrôler les paramètres de conservation et de conformité au niveau du locataire. Ces paramètres affectent les paramètres de verrouillage d'objet S3.
++
+** Mode de conservation par défaut du compartiment et mode de conservation des objets : gouvernance ou conformité, si l'administrateur du grid l'autorise.
+** La période de conservation par défaut du compartiment et la date de conservation de l'objet jusqu'au : doivent être inférieures ou égales à ce qui est autorisé par la période de conservation maximale définie par l'administrateur du grid.
+
+
+* Meilleure prise en charge de `aws-chunked` l'encodage de contenu et des valeurs de diffusion en continu `x-amz-content-sha256`. Limites :
++
+** Le cas échéant, `chunk-signature` est facultatif et non validé
+** S'il est présent, `x-amz-trailer` le contenu est ignoré
+
+
+
+
+
+
+ a| 
+11,8
+ a| 
+Mise à jour des noms des opérations S3 pour qu'ils correspondent aux noms utilisés dans le http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html["Documentation Amazon Web Services (AWS) : référence de l'API Amazon simple Storage Service"^].
+
+
+
+ a| 
+11,7
+ a| 
+* Ajouté link:../s3/quick-reference-support-for-aws-apis.html["Référence rapide : demandes d'API S3 prises en charge"].
+* Ajout de la prise en charge du mode DE GOUVERNANCE avec S3 Object Lock.
+* Ajout de la prise en charge de l'en-TÊTE de réponse spécifique à StorageGRID `x-ntap-sg-cgr-replication-status` pour les requêtes GET Object et HEAD Object. Cet en-tête fournit l'état de réplication d'un objet pour la réplication inter-grid.
+* Les requêtes SelectObjectContent prennent désormais en charge les objets parquet.
+
+
+
+
+ a| 
+11,6
+ a| 
+* Ajout de la prise en charge de l'utilisation du `partNumber` paramètre de requête dans les requêtes GET Object et HEAD Object.
+* Ajout de la prise en charge d'un mode de conservation par défaut et d'une période de conservation par défaut au niveau du compartiment pour le verrouillage d'objet S3.
+* Ajout de la prise en charge de la `s3:object-lock-remaining-retention-days` clé de condition de règle pour définir la plage de périodes de conservation autorisées pour vos objets.
+* Modification de la taille _recommandée_ maximale pour une opération objet PUT unique à 5 Gio (5,368,709,120 octets). Si vos objets sont supérieurs à 5 Gio, utilisez le téléchargement partitionné.
+
+
+
+
+ a| 
+11,5
+ a| 
+* Ajout de la prise en charge de la gestion du chiffrement de compartiment.
+* Ajout de la prise en charge des demandes de verrouillage d'objet S3 et des demandes de conformité héritées obsolètes.
+* Ajout de la prise en charge de L'utilisation DE LA SUPPRESSION de plusieurs objets sur les compartiments multiversion.
+* L' `Content-MD5`en-tête de la demande est désormais correctement pris en charge.
+
+
+
+
+ a| 
+11,4
+ a| 
+* Prise en charge accrue du balisage de compartiment, DE L'étiquetage DES compartiments ET DU balisage de compartiment. Les étiquettes de répartition des coûts ne sont pas prises en charge.
+* Pour les compartiments créés dans StorageGRID 11.4, il n'est plus nécessaire de limiter les noms de clés d'objet pour respecter les bonnes pratiques de performance.
+* Prise en charge supplémentaire des notifications de compartiment pour le `s3:ObjectRestore:Post` type d'événement.
+* Les limites de taille d'AWS pour les pièces partitionnés sont maintenant appliquées. Chaque partie d'un téléchargement partitionné doit être comprise entre 5 MIB et 5 Gio. La dernière partie peut être plus petite que 5 MIB.
+* Ajout de la prise en charge de TLS 1.3
+
+
+
+
+ a| 
+11,3
+ a| 
+* Ajout de la prise en charge du chiffrement côté serveur des données d'objet avec les clés fournies par le client (SSE-C).
+* Prise en charge supplémentaire des opérations de SUPPRESSION, d'OBTENTION et de MISE du cycle de vie du compartiment (action d'expiration uniquement) et de `x-amz-expiration` l'en-tête de réponse.
+* PUT Object mis à jour, PUT Object - copie et Multipart Upload pour décrire l'impact des règles ILM utilisant un placement synchrone à l'entrée.
+* Les chiffrements TLS 1.1 ne sont plus pris en charge.
+
+
+
+
+ a| 
+11,2
+ a| 
+Ajout de la prise en charge de la restauration POST-objet pour l'utilisation avec les pools de stockage cloud. Ajout de la prise en charge de l'utilisation de la syntaxe AWS pour ARN, des clés de condition de règle et des variables de règles de groupe et de compartiment Les règles de compartiment et de groupe qui utilisent la syntaxe StorageGRID restent prises en charge.
+
+*Remarque :* les utilisations de l'ARN/URN dans d'autres configurations JSON/XML, y compris celles utilisées dans les fonctions StorageGRID personnalisées, n'ont pas changé.
+
+
+
+ a| 
+11,1
+ a| 
+Ajout de la prise en charge du partage de ressources entre les sources (CORS), du protocole HTTP pour les connexions client S3 aux nœuds de grid et des paramètres de conformité dans les compartiments.
+
+
+
+ a| 
+11,0
+ a| 
+Ajout de la prise en charge de la configuration des services de plateforme (réplication CloudMirror, notifications et intégration de la recherche Elasticsearch) pour les compartiments Ajout de la prise en charge des contraintes d'emplacement du balisage d'objets pour les compartiments, ainsi que de la cohérence disponible.
+
+
+
+ a| 
+10,4
+ a| 
+Ajout de la prise en charge des modifications de l'analyse ILM sur la gestion des versions, mises à jour de la page noms de domaine de point final, conditions et variables dans les règles, exemples de règles et autorisation PutOverwriteObject.
+
+
+
+ a| 
+10,3
+ a| 
+Prise en charge ajoutée pour la gestion des versions.
+
+
+
+ a| 
+10,2
+ a| 
+Ajout de la prise en charge des règles d'accès de groupe et de compartiment, ainsi que de la copie multipart (Télécharger la pièce - copie).
+
+
+
+ a| 
+10,1
+ a| 
+Ajout de la prise en charge du téléchargement en plusieurs parties, des requêtes de type hébergement virtuel et de l'authentification v4.
+
+
+
+ a| 
+10,0
+ a| 
+Prise en charge initiale de l'API REST S3 par le système StorageGRID .  La version actuellement prise en charge de la _Référence API du service de stockage simple_ est 2006-03-01.
+
+|===

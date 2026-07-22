@@ -16,7 +16,12 @@ Pour installer StorageGRID sur un nœud de stockage de l'appliance, utilisez le 
 .Avant de commencer
 * L'appliance a été installée dans un rack, connectée à vos réseaux et sous tension.
 * Les liens réseau et les adresses IP ont été configurés pour l'appliance à l'aide du programme d'installation de l'appliance StorageGRID.
-* Vous connaissez l'adresse IP du nœud d'administration principal de la grille de StorageGRID.
+* Vous connaissez l'adresse IP de l'un des nœuds d'administration suivants :
++
+** Le nœud d'administration principal de la grille StorageGRID
+** Un nœud d'administration non principal, si disponible
+
+
 * Tous les sous-réseaux de réseau Grid répertoriés sur la page de configuration IP du programme d'installation de l'appliance StorageGRID ont été définis dans la liste de sous-réseaux de réseau de grille sur le nœud d'administration principal.
 * Vous avez terminé ces tâches préalables en suivant les instructions d'installation de votre appliance de stockage. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Démarrage rapide pour l'installation du matériel"^].
 * Vous utilisez un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
@@ -26,7 +31,7 @@ Pour installer StorageGRID sur un nœud de stockage de l'appliance, utilisez le 
 .Description de la tâche
 Pour installer StorageGRID sur un nœud de stockage d'appliance :
 
-* Vous spécifiez ou confirmez l'adresse IP du nœud d'administration principal et le nom d'hôte (nom du système) du nœud.
+* Vous indiquez l'adresse IP du nœud d'administration principal. Si le nœud d'administration principal est indisponible, vous indiquez l'adresse IP du nœud d'administration non principal, si disponible. Vous confirmez également le nom d'hôte (nom système) du nœud.
 * Vous démarrez l'installation et attendez que les volumes soient configurés et que le logiciel soit installé.
 +
 
@@ -86,17 +91,17 @@ Détection automatique de tous les nœuds d'administration principaux connectés
 |===
 
 
-. Dans le champ *Node Name*, entrez le même nom d'hôte (nom du système) que celui utilisé pour le nœud que vous êtes en train de récupérer, puis cliquez sur *Save*.
-. Dans la section installation, vérifiez que l'état actuel est « prêt à démarrer l'installation de `_node name_` dans la grille avec le nœud Admin principal `_admin_ip_» et que le bouton *Démarrer l'installation* est activé.
+. Dans le champ *Nom du nœud*, saisissez le même nom d’hôte (nom du système) que celui utilisé pour le nœud que vous récupérez, puis sélectionnez *Enregistrer*.
+. Dans la section Installation, vérifiez que l’état actuel est « Prêt à démarrer l’installation de `_node name_` dans la grille avec le nœud d’administration principal `_admin_ip_` » et que le bouton *Démarrer l’installation* est activé.
 +
 Si le bouton *Start installation* n'est pas activé, vous devrez peut-être modifier la configuration réseau ou les paramètres de port. Pour obtenir des instructions, reportez-vous aux instructions d'entretien de votre appareil.
 
-. Dans la page d'accueil du programme d'installation de l'appliance StorageGRID, cliquez sur *Démarrer l'installation*.
+. Depuis la page d'accueil de l'installateur d'appliance StorageGRID, sélectionnez *Démarrer l'installation*.
 +
-L'état actuel passe à « installation en cours » et la page d'installation du moniteur s'affiche.
+L'état actuel passe à « Installation en cours », et la page d'installation du moniteur s'affiche.
 
 +
 
-NOTE: Si vous devez accéder manuellement à la page installation du moniteur, cliquez sur *installation du moniteur* dans la barre de menus. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/monitoring-appliance-installation.html["Surveiller l'installation de l'appareil"^].
+NOTE: Si vous devez accéder manuellement à la page d'installation de Monitor, sélectionnez *Monitor installation* dans la barre de menu. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/monitoring-appliance-installation.html["Surveiller l'installation de l'appareil"^].
 
 

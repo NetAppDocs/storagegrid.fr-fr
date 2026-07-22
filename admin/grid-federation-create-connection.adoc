@@ -2,7 +2,7 @@
 permalink: admin/grid-federation-create-connection.html 
 sidebar: sidebar 
 keywords: grid federation, create connection, configure connection 
-summary: 'Vous pouvez créer une connexion de fédération de grille entre deux systèmes StorageGRID si vous souhaitez cloner les détails du locataire et répliquer les données d"objet.' 
+summary: Vous pouvez créer des connexions de fédération de grilles entre les systèmes StorageGRID si vous souhaitez synchroniser les détails des locataires et répliquer les données des objets. 
 ---
 = Créer des connexions de fédération de grille StorageGRID
 :allow-uri-read: 
@@ -11,11 +11,14 @@ summary: 'Vous pouvez créer une connexion de fédération de grille entre deux 
 
 
 [role="lead"]
-Vous pouvez créer une connexion de fédération de grille entre deux systèmes StorageGRID si vous souhaitez cloner les détails du locataire et répliquer les données d'objet.
+Vous pouvez créer des connexions de fédération de grilles entre les systèmes StorageGRID si vous souhaitez synchroniser les détails des locataires et répliquer les données des objets.
 
 Comme illustré dans la figure, la création d'une connexion de fédération de grille inclut des étapes sur les deux grilles. Vous ajoutez la connexion sur une grille et la remplissez sur l'autre grille. Vous pouvez commencer à partir de n'importe quelle grille.
 
-image:grid-federation-create-connection.png["présentation graphique des étapes de création d'une connexion sur deux grilles"]
+
+TIP: Vous pouvez, si vous le souhaitez, link:../admin/grid-federation-automate-connections.html["automatiser la création, la modification et la maintenance des connexions de fédération de grid"].
+
+image:grid_federation_create_connection.png["présentation graphique des étapes de création d'une connexion sur deux grilles"]
 
 .Avant de commencer
 * Vous avez examiné le link:grid-federation-overview.html["considérations et exigences"] pour configurer les connexions de fédération de grille.
@@ -35,18 +38,15 @@ Effectuez ces étapes sur l'un des deux systèmes StorageGRID.
 . Connectez-vous au Grid Manager à partir du nœud d'administration principal de l'une des grilles.
 . Sélectionnez *Configuration* > *Système* > *Fédération de grille*.
 . Sélectionnez *Ajouter une connexion*.
-. Entrez les détails de la connexion.
-+
+. Saisissez un nom de connexion, c'est-à-dire un nom unique qui vous permettra de reconnaître facilement cette connexion. Par exemple, `Grid 1-Grid 2`.
+. Si vous souhaitez link:../admin/configure-global-namespace.html["configurer un espace de noms global"], sélectionnez *Activer l'espace de noms global*.
+. Sélectionnez *Continuer*.
+. Saisissez les détails de la grille, comme suit :
+
+
 [cols="1a,2a"]
 |===
 | Champ | Description 
-
-
- a| 
-Nom de la connexion
- a| 
-Un nom unique pour vous aider à reconnaître cette connexion, par exemple, « grille 1-grille 2 ».
-
 
 
  a| 
@@ -54,9 +54,9 @@ FQDN ou IP pour cette grille
  a| 
 L'une des options suivantes :
 
-** Nom de domaine complet de la grille dans laquelle vous êtes actuellement connecté
-** Adresse VIP d'un groupe haute disponibilité sur cette grille
-** Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur cette grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille de destination peut atteindre.
+* Nom de domaine complet de la grille dans laquelle vous êtes actuellement connecté
+* Adresse VIP d'un groupe haute disponibilité sur cette grille
+* Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur cette grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille de destination peut atteindre.
 
 
 
@@ -91,9 +91,9 @@ FQDN ou IP pour l'autre grille
  a| 
 L'une des options suivantes :
 
-** Nom de domaine complet de la grille à laquelle vous souhaitez vous connecter
-** Adresse VIP d'un groupe HA sur l'autre grid
-** Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur l'autre grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille source peut atteindre.
+* Nom de domaine complet de la grille à laquelle vous souhaitez vous connecter
+* Adresse VIP d'un groupe HA sur l'autre grid
+* Adresse IP d'un nœud d'administration ou d'un nœud de passerelle sur l'autre grille. L'adresse IP peut se trouver sur n'importe quel réseau que la grille source peut atteindre.
 
 
 |===
@@ -155,5 +155,5 @@ Si vous modifiez cette connexion, un nouveau fichier de vérification sera cré�
 * link:creating-tenant-account.html["Créez un ou plusieurs nouveaux comptes de locataire"], Attribuez l'autorisation *utiliser la connexion de fédération de grille* et sélectionnez la nouvelle connexion.
 * link:grid-federation-manage-connection.html["Gérer la connexion"] selon les besoins. Vous pouvez modifier les valeurs de connexion, tester une connexion, faire pivoter les certificats de connexion ou supprimer une connexion.
 * link:../monitor/grid-federation-monitor-connections.html["Surveiller la connexion"] Dans le cadre de vos activités de surveillance StorageGRID normales.
-* link:grid-federation-troubleshoot.html["Dépanner la connexion"], y compris la résolution des alertes et erreurs liées au clone de compte et à la réplication inter-grille.
+* link:grid-federation-troubleshoot.html["Dépanner la connexion"], y compris la résolution de toute alerte et erreur liée à la synchronisation des comptes et à la réplication inter-grilles.
 

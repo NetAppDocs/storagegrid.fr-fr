@@ -55,10 +55,12 @@ NOTE: Si vous acquérez un objet dans un compartiment avec le verrouillage d'obj
 Les en-têtes de requête suivants sont pris en charge :
 
 * `Content-Type`
-* `x-amz-checksum-algorithm`
+* `x-amz-checksum-algorithm` : Spécifiez `CRC32`, `CRC32C`, `CRC64NVME`, ou `SHA256`
 +
-Actuellement, seule la valeur SHA256 pour `x-amz-checksum-algorithm` est prise en charge.
 
+NOTE: Si la requête CreateMultipartUpload ne spécifie pas de somme de contrôle, StorageGRID ne calcule pas de somme de contrôle CRC-64/NVME par défaut pour un objet. StorageGRID ignore les valeurs invalides ou non prises en charge `x-amz-checksum-algorithm`.
+
+* `x-amz-checksum-type`
 * `x-amz-meta-`, suivi d'une paire nom-valeur contenant des métadonnées définies par l'utilisateur
 +
 Lorsque vous spécifiez la paire nom-valeur pour les métadonnées définies par l'utilisateur, utilisez le format général suivant :

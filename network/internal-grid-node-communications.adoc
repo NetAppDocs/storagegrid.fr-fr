@@ -80,7 +80,7 @@ TCP
  a| 
 Appliances
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Utilisé par les appliances StorageGRID pour communiquer avec le nœud d'administration principal afin de démarrer l'installation.
 
@@ -106,7 +106,7 @@ TCP
  a| 
 Tous les nœuds
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Utilisé pour communiquer l'état au nœud d'administration principal lors de l'installation et d'autres procédures de maintenance.
 
@@ -119,7 +119,7 @@ TCP
  a| 
 Tous les nœuds
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
 
@@ -277,7 +277,7 @@ TCP
  a| 
 Tous les nœuds
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Trafic interne pour l'installation, l'extension, la récupération, les autres procédures de maintenance et le signalement des erreurs.
 
@@ -290,7 +290,7 @@ TCP
  a| 
 Tous les nœuds
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
 
@@ -355,7 +355,7 @@ TCP
  a| 
 Tous les nœuds
  a| 
-Nœud d'administration principal
+Nœud d'administration principal et nœud d'administration non principal
  a| 
 Trafic interne pour l'installation, l'extension, la récupération et d'autres procédures de maintenance.
 
@@ -366,7 +366,7 @@ Trafic interne pour l'installation, l'extension, la récupération et d'autres p
  a| 
 TCP
  a| 
-Nœuds d'administration/de stockage
+Tous les nœuds
  a| 
 Nœuds de stockage avec ADC
  a| 
@@ -379,7 +379,7 @@ Trafic interne du service de compte.
  a| 
 TCP
  a| 
-Nœuds d'administration/de stockage
+Tous les nœuds
  a| 
 Nœuds de stockage avec ADC
  a| 
@@ -392,7 +392,7 @@ Trafic interne de la fédération des identités.
  a| 
 TCP
  a| 
-Nœuds d'administration/de stockage
+Tous les nœuds
  a| 
 Nœuds de stockage
  a| 
@@ -405,7 +405,7 @@ Trafic API interne lié aux protocoles objet
  a| 
 TCP
  a| 
-Nœuds d'administration/de stockage
+Tous les nœuds
  a| 
 Nœuds de stockage avec ADC
  a| 

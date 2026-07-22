@@ -16,9 +16,9 @@ Avant de mettre à niveau un système StorageGRID, vérifiez que le système est
 .Étapes
 . Connectez-vous au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 . Recherchez et résolvez les alertes actives.
-. Se référer àlink:../network/internal-grid-node-communications.html["Communications internes sur les nœuds de la grille"] etlink:../network/external-communications.html["Communications externes"] pour vous assurer que tous les ports requis pour StorageGRID 12.0 sont ouverts avant la mise à niveau.
+. Reportez-vous à link:../network/internal-grid-node-communications.html["Communications internes sur les nœuds de la grille"] et link:../network/external-communications.html["Communications externes"] pour vous assurer que tous les ports requis pour StorageGRID 12.1 sont ouverts avant la mise à niveau.
 +
 
-NOTE: Aucun port supplémentaire n'est requis lors de la mise à niveau vers StorageGRID 12.0.
+NOTE: Aucun port supplémentaire n'est requis lors de la mise à niveau vers StorageGRID 12.1.
 
 

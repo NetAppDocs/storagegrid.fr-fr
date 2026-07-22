@@ -1,0 +1,73 @@
+---
+permalink: monitor/configure-email-server.html 
+sidebar: sidebar 
+keywords: notifications, email, system events, technical support 
+summary: 'En tant qu"administrateur StorageGRID, vous devez configurer un serveur de messagerie pour envoyer des notifications provenant des systèmes d"alerte et de surveillance StorageGRID qui informent vous, les autres administrateurs et le support technique des événements et problèmes du système.' 
+---
+= Configurer le serveur de messagerie
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur StorageGRID, vous devez configurer un serveur de messagerie pour envoyer des notifications provenant des systèmes d'alerte et de surveillance StorageGRID qui informent vous, les autres administrateurs et le support technique des événements et problèmes du système.
+
+Les fonctionnalités de StorageGRID qui utilisent le serveur de messagerie pour les notifications incluent les alertes, AutoSupport et la vérification multi-administrateurs (MAV). Vous pouvez utiliser le même serveur de messagerie pour toutes les notifications.
+
+.Avant de commencer
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+
+.Étapes
+. Sélectionnez *Configuration* > *Surveillance* > *Serveur de messagerie*.
++
+La page du serveur de messagerie s'affiche.
+
+. Sélectionnez le menu déroulant, *Afficher les fonctionnalités pouvant nécessiter un serveur de messagerie*. Si vous souhaitez consulter les détails et les informations requises pour configurer les notifications par e-mail d'une fonctionnalité, sélectionnez *Afficher*.
++
+Vous êtes redirigé vers la page de configuration de la fonctionnalité dans le Grid Manager. La page de configuration de chaque fonctionnalité contient une notification indiquant que vous avez besoin d'un serveur de messagerie pour envoyer des notifications par e-mail.
+
+. Pour configurer un serveur de messagerie depuis la page Serveur de messagerie :
++
+.. Saisissez l'adresse IP ou le FQDN du serveur de messagerie.
+.. Sélectionnez le numéro de port utilisé par le serveur de messagerie. La valeur par défaut est 25.
+.. Pour exiger une authentification, sélectionnez *Utiliser l'authentification* et saisissez le nom d'utilisateur et le mot de passe.
+.. Pour exiger la vérification de l'identité du serveur SMTP, sélectionnez *Utiliser le protocole TLS (Transport Layer Security)*. Ensuite :
++
+... Fournissez un bundle CA.
+... Si le serveur de messagerie SMTP exige que les expéditeurs fournissent des certificats clients pour l'authentification, sélectionnez *Envoyer le certificat client*. Fournissez ensuite le certificat client et la clé privée.
+
+
+.. Pour vérifier que vos paramètres de messagerie sont corrects, envoyez un courriel de test en saisissant l'expéditeur et le destinataire. Sélectionnez *Envoyer*.
++
+Un message de confirmation s'affiche, indiquant qu'un e-mail de test a été envoyé.
+
+.. Cochez les cases de tous les destinataires d'e-mail et confirmez qu'un e-mail de test a été reçu.
++
+
+NOTE: Si l'e-mail n'est pas reçu dans quelques minutes ou si l'alerte *échec de notification par e-mail* est déclenchée, vérifiez vos paramètres et réessayez.
+
+.. Connectez-vous à tout autre nœud d'administration et envoyez un e-mail de test pour vérifier la connectivité de tous les sites.
++
+
+NOTE: Lorsque vous testez les notifications d'alertes, vous devez vous connecter à chaque nœud d'administration pour vérifier la connectivité. Cela contraste avec les tests de packages AutoSupport, où tous les nœuds d'administration envoient l'e-mail de test.
+
+
+
+. Sélectionnez *Enregistrer*.
++
+L'envoi d'un courriel de test n'enregistre pas vos paramètres. Vous devez sélectionner *Enregistrer*.
+
++
+Les paramètres de messagerie sont enregistrés.
+
+. Accédez aux pages de configuration des fonctionnalités qui utilisent le serveur de messagerie et complétez les paramètres de notification par e-mail.
++
+** link:../monitor/email-alert-notifications.html["Alertes"]. Pour les alertes, vous pouvez également link:../monitor/snmp-alert-notifications.html["Configurer les notifications SNMP"].
+** link:../monitor/configure-autosupport-grid-manager.html["AutoSupport"]. Vous pouvez envoyer des packages AutoSupport par e-mail, HTTPS ou HTTP (HTTP n'est pas recommandé).
+** link:../admin/configure-multi-admin-verify.html["Vérification multi-administrateurs (MAV)"].
+
+
+

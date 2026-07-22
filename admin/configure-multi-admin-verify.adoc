@@ -1,0 +1,112 @@
+---
+permalink: admin/configure-multi-admin-verify.html 
+sidebar: sidebar 
+keywords: multi-admin verification, mav, mav administrators, mav approval groups 
+summary: 'La gestion d"un système de vérification multi-administrateur (MAV) StorageGRID implique la création et la gestion de groupes et d"utilisateurs d"administrateurs MAV, l"activation de la fonction MAV et la configuration ou la sélection des opérations protégées.' 
+---
+= Configurer la vérification multi-administrateur StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La configuration d'un système de vérification multi-administrateur (MAV) StorageGRID implique la création et la gestion de groupes et d'utilisateurs d'administrateurs MAV, l'activation de la fonction MAV et la sélection ou la configuration des opérations protégées.
+
+Les administrateurs du MAV ont le pouvoir d'approuver et de veto sur les opérations protégées.
+
+.Avant de commencer
+* Vous avez le link:../admin/admin-group-permissions.html["Autorisation d'accès racine"].
+* Vous êtes connecté au Grid Manager depuis le nœud d'administration principal.
+
+
+
+
+[[step-1-create-mav-administrator-groups-and-users]]
+== Étape 1 : Créez des groupes d’administrateurs et des utilisateurs MAV
+
+Vous pouvez ajouter des administrateurs existants à un groupe MAV ou créer de nouveaux administrateurs.
+
+Vous pouvez configurer des utilisateurs Active Directory (AD) en tant qu'administrateurs MAV. L'utilisateur AD doit être configuré en tant qu'administrateur StorageGRID.
+
+.Étapes
+. Pour créer un groupe d'administrateurs MAV, suivez les étapes pour link:../admin/managing-admin-groups.html["créer un groupe local ou fédéré"].
+. Pour les autorisations de groupe, sélectionnez *Accès racine* ou *Demandes de vérification multi-administrateur*.
+. Ajoutez des utilisateurs locaux ou fédérés au groupe, ou créez de nouveaux utilisateurs locaux et ajoutez-les au groupe en suivant les étapes pour link:../admin/managing-users.html#create-a-local-user["créer un utilisateur local"].
+
+
+
+
+[[step-2-enable-or-disable-mav]]
+== Étape 2 : Activer ou désactiver MAV
+
+Vous devez activer explicitement la vérification multi-administrateurs (MAV). Si la MAV est activée et que vous décidez de la désactiver alors que des requêtes MAV sont en attente, une notification indique que les requêtes en attente seront supprimées.
+
+.Étapes
+. Sélectionnez *Configuration* > *Contrôle d’accès* > *Vérification multi-administrateur* > *Paramètres MAV*.
+. Cochez la case *Activer MAV* pour activer la vérification multi-administrateur.
+. La section « Groupes d'approbateurs » répertorie les groupes d'administrateurs MAV et les approbateurs.
+. Dans la section Opérations, cochez les cases correspondant aux opérations que vous souhaitez protéger avec MAV.
+. (Facultatif) Si vous souhaitez utiliser les notifications par e-mail pour alerter les administrateurs MAV des demandes d'approbation en attente :
++
+.. Si vous n'avez pas configuré de serveur de messagerie, suivez les étapes pour link:../monitor/configure-email-server.html["configurer un serveur de messagerie"].
+.. Saisissez l'adresse e-mail de l'expéditeur.
+.. Saisissez un ou plusieurs destinataires pour les notifications par e-mail.
+
+
+. Sélectionnez *Enregistrer* pour enregistrer vos modifications.
++
+
+NOTE: Si vous choisissez de ne pas configurer les notifications par e-mail, les administrateurs MAV peuvent consulter le tableau de bord du Grid Manager ou vérifier la file d'attente des demandes d'approbation en attente. Pour vérifier la file d'attente des demandes d'approbation, sélectionnez *Other requests* sur la page Multi-admin verification.
+
+
+
+
+
+[[step-3-manage-protected-operations]]
+== Étape 3 : Gérer les opérations protégées
+
+Une fois la vérification multi-administrateur activée, vous pouvez gérer les opérations protégées en cochant ou décochant les cases correspondant aux opérations que vous souhaitez protéger avec MAV.
+
+
+NOTE: Pour StorageGRID 12.1, la seule opération protégée est l’activation de la politique ILM. Vous devez cocher la case pour l’activation de la politique ILM si vous souhaitez activer MAV.
+
+Une requête MAV peut avoir l'un des statuts suivants :
+
+* *En attente*. La demande a été initiée.
+* *Expiré*. La demande n'a pas été traitée dans les 30 jours. Ou un utilisateur disposant des droits d'accès Root a désactivé MAV, ce qui signifie que toutes les demandes en attente sont expirées.
+* *Retiré*. Un utilisateur a retiré sa demande.
+* *Approuvé*. Un administrateur MAV a approuvé la demande en attente.
+* *Rejeté*. Un administrateur MAV a rejeté la requête en attente.
+
+
+
+
+[[troubleshoot-mav-email-notifications]]
+== Résolvez les problèmes de notifications par e-mail MAV
+
+Si les administrateurs MAV ne reçoivent pas de notifications par e-mail concernant les demandes en attente, suivez les étapes suivantes pour résoudre le problème.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Gérer les alertes ou l'autorisation d'accès racine"].
+
+
+.Étapes
+. Vérifiez vos paramètres.
++
+.. Sélectionnez *Configuration* > *Surveillance* > *Serveur de messagerie*.
+.. Vérifiez que les paramètres du serveur de messagerie (SMTP) sont corrects.
+.. Vérifiez que vous avez spécifié des adresses e-mail valides pour les destinataires.
+
+
+. Vérifiez votre filtre de spam et assurez-vous que l'e-mail n'a pas été envoyé à un dossier indésirable.
+. Demandez à votre administrateur de messagerie de confirmer que les e-mails de l'adresse de l'expéditeur ne sont pas bloqués.
+. Collectez un fichier journal pour le nœud d'administration, puis contactez le support technique.
++
+Le support technique peut utiliser les informations contenues dans les journaux pour vous aider à déterminer ce qui s'est mal passé. Par exemple, le fichier prometheus.log peut afficher une erreur lors de la connexion au serveur spécifié.
+
++
+Voir link:../monitor/collecting-log-files-and-system-data.html["Collecte de fichiers journaux et de données système"].
+
+

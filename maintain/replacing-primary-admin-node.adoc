@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: storagegrid, recover, replace primary admin node, replacing primary admin node, primary admin node 
 summary: 'Pour restaurer un noeud d"administration principal, vous devez d"abord remplacer le matériel physique ou virtuel.' 
 ---
-= Remplacer le nœud d'administration principal StorageGRID
+= Remplacez le nœud d'administration principal StorageGRID en utilisant le même nœud d'administration principal
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,7 +13,12 @@ summary: 'Pour restaurer un noeud d"administration principal, vous devez d"abord
 [role="lead"]
 Pour restaurer un noeud d'administration principal, vous devez d'abord remplacer le matériel physique ou virtuel.
 
-Vous pouvez remplacer un nœud d'administration principal défectueux par un nœud d'administration principal s'exécutant sur la même plate-forme, ou remplacer un nœud d'administration principal s'exécutant sur VMware ou un hôte Linux par un nœud d'administration principal hébergé sur une appliance de services.
+Pour restaurer un noeud d'administration principal, vous devez d'abord remplacer le matériel physique ou virtuel.
+
+* Vous pouvez remplacer un nœud d'administration principal défaillant par un nœud d'administration principal fonctionnant sur la même plateforme.
+* Vous pouvez remplacer un nœud d'administration principal exécuté sur VMware ou un hôte Linux par un nœud d'administration principal hébergé sur une appliance de services StorageGRID.
+* Vous pouvez remplacer un nœud d'administration principal exécuté sur un hôte VMware par un appliance de services SG1000 ou SG100.
+
 
 Utilisez la procédure qui correspond à la plate-forme de remplacement que vous sélectionnez pour le nœud. Après avoir effectué la procédure de remplacement des nœuds (adaptée à tous les types de nœuds), cette procédure vous dirige vers l'étape suivante pour la restauration du nœud d'administration principal.
 
@@ -25,7 +30,9 @@ Utilisez la procédure qui correspond à la plate-forme de remplacement que vous
  a| 
 VMware
  a| 
-link:all-node-types-replacing-vmware-node.html["Remplacement d'un noeud VMware"]
+link:all-node-types-replacing-vmware-node.html["Remplacer un nœud VMware par un nœud de récupération"]
+
+link:replace-vmware-node-with-sg1000-sg100.html["Remplacez un nœud VMware par un SG1000 ou un SG100"]
 
 
 

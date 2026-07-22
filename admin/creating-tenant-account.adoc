@@ -19,7 +19,7 @@ Les étapes de création d'un compte locataire varient selon quelink:using-ident
 * Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
 * Vous avez le link:admin-group-permissions.html["Autorisation d'accès racine ou de comptes de locataires"].
 * Si le compte de tenant utilise le référentiel d'identité qui a été configuré pour Grid Manager et que vous souhaitez accorder l'autorisation d'accès racine au compte de tenant à un groupe fédéré, vous avez importé ce groupe fédéré dans Grid Manager. Vous n'avez pas besoin d'affecter d'autorisations Grid Manager à ce groupe d'administration. Voir link:managing-admin-groups.html["Gérez les groupes d'administration"].
-* Si vous souhaitez autoriser un locataire S3 à cloner les données de compte et à répliquer les objets de compartiment vers une autre grille à l'aide d'une connexion de fédération de grille :
+* Si vous souhaitez autoriser un locataire S3 à synchroniser les données de compte et à répliquer les objets du compartiment vers une autre grille à l'aide d'une connexion de fédération de grilles :
 +
 ** Vous avez link:grid-federation-create-connection.html["configurez la connexion de fédération de grille - effectué"].
 ** L'état de la connexion est *connecté*.
@@ -141,9 +141,13 @@ Le locataire peut émettre des requêtes d'API S3 SelectObjectContent pour filtr
  a| 
 Connexion de fédération de grille
  a| 
-Le locataire peut utiliser une connexion de fédération de grille qui :
+Le locataire peut utiliser des connexions de fédération de grille, qui :
 
-** Provoque le clonage de ce locataire et de tous les groupes de locataires et utilisateurs ajoutés au compte à partir de cette grille (la _grille source_) vers l'autre grille de la connexion sélectionnée (la _grille de destination_).
+** Cela permet de synchroniser ce compte locataire ainsi que tous les groupes de locataires, utilisateurs et clés d'accès S3 entre cette grille et les autres grilles des connexions sélectionnées.
++
+
+TIP: Si nécessaire pour des raisons de sécurité ou de conformité, vous pouvez désélectionner *Activer la synchronisation des clés d'accès*.
+
 ** Permet à ce locataire de configurer la réplication entre les compartiments correspondants sur chaque grille.
 
 
@@ -207,19 +211,10 @@ Un message de réussite s'affiche et le nouveau locataire apparaît sur la page 
 
 NOTE: L'application des paramètres de locataire sur l'ensemble du grid peut prendre 15 minutes ou plus en fonction de la connectivité réseau, de l'état du nœud et des opérations Cassandra.
 
-. Si vous avez sélectionné l'autorisation *utiliser la connexion de fédération de grille* pour le locataire :
-+
-.. Confirmez qu'un locataire identique a été répliqué sur l'autre grille de la connexion. Les locataires des deux grilles auront les mêmes ID de compte, nom, description, quota et autorisations à 20 chiffres.
+. Si vous avez sélectionné l'autorisation *Utiliser la connexion de fédération de grilles* pour le locataire, vérifiez qu'un locataire identique a bien été répliqué sur l'autre grille de la connexion. Les locataires des deux grilles auront le même ID de compte à 20 chiffres, le même nom, la même description, le même quota et les mêmes autorisations.
 +
 
-NOTE: Si le message d'erreur « tenant created without a clone » s'affiche, reportez-vous aux instructions de la section link:grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
-
-.. Si vous avez fourni un mot de passe d'utilisateur root local lors de la définition de l'accès root, link:changing-password-for-tenant-local-root-user.html["modifiez le mot de passe de l'utilisateur root local"] pour le tenant répliqué.
-+
-
-TIP: Un utilisateur root local ne peut pas se connecter au gestionnaire de locataires sur la grille de destination tant que le mot de passe n'est pas modifié.
-
-
+NOTE: Si vous voyez un message d'erreur indiquant que le compte du locataire a été créé sur cette grille mais n'a pas été synchronisé avec les autres grilles, reportez-vous aux instructions dans link:grid-federation-troubleshoot.html["Dépanner les erreurs de fédération de grille"].
 
 
 
@@ -331,4 +326,4 @@ Un port restreint
 [[configure-the-tenant]]
 == Configurez le tenant
 
-Suivez les instructions de la section link:../tenant/index.html["Utilisez un compte de locataire"] pour gérer les groupes de locataires et les utilisateurs, les clés d'accès S3, les compartiments, les services de plateforme et le clone de compte et la réplication inter-grid.
+Suivez les instructions dans link:../tenant/index.html["Utilisez un compte de locataire"] pour gérer les groupes de locataires et les utilisateurs, les clés d'accès S3, les compartiments, les services de plateforme, la synchronisation des comptes et la réplication inter-grilles.

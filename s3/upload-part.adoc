@@ -20,7 +20,23 @@ L'opération UploadPart télécharge une pièce dans un téléchargement partiti
 
 Les en-têtes de requête suivants sont pris en charge :
 
-* `x-amz-checksum-sha256`
+* En-têtes de requête de somme de contrôle :
++
+--
+** `x-amz-checksum-crc32`
+** `x-amz-checksum-crc32c`
+** `x-amz-checksum-crc64nvme`
+** `x-amz-checksum-sha256`
+
+
+--
++
+Si vous avez spécifié une somme de contrôle CRC-32, CRC-32C, CRC-64/NVME ou SHA-256 lors de la requête CreateMultipartUpload, vous devez également inclure l'en-tête de requête de somme de contrôle dans chaque requête UploadPart.
+
++
+
+NOTE: Si une requête CreateMultipartUpload ne spécifie pas de somme de contrôle, StorageGRID ne calcule pas de somme de contrôle CRC-64/NVME par défaut pour un objet.
+
 * `Content-Length`
 * `Content-MD5`
 
@@ -40,11 +56,6 @@ Si vous avez spécifié le cryptage SSE-C pour la demande CreateMultipartUpload,
 
 CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. Si vous perdez une clé de chiffrement, vous perdez l'objet correspondant. Avant d'utiliser des clés fournies par le client pour sécuriser les données d'objet, consultez les considérations de la section link:using-server-side-encryption.html["Utilisez le cryptage côté serveur"].
 
-Si vous avez spécifié une somme de contrôle SHA-256 lors de la demande CreateMultipartUpload, vous devez également inclure l'en-tête de requête suivant dans chaque demande UploadPart :
-
-* `x-amz-checksum-sha256`: Spécifiez la somme de contrôle SHA-256 pour cette partie.
-
-
 
 
 [[unsupported-request-headers]]
@@ -54,6 +65,12 @@ Les en-têtes de demande suivants ne sont pas pris en charge :
 
 * `x-amz-sdk-checksum-algorithm`
 * `x-amz-trailer`
+* `x-amz-checksum-md5`
+* `x-amz-checksum-sha1`
+* `x-amz-checksum-sha512`
+* `x-amz-checksum-xxhash3`
+* `x-amz-checksum-xxhash64`
+* `x-amz-checksum-xxhash128`
 
 
 

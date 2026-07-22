@@ -17,6 +17,11 @@ L'opération UploadPartCopy est implémentée avec tout comportement de l'API RE
 
 Cette requête lit et écrit les données d'objet spécifiées dans `x-amz-copy-source-range` au sein du système StorageGRID.
 
+
+
+[[supported-request-headers]]
+== En-têtes de demande pris en charge
+
 Les en-têtes de requête suivants sont pris en charge :
 
 * `x-amz-copy-source-if-match`
@@ -53,3 +58,10 @@ CAUTION: Les clés de chiffrement que vous fournissez ne sont jamais stockées. 
 == Gestion des versions
 
 Le téléchargement partitionné est constitué de différentes opérations permettant de lancer le téléchargement, de répertorier les téléchargements, de télécharger des pièces, d'assembler les pièces téléchargées et de terminer le téléchargement. Les objets sont créés (et versionnés le cas échéant) lorsque l'opération CompleteMultipartUpload est exécutée.
+
+
+
+[[s3-checksum-support]]
+== Prise en charge des sommes de contrôle S3
+
+StorageGRID détecte automatiquement si une somme de contrôle a été spécifiée lors d'une requête CreateMultipartUpload et utilise cette somme de contrôle dans l'opération UploadPartCopy. Vous n'avez pas besoin de spécifier une somme de contrôle dans une requête UploadPartCopy. Si une requête CreateMultipartUpload ne spécifie pas de somme de contrôle, StorageGRID ne calcule pas de somme de contrôle CRC-64/NVME par défaut pour un objet. StorageGRID n'inclut pas de somme de contrôle pour la partie copiée lorsque CreateMultipartUpload n'a pas spécifié de somme de contrôle.

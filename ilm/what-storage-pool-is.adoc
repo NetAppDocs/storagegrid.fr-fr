@@ -21,7 +21,7 @@ NOTE: Les nœuds de stockage peuvent être configurés lors de l'installation po
 Les pools de stockage ont deux attributs :
 
 * *Stockage* : pour les nœuds de stockage, les performances relatives du stockage de support.
-* *Site* : le centre de données où les objets seront stockés.
+* *Site* : Le centre de données où les objets sont stockés.
 
 
 Les pools de stockage sont utilisés dans les règles ILM pour déterminer l'emplacement du stockage des données en mode objet et le type de stockage utilisé. Lorsque vous configurez les règles ILM pour la réplication, vous sélectionnez un ou plusieurs pools de stockage.

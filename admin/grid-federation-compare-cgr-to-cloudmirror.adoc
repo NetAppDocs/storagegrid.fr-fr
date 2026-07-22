@@ -36,8 +36,8 @@ La réplication CloudMirror crée une copie indépendante d'un objet dans une in
 Comment est-il configuré ?
  a| 
 . Configurer une connexion de fédération de grille entre deux grilles.
-. Ajoutez de nouveaux comptes de locataires, qui sont automatiquement clonés dans l'autre grid.
-. Ajoutez de nouveaux groupes de locataires et utilisateurs qui sont également clonés.
+. Ajoutez de nouveaux comptes locataires, qui sont automatiquement synchronisés avec l'autre grid.
+. Ajoutez de nouveaux groupes de locataires et utilisateurs, qui sont également synchronisés.
 . Créez les compartiments correspondants sur chaque grille et activez la réplication inter-grille dans une ou les deux directions.
 
  a| 

@@ -37,7 +37,7 @@ NOTE: Les opérations de l'API S3 pour le téléchargement d'objets (ou de parti
 * *Conditions d'achèvement du travail*. La procédure de rééquilibrage EC est considérée comme terminée lorsque l'une des conditions suivantes est vraie :
 +
 ** Elle ne peut plus déplacer de données avec code d'effacement.
-** Les données de tous les nœuds sont dans un écart de 5 % par rapport à la partition de données cible.
+** Les données de tous les nœuds présentent un écart de 5 % maximum par rapport à la partition d'espace utilisable cible.
 ** La procédure est en cours d'exécution depuis 30 jours.
 
 
@@ -105,11 +105,11 @@ Pour obtenir de l'aide sur la commande rééquilibrer-données :
 Accédez à la page Nœuds pour évaluer la répartition des données sur les nœuds de stockage du site.
 
 +
-La tâche de rééquilibrage EC est considérée comme terminée et s'arrête lorsque les données de tous les nœuds sont dans un écart de 5 % par rapport à la partition de données cible.
+La tâche de rééquilibrage EC est considérée comme terminée et s'arrêtera lorsque l'espace utilisable dans tous les nœuds sera à moins de 5 % de la partition d'espace utilisable cible.
 
 ** Si `State` est `Success`, facultatif <<review_object_storage,examinez le stockage objet>> pour voir les détails mis à jour pour le site.
 +
-Les données avec code d'effacement doivent désormais être plus équilibrées entre les nœuds de stockage du site.
+L'espace utilisable devrait désormais être mieux réparti entre les nœuds de stockage du site.
 
 ** Si `State` `Failure` :
 +

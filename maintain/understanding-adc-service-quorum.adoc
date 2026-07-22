@@ -2,7 +2,7 @@
 permalink: maintain/understanding-adc-service-quorum.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, adc, adc quorum 
-summary: 'Il se peut que vous ne puissiez pas désaffecter certains nœuds de stockage sur un site si trop peu de services ADC (administrative Domain Controller) resteraient disponibles après la mise hors service.' 
+summary: 'Le quorum ADC garantit qu"un nombre minimal de services de contrôleur de domaine administratif (ADC) reste disponible sur chaque site. StorageGRID déplace automatiquement le service ADC lors de la mise hors service, si nécessaire.' 
 ---
 = Qu’est-ce que le quorum ADC de StorageGRID ?
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Il se peut que vous ne puissiez pas désaffecter certains nœuds de st
 
 
 [role="lead"]
-Il se peut que vous ne puissiez pas désaffecter certains nœuds de stockage sur un site si trop peu de services ADC (administrative Domain Controller) resteraient disponibles après la mise hors service.
+Le quorum ADC garantit qu'un nombre minimal de services de contrôleur de domaine administratif (ADC) reste disponible sur chaque site. StorageGRID déplace automatiquement le service ADC lors de la mise hors service, si nécessaire.
 
 Le service ADC, qui se trouve sur certains nœuds de stockage, conserve les informations de topologie de grille et fournit des services de configuration à la grille. Le système StorageGRID nécessite que le quorum des services ADC soit disponible sur chaque site et à tout moment.
 
@@ -26,4 +26,6 @@ Supposons par exemple qu'un site comprend actuellement six nœuds de stockage av
 * Lors de la deuxième procédure de mise hors service, vous pouvez supprimer le troisième nœud de stockage, car le quorum ADC ne nécessite désormais que trois services ADC pour rester disponibles : `((0.5 * 4) + 1)` .
 
 
-Si vous devez mettre hors service un nœud de stockage, vous pouvez continuer à respecter le quorum ADC en link:../release-notes/changes-to-grid-management-api.html#new-private-endpoints-for-move-adc["Déplacer le service ADC vers un autre nœud de stockage sur le même site"] ou en ajoutant un nouveau nœud de stockage dans un link:../expand/index.html["extension"] et en spécifiant qu'il doit disposer d'un service ADC. Vous pouvez ensuite mettre hors service le nœud de stockage existant sans affecter le quorum.
+Lors de la mise hors service d'un nœud de stockage hébergeant le service ADC, StorageGRID transfère automatiquement ce service vers un autre nœud de stockage du même site si cette mise hors service ramène le nombre de nœuds ADC du site en dessous du quorum. Ce transfert automatique nécessite que tous les nœuds du grid soient connectés et que des nœuds de stockage non-ADC soient disponibles sur le même site pour recevoir le service. La procédure de mise hors service garantit un minimum de trois nœuds de stockage ADC par site. Par exemple, si vous mettez hors service quatre ou six nœuds ADC sur un site, trois nœuds de stockage ADC resteront après la procédure, à condition que des nœuds non-ADC soient disponibles sur le même site.
+
+Si le service ADC ne peut pas être déplacé automatiquement, vous pouvez link:move-adc-service.html["déplacer manuellement le service ADC"] le déplacer vers un autre nœud de stockage du même site ou link:../expand/index.html["ajouter un nouveau nœud de stockage dans une extension"] spécifier qu'il doit héberger un service ADC. Vous pouvez ensuite mettre hors service le nœud de stockage existant sans affecter le quorum.

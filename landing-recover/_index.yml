@@ -31,8 +31,10 @@ indexpage:
     links:
     - title: Remplacez le nœud Linux
       url: "../maintain/all-node-types-replacing-linux-node.html"
-    - title: Remplacer le nœud VMware
+    - title: Remplacer le nœud VMware par un nœud de récupération
       url: "../maintain/all-node-types-replacing-vmware-node.html"
+    - title: Remplacez le nœud VMware par SG1000 ou SG100
+      url: "../maintain/replace-vmware-node-with-sg1000-sg100.html"
     - title: Remplacez le nœud Linux ou VMware par une appliance de services
       url: "../maintain/installing-services-appliance-platform-change-only.html"
     - title: Clonez le nœud d'appliance

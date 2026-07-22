@@ -53,7 +53,7 @@ Après un link:../admin/creating-tenant-account.html["Le compte de locataire S3 
 
 * Configurer la fédération des identités (sauf si le référentiel d'identité est partagé avec la grille)
 * Gestion des groupes et des utilisateurs
-* Utilisez la fédération grid pour le clone de compte et la réplication inter-grid
+* Utilisez la fédération de grilles pour la synchronisation des comptes et la réplication inter-grilles
 * Gestion des clés d'accès S3
 * Création et gestion de compartiments S3
 * Utilisez les services de plateforme S3

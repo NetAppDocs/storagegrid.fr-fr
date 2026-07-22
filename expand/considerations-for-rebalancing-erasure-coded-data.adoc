@@ -27,9 +27,10 @@ La procédure de rééquilibrage de la ce :
 * Seul le déplacement des données d'objet avec code d'effacement Il ne déplace pas les données d'objet répliqué.
 * Redistribue les données au sein d'un site. Il ne déplace pas les données entre les sites.
 * Redistribue les données entre tous les nœuds de stockage du site. Elle ne rerépartit pas les données au sein des volumes de stockage.
-* Tente de distribuer le même nombre d'octets à chaque nœud.  Les nœuds contenant davantage de données répliquées stockeront moins de données codées par effacement une fois le rééquilibrage terminé.
-* Redistribue les données codées par effacement de manière uniforme entre les nœuds de stockage sans tenir compte des capacités relatives de chaque nœud.  Les données répliquées sont incluses dans le calcul.
-* Ne distribuera pas de données codées par effacement aux nœuds de stockage qui sont remplis à plus de 80 %.
+* Le système tente de répartir les octets de données afin que chaque nœud dispose du même espace utilisable. Les nœuds contenant davantage de données répliquées pourraient stocker moins de données à codage d'effacement une fois le rééquilibrage terminé.
+* Répartit uniformément l'espace utilisable entre les nœuds de stockage sans tenir compte des capacités relatives de chaque nœud. Les données répliquées sont incluses dans le calcul.
+* La procédure de rééquilibrage est considérée comme terminée si elle ne peut plus déplacer de données à codage d'effacement, même si l'espace utilisable n'est toujours pas réparti uniformément.
+* Ne distribuera pas les données à codage d'effacement aux nœuds de stockage remplis à plus de 80 % ni aux nœuds de stockage contenant uniquement des métadonnées.
 * Risque de diminuer les performances des opérations ILM et des opérations client S3 lorsqu'elles s'exécutent&#8212;des ressources supplémentaires sont nécessaires pour redistribuer les fragments de code d'effacement.
 
 
@@ -40,9 +41,9 @@ Lorsque la procédure de rééquilibrage EC est terminée :
 * Les valeurs utilisées (%) peuvent différer d'un nœud de stockage à un autre, et ce pour deux raisons :
 +
 ** Les copies d'objet répliquées continueront à consommer de l'espace sur les nœuds existants&#8212;la procédure de rééquilibrage EC ne déplace pas les données répliquées.
-** Les nœuds de plus grande capacité seront relativement moins remplis que les nœuds de plus petite capacité, même si tous les nœuds se retrouveront avec approximativement la même quantité de données.
+** Les nœuds de plus grande capacité peuvent être relativement moins remplis que les nœuds de plus petite capacité, même si tous les nœuds finissent par disposer d'une quantité d'espace utilisable à peu près identique.
 +
-Par exemple, supposons que trois nœuds de 200 To soient remplis à 80 % (200 et#215 ; 0.8 = 160 To sur chaque nœud, ou 480 To pour le site). Si vous ajoutez un nœud de 400 To et exécutez la procédure de rééquilibrage, tous les nœuds auront à peu près le même volume de données de code d'effacement (480/4 = 120 To). Cependant, le pourcentage utilisé pour le nœud le plus grand sera inférieur au pourcentage utilisé pour les nœuds plus petits.
+Par exemple, avec un schéma de codage d'effacement 2+1, supposons que trois nœuds de 200 To soient chacun remplis à 80 % (200 × 0,8 = 160 To par nœud, soit 480 To pour le site). Si vous ajoutez un nœud de 400 To et exécutez la procédure de rééquilibrage, tous les anciens nœuds auront désormais approximativement la même quantité de données codées par effacement (106,66 To ou 53 % d'utilisation). Le nouveau nœud aura 160 To de données, soit 40 % d'utilisation. Dans ce cas, le pourcentage d'utilisation du nœud le plus volumineux sera inférieur à celui des nœuds les plus petits. La procédure de rééquilibrage s'achève avant que l'espace utilisable ne soit équilibré, car il n'est plus possible de déplacer de données codées par effacement sans enfreindre les contraintes du schéma de codage d'effacement.
 
 +
 image:used_space_with_larger_node.png["Espace utilisé avant extension"]
@@ -72,8 +73,8 @@ image:used_space_before_expansion.png["Espace utilisé avant extension"]
 
 
 
-[[rebalance-is-not-required-if-you-add-enough-nodes]]
-=== Le rééquilibrage n'est pas requis si vous ajoutez suffisamment de nœuds
+[[rebalance-isnt-required-if-you-add-enough-nodes]]
+=== Le rééquilibrage n'est pas nécessaire si vous ajoutez suffisamment de nœuds
 
 Pour savoir quand le rééquilibrage EC n'est pas nécessaire, supposons que vous ayez ajouté trois (ou plus) nouveaux nœuds de stockage. Dans ce cas, vous n'avez pas besoin d'effectuer le rééquilibrage EC. Les nœuds de stockage d'origine resteront pleins, mais les nouveaux objets utiliseront désormais les trois nouveaux nœuds pour le code d'effacement 2+1&#8212;les deux fragments de données et le fragment de parité peuvent chacun être stockés sur un nœud différent.
 
@@ -91,7 +92,7 @@ Pour savoir quand un rééquilibrage EC est nécessaire, supposons que vous ne p
 
 image:used_space_after_2_node_expansion.png["Espace utilisé après l'extension à 2 nœuds"]
 
-Pour utiliser les nouveaux nœuds de stockage, vous devez exécuter la procédure de rééquilibrage EC. À l'exécution de cette procédure, StorageGRID redistribue les données avec code d'effacement et les fragments de parité existants entre tous les nœuds de stockage sur le site. Dans cet exemple, lorsque la procédure de rééquilibrage de l'EC est terminée, les cinq nœuds sont désormais remplis à seulement 60 % et les objets peuvent continuer à être ingérés dans le schéma de code d'effacement 2+1 sur tous les nœuds de stockage.
+Pour exploiter les nouveaux nœuds de stockage, vous devez exécuter la procédure de rééquilibrage EC. Lorsque cette procédure s'exécute, StorageGRID redistribue les données à codage d'effacement et les fragments de parité existants afin que l'espace utilisable soit réparti équitablement entre tous les nœuds de stockage du site. Dans cet exemple, une fois la procédure de rééquilibrage EC terminée, les cinq nœuds sont désormais remplis à 60 % avec 40 % d'espace utilisable, et l'ingestion d'objets peut se poursuivre selon le schéma de codage d'effacement 2+1 sur tous les nœuds de stockage.
 
 image:used_space_after_ec_rebalance.png["Rééquilibrage EC de l'espace utilisé"]
 

@@ -46,3 +46,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 . Répétez ces étapes sur chaque nœud d'administration et nœud de passerelle disposant de ports en conflit avec des ports remappés.
 . Si vous avez autorisé l'accès SSH externe,link:../admin/manage-external-ssh-access.html["bloquer l'accès"] lorsque vous avez terminé de supprimer les remappages de ports.
 
+
+.Informations associées
+* link:../network/external-communications.html["Ports utilisés pour les communications externes"]
+

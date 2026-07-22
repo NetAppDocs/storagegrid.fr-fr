@@ -43,7 +43,7 @@ Dans cet exemple, un diagnostic a un statut Attention et trois diagnostics ont u
 +
 image:support_diagnostics_page.png["Page support Diagnostics"]
 
-. Pour en savoir plus sur un diagnostic spécifique, cliquez n'importe où dans la ligne.
+. Pour en savoir plus sur un diagnostic spécifique, sélectionnez cette ligne.
 +
 Des détails sur le diagnostic et ses résultats actuels s'affichent. Les informations suivantes sont répertoriées :
 
@@ -75,7 +75,7 @@ NOTE: Vous pouvez également accéder aux tableaux de bord Grafana pré-construi
 +
 image:grafana_dashboard_nodes.png["Nœuds de tableau de bord Grafana"]
 
-. *Facultatif* : pour afficher un graphique de l'expression Prometheus au fil du temps, cliquez sur *Afficher dans Prometheus*.
+. *Facultatif* : Pour afficher un graphique de l’expression Prometheus au fil du temps, sélectionnez *Afficher dans Prometheus*.
 +
 Un graphique Prometheus de l'expression utilisée dans le diagnostic s'affiche.
 

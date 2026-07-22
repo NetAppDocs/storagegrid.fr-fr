@@ -29,7 +29,7 @@ NOTE: Si un nœud de grille est manquant, vérifiez qu'il a été déployé avec
 +
 image:5_gmi_installer_grid_nodes_pending.gif["Cette image est expliquée par le texte qui l'entoure."]
 
-. Cliquez sur *approuver*.
+. Sélectionnez *approuver*.
 . Dans Paramètres généraux, modifiez les paramètres des propriétés suivantes, si nécessaire :
 +
 ** *Site* : le nom système du site pour ce noeud de grille.
@@ -85,7 +85,7 @@ Le redémarrage peut prendre plusieurs minutes.
 
 .. Sélectionnez *configurer réseau* > *Configuration lien* et activez les réseaux appropriés.
 .. Sélectionnez *configurer réseau* > *Configuration IP* et configurez les réseaux activés.
-.. Revenez à la page d'accueil et cliquez sur *Démarrer l'installation*.
+.. Retournez à la page d'accueil et sélectionnez *Démarrer l'installation*.
 .. Dans le Gestionnaire de grille : si le nœud est répertorié dans le tableau nœuds approuvés, supprimez-le.
 .. Supprimez le nœud du tableau nœuds en attente.
 .. Attendez que le nœud réapparaisse dans la liste nœuds en attente.
@@ -110,7 +110,7 @@ Le redémarrage peut prendre plusieurs minutes.
 
 .. Sélectionnez *configurer réseau* > *Configuration lien* et activez les réseaux appropriés.
 .. Sélectionnez *configurer réseau* > *Configuration IP* et configurez les réseaux activés.
-.. Revenez à la page d'accueil et cliquez sur *Démarrer l'installation*.
+.. Retournez à la page d'accueil et sélectionnez *Démarrer l'installation*.
 .. Dans le Gestionnaire de grille : si le nœud est répertorié dans le tableau nœuds approuvés, supprimez-le.
 .. Supprimez le nœud du tableau nœuds en attente.
 .. Attendez que le nœud réapparaisse dans la liste nœuds en attente.
@@ -120,7 +120,7 @@ Pour plus d'informations, reportez-vous au https://docs.netapp.com/us-en/storage
 
 
 
-. Cliquez sur *Enregistrer*.
+. Sélectionnez *Enregistrer*.
 +
 L'entrée de nœud de la grille passe à la liste nœuds approuvés.
 
@@ -129,7 +129,7 @@ image:7_gmi_installer_grid_nodes_approved.gif["Cette image est expliquée par le
 
 . Répétez ces étapes pour chaque nœud de grille en attente à approuver.
 +
-Vous devez approuver tous les nœuds que vous souhaitez dans la grille. Cependant, vous pouvez revenir à cette page à tout moment avant de cliquer sur *installer* sur la page Résumé. Vous pouvez modifier les propriétés d'un nœud de grille approuvé en sélectionnant son bouton radio et en cliquant sur *Modifier*.
+Vous devez approuver tous les nœuds que vous souhaitez dans la grille. Cependant, vous pouvez revenir à cette page à tout moment avant de sélectionner *Installer* sur la page Résumé. Vous pouvez modifier les propriétés d'un nœud de grille approuvé en sélectionnant son bouton radio et en sélectionnant *Modifier*.
 
-. Lorsque vous avez terminé d'approuver les nœuds de la grille, cliquez sur *Suivant*.
+. Une fois que vous avez terminé d'approuver les nœuds de la grille, sélectionnez *Suivant*.
 

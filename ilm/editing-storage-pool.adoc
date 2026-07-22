@@ -43,4 +43,4 @@ CAUTION: L'ajout ou la suppression de sites dans un pool de stockage existant ne
 
 
 .Une fois que vous avez terminé
-Si vous avez ajouté un nouveau site ou une nouvelle classe de stockage à un pool de stockage utilisé dans la règle ILM active, activez une nouvelle règle ILM pour forcer StorageGRID à utiliser le nouveau site ou la nouvelle classe de stockage. Par exemple, clonez votre règle ILM existante, puis activez le clone. Voir link:working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].
+Si vous avez ajouté un nouveau site ou un niveau de stockage à un pool de stockage utilisé dans la stratégie ILM active, activez une nouvelle stratégie ILM pour forcer StorageGRID à utiliser le nouveau site ou niveau de stockage. Par exemple, clonez votre stratégie ILM existante, puis activez le clone. Consultez link:working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].

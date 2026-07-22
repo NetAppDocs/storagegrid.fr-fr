@@ -57,9 +57,9 @@ Entrez un nom unique pour ce niveau de cloud. Vous pouvez accepter la valeur par
  a| 
 Style d'URL
  a| 
-Si vous link:../admin/configuring-s3-api-endpoint-domain-names.html["Noms de domaine de terminaux S3 configurés"], sélectionnez *URL de style hébergé virtuel*.
+Si vous link:../admin/configuring-s3-api-endpoint-domain-names.html["Noms de domaine de terminaux S3 configurés"], sélectionnez *URL de type hébergement virtuel*.
 
-*URL de style de chemin* est la valeur par défaut pour ONTAP, mais l'utilisation de requêtes de type hébergement virtuel est recommandée pour StorageGRID. Vous devez utiliser *Path-style URL* si vous indiquez une adresse IP au lieu d'un nom de domaine pour le champ *Server name (FQDN)*.
+*Path-Style URL* est le format par défaut pour ONTAP, mais l'utilisation de requêtes de type virtual-hosted-style est recommandée pour StorageGRID. Vous devez utiliser *Path-Style URL* si vous indiquez une adresse IP au lieu d'un nom de domaine dans le champ *Server name (FQDN)*.
 
 
 

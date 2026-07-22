@@ -17,7 +17,7 @@ Une fois l'installation de Linux terminée sur vos hôtes, vous devrez peut-êtr
 NOTE: « Linux » fait référence à un déploiement RHEL, Ubuntu ou Debian.  Pour une liste des versions prises en charge, consultez le https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp (IMT)"^] .
 
 .Avant de commencer
-* Vous avez examiné le link:../network/index.html["Instructions de mise en réseau d'StorageGRID"].
+* Vous avez consulté les informations dans link:../network/index.html["Instructions de mise en réseau"].
 * Vous avez examiné les informations sur link:node-container-migration-requirements.html["exigences de migration des conteneurs de nœuds"].
 * Si vous utilisez des hôtes virtuels, vous avez lu le<<mac_address_cloning,Considérations et recommandations relatives au clonage d'adresses MAC>> avant de configurer le réseau hôte.
 
@@ -43,14 +43,14 @@ NOTE: N'utilisez pas de périphérique de liaison ou de pont directement comme i
 == Considérations et recommandations relatives au clonage d'adresses MAC
 
 .[[mac_address_cloning]]
-Le clonage d'adresses MAC fait en sorte que le conteneur utilise l'adresse MAC de l'hôte et que l'hôte utilise l'adresse MAC d'une adresse que vous spécifiez ou d'une adresse générée de manière aléatoire. Vous devez utiliser le clonage d'adresses MAC pour éviter l'utilisation de configurations réseau en mode promiscuous.
+Le clonage d'adresse MAC permet au conteneur d'utiliser l'adresse MAC de l'hôte, et à l'hôte d'utiliser l'adresse MAC soit d'une adresse que vous spécifiez, soit d'une adresse générée aléatoirement.
 
 
 
 [[enabling-mac-cloning]]
 === Activation du clonage MAC
 
-Dans certains environnements, la sécurité peut être améliorée grâce au clonage d'adresses MAC car il vous permet d'utiliser une carte réseau virtuelle dédiée pour le réseau d'administration, le réseau Grid et le réseau client. Le fait d'utiliser le conteneur l'adresse MAC du NIC dédié sur l'hôte vous permet d'éviter d'utiliser des configurations réseau en mode promiscuous.
+Dans certains environnements, la sécurité peut être renforcée grâce au clonage d'adresses MAC, car cela vous permet d'utiliser une carte réseau virtuelle dédiée pour le Admin Network, le Grid Network et le Client Network.
 
 
 NOTE: Le clonage d'adresses MAC est conçu pour être utilisé avec des installations de serveurs virtuels et peut ne pas fonctionner correctement avec toutes les configurations d'appliances physiques.
@@ -70,21 +70,18 @@ Il existe une clé pour chaque réseau :
 Le fait de définir la clé sur « true » fait que le conteneur utilise l'adresse MAC de la carte réseau de l'hôte. En outre, l'hôte utilisera ensuite l'adresse MAC du réseau de conteneurs spécifié. Par défaut, l'adresse du conteneur est une adresse générée de manière aléatoire, mais si vous en avez défini une à l'aide de la `_NETWORK_MAC` clé de configuration du nœud, cette adresse est utilisée à la place. L'hôte et le conteneur auront toujours des adresses MAC différentes.
 
 
-NOTE: L'activation du clonage MAC sur un hôte virtuel sans activer également le mode promiscuous sur l'hyperviseur peut entraîner la mise en réseau des hôtes Linux à l'aide de l'interface de l'hôte à cesser de fonctionner.
-
-
 
 [[mac-cloning-use-cases]]
 === Cas d'utilisation du clonage MAC
 
 Il existe deux cas d'utilisation à prendre en compte pour le clonage MAC :
 
-* Clonage MAC non activé : lorsque la `_CLONE_MAC` clé du fichier de configuration de nœud n'est pas définie ou définie sur « FALSE », l'hôte utilise le MAC de la carte réseau hôte et le conteneur possède un MAC généré par StorageGRID, sauf si un MAC est spécifié dans la `_NETWORK_MAC` clé. Si une adresse est définie dans la `_NETWORK_MAC` clé, le conteneur aura l'adresse spécifiée dans la `_NETWORK_MAC` clé. Cette configuration de clés nécessite l'utilisation du mode promiscuous.
-* Clonage MAC activé : lorsque la `_CLONE_MAC` clé du fichier de configuration de nœud est définie sur « true », le conteneur utilise le MAC de la carte réseau hôte et l'hôte utilise un MAC généré par StorageGRID, sauf si un MAC est spécifié dans la `_NETWORK_MAC` clé. Si une adresse est définie dans la `_NETWORK_MAC` clé, l'hôte utilise l'adresse spécifiée au lieu d'une adresse générée. Dans cette configuration de clés, vous ne devez pas utiliser le mode promiscuous.
+* Clonage MAC désactivé : lorsque la clé  `_CLONE_MAC` dans le fichier de configuration du nœud n’est pas définie ou est définie sur « false », l’hôte utilisera la MAC de la carte réseau de l’hôte et le conteneur aura une MAC générée par StorageGRID, sauf si une MAC est spécifiée dans la clé  `_NETWORK_MAC`. Si une adresse est définie dans la clé  `_NETWORK_MAC`, le conteneur aura l’adresse spécifiée dans la clé  `_NETWORK_MAC`.
+* Clonage MAC activé : lorsque la clé  `_CLONE_MAC` dans le fichier de configuration du nœud est définie sur « true », le conteneur utilise la MAC de la carte réseau de l’hôte et l’hôte utilise une MAC générée par StorageGRID, sauf si une MAC est spécifiée dans la clé  `_NETWORK_MAC`. Si une adresse est définie dans la clé  `_NETWORK_MAC`, l’hôte utilise l’adresse spécifiée au lieu d’une adresse générée.
 
 
 
-NOTE: Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et que vous préférez autoriser toutes les interfaces à recevoir et transmettre des données pour les adresses MAC autres que celles attribuées par l'hyperviseur, Assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accept* pour le mode promiscuous, les modifications d'adresse MAC et les transmissions forgées. Les valeurs définies sur le commutateur virtuel peuvent être remplacées par les valeurs au niveau du groupe de ports, de sorte que les paramètres soient les mêmes aux deux endroits.
+NOTE: Si vous ne souhaitez pas utiliser le clonage d'adresses MAC et préférez autoriser toutes les interfaces à recevoir et à transmettre des données pour des adresses MAC autres que celles attribuées par l'hyperviseur, assurez-vous que les propriétés de sécurité au niveau du commutateur virtuel et du groupe de ports sont définies sur *Accepter* pour les modifications d'adresses MAC et les transmissions falsifiées. Les valeurs définies au niveau du commutateur virtuel peuvent être remplacées par celles définies au niveau du groupe de ports, alors assurez-vous que les paramètres soient identiques aux deux endroits.
 
 Pour activer le clonage MAC, reportez-vous au link:creating-node-configuration-files.html["instructions pour la création de fichiers de configuration de nœud"].
 

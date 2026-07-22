@@ -41,7 +41,7 @@ Ce lien apparaît uniquement en cas de problème avec la licence.
 ** Date de fin de licence. *N/A* apparaît pour une licence perpétuelle.
 ** Date de fin du support
 +
-Cette date est lue à partir du fichier de licence actuel et peut être obsolète si vous avez prolongé ou renouvelé le contrat de service de support après avoir obtenu le fichier de licence. Pour mettre à jour cette valeur, voir link:updating-storagegrid-license-information.html["Mettez à jour les informations de licence StorageGRID"]. Vous pouvez également afficher la date de fin réelle du contrat à l'aide de Active IQ.
+Cette date est extraite du fichier de licence actuel et peut être obsolète si vous avez prolongé ou renouvelé le contrat de service d’assistance après l’obtention du fichier de licence. Pour mettre à jour cette valeur, consultez link:updating-storagegrid-license-information.html["Mettez à jour les informations de licence StorageGRID"]. Vous pouvez également consulter la date de fin de contrat réelle à l’aide de Digital Advisor.
 
 ** Contenu du fichier texte de licence
 

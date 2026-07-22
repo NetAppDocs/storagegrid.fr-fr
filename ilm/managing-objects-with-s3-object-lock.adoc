@@ -20,7 +20,7 @@ En tant qu'administrateur du grid, vous pouvez activer le verrouillage objet S3 
 
 La fonctionnalité de verrouillage objet StorageGRID S3 est une solution de protection des objets équivalente au verrouillage objet S3 dans Amazon simple Storage Service (Amazon S3).
 
-Lorsque le paramètre de verrouillage objet S3 global est activé pour un système StorageGRID, un compte de locataire S3 peut créer des compartiments avec ou sans verrouillage objet S3 activé. Si le verrouillage objet S3 est activé pour un compartiment, la gestion des versions de compartiment est requise et elle est automatiquement activée.
+Lorsque le paramètre global de verrouillage d'objets S3 est activé pour un système StorageGRID, un compte locataire S3 peut créer des compartiments avec ou sans le verrouillage d'objets S3 activé. Lorsque l'option permettant d'autoriser le verrouillage d'objets S3 pour les compartiments existants est activée, un compte locataire S3 peut activer le verrouillage d'objets S3 pour un compartiment existant. Si un compartiment a le verrouillage d'objets S3 activé, le versionnage du compartiment est requis et est activé automatiquement. Après qu'un compte locataire S3 a activé le verrouillage d'objets S3 pour un compartiment nouveau ou existant, il ne peut plus être désactivé.
 
 *Un compartiment sans S3 Object Lock* ne peut contenir que des objets sans paramètres de rétention spécifiés. Aucun objet ingéré ne possède de paramètres de conservation.
 
@@ -68,7 +68,7 @@ Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisa
 NOTE: Si un objet fait l'objet d'une conservation légale, personne ne peut le supprimer, quel que soit son mode de conservation.
 
 +
-Pour plus de détails sur les paramètres de l'objet, reportez-vous à la section link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
+Pour plus de détails sur les paramètres de l'objet, reportez-vous à link:../s3/use-s3-api-for-s3-object-lock.html["Utilisez l'API REST S3 pour configurer le verrouillage objet S3"].
 
 
 
@@ -85,7 +85,7 @@ Si un compartiment est créé avec le verrouillage objet S3 activé, les utilisa
 
 Les paramètres de compartiment par défaut s'appliquent uniquement aux nouveaux objets qui ne disposent pas de leurs propres paramètres de conservation. Les objets de compartiment existants ne sont pas affectés lorsque vous ajoutez ou modifiez ces paramètres par défaut.
 
-Voir link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link:../tenant/update-default-retention-settings.html["Mettre à jour la conservation par défaut du verrouillage d'objet S3"].
+Reportez-vous à link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link:../tenant/update-default-retention-settings.html["Mettre à jour la conservation par défaut du verrouillage d'objet S3"].
 
 
 
@@ -95,7 +95,7 @@ Voir link:../tenant/creating-s3-bucket.html["Créer un compartiment S3"] et link
 Le verrouillage d'objet S3 remplace la fonctionnalité de conformité disponible dans les versions précédentes de StorageGRID. Comme la fonctionnalité de verrouillage d'objet S3 est conforme aux exigences d'Amazon S3, elle délibère la fonctionnalité propriétaire StorageGRID Compliance, qui est maintenant appelée « conformité héritée ».
 
 
-NOTE: Le paramètre conformité globale est obsolète. Si vous avez activé ce paramètre à l'aide d'une version précédente de StorageGRID, le paramètre verrouillage objet S3 est activé automatiquement. Vous pouvez continuer à utiliser StorageGRID pour gérer les paramètres des compartiments conformes existants ; cependant, vous ne pouvez pas créer de nouveaux compartiments conformes. Pour plus de détails, voir https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^].
+NOTE: Le paramètre de conformité global est obsolète. Si vous avez activé ce paramètre dans une version précédente de StorageGRID, le paramètre de verrouillage des objets S3 est activé automatiquement. Vous pouvez continuer à utiliser StorageGRID pour gérer les paramètres des compartiments conformes existants ; cependant, vous ne pouvez pas créer de nouveaux compartiments conformes. Pour plus de détails, consultez  https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de connaissances NetApp : comment gérer des compartiments conformes aux ancienne génération dans StorageGRID 11.5"^].
 
 Si vous avez utilisé la fonctionnalité de conformité héritée dans une version précédente de StorageGRID, reportez-vous au tableau suivant pour savoir comment la comparer à la fonctionnalité de verrouillage d'objet S3 dans StorageGRID.
 

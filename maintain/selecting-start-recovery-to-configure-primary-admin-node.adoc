@@ -1,0 +1,53 @@
+---
+permalink: maintain/selecting-start-recovery-to-configure-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, start recovery, non-primary admin node 
+summary: 'Sélectionnez Démarrer la récupération pour configurer le nœud d"administration principal lors de la récupération du nœud d"administration principal.' 
+---
+= Sélectionnez Démarrer la récupération pour configurer le nœud Admin principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir remplacé un nœud d'administration principal, vous devez sélectionner Démarrer la récupération dans le Grid Manager pour configurer le nouveau nœud en remplacement du nœud défaillant.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de grille à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez le link:../admin/admin-group-permissions.html["Maintenance ou autorisation d'accès racine"].
+* Vous avez la phrase secrète pour le provisionnement.
+* Vous avez déployé et configuré le nœud de remplacement.
+
+
+.Étapes
+. Dans le Grid Manager, sélectionnez *Maintenance* > *Tasks* > *Node recovery*.
+. Sélectionnez le nœud de grille à récupérer dans la liste nœuds en attente.
++
+Les nœuds apparaissent dans la liste après leur échec, mais vous ne pouvez pas sélectionner un nœud tant qu'il n'a pas été réinstallé et qu'il est prêt pour la restauration.
+
+. Saisissez la *phrase secrète de provisionnement*.
+. Sélectionnez *Démarrer la récupération*.
++
+image:4b_select_recovery_node.png["Capture d'écran affichant la page Maintenance > Récupération"]
+
+. Surveiller la progression de la récupération dans le tableau de noeuds de grille de récupération.
++
+
+NOTE: Pendant la procédure de récupération, vous pouvez sélectionner *Réinitialiser* pour lancer une nouvelle récupération. Une boîte de dialogue s'affiche, indiquant que le nœud restera dans un état indéterminé si vous réinitialisez la procédure.
+
++
+Si vous souhaitez relancer la restauration après avoir réinitialisé la procédure, vous devez restaurer l'état pré-installé du nœud, comme suit :
+
++
+** *VMware* : supprimez le nœud de grille virtuelle déployé. Ensuite, lorsque vous êtes prêt à redémarrer la restauration, redéployez le nœud.
+** *Linux* : redémarrez le nœud en exécutant cette commande sur l'hôte Linux : `storagegrid node force-recovery _node-name_`
+** *Appliance* : si vous souhaitez relancer la restauration après avoir réinitialisé la procédure, vous devez restaurer le nœud de l'appliance à l'état pré-installé en l'exécutant `sgareinstall` sur le nœud. Voir link:preparing-appliance-for-reinstallation-platform-replacement-only.html["Préparez l'appareil pour la réinstallation (remplacement de la plate-forme uniquement)"].
+
+
+. Si l'authentification unique (SSO) est activée pour votre système StorageGRID et que l'approbation du composant de confiance pour le nœud d'administration que vous avez récupéré a été configurée pour utiliser le certificat d'interface de gestion par défaut, mettre à jour (ou supprimer et recréer) l'approbation du nœud dans Active Directory Federation Services (AD FS). Utilisez le nouveau certificat de serveur par défaut qui a été généré pendant le processus de restauration du noeud d'administration.
++
+
+NOTE: Pour configurer une approbation de partie de confiance, voirlink:../admin/configure-sso.html["Configurer l'authentification unique"] .  Pour accéder au certificat de serveur par défaut, connectez-vous à l’interpréteur de commandes du nœud d’administration.  Aller à la `/var/local/mgmt-api` répertoire et sélectionnez le `server.crt` déposer.
+
+

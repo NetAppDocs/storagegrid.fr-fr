@@ -42,8 +42,6 @@ StorageGRID prend en charge les terminaux de réplication qui représentent des 
 
 StorageGRID prend en charge les points de terminaison Amazon SNS, Kafka et webhook.  Les points de terminaison Simple Queue Service (SQS) et AWS Lambda ne sont pas pris en charge.
 
-Pour les points de terminaison Kafka, Mutual TLS n'est pas pris en charge.  Par conséquent, si vous avez `ssl.client.auth` réglé sur `required` dans la configuration de votre courtier Kafka, cela peut entraîner des problèmes de configuration du point de terminaison Kafka.
-
 
 
 [[endpoints-for-the-search-integration-service]]

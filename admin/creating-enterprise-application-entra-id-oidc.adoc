@@ -1,0 +1,109 @@
+---
+permalink: admin/creating-enterprise-application-entra-id-oidc.html 
+sidebar: sidebar 
+keywords: enterprise application, entra id, single sign on, sso 
+summary: 'Utilisez Entra ID pour créer une application pour chaque nœud d"administration de votre système.' 
+---
+= Créez des applications d'entreprise dans Entra ID pour OIDC dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez Entra ID pour créer une application d'entreprise pour chaque nœud d'administration pour OpenID Connect (OIDC) dans votre système.
+
+.Avant de commencer
+* Vous disposez de l'identifiant de la partie de confiance et du domaine complet (FQDN) ou de l'adresse IP pour chaque nœud d'administration de votre système.
++
+
+NOTE: Chaque nœud d'administration de votre StorageGRID doit disposer d'une application d'entreprise. Cela garantit que les utilisateurs peuvent se connecter et se déconnecter en toute sécurité de n'importe quel nœud d'administration. Vous pouvez créer une seule application d'entreprise pour tous les nœuds d'administration (recommandé) ou une application d'entreprise différente pour chaque nœud d'administration.
+
+* Vous avez de l'expérience dans la création d'applications dans Entra ID.
+* Vous disposez d'un compte Entra ID avec un abonnement actif.
+* Vous disposez de l’un des rôles suivants dans le compte Entra ID : administrateur général, administrateur d’applications cloud, administrateur d’applications ou propriétaire du principal de service.
+
+
+
+
+[[step-1-access-entra-id]]
+== Étape 1 : Accédez à Entra ID
+
+.Étapes
+. Connectez-vous au https://portal.azure.com["Portail Azure"^].
+. Sélectionnez link:https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview["Identifiant Microsoft Entra"^].
+. Sélectionnez link:https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps["Enregistrements d'application"^].
+
+
+
+
+[[step-2-register-a-new-application]]
+== Étape 2 : Enregistrer une nouvelle application
+
+Enregistrez une nouvelle application d'entreprise pour chaque nœud d'administration de votre système.
+
+.Étapes
+. Dans le volet Applications d'entreprise d'Entra ID, sélectionnez *Inscriptions d'applications* > *Nouvelle inscription*.
+. Pour *Nom*, saisissez l’identifiant de la partie de confiance.
+. Sous *Types de comptes pris en charge*, sélectionnez les types de comptes qui peuvent utiliser l'application ou accéder à l'API, par exemple, *Locataire unique uniquement - <tenant_name>*.
+. Sous *URI de redirection*, sélectionnez *Sélectionner une plateforme* > *Web*.
+. Saisissez l’URI de redirection FQDN (ou adresse IP) pour le nœud d’administration :  `https://<FQDN>/api/v4/oidc-callback` ou `https://<IP_address>/api/v4/oidc-callback`
++
+Saisissez l'URI de chaque nœud d'administration si vous utilisez une seule application d'entreprise pour tous les nœuds d'administration. Si vous utilisez une application d'entreprise différente pour chaque nœud d'administration, saisissez uniquement l'URI du nœud d'administration correspondant.
+
+. Sélectionnez *Register*.
+. Sur la page Vue d'ensemble de l'enregistrement de la nouvelle application, notez l'*ID de l'application (client)* et l'*ID du répertoire (tenant)*.
+
+
+
+
+[[step-3-configure-a-client-secret]]
+== Étape 3 : Configurer un secret client
+
+Enregistrez un secret client pour chaque nouvelle application.
+
+.Étapes
+. Sur la page Vue d'ensemble de l'enregistrement de la nouvelle application, sélectionnez *Gérer* > *Certificats et secrets* > *Nouveau secret client*.
+. Saisissez le code secret du client et définissez une date d'expiration souhaitée.
+. Sélectionnez *Ajouter* pour créer le secret client.
+. Copiez la *valeur* secrète.
++
+
+NOTE: La valeur secrète n'est plus visible après une actualisation ou après avoir quitté la page du secret client.
+
+
+
+
+
+[[step-4-set-up-the-api-permissions]]
+== Étape 4 : Configurer les autorisations de l’API
+
+Configurez les autorisations API pour chaque nouvelle application.
+
+.Étapes
+. Sur la page Vue d'ensemble de l'enregistrement de la nouvelle application, sélectionnez *Gérer* > *Autorisations API* > *Ajouter une autorisation*.
+. Sélectionnez *Microsoft APIs* > *Microsoft Graph* > *Autorisations déléguées*.
+. Développez *OpenId permissions*, puis sélectionnez *email*, *offline_access*, *openid* et *profile*.
+. Sélectionnez *Ajouter des autorisations*.
+. Sélectionnez *Accorder le consentement de l’administrateur pour <tenant>*, puis sélectionnez *Oui*.
+
+
+
+
+[[step-5-add-the-logged-out-redirect-uri]]
+== Étape 5 : Ajouter l’URI de redirection de l’utilisateur déconnecté
+
+Ajoutez l'URI de redirection après déconnexion pour chaque nouvelle application.
+
+.Étapes
+. Sur la page Vue d'ensemble de l'enregistrement de la nouvelle application, sélectionnez *Gérer* > *Authentification*.
+. Sélectionnez *Ajouter un URI de redirection* > *Web*.
+. Saisissez l’URI de redirection FQDN (ou adresse IP) pour le nœud d’administration : `https://<FQDN>/api/v4/oidc-logged-out` ou `https://<IP_address>/api/v4/oidc-logged-out`
++
+Saisissez l'URI de chaque nœud d'administration si vous utilisez un seul groupe d'applications pour tous les nœuds d'administration. Si vous utilisez un groupe d'applications différent pour chaque nœud d'administration, saisissez uniquement l'URI du nœud d'administration correspondant.
+
+. Sélectionnez *Configurer*.
+
+
+.Et ensuite
+Après la création d'applications d'entreprise, link:configure-sso-oidc.html["Configurer l'authentification unique (SSO) à l'aide d'OIDC"].
