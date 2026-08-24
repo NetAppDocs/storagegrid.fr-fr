@@ -65,6 +65,10 @@ Reportez-vous  à la section link:summary-ip-addresses-and-ports-for-client-conn
 . Sélectionnez *Configuration* > *Sécurité* > *Paramètres de sécurité*.
 . Sélectionnez l'onglet *réseau et objets*.
 . Pour le chiffrement des objets stockés, utilisez le paramètre *None* (par défaut) si vous ne souhaitez pas que les objets stockés soient cryptés, ou sélectionnez *AES-128* ou *AES-256* pour crypter les objets stockés.
++
+
+NOTE: À compter de StorageGRID 12.1.0, la prise en charge du chiffrement AES-128 des nouvelles données d'objet stockées au repos est obsolète. La prise en charge de la récupération des objets stockés initialement chiffrés avec AES-128 est maintenue.
+
 . Vous pouvez sélectionner *empêcher la modification du client* si vous voulez empêcher les clients S3 de faire des demandes spécifiques.
 +
 
