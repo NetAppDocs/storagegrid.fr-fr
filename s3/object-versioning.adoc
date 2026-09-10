@@ -34,7 +34,19 @@ Pour les objets S3 dans les compartiments avec gestion des versions, la prise en
 
 NOTE: Lorsque vous téléchargez une nouvelle version d'un objet à l'aide d'une opération de téléchargement partitionné, l'heure qui n'est pas à jour pour la version d'origine de l'objet correspond à la création du téléchargement partitionné pour la nouvelle version, et non à la fin du téléchargement partitionné. Dans des cas limités, l'heure non actuelle de la version d'origine peut être des heures ou des jours plus tôt que l'heure de la version actuelle.
 
+
+
+[[how-object-versioning-uses-storage-capacity-in-storagegrid]]
+== Comment le versionnage d'objets utilise la capacité de stockage dans StorageGRID
+
+L'espace de stockage utilisé pour le versionnage des objets dépend du nombre de fois où vous téléversez un objet, de vos règles de stratégie ILM et de l'accumulation des versions non actuelles :
+
+* Lorsque le versionnage est activé sur un bucket, chaque version d'un objet est stockée comme un objet complet et distinct. Si vous téléchargez un fichier de 1 Go cinq fois, StorageGRID stocke 5 Go de données brutes (5 x 1 Go) pour cet objet.
+* La politique ILM est évaluée pour chaque version d'objet. Par exemple, si vous avez une règle ILM de réplication à deux copies, StorageGRID stocke deux copies répliquées de chaque version d'objet (actuelle et non actuelle). Lorsque cette règle ILM est appliquée à un compartiment avec 10 versions d'un objet de 1 Go, 20 Go de stockage physique sont utilisés.
+* Sans stratégie de cycle de vie de compartiment S3 ni règle ILM ciblant les versions non actuelles, StorageGRID conserve indéfiniment toutes les anciennes versions, qui continuent de consommer de l'espace de stockage. C'est la cause fréquente d'une augmentation inattendue de l'espace de stockage dans les compartiments versionnés.
+
+
 .Informations associées
-* link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"]
+* link:../ilm/how-objects-and-delete-markers-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"]
 * link:../ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.html["Règles et règles ILM pour les objets avec version S3 (exemple 4)"].
 

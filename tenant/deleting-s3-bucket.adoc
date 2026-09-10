@@ -22,7 +22,7 @@ Vous pouvez utiliser le Gestionnaire de locataires pour supprimer une ou plusieu
 .Description de la tâche
 Ces instructions expliquent comment supprimer un compartiment S3 à l'aide du Gestionnaire des locataires. Vous pouvez également supprimer des compartiments S3 à l'aide de link:understanding-tenant-management-api.html["API de gestion des locataires"]link:../s3/operations-on-buckets.html["L'API REST S3"]la ou de la .
 
-Vous ne pouvez pas supprimer un compartiment S3 s'il contient des objets, des versions d'objets non actuelles ou des marqueurs de suppression. Pour plus d'informations sur la suppression des objets avec version S3, reportez-vous à la section link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"].
+Vous ne pouvez pas supprimer un compartiment S3 s'il contient des objets, des versions d'objets obsolètes ou des marqueurs de suppression. Pour plus d'informations sur la suppression des objets versionnés S3, consultez link:../ilm/how-objects-and-delete-markers-are-deleted.html["Comment les objets et les marqueurs de suppression sont supprimés"].
 
 .Étapes
 . Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.

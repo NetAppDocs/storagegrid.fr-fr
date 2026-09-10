@@ -29,8 +29,8 @@ entries:
       url: "/ilm/advantages-disadvantages-and-requirements-for-ec.html"
   - title: Méthode de détermination de la conservation des objets
     url: "/ilm/how-object-retention-is-determined.html"
-  - title: Comment supprimer les objets
-    url: "/ilm/how-objects-are-deleted.html"
+  - title: Comment les objets et les marqueurs de suppression sont supprimés
+    url: "/ilm/how-objects-and-delete-markers-are-deleted.html"
 - title: Créer et attribuer des notes de stockage
   url: "/ilm/creating-and-assigning-storage-grades.html"
 - title: Utiliser des pools de stockage
@@ -139,3 +139,6 @@ entries:
   - title: 'Exemple 8 : priorités pour le cycle de vie des compartiments S3 et la
       règle ILM'
     url: "/ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html"
+  - title: 'Exemple 9 : Supprimer les versions non actuelles et les marqueurs de suppression
+      après la suspension du versionnage'
+    url: "/ilm/example-9-delete-noncurrent-versions-and-expired-delete-markers.html"

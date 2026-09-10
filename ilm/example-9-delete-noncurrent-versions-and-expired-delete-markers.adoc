@@ -1,0 +1,49 @@
+---
+permalink: ilm/example-9-delete-noncurrent-versions-and-expired-delete-markers.html 
+sidebar: sidebar 
+keywords: retention priority, example S3 bucket lifecycle, example ILM policy 
+summary: Selon la configuration du cycle de vie, les objets suivent les paramètres de conservation du cycle de vie du compartiment S3 ou une règle ILM. 
+---
+= Supprimez les versions obsolètes et les marqueurs de suppression expirés dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous suspendez le versionnage d'un compartiment, vous devez configurer le cycle de vie du compartiment pour gérer les versions non actuelles et les marqueurs de suppression à version nulle expirés.
+
+Exemple de configuration du cycle de vie d'un compartiment qui gère les versions obsolètes et les marqueurs de suppression expirés:: Ces étapes sont effectuées sur un compartiment doté d'une stratégie ILM active :
++
+--
+. Activez le versionnage. Lorsque des objets portant le même nom sont ingérés, les versions précédentes restent disponibles en tant que versions non actuelles et les requêtes de suppression créent des marqueurs de suppression. Les versions non actuelles sont accessibles, mais elles utilisent de l'espace de stockage.
+. Suspendez le versionnage, car la configuration souhaitée consiste à ne conserver qu'une seule version et à libérer l'espace de stockage utilisé par les versions non actuelles. Cette configuration est effectuée à l'étape suivante.
+. Configurez un cycle de vie de compartiment pour gérer les versions non actuelles et les marqueurs de suppression qui restent après la suspension du versionnage.
+
+
+--
+Politique ILM::
++
+--
+Règle basée sur la référence d'heure d'ingestion (par défaut) : au jour 0, conserver X copies indéfiniment
+
+--
+Cycle de vie du godet::
++
+--
+`"Filter": {}, "Expiration": {"ExpiredObjectDeleteMarker": true}, "NoncurrentVersionExpiration": {"NoncurrentDays": 1}`
+
+--
+Résultat:: Le cycle de vie du compartiment est configuré pour gérer les versions non actuelles et les marqueurs de suppression expirés :
++
+--
+. Les versions obsolètes depuis plus d'une journée sont supprimées. Seule la version actuelle reste toujours.
+. Un objet nommé `draftdoc` est ingéré et possède l’ID de version `NULL`.
+. Si un autre objet est ingéré avec le même nom (`draftdoc`, il écrase et remplace la version nulle et supprime immédiatement la version précédente.
+. Si une demande de suppression est effectuée vers  `draftdoc` sans spécifier d’identifiant de version, cela crée un marqueur de suppression à version nulle, remplaçant et supprimant l’objet à version nulle.
+. Le marqueur de suppression à version nulle a expiré car il n'existe aucune version non actuelle.
+. Peu après, le marqueur de suppression expiré avec une version nulle est supprimé.
+
+
+--
+

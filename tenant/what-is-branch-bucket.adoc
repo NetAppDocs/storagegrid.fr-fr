@@ -44,6 +44,7 @@ Notez les caractéristiques suivantes des compartiments de branche :
 
 
 [[operations-on-objects-in-branch-buckets]]
+[[operations-in-branch-buckets]]
 == Opérations sur les objets dans les compartiments de branche
 
 * Une opération d’objet PUT sur un bucket de branche crée un objet dans la branche.
@@ -110,4 +111,4 @@ HEAD/GET renvoie La version de l'objet n'existe pas
 |===
 
 
-Voir aussilink:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"] .
+Voir aussi link:../ilm/how-objects-and-delete-markers-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"].

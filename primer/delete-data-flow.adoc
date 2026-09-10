@@ -38,7 +38,7 @@ NOTE: Lorsqu'un cycle de vie d'un compartiment S3 est configuré, les actions d'
 
 
 
-Voir link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"] pour plus d'informations.
+Voir link:../ilm/how-objects-and-delete-markers-are-deleted.html["Comment les objets et les marqueurs de suppression sont supprimés"] pour plus d'informations.
 
 
 

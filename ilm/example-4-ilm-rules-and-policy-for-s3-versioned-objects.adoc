@@ -138,4 +138,4 @@ Lorsque vous simulez l'exemple de stratégie, vous vous attendez à ce que les o
 
 
 .Informations associées
-link:how-objects-are-deleted.html["Comment supprimer les objets"]
+link:how-objects-and-delete-markers-are-deleted.html["Comment les objets et les marqueurs de suppression sont supprimés"]

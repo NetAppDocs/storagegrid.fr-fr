@@ -88,6 +88,7 @@ Les marqueurs de suppression commençant par « docs/ » sont supprimés lorsqu'
 
 
 [[example-of-using-bucket-lifecycle-to-duplicate-ilm-and-clean-up-expired-delete-markers]]
+[[use-bucket-to-lifecycle-remove-expired-delete-markers]]
 == Exemple d'utilisation du cycle de vie du compartiment pour dupliquer la règle ILM et nettoyer les marqueurs de suppression expirés
 
 Politique ILM::

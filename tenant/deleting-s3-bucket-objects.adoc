@@ -32,7 +32,7 @@ TIP: Un compartiment qui utilise le verrouillage d'objet S3 restera à l'état *
 
 
 * Si la gestion des versions d'objet est activée dans un compartiment, les marqueurs de suppression créés dans StorageGRID 11.8 ou version ultérieure peuvent être supprimés à l'aide des opérations de suppression d'objets dans un compartiment.
-* Si la gestion des versions d'objet est activée dans un compartiment, l'opération de suppression d'objets ne supprime pas les marqueurs de suppression créés dans StorageGRID 11.7 ou une version antérieure. Voir les informations sur la suppression d'objets dans un compartiment dans link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"].
+* Si le versionnement d'objets est activé sur un compartiment, l'opération de suppression d'objets ne retirera pas les marqueurs de suppression créés dans StorageGRID 11.7 ou version antérieure. Consultez les informations relatives à la suppression d'objets dans un compartiment dans link:../ilm/how-objects-and-delete-markers-are-deleted.html#delete-s3-versioned-objects["Suppression d'objets avec version S3"].
 * Si vous utilisez link:grid-federation-manage-cross-grid-replication.html["réplication entre plusieurs grilles"], notez ce qui suit :
 +
 ** L'utilisation de cette option ne supprime aucun objet du compartiment de l'autre grille.
