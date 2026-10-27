@@ -133,7 +133,7 @@ Si nécessaire, vous pouvez éventuellement désactiver la vérification des mis
 [[add-an-additional-autosupport-destination]]
 == Ajouter une destination AutoSupport supplémentaire
 
-Lorsque vous activez AutoSupport, les packages d'état et de santé sont envoyés au support technique. Vous pouvez spécifier une destination supplémentaire pour tous les packages AutoSupport.
+Lorsque vous activez AutoSupport, les packages d'état et d'intégrité sont envoyés au support technique. Vous pouvez spécifier une destination supplémentaire pour tous les packages AutoSupport.
 
 Pour vérifier ou modifier le protocole utilisé pour envoyer des packages AutoSupport, reportez-vous aux instructions à <<specify-protocol-for-autosupport-packages,Spécifiez le protocole des packages AutoSupport>>.
 

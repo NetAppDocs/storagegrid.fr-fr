@@ -37,9 +37,6 @@ NOTE: Ne créez pas plus de niveaux de stockage que nécessaire. Par exemple, ne
 +
 .. Pour chaque niveau de stockage personnalisé que vous souhaitez ajouter, sélectionnez *Insérer* image:icon_nms_insert.gif["insérer l'icône"] pour ajouter une ligne.
 .. Saisissez un libellé descriptif.
-+
-image:editing_storage_grades.gif["Notes de stockage"]
-
 .. Sélectionnez *appliquer les modifications*.
 .. Si vous devez modifier une étiquette enregistrée, sélectionnez *Modifier* image:icon_nms_edit.gif["icône modifier"] et sélectionnez *Appliquer les modifications*.
 +
@@ -52,9 +49,6 @@ NOTE: Vous ne pouvez pas supprimer des niveaux de stockage.
 +
 .. Repérez le nœud de stockage dans la liste LDR et sélectionnez son icône *Modifier* image:icon_nms_edit.gif["icône modifier"].
 .. Sélectionnez le niveau de stockage approprié dans la liste.
-+
-image:assigning_storage_grades_to_storage_nodes.gif["Notes de stockage"]
-
 +
 
 NOTE: Attribuez une note de stockage à un nœud de stockage donné une seule fois. La récupération d'un nœud de stockage suite à une défaillance permet de conserver la qualité de stockage précédemment attribuée. Ne modifiez pas cette affectation une fois la politique ILM activée. Si l'affectation est modifiée, les données sont stockées selon le nouveau niveau de stockage.
